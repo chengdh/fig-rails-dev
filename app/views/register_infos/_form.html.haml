@@ -1,0 +1,193 @@
+= form_for @register_info do |f|
+  - if @register_info.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@register_info.errors.count, "error")} prohibited this register_info from being saved:"
+      %ul
+        - @register_info.errors.full_messages.each do |msg|
+          %li= msg
+
+  %table.table.table-bordered.table-hover.table-condensed
+    %thead
+      %tr
+        %th{:colspan => 8}
+          一、项目申请单位基本情况
+      %tr
+        %td
+          项目申请单位名称
+        %td{:colspan => 3}
+          = f.text_field :company_name
+        %td
+          项目申请单位法人代码
+        %td{:colspan => 3}
+          = f.text_field :company_name
+      %tr
+        %td
+          项目申请单位地址
+        %td{:colspan => 3}
+          = f.text_field :company_name
+        %td
+          法人代表
+        %td{:colspan => 3}
+          = f.text_field :company_name
+
+      %tr
+        %td
+          联合申报单位 
+        %td{:colspan => 3}
+          = f.text_field :company_name
+        %td
+          物流资质等级
+        %td{:colspan => 3}
+          = f.text_field :company_name
+      %tr
+        %td
+          项目负责人
+        %td
+          = f.text_field :company_name
+        %td
+          电话号码
+        %td
+          = f.text_field :company_name
+        %td
+          传真号码
+        %td
+          = f.text_field :company_name
+        %td
+          手机
+        %td
+          = f.text_field :company_name
+      %tr
+        %td
+          注册资本 
+        %td
+          = f.text_field :company_name
+        %td
+          注册时间 
+        %td
+          = f.text_field :company_name
+        %td
+          申请单位经济类型
+        %td{:colspan => 3}
+          = f.text_field :company_name
+      %tr
+        %th{:colspan => 8}
+          二、项目申请单位主要经济指标(2012年度,单位:万元,人)
+      %tr
+        %td
+          年营业收入
+        %td
+          = f.text_field :company_name
+        %td
+          年净利润
+        %td
+          = f.text_field :company_name
+        %td
+          物流专业员工人数
+        %td{:colspan => 3}
+          = f.text_field :company_name
+          人
+      %tr
+        %th{:colspan => 8}
+          三、项目申请单位财务状况(2012年度,单位:万元,%)
+      %tr
+        %td
+          总资产
+        %td
+          = f.text_field :company_name
+        %td
+          净资产
+        %td
+          = f.text_field :company_name
+        %td
+          2011年、2012年企业纳税额
+        %td{:colspan => 2}
+          = f.text_field :company_name
+        %td
+          = f.text_field :company_name
+
+      %tr
+        %td
+          净资产收益率
+        %td
+          = f.text_field :company_name
+        %td
+          流动资产周转率
+        %td
+          = f.text_field :company_name
+        %td
+          资产负债率
+        %td{:colspan => 3}
+          = f.text_field :company_name
+      %tr
+        %th{:colspan => 8}
+          四、申请项目情况:
+      %tr
+        %td
+          项目名称
+        %td{:colspan => 7}
+          = f.text_field :company_name
+      %tr
+        %td
+          项目主要建设内容（300-500字）
+        %td{:colspan => 7}
+          = f.text_field :company_name
+
+      %tr
+        %td
+          项目绩效评估（300-500字）
+        %td{:colspan => 7}
+          = f.text_field :company_name
+      %tr
+        %td
+          项目所属专题
+        %td{:colspan => 3}
+          = f.text_field :company_name
+        %td
+          项目起至年限
+        %td{:colspan => 3}
+          = f.text_field :company_name
+      %tr
+        %td{:rowspan => 2}
+          项目投资
+        %td
+          项目总投资
+        %td
+          = f.text_field :company_name
+          万元
+        %td
+          自筹经费
+        %td
+          = f.text_field :company_name
+          万元
+        %td
+          贷款 
+        %td{:colspan => 2}
+          = f.text_field :company_name
+          万元
+      %tr
+        %td
+          拟申请财政资金及方式
+        %td{:colspan => 7}
+          = f.text_field :company_name
+      %tr
+        %td
+          已投资进度
+        %td
+          2012年投资额
+        %td
+          = f.text_field :company_name
+          (万元)
+        %td
+          2013年投资额
+        %td
+          = f.text_field :company_name
+          (万元)
+        %td
+          是否重点项目
+        %td{:colspan => 2}
+          = f.text_field :company_name
+
+
+
+  .actions
+    = f.submit '保存',class: "btn btn-primary"

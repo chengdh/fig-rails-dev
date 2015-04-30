@@ -1,0 +1,21 @@
+%h1 Listing register_infos
+
+%table
+  %thead
+    %tr
+      %th Company name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @register_infos.each do |register_info|
+      %tr
+        %td= register_info.company_name
+        %td= link_to 'Show', register_info
+        %td= link_to 'Edit', edit_register_info_path(register_info)
+        %td= link_to 'Destroy', register_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Register info', new_register_info_path
