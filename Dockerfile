@@ -32,6 +32,6 @@ WORKDIR /rails_app
 
 ADD Gemfile Gemfile
 RUN ruby -v
-RUN bundle install
+#RUN bundle install
 
 ADD . /rails_app

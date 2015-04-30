@@ -6,7 +6,7 @@ mysql:
     - "3306:3306"
 web:
   build: .
-  command: bundle exec rails s -p 3000
+  command: bundle exec rails s -b 0.0.0.0 -p 3000
   volumes:
     # This seems to work as-is once you expose /Users to the boot2docker vm.
     - .:/rails_app
