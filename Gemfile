@@ -51,6 +51,9 @@ gem 'high_voltage'
 gem 'mysql2'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
+gem 'formtastic-bootstrap'
+gem 'formtastic', '~> 3.0'
+gem "paperclip", "~> 4.2"
 
 group :development do
   gem 'better_errors'

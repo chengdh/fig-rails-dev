@@ -1,10 +1,8 @@
-= form_for @register_info do |f|
+= semantic_form_for @register_info do |f|
   - if @register_info.errors.any?
     #error_explanation
       %h2= "#{pluralize(@register_info.errors.count, "error")} prohibited this register_info from being saved:"
-      %ul
-        - @register_info.errors.full_messages.each do |msg|
-          %li= msg
+      = f.semantic_errors
 
   %table.table.table-bordered.table-hover.table-condensed
     %thead
@@ -15,60 +13,60 @@
         %td
           项目申请单位名称
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :company_name,label: false
         %td
           项目申请单位法人代码
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :legal_code,label: false
       %tr
         %td
           项目申请单位地址
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :address,label: false
         %td
           法人代表
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :legaler,label: false
 
       %tr
         %td
           联合申报单位 
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :union_company_name,:label => false
         %td
           物流资质等级
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :logistics_level,:as => :select,label: false,collection: logistics_levels_for_select
       %tr
         %td
           项目负责人
         %td
-          = f.text_field :company_name
+          = f.input :project_manager,label: false 
         %td
           电话号码
         %td
-          = f.text_field :company_name
+          = f.input :pm_phone,as: :phone,label: false 
         %td
           传真号码
         %td
-          = f.text_field :company_name
+          = f.input :pm_fax,label: false 
         %td
           手机
         %td
-          = f.text_field :company_name
+          = f.input :pm_mobile,label: false 
       %tr
         %td
-          注册资本 
+          注册资本
         %td
-          = f.text_field :company_name
+          = f.input :capital,label: false 
         %td
           注册时间 
         %td
-          = f.text_field :company_name
+          = f.input :register_date,as: :date_select,label: false 
         %td
           申请单位经济类型
         %td{:colspan => 3}
-          = f.text_field :company_name
+          = f.input :ec_typee,:as => :select, collection: ec_types_for_select,include_blank: false,label: false 
       %tr
         %th{:colspan => 8}
           二、项目申请单位主要经济指标(2012年度,单位:万元,人)
@@ -125,18 +123,18 @@
         %td
           项目名称
         %td{:colspan => 7}
-          = f.text_field :company_name
+          = f.input :project_name,label: false
       %tr
         %td
           项目主要建设内容（300-500字）
         %td{:colspan => 7}
-          = f.text_field :company_name
+          = f.input :project_context
 
       %tr
         %td
           项目绩效评估（300-500字）
         %td{:colspan => 7}
-          = f.text_field :company_name
+          = f.input :project_kpi
       %tr
         %td
           项目所属专题
@@ -144,15 +142,18 @@
           = f.text_field :company_name
         %td
           项目起至年限
-        %td{:colspan => 3}
-          = f.text_field :company_name
+        %td{:colspan => 2}
+          = f.input :project_begin_date,label: false
+        %td
+          = f.input :project_end_date,label: false
+
       %tr
         %td{:rowspan => 2}
           项目投资
         %td
           项目总投资
         %td
-          = f.text_field :company_name
+          = f.input :project_sum_invest,label: false
           万元
         %td
           自筹经费
