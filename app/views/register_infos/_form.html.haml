@@ -128,13 +128,13 @@
         %td
           项目主要建设内容（300-500字）
         %td{:colspan => 7}
-          = f.input :project_context
+          = f.input :project_context,label: false
 
       %tr
         %td
           项目绩效评估（300-500字）
         %td{:colspan => 7}
-          = f.input :project_kpi
+          = f.input :project_kpi,label: false
       %tr
         %td
           项目所属专题
@@ -187,8 +187,6 @@
           是否重点项目
         %td{:colspan => 2}
           = f.text_field :company_name
-
-
 
   .actions
     = f.submit '保存',class: "btn btn-primary"
