@@ -1,9 +1,11 @@
-%p#notice= notice
+.panel-heading
+  .panel-title 
+    城市共同配送试点项目申请表
+  .panel-options
+  .panel-body
+    = render 'show'
+    .actions
+      = link_to '返回', register_infos_path
 
-%p
-  %b Company name:
-  = @register_info.company_name
 
-= link_to 'Edit', edit_register_info_path(@register_info)
-\|
-= link_to 'Back', register_infos_path
+

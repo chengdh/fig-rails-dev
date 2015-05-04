@@ -69,6 +69,6 @@ class RegisterInfosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def register_info_params
-      params.require(:register_info).permit(:company_name)
+      params.require(:register_info).permit!
     end
 end

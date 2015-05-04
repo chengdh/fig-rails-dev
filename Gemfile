@@ -2,9 +2,10 @@ source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.0.0'
+ruby '2.1.4'
 gem 'rails', '4.2.1'
 # Use mysql as the database for Active Record
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -18,7 +19,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
@@ -54,6 +55,7 @@ gem 'therubyracer', :platform=>:ruby
 gem 'formtastic-bootstrap'
 gem 'formtastic', '~> 3.0'
 gem "paperclip", "~> 4.2"
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   gem 'better_errors'

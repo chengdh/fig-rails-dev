@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430043239) do
+ActiveRecord::Schema.define(version: 20150504014232) do
 
   create_table "register_infos", force: :cascade do |t|
     t.string   "company_name",                limit: 60,                                           null: false
@@ -53,6 +53,46 @@ ActiveRecord::Schema.define(version: 20150430043239) do
     t.integer  "is_important",                limit: 4,                              default: 0
     t.datetime "created_at",                                                                       null: false
     t.datetime "updated_at",                                                                       null: false
+    t.string   "attach_1_file_name",          limit: 255
+    t.string   "attach_1_content_type",       limit: 255
+    t.integer  "attach_1_file_size",          limit: 4
+    t.datetime "attach_1_updated_at"
+    t.string   "attach_2_file_name",          limit: 255
+    t.string   "attach_2_content_type",       limit: 255
+    t.integer  "attach_2_file_size",          limit: 4
+    t.datetime "attach_2_updated_at"
+    t.string   "attach_3_file_name",          limit: 255
+    t.string   "attach_3_content_type",       limit: 255
+    t.integer  "attach_3_file_size",          limit: 4
+    t.datetime "attach_3_updated_at"
+    t.string   "attach_4_file_name",          limit: 255
+    t.string   "attach_4_content_type",       limit: 255
+    t.integer  "attach_4_file_size",          limit: 4
+    t.datetime "attach_4_updated_at"
+    t.string   "attach_5_file_name",          limit: 255
+    t.string   "attach_5_content_type",       limit: 255
+    t.integer  "attach_5_file_size",          limit: 4
+    t.datetime "attach_5_updated_at"
+    t.string   "attach_6_file_name",          limit: 255
+    t.string   "attach_6_content_type",       limit: 255
+    t.integer  "attach_6_file_size",          limit: 4
+    t.datetime "attach_6_updated_at"
+    t.string   "attach_7_file_name",          limit: 255
+    t.string   "attach_7_content_type",       limit: 255
+    t.integer  "attach_7_file_size",          limit: 4
+    t.datetime "attach_7_updated_at"
+    t.string   "attach_8_file_name",          limit: 255
+    t.string   "attach_8_content_type",       limit: 255
+    t.integer  "attach_8_file_size",          limit: 4
+    t.datetime "attach_8_updated_at"
+    t.string   "attach_9_file_name",          limit: 255
+    t.string   "attach_9_content_type",       limit: 255
+    t.integer  "attach_9_file_size",          limit: 4
+    t.datetime "attach_9_updated_at"
+    t.string   "attach_10_file_name",         limit: 255
+    t.string   "attach_10_content_type",      limit: 255
+    t.integer  "attach_10_file_size",         limit: 4
+    t.datetime "attach_10_updated_at"
   end
 
 end

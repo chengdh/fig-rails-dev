@@ -1,69 +1,66 @@
-= semantic_form_for @register_info,html: {multipart: true} do |f|
-  = f.semantic_errors
-
-  %table.table.table-bordered.table-hover.table-condensed
-    %thead
-      %tr
-        %th{:colspan => 8}
-          一、项目申请单位基本情况
+%table.table.table-bordered.table-hover.table-condensed
+  %thead
+    %tr
+      %th{:colspan => 8}
+        一、项目申请单位基本情况
       %tr
         %td
           项目申请单位名称
         %td{:colspan => 3}
-          = f.input :company_name,label: false
+          = @register_info.company_name
         %td
           项目申请单位法人代码
         %td{:colspan => 3}
-          = f.input :legal_code,label: false
+          = @register_info.legal_code
       %tr
         %td
           项目申请单位地址
         %td{:colspan => 3}
-          = f.input :address,label: false
+          = @register_info.address
         %td
           法人代表
         %td{:colspan => 3}
-          = f.input :legaler,label: false
+          = @register_info.legaler
 
       %tr
         %td
-          联合申报单位 
+          联合申报单位
         %td{:colspan => 3}
-          = f.input :union_company_name,:label => false
+          = @register_info.union_company_name
         %td
           物流资质等级
         %td{:colspan => 3}
-          = f.input :logistics_level,:as => :select,label: false,collection: logistics_levels_for_select
+          = logistics_level_desc(@register_info.logistics_level)
       %tr
         %td
           项目负责人
         %td
-          = f.input :project_manager,label: false 
+          = @register_info.project_manager
         %td
           电话号码
         %td
-          = f.input :pm_phone,as: :phone,label: false 
+          = @register_info.pm_phone
         %td
           传真号码
         %td
-          = f.input :pm_fax,label: false 
+          = @register_info.pm_fax
         %td
           手机
         %td
-          = f.input :pm_mobile,label: false 
+          = @register_info.pm_mobile
       %tr
         %td
           注册资本
         %td
-          = f.input :capital,label: false 
+          = @register_info.capital
         %td
           注册时间
         %td
-          = f.text_field :register_date,class: 'datepicker',:readonly => true
+          = @register_info.register_date
         %td
           申请单位经济类型
         %td{:colspan => 3}
-          = f.input :ec_typee,:as => :select, collection: ec_types_for_select,include_blank: false,label: false 
+          = ec_type_desc(@register_info.ec_typee)
       %tr
         %th{:colspan => 8}
           二、项目申请单位主要经济指标(2012年度,单位:万元,人)
@@ -71,15 +68,15 @@
         %td
           年营业收入
         %td
-          = f.input :income_2012,label: false
+          = @register_info.income_2012
         %td
           年净利润
         %td
-          = f.input :profit_2012, label: false
+          = @register_info.profit_2012
         %td
           物流专业员工人数(人)
         %td{:colspan => 3}
-          = f.input :employees_count_2012,label: false
+          = @register_info.employees_count_2012
       %tr
         %th{:colspan => 8}
           三、项目申请单位财务状况(2012年度,单位:万元,%)
@@ -87,31 +84,31 @@
         %td
           总资产
         %td
-          = f.input :asset_2012,label: false
+          = @register_info.asset_2012
         %td
           净资产
         %td
-          = f.input :pure_asset_2012,label: false
+          = @register_info.pure_asset_2012
         %td
           2011年、2012年企业纳税额
         %td{:colspan => 2}
-          = f.input :tax_2011,label: false
+          = @register_info.tax_2011
         %td
-          = f.input :tax_2012,label: false
+          = @register_info.tax_2012
 
       %tr
         %td
           净资产收益率
         %td
-          = f.input :profit_pure_asset_2012,label: false
+          = @register_info.profit_pure_asset_2012
         %td
           流动资产周转率
         %td
-          = f.input :profit_flow_asset_2012,label: false
+          = @register_info.profit_flow_asset_2012
         %td
           资产负债率
         %td{:colspan => 3}
-          = f.input :rate_balance_2012,label: false
+          = @register_info.rate_balance_2012
       %tr
         %th{:colspan => 8}
           四、申请项目情况:
@@ -119,30 +116,30 @@
         %td
           项目名称
         %td{:colspan => 7}
-          = f.input :project_name,label: false
+          = @register_info.project_name
       %tr
         %td
           项目主要建设内容（300-500字）
         %td{:colspan => 7}
-          = f.input :project_context,label: false
+          = @register_info.project_context
 
       %tr
         %td
           项目绩效评估（300-500字）
         %td{:colspan => 7}
-          = f.input :project_kpi,label: false
+          = @register_info.project_kpi
       %tr
         %td
           项目所属专题
         %td{:colspan => 7}
-          = f.input :project_belongs,label: false
+          = @register_info.project_belongs
       %tr
         %td
           项目起至年限
         %td{:colspan => 7}
-          = f.text_field :project_begin_date,class: 'datepicker',:readonly => true
+          = @register_info.project_begin_date
           &rarr;
-          = f.text_field :project_end_date,class: 'datepicker',:readonly => true
+          = @register_info.project_end_date
 
       %tr
         %td{:rowspan => 2}
@@ -150,24 +147,24 @@
         %td
           项目总投资(万元)
         %td
-          = f.input :project_sum_invest,label: false
+          = @register_info.project_sum_invest
         %td
           自筹经费(万元)
         %td
-          = f.input :project_sum_invest_self,label: false
+          = @register_info.project_sum_invest_self
         %td
           贷款(万元)
         %td{:colspan => 2}
-          = f.input :project_sum_invest_loan,label: false
+          = @register_info.project_sum_invest_loan
       %tr
         %td
           拟申请财政资金及方式(万元)
         %td
-          = f.input :project_sum_apply,label: false
+          = apply_type_desc(@register_info.project_apply_type)
         %td
           方式:
         %td{:colspan => 5}
-          = f.input :project_sum_apply,as: :select,collection: apply_types_for_select,include_blank: false,label: false
+          = @register_info.project_sum_apply
 
       %tr
         %td
@@ -175,71 +172,70 @@
         %td
           2012年投资额(万元)
         %td
-          = f.input :project_already_invest_2012,label: false
+          = @register_info.project_already_invest_2012
         %td
           2013年投资额(万元)
         %td
-          = f.input :project_already_invest_2013,label: false
+          = @register_info.project_already_invest_2013
         %td
           是否重点项目
         %td{:colspan => 2}
-          = f.input :is_important,as: :select,collection: important_levels_for_select,label: false
+          = important_level_desc(@register_info.is_important)
       %tr
         %th{:colspan => 8}
           四、相关附件资料
       %tr
         %td
-          营业执照
+          项目实施方案电子档 
         %td{:colspan => 7}
-          = f.file_field :attach_1
+          = image_tag @register_info.attach_1.url(:medium)
       %tr
         %td
-          组织机构代码证
+          营业执照(必填)
         %td{:colspan => 7}
-          = f.file_field :attach_2
+          = image_tag @register_info.attach_1.url(:medium)
       %tr
         %td
-          税务登记证
+          组织机构代码证(必填)
         %td{:colspan => 7}
-          = f.file_field :attach_3
+          = image_tag @register_info.attach_2.url(:medium)
       %tr
         %td
-          法人代表身份证件 
+          税务登记证(必填)
         %td{:colspan => 7}
-          = f.file_field :attach_4
+          = image_tag @register_info.attach_3.url(:medium)
       %tr
         %td
-          资信证明
+          法人代表身份证件(必填)
         %td{:colspan => 7}
-          = f.file_field :attach_5
+          = image_tag @register_info.attach_4.path(:medium)
+      %tr
+        %td
+          资信证明(必填)
+        %td{:colspan => 7}
+          = image_tag @register_info.attach_5.path(:medium)
 
       %tr
         %td
           项目实施方案及可行性报告(电子版) 
         %td{:colspan => 7}
-          = f.file_field :attach_6
+          = link_to @register_info.attach_6_file_name,@register_info.attach_6.url
       %tr
         %td
           项目资金证明(电子版) 
         %td{:colspan => 7}
-          = f.file_field :attach_7
+          = link_to @register_info.attach_7_file_name,@register_info.attach_7.url
 
       %tr
         %td
           申报资金项目承诺书(扫描件)
         %td{:colspan => 7}
-          = f.file_field :attach_8
+          = link_to @register_info.attach_8_file_name,@register_info.attach_8.url
       %tr
         %td
           其他相关证明材料(可打包)
         %td{:colspan => 7}
-          = f.file_field :attach_9
+          = link_to @register_info.attach_9_file_name,@register_info.attach_9.url
 
 
 
-
-
-
-
-  = f.actions do
-    = f.submit "提交填报数据",:class => "btn btn-primary btn-lg"
