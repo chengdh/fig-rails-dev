@@ -4,14 +4,16 @@
       .col-md-12
         <!-- Logo -->
         .logo
-          %h1 登录系统
+          %h1 
+            %a{:href => "#"} 
+              企业资料申报系统
 
 .page-content.container
   .row
     .col-md-4.col-md-offset-4
       .login-wrapper
         .box
-          %h2 登录系统
+          %h2 登&nbsp;&nbsp;录
           .content-wrap
             = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
               .form-inputs
