@@ -78,9 +78,9 @@ GEM
       capistrano-bundler (>= 1.0.0)
     capistrano-rails-console (0.5.2)
       capistrano (>= 3.0.0, < 4.0.0)
-    capistrano-rvm (0.1.2)
+    capistrano-rbenv (2.0.1)
       capistrano (~> 3.0)
-      sshkit (~> 1.2)
+      sshkit (~> 1.3)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.7)
@@ -263,7 +263,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails (~> 1.1.0)
   capistrano-rails-console
-  capistrano-rvm (~> 0.1.1)
+  capistrano-rbenv (~> 2.0)
   coffee-rails (~> 4.1.0)
   formtastic (~> 3.0)
   formtastic-bootstrap
@@ -273,6 +273,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
+  net-ssh (= 2.9.2)
   paperclip (~> 4.2)
   pry-rails
   pry-rescue
