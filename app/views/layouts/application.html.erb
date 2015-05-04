@@ -3,6 +3,7 @@
   <head>
     <title>企业资料申报系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',debug: true %>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,22 +36,24 @@
               </div>
             </div>
           </div>
+          -->
           <div class="col-md-2">
             <div class="navbar navbar-inverse" role="banner">
+              <%if user_signed_in?%>
               <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                 <ul class="nav navbar-nav">
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">账户信息 <b class="caret"></b></a>
                     <ul class="dropdown-menu animated fadeInUp">
-                      <li><a href="profile.html">Profile</a></li>
-                      <li><a href="login.html">Logout</a></li>
+                      <li><%= link_to current_user.email, "#" %></li>
+                      <li><%= link_to "退出登录", destroy_user_session_path,method: :delete %></li>
                     </ul>
                   </li>
                 </ul>
               </nav>
+            <% end %>
             </div>
           </div>
-          -->
         </div>
       </div>
     </div>
@@ -62,15 +65,22 @@
             <ul class="nav">
               <!-- Main menu -->
               <li class="current">
-                <a href="<%= new_register_info_path %>">
+                <a href="<%= register_infos_path %>">
                   <i class="glyphicon glyphicon-home"></i>
-                  填报申请表
+                  申报表
                 </a>
               </li>
               <li>
-                <a href="calendar.html">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                  申请文件说明
+                <a href="<%= new_register_info_path %>">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                  填报
+                </a>
+              </li>
+
+              <li>
+                <a href="http://www.zzcom.cn/contents.jsp?urltype=news.NewsContentUrl&wbtreeid=1007&wbnewsid=7646" target="_blank">
+                  <i class="glyphicon glyphicon-align-justify"></i>
+                  填报说明
                 </a>
               </li>
             </ul>

@@ -6,7 +6,7 @@ working_directory APP_ROOT
 # Should be 'production' by default, otherwise use other env
 preload_app true
 listen "/tmp/shangwuju.unicorn.production.sock"
-#listen "0.0.0.0:4000"
+listen "0.0.0.0:8000"
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
 stderr_path APP_ROOT + "/log/unicorn.stderr.log"
 stdout_path APP_ROOT + "/log/unicorn.stdout.log"

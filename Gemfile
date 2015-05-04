@@ -58,6 +58,7 @@ gem 'formtastic', '~> 3.0'
 gem "paperclip", "~> 4.2"
 gem 'bootstrap-datepicker-rails'
 gem 'net-ssh','2.9.2'
+gem 'devise'
 
 group :development do
   gem 'better_errors'

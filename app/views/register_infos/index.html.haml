@@ -14,7 +14,7 @@
           %th 联系电话
           %th 申请方式
           %th 申请金额
-          %th 详细信息
+          %th 操作
 
       %tbody
         - @register_infos.each do |register_info|
@@ -27,4 +27,7 @@
             %td= register_info.pm_phone
             %td= apply_type_desc(register_info.project_apply_type)
             %td= register_info.project_sum_apply
-            %td= link_to "查看", register_info
+            %td
+              = link_to "查看", register_info
+              |
+              = link_to "修改", edit_register_info_path(register_info)

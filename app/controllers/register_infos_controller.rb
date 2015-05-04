@@ -4,7 +4,8 @@ class RegisterInfosController < ApplicationController
   # GET /register_infos
   # GET /register_infos.json
   def index
-    @register_infos = RegisterInfo.all
+    @register_infos = RegisterInfo.where(user_id: current_user.id).limit(1)
+    @register_infos = RegisterInfo.all if current_user.is_admin?
   end
 
   # GET /register_infos/1
@@ -14,7 +15,10 @@ class RegisterInfosController < ApplicationController
 
   # GET /register_infos/new
   def new
-    @register_info = RegisterInfo.new
+    @register_info = RegisterInfo.find_by_user_id(current_user.id)
+    @register_info = RegisterInfo.new if @register_info.blank? or current_user.is_admin?
+    render action: :edit unless @register_info.new_record?
+
   end
 
   # GET /register_infos/1/edit
@@ -60,6 +64,9 @@ class RegisterInfosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # GET /register_infos/intro
+  def intro ; end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,0 +1,11 @@
+= semantic_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = f.input :email, required: true, autofocus: true,placeholder: "example@a.com",label: "邮箱"
+      = f.input :password,label: "密码",hint: "最少#{@minimum_password_length} 个字符" if @validatable
+      = f.input :password_confirmation,label: "验证密码"
+      = f.input :company_name,label: "公司名称"
+      = f.input :address,label: "公司地址"
+      = f.input :touch_man,label: "联系人"
+      = f.input :phone,label: "联系电话"
+
+      = f.actions do
+        = f.submit "保存注册信息",:class => "btn btn-primary signup"

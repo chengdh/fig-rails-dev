@@ -1,5 +1,6 @@
 = semantic_form_for @register_info,html: {multipart: true} do |f|
   = f.semantic_errors
+  = f.hidden_field :user_id,value: current_user.id
 
   %table.table.table-bordered.table-hover.table-condensed
     %thead
