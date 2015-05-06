@@ -1,0 +1,10 @@
+/Users/chengdh/.rbenv/versions/2.1.4/bin/ruby -r ./siteconf20150505-18678-hzyemm.rb extconf.rb 
+creating Makefile
+
+make "DESTDIR=" clean
+
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+make "DESTDIR=" install
+installing default libraries
