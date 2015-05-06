@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 set :rails_env,     "production"
 set :app_env,     "production"
+set :unicorn_pid,"~/app/huaqianglogin/current/tmp/pids/unicorn.pid"
 
 set :application, "huaqianglogin"
 set :repo_url,  "git@github.com:chengdh/fig-rails-dev.git"
