@@ -7,14 +7,14 @@ working_directory APP_ROOT
 preload_app true
 listen "/tmp/yongkanglogin.unicorn.production.sock"
 #listen "0.0.0.0:8000"
-pid APP_ROOT + "/tmp/pids/yongkaonglogin.unicorn.pid"
+pid APP_ROOT + "/tmp/pids/unicorn.pid"
 stderr_path APP_ROOT + "/log/unicorn.stderr.log"
 stdout_path APP_ROOT + "/log/unicorn.stdout.log"
 
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!
 
-  old_pid = APP_ROOT + "/tmp/pids/yongkanglogin.unicorn.pid.oldbin"
+  old_pid = APP_ROOT + "/tmp/pids/unicorn.pid.oldbin"
   if File.exists?(old_pid) && server.pid != old_pid
     begin
       Process.kill("QUIT", File.read(old_pid).to_i)
