@@ -1,0 +1,104 @@
+<form name="form1" method="post"  action="http://171.8.69.136/gps/pub/login.action" method="post">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#131B28;">
+    <tbody>
+      <tr>
+        <td>
+          <table border="0" align="center" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr>
+                <td width="138">
+                  <%= image_tag "login_01.jpg" %>
+                </td>
+                <td width="308">
+                  <%= image_tag "login_02.jpg" %>
+                </td>
+                <td width="504">
+                  <table width="504" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tbody>
+                      <tr>
+                        <td>
+                          <%= image_tag "login_03.jpg" %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <%= image_tag "login_07.jpg" %>
+                        </td>
+                      </tr>
+                      <tr height="155">
+                        <td width="504" height="155" valign="top" background="<%= image_path('login_10.jpg') %>">
+                          <table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td height="20"></td>
+                                <td height="20"></td>
+                                <td rowspan="6" style="padding-left:15px; padding-top:2px;">
+                                  <input type="image" name="Login_Btn" id="Login_Btn" 
+                                  src="<%= image_path('login_login.png') %>"
+                                  style="height:150px;width:150px;border-width:0px;"
+                                  onclick="return false;"/>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td height="15" align="center" class="font14blue" style="width:100px;">
+                                  <%= image_tag "01.png" %>
+                                  用户名:
+                                </td>
+                                <td height="27" style=" width:235px;">
+                                  <input type="text" name="username" id="txtUserName" class="login_text" maxlength="20" id="Hit_UserName" class="inputBorder02" style="width:203px; height:20px;" >
+                                </td>
+                              </tr>
+                              <tr>
+                                <td height="27" align="center" class="font14blue">
+                                  <%= image_tag "02.png" %>
+                                  密 &nbsp;&nbsp; 码：
+                                </td>
+                                <td height="27">
+                                  <input id="txtPassword" name="password" type="password" class="login_text" maxlength="20" id="Hit_PassWord" class="inputBorder02" style="width:203px; height:20px;">
+                                  <input id="txtipaddrs" name="ipaddrs" class="login_text" type="hidden">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td height="20" align="center">
+                                  <div id='divErrorTip' style='color : red;font-weight : bold;'></div>
+                                &nbsp;
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td height="181" style="background-repeat:repeat-x;">
+                          <%= image_tag "login_13.jpg",size: "504x181" %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="height:128px; width:504px;" colspan="3" background="<%= image_path('login_16.jpg') %>" align="center">
+                          <p>华强信息车联网服务平台</p>
+                          <p>24小时服务服务电话：0371-56789318</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table border="0" align="center" cellpadding="0" cellspacing="0" id="showAuthText">
+                    <tbody>
+                      <tr>
+                        <td><span id="labVersion">Softwave version:3.3.2.14   Database version:3.6.0.11</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+                <td width="212">
+                  <%= image_tag "login_04.jpg",size: "212x720" %>
+                </td>
+                <td width="247">
+                  <%= image_tag "login_05.jpg",size: "247x720" %>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>

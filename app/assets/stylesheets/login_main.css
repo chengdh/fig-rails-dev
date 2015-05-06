@@ -1,0 +1,11 @@
+.bgwhite{ background-color:#004EA1;
+  font-size:12px;
+  color:#FFFFFF;
+  text-align:center;
+}
+.font14blue{
+  font-size:14px;
+  color:White;
+}
+.inputBorder02{border:0px solid #8DBADB;padding:1px;height:17px;width:150px;color:#666666; background-image:url(~/App_Themes/img/images/1.png);}
+.inputBorder02{width:80px;}
