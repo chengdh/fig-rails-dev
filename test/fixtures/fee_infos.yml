@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  fee_date: 2015-05-07
+  cr: 9.99
+  dr: 9.99
+  note: MyString
+
+two:
+  user_id: 
+  fee_date: 2015-05-07
+  cr: 9.99
+  dr: 9.99
+  note: MyString

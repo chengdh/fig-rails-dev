@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @fee_info.user
+%p
+  %b Fee date:
+  = @fee_info.fee_date
+%p
+  %b Cr:
+  = @fee_info.cr
+%p
+  %b Dr:
+  = @fee_info.dr
+%p
+  %b Note:
+  = @fee_info.note
+
+= link_to 'Edit', edit_fee_info_path(@fee_info)
+\|
+= link_to 'Back', fee_infos_path

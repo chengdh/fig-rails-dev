@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fee_infos
   devise_for :users, controllers: {registrations: "registrations" }
 
   resources :register_infos do

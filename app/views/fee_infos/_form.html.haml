@@ -1,0 +1,10 @@
+= semantic_form_for @fee_info do |f|
+  = f.inputs do
+    = f.input :user
+    = f.input :fee_date
+    = f.input :cr
+    = f.input :dr
+    = f.input :note
+
+  = f.actions do
+    = f.action :submit, :as => :input

@@ -1,4 +1,4 @@
-mysql:
+db:
   image: mysql
   environment:
     MYSQL_ROOT_PASSWORD: fizzbuzz
@@ -11,7 +11,7 @@ web:
     # This seems to work as-is once you expose /Users to the boot2docker vm.
     - .:/rails_app
   links:
-    - mysql
+    - db
   ports:
     - "8080:8080"
     - "3000:3000"

@@ -1,0 +1,2 @@
+module FeeInfosHelper
+end

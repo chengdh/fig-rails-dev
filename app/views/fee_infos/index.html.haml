@@ -1,0 +1,29 @@
+%h1 Listing fee_infos
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Fee date
+      %th Cr
+      %th Dr
+      %th Note
+      %th
+      %th
+      %th
+
+  %tbody
+    - @fee_infos.each do |fee_info|
+      %tr
+        %td= fee_info.user
+        %td= fee_info.fee_date
+        %td= fee_info.cr
+        %td= fee_info.dr
+        %td= fee_info.note
+        %td= link_to 'Show', fee_info
+        %td= link_to 'Edit', edit_fee_info_path(fee_info)
+        %td= link_to 'Destroy', fee_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Fee info', new_fee_info_path
