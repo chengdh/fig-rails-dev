@@ -14,8 +14,8 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: fizzbuzz
-  host: db
+  password: root
+  host: localhost
 
 development:
   <<: *default

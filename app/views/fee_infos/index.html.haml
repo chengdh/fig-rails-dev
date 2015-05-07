@@ -1,29 +1,37 @@
-%h1 Listing fee_infos
+.panel-heading
+  .panel-title
+    %h2 费用登记列表
+  .panel-options
+    %a{href: new_fee_info_path}
+      %span.glyphicon.glyphicon-plus{"aria-hidden" => "true"}
+      新建费用表|
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Fee date
-      %th Cr
-      %th Dr
-      %th Note
-      %th
-      %th
-      %th
+    %a{href: search_fee_infos_path,"data-toggle" => "lightbox"}
+      %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+      查询|
 
-  %tbody
-    - @fee_infos.each do |fee_info|
-      %tr
-        %td= fee_info.user
-        %td= fee_info.fee_date
-        %td= fee_info.cr
-        %td= fee_info.dr
-        %td= fee_info.note
-        %td= link_to 'Show', fee_info
-        %td= link_to 'Edit', edit_fee_info_path(fee_info)
-        %td= link_to 'Destroy', fee_info, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %a{href: new_fee_info_path}
+      %span.glyphicon.glyphicon-save{"aria-hidden" => "true"}
+      导出
 
-%br
+  .panel-body
+    %table.table.table-hover.table-condensed
+      %thead
+        %tr
+          %th 登记人
+          %th 费用日期
+          %th 收入
+          %th 支出
+          %th 备注
+          %th 操作
 
-= link_to 'New Fee info', new_fee_info_path
+      %tbody
+        - @fee_infos.each do |fee_info|
+          %tr
+            %td= fee_info.user
+            %td= fee_info.fee_date
+            %td= fee_info.cr
+            %td= fee_info.dr
+            %td= fee_info.note
+            %td
+              = link_to "查看", fee_info

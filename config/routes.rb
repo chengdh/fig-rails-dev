@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :fee_infos
+
   devise_for :users, controllers: {registrations: "registrations" }
+
+  resources :fee_infos do
+    get :search,on: :collection
+  end
 
   resources :register_infos do
     get :intro,on: :collection

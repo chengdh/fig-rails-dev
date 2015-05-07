@@ -1,0 +1,9 @@
+= search_form_for FeeInfo.ransack do |f|
+  .form-group
+    = f.label :fee_date_gteq,"录入日期"
+    = f.search_field :fee_date_gteq,class: "form-control datepicker",readonly: true,size: 16
+  .form-group
+    = f.label :fee_date_gteq,"~"
+    = f.search_field :fee_date_lteq,class: "form-control datepicker",readonly: true,size: 16
+
+  = f.submit "查询",class: "btn btn-primary"

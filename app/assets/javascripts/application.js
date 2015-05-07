@@ -15,4 +15,6 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js
+//= require ekko-lightbox
 //= require register_infos
+//= require fee_infos

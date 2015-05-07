@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504153457) do
+ActiveRecord::Schema.define(version: 20150507070445) do
+
+  create_table "fee_infos", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.date     "fee_date"
+    t.decimal  "cr",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "dr",                    precision: 15, scale: 2, default: 0.0
+    t.string   "note",       limit: 60
+    t.datetime "created_at",                                                   null: false
+    t.datetime "updated_at",                                                   null: false
+  end
+
+  add_index "fee_infos", ["user_id"], name: "index_fee_infos_on_user_id", using: :btree
 
   create_table "register_infos", force: :cascade do |t|
     t.string   "company_name",                limit: 60,                                           null: false
@@ -119,4 +131,5 @@ ActiveRecord::Schema.define(version: 20150504153457) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "fee_infos", "users"
 end

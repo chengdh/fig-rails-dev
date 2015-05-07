@@ -61,6 +61,12 @@ class FeeInfosController < ApplicationController
     end
   end
 
+  # GET /fee_infos/search
+  #
+  def search
+    render partial: "search_form"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fee_info
