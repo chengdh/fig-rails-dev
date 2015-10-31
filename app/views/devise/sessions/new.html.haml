@@ -17,7 +17,7 @@
           .content-wrap
             = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
               .form-inputs
-                = f.text_field :username,  autofocus: true,class: "form-control",placeholder: "请输入用户名"
+                = f.text_field :login,  autofocus: true,class: "form-control",placeholder: "请输入用户名"
                 = f.password_field :password, required: false,class: "form-control",placeholder: "请输入密码"
                 = f.input :remember_me,label: "保存登录信息", as: :boolean if devise_mapping.rememberable?
               .actions

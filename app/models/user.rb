@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
          :validatable,:authentication_keys => [:login]
   has_many :user_web_apps
   has_many :web_apps,through: :user_web_apps
+  validates :username,:presence => true,:uniqueness => {:case_sensitive => false}
+
   attr_accessor :login
 
   def login=(login)
@@ -22,8 +24,7 @@ class User < ActiveRecord::Base
       if login = conditions.delete(:login)
         where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
       else
-        where(conditions.to_h).first
+        where(conditions.to_hash).first
       end
-    end
-
+  end
 end
