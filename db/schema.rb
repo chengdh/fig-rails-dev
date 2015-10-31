@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504153457) do
+ActiveRecord::Schema.define(version: 20151031120353) do
 
   create_table "register_infos", force: :cascade do |t|
     t.string   "company_name",                limit: 60,                                           null: false
@@ -96,8 +96,21 @@ ActiveRecord::Schema.define(version: 20150504153457) do
     t.integer  "user_id",                     limit: 4
   end
 
+  create_table "user_web_apps", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4,                 null: false
+    t.integer  "web_app_id", limit: 4
+    t.string   "username",   limit: 30
+    t.string   "password",   limit: 30
+    t.boolean  "is_active",  limit: 1,  default: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "user_web_apps", ["user_id"], name: "index_user_web_apps_on_user_id", using: :btree
+  add_index "user_web_apps", ["web_app_id"], name: "index_user_web_apps_on_web_app_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "email",                  limit: 255, default: ""
     t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
@@ -107,16 +120,30 @@ ActiveRecord::Schema.define(version: 20150504153457) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.string   "company_name",           limit: 60,                  null: false
-    t.string   "address",                limit: 60
-    t.string   "touch_man",              limit: 30
-    t.string   "phone",                  limit: 20
+    t.string   "company_name",           limit: 255
+    t.string   "address",                limit: 255
+    t.string   "touch_man",              limit: 255
+    t.string   "phone",                  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_admin",               limit: 1,   default: false
+    t.string   "username",               limit: 30,                  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "web_apps", force: :cascade do |t|
+    t.string   "name",             limit: 60,                   null: false
+    t.string   "form_el_username", limit: 60,                   null: false
+    t.string   "form_el_password", limit: 60,                   null: false
+    t.string   "form_method",      limit: 30,  default: "post", null: false
+    t.string   "form_action",      limit: 200,                  null: false
+    t.boolean  "is_active",        limit: 1
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_foreign_key "user_web_apps", "users"
+  add_foreign_key "user_web_apps", "web_apps"
 end

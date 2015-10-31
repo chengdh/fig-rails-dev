@@ -1,0 +1,2 @@
+module SsoHomeHelper
+end

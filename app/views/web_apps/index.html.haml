@@ -1,0 +1,27 @@
+%h1 Listing web_apps
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th El username
+      %th El password
+      %th Is active
+      %th
+      %th
+      %th
+
+  %tbody
+    - @web_apps.each do |web_app|
+      %tr
+        %td= web_app.name
+        %td= web_app.el_username
+        %td= web_app.el_password
+        %td= web_app.is_active
+        %td= link_to 'Show', web_app
+        %td= link_to 'Edit', edit_web_app_path(web_app)
+        %td= link_to 'Destroy', web_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Web app', new_web_app_path

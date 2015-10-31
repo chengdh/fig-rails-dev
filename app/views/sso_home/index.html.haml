@@ -1,0 +1,11 @@
+- current_user.user_web_apps.each do |ua|
+  .col-md-2
+    .panel.panel-info
+      .panel-heading
+        = ua.web_app.name
+      .panel-body
+        = link_to ua.web_app.name,"#",:class => "btn-open-web-app", "data-sso" => ua.to_json,"data-web-app" => ua.web_app.to_json
+
+%form{:method => "post",:action => "#",:id => "login-form",:style => "display : none;",:target => "_blank"}
+  %input{:type => "text",:id => "username"}
+  %input{:type => "password",:id => "password"}
