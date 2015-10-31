@@ -20,8 +20,8 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plu
 ENV RBENV_ROOT /usr/local/rbenv
 ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-RUN rbenv install  2.0.0-p598
-RUN rbenv global  2.0.0-p598
+RUN rbenv install  2.1.4
+RUN rbenv global  2.1.4
 RUN gem sources --remove https://rubygems.org/
 RUN gem sources -a https://ruby.taobao.org/
 RUN gem sources -l
@@ -31,7 +31,8 @@ RUN rbenv rehash
 WORKDIR /rails_app
 
 ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
 RUN ruby -v
-#RUN bundle install
+RUN bundle install
 
 ADD . /rails_app
