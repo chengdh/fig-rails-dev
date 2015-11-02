@@ -1,27 +1,33 @@
-%h1 Listing web_apps
+.panel.panel-default
+  .panel-heading
+    %h2 应用系统列表
+  .panel-body
+    %table.table
+      %thead
+        %tr
+          %th 名称
+          %th 用户名_id
+          %th 密码_id
+          %th 提交action
+          %th form_method
+          %th 有效
+          %th 操作
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th El username
-      %th El password
-      %th Is active
-      %th
-      %th
-      %th
+      %tbody
+        - @web_apps.each do |web_app|
+          %tr
+            %td= web_app.name
+            %td= web_app.form_el_username
+            %td= web_app.form_el_password
+            %td= web_app.form_action
+            %td= web_app.form_method
+            %td= web_app.is_active
+            %td
+              = link_to '查看', web_app
+              = link_to '修改', edit_web_app_path(web_app)
+        %tfoot
+          %tr
+            %td{:colspan => 7}
+              = link_to '新建web app', new_web_app_path,class: "btn btn-success"
 
-  %tbody
-    - @web_apps.each do |web_app|
-      %tr
-        %td= web_app.name
-        %td= web_app.el_username
-        %td= web_app.el_password
-        %td= web_app.is_active
-        %td= link_to 'Show', web_app
-        %td= link_to 'Edit', edit_web_app_path(web_app)
-        %td= link_to 'Destroy', web_app, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'New Web app', new_web_app_path

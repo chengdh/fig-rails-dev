@@ -1,0 +1,23 @@
+= semantic_form_for @user do |f|
+  = f.semantic_errors
+  = f.inputs do
+    = f.input :username,label: "用户名"
+    = f.input :password,label: "密码"
+    = f.input :password_confirmation,label: "验证密码"
+  %table.table
+    %thead
+      %tr
+        %th 系统名称
+        %th 用户名
+        %th 密码
+    = f.semantic_fields_for :user_web_apps do |uwa|
+      %tr
+        %td
+          = uwa.input :web_app_id,as: :select,label: false,collection: web_apps_for_select
+        %td
+          = uwa.input :username,label: false
+        %td
+          = uwa.input :password,label: false
+
+  = f.actions do
+    = f.action :submit, :as => :button,label: "保存信息",:button_html => {class: "btn btn-success"}

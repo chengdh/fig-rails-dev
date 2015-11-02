@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {registrations: "registrations" }
 
+  resources :users
   resources :register_infos do
     get :intro,on: :collection
   end

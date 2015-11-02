@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    %h2 用户列表
+  .panel-body
+    %table.table
+      %thead
+        %tr
+          %th 用户名
+          %th 住址
+          %th 操作
+
+      %tbody
+        - @users.each do |u|
+          %tr
+            %td= u.username
+            %td= u.address
+            %td
+              = link_to '查看',u
+              = link_to '修改', edit_user_path(u)
+        %tfoot
+          %tr
+            %td{:colspan => 3}
+              = link_to '新建用户', new_user_path,class: "btn btn-success"
+
+

@@ -1,9 +1,11 @@
 = semantic_form_for @web_app do |f|
   = f.inputs do
-    = f.input :name
-    = f.input :el_username
-    = f.input :el_password
-    = f.input :is_active
+    = f.input :name,label: "应用名称"
+    = f.input :form_el_username,label: "form字段名"
+    = f.input :form_el_password,label: "form字段名"
+    = f.input :form_action,label: "提交action"
+    = f.input :form_method,label: "form method"
+    = f.input :is_active,label: false
 
   = f.actions do
-    = f.action :submit, :as => :input
+    = f.action :submit, :as => :button,label: "保存信息",:button_html => {class: "btn btn-success"}
