@@ -54,5 +54,6 @@ production:
   pool: 5
   database: sso_production
   username: root
-  password: ssapp 
+  password: 123456
+  host: localhost
   socket: /var/run/mysqld/mysqld.sock
