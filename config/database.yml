@@ -56,4 +56,4 @@ production:
   username: root
   password: 123456
   host: localhost
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /var/lib/mysql/mysql.sock

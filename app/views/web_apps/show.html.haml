@@ -1,18 +1,21 @@
 %p#notice= notice
-
 %p
   %b Name:
   = @web_app.name
 %p
   %b El username:
-  = @web_app.el_username
+  = @web_app.form_el_username
+%p
+  %b form method:
+  = @web_app.form_method
+
 %p
   %b El password:
-  = @web_app.el_password
+  = @web_app.form_el_password
+%p
+  %b form action:
+  = @web_app.form_action
+
 %p
   %b Is active:
   = @web_app.is_active
-
-= link_to 'Edit', edit_web_app_path(@web_app)
-\|
-= link_to 'Back', web_apps_path
