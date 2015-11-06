@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root 
-  password: fizzbuzz 
-  host: mysql
+  username: root
+  password: 123456
+  host: localhost
 
 development:
   <<: *default
@@ -54,5 +54,6 @@ production:
   pool: 5
   database: sso_production
   username: root
-  password: ssapp 
-  socket: /var/run/mysqld/mysqld.sock
+  password: 123456
+  host: localhost
+  socket: /var/lib/mysql/mysql.sock
