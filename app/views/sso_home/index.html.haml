@@ -5,6 +5,7 @@
         = ua.web_app.name
       .panel-body
         = link_to ua.web_app.name,"#",:class => "btn-open-web-app", "data-sso" => ua.to_json,"data-web-app" => ua.web_app.to_json
+        %iframe{:src => ua.web_app.form_url,:id => "iframe_web_app_#{ua.web_app.id}",:style => "display : none" }
 
 %form{:method => "post",:action => "#",:id => "login-form",:style => "display : none;",:target => "_blank"}
   %input{:type => "text",:id => "username"}

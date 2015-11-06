@@ -1,18 +1,23 @@
-%p#notice= notice
+.panel.panel-default
+  .panel-heading
+    = @web_app.name
+  .panel-body
+    %p
+      %b El username:
+      = @web_app.form_el_username
+    %p
+      %b El password:
+      = @web_app.form_el_password
+    %p
+      %b form method:
+      = @web_app.form_method
+    %p
+      %b form action:
+      = @web_app.form_action
+    %p
+      %b form url:
+      = @web_app.form_url
 
-%p
-  %b Name:
-  = @web_app.name
-%p
-  %b El username:
-  = @web_app.el_username
-%p
-  %b El password:
-  = @web_app.el_password
-%p
-  %b Is active:
-  = @web_app.is_active
-
-= link_to 'Edit', edit_web_app_path(@web_app)
-\|
-= link_to 'Back', web_apps_path
+    %p
+      %b 有效:
+      = @web_app.is_active

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031120353) do
+ActiveRecord::Schema.define(version: 20151106071041) do
 
   create_table "register_infos", force: :cascade do |t|
     t.string   "company_name",                limit: 60,                                           null: false
@@ -134,14 +134,15 @@ ActiveRecord::Schema.define(version: 20151031120353) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "web_apps", force: :cascade do |t|
-    t.string   "name",             limit: 60,                   null: false
-    t.string   "form_el_username", limit: 60,                   null: false
-    t.string   "form_el_password", limit: 60,                   null: false
-    t.string   "form_method",      limit: 30,  default: "post", null: false
-    t.string   "form_action",      limit: 200,                  null: false
+    t.string   "name",             limit: 60,                     null: false
+    t.string   "form_el_username", limit: 60,                     null: false
+    t.string   "form_el_password", limit: 60,                     null: false
+    t.string   "form_method",      limit: 30,    default: "post", null: false
+    t.string   "form_action",      limit: 200,                    null: false
     t.boolean  "is_active",        limit: 1
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.text     "form_url",         limit: 65535
   end
 
   add_foreign_key "user_web_apps", "users"
