@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106071041) do
+ActiveRecord::Schema.define(version: 20151108142356) do
 
   create_table "register_infos", force: :cascade do |t|
     t.string   "company_name",                limit: 60,                                           null: false
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20151106071041) do
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.text     "form_url",         limit: 65535
+    t.text     "direct_login_url", limit: 65535
   end
 
   add_foreign_key "user_web_apps", "users"

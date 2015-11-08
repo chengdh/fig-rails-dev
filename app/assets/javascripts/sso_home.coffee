@@ -5,6 +5,11 @@ $ ->
   $(".btn-open-web-app").on("click", ->
     web_app = $(this).data("web-app")
     sso = $(this).data("sso")
+    if web_app.direct_login_url and web_app.direct_login_url != ""
+      $("#login-form").attr("action",web_app.direct_login_url)
+      $("#login-form").submit()
+      return false
+
     iframe = $("#iframe_web_app_" + web_app.id).contents()
     form = iframe.find("form")
     form.attr("target","_blank")
@@ -13,6 +18,7 @@ $ ->
     $(el_username).val(sso.username)
     $(el_password).val(sso.password)
     $(form).submit()
+
     #$("#username").attr("name",web_app.form_el_username)
     #$("#password").attr("name",web_app.form_el_password)
     #$("#username").val(sso.username)

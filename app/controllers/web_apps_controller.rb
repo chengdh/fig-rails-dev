@@ -70,6 +70,6 @@ class WebAppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def web_app_params
-      params.require(:web_app).permit(:name, :form_el_username, :form_el_password,:form_method,:form_action,:form_url, :is_active)
+      params.require(:web_app).permit(:name, :form_el_username, :form_el_password,:form_method,:form_action,:form_url,:direct_login_url, :is_active)
     end
 end
