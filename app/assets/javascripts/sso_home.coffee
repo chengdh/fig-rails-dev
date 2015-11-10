@@ -7,6 +7,7 @@ $ ->
     sso = $(this).data("sso")
     if web_app.direct_login_url and web_app.direct_login_url != ""
       $("#login-form").attr("action",web_app.direct_login_url)
+      $("#login-form").attr("method",web_app.form_method)
       $("#login-form").submit()
       return false
 
