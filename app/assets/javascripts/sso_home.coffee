@@ -15,9 +15,11 @@ $ ->
     form.attr("target","_blank")
     el_username = form.find("input[name='" + web_app.form_el_username + "']")
     el_password = form.find("input[name='" + web_app.form_el_password + "']")
+    el_login_btn = form.find("input[name='" + "ctl00$bodyContent$ctl00$ImageButton_Autho" + "']" )
     $(el_username).val(sso.username)
     $(el_password).val(sso.password)
-    $(form).submit()
+    $(el_login_btn).trigger("click")
+    #$(form).submit()
 
     #$("#username").attr("name",web_app.form_el_username)
     #$("#password").attr("name",web_app.form_el_password)
