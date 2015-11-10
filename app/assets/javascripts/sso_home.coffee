@@ -11,7 +11,7 @@ $ ->
       return false
 
     iframe = $("#iframe_web_app_" + web_app.id)
-    $.postMessage({web_app : web_app,sso: sso},web_app.form_url,iframe.contentWindow)
+    $.postMessage({web_app : web_app,sso: sso},web_app.form_url,iframe.get(0).contentWindow)
 
     ###
     form = iframe.find("form")
