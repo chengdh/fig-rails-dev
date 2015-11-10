@@ -10,24 +10,33 @@ $ ->
       $("#login-form").submit()
       return false
 
-    #iframe = $("#iframe_web_app_" + web_app.id).contents()
     frame_obj = window.parent.document.getElementById("iframe_web_app_" + web_app.id);
-    iframe = $(frame_obj).contents()
-    form = iframe.find("form")
+    iframe_doc = frame_obj.contentWindow.document
     form_obj = frame_obj.contentWindow.document.forms[0]
+    el_username = iframe_doc.getElementsByName(web_app.form_el_username)[0]
+    el_password = iframe_doc.getElementsByName(web_app.form_el_password)[0]
+    el_username.value = sso.username
+    el_password.value = sso.password
+    #
+    #iframe = $("#iframe_web_app_" + web_app.id).contents()
+    #frame_obj = window.parent.document.getElementById("iframe_web_app_" + web_app.id);
+    #iframe = $(frame_obj).contents()
+    #form = iframe.find("form")
+    #form_obj = frame_obj.contentWindow.document.forms[0]
     #form = $(form_obj)
-    form.attr("target","_blank")
-    el_username = form.find("input[name='" + web_app.form_el_username + "']")
-    el_password = form.find("input[name='" + web_app.form_el_password + "']")
-    el_login_btn = form.find("input[name='" + "ctl00$bodyContent$ctl00$ImageButton_Autho" + "']" )
-    el_login_btn_2 = form.find("input[name='" + "submitButton" + "']" )
+    #form.attr("target","_blank")
 
-    $(el_username).val(sso.username)
-    $(el_password).val(sso.password)
-    if el_login_btn.length >= 1
-      $(el_login_btn).trigger("click")
-    if el_login_btn_2.length >= 1
-      $(el_login_btn_2).trigger("click")
+    #el_username = form.find("input[name='" + web_app.form_el_username + "']")
+    #el_password = form.find("input[name='" + web_app.form_el_password + "']")
+    #el_login_btn = form.find("input[name='" + "ctl00$bodyContent$ctl00$ImageButton_Autho" + "']" )
+    #el_login_btn_2 = form.find("input[name='" + "submitButton" + "']" )
+
+    #$(el_username).val(sso.username)
+    #$(el_password).val(sso.password)
+    #if el_login_btn.length >= 1
+    #  $(el_login_btn).trigger("click")
+    #if el_login_btn_2.length >= 1
+    #  $(el_login_btn_2).trigger("click")
 
     #$(form).submit()
 
