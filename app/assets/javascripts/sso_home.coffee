@@ -14,7 +14,7 @@ $ ->
     frame_obj = window.parent.document.getElementById("iframe_web_app_" + web_app.id);
     iframe = $(frame_obj).contents()
     form = iframe.find("form")
-    #form_obj = frame_obj.contentWindow.document.forms[0]
+    form_obj = frame_obj.contentWindow.document.forms[0]
     #form = $(form_obj)
     form.attr("target","_blank")
     el_username = form.find("input[name='" + web_app.form_el_username + "']")
