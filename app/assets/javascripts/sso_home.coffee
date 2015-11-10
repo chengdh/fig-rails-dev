@@ -10,7 +10,9 @@ $ ->
       $("#login-form").submit()
       return false
 
-    iframe = $("#iframe_web_app_" + web_app.id).contents()
+    #iframe = $("#iframe_web_app_" + web_app.id).contents()
+    frame_obj = window.parent.document.getElementById("#iframe_web_app_" + web_app.id);
+    iframe = $(frame_obj)
     form = iframe.find("form")
     form.attr("target","_blank")
     el_username = form.find("input[name='" + web_app.form_el_username + "']")
@@ -20,9 +22,9 @@ $ ->
 
     $(el_username).val(sso.username)
     $(el_password).val(sso.password)
-    if el_login_btn
+    if el_login_btn.length >= 1
       $(el_login_btn).trigger("click")
-    if el_login_btn_2
+    if el_login_btn_2.length >= 1
       $(el_login_btn_2).trigger("click")
 
     #$(form).submit()
