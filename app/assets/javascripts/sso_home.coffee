@@ -11,7 +11,7 @@ $ ->
       return false
 
     #iframe = $("#iframe_web_app_" + web_app.id).contents()
-    frame_obj = window.parent.document.getElementById("#iframe_web_app_" + web_app.id);
+    frame_obj = window.parent.document.getElementById("iframe_web_app_" + web_app.id);
     iframe = $(frame_obj)
     form = iframe.find("form")
     form.attr("target","_blank")
