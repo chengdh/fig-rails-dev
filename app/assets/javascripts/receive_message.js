@@ -22,14 +22,28 @@ $(function() {
     el_password = $("input[name='" + arg_obj["web_app[form_el_password]"] + "']");
     el_login_btn = $("input[name='" + "ctl00$bodyContent$ctl00$ImageButton_Autho" + "']" );
     el_login_btn_2 = $("input[name='" + "submitButton" + "']" );
+    //南阳登录系统按钮
+    el_login_btn_3 = $("#sub");
+    //新乡登录按钮
+    el_login_btn_4 = $("#submitButton");
 
     $(el_username).val(arg_obj["sso[username]"]);
     $(el_password).val(arg_obj["sso[password]"]);
     if(el_login_btn.length >= 1){
       $(el_login_btn).trigger("click");
+      return;
     }
     if(el_login_btn_2.length >= 1) {
       $(el_login_btn_2).trigger("click");
+      return;
+    }
+    if(el_login_btn_3.length >= 1) {
+      $(el_login_btn_3).trigger("click");
+      return;
+    }
+    if(el_login_btn_4.length >= 1) {
+      $(el_login_btn_4).trigger("click");
+      return;
     }
   });
 });
