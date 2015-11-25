@@ -2,7 +2,18 @@
 
 FROM ubuntu:14.04
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev
+RUN apt-get update -qq
+RUN apt-get install -y build-essential
+
+RUN apt-get install -y nodejs
+RUN apt-get install -y npm
+RUN apt-get install -y git
+RUN apt-get install -y curl
+RUN apt-get install -y mysql-client
+RUN apt-get install -y libmysqlclient-dev
+RUN apt-get install -y libxml2-dev
+RUN apt-get install -y libxslt-dev
+RUN apt-get install -y libreadline-dev
 RUN mkdir -p /rails_app
 
 # Install rbenv
@@ -20,8 +31,8 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plu
 ENV RBENV_ROOT /usr/local/rbenv
 ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-RUN rbenv install  2.0.0-p598
-RUN rbenv global  2.0.0-p598
+RUN rbenv install  2.1.4
+RUN rbenv global  2.1.4
 RUN gem sources --remove https://rubygems.org/
 RUN gem sources -a https://ruby.taobao.org/
 RUN gem sources -l
@@ -31,7 +42,8 @@ RUN rbenv rehash
 WORKDIR /rails_app
 
 ADD Gemfile Gemfile
+ADD Gemfile.lock Gemfile.lock
 RUN ruby -v
-#RUN bundle install
+RUN bundle install
 
 ADD . /rails_app

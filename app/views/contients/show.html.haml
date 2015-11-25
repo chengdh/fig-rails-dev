@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Continents:
+  = @contient.continents_id
+%p
+  %b Cn name:
+  = @contient.cn_name
+%p
+  %b En name:
+  = @contient.en_name
+%p
+  %b Sort value:
+  = @contient.sort_value
+
+= link_to 'Edit', edit_contient_path(@contient)
+\|
+= link_to 'Back', contients_path

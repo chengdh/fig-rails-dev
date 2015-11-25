@@ -1,0 +1,9 @@
+= semantic_form_for @contient do |f|
+  = f.inputs do
+    = f.input :continents_id
+    = f.input :cn_name
+    = f.input :en_name
+    = f.input :sort_value
+
+  = f.actions do
+    = f.action :submit, :as => :input

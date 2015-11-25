@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504153457) do
+ActiveRecord::Schema.define(version: 20151125125328) do
 
   create_table "register_infos", force: :cascade do |t|
     t.string   "company_name",                limit: 60,                                           null: false
@@ -94,6 +94,14 @@ ActiveRecord::Schema.define(version: 20150504153457) do
     t.integer  "attach_10_file_size",         limit: 4
     t.datetime "attach_10_updated_at"
     t.integer  "user_id",                     limit: 4
+  end
+
+  create_table "t_continents", primary_key: "continents_id", force: :cascade do |t|
+    t.string   "cn_name",    limit: 20
+    t.string   "en_name",    limit: 20
+    t.integer  "sort_value", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|

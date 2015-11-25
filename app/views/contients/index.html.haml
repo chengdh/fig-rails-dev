@@ -1,0 +1,27 @@
+%h1 Listing contients
+
+%table
+  %thead
+    %tr
+      %th Continents
+      %th Cn name
+      %th En name
+      %th Sort value
+      %th
+      %th
+      %th
+
+  %tbody
+    - @contients.each do |contient|
+      %tr
+        %td= contient.continents_id
+        %td= contient.cn_name
+        %td= contient.en_name
+        %td= contient.sort_value
+        %td= link_to 'Show', contient
+        %td= link_to 'Edit', edit_contient_path(contient)
+        %td= link_to 'Destroy', contient, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Contient', new_contient_path
