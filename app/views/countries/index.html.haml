@@ -1,0 +1,27 @@
+%h1 Listing countries
+
+%table
+  %thead
+    %tr
+      %th Continents
+      %th Cn name
+      %th En name
+      %th Sort value
+      %th
+      %th
+      %th
+
+  %tbody
+    - @countries.each do |country|
+      %tr
+        %td= country.continents_id
+        %td= country.cn_name
+        %td= country.en_name
+        %td= country.sort_value
+        %td= link_to 'Show', country
+        %td= link_to 'Edit', edit_country_path(country)
+        %td= link_to 'Destroy', country, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Country', new_country_path

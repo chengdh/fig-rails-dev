@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :companies
+  resources :countries
+  resources :teams
   resources :contients
   devise_for :users, controllers: {registrations: "registrations" }
 
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'register_infos#index'
+  root 'contients#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

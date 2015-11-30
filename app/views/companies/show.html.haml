@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Cn name:
+  = @company.cn_name
+%p
+  %b En name:
+  = @company.en_name
+
+= link_to 'Edit', edit_company_path(@company)
+\|
+= link_to 'Back', companies_path

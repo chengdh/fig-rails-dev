@@ -1,0 +1,7 @@
+= semantic_form_for @company do |f|
+  = f.inputs do
+    = f.input :cn_name
+    = f.input :en_name
+
+  = f.actions do
+    = f.action :submit, :as => :input

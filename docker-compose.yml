@@ -1,18 +1,9 @@
-mysql:
-  image: mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: fizzbuzz
-  ports:
-    - "3306:3306"
-
 web:
   build: .
   command: bundle exec rails s -b 0.0.0.0 -p 3000
   volumes:
     # This seems to work as-is once you expose /Users to the boot2docker vm.
     - .:/rails_app
-  links:
-    - mysql
   ports:
     - "8080:8080"
     - "3000:3000"

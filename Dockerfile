@@ -14,7 +14,15 @@ RUN apt-get install -y libmysqlclient-dev
 RUN apt-get install -y libxml2-dev
 RUN apt-get install -y libxslt-dev
 RUN apt-get install -y libreadline-dev
+RUN apt-get install -y alien
+RUN apt-get install -y libaio1
 RUN mkdir -p /rails_app
+
+#install oracle instant client
+ADD oracle_instant_client/* /tmp/
+RUN alien -i /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+RUN alien -i /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+RUN alien -i /tmp/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
 
 # Install rbenv
 RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
@@ -30,6 +38,9 @@ RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plu
 
 ENV RBENV_ROOT /usr/local/rbenv
 ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+#REF https://help.ubuntu.com/community/Oracle%20Instant%20Client
+ENV LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 
 RUN rbenv install  2.1.4
 RUN rbenv global  2.1.4

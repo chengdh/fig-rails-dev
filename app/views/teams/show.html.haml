@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Cn name:
+  = @team.cn_name
+%p
+  %b Tr name:
+  = @team.tr_name
+%p
+  %b En name:
+  = @team.en_name
+
+= link_to 'Edit', edit_team_path(@team)
+\|
+= link_to 'Back', teams_path

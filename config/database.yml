@@ -10,23 +10,22 @@
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
 default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: root
-  password: fizzbuzz
-  host: mysql
+  adapter: oracle_enhanced
+  host: 192.168.1.106
+  database: xe
+  username: match
+  password: match
 
 development:
   <<: *default
-  database: yinglang_app_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: yinglang_app_test
+  username: match_test
+  password: match_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -48,11 +47,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
-  pool: 5
-  database: yinglang_app_production
-  username: root
-  password: ssapp
-  socket: /var/run/mysqld/mysqld.sock
+  adapter: oracle_enhanced
+  host: oraclexe
+  port: 1521
+  database: xe
+  username: match
+  password: match
