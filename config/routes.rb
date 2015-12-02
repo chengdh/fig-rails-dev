@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :league_rankings
+  resources :events
+  resources :odds_balls
+  resources :odds_europes
+  resources :odds_asians
+  resources :current_matches
+  resources :lineups
+  resources :matches
+  resources :leagues
   resources :companies
   resources :countries
   resources :teams
