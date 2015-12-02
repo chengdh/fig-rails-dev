@@ -1,0 +1,16 @@
+%table.table.table-striped.table-condensed
+  %tbody
+    - @matches.each do |match|
+      %tr
+        %td{:rowspan => 2}
+          %span.glyphicon.glyphicon-star{ "aria-hidden" => "true"}
+            %td
+              = match.try(:league).try(:cn_name)
+              = match.match_time.strftime("%H:%M")
+        %td{:rowspan => 2}
+          未开
+        %td= match.begin
+
+      %tr
+        %td= match.team1.cn_name
+        %td= match.team2.cn_name

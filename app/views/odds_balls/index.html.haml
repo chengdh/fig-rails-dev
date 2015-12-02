@@ -1,0 +1,19 @@
+%h1 Listing odds_balls
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @odds_balls.each do |odds_ball|
+      %tr
+        %td= link_to 'Show', odds_ball
+        %td= link_to 'Edit', edit_odds_ball_path(odds_ball)
+        %td= link_to 'Destroy', odds_ball, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Odds ball', new_odds_ball_path

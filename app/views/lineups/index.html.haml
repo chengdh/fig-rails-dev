@@ -1,0 +1,19 @@
+%h1 Listing lineups
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @lineups.each do |lineup|
+      %tr
+        %td= link_to 'Show', lineup
+        %td= link_to 'Edit', edit_lineup_path(lineup)
+        %td= link_to 'Destroy', lineup, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Lineup', new_lineup_path

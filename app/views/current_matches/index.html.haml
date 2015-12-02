@@ -1,0 +1,19 @@
+%h1 Listing current_matches
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @current_matches.each do |current_match|
+      %tr
+        %td= link_to 'Show', current_match
+        %td= link_to 'Edit', edit_current_match_path(current_match)
+        %td= link_to 'Destroy', current_match, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Current match', new_current_match_path

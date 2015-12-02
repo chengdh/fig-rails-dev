@@ -1,0 +1,19 @@
+%h1 Listing league_rankings
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @league_rankings.each do |league_ranking|
+      %tr
+        %td= link_to 'Show', league_ranking
+        %td= link_to 'Edit', edit_league_ranking_path(league_ranking)
+        %td= link_to 'Destroy', league_ranking, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New League ranking', new_league_ranking_path

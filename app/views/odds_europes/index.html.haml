@@ -1,0 +1,19 @@
+%h1 Listing odds_europes
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @odds_europes.each do |odds_europe|
+      %tr
+        %td= link_to 'Show', odds_europe
+        %td= link_to 'Edit', edit_odds_europe_path(odds_europe)
+        %td= link_to 'Destroy', odds_europe, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Odds europe', new_odds_europe_path
