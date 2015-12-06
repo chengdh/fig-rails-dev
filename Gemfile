@@ -24,6 +24,7 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
+gem 'ransack'
 
 
 # Use ActiveModel has_secure_password
@@ -67,8 +68,8 @@ group :development do
   gem 'binding_of_caller', :platforms=>[:mri_20]
   #gem 'capistrano', '~> 3.0.1'
   gem 'capistrano', '~> 3.4.0'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails', '~> 1.1.0'
+  gem 'capistrano-bundler','1.1.4'
+  gem 'capistrano-rails', '1.1.3'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv', '~> 2.0'
   gem 'capistrano3-unicorn'
