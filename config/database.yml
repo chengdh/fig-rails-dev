@@ -48,7 +48,7 @@ test:
 #
 production:
   adapter: oracle_enhanced
-  host: oraclexe
+  host: localhost
   port: 1521
   database: xe
   username: match
