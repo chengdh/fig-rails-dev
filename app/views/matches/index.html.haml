@@ -3,10 +3,11 @@
     - @matches.each do |match|
       %tr
         %td{:rowspan => 2}
+          %button.btn.btn-default.btn-lg{:type =>"button"}
           %span.glyphicon.glyphicon-star{ "aria-hidden" => "true"}
-            %td
-              = match.try(:league).try(:cn_name)
-              = match.match_time.strftime("%H:%M")
+        %td
+          = match.try(:league).try(:cn_name)
+          = match.match_time.strftime("%H:%M")
         %td{:rowspan => 2}
           未开
         %td= match.begin
