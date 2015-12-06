@@ -14,7 +14,7 @@ $(function() {
     }
     return params;
   };
-  $.receiveMessage( function(e){
+  $.receiveMessage(function(e){
     arg_obj = $.parseParams(e.data)
     el_form = $("form")
     el_form.attr("target","_blank")
