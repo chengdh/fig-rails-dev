@@ -6,12 +6,18 @@ Rails.application.routes.draw do
   resources :odds_asians
   resources :current_matches
   resources :lineups
-  resources :matches
   resources :leagues
   resources :companies
   resources :countries
   resources :teams
   resources :contients
+
+  resources :matches do
+    get :immediate,on: :collection
+    get :last_week,on: :collection
+    get :this_week,on: :collection
+  end
+
   devise_for :users, controllers: {registrations: "registrations" }
 
   resources :register_infos do

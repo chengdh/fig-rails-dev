@@ -7,6 +7,24 @@ class MatchesController < ApplicationController
     @matches = Match.all
   end
 
+  #GET /matches/immediate
+  #GET /matches/immediate.json
+  def immediate
+    @matches = Match.immediate
+  end
+
+  #GET /matches/last_week
+  #GET /matches/last_week.json
+  def last_week
+    @matches = Match.last_week
+  end
+
+  #GET /matches/this_week
+  #GET /matches/this_week.json
+  def this_week
+    @matches = Match.this_week
+  end
+
   # GET /matches/1
   # GET /matches/1.json
   def show
