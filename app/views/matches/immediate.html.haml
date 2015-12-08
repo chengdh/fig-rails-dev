@@ -1,7 +1,7 @@
 %table.table.table-hover.table-condensed.table-striped
   %tbody
     - @matches.each do |match|
-      %tr
+      %tr.match-tr{"data-match" => match.to_json}
         %td
           %button.btn.btn-default.btn-lg{:type =>"button"}
             %span.glyphicon.glyphicon-star{ "aria-hidden" => "true"}
@@ -12,7 +12,10 @@
 
         %td
           %p= match.status
-          %p= "#{match.try(:current_match).try(:home_score)} : #{match.try(:current_match).try(:guest_score)}"
+          %p
+            %span= match.try(:current_match).try(:home_score)
+            %span :
+            %span= match.try(:current_match).try(:guest_score)
         %td
           = match.begin
           %p= match.team2.cn_name

@@ -26,6 +26,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'ransack'
 
+gem 'composite_primary_keys', '~> 8.1'
+
+gem 'will_paginate', '~> 3.0.5'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

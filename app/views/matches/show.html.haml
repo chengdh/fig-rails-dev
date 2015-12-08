@@ -1,6 +1,25 @@
-%p#notice= notice
+%table.table.table-condensed
+  %thead
+    %tr
+      %th{:style => "text-align : center;"}
+        = @match.team1.cn_name
+      %th{:style => "text-align : center;"}
+        %h4 VS
+        %p= @match.match_time.strftime("%Y-%m-%d %H:%M")
+        %p= @match.status
+      %th{:style => "text-align : center;"}
+        = @match.team2.cn_name
 
-
-= link_to 'Edit', edit_match_path(@match)
-\|
-= link_to 'Back', matches_path
+%ul.nav.nav-tabs
+  %li.active{:role => "presentation"}
+    = link_to "事件", "#"
+  %li{:role => "presentation"}
+    = link_to "阵容", "#"
+  %li{:role => "presentation"}
+    = link_to "分析", "#"
+  %li{:role => "presentation"}
+    = link_to "亚赔", "#"
+  %li{:role => "presentation"}
+    = link_to "欧赔", "#"
+  %li{:role => "presentation"}
+    = link_to "大小", "#"

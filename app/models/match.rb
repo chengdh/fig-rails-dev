@@ -15,12 +15,15 @@ class Match < ActiveRecord::Base
   belongs_to :league
   belongs_to :team1,class_name: "Team"
   belongs_to :team2,class_name: "Team"
+
+  has_one :current_match
+
   has_many :odds_asians
   has_many :odds_europes
   has_many :odds_balls
   has_many :odds_events
   has_many :line_ups
-  has_one :current_matche
+
 
 
   #当前状态
@@ -36,7 +39,7 @@ class Match < ActiveRecord::Base
     elsif 90.minutes.ago > match_time
       ret = "90+"
     else
-      ret = current_match.match_min
+      ret = try(:current_match).try(:match_min)
     end
     ret
   end
