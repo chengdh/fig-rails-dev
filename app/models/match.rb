@@ -2,7 +2,7 @@
 #比赛
 class Match < ActiveRecord::Base
   #即时比赛 比赛时间 >= 100分钟前 而且 比赛时间<=  24小时 
-  scope :immediate,-> {where("match_time >= ? and match_time <= ?",100.minutes.ago,24.hours.since)}
+  scope :immediate,-> {where("match_time >= ? and match_time <= ?",3.days.ago,1.days.since)}
 
   #赛果 前7天
   scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago,7.days.ago)}
