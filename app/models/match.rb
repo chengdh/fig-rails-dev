@@ -1,6 +1,7 @@
 #coding: utf-8
 #比赛
 class Match < ActiveRecord::Base
+
   #即时比赛 比赛时间 >= 100分钟前 而且 比赛时间<=  24小时 
   scope :immediate,-> {where("match_time >= ? and match_time <= ?",3.days.ago,1.days.since)}
 
@@ -22,7 +23,25 @@ class Match < ActiveRecord::Base
   has_many :odds_europes
   has_many :odds_balls
   has_many :odds_events
-  has_many :line_ups
+
+  #主队首发阵容
+  has_many :home_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
+  #主队替补
+  has_many :home_substitute_line_ups ,->(lineup) {joins(:match).where(odds_type: 2).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
+  #主队伤兵
+  has_many :home_wounded_line_ups ,->(lineup) {joins(:match).where(odds_type: 3).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
+  #主队停赛
+  has_many :home_stopped_line_ups ,->(lineup) {joins(:match).where(odds_type: 4).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
+
+  #客队首发阵容
+  has_many :visiting_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  #客队替补
+  has_many :visiting_substitute_line_ups ,->(lineup) {joins(:match).where(odds_type: 2).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  #客队伤兵
+  has_many :visiting_wounded_line_ups ,->(lineup) {joins(:match).where(odds_type: 3).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  #客队停赛
+  has_many :visiting_stopped_line_ups ,->(lineup) {joins(:match).where(odds_type: 4).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+
 
 
 
