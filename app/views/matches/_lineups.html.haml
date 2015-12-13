@@ -1,0 +1,76 @@
+.row.lineup
+  .col-xs-6
+    %ul.list-group
+      %li.list-group-item
+        %h5 首发阵容
+      - @match.home_start_line_ups.each do |lineup|
+        %li.list-group-item
+          %span.badge= lineup.shirt_num
+          = lineup.cn_name
+
+
+    %ul.list-group
+      %li.list-group-item
+        %h5 替补阵容
+      - @match.home_substitute_line_ups.each do |lineup|
+        %li.list-group-item
+          %span.badge= lineup.shirt_num
+          = lineup.cn_name
+
+
+    - if @match.home_wounded_line_ups.present?
+      %ul.list-group
+        %li.list-group-item
+          %h5 伤兵
+        - @match.home_wounded_line_ups.each do |lineup|
+          %li.list-group-item
+            %span.badge= lineup.shirt_num
+            = lineup.cn_name
+
+    - if @match.home_stopped_line_ups.present?
+      %ul.list-group
+        %li.list-group-item
+          %h4 停赛
+        - @match.home_stopped_line_ups.each do |lineup|
+          %li.list-group-item
+            %span.badge= lineup.shirt_num
+            = lineup.cn_name
+
+
+
+  .col-xs-6
+    %ul.list-group
+      %li.list-group-item
+        %h5 首发阵容
+      - @match.guest_start_line_ups.each do |lineup|
+        %li.list-group-item
+          %span.badge= lineup.shirt_num
+          = lineup.cn_name
+
+
+    %ul.list-group
+      %li.list-group-item
+        %h5 替补阵容
+      - @match.guest_substitute_line_ups.each do |lineup|
+        %li.list-group-item
+          %span.badge= lineup.shirt_num
+          = lineup.cn_name
+
+
+    - if @match.guest_stopped_line_ups.present?
+      %ul.list-group
+        %li.list-group-item
+          %h5 伤兵
+        - @match.guest_wounded_line_ups.each do |lineup|
+          %li.list-group-item
+            %span.badge= lineup.shirt_num
+            = lineup.cn_name
+
+    - if @match.guest_stopped_line_ups.present?
+      %ul.list-group
+        %li.list-group-item
+          %h5 停赛
+        - @match.guest_stopped_line_ups.each do |lineup|
+          %li.list-group-item
+            %span.badge= lineup.shirt_num
+            = lineup.cn_name

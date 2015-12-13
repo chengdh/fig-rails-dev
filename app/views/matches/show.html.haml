@@ -24,79 +24,21 @@
   %li{:role => "presentation"}
     = link_to "大小", "#"
 
-.row.lineup
-  .col-xs-6
-    %ul.list-group
-      %li.list-group-item
-        %h4 首发阵容
-      - @match.home_start_line_ups.each do |lineup|
-        %li.list-group-item
-          %span.badge= lineup.shirt_num
-          = lineup.cn_name
+/ 阵容
 
+= render "lineups"
 
-    %ul.list-group
-      %li.list-group-item
-        %h4 替补阵容
-      - @match.home_substitute_line_ups.each do |lineup|
-        %li.list-group-item
-          %span.badge= lineup.shirt_num
-          = lineup.cn_name
+/ 联赛积分排名
+%h5 联赛积分排名
+= render "league_rankings",league_rankings: @match.home_league_rankings,team: @match.team1
+= render "league_rankings",league_rankings: @match.guest_league_rankings,team: @match.team2
 
+/ 对赛往绩
+= render "match_history",title: "对赛往绩",matches: @match.matches_history,team: nil
 
-    - if @match.home_wounded_line_ups.present?
-      %ul.list-group
-        %li.list-group-item
-          %h4 伤兵
-        - @match.home_wounded_line_ups.each do |lineup|
-          %li.list-group-item
-            %span.badge= lineup.shirt_num
-            = lineup.cn_name
+/ 近期战绩-主队
+= render "match_history",title: "近期往绩",matches: @match.matches_recent_home,team: @match.team1
 
-    - if @match.home_stopped_line_ups.present?
-      %ul.list-group
-        %li.list-group-item
-          %h4 停赛
-        - @match.home_stopped_line_ups.each do |lineup|
-          %li.list-group-item
-            %span.badge= lineup.shirt_num
-            = lineup.cn_name
+/ 近期战绩-客队
+= render "match_history",matches: @match.matches_recent_guest,team: @match.team2,title: nil
 
-
-
-  .col-xs-6
-    %ul.list-group
-      %li.list-group-item
-        %h4 首发阵容
-      - @match.visiting_start_line_ups.each do |lineup|
-        %li.list-group-item
-          %span.badge= lineup.shirt_num
-          = lineup.cn_name
-
-
-    %ul.list-group
-      %li.list-group-item
-        %h4 替补阵容
-      - @match.visiting_substitute_line_ups.each do |lineup|
-        %li.list-group-item
-          %span.badge= lineup.shirt_num
-          = lineup.cn_name
-
-
-    - if @match.visiting_stopped_line_ups.present?
-      %ul.list-group
-        %li.list-group-item
-          %h4 伤兵
-        - @match.visiting_wounded_line_ups.each do |lineup|
-          %li.list-group-item
-            %span.badge= lineup.shirt_num
-            = lineup.cn_name
-
-    - if @match.visiting_stopped_line_ups.present?
-      %ul.list-group
-        %li.list-group-item
-          %h4 停赛
-        - @match.visiting_stopped_line_ups.each do |lineup|
-          %li.list-group-item
-            %span.badge= lineup.shirt_num
-            = lineup.cn_name

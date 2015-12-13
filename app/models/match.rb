@@ -1,7 +1,8 @@
 #coding: utf-8
 #比赛
 class Match < ActiveRecord::Base
-
+  self.table_name = "t_match"
+  self.primary_key = "match_id"
   #即时比赛 比赛时间 >= 100分钟前 而且 比赛时间<=  24小时 
   scope :immediate,-> {where("match_time >= ? and match_time <= ?",3.days.ago,1.days.since)}
 
@@ -11,8 +12,6 @@ class Match < ActiveRecord::Base
   #赛程 本周
   scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week,Date.today.end_of_week)}
 
-  self.table_name = "t_match"
-  self.primary_key = "match_id"
   belongs_to :league
   belongs_to :team1,class_name: "Team"
   belongs_to :team2,class_name: "Team"
@@ -34,16 +33,38 @@ class Match < ActiveRecord::Base
   has_many :home_stopped_line_ups ,->(lineup) {joins(:match).where(odds_type: 4).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
 
   #客队首发阵容
-  has_many :visiting_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  has_many :guest_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
   #客队替补
-  has_many :visiting_substitute_line_ups ,->(lineup) {joins(:match).where(odds_type: 2).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  has_many :guest_substitute_line_ups ,->(lineup) {joins(:match).where(odds_type: 2).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
   #客队伤兵
-  has_many :visiting_wounded_line_ups ,->(lineup) {joins(:match).where(odds_type: 3).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  has_many :guest,->(lineup) {joins(:match).where(odds_type: 3).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
   #客队停赛
-  has_many :visiting_stopped_line_ups ,->(lineup) {joins(:match).where(odds_type: 4).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
+  has_many :guest_stopped_line_ups ,->(lineup) {joins(:match).where(odds_type: 4).where("t_lineup.team_id = t_match.team2_id")},class_name: "Lineup"
 
+  #联赛积分排名-主队-1总  2主 3客 4近
+  has_many :home_league_rankings,->(ranking) {joins(:match).where("t_league_rankings.team_id = t_match.team1_id")},class_name: "LeagueRanking"
+  #has_one :home_league_ranking_home,->(ranking) {joins(:match).where(odds_type: 2).where("t_league_rankings.team_id = t_match.team1_id")},class_name: "LeagueRanking"
+  #has_one :home_league_ranking_visiting,->(ranking) {joins(:match).where(odds_type: 3).where("t_league_rankings.team_id = t_match.team1_id")},class_name: "LeagueRanking"
+  #has_one :home_league_ranking_recent,->(ranking) {joins(:match).where(odds_type: 4).where("t_league_rankings.team_id = t_match.team1_id")},class_name: "LeagueRanking"
 
-
+  #联赛积分排名-客队-1总  2主 3客 4近
+  has_many :guest_league_rankings,->(ranking) {joins(:match).where("t_league_rankings.team_id = t_match.team2_id")},class_name: "LeagueRanking"
+  #has_one :guest_league_ranking_home,->(ranking) {joins(:match).where(odds_type: 2).where("t_league_rankings.team_id = t_match.team2_id")},class_name: "LeagueRanking"
+  #has_one :guest_league_ranking_visiting,->(ranking) {joins(:match).where(odds_type: 3).where("t_league_rankings.team_id = t_match.team2_id")},class_name: "LeagueRanking"
+  #has_one :guest_league_ranking_recent,->(ranking) {joins(:match).where(odds_type: 4).where("t_league_rankings.team_id = t_match.team2_id")},class_name: "LeagueRanking"
+  #
+  #对赛往绩
+  def matches_history
+    Match.where("(team1_id = ? AND team2_id = ?) OR (team1_id = ? AND team2_id = ?) AND match_time <= ?",team1_id,team2_id,team2_id,team1_id,1.days.ago).limit(10).order("match_time DESC")
+  end
+  #近10场主队战绩
+  def matches_recent_home
+    Match.where("team1_id = ? or team2_id = ? AND match_time <= ? ",team1_id,team1_id,1.days.ago).limit(10).order("match_time DESC")
+  end
+  #近10场客队战绩
+  def matches_recent_guest
+    Match.where("team1_id = ? OR team2_id = ? AND match_time <= ?",team2_id,team2_id,1.days.ago).limit(10).order("match_time DESC")
+  end
 
   #当前状态
   #未开

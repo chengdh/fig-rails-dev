@@ -1,0 +1,31 @@
+/ 对战成绩 
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    - if title.present?
+      %tr
+        %th{:colspan => 10}
+          %h5= title 
+    - if team.present?
+      %tr
+        %th{:colspan => 10}
+          %h5= team.cn_name
+
+    %tr
+      %th 日期
+      %th 赛事
+      %th 主场
+      %th 比分
+      %th 客场
+      %th 盘路
+  %tbody
+    - matches.each do |match|
+      %tr
+        %td= match.match_time.strftime("%Y-%m-%d")
+        %td= match.league.cn_name
+        %td= match.team1.cn_name
+        %td
+          %p
+            %em= "(#{match.half_home_score} : #{match.half_guest_score})"
+          %p= "#{match.half_home_score} : #{match.half_guest_score}"
+        %td= match.team2.cn_name
+        %td  todo

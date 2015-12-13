@@ -1,0 +1,30 @@
+/ 联赛积分排名
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    %tr
+      %th{:colspan => 10}
+        %h5= team.try(:cn_name)
+    %tr
+      %th 全场
+      %th 赛
+      %th 胜
+      %th 平
+      %th 负
+      %th 得
+      %th 失
+      %th 积分
+      %th 排名
+      %th 胜率
+  %tbody
+    - league_rankings.each do |lr|
+      %tr
+        %td= lr.try(:describe)
+        %td= lr.try(:games)
+        %td= lr.try(:win)
+        %td= lr.try(:draw)
+        %td= lr.try(:lose)
+        %td= lr.try(:get)
+        %td= lr.try(:miss)
+        %td= lr.try(:pts)
+        %td= lr.try(:ranking)
+        %td= lr.try(:win_rate)
