@@ -1,0 +1,28 @@
+/ 亚赔
+%table.table.table-striped.table-condensed.table-hover.table-bordered
+  %thead
+    %tr
+      %th 公司
+      %th 初盘
+      %th 即时
+      %th 变
+  %tbody
+    - odds.first.each do |c|
+      %tr
+        %td= c.cn_name
+        %td
+          &nbsp;&nbsp;
+          %span= odds[1][0][c].try(:home)
+          &nbsp;&nbsp;
+          %span= odds[1][0][c].try(:goal)
+          &nbsp;&nbsp;
+          %span= odds[1][0][c].try(:away)
+        %td
+          &nbsp;&nbsp;
+          %span= odds[1][1][c].try(:home)
+          &nbsp;&nbsp;
+          %span= odds[1][1][c].try(:goal)
+          &nbsp;&nbsp;
+          %span= odds[1][1][c].try(:away)
+        %td
+          >

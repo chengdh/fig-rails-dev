@@ -1,0 +1,28 @@
+/ 大小球
+%table.table.table-striped.table-condensed.table-hover.table-bordered
+  %thead
+    %tr
+      %th 公司
+      %th 初盘
+      %th 即时
+      %th 变
+  %tbody
+    - balls.first.each do |c|
+      %tr
+        %td= c.cn_name
+        %td
+          &nbsp;&nbsp;
+          %span= balls[1][0][c].try(:over)
+          &nbsp;&nbsp;
+          %span= balls[1][0][c].try(:goal)
+          &nbsp;&nbsp;
+          %span= balls[1][0][c].try(:under)
+        %td
+          &nbsp;&nbsp;
+          %span= balls[1][1][c].try(:over)
+          &nbsp;&nbsp;
+          %span= balls[1][1][c].try(:goal)
+          &nbsp;&nbsp;
+          %span= balls[1][1][c].try(:under)
+        %td
+          >

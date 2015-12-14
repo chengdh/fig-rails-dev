@@ -9,3 +9,12 @@ $ ->
     Android.passObject("args",json_str)
     Android.openMatchImmediateShowActivity()
   )
+  #比赛详情页面事件
+  $(".match-detail li").on("click",(evt)->
+    this_el = evt.currentTarget
+    class_name = $(this_el).data("link-el-class")
+    $(".events,.lineups,.analyse,.odds-asian,.odds-europe,.odds-ball").hide()
+    $(class_name).show()
+    $(".match-detail li").removeClass("active")
+    $(this_el).addClass("active")
+  )

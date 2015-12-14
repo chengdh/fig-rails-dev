@@ -1,0 +1,22 @@
+/ 欧赔
+%table.table.table-striped.table-condensed.table-hover.table-bordered
+  %thead
+    %tr
+      %th{:colspan => 2}
+        公司
+      %th 主胜
+      %th 平
+      %th 客胜
+  %tbody
+    - odds.first.each do |c|
+      %tr
+        %td{:rowspan =>2}= c.cn_name
+        %td 初盘
+        %td= odds[1][0][c].try(:hw)
+        %td= odds[1][0][c].try(:st)
+        %td= odds[1][0][c].try(:aw)
+      %tr
+        %td 即时
+        %td= odds[1][1][c].try(:hw)
+        %td= odds[1][1][c].try(:st)
+        %td= odds[1][1][c].try(:aw)

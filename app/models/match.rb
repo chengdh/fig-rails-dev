@@ -4,7 +4,8 @@ class Match < ActiveRecord::Base
   self.table_name = "t_match"
   self.primary_key = "match_id"
   #即时比赛 比赛时间 >= 100分钟前 而且 比赛时间<=  24小时 
-  scope :immediate,-> {where("match_time >= ? and match_time <= ?",3.days.ago,1.days.since)}
+  #scope :immediate,-> {where("match_tme >= ? and match_time <= ?",3.days.ago,1.days.since)}
+  scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205])}
 
   #赛果 前7天
   scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago,7.days.ago)}
@@ -18,8 +19,11 @@ class Match < ActiveRecord::Base
 
   has_one :current_match
 
+  #当前亚盘
   has_many :odds_asians
+  #当前欧盘
   has_many :odds_europes
+
   has_many :odds_balls
   has_many :odds_events
 
@@ -65,6 +69,51 @@ class Match < ActiveRecord::Base
   def matches_recent_guest
     Match.where("team1_id = ? OR team2_id = ? AND match_time <= ?",team2_id,team2_id,1.days.ago).limit(10).order("match_time DESC")
   end
+
+  #当前亚盘数据
+  def current_odds_asians
+    ret_begin = {}
+    ret_current = {}
+    ret_final = {}
+    companies = Company.all
+    companies.each do |c|
+      ret_begin[c] = odds_asians.where(company: c,odds_type: 1).first
+      ret_current[c] = odds_asians.where(company: c,odds_type: 2).first
+      ret_final[c] = odds_asians.where(company: c,odds_type: 3).first
+    end
+    [companies,[ret_begin,ret_current,ret_final]]
+  end
+
+
+  #当前欧盘数据
+  def current_odds_europes
+    ret_begin = {}
+    ret_current = {}
+    ret_final = {}
+    companies = Company.all
+    companies.each do |c|
+      ret_begin[c] = odds_europes.where(company: c,odds_type: 1).first
+      ret_current[c] = odds_europes.where(company: c,odds_type: 2).first
+      ret_final[c] = odds_europes.where(company: c,odds_type: 3).first
+    end
+    [companies,[ret_begin,ret_current,ret_final]]
+
+  end
+
+  def current_odds_balls
+    ret_begin = {}
+    ret_current = {}
+    ret_final = {}
+    companies = Company.all
+    companies.each do |c|
+      ret_begin[c] = odds_balls.where(company: c,odds_type: 1).first
+      ret_current[c] = odds_balls.where(company: c,odds_type: 2).first
+      ret_final[c] = odds_balls.where(company: c,odds_type: 3).first
+    end
+    [companies,[ret_begin,ret_current,ret_final]]
+  end
+
+
 
   #当前状态
   #未开
