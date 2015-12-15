@@ -38,6 +38,13 @@ class MatchesController < ApplicationController
     @matches = @q.result.this_week
   end
 
+  #GET /matches/sb_list
+  #GET /matches/sb_list.json
+  def sb_list
+    @q = Match.ransack(params[:q])
+    @matches = @q.result.sb_list
+  end
+
   # GET /matches/1
   # GET /matches/1.json
   def show

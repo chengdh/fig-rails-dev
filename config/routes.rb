@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get :immediate,on: :collection
     get :last_week,on: :collection
     get :this_week,on: :collection
+    get :sb_list,on: :collection
   end
 
   devise_for :users, controllers: {registrations: "registrations" }

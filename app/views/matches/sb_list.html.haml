@@ -1,0 +1,33 @@
+/ 滚球
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    %tr
+      %th
+      %th
+      %th 球队
+      %th 亚赔
+      %th 大小
+      %th 欧赔
+  %tbody
+    - @matches.each do |m|
+      %tr
+        %td= m.league.cn_name
+        %td= m.try(:current_match).try(:home_score)
+        %td= m.team1.cn_name
+        %td= m.current_odds_asians[1][1][:home]
+        %td= m.current_odds_balls[1][1][:over]
+        %td= m.current_odds_europes[1][1][:hw]
+      %tr
+        %td= m.match_time.strftime("%H:%M")
+        %td= m.status
+        %td
+        %td= m.current_odds_asians[1][1][:goal]
+        %td= m.current_odds_balls[1][1][:goal]
+        %td= m.current_odds_europes[1][1][:st]
+      %tr
+        %td
+        %td= m.try(:current_match).try(:guest_score)
+        %td= m.team2.cn_name
+        %td= m.current_odds_asians[1][1][:away]
+        %td= m.current_odds_balls[1][1][:under]
+        %td= m.current_odds_europes[1][1][:aw]

@@ -10,12 +10,15 @@
           = match.match_time.strftime("%H:%M")
           %p= match.team1.cn_name
 
-        %td
-          %p= match.status
-          %p
-            %span= match.try(:current_match).try(:home_score)
-            %span :
-            %span= match.try(:current_match).try(:guest_score)
+        - if match.match_status_before_type_cast == -1
+          %td{"vertical-align" => "middle"} 未开
+        - else
+          %td{"vertical-align" => "center"}
+            %p= match.status
+            %p
+              %span= match.try(:current_match).try(:home_score)
+              %span :
+              %span= match.try(:current_match).try(:guest_score)
         %td
           = match.begin
           %p= match.team2.cn_name

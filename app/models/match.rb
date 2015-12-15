@@ -3,17 +3,20 @@
 class Match < ActiveRecord::Base
   self.table_name = "t_match"
   self.primary_key = "match_id"
-  #即时比赛 比赛时间 >= 100分钟前 而且 比赛时间<=  24小时 
+  #即时比赛 比赛时间 >= 100分钟前 而且 比赛时间<=  24小时
   #scope :immediate,-> {where("match_tme >= ? and match_time <= ?",3.days.ago,1.days.since)}
-  scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205])}
+  scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛果 前7天
   #scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago,7.days.ago)}
-  scope :last_week,-> {where(match_id: [1130325,1130328,1130319,1080205])}
+  scope :last_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛程 本周
   #scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week,Date.today.end_of_week)}
-  scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205])}
+  scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
+
+  #sb滚球数据
+  scope :sb_list, -> {joins(:current_match).where("t_current_match.match_status != -1").order("t_match.match_time")}
 
   belongs_to :league
   belongs_to :team1,class_name: "Team"
@@ -115,23 +118,35 @@ class Match < ActiveRecord::Base
     [companies,[ret_begin,ret_current,ret_final]]
   end
 
-
-
   #当前状态
   #未开
   #中场
   #已开场 分钟数
   def status
     ret = ""
-    if match_time > Time.now
-      ret = "未开"
-    elsif 45.minutes.ago >= match_time and 60.minutes.ago <= match_time
-      ret = "中场"
-    elsif 90.minutes.ago > match_time
-      ret = "90+"
-    else
-      ret = try(:current_match).try(:match_min)
+    if current_match.blank?
+      return "未开"
     end
+    match_status = current_match.read_attribute_before_type_cast('match_status')
+    if match_status == 0
+      ret = "未开"
+    elsif match_status == 1
+      start_ms = ((Time.now - current_match.first_time)/60).round
+      ret = "#{start_ms}'"
+    elsif match_status == 2
+      ret = "中场"
+    elsif match_status == 3
+      start_ms = ((Time.now - current_match.first_time)/60).round + 45
+      ret = "#{start_ms}'"
+      ret = "90+" if start_ms > 90
+    else
+      ret = "完"
+    end
+    ret
+  end
+  def match_status_before_type_cast
+    ret = try(:current_match).try(:read_attribute_before_type_cast,'match_status')
+    ret = -1 if ret.blank?
     ret
   end
 
