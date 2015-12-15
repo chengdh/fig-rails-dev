@@ -10,11 +10,39 @@ $ ->
     Android.openMatchImmediateShowActivity()
   )
   #比赛详情页面事件
-  $(".match-detail li").on("click",(evt)->
+  $(".match-tabs li").on("click",(evt)->
     this_el = evt.currentTarget
     class_name = $(this_el).data("link-el-class")
     $(".events,.lineups,.analyse,.odds-asian,.odds-europe,.odds-ball").hide()
     $(class_name).show()
-    $(".match-detail li").removeClass("active")
+    $(".match-tabs li").removeClass("active")
     $(this_el).addClass("active")
+  )
+
+  #一周赛果,时间变化
+  $("#select_last_week_match_time_eq").on("change", ->
+    match_time = $(this).val()
+    q ={
+      "q[match_time_eq]" : match_time
+    }
+    param = $.param(q)
+    window.location.href = "/matches/last_week?" + param
+  )
+  $(".btn-last-week-yesterday,.btn-last-week-tomorrow").on("click", ->
+    the_day = $(this).data("day")
+    $("#select_last_week_match_time_eq").val(the_day).trigger("change")
+  )
+
+  #一周赛程,时间变化
+  $("#select_this_week_match_time_eq").on("change", ->
+    match_time = $(this).val()
+    q ={
+      "q[match_time_eq]" : match_time
+    }
+    param = $.param(q)
+    window.location.href = "/matches/this_week?" + param
+  )
+  $(".btn-this-week-yesterday,.btn-this-week-tomorrow").on("click", ->
+    the_day = $(this).data("day")
+    $("#select_this_week_match_time_eq").val(the_day).trigger("change")
   )

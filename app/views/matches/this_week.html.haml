@@ -1,18 +1,25 @@
+%table.table.table-condensed
+  %tr
+    %td
+      %a.btn.btn-default.btn-this-week-yesterday{:href =>"#",:role =>"button","data-day" => @yesterday}
+        %span.glyphicon.glyphicon-arrow-left
+    %td
+      = select_tag "select_this_week_match_time_eq",options_for_select(this_week_for_select,@current_day),
+        :class => "form-control select-week-of-day"
+
+    %td{:style => "text-align : right;"}
+      %a.btn.btn-default.btn-this-week-tomorrow{:href =>"#",:role =>"button","data-day" => @tomorrow }
+        %span.glyphicon.glyphicon-arrow-right
+
 %table.table.table-hover.table-condensed.table-striped
   %tbody
     - @matches.each do |match|
-      %tr
-        %td
-          %button.btn.btn-default.btn-lg{:type =>"button"}
-            %span.glyphicon.glyphicon-star{ "aria-hidden" => "true"}
+      %tr.match-tr{"data-match" => match.to_json}
         %td
           = match.try(:league).try(:cn_name)
-          = match.match_time.strftime("%H:%M")
+          %p= match.match_time.strftime("%H:%M")
+        %td
           %p= match.team1.cn_name
 
-        %td
-          %p= match.status
-          %p= "#{match.try(:current_match).try(:home_score)} : #{match.try(:current_match).try(:guest_score)}"
-        %td
-          = match.begin
-          %p= match.team2.cn_name
+        %td vs
+        %td= match.team2.cn_name

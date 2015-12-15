@@ -15,14 +15,27 @@ class MatchesController < ApplicationController
 
   #GET /matches/last_week
   #GET /matches/last_week.json
+  #获取上周的比赛数据
   def last_week
-    @matches = Match.last_week
+    @current_day = params[:q].try(:[],:match_time_eq)
+    @current_day = 1.days.ago.strftime("%Y-%m-%d") if @current_day.blank?
+    @yesterday = (Date.strptime(@current_day,"%Y-%m-%d") - 1.days).strftime("%Y-%m-%d")
+    @tomorrow = (Date.strptime(@current_day,"%Y-%m-%d") + 1.days).strftime("%Y-%m-%d")
+    @q = Match.ransack(params[:q])
+    @matches = @q.result.last_week
   end
+
 
   #GET /matches/this_week
   #GET /matches/this_week.json
   def this_week
-    @matches = Match.this_week
+    @current_day = params[:q].try(:[],:match_time_eq)
+    @current_day = 1.days.since.strftime("%Y-%m-%d") if @current_day.blank?
+    @yesterday = (Date.strptime(@current_day,"%Y-%m-%d") - 1.days).strftime("%Y-%m-%d")
+    @tomorrow = (Date.strptime(@current_day,"%Y-%m-%d") + 1.days).strftime("%Y-%m-%d")
+
+    @q = Match.ransack(params[:q])
+    @matches = @q.result.this_week
   end
 
   # GET /matches/1

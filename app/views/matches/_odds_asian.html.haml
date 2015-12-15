@@ -3,26 +3,18 @@
   %thead
     %tr
       %th 公司
-      %th 初盘
-      %th 即时
+      %th{:colspan => 3,:style => "text-align : center;"} 初盘
+      %th{:colspan => 3,:style => "text-align : center;"} 即时
       %th 变
   %tbody
     - odds.first.each do |c|
       %tr
         %td= c.cn_name
-        %td
-          &nbsp;&nbsp;
-          %span= odds[1][0][c].try(:home)
-          &nbsp;&nbsp;
-          %span= odds[1][0][c].try(:goal)
-          &nbsp;&nbsp;
-          %span= odds[1][0][c].try(:away)
-        %td
-          &nbsp;&nbsp;
-          %span= odds[1][1][c].try(:home)
-          &nbsp;&nbsp;
-          %span= odds[1][1][c].try(:goal)
-          &nbsp;&nbsp;
-          %span= odds[1][1][c].try(:away)
+        %td= odds[1][0][c].try(:home)
+        %td= odds[1][0][c].try(:goal)
+        %td= odds[1][0][c].try(:away)
+        %td= odds[1][1][c].try(:home)
+        %td= odds[1][1][c].try(:goal)
+        %td= odds[1][1][c].try(:away)
         %td
           >

@@ -8,10 +8,12 @@ class Match < ActiveRecord::Base
   scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205])}
 
   #赛果 前7天
-  scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago,7.days.ago)}
+  #scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago,7.days.ago)}
+  scope :last_week,-> {where(match_id: [1130325,1130328,1130319,1080205])}
 
   #赛程 本周
-  scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week,Date.today.end_of_week)}
+  #scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week,Date.today.end_of_week)}
+  scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205])}
 
   belongs_to :league
   belongs_to :team1,class_name: "Team"

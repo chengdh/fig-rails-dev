@@ -13,7 +13,7 @@
       %th{:style => "text-align : center;"}
         = @match.team2.cn_name
 
-%ul.nav.navbar-nav.match-detail{:style => "font-size : 12px;"}
+%ul.nav.nav-tabs.match-tabs
   %li.active{:role => "presentation","data-link-el-class" => ".events"}
     = link_to "事件", "#"
   %li{:role => "presentation","data-link-el-class" => ".lineups"}
@@ -28,7 +28,7 @@
     = link_to "大小", "#"
 / 事件
 .events
-  %p 事件 TODO
+  %p.well 事件 TODO
 / 阵容
 .lineups{:style => 'display : none;'}
   = render "lineups"
