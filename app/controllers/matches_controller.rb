@@ -40,10 +40,20 @@ class MatchesController < ApplicationController
 
   #GET /matches/sb_list
   #GET /matches/sb_list.json
+  #滚球界面
   def sb_list
     @q = Match.ransack(params[:q])
     @matches = @q.result.sb_list
   end
+
+  #GET /matches/search_by_league
+  #GET /matches/search_by_league.json
+  #赛事筛选
+  def search_by_league
+    @q_leagues = League.ransack(params[:q])
+    @leagues = @q_leagues.result
+  end
+
 
   # GET /matches/1
   # GET /matches/1.json

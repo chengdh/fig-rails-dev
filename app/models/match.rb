@@ -160,4 +160,8 @@ class Match < ActiveRecord::Base
   def final
     odds_asians.where(odds_type: 3).try(:first).try(:home)
   end
+
+  def self.immediate_leagues
+    immediate.map {|m| m.league}.uniq!
+  end
 end

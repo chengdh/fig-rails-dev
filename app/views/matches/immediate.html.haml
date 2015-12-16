@@ -1,4 +1,4 @@
-%table.table.table-hover.table-condensed.table-striped
+%table.table.table-hover.table-condensed.table-striped{"data-leagues" => Match.immediate_leagues.to_json}
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json}
@@ -14,11 +14,11 @@
           %td{"vertical-align" => "middle"} 未开
         - else
           %td{"vertical-align" => "center"}
-            %p= match.status
-            %p
-              %span= match.try(:current_match).try(:home_score)
-              %span :
-              %span= match.try(:current_match).try(:guest_score)
+            %div
+              %span.label.label-info= match.status
+            %span= match.try(:current_match).try(:home_score)
+            %span :
+            %span= match.try(:current_match).try(:guest_score)
         %td
           = match.begin
           %p= match.team2.cn_name

@@ -9,14 +9,19 @@ $ ->
     Android.passObject("args",json_str)
     Android.openMatchImmediateShowActivity()
   )
+  if $("[data-leagues]").length > 0
+    leagues_str = JSON.stringify($("[data-leagues]").data("leagues"))
+    Android.passArray("leagues",leagues_str)
+    console.log("set leagues")
+
   #比赛详情页面事件
-  $(".match-tabs li").on("click",(evt)->
+  $(".match-tabs .btn").on("click",(evt)->
     this_el = evt.currentTarget
     class_name = $(this_el).data("link-el-class")
     $(".events,.lineups,.analyse,.odds-asian,.odds-europe,.odds-ball").hide()
     $(class_name).show()
-    $(".match-tabs li").removeClass("active")
-    $(this_el).addClass("active")
+    $(".match-tabs .btn").removeClass("btn-info")
+    $(this_el).addClass("btn-info")
   )
 
   #一周赛果,时间变化
@@ -45,4 +50,14 @@ $ ->
   $(".btn-this-week-yesterday,.btn-this-week-tomorrow").on("click", ->
     the_day = $(this).data("day")
     $("#select_this_week_match_time_eq").val(the_day).trigger("change")
+  )
+
+  #赛事筛选
+  $(".btn-league-select").on("click",->
+    if $(this).data('select')
+      $(this).data('select',false)
+      $(this).removeClass("btn-success")
+    else
+      $(this).data('select',true)
+      $(this).addClass("btn-success")
   )
