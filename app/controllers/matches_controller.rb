@@ -10,7 +10,8 @@ class MatchesController < ApplicationController
   #GET /matches/immediate
   #GET /matches/immediate.json
   def immediate
-    @matches = Match.immediate
+    @q = Match.ransack(params[:q])
+    @matches = @q.result.immediate
   end
 
   #GET /matches/last_week

@@ -9,10 +9,6 @@ $ ->
     Android.passObject("args",json_str)
     Android.openMatchImmediateShowActivity()
   )
-  if $("[data-leagues]").length > 0
-    leagues_str = JSON.stringify($("[data-leagues]").data("leagues"))
-    Android.passArray("leagues",leagues_str)
-    console.log("set leagues")
 
   #比赛详情页面事件
   $(".match-tabs .btn").on("click",(evt)->
@@ -52,12 +48,4 @@ $ ->
     $("#select_this_week_match_time_eq").val(the_day).trigger("change")
   )
 
-  #赛事筛选
-  $(".btn-league-select").on("click",->
-    if $(this).data('select')
-      $(this).data('select',false)
-      $(this).removeClass("btn-success")
-    else
-      $(this).data('select',true)
-      $(this).addClass("btn-success")
-  )
+
