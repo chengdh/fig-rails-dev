@@ -164,4 +164,10 @@ class Match < ActiveRecord::Base
   def self.immediate_leagues
     immediate.map {|m| m.league}.uniq!
   end
+  def self.this_week_leagues
+    this_week.map {|m| m.league}.uniq!
+  end
+  def self.last_week_leagues
+    last_week.map {|m| m.league}.uniq!
+  end
 end

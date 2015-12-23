@@ -47,5 +47,3 @@ $ ->
     the_day = $(this).data("day")
     $("#select_this_week_match_time_eq").val(the_day).trigger("change")
   )
-
-
