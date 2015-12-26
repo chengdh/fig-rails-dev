@@ -96,185 +96,233 @@ ActiveRecord::Schema.define(version: 20150504153457) do
     t.integer  "user_id",                                precision: 38
   end
 
-  create_table "t_basket_league", comment: "????", primary_key: "league_id", force: :cascade do |t|
-    t.string  "cn_name",    limit: 50,               null: false, comment: "????"
-    t.string  "tr_name",    limit: 50,                            comment: "????"
-    t.string  "en_name",    limit: 50,                            comment: "????"
-    t.integer "country_id", limit: 4,  precision: 4,              comment: "????ID"
+  create_table "t_basket_current_match", primary_key: "match_id", force: :cascade do |t|
+    t.integer  "match_status", limit: 2,  precision: 2, null: false
+    t.string   "match_time",   limit: 10
+    t.integer  "home_score",   limit: 3,  precision: 3, null: false
+    t.integer  "guest_score",  limit: 3,  precision: 3, null: false
+    t.integer  "home_score1",  limit: 3,  precision: 3
+    t.integer  "guest_score1", limit: 3,  precision: 3
+    t.integer  "home_score2",  limit: 3,  precision: 3
+    t.integer  "guest_score2", limit: 3,  precision: 3
+    t.integer  "home_score3",  limit: 3,  precision: 3
+    t.integer  "guest_score3", limit: 3,  precision: 3
+    t.integer  "home_score4",  limit: 3,  precision: 3
+    t.integer  "guest_score4", limit: 3,  precision: 3
+    t.datetime "data_time",                             null: false
   end
 
-  create_table "t_basket_league_rankings", comment: "????????", id: false, force: :cascade do |t|
-    t.integer "team_id",  limit: 14,  precision: 14,           null: false, comment: "???ID"
-    t.boolean "type",     limit: nil,                          null: false, comment: "???1???2???3???4???"
-    t.integer "games",    limit: 3,   precision: 3,                         comment: "?"
-    t.integer "win",      limit: 3,   precision: 3,                         comment: "?"
-    t.integer "lose",     limit: 3,   precision: 3,                         comment: "?"
-    t.decimal "get",                  precision: 4,  scale: 1,              comment: "?"
-    t.decimal "miss",                 precision: 4,  scale: 1,              comment: "?"
-    t.integer "ranking",  limit: 3,   precision: 3,                         comment: "??"
-    t.integer "match_id", limit: 14,  precision: 14,           null: false, comment: "??ID"
+  create_table "t_basket_league", primary_key: "league_id", force: :cascade do |t|
+    t.string  "cn_name",    limit: 50,               null: false
+    t.string  "tr_name",    limit: 50
+    t.string  "en_name",    limit: 50
+    t.integer "country_id", limit: 4,  precision: 4, null: false
   end
 
-  create_table "t_basket_match", comment: "????", primary_key: "match_id", force: :cascade do |t|
-    t.integer  "league_id",    limit: 14, precision: 14, null: false, comment: "????ID"
-    t.datetime "match_time",                             null: false, comment: "????"
-    t.integer  "team1_id",     limit: 14, precision: 14, null: false, comment: "??ID"
-    t.integer  "team2_id",     limit: 14, precision: 14, null: false, comment: "??ID"
-    t.integer  "home_score",   limit: 3,  precision: 3,  null: false, comment: "????"
-    t.integer  "guest_score",  limit: 3,  precision: 3,  null: false, comment: "????"
-    t.integer  "home_score1",  limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "guest_score1", limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "home_score2",  limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "guest_score2", limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "home_score3",  limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "guest_score3", limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "home_score4",  limit: 3,  precision: 3,               comment: "???????"
-    t.integer  "guest_score4", limit: 3,  precision: 3,               comment: "???????"
-    t.datetime "data_time",                              null: false, comment: "??????"
+  create_table "t_basket_league_rankings", id: false, force: :cascade do |t|
+    t.integer "match_id",  limit: 14,  precision: 14,           null: false
+    t.integer "team_id",   limit: 14,  precision: 14,           null: false
+    t.boolean "odds_type", limit: nil,                          null: false
+    t.integer "games",     limit: 3,   precision: 3
+    t.integer "win",       limit: 3,   precision: 3
+    t.integer "lose",      limit: 3,   precision: 3
+    t.decimal "get",                   precision: 4,  scale: 1
+    t.decimal "miss",                  precision: 4,  scale: 1
+    t.integer "ranking",   limit: 3,   precision: 3
   end
 
-  create_table "t_basket_odds_asian", comment: "????", id: false, force: :cascade do |t|
-    t.integer  "match_id",   limit: 14,  precision: 14,           null: false, comment: "??ID"
-    t.integer  "company_id", limit: 3,   precision: 3,            null: false, comment: "??ID"
-    t.datetime "data_time",                                       null: false, comment: "????"
-    t.boolean  "type",       limit: nil,                          null: false, comment: "?????1????2?????3????"
-    t.decimal  "home",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "goal",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "away",                   precision: 6,  scale: 3,              comment: "??"
+  create_table "t_basket_match", primary_key: "match_id", force: :cascade do |t|
+    t.integer  "league_id",    limit: 14, precision: 14, null: false
+    t.datetime "match_time",                             null: false
+    t.integer  "team1_id",     limit: 14, precision: 14, null: false
+    t.integer  "team2_id",     limit: 14, precision: 14, null: false
+    t.integer  "home_score",   limit: 3,  precision: 3,  null: false
+    t.integer  "guest_score",  limit: 3,  precision: 3,  null: false
+    t.integer  "home_score1",  limit: 3,  precision: 3
+    t.integer  "guest_score1", limit: 3,  precision: 3
+    t.integer  "home_score2",  limit: 3,  precision: 3
+    t.integer  "guest_score2", limit: 3,  precision: 3
+    t.integer  "home_score3",  limit: 3,  precision: 3
+    t.integer  "guest_score3", limit: 3,  precision: 3
+    t.integer  "home_score4",  limit: 3,  precision: 3
+    t.integer  "guest_score4", limit: 3,  precision: 3
+    t.datetime "data_time",                              null: false
   end
 
-  create_table "t_basket_odds_ball", comment: "???????", id: false, force: :cascade do |t|
-    t.integer  "match_id",   limit: 14,  precision: 14,           null: false, comment: "??ID"
-    t.integer  "company_id", limit: 3,   precision: 3,            null: false, comment: "??ID"
-    t.datetime "data_time",                                       null: false, comment: "????"
-    t.boolean  "type",       limit: nil,                          null: false, comment: "?????1????2?????3????"
-    t.decimal  "over",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "goal",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "under",                  precision: 6,  scale: 3,              comment: "??"
+  create_table "t_basket_odds_asian", id: false, force: :cascade do |t|
+    t.integer  "match_id",   limit: 14,  precision: 14,           null: false
+    t.integer  "company_id", limit: 3,   precision: 3,            null: false
+    t.datetime "data_time",                                       null: false
+    t.boolean  "odds_type",  limit: nil,                          null: false
+    t.decimal  "home",                   precision: 6,  scale: 3
+    t.decimal  "goal",                   precision: 6,  scale: 3
+    t.decimal  "away",                   precision: 6,  scale: 3
   end
 
-  create_table "t_basket_odds_europe", comment: "??????", id: false, force: :cascade do |t|
-    t.integer  "match_id",   limit: 14,  precision: 14,           null: false, comment: "??ID"
-    t.integer  "company_id", limit: 3,   precision: 3,            null: false, comment: "??ID"
-    t.datetime "data_time",                                       null: false, comment: "????"
-    t.boolean  "type",       limit: nil,                          null: false, comment: "?????1????2?????3????"
-    t.decimal  "hw",                     precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "aw",                     precision: 6,  scale: 3,              comment: "??"
+  create_table "t_basket_odds_ball", id: false, force: :cascade do |t|
+    t.integer  "match_id",   limit: 14,  precision: 14,           null: false
+    t.integer  "company_id", limit: 3,   precision: 3,            null: false
+    t.datetime "data_time",                                       null: false
+    t.boolean  "odds_type",  limit: nil,                          null: false
+    t.decimal  "over",                   precision: 6,  scale: 3
+    t.decimal  "goal",                   precision: 6,  scale: 3
+    t.decimal  "under",                  precision: 6,  scale: 3
   end
 
-  create_table "t_basket_team", comment: "???", primary_key: "team_id", force: :cascade do |t|
-    t.string "cn_name", limit: 50, null: false, comment: "????"
-    t.string "tr_name", limit: 50,              comment: "????"
-    t.string "en_name", limit: 50,              comment: "????"
+  create_table "t_basket_odds_europe", id: false, force: :cascade do |t|
+    t.integer  "match_id",   limit: 14,  precision: 14,           null: false
+    t.integer  "company_id", limit: 3,   precision: 3,            null: false
+    t.datetime "data_time",                                       null: false
+    t.boolean  "odds_type",  limit: nil,                          null: false
+    t.decimal  "hw",                     precision: 6,  scale: 3
+    t.decimal  "aw",                     precision: 6,  scale: 3
   end
 
-  create_table "t_company", comment: "????", primary_key: "company_id", force: :cascade do |t|
-    t.string "cn_name", limit: 50, null: false, comment: "????"
-    t.string "en_name", limit: 50,              comment: "????"
+  create_table "t_basket_team", primary_key: "team_id", force: :cascade do |t|
+    t.string "cn_name", limit: 50, null: false
+    t.string "tr_name", limit: 50
+    t.string "en_name", limit: 50
   end
 
-  create_table "t_continents", comment: "?", primary_key: "continents_id", force: :cascade do |t|
-    t.string  "cn_name",    limit: 50,               null: false, comment: "????"
-    t.string  "en_name",    limit: 50,                            comment: "????"
-    t.integer "sort_value", limit: 2,  precision: 2,              comment: "???"
+  create_table "t_company", primary_key: "company_id", force: :cascade do |t|
+    t.string "cn_name", limit: 50, null: false
+    t.string "en_name", limit: 50
   end
 
-  create_table "t_country", comment: "??", primary_key: "country_id", force: :cascade do |t|
-    t.string  "cn_name",       limit: 50,               null: false, comment: "????"
-    t.string  "en_name",       limit: 50,                            comment: "????"
-    t.integer "sort_value",    limit: 2,  precision: 2,              comment: "???"
-    t.integer "continents_id", limit: 2,  precision: 2,              comment: "?ID"
+  create_table "t_continents", primary_key: "continents_id", force: :cascade do |t|
+    t.string  "cn_name",    limit: 50,               null: false
+    t.string  "en_name",    limit: 50
+    t.integer "sort_value", limit: 2,  precision: 2
   end
 
-  create_table "t_event", comment: "????", id: false, force: :cascade do |t|
-    t.integer "match_id",     limit: 14,  precision: 14, null: false, comment: "??ID"
-    t.integer "type",         limit: 2,   precision: 2,  null: false, comment: "????(1???? 3????7????8????9????11???)"
-    t.string  "player_name1", limit: 50,                              comment: "????1"
-    t.string  "player_name2", limit: 50,                              comment: "????2"
-    t.integer "happen_time",  limit: 3,   precision: 3,  null: false, comment: "????"
-    t.boolean "ishome",       limit: nil,                null: false, comment: "?????1???0???"
+  create_table "t_country", primary_key: "country_id", force: :cascade do |t|
+    t.integer "continents_id", limit: 2,  precision: 2, null: false
+    t.string  "cn_name",       limit: 50,               null: false
+    t.string  "en_name",       limit: 50
+    t.integer "sort_value",    limit: 2,  precision: 2
   end
 
-  create_table "t_league", comment: "??", primary_key: "league_id", force: :cascade do |t|
-    t.string  "cn_name",    limit: 50,               null: false, comment: "????"
-    t.string  "tr_name",    limit: 50,                            comment: "????"
-    t.string  "en_name",    limit: 50,                            comment: "????"
-    t.integer "country_id", limit: 4,  precision: 4,              comment: "????ID"
+  create_table "t_current_match", primary_key: "match_id", force: :cascade do |t|
+    t.boolean  "match_status",      limit: nil,               null: false
+    t.datetime "first_time"
+    t.datetime "second_time"
+    t.integer  "home_score",        limit: 3,   precision: 3, null: false
+    t.integer  "guest_score",       limit: 3,   precision: 3, null: false
+    t.integer  "home_red_card",     limit: 2,   precision: 2
+    t.integer  "guest_red_card",    limit: 2,   precision: 2
+    t.integer  "home_yellow_card",  limit: 2,   precision: 2
+    t.integer  "guest_yellow_card", limit: 2,   precision: 2
+    t.datetime "data_time",                                   null: false
   end
 
-  create_table "t_league_rankings", comment: "??????", id: false, force: :cascade do |t|
-    t.integer "team_id",  limit: 14,  precision: 14, null: false, comment: "??ID"
-    t.boolean "type",     limit: nil,                null: false, comment: "???1???2???3???4???"
-    t.integer "games",    limit: 3,   precision: 3,               comment: "?"
-    t.integer "win",      limit: 3,   precision: 3,               comment: "?"
-    t.integer "draw",     limit: 3,   precision: 3,               comment: "?"
-    t.integer "lose",     limit: 3,   precision: 3,               comment: "?"
-    t.integer "get",      limit: 3,   precision: 3,               comment: "?"
-    t.integer "miss",     limit: 3,   precision: 3,               comment: "?"
-    t.integer "pts",      limit: 3,   precision: 3,               comment: "??"
-    t.integer "ranking",  limit: 3,   precision: 3,               comment: "??"
-    t.integer "match_id", limit: 14,  precision: 14, null: false, comment: "??ID"
+  create_table "t_event", id: false, force: :cascade do |t|
+    t.integer "match_id",     limit: 14,  precision: 14, null: false
+    t.integer "event_type",   limit: 2,   precision: 2,  null: false
+    t.string  "player_name1", limit: 50
+    t.string  "player_name2", limit: 50
+    t.integer "happen_time",  limit: 3,   precision: 3,  null: false
+    t.boolean "ishome",       limit: nil,                null: false
   end
 
-  create_table "t_lineup", comment: "????", id: false, force: :cascade do |t|
-    t.integer "match_id",  limit: 14,  precision: 14, null: false, comment: "??ID"
-    t.integer "team_id",   limit: 14,  precision: 14, null: false, comment: "??ID"
-    t.boolean "type",      limit: nil,                null: false, comment: "???1????2????3????4????"
-    t.integer "shirt_num", limit: 3,   precision: 3,  null: false, comment: "????"
-    t.string  "cn_name",   limit: 100,                null: false, comment: "??????"
-    t.string  "tr_name",   limit: 100,                             comment: "??????"
-    t.string  "en_name",   limit: 100,                             comment: "??????"
+  create_table "t_league", primary_key: "league_id", force: :cascade do |t|
+    t.string  "cn_name",    limit: 50,               null: false
+    t.string  "tr_name",    limit: 50
+    t.string  "en_name",    limit: 50
+    t.integer "country_id", limit: 4,  precision: 4, null: false
   end
 
-  create_table "t_match", comment: "??", primary_key: "match_id", force: :cascade do |t|
-    t.integer  "league_id",        limit: 14,  precision: 14, null: false, comment: "????ID"
-    t.datetime "match_time",                                  null: false, comment: "????"
-    t.integer  "team1_id",         limit: 14,  precision: 14, null: false, comment: "??ID"
-    t.integer  "team2_id",         limit: 14,  precision: 14, null: false, comment: "??ID"
-    t.integer  "home_score",       limit: 3,   precision: 3,  null: false, comment: "?????"
-    t.integer  "guest_score",      limit: 3,   precision: 3,  null: false, comment: "?????"
-    t.integer  "half_home_score",  limit: 3,   precision: 3,               comment: "???????"
-    t.integer  "half_guest_score", limit: 3,   precision: 3,               comment: "???????"
-    t.integer  "red_card",         limit: 2,   precision: 2,               comment: "???"
-    t.integer  "yellow_card",      limit: 2,   precision: 2,               comment: "???"
-    t.boolean  "match_level",      limit: nil,                             comment: "????"
-    t.datetime "data_time",                                   null: false, comment: "??????"
+  create_table "t_league_rankings", id: false, force: :cascade do |t|
+    t.integer "match_id",  limit: 14,  precision: 14, null: false
+    t.integer "team_id",   limit: 14,  precision: 14, null: false
+    t.boolean "odds_type", limit: nil,                null: false
+    t.integer "games",     limit: 3,   precision: 3
+    t.integer "win",       limit: 3,   precision: 3
+    t.integer "draw",      limit: 3,   precision: 3
+    t.integer "lose",      limit: 3,   precision: 3
+    t.integer "get",       limit: 3,   precision: 3
+    t.integer "miss",      limit: 3,   precision: 3
+    t.integer "pts",       limit: 3,   precision: 3
+    t.integer "ranking",   limit: 3,   precision: 3
   end
 
-  create_table "t_odds_asian", comment: "????", id: false, force: :cascade do |t|
-    t.integer  "match_id",   limit: 14,  precision: 14,           null: false, comment: "??ID"
-    t.integer  "company_id", limit: 3,   precision: 3,            null: false, comment: "??ID"
-    t.datetime "data_time",                                       null: false, comment: "????"
-    t.boolean  "type",       limit: nil,                          null: false, comment: "?????1????2?????3????"
-    t.decimal  "home",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "goal",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "away",                   precision: 6,  scale: 3,              comment: "??"
+  create_table "t_lineup", id: false, force: :cascade do |t|
+    t.integer "match_id",  limit: 14,  precision: 14, null: false
+    t.integer "team_id",   limit: 14,  precision: 14, null: false
+    t.boolean "odds_type", limit: nil,                null: false
+    t.integer "shirt_num", limit: 3,   precision: 3,  null: false
+    t.string  "cn_name",   limit: 100,                null: false
+    t.string  "tr_name",   limit: 100
+    t.string  "en_name",   limit: 100
   end
 
-  create_table "t_odds_ball", comment: "?????", id: false, force: :cascade do |t|
-    t.integer  "match_id",   limit: 14,  precision: 14,           null: false, comment: "??ID"
-    t.integer  "company_id", limit: 3,   precision: 3,            null: false, comment: "??ID"
-    t.datetime "data_time",                                       null: false, comment: "????"
-    t.boolean  "type",       limit: nil,                          null: false, comment: "?????1????2?????3????"
-    t.decimal  "over",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "goal",                   precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "under",                  precision: 6,  scale: 3,              comment: "??"
+  create_table "t_match", primary_key: "match_id", force: :cascade do |t|
+    t.integer  "league_id",         limit: 14,  precision: 14,                       null: false
+    t.datetime "match_time",                                                         null: false
+    t.integer  "team1_id",          limit: 14,  precision: 14,                       null: false
+    t.integer  "team2_id",          limit: 14,  precision: 14,                       null: false
+    t.integer  "home_score",        limit: 3,   precision: 3,                        null: false
+    t.integer  "guest_score",       limit: 3,   precision: 3,                        null: false
+    t.integer  "half_home_score",   limit: 3,   precision: 3
+    t.integer  "half_guest_score",  limit: 3,   precision: 3
+    t.boolean  "match_level",       limit: nil
+    t.datetime "data_time",                                                          null: false
+    t.integer  "home_red_card",     limit: 2,   precision: 2,            default: 0, null: false
+    t.integer  "guest_red_card",    limit: 2,   precision: 2,            default: 0, null: false
+    t.integer  "home_yellow_card",  limit: 2,   precision: 2,            default: 0, null: false
+    t.integer  "guest_yellow_card", limit: 2,   precision: 2,            default: 0, null: false
+    t.decimal  "odds_value",                    precision: 7,  scale: 3
+    t.boolean  "odds_result",       limit: nil
   end
 
-  create_table "t_odds_europe", comment: "????", id: false, force: :cascade do |t|
-    t.integer  "match_id",   limit: 14,  precision: 14,           null: false, comment: "??ID"
-    t.integer  "company_id", limit: 3,   precision: 3,            null: false, comment: "??ID"
-    t.datetime "data_time",                                       null: false, comment: "????"
-    t.boolean  "type",       limit: nil,                          null: false, comment: "?????1????2?????3????"
-    t.decimal  "hw",                     precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "st",                     precision: 6,  scale: 3,              comment: "??"
-    t.decimal  "aw",                     precision: 6,  scale: 3,              comment: "??"
+  create_table "t_odds_asian", id: false, force: :cascade do |t|
+    t.integer  "match_id",   limit: 14,  precision: 14,           null: false
+    t.integer  "company_id", limit: 3,   precision: 3,            null: false
+    t.datetime "data_time",                                       null: false
+    t.boolean  "odds_type",  limit: nil,                          null: false
+    t.decimal  "home",                   precision: 6,  scale: 3
+    t.decimal  "goal",                   precision: 6,  scale: 3
+    t.decimal  "away",                   precision: 6,  scale: 3
   end
 
-  create_table "t_team", comment: "??", primary_key: "team_id", force: :cascade do |t|
-    t.string "cn_name", limit: 50, null: false, comment: "????"
-    t.string "tr_name", limit: 50,              comment: "????"
-    t.string "en_name", limit: 50,              comment: "????"
+  create_table "t_odds_ball", id: false, force: :cascade do |t|
+    t.integer  "match_id",   limit: 14,  precision: 14,           null: false
+    t.integer  "company_id", limit: 3,   precision: 3,            null: false
+    t.datetime "data_time",                                       null: false
+    t.boolean  "odds_type",  limit: nil,                          null: false
+    t.decimal  "over",                   precision: 6,  scale: 3
+    t.decimal  "goal",                   precision: 6,  scale: 3
+    t.decimal  "under",                  precision: 6,  scale: 3
+  end
+
+  create_table "t_odds_europe", id: false, force: :cascade do |t|
+    t.integer  "match_id",   limit: 14,  precision: 14,           null: false
+    t.integer  "company_id", limit: 3,   precision: 3,            null: false
+    t.datetime "data_time",                                       null: false
+    t.boolean  "odds_type",  limit: nil,                          null: false
+    t.decimal  "hw",                     precision: 6,  scale: 3
+    t.decimal  "st",                     precision: 6,  scale: 3
+    t.decimal  "aw",                     precision: 6,  scale: 3
+  end
+
+  create_table "t_team", primary_key: "team_id", force: :cascade do |t|
+    t.string "cn_name", limit: 50, null: false
+    t.string "tr_name", limit: 50
+    t.string "en_name", limit: 50
+  end
+
+  create_table "t_user", primary_key: "user_id", force: :cascade do |t|
+    t.string  "user_name", limit: 50,  null: false
+    t.string  "password",  limit: 100, null: false
+    t.string  "phone",     limit: 20
+    t.boolean "status",    limit: nil
+    t.string  "email",     limit: 50
+  end
+
+  create_table "t_user_favorite", id: false, force: :cascade do |t|
+    t.integer  "user_id",       limit: 14,  precision: 14, null: false
+    t.integer  "match_id",      limit: 14,  precision: 14, null: false
+    t.datetime "favorite_time",                            null: false
+    t.boolean  "type",          limit: nil
   end
 
   create_table "users", force: :cascade do |t|
@@ -300,31 +348,4 @@ ActiveRecord::Schema.define(version: 20150504153457) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "i_users_reset_password_token", unique: true
 
-  add_foreign_key "t_basket_league", "t_country", column: "country_id", primary_key: "country_id", name: "fk_t_basket_league_fk_t_c"
-  add_foreign_key "t_basket_league_rankings", "t_basket_match", column: "match_id", primary_key: "match_id", name: "fk_t_basket_lr_fk_t_bm"
-  add_foreign_key "t_basket_league_rankings", "t_basket_team", column: "team_id", primary_key: "team_id", name: "fk_t_basket_lr_fk_t_team"
-  add_foreign_key "t_basket_match", "t_basket_league", column: "league_id", primary_key: "league_id", name: "fk_t_basket_match_fk_t_bl"
-  add_foreign_key "t_basket_match", "t_basket_team", column: "team1_id", primary_key: "team_id", name: "fk_t_basket_match_fk_t_bt1"
-  add_foreign_key "t_basket_match", "t_basket_team", column: "team2_id", primary_key: "team_id", name: "fk_t_basket_match_fk_t_bt2"
-  add_foreign_key "t_basket_odds_asian", "t_basket_match", column: "match_id", primary_key: "match_id", name: "fk_t_basket_oa_fk_t_bm"
-  add_foreign_key "t_basket_odds_asian", "t_company", column: "company_id", primary_key: "company_id", name: "fk_t_basket_oa_fk_t_company"
-  add_foreign_key "t_basket_odds_ball", "t_basket_match", column: "match_id", primary_key: "match_id", name: "fk_t_basket_ob_fk_t_match"
-  add_foreign_key "t_basket_odds_ball", "t_company", column: "company_id", primary_key: "company_id", name: "fk_t_basket_ob_fk_t_company"
-  add_foreign_key "t_basket_odds_europe", "t_basket_match", column: "match_id", primary_key: "match_id", name: "fk_t_basket_oe_fk_t_bm"
-  add_foreign_key "t_basket_odds_europe", "t_company", column: "company_id", primary_key: "company_id", name: "fk_t_basket_oe_fk_t_company"
-  add_foreign_key "t_country", "t_continents", column: "continents_id", primary_key: "continents_id", name: "fk_t_country_fk_t_continents"
-  add_foreign_key "t_league", "t_country", column: "country_id", primary_key: "country_id", name: "fk_t_league_fk_t_country"
-  add_foreign_key "t_league_rankings", "t_match", column: "match_id", primary_key: "match_id", name: "fk_t_league_rankings_fk_t_m"
-  add_foreign_key "t_league_rankings", "t_team", column: "team_id", primary_key: "team_id", name: "fk_t_league_rankings_fk_t_team"
-  add_foreign_key "t_lineup", "t_team", column: "team_id", primary_key: "team_id", name: "fk_t_lineup_fk_t_team"
-  add_foreign_key "t_match", "t_league", column: "league_id", primary_key: "league_id", name: "fk_t_match_fk_t_league"
-  add_foreign_key "t_match", "t_match", column: "match_id", primary_key: "match_id", name: "fk_t_event_fk_t_league"
-  add_foreign_key "t_match", "t_team", column: "team1_id", primary_key: "team_id", name: "fk_t_match_fk_t_team1"
-  add_foreign_key "t_match", "t_team", column: "team2_id", primary_key: "team_id", name: "fk_t_match_fk_t_team2"
-  add_foreign_key "t_odds_asian", "t_company", column: "company_id", primary_key: "company_id", name: "fk_t_odds_asian_fk_t_company"
-  add_foreign_key "t_odds_asian", "t_match", column: "match_id", primary_key: "match_id", name: "fk_t_odds_asian_fk_t_match"
-  add_foreign_key "t_odds_ball", "t_company", column: "company_id", primary_key: "company_id", name: "fk_t_odds_ball_fk_t_company"
-  add_foreign_key "t_odds_ball", "t_match", column: "match_id", primary_key: "match_id", name: "fk_t_odds_ball_fk_t_match"
-  add_foreign_key "t_odds_europe", "t_company", column: "company_id", primary_key: "company_id", name: "fk_t_odds_europe_fk_t_company"
-  add_foreign_key "t_odds_europe", "t_match", column: "match_id", primary_key: "match_id", name: "fk_t_odds_europe_fk_t_match"
 end

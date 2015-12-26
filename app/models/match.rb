@@ -119,46 +119,44 @@ class Match < ActiveRecord::Base
   end
 
   #当前状态
-  #未开
   #中场
   #已开场 分钟数
   def status
     ret = ""
-    if current_match.blank?
-      return "未开"
-    end
     match_status = current_match.read_attribute_before_type_cast('match_status')
-    if match_status == 0
-      ret = "未开"
-    elsif match_status == 1
+    #上半场
+    if match_status == 1
       start_ms = ((Time.now - current_match.first_time)/60).round
       ret = "#{start_ms}'"
+    #中场
     elsif match_status == 2
       ret = "中场"
+
+    #下半场
     elsif match_status == 3
-      start_ms = ((Time.now - current_match.first_time)/60).round + 45
+      start_ms = ((Time.now - current_match.second_time)/60).round + 45
       ret = "#{start_ms}'"
       ret = "90+" if start_ms > 90
-    else
+    elsif match_status == -1
       ret = "完"
     end
     ret
   end
   def match_status_before_type_cast
     ret = try(:current_match).try(:read_attribute_before_type_cast,'match_status')
-    ret = -1 if ret.blank?
+    ret = 0 if ret.blank?
     ret
   end
 
   #亚盘初盘
   def begin
-    odds_asians.where(odds_type: 1).try(:first).try(:home)
+    odds_asians.where(odds_type: 1).try(:first).try(:goal)
   end
   def current
-    odds_asians.where(odds_type: 2).try(:first).try(:home)
+    odds_asians.where(odds_type: 2).try(:first).try(:goal)
   end
   def final
-    odds_asians.where(odds_type: 3).try(:first).try(:home)
+    odds_asians.where(odds_type: 3).try(:first).try(:goal)
   end
 
   def self.immediate_leagues

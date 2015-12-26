@@ -18,10 +18,19 @@
         %td
           = match.try(:league).try(:cn_name)
           %p= match.match_time.strftime("%H:%M")
-        %td
-          %p= match.team1.cn_name
+        %td{:style => "vertical-align : middle;"}
+          - if match.try(:current_match).try(:home_yellow_card).present?
+            %span.label.label-warning= match.try(:current_match).try(:home_yellow_card)
+          - if match.try(:current_match).try(:home_red_card).present?
+            %span.label.label-danger= match.try(:current_match).try(:home_red_card)
+          = match.team1.cn_name
 
         %td
           = "#{match.home_score}:#{match.guest_score}"
           %p= "(#{match.half_home_score}:#{match.half_guest_score})"
-        %td= match.team2.cn_name
+        %td{:style => "vertical-align : middle;"}
+          = match.team2.cn_name
+          - if match.try(:current_match).try(:guest_red_card).present?
+            %span.label.label-danger= match.try(:current_match).try(:guest_red_card)
+          - if match.try(:current_match).try(:gues_yellow_card).present?
+            %span.label.label-warning= match.try(:current_match).try(:guest_yellow_card)

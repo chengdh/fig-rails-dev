@@ -1,0 +1,20 @@
+.well
+  .input-group
+    %input.form-control{:type =>"text",:placeholder => "请输入国家名称或联赛名称查找"}
+    %span.input-group-btn
+      %button.btn.btn-{:type => "button"}
+        %span.glyphicon.glyphicon-search{"aria-hidden"=> "true"}
+
+
+/ 洲及国家列表
+.well
+  .btn-group.btn-group-justified.contient-tabs{:role => "group","aria-label" => "..."}
+    - Contient.all.each do |c|
+      = link_to c.cn_name,"#",class: "btn btn-default"
+
+/ 分别显示每个洲的国家列表
+
+- Contient.all.each do |c|
+  .well
+    - c.countries.each do |country|
+      = link_to country.cn_name,"#",class: "btn btn-default"

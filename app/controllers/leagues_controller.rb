@@ -4,7 +4,13 @@ class LeaguesController < ApplicationController
   # GET /leagues
   # GET /leagues.json
   def index
-    @leagues = League.all
+    @q = League.ransack(params[:q])
+    @leagues = @q.result
+  end
+
+  # GET /leagues/search
+  # GET /leagues/search.json
+  def search
   end
 
   # GET /leagues/1

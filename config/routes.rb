@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :odds_asians
   resources :current_matches
   resources :lineups
-  resources :leagues
+  resources :leagues do
+    get :search,on: :collection
+  end
   resources :companies
   resources :countries
   resources :teams

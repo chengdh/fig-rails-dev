@@ -8,17 +8,30 @@
         %td
           = match.try(:league).try(:cn_name)
           = match.match_time.strftime("%H:%M")
-          %p= match.team1.cn_name
+          %p
+            - if match.try(:current_match).try(:home_yellow_card).present?
+              %span.label.label-warning= match.try(:current_match).try(:home_yellow_card)
+            - if match.try(:current_match).try(:home_red_card).present?
+              %span.label.label-danger= match.try(:current_match).try(:home_red_card)
 
-        - if match.match_status_before_type_cast == -1
-          %td{"vertical-align" => "middle"} 未开
+            = match.team1.cn_name
+
+        - if match.match_status_before_type_cast == 0
+          %td{:style => "vertical-align : middle;"} 未开
         - else
-          %td{"vertical-align" => "center"}
-            %div
-              %span.label.label-info= match.status
-            %span= match.try(:current_match).try(:home_score)
-            %span :
-            %span= match.try(:current_match).try(:guest_score)
+          %td{:style => "vertical-align : middle;"}
+            %p
+              %span.label.label-danger= match.status
+            %p
+              %span.label.label-info
+                = "#{match.try(:current_match).try(:home_score)} : #{match.try(:current_match).try(:guest_score)}"
         %td
-          = match.begin
-          %p= match.team2.cn_name
+          - if match.begin.present?
+            = goal_cn(match.begin)
+          %p
+            = match.team2.cn_name
+            - if match.try(:current_match).try(:guest_red_card).present?
+              %span.label.label-danger= match.try(:current_match).try(:guest_red_card)
+
+            - if match.try(:current_match).try(:gues_yellow_card).present?
+              %span.label.label-warning= match.try(:current_match).try(:guest_yellow_card)
