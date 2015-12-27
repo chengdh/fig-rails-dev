@@ -77,6 +77,7 @@ group :development do
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv', '~> 2.0'
   gem 'capistrano3-unicorn'
+  gem 'capistrano-bower'
   #gem 'capistrano-rvm', '~> 0.1.1'
   gem 'html2haml'
   gem 'quiet_assets'
