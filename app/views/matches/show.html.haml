@@ -14,15 +14,15 @@
         = @match.team2.cn_name
 
 .btn-group.btn-group-justified.match-tabs{:role => "group","aria-label" => "..."}
-  = link_to "事件", "#",class: "btn btn-info","data-link-el-class" => ".events"
-  = link_to "阵容", "#",class: "btn","data-link-el-class" => ".lineups"
-  = link_to "分析", "#",class: "btn","data-link-el-class" => ".analyse"
-  = link_to "亚赔", "#",class: "btn","data-link-el-class" => ".odds-asian"
-  = link_to "欧赔", "#",class: "btn","data-link-el-class" => ".odds-europe"
-  = link_to "大小", "#",class: "btn","data-link-el-class" => ".odds-ball"
+  = link_to "事件", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".events"
+  = link_to "阵容", "#",class: "btn btn-sm","data-link-el-class" => ".lineups"
+  = link_to "分析", "#",class: "btn btn-sm","data-link-el-class" => ".analyse"
+  = link_to "亚赔", "#",class: "btn btn-sm","data-link-el-class" => ".odds-asian"
+  = link_to "欧赔", "#",class: "btn btn-sm","data-link-el-class" => ".odds-europe"
+  = link_to "大小", "#",class: "btn btn-sm","data-link-el-class" => ".odds-ball"
 / 事件
 .events
-  %p.well 事件 TODO
+  .well.well-sm 事件 TODO
 / 阵容
 .lineups{:style => 'display : none;'}
   = render "lineups"

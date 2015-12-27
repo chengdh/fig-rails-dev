@@ -1,14 +1,14 @@
 %table.table.table-hover.table-condensed.table-striped{"data-leagues" => Match.this_week_leagues.to_json}
   %tr
     %td
-      %a.btn.btn-default.btn-this-week-yesterday{:href =>"#",:role =>"button","data-day" => @yesterday}
+      %a.btn.btn-sm.btn-default.btn-this-week-yesterday{:href =>"#",:role =>"button","data-day" => @yesterday}
         %span.glyphicon.glyphicon-arrow-left
     %td
       = select_tag "select_this_week_match_time_eq",options_for_select(this_week_for_select,@current_day),
-        :class => "form-control select-week-of-day"
+        :class => "form-control input-sm select-week-of-day"
 
     %td{:style => "text-align : right;"}
-      %a.btn.btn-default.btn-this-week-tomorrow{:href =>"#",:role =>"button","data-day" => @tomorrow }
+      %a.btn.btn-sm.btn-default.btn-this-week-tomorrow{:href =>"#",:role =>"button","data-day" => @tomorrow }
         %span.glyphicon.glyphicon-arrow-right
 
 %table.table.table-hover.table-condensed.table-striped

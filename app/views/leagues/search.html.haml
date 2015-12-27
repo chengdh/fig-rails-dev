@@ -1,20 +1,19 @@
-.well
+.well.well-sm
   .input-group
-    %input.form-control{:type =>"text",:placeholder => "请输入国家名称或联赛名称查找"}
+    %input.form-control.input-sm{:id => "input_search_league_kw",:type =>"text",:placeholder => "请输入国家名称或联赛名称查找"}
     %span.input-group-btn
-      %button.btn.btn-{:type => "button"}
+      %button.btn.btn-sm{:type => "button",:id => "btn_search_leagues_kw"}
         %span.glyphicon.glyphicon-search{"aria-hidden"=> "true"}
 
 
 / 洲及国家列表
-.well
-  .btn-group.btn-group-justified.contient-tabs{:role => "group","aria-label" => "..."}
-    - Contient.all.each do |c|
-      = link_to c.cn_name,"#",class: "btn btn-default"
+.btn-group.btn-group-justified.contient-tabs{:role => "group","aria-label" => "..."}
+  - Contient.all.each do |c|
+    = link_to c.cn_name,"#",class: "btn btn-sm btn-default btn-continent-select","data-continent" => c.to_json
 
 / 分别显示每个洲的国家列表
 
 - Contient.all.each do |c|
-  .well
+  .well.well-sm.country-list{:style => "display : none;","data-continent-id" => c.continents_id}
     - c.countries.each do |country|
-      = link_to country.cn_name,"#",class: "btn btn-default"
+      = link_to country.cn_name,"#",class: "btn btn-xs btn-default btn-country-select","data-country" => country.to_json

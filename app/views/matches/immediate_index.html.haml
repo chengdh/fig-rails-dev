@@ -1,0 +1,34 @@
+/ 即时指数界面
+
+%table.table.table-hover.table-condensed.table-striped{:style => "text-align : center;"}
+  - @matches.each do |match|
+    %thead{:style => "text-align : center;"}
+      %tr
+        %th{:colspan => 5}
+          %h5
+            %span= match.try(:league).try(:cn_name)
+            %span= match.match_time.strftime("%y-%m-%d %H:%M")
+            %span= match.team1.cn_name
+            %span VS
+            %span= match.team2.cn_name
+      %tr
+        %th{:style => "text-align : center;"} 公司
+        %th{:style => "text-align : center;"}
+        %th{:style => "text-align : center;"} 主队
+        %th{:style => "text-align : center;"} 盘口
+        %th{:style => "text-align : center;"} 客队
+    %tbody
+      - companies = match.current_odds_asians.first
+      - companies_data = match.current_odds_asians.second
+      - companies.each do |c|
+        %tr
+          %td{:rowspan => 2,:style => "vertical-align : middle;"}= c.cn_name
+          %td 初盘
+          %td= companies_data.first[c].try(:home)
+          %td= goal_en(companies_data.first[c].try(:goal))
+          %td= companies_data.first[c].try(:away)
+        %tr
+          %td 即时
+          %td= companies_data.second[c].try(:home)
+          %td= goal_en(companies_data.second[c].try(:goal))
+          %td= companies_data.second[c].try(:away)

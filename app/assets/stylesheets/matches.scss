@@ -1,7 +1,11 @@
 // Place all the styles related to the matches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.btn-league-select {
+.btn-league-select,.btn-country-select{
   width : 20%;
   margin: 5px;
+}
+.ptr-loading #immediate_table{
+  -webkit-transform: translate3d( 0, 50px, 0 );
+  transform: translate3d( 0, 50px, 0 );
 }

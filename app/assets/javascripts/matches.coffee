@@ -1,7 +1,23 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+$(window).load(->
+  $("#spinner").hide()
+)
 $ ->
+  exampleLoadingFunction = ->
+    return new Promise((resolve, reject) ->
+          if true
+            resolve()
+          else
+            reject()
+    )
+
+  WebPullToRefresh.init(
+        ptrEl: $("#ptr").get(0),
+        contentEl: $("#immediate_table").get(0),
+        loadingFunction: exampleLoadingFunction
+  )
 
   $(".match-tr").on("click", ->
     match = $(this).data("match")

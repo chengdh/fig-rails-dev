@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get :last_week,on: :collection
     get :this_week,on: :collection
     get :sb_list,on: :collection
+    get :immediate_index,on: :collection
     get :search_by_league,on: :collection
   end
 

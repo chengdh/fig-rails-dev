@@ -47,6 +47,14 @@ class MatchesController < ApplicationController
     @matches = @q.result.sb_list
   end
 
+  #GET /matches/immediate_index
+  #GET /matches/immediate_index.json
+  #即时指数
+  def immediate_index
+    @q = Match.ransack(params[:q])
+    @matches = @q.result.immediate
+  end
+
   #GET /matches/search_by_league
   #GET /matches/search_by_league.json
   #赛事筛选

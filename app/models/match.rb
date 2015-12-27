@@ -82,9 +82,16 @@ class Match < ActiveRecord::Base
     ret_final = {}
     companies = Company.all
     companies.each do |c|
-      ret_begin[c] = odds_asians.where(company: c,odds_type: 1).first
-      ret_current[c] = odds_asians.where(company: c,odds_type: 2).first
-      ret_final[c] = odds_asians.where(company: c,odds_type: 3).first
+      home = odds_asians.where(company: c,odds_type: 1).first
+      goal = odds_asians.where(company: c,odds_type: 2).first
+      away = odds_asians.where(company: c,odds_type: 3).first
+      if home.blank? and goal.blank? and away.blank?
+        companies -= [c]
+      else
+        ret_begin[c] = home
+        ret_current[c] = goal
+        ret_final[c] = away
+      end
     end
     [companies,[ret_begin,ret_current,ret_final]]
   end

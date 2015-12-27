@@ -1,0 +1,23 @@
+{
+  "name": "yinglang-sport-app",
+  "homepage": "https://github.com/chengdh/fig-rails-dev",
+  "authors": [
+    "chengdh <cheng.dongh@gmail.com>"
+  ],
+  "description": "赢朗体育APP",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "toastr": "~2.1.2",
+    "web-pull-to-refresh": "https://github.com/apeatling/web-pull-to-refresh.git"
+  }
+}

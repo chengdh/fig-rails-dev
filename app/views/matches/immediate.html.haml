@@ -1,4 +1,12 @@
-%table.table.table-hover.table-condensed.table-striped{"data-leagues" => Match.immediate_leagues.to_json}
+#ptr
+  / Pull down arrow indicator
+  %span.genericon.genericon-next
+  .loading
+    %span#l1
+    %span#l2
+    %span#l3
+
+%table.table.table-hover.table-condensed.table-striped#immediate_table{"data-leagues" => Match.immediate_leagues.to_json}
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json}
@@ -19,9 +27,8 @@
         - if match.match_status_before_type_cast == 0
           %td{:style => "vertical-align : middle;"} 未开
         - else
-          %td{:style => "vertical-align : middle;"}
-            %p
-              %span.label.label-danger= match.status
+          %td{:style => "text-align : center;vertical-align : middle;"}
+            = match.status
             %p
               %span.label.label-info
                 = "#{match.try(:current_match).try(:home_score)} : #{match.try(:current_match).try(:guest_score)}"
