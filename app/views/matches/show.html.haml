@@ -20,35 +20,32 @@
   = link_to "亚赔", "#",class: "btn btn-sm","data-link-el-class" => ".odds-asian"
   = link_to "欧赔", "#",class: "btn btn-sm","data-link-el-class" => ".odds-europe"
   = link_to "大小", "#",class: "btn btn-sm","data-link-el-class" => ".odds-ball"
-/ 事件
-.events
-  .well.well-sm 事件 TODO
-/ 阵容
-.lineups{:style => 'display : none;'}
+
+/ 联赛积分
+.events.well.well-sm
+  =render "events"
+
+
+/ 赛程
+.lineups.well.well-sm{:style => 'display : none;'}
   = render "lineups"
 
-/ 联赛积分排名
-.analyse{:style => 'display : none;'}
-  %h5 联赛积分排名
-  = render "league_rankings",league_rankings: @match.home_league_rankings,team: @match.team1
-  = render "league_rankings",league_rankings: @match.guest_league_rankings,team: @match.team2
-
-  / 对赛往绩
-  = render "match_history",title: "对赛往绩",matches: @match.matches_history,team: nil
-
-  / 近期战绩-主队
-  = render "match_history",title: "近期往绩",matches: @match.matches_recent_home,team: @match.team1
-
-  / 近期战绩-客队
+/ 让球
+.analyse.well.well-sm{:style => 'display : none;'}
   = render "match_history",matches: @match.matches_recent_guest,team: @match.team2,title: nil
 
-/ 亚赔
-.odds-asian{:style => 'display : none;'}
+/ 大小
+.odds-asian.well.well-sm{:style => 'display : none;'}
   = render "odds_asian",odds: @match.current_odds_asians
 
-/ 欧赔
-.odds-europe{:style => 'display : none;'}
+/ 射手榜
+.odds-europe.well.well-sm{:style => 'display : none;'}
   = render "odds_europe",odds: @match.current_odds_europes
 / 大小球
-.odds-ball{:style => 'display : none;'}
+.odds-ball.well.well-sm{:style => 'display : none;'}
   = render "odds_ball",balls: @match.current_odds_balls
+
+/ 杯赛积分
+
+/ 杯赛赛程
+

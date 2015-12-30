@@ -1,0 +1,18 @@
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    %tr
+      %td 排名
+      %td 球员
+      %td 球队
+      %td 进球
+      %td 主进
+      %td 客进
+  %tbody
+    - season_archers.each do |sa|
+      %tr
+        %td= sa.ranking
+        %td= sa.player_name
+        %td= sa.team.try(:cn_name)
+        %td= sa.total_goal
+        %td= sa.home_goal
+        %td= sa.guest_goal

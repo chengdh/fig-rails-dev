@@ -1,0 +1,24 @@
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    %tr
+      %td 球队
+      %td 赛
+      %td 上
+      %td 平
+      %td 下
+      %td 胜
+      %td 走
+      %td 输
+      %td 净
+  %tbody
+    - season_goals.each do |sg|
+      %tr
+        %td= sg.team.try(:cn_name)
+        %td= sg.games
+        %td= sg.give_handicap
+        %td= sg.draw
+        %td= sg.accept_handicap
+        %td= sg.win
+        %td= sg.void
+        %td= sg.lose
+

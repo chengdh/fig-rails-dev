@@ -1,11 +1,3 @@
-#ptr
-  / Pull down arrow indicator
-  %span.genericon.genericon-next
-  .loading
-    %span#l1
-    %span#l2
-    %span#l3
-
 %table.table.table-hover.table-condensed.table-striped#immediate_table{"data-leagues" => Match.immediate_leagues.to_json}
   %tbody
     - @matches.each do |match|

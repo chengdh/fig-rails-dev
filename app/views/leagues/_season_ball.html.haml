@@ -1,0 +1,22 @@
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    %tr
+      %td 球队
+      %td 赛
+      %td 大
+      %td 走
+      %td 小
+      %td 大%
+      %td 走%
+      %td 小%
+  %tbody
+    - season_balls.each do |sb|
+      %tr
+        %td= sg.team.try(:cn_name)
+        %td= sg.games
+        %td= sg.over
+        %td= sg.void
+        %td= sg.under
+        %td= "#{(sg.over/sg.game).round(3)*100}%"
+        %td= "#{(sg.void/sg.game).round(3)*100}%"
+        %td= "#{(sg.under/sg.game).round(3)*100}%"

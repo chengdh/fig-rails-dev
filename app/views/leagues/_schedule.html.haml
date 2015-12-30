@@ -1,0 +1,24 @@
+/ 联赛赛程
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    %tr
+      %td 时间
+      %td 状态
+      %td 主队
+      %td 比分
+      %td 客队
+  %tbody
+    - schedules.each do |s|
+      %tr
+        %td s.match.try(:match_time).strftime("%Y-%m-%d %H:%M")
+        %td s.match.try(:status)
+        %td s.match.try(:team1).try(:cn_name)
+        - if s.match.try(:started?)
+          %td
+            %span= "#{s.match.try(:home_score)}:#{s.match.try(:guest_score)}"
+            %span= "(#{s.match.try(:half_home_score)}:#{s.match.try(:half_guest_score)})"
+        - else
+          %td vs
+
+        %td s.match.try(:team2).try(:cn_name)
+

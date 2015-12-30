@@ -30,7 +30,9 @@ class Match < ActiveRecord::Base
   has_many :odds_europes
 
   has_many :odds_balls
-  has_many :odds_events
+  has_many :events
+  has_many :home_events,->{where(:isHome => true)},class_name: "Event"
+  has_many :guest_events,->{where(:isHome => false)},class_name: "Event"
 
   #主队首发阵容
   has_many :home_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
@@ -125,6 +127,9 @@ class Match < ActiveRecord::Base
     [companies,[ret_begin,ret_current,ret_final]]
   end
 
+  def started?
+    not [0,-11,-14].include?(match_status_before_type_cast)
+  end
   #当前状态
   #中场
   #已开场 分钟数

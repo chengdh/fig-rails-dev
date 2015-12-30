@@ -2,20 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
-  exampleLoadingFunction = ->
-    return new Promise((resolve, reject) ->
-          if true
-            resolve()
-          else
-            reject()
-    )
-
-  WebPullToRefresh.init(
-        ptrEl: $("#ptr").get(0),
-        contentEl: $("#immediate_table").get(0),
-        loadingFunction: exampleLoadingFunction
-  )
-
   $(".match-tr").on("click", ->
     match = $(this).data("match")
     json_str = JSON.stringify({match_id : match.match_id})
