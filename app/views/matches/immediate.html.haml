@@ -1,4 +1,4 @@
-%table.table.table-hover.table-condensed.table-striped#immediate_table{"data-leagues" => Match.immediate_leagues.to_json}
+%table.table.table-hover.table-condensed.table-striped#immediate_table{"data-leagues" => Match.immediate_leagues.to_json,:style => "font-size : 10px;"}
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json}

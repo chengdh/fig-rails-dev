@@ -18,5 +18,9 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
 //= require toastr/toastr
+//= require react
+//= require react_ujs
+//= require components
 //= require matches
 //= require leagues
+

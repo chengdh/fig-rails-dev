@@ -3,7 +3,7 @@
     = @league.cn_name
     .pull-right
       %select.form-control.input-sm
-        %option 选择赛季
+        = options_for_select(seasons_for_select(@league.league_id))
 
   .btn-group.btn-group-justified.league-tabs{:role => "group","aria-label" => "..."}
     = link_to "积分", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".season-rankings"
@@ -33,9 +33,11 @@
     = @league.cn_name
     .pull-right
       %select.form-control.input-sm
-        %option 选择赛季
-      %select.form-control.input-sm
         %option 选择阶段
+
+    .pull-right
+      %select.form-control.input-sm
+        = options_for_select(seasons_for_select(@league.league_id))
 
   .btn-group.btn-group-justified.league-tabs{:role => "group","aria-label" => "..."}
     = link_to "积分", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".cup-rankings"

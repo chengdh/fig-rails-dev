@@ -30,6 +30,10 @@ gem 'composite_primary_keys', '~> 8.1'
 
 gem 'will_paginate', '~> 3.0.5'
 
+gem 'react-rails', '~> 1.5.0'
+
+gem 'sprockets-coffee-react'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
