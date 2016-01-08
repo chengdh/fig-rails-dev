@@ -23,4 +23,3 @@
 //= require components
 //= require matches
 //= require leagues
-
