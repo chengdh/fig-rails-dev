@@ -16,5 +16,5 @@
         %td= odds[1][1][c].try(:home)
         %td= odds[1][1][c].try(:goal)
         %td= odds[1][1][c].try(:away)
-        %td
-          >
+        %td{:style => "text-align : center;"}
+          = link_to ">",odds_asians_path("q[match_id_eq]" => match.match_id,"q[company_id_eq]" => c.company_id,"q[type_eq]" => 2,format: :js),class: "btn btn-sm btn-primary fancybox fancybox.ajax"

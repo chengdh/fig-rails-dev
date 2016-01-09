@@ -16,6 +16,14 @@ class LeaguesController < ApplicationController
   # GET /leagues/1
   # GET /leagues/1.json
   def show
+    params[:q] = {}
+    season = @league.seasons.try(:first)
+    params[:q].merge!(season_id_eq: season.season_id) if season.present?
+    season_type = @league.read_attribute_before_type_cast(:league_type)
+    if season_type == 2
+      stage = season.stages.try(:first)
+      params[:q].merge!(stage_id_eq: stage.stage_id) if stage.present?
+    end
   end
 
   # GET /leagues/new

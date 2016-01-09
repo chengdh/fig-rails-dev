@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "toastr": "~2.1.2",
-    "web-pull-to-refresh": "https://github.com/apeatling/web-pull-to-refresh.git"
+    "web-pull-to-refresh": "https://github.com/apeatling/web-pull-to-refresh.git",
+    "fancybox": ""
   }
 }

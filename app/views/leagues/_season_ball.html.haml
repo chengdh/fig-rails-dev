@@ -12,11 +12,11 @@
   %tbody
     - season_balls.each do |sb|
       %tr
-        %td= sg.team.try(:cn_name)
-        %td= sg.games
-        %td= sg.over
-        %td= sg.void
-        %td= sg.under
-        %td= "#{(sg.over/sg.game).round(3)*100}%"
-        %td= "#{(sg.void/sg.game).round(3)*100}%"
-        %td= "#{(sg.under/sg.game).round(3)*100}%"
+        %td= sb.team.try(:cn_name)
+        %td= sb.games
+        %td= sb.over
+        %td= sb.void
+        %td= sb.under
+        %td= "#{(sb.over/sb.games).round(3)*100}%"
+        %td= "#{(sb.void/sb.games).round(3)*100}%"
+        %td= "#{(sb.under/sb.games).round(3)*100}%"

@@ -10,4 +10,5 @@ class Season < ActiveRecord::Base
   has_many :season_goals
   has_many :season_balls
   has_many :season_archers
+  has_many :stages
 end

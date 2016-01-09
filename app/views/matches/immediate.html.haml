@@ -1,1 +1,2 @@
-= react_component 'Immediate', {leagues: Match.immediate_leagues,url: "immediate.json"}, :div
+%input{:type => "hidden", "data-leagues" => Match.immediate_leagues.to_json}
+= react_component 'Immediate', {url: immediate_matches_path(q: params[:q],format: :json)}, :div

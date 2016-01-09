@@ -11,14 +11,15 @@
     match_nodes = @state.matches.map (m)->
       <Match key={m.match_id} data={m} />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_table" data-leagues={JSON.stringify(@props.leagues)} style={fontSize : "10px"}>
+    <table className="table table-hover table-condensed table-striped" id="immediate_table" style={fontSize : "10px"}>
       <tbody>
         {match_nodes}
       </tbody>
     </table>
 
   componentDidMount: ->
-    setInterval(@_fetch_immedates, 5000);
+    #setInterval(@_fetch_immedates, 10000);
+    @_fetch_immedates()
 
   _fetch_immedates: (data)->
     $.ajax(

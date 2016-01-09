@@ -7,7 +7,7 @@ $ ->
   if $("[data-leagues]").length > 0
     league_ids = (l.league_id for l in $("[data-leagues]").data("leagues"))
     q_leagues = $.param("q[league_id_in]" : league_ids )
-    #Android.passString("q_leagues",q_leagues)
+    Android.passString("q_leagues",q_leagues)
     console.log("set leagues : " + q_leagues)
 
   #赛事筛选
@@ -52,5 +52,24 @@ $(".btn-country-select").on("click",->
   country = $(this).data("country")
   q_leagues = $.param("q[country_country_id_eq]" : country.country_id)
   Android.passString("q_leagues",q_leagues)
-  Android.openLeagueSearchActivity()
+  Android.openLeagueListActivity()
 )
+
+#选择赛事
+$(".league-select").on("click",->
+  league = $(this).data("league")
+  Android.passString("league_id",league.league_id)
+  Android.openLeagueShowActivity()
+)
+
+#赛事资料tab切换
+$(".league-tabs .btn").on("click",(evt)->
+    this_el = evt.currentTarget
+    class_name = $(this_el).data("link-el-class")
+    $(".season-rankings,.season-schedules,.season-goals,.season-balls,.season-archers,.cup-rankings,.cup-schedules").hide()
+    $(class_name).show()
+    $(".league-tabs .btn").removeClass("btn-info")
+    $(this_el).addClass("btn-info")
+  )
+
+

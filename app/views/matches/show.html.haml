@@ -36,16 +36,11 @@
 
 / 大小
 .odds-asian.well.well-sm{:style => 'display : none;'}
-  = render "odds_asian",odds: @match.current_odds_asians
+  = render "odds_asian",odds: @match.current_odds_asians,match: @match
 
 / 射手榜
 .odds-europe.well.well-sm{:style => 'display : none;'}
   = render "odds_europe",odds: @match.current_odds_europes
 / 大小球
 .odds-ball.well.well-sm{:style => 'display : none;'}
-  = render "odds_ball",balls: @match.current_odds_balls
-
-/ 杯赛积分
-
-/ 杯赛赛程
-
+  = render "odds_ball",balls: @match.current_odds_balls,match: @match

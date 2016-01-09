@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require web-pull-to-refresh/lib/hammer.2.0.4
-//= require web-pull-to-refresh/lib/wptr.1.1
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
@@ -21,5 +19,6 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require fancybox/source/jquery.fancybox
 //= require matches
 //= require leagues

@@ -13,7 +13,7 @@
   %tbody
     - season_rankings.each do |r|
       %tr
-        %td= s.ranking
+        %td= r.ranking
         %td= r.team.try(:cn_name)
         %td= r.games
         %td= r.win

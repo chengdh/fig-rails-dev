@@ -1,6 +1,6 @@
 .well.well-sm
   %ul.list-group
     -@leagues.each do |l|
-      %li.list-group-item
+      %li.list-group-item.league-select{"data-league" => l.to_json}
         %span.badge >
         = l.cn_name

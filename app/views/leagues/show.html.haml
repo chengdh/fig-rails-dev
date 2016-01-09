@@ -7,7 +7,7 @@
 
   .btn-group.btn-group-justified.league-tabs{:role => "group","aria-label" => "..."}
     = link_to "积分", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".season-rankings"
-    = link_to "赛程", "#",class: "btn btn-sm","data-link-el-class" => ".schedules"
+    = link_to "赛程", "#",class: "btn btn-sm","data-link-el-class" => ".season-schedules"
     = link_to "让球", "#",class: "btn btn-sm","data-link-el-class" => ".season-goals"
     = link_to "大小", "#",class: "btn btn-sm","data-link-el-class" => ".season-balls"
     = link_to "射手榜", "#",class: "btn btn-sm","data-link-el-class" => ".season-archers"
@@ -15,16 +15,17 @@
   .season-rankings.well.well-sm
     =render "season_ranking",season_rankings: @league.season_rankings.present? ? @league.season_rankings.ransack(params[:q]).result : []
 
-  .season-schedules.well.well-sm
+  .season-schedules.well.well-sm{:style => 'display : none;'}
     =render "schedule",schedules: @league.schedules.present? ? @league.schedules.ransack(params[:q]).result : []
 
-  .season-goals.well.well-sm
+  .season-goals.well.well-sm{:style => 'display : none;'}
+
     =render "season_goal",season_goals: @league.season_goals.present? ? @league.season_goals.ransack(params[:q]).result : []
 
-  .season-balls.well.well-sm
+  .season-balls.well.well-sm{:style => 'display : none;'}
     =render "season_ball",season_balls: @league.season_balls.present? ? @league.season_balls.ransack(params[:q]).result : []
 
-  .season-archerss.well.well-sm
+  .season-archers.well.well-sm{:style => 'display : none;'}
     =render "season_archer",season_archers: @league.season_archers.present? ? @league.season_archers.ransack(params[:q]).result : []
 
 
@@ -44,7 +45,7 @@
     = link_to "赛程", "#",class: "btn btn-sm","data-link-el-class" => ".cup-schedules"
 
   .cup-rankings.well.well-sm
-    / =render "cup_ranking",cup_rankings: @league.cup_rankings.present? ? @league.cup_rankings.ransack(params[:q]).result : []
+    =render "cup_ranking",cup_rankings: @league.cup_rankings.present? ? @league.cup_rankings.ransack(params[:q]).result : []
 
-  .cup-schedules.well.well-sm
+  .cup-schedules.well.well-sm{:style => 'display : none;'}
     =render "cup_schedule",cup_schedules: @league.cup_schedules.present? ? @league.cup_schedules.ransack(params[:q]).result : []

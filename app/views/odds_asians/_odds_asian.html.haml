@@ -1,0 +1,13 @@
+%table.table.table-condesed
+  %thead
+    %tr
+      %th{:colspan => 4,:style => "text-align : center;"}
+        = "#{@odds_asians.first.try(:company).try(:cn_name)}-赔率变化"
+  %tbody
+    - @odds_asians.each do |oa|
+      %tr
+        %td= oa.home
+        %td= oa.goal
+        %td= oa.away
+        %td= oa.data_time.strftime("%m-%d %H:%M")
+

@@ -106,12 +106,19 @@ class Match < ActiveRecord::Base
     ret_final = {}
     companies = Company.all
     companies.each do |c|
-      ret_begin[c] = odds_europes.where(company: c,odds_type: 1).first
-      ret_current[c] = odds_europes.where(company: c,odds_type: 2).first
-      ret_final[c] = odds_europes.where(company: c,odds_type: 3).first
+      beg = odds_europes.where(company: c,odds_type: 1).first
+      current = odds_europes.where(company: c,odds_type: 2).first
+      final = odds_europes.where(company: c,odds_type: 3).first
+
+      if beg.blank? and current.blank? and final.blank?
+        companies -= [c]
+      else
+        ret_begin[c] = beg
+        ret_current[c] = current
+        ret_final[c] = final
+      end
     end
     [companies,[ret_begin,ret_current,ret_final]]
-
   end
 
   def current_odds_balls
@@ -120,9 +127,17 @@ class Match < ActiveRecord::Base
     ret_final = {}
     companies = Company.all
     companies.each do |c|
-      ret_begin[c] = odds_balls.where(company: c,odds_type: 1).first
-      ret_current[c] = odds_balls.where(company: c,odds_type: 2).first
-      ret_final[c] = odds_balls.where(company: c,odds_type: 3).first
+      beg = odds_balls.where(company: c,odds_type: 1).first
+      current = odds_balls.where(company: c,odds_type: 2).first
+      final = odds_balls.where(company: c,odds_type: 3).first
+
+      if beg.blank? and current.blank? and final.blank?
+        companies -= [c]
+      else
+        ret_begin[c] = beg
+        ret_current[c] = current
+        ret_final[c] = final
+      end
     end
     [companies,[ret_begin,ret_current,ret_final]]
   end

@@ -1,10 +1,17 @@
+#coding: utf-8
+#亚赔
 class OddsAsiansController < ApplicationController
+  protect_from_forgery :except => :index
   before_action :set_odds_asian, only: [:show, :edit, :update, :destroy]
 
   # GET /odds_asians
   # GET /odds_asians.json
   def index
-    @odds_asians = OddsAsian.all
+    @q = OddsAsian.ransack(params[:q])
+    @odds_asians = @q.result
+    respond_to do |format|
+      format.js {render :partial => "odds_asian"}
+    end
   end
 
   # GET /odds_asians/1

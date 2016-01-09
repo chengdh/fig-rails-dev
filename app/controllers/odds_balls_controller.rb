@@ -1,10 +1,17 @@
+#coding: utf-8
+#大小球
 class OddsBallsController < ApplicationController
+  protect_from_forgery :except => :index
   before_action :set_odds_ball, only: [:show, :edit, :update, :destroy]
 
   # GET /odds_balls
   # GET /odds_balls.json
   def index
-    @odds_balls = OddsBall.all
+    @q = OddsBall.ransack(params[:q])
+    @odds_balls = @q.result
+    respond_to do |format|
+      format.js {render :partial => "odds_ball"}
+    end
   end
 
   # GET /odds_balls/1

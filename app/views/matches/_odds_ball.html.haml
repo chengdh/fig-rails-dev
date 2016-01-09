@@ -16,5 +16,5 @@
         %td= balls[1][1][c].try(:over)
         %td= balls[1][1][c].try(:goal)
         %td= balls[1][1][c].try(:under)
-        %td
-          >
+        %td{:style => "text-align : center;"}
+          = link_to ">",odds_balls_path("q[match_id_eq]" => match.match_id,"q[company_id_eq]" => c.company_id,"q[type_eq]" => 2,format: :js),class: "btn btn-sm btn-primary fancybox fancybox.ajax"
