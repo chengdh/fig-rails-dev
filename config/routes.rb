@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {registrations: "registrations"}
   resources :league_rankings
   resources :events
   resources :odds_balls
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
     get :search_by_league,on: :collection
   end
 
-  devise_for :users, controllers: {registrations: "registrations" }
 
   resources :register_infos do
     get :intro,on: :collection

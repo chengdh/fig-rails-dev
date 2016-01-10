@@ -10,8 +10,8 @@ class MatchesController < ApplicationController
   #GET /matches/immediate
   #GET /matches/immediate.json
   def immediate
-    @q = Match.ransack(params[:q])
-    @matches = @q.result.immediate
+    @q = Match.immediate.ransack(params[:q])
+    @matches = @q.result
   end
 
   #GET /matches/last_week
@@ -22,8 +22,8 @@ class MatchesController < ApplicationController
     @current_day = 1.days.ago.strftime("%Y-%m-%d") if @current_day.blank?
     @yesterday = (Date.strptime(@current_day,"%Y-%m-%d") - 1.days).strftime("%Y-%m-%d")
     @tomorrow = (Date.strptime(@current_day,"%Y-%m-%d") + 1.days).strftime("%Y-%m-%d")
-    @q = Match.ransack(params[:q])
-    @matches = @q.result.last_week
+    @q = Match.last_week.ransack(params[:q])
+    @matches = @q.result
   end
 
 
@@ -35,24 +35,24 @@ class MatchesController < ApplicationController
     @yesterday = (Date.strptime(@current_day,"%Y-%m-%d") - 1.days).strftime("%Y-%m-%d")
     @tomorrow = (Date.strptime(@current_day,"%Y-%m-%d") + 1.days).strftime("%Y-%m-%d")
 
-    @q = Match.ransack(params[:q])
-    @matches = @q.result.this_week
+    @q = Match.this_week.ransack(params[:q])
+    @matches = @q.result
   end
 
   #GET /matches/sb_list
   #GET /matches/sb_list.json
   #滚球界面
   def sb_list
-    @q = Match.ransack(params[:q])
-    @matches = @q.result.sb_list
+    @q = Match.sb_list.ransack(params[:q])
+    @matches = @q.result
   end
 
   #GET /matches/immediate_index
   #GET /matches/immediate_index.json
   #即时指数
   def immediate_index
-    @q = Match.ransack(params[:q])
-    @matches = @q.result.immediate
+    @q = Match.immediate.ransack(params[:q])
+    @matches = @q.result
   end
 
   #GET /matches/search_by_league
