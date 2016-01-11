@@ -27,6 +27,9 @@ $(function() {
     //新乡登录按钮
     el_login_btn_4 = $("#submitButton");
 
+    //郑州燃气其他登录按钮
+    el_login_btn_5 = $('.loginbtn');
+
     $(el_username).val(arg_obj["sso[username]"]);
     $(el_password).val(arg_obj["sso[password]"]);
     if(el_login_btn.length >= 1){
@@ -45,5 +48,10 @@ $(function() {
       $(el_login_btn_4).trigger("click");
       return;
     }
+    if(el_login_btn_5.length >= 1){
+      $(el_login_btn_5).trigger("click");
+      return;
+    }
+
   });
 });
