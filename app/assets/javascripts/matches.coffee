@@ -3,9 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   $(".fancybox").fancybox()
-  $(document).on("click",".match-tr", ->
+  $(document).on("click",".match-tr", (evt)->
+    #如果点击的是收藏按钮,则直接返回
+    el = evt.target
+    if $(el).hasClass("favorite-star") or $(el).hasClass("btn-favorite")
+      evt.stopPropagation()
+      return
     match = $(this).data("match")
-    json_str = JSON.stringify({match_id : match.match_id})
+    json_str = JSON.stringify(match_id : match.match_id)
     Android.passObject("args",json_str)
     Android.openMatchImmediateShowActivity()
   )

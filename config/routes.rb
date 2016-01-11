@@ -25,9 +25,11 @@ Rails.application.routes.draw do
   end
 
 
-  resources :register_infos do
-    get :intro,on: :collection
+  constraints(:id => /\w+(,\w+)*/) do
+    resources :user_favorites
   end
+
+  get 'my_favorites/:user_id' => 'user_favorites#my_favorites'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

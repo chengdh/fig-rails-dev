@@ -35,17 +35,38 @@
     @setState
       matches: data.matches
 
+    @_fetch_favorites()
+
+  #获取当前用户关注的比赛
+  _fetch_favorites: ->
+    #user_id = Android.getUserId()
+    user_id = 1
+    $.ajax(
+      url: "/my_favorites/" +user_id + ".json",
+      dataType: 'json'
+    )
+    .done((data)->
+      #处理关注图标的显示颜色
+      data.matches.map (m)->
+        $(".match-#{m.match_id} .favorite-star").css(color : 'red').addClass('favorite')
+    )
+    .fail(->
+      console.error "fetch favorite error"
+    )
+
+
   _fetch_data_fail: (xhr, status, err)->
     console.error "fetch data error"
+
 
 #单条比赛信息显示
 @Match = React.createClass
   displayName: "Match",
   render: ->
-    <tr className="match-tr" data-match={JSON.stringify(@props.data)}>
+    <tr className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
       <td>
-        <button className="btn btn-default btn-sm" type="button">
-            <span className="glyphicon glyphicon-star" aria-hidden="true"></span>
+        <button className="btn btn-default btn-sm btn-favorite" type="button" onClick={@._on_favorite_click}>
+            <span className="glyphicon glyphicon-star favorite-star" aria-hidden="true"></span>
         </button>
       </td>
       <td>
@@ -70,6 +91,107 @@
         </p>
       </td>
     </tr>
+
+
+  _on_favorite_click: ->
+    btn_favorite = $(ReactDOM.findDOMNode(@)).find(".favorite-star")
+    if btn_favorite.hasClass('favorite')
+      @_unfavorite()
+    else
+      @_favorite()
+
+  #取消关注处理
+  _unfavorite: ->
+    #user_id = Android.getUserId()
+    user_id = 1
+    if user_id < 0
+      toastr.warn("您当前未登录!")
+      return
+    else
+      $.ajax(
+        type: "DELETE",
+        url: "/user_favorites/#{user_id},#{@props.data.match_id}.json",
+        dataType: 'json',
+        context: @
+      )
+      .done(->
+        toastr.success("已取消关注!")
+        $(ReactDOM.findDOMNode(@)).find(".favorite-star").css(color : '').removeClass('favorite')
+      )
+      .fail(->toastr.error("取消关注失败!"))
+
+
+  #关注处理
+  _favorite: ->
+    #user_id = Android.getUserId()
+    user_id = 1 
+    console.log("user_id : " + user_id)
+    if user_id < 0
+      toastr.warn("您当前未登录!")
+      return
+    else
+      $.ajax(
+        type: "POST",
+        url: "/user_favorites.json",
+        dataType: 'json',
+        context: @,
+        data:
+          "user_favorite[user_id]" : user_id,
+          "user_favorite[match_id]" : @props.data.match_id,
+          "user_favorite[favor_type]" : 1
+      )
+      .done(->
+        toastr.success("已成功关注比赛!")
+        $(ReactDOM.findDOMNode(@)).find(".favorite-star").css(color : 'red').addClass('favorite')
+      )
+      .fail(->toastr.error("关注操作失败!"))
+
+#比赛关注列表
+@Favorite = React.createClass
+  # Display name used for debugging
+  displayName: 'Favorite',
+
+  getInitialState: ->
+    # The people JSON array used to display the cards in the view
+    matches: []
+
+  render: ->
+    match_nodes = @state.matches.map (m)->
+      <Match key={m.match_id} data={m} />
+
+    <table className="table table-hover table-condensed table-striped" id="immediate_table" style={fontSize : "10px"}>
+      <tbody>
+        {match_nodes}
+      </tbody>
+    </table>
+
+  componentDidMount: ->
+    @_fetch_favorites()
+    #setInterval(@_fetch_favorites, 10000);
+
+  _fetch_favorites: (data)->
+    #user_id = Android.getUserId()
+    user_id = 1
+    $.ajax(
+      url: "/my_favorites/" +user_id + ".json",
+      dataType: 'json',
+      data: data
+      )
+    .done @_fetch_data_done
+    .fail @_fetch_data_fail
+
+  _fetch_data_done: (data, textStatus, jqXHR)->
+    console.log "fetch my favorites success"
+    @setState
+      matches: data.matches
+
+    #处理关注图标的显示颜色
+    data.matches.map (m)->
+      $(".match-#{m.match_id} .favorite-star").css(color : 'red').addClass("favorite")
+
+  _fetch_data_fail: (xhr, status, err)->
+    console.error "fetch my favorites error"
+
 
 #即时指数界面
 @ImmediateIndexTable = React.createClass

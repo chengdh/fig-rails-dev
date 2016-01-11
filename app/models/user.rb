@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     :recoverable, :rememberable, :trackable, :validatable
 
   validates :user_name,:presence => true,uniqueness: {case_sensitive: false}
+  has_many :user_favorites
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
