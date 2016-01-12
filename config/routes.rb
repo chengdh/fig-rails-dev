@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     resources :user_favorites
   end
 
+  #当前用户关注
   get 'my_favorites/:user_id' => 'user_favorites#my_favorites'
+
+  #用户关注比赛-事件
+  get 'my_favorites/:user_id/events' => 'user_favorites#my_favorites_events'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

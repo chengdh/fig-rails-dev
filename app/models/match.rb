@@ -18,6 +18,7 @@ class Match < ActiveRecord::Base
   #sb滚球数据
   scope :sb_list, -> {joins(:current_match).where("t_current_match.match_status != -1").order("t_match.match_time ASC")}
 
+
   belongs_to :league
   belongs_to :team1,class_name: "Team"
   belongs_to :team2,class_name: "Team"

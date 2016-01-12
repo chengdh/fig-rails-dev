@@ -116,7 +116,10 @@
       )
       .done(->
         toastr.success("已取消关注!")
-        $(ReactDOM.findDOMNode(@)).find(".favorite-star").css(color : '').removeClass('favorite')
+        el = $(ReactDOM.findDOMNode(@))
+        el.find(".favorite-star").css(color : '').removeClass('favorite')
+        if @props.in_favorite
+          el.hide()
       )
       .fail(->toastr.error("取消关注失败!"))
 
@@ -157,7 +160,7 @@
 
   render: ->
     match_nodes = @state.matches.map (m)->
-      <Match key={m.match_id} data={m} />
+      <Match key={m.match_id} data={m} in_favorite={true} />
 
     <table className="table table-hover table-condensed table-striped" id="immediate_table" style={fontSize : "10px"}>
       <tbody>

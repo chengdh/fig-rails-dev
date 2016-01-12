@@ -9,9 +9,22 @@ class UserFavoritesController < ApplicationController
   end
 
   # GET /my_favorites/:user_id
-  # GET /my_favorites/:user_id
+  # GET /my_favorites/:user_id.json
   def my_favorites
     @user_favorites = UserFavorite.favorites_with_user(params[:user_id])
+  end
+
+  #GET /my_favorites/:user_id/events
+  #GET /my_favorites/:user_id/events.json
+  #获取用户关注比赛事件列表
+  #获取当前用户输入参数时间之后的数据
+  def my_favorites_events
+    @user_favorites = UserFavorite.favorites_with_user(params[:user_id])
+    @events = []
+    @user_favorites.each do |uf|
+      evts = uf.match.try(:events).try(:unread,params[:data_time])
+      @events += evts if evts.present?
+    end
   end
 
   # GET /user_favorites/1
@@ -32,7 +45,6 @@ class UserFavoritesController < ApplicationController
   # POST /user_favorites.json
   def create
     @user_favorite = UserFavorite.new(user_favorite_params)
-
     respond_to do |format|
       if @user_favorite.save
         format.html { redirect_to @user_favorite, notice: 'User favorite was successfully created.' }
