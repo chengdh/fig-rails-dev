@@ -32,8 +32,9 @@ class Match < ActiveRecord::Base
 
   has_many :odds_balls
   has_many :events
-  has_many :home_events,->{where(:isHome => true)},class_name: "Event"
-  has_many :guest_events,->{where(:isHome => false)},class_name: "Event"
+  has_many :home_events,->{where(:ishome=> true)},class_name: "Event"
+  has_many :guest_events,->{where(:ishome=> false)},class_name: "Event"
+  has_many :match_recommands
 
   #主队首发阵容
   has_many :home_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
@@ -185,6 +186,23 @@ class Match < ActiveRecord::Base
   end
   def final
     odds_asians.where(odds_type: 3).try(:first).try(:goal)
+  end
+
+  #推荐情况
+  def is_home_bigdata_recommend?
+    match_recommands.where(team_id: team1_id,recommend_type: 1).present?
+  end
+
+  def is_home_yinglang_recommend?
+    match_recommands.where(team_id: team1_id,recommend_type: 2).present?
+  end
+
+  def is_guest_bigdata_recommend?
+    match_recommands.where(team_id: team2_id,recommend_type: 1).present?
+  end
+
+  def is_guest_yinglang_recommend?
+    match_recommands.where(team_id: team2_id,recommend_type: 2).present?
   end
 
   def self.immediate_leagues

@@ -1,0 +1,19 @@
+%h1 Listing match_recommands
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @match_recommands.each do |match_recommand|
+      %tr
+        %td= link_to 'Show', match_recommand
+        %td= link_to 'Edit', edit_match_recommand_path(match_recommand)
+        %td= link_to 'Destroy', match_recommand, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Match recommand', new_match_recommand_path

@@ -63,6 +63,13 @@ class MatchesController < ApplicationController
     @leagues = @q_leagues.result
   end
 
+  #GET /matches/show_recommand
+  #GET /matches/show_recommand
+  #推荐
+  def show_recommand
+    @q = Match.immediate.ransack(params[:q])
+    @matches = @q.result
+  end
 
   # GET /matches/1
   # GET /matches/1.json

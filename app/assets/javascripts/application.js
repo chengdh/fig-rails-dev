@@ -22,3 +22,4 @@
 //= require fancybox/source/jquery.fancybox
 //= require matches
 //= require leagues
+//= require match_recommands

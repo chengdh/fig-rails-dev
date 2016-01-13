@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {registrations: "registrations"}
   resources :league_rankings
   resources :events
@@ -22,12 +23,18 @@ Rails.application.routes.draw do
     get :sb_list,on: :collection
     get :immediate_index,on: :collection
     get :search_by_league,on: :collection
+    get :show_recommand,on: :collection
   end
 
 
   constraints(:id => /\w+(,\w+)*/) do
     resources :user_favorites
   end
+
+  constraints(:id => /\w+(,\w+)(,\w+)*/) do
+    resources :match_recommands
+  end
+
 
   #当前用户关注
   get 'my_favorites/:user_id' => 'user_favorites#my_favorites'

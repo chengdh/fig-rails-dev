@@ -1,0 +1,50 @@
+%table.table.table-hover.table-condensed.table-striped#immediate_table{"data-leagues" => Match.immediate_leagues.to_json,:style => "font-size : 10px;"}
+  %tbody
+    - @matches.each do |match|
+      %tr.match-tr{"data-match" => match.to_json(methods: [:is_home_bigdata_recommend?,:is_home_yinglang_recommend?,:is_guest_bigdata_recommend?,:is_guest_yinglang_recommend?] )}
+        %td{:style => "vertical-align : center;"}
+          %button.btn.btn-default.btn-xs.btn-home-bigdata-recommand{:type =>"button","data-recommend-type" => 1,"data-recommend-home-or-guest" => "home"}
+            %span.glyphicon.glyphicon-tree-deciduous.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_home_bigdata_recommend? ? 'color : red' : ""}"}
+
+        %td
+          %button.btn.btn-default.btn-xs.btn-home-yinglang-recommand{:type =>"button","data-recommend-type" => 2,"data-recommend-home-or-guest" => "home"}
+            %span.glyphicon.glyphicon-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_home_yinglang_recommend? ? 'color : red' : ""}"}
+
+        %td
+          = match.try(:league).try(:cn_name)
+          = match.match_time.strftime("%H:%M")
+          %p
+            /- if match.try(:current_match).try(:home_yellow_card).present?
+            /  %span.label.label-warning= match.try(:current_match).try(:home_yellow_card)
+            /- if match.try(:current_match).try(:home_red_card).present?
+            /  %span.label.label-danger= match.try(:current_match).try(:home_red_card)
+
+            = match.team1.cn_name
+
+        - if match.match_status_before_type_cast == 0
+          %td{:style => "vertical-align : middle;"} 未开
+        - else
+          %td{:style => "text-align : center;vertical-align : middle;"}
+            = match.status
+            %p
+              %span.label.label-info
+                = "#{match.try(:current_match).try(:home_score)} : #{match.try(:current_match).try(:guest_score)}"
+
+        %td
+          %button.btn.btn-default.btn-xs.btn-guest-bigdata-recommand{:type =>"button","data-recommend-type" => 1,"data-recommend-home-or-guest" => "guest"}
+            %span.glyphicon.glyphicon-tree-deciduous.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_guest_bigdata_recommend? ? 'color : red' : ""}"}
+
+        %td
+          %button.btn.btn-default.btn-xs.btn-guest-yinglang-recommand{:type =>"button","data-recommend-type" => 2,"data-recommend-home-or-guest" => "guest"}
+            %span.glyphicon.glyphicon-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_guest_yinglang_recommend? ? 'color : red' : ""}"}
+
+        %td
+          - if match.begin.present?
+            = goal_cn(match.begin)
+          %p
+            = match.team2.cn_name
+            / - if match.try(:current_match).try(:guest_red_card).present?
+            /  %span.label.label-danger= match.try(:current_match).try(:guest_red_card)
+
+            /- if match.try(:current_match).try(:guest_yellow_card).present?
+            /  %span.label.label-warning= match.try(:current_match).try(:guest_yellow_card)
