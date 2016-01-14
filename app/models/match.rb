@@ -152,7 +152,7 @@ class Match < ActiveRecord::Base
   #已开场 分钟数
   def status
     ret = ""
-    match_status = current_match.read_attribute_before_type_cast('match_status')
+    match_status = match_status_before_type_cast
     #上半场
     if match_status == 1
       start_ms = ((Time.now - current_match.first_time)/60).round
