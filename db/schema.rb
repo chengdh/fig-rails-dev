@@ -202,28 +202,6 @@ ActiveRecord::Schema.define(version: 20160110083404) do
     t.integer "sort_value",    limit: 2,  precision: 2
   end
 
-  create_table "t_cup_ranking", id: false, force: :cascade do |t|
-    t.integer "team_id",   limit: 14, precision: 14, null: false
-    t.integer "season_id", limit: 14, precision: 14, null: false
-    t.integer "stage_id",  limit: 14, precision: 14, null: false
-    t.string  "group_no",  limit: 2,                 null: false
-    t.integer "ranking",   limit: 2,  precision: 2,  null: false
-    t.integer "games",     limit: 3,  precision: 3
-    t.integer "win",       limit: 3,  precision: 3
-    t.integer "draw",      limit: 3,  precision: 3
-    t.integer "lose",      limit: 3,  precision: 3
-    t.integer "get",       limit: 3,  precision: 3
-    t.integer "miss",      limit: 3,  precision: 3
-    t.integer "pts",       limit: 3,  precision: 3
-  end
-
-  create_table "t_cup_schedule", id: false, force: :cascade do |t|
-    t.integer "season_id", limit: 14, precision: 14, null: false
-    t.integer "match_id",  limit: 14, precision: 14, null: false
-    t.integer "stage_id",  limit: 14, precision: 14, null: false
-    t.string  "group_no",  limit: 2
-  end
-
   create_table "t_current_match", primary_key: "match_id", force: :cascade do |t|
     t.boolean  "match_status",      limit: nil,               null: false
     t.datetime "first_time"
@@ -247,11 +225,10 @@ ActiveRecord::Schema.define(version: 20160110083404) do
   end
 
   create_table "t_league", primary_key: "league_id", force: :cascade do |t|
-    t.string  "cn_name",     limit: 50,                               null: false
-    t.string  "tr_name",     limit: 50
-    t.string  "en_name",     limit: 50
-    t.integer "country_id",  limit: 4,   precision: 4,                null: false
-    t.boolean "league_type", limit: nil,               default: true
+    t.string  "cn_name",    limit: 50,               null: false
+    t.string  "tr_name",    limit: 50
+    t.string  "en_name",    limit: 50
+    t.integer "country_id", limit: 4,  precision: 4, null: false
   end
 
   create_table "t_league_rankings", id: false, force: :cascade do |t|
@@ -297,13 +274,6 @@ ActiveRecord::Schema.define(version: 20160110083404) do
     t.boolean  "odds_result",       limit: nil
   end
 
-  create_table "t_match_recommend", id: false, force: :cascade do |t|
-    t.integer  "match_id",       limit: 14,  precision: 14, null: false
-    t.integer  "team_id",        limit: 14,  precision: 14, null: false
-    t.boolean  "recommend_type", limit: nil,                null: false
-    t.datetime "data_time",                                 null: false
-  end
-
   create_table "t_odds_asian", id: false, force: :cascade do |t|
     t.integer  "match_id",   limit: 14,  precision: 14,           null: false
     t.integer  "company_id", limit: 3,   precision: 3,            null: false
@@ -332,70 +302,6 @@ ActiveRecord::Schema.define(version: 20160110083404) do
     t.decimal  "hw",                     precision: 6,  scale: 3
     t.decimal  "st",                     precision: 6,  scale: 3
     t.decimal  "aw",                     precision: 6,  scale: 3
-  end
-
-  create_table "t_schedule", id: false, force: :cascade do |t|
-    t.integer "season_id", limit: 14, precision: 14, null: false
-    t.integer "match_id",  limit: 14, precision: 14, null: false
-    t.integer "round",     limit: 14, precision: 14, null: false
-  end
-
-  create_table "t_season", id: false, force: :cascade do |t|
-    t.integer "season_id",   limit: 14, precision: 14, null: false
-    t.string  "season_name", limit: 20,                null: false
-    t.integer "league_id",   limit: 14, precision: 14, null: false
-  end
-
-  create_table "t_season_archer", id: false, force: :cascade do |t|
-    t.integer "team_id",     limit: 14, precision: 14, null: false
-    t.integer "season_id",   limit: 14, precision: 14, null: false
-    t.integer "ranking",     limit: 2,  precision: 2,  null: false
-    t.string  "player_name", limit: 50,                null: false
-    t.integer "total_goal",  limit: 3,  precision: 3
-    t.integer "home_goal",   limit: 3,  precision: 3
-    t.integer "guest_goal",  limit: 3,  precision: 3
-  end
-
-  create_table "t_season_ball", id: false, force: :cascade do |t|
-    t.integer "team_id",   limit: 14, precision: 14, null: false
-    t.integer "season_id", limit: 14, precision: 14, null: false
-    t.integer "ranking",   limit: 2,  precision: 2,  null: false
-    t.integer "games",     limit: 3,  precision: 3
-    t.integer "over",      limit: 3,  precision: 3
-    t.integer "void",      limit: 3,  precision: 3
-    t.integer "under",     limit: 3,  precision: 3
-  end
-
-  create_table "t_season_goal", id: false, force: :cascade do |t|
-    t.integer "team_id",         limit: 14, precision: 14, null: false
-    t.integer "season_id",       limit: 14, precision: 14, null: false
-    t.integer "ranking",         limit: 2,  precision: 2,  null: false
-    t.integer "games",           limit: 3,  precision: 3
-    t.integer "give_handicap",   limit: 3,  precision: 3
-    t.integer "draw",            limit: 3,  precision: 3
-    t.integer "accept_handicap", limit: 3,  precision: 3
-    t.integer "win",             limit: 3,  precision: 3
-    t.integer "void",            limit: 3,  precision: 3
-    t.integer "lose",            limit: 3,  precision: 3
-  end
-
-  create_table "t_season_ranking", id: false, force: :cascade do |t|
-    t.integer "team_id",   limit: 14, precision: 14, null: false
-    t.integer "season_id", limit: 14, precision: 14, null: false
-    t.integer "ranking",   limit: 2,  precision: 2,  null: false
-    t.integer "games",     limit: 3,  precision: 3
-    t.integer "win",       limit: 3,  precision: 3
-    t.integer "draw",      limit: 3,  precision: 3
-    t.integer "lose",      limit: 3,  precision: 3
-    t.integer "get",       limit: 3,  precision: 3
-    t.integer "miss",      limit: 3,  precision: 3
-    t.integer "pts",       limit: 3,  precision: 3
-  end
-
-  create_table "t_stage", primary_key: "stage_id", force: :cascade do |t|
-    t.string  "stage_name", limit: 20,                null: false
-    t.integer "league_id",  limit: 14, precision: 14, null: false
-    t.integer "season_id",  limit: 14, precision: 14, null: false
   end
 
   create_table "t_team", primary_key: "team_id", force: :cascade do |t|

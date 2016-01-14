@@ -5,7 +5,6 @@ web:
     # This seems to work as-is once you expose /Users to the boot2docker vm.
     - .:/rails_app
   ports:
-    - "8080:8080"
     - "3000:3000"
 
   log_driver: "json-file"
