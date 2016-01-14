@@ -70,7 +70,7 @@
         </button>
       </td>
       <td>
-        {@props.data.is_home_bigdata_recommend?} and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true",style={color : 'red'}></span>
+        {@props.data.is_home_bigdata_recommend?} and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>
         {@props.data.is_home_yinglang_recommend?} and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>
       </td>
       <td>
@@ -87,7 +87,7 @@
         {@props.data.match_status_before_type_cast == 0 or <p><span className="label label-info">{@props.data.match_describe}</span></p>}
       </td>
       <td>
-        {@props.data.is_guest_bigdata_recommend?} and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true",style={color : 'red'}></span>
+        {@props.data.is_guest_bigdata_recommend?} and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>
         {@props.data.is_guest_yinglang_recommend?} and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>
       </td>
       <td>
