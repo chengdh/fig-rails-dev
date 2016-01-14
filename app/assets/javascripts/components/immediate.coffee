@@ -65,9 +65,13 @@
   render: ->
     <tr className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
       <td>
-        <button className="btn btn-default btn-sm btn-favorite" type="button" onClick={@._on_favorite_click}>
+        <button className="btn btn-default btn-xs btn-favorite" type="button" onClick={@._on_favorite_click}>
             <span className="glyphicon glyphicon-star favorite-star" aria-hidden="true"></span>
         </button>
+      </td>
+      <td>
+        {@props.data.is_home_bigdata_recommend?} and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true",style={color : 'red'}></span>
+        {@props.data.is_home_yinglang_recommend?} and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>
       </td>
       <td>
         <span>{@props.data.league.cn_name} {@props.data.match_time}</span>
@@ -83,6 +87,10 @@
         {@props.data.match_status_before_type_cast == 0 or <p><span className="label label-info">{@props.data.match_describe}</span></p>}
       </td>
       <td>
+        {@props.data.is_guest_bigdata_recommend?} and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true",style={color : 'red'}></span>
+        {@props.data.is_guest_yinglang_recommend?} and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>
+      </td>
+      <td>
         {@props.data.begin}
         <p>
         {@props.data.team2.cn_name}
@@ -91,7 +99,6 @@
         </p>
       </td>
     </tr>
-
 
   _on_favorite_click: ->
     btn_favorite = $(ReactDOM.findDOMNode(@)).find(".favorite-star")
