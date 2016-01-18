@@ -19,7 +19,7 @@
 
   componentDidMount: ->
     @_fetch_immedates()
-    #setInterval(@_fetch_immedates, 10000);
+    setInterval(@_fetch_immedates, 120*1000);
 
   _fetch_immedates: (data)->
     $.ajax(
@@ -187,7 +187,7 @@
 
   componentDidMount: ->
     @_fetch_favorites()
-    #setInterval(@_fetch_favorites, 10000);
+    setInterval(@_fetch_favorites, 120*1000);
 
   _fetch_favorites: (data)->
     #user_id = Android.getUserId()
@@ -239,7 +239,7 @@
 
   componentDidMount: ->
     @_fetch_immedate_index()
-    #setInterval(@_fetch_immedate_index, 10000);
+    setInterval(@_fetch_immedate_index, 120*1000);
 
   _fetch_immedate_index: (data)->
     $.ajax(
@@ -366,7 +366,7 @@
 
   componentDidMount: ->
     @_fetch_sb_list()
-    #setInterval(@_fetch_sb_list, 10000);
+    setInterval(@_fetch_sb_list, 120*1000);
 
   _fetch_sb_list: (data)->
     $.ajax(
