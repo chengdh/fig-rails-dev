@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :set_match, only: [:show, :edit, :update, :destroy,:show_bigdata]
 
   # GET /matches
   # GET /matches.json
@@ -83,6 +83,10 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
+  end
+
+  #GET /matches/:id/show_bigata
+  def show_bigdata
   end
 
   # POST /matches

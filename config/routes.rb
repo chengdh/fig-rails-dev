@@ -24,8 +24,8 @@ Rails.application.routes.draw do
     get :immediate_index,on: :collection
     get :search_by_league,on: :collection
     get :show_recommand,on: :collection
+    get :show_bigdata,on: :member
   end
-
 
   constraints(:id => /\w+(,\w+)*/) do
     resources :user_favorites

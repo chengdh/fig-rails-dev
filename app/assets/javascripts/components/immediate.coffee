@@ -64,12 +64,12 @@
   displayName: "Match",
   render: ->
     <tr className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
-      <td>
+      <td style={verticalAlign : "middle"}>
         <button className="btn btn-default btn-xs btn-favorite" type="button" onClick={@._on_favorite_click}>
             <span className="glyphicon glyphicon-star favorite-star" aria-hidden="true"></span>
         </button>
       </td>
-      <td>
+      <td style={verticalAlign : "middle"}>
         {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
         {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
@@ -84,9 +84,9 @@
       <td>
         {@props.data.match_status_before_type_cast == 0 and "未开"}
         {@props.data.match_status_before_type_cast == 0 or @props.data.status}
-        {@props.data.match_status_before_type_cast == 0 or <p><span className="label label-info">{@props.data.match_describe}</span></p>}
+        {@props.data.match_status_before_type_cast == 0 or <p style={margin : "0 0 2px 0"}><span className="label label-info">{@props.data.match_describe}</span></p>}
       </td>
-      <td>
+      <td style={verticalAlign : "middle"}>
         {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
         {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
@@ -98,7 +98,17 @@
         {@props.data.current_match.guest_yellow_card? and <span className="label label-warning">{@props.data.current_match.guest_yellow_card}</span>}
         </p>
       </td>
+      <td style={verticalAlign : "middle"}>
+        <button className="btn btn-default btn-xs btn-bigdata" type="button" onClick={@._on_bigdata_click}>
+            <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
+        </button>
+      </td>
+
     </tr>
+
+  _on_bigdata_click: ->
+    match_id = @props.data.match_id
+    Android.openMatchShowBigdataActivity(match_id)
 
   _on_favorite_click: ->
     btn_favorite = $(ReactDOM.findDOMNode(@)).find(".favorite-star")
@@ -212,7 +222,16 @@
 
   render: ->
     match_nodes = @state.matches.map (m)->
-      <ImmediateIndexItem key={m.match_id} data={match: m,companies: m.companies,begin_odds: m.odds_asians_begin,current_odds: m.odds_asians_current} />
+      <ImmediateIndexItem key={m.match_id} data={
+        match: m,
+        companies: m.companies,
+        odds_asians_begin: m.odds_asians_begin,
+        odds_asians_current: m.odds_asians_current,
+        odds_europes_begin: m.odds_europes_begin,
+        odds_europes_current: m.odds_europes_current,
+        odds_balls_begin: m.odds_balls_begin,
+        odds_balls_current: m.odds_balls_current
+      } />
 
     <table className="table table-hover table-condensed table-striped" id="immediate_index_table" style={fontSize : "10px"}>
       {match_nodes}
@@ -252,7 +271,7 @@
     ret = []
     match_head_1 =
       <tr key={@props.data.match.match_id + "_head_1"}>
-        <th colSpan="5">
+        <th colSpan="10">
           <h5>
             <span className="label label-primary">{@props.data.match.league.cn_name}</span>
             <span>&nbsp;{@props.data.match.match_time}&nbsp;</span>
@@ -266,10 +285,15 @@
     match_head_2 =
       <tr key={@props.data.match.match_id + "_head_2"}>
         <th style={textAlign : 'center'}>公司</th>
-        <th style={textAlign : 'center'}></th>
         <th style={textAlign : 'center'}>主队</th>
-        <th style={textAlign : 'center'}>盘口</th>
+        <th style={textAlign : 'center'}>让球</th>
         <th style={textAlign : 'center'}>客队</th>
+        <th style={textAlign : 'center'}>主胜</th>
+        <th style={textAlign : 'center'}>和局</th>
+        <th style={textAlign : 'center'}>客胜</th>
+        <th style={textAlign : 'center'}>大球</th>
+        <th style={textAlign : 'center'}>盘口</th>
+        <th style={textAlign : 'center'}>小球</th>
       </tr>
 
     ret.push(match_head_1)
@@ -279,16 +303,26 @@
       ret.push(
         <tr key={@props.data.match.match_id + "_head_3"}>
           <td rowSpan="2" style={verticalAlign: 'middle'}>{c.cn_name}</td>
-          <td>初盘</td>
-          <td>{@props.data.begin_odds[i].home}</td>
-          <td>{@props.data.begin_odds[i].goal}</td>
-          <td>{@props.data.begin_odds[i].away}</td>
+          <td>{@props.data.odds_asians_begin[i]?.home}</td>
+          <td>{@props.data.odds_asians_begin[i]?.goal}</td>
+          <td>{@props.data.odds_asians_begin[i]?.away}</td>
+          <td>{@props.data.odds_europes_begin[i]?.hw}</td>
+          <td>{@props.data.odds_europes_begin[i]?.st}</td>
+          <td>{@props.data.odds_europes_begin[i]?.aw}</td>
+          <td>{@props.data.odds_balls_begin[i]?.over}</td>
+          <td>{@props.data.odds_balls_begin[i]?.goal}</td>
+          <td>{@props.data.odds_balls_begin[i]?.under}</td>
         </tr>
         <tr key={@props.data.match.match_id + "_head_4"}>
-          <td>即时</td>
-          <td>{@props.data.current_odds[i].home}</td>
-          <td>{@props.data.current_odds[i].goal}</td>
-          <td>{@props.data.current_odds[i].away}</td>
+          <td>{@props.data.odds_asians_current[i]?.home}</td>
+          <td>{@props.data.odds_asians_current[i]?.goal}</td>
+          <td>{@props.data.odds_asians_current[i]?.away}</td>
+          <td>{@props.data.odds_europes_current[i]?.hw}</td>
+          <td>{@props.data.odds_europes_current[i]?.st}</td>
+          <td>{@props.data.odds_europes_current[i]?.aw}</td>
+          <td>{@props.data.odds_balls_current[i]?.over}</td>
+          <td>{@props.data.odds_balls_current[i]?.goal}</td>
+          <td>{@props.data.odds_balls_current[i]?.under}</td>
       </tr>
       )
       i++
@@ -304,7 +338,16 @@
 
   render: ->
     match_nodes = @state.matches.map (m)->
-      <SbItem key={m.match_id} data={match: m,odds_asian: m.odds_asian,odds_ball: m.odds_balls,odds_europe: m.odds_europes} />
+      <SbItem key={m.match_id} data={
+        match: m,
+        odds_asian: m.odds_asian,
+        odds_ball: m.odds_balls,
+        odds_europe: m.odds_europes,
+        is_home_bigdata_recommend: m.is_home_bigdata_recommend,
+        is_home_yinglang_recommend: m.is_home_yinglang_recommend,
+        is_guest_bigdata_recommend: m.is_guest_bigdata_recommend,
+        is_guest_yinglang_recommed: m.is_guest_yinglang_recommend
+      } />
 
     <table className="table table-hover table-condensed table-striped" id="immediate_index_table" style={fontSize : "10px"}>
       <thead>
@@ -315,6 +358,7 @@
           <th>亚赔</th>
           <th>大小</th>
           <th>欧赔</th>
+          <th></th>
         </tr>
       </thead>
       {match_nodes}
@@ -351,10 +395,20 @@
       <tr key={@props.data.match.match_id+"_tr_1"} style={textAlign : 'center'}>
         <td>{@props.data.match.league.cn_name}</td>
         <td>{@props.data.match.current_match.home_score}</td>
-        <td>{@props.data.match.team1.cn_name}</td>
+        <td style={verticalAlign : "middle"}>
+          {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
+          {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
+          {@props.data.match.team1.cn_name}
+        </td>
         <td>{@props.data.match.odds_asian.home}</td>
         <td>{@props.data.match.odds_ball.over}</td>
         <td>{@props.data.match.odds_europe.hw}</td>
+        <td rowSpan="3" style={verticalAlign : "middle"}>
+          <button className="btn btn-default btn-xs btn-bigdata" type="button" onClick={@._on_bigdata_click}>
+            <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
+          </button>
+        </td>
+
       </tr>
     tr_2 =
       <tr  key={@props.data.match.match_id+"_tr_2"} style={textAlign : 'center'}>
@@ -369,7 +423,11 @@
       <tr  key={@props.data.match.match_id+"_tr_3"} style={textAlign : 'center'}>
         <td></td>
         <td>{@props.data.match.current_match.guest_score}</td>
-        <td>{@props.data.match.team2.cn_name}</td>
+        <td style={verticalAlign : "middle"}>
+          {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
+          {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
+          {@props.data.match.team2.cn_name}
+        </td>
         <td>{@props.data.match.odds_asian.away}</td>
         <td>{@props.data.match.odds_ball.under}</td>
         <td>{@props.data.match.odds_europe.aw}</td>
@@ -378,3 +436,9 @@
     ret.push(tr_2)
     ret.push(tr_3)
     <tbody>{ret}</tbody>
+
+  _on_bigdata_click: ->
+    match_id = @props.data.match.match_id
+    Android.openMatchShowBigdataActivity(match_id)
+
+

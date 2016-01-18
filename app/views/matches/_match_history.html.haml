@@ -1,4 +1,4 @@
-/ 对战成绩
+/ 对战成绩 
 %table.table.table-striped.table-condensed.table-hover
   %thead
     - if title.present?
@@ -24,8 +24,8 @@
         %td= match.league.cn_name
         %td= match.team1.cn_name
         %td
-          %p
-            %em= "(#{match.half_home_score} : #{match.half_guest_score})"
-          %p= "#{match.half_home_score} : #{match.half_guest_score}"
+          %em= "(#{match.half_home_score} : #{match.half_guest_score})"
+          %p{:style => "margin : 0 0 3px 0;"}
+          %em= "#{match.half_home_score} : #{match.half_guest_score}"
         %td= match.team2.cn_name
         %td  todo

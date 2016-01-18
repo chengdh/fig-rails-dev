@@ -36,6 +36,13 @@ class Match < ActiveRecord::Base
   has_many :guest_events,->{where(:ishome=> false)},class_name: "Event"
   has_many :match_recommands
 
+  #亚欧赔率统计-初盘
+  has_many :odds_rates_begin,->{where(:odds_type => 1)},class_name: "OddsRate"
+  #亚欧赔率统计-终盘
+  has_many :odds_rates_final,->{where(:odds_type => 3)},class_name: "OddsRate"
+  #滚球数据
+  has_many :odds_rolls
+
   #主队首发阵容
   has_many :home_start_line_ups ,->(lineup) {joins(:match).where(odds_type: 1).where("t_lineup.team_id = t_match.team1_id")},class_name: "Lineup"
   #主队替补

@@ -1,0 +1,24 @@
+/ 亚欧赔率统计
+%table.table.table-striped.table-condensed.table-hover
+  %thead
+    - if title.present?
+      %tr
+        %th{:colspan => 7}
+          %h5= title
+
+    %tr
+      %th 公司
+      %th 上盘
+      %th 走盘
+      %th 下盘
+      %th 主胜
+      %th 平赔
+      %th 客胜
+  %tbody
+    - odds_rates.each do |o|
+      %td= o.try(:home)
+      %td= o.try(:goal)
+      %td= o.try(:away)
+      %td= o.try(:hw)
+      %td= o.try(:st)
+      %td= o.try(:aw)

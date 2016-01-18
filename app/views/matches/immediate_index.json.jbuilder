@@ -27,4 +27,33 @@ json.matches @matches do |m|
     json.goal goal_en(o.try(:goal))
     json.away o.try(:away)
   end
+  #欧盘初盘
+  json.odds_europes_begin m.current_odds_europes.second.first.values do |o|
+    json.company_name o.try(:company).try(:cn_name)
+    json.hw o.try(:hw)
+    json.st goal_en(o.try(:st))
+    json.aw o.try(:aw)
+  end
+  #欧盘即时
+  json.odds_europes_current m.current_odds_europes.second.second.values do |o|
+    json.company_name o.try(:company).try(:cn_name)
+    json.hw o.try(:hw)
+    json.st goal_en(o.try(:st))
+    json.aw o.try(:aw)
+  end
+
+  #大小球初盘
+  json.odds_balls_begin m.current_odds_balls.second.first.values do |o|
+    json.company_name o.try(:company).try(:cn_name)
+    json.over o.try(:over)
+    json.goal goal_en(o.try(:goal))
+    json.under o.try(:under)
+  end
+  #大小球即时
+  json.odds_balls_current m.current_odds_balls.second.second.values do |o|
+    json.company_name o.try(:company).try(:cn_name)
+    json.over o.try(:over)
+    json.goal goal_en(o.try(:goal))
+    json.under o.try(:under)
+  end
 end

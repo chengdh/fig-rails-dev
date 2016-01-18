@@ -9,6 +9,11 @@ $ ->
     if $(el).hasClass("favorite-star") or $(el).hasClass("btn-favorite")
       evt.stopPropagation()
       return
+
+    if $(el).hasClass("icon-bigdata") or $(el).hasClass("btn-bigdata")
+      evt.stopPropagation()
+      return
+
     match = $(this).data("match")
     json_str = JSON.stringify(match_id : match.match_id)
     Android.passObject("args",json_str)
