@@ -2,11 +2,11 @@
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json(methods: [:is_home_bigdata_recommend?,:is_home_yinglang_recommend?,:is_guest_bigdata_recommend?,:is_guest_yinglang_recommend?] )}
-        %td{:style => "vertical-align : center;"}
+        %td{:style => "vertical-align : middle;"}
           %button.btn.btn-default.btn-xs.btn-home-bigdata-recommand{:type =>"button","data-recommend-type" => 1,"data-recommend-home-or-guest" => "home"}
             %span.glyphicon.glyphicon-tree-deciduous.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_home_bigdata_recommend? ? 'color : red' : ""}"}
 
-        %td
+        %td{:style => "vertical-align : middle;"}
           %button.btn.btn-default.btn-xs.btn-home-yinglang-recommand{:type =>"button","data-recommend-type" => 2,"data-recommend-home-or-guest" => "home"}
             %span.glyphicon.glyphicon-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_home_yinglang_recommend? ? 'color : red' : ""}"}
 
@@ -30,11 +30,11 @@
               %span.label.label-info
                 = "#{match.try(:current_match).try(:home_score)} : #{match.try(:current_match).try(:guest_score)}"
 
-        %td
+        %td{:style => "vertical-align : middle;"}
           %button.btn.btn-default.btn-xs.btn-guest-bigdata-recommand{:type =>"button","data-recommend-type" => 1,"data-recommend-home-or-guest" => "guest"}
             %span.glyphicon.glyphicon-tree-deciduous.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_guest_bigdata_recommend? ? 'color : red' : ""}"}
 
-        %td
+        %td{:style => "vertical-align : middle;"}
           %button.btn.btn-default.btn-xs.btn-guest-yinglang-recommand{:type =>"button","data-recommend-type" => 2,"data-recommend-home-or-guest" => "guest"}
             %span.glyphicon.glyphicon-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_guest_yinglang_recommend? ? 'color : red' : ""}"}
 

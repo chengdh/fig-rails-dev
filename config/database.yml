@@ -12,8 +12,8 @@
 default: &default
   adapter: oracle_enhanced
   #host: 106.187.53.155
-  #host: 192.168.100.204
-  host: 192.168.1.104
+  host: 192.168.100.204
+  #host: 192.168.1.104
   database: xe
   username: match
   password: match

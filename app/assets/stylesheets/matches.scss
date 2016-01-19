@@ -10,3 +10,14 @@
   transform: translate3d( 0, 50px, 0 );
 }
 #immediate_table .match-tr td{padding: 0;}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: none;
+    color: #000000;
+    font-size: 10px;
+    line-height: 25px;
+    padding: 5px;
+}

@@ -38,23 +38,23 @@ $ ->
     #主队 大数据推荐
     if recommend_type == 1 and recommend_home_or_guest == 'home'
       if match["is_home_bigdata_recommend?"]
-        func_unrecommend(match,team1_id,recommend_type)
+        func_unrecommend(match,team1_id,"1")
         match["is_home_bigdata_recommend?"] = false
         $(this).find(".recommend-flag").css(color : "")
       else
-        func_recommend(match,team1_id,recommend_type)
+        func_recommend(match,team1_id,"1")
         match["is_home_bigdata_recommend?"] = true
         $(this).find(".recommend-flag").css(color : "red")
 
     #主队 赢朗推荐
     if recommend_type == 2 and recommend_home_or_guest == 'home'
       if match["is_home_yinglang_recommend?"]
-        func_unrecommend(match,team1_id,recommend_type)
+        func_unrecommend(match,team1_id,"2")
         match["is_home_yinglang_recommend?"] = false
 
         $(this).find(".recommend-flag").css(color : "")
       else
-        func_recommend(match,team1_id,recommend_type)
+        func_recommend(match,team1_id,"2")
         match["is_home_yinglang_recommend?"] = false
 
         $(this).find(".recommend-flag").css(color : "red")
@@ -63,12 +63,12 @@ $ ->
     #客队 大数据推荐
     if recommend_type == 1 and recommend_home_or_guest == 'guest'
       if match["is_guest_bigdata_recommend?"]
-        func_unrecommend(match,team2_id,recommend_type)
+        func_unrecommend(match,team2_id,"1")
         match["is_guest_bigdata_recommend?"] = false
 
         $(this).find(".recommend-flag").css(color : "")
       else
-        func_recommend(match,team2_id,recommend_type)
+        func_recommend(match,team2_id,"1")
         match["is_guest_bigdata_recommend?"] = true
 
         $(this).find(".recommend-flag").css(color : "red")
@@ -77,12 +77,12 @@ $ ->
     #客队 赢朗推荐
     if recommend_type == 2 and recommend_home_or_guest == 'guest'
       if match["is_guest_yinglang_recommend?"]
-        func_unrecommend(match,team2_id,recommend_type)
+        func_unrecommend(match,team2_id,"2")
         match["is_guest_yinglang_recommend?"] = false
 
         $(this).find(".recommend-flag").css(color : "")
       else
-        func_recommend(match,team2_id,recommend_type)
+        func_recommend(match,team2_id,"2")
         match["is_guest_yinglang_recommend?"] = false
         $(this).find(".recommend-flag").css(color : "true")
 

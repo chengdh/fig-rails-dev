@@ -71,7 +71,7 @@
       </td>
       <td style={verticalAlign : "middle"}>
         {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
-        {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
+        {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
       <td>
         <span>{@props.data.league.cn_name} {@props.data.match_time}</span>
@@ -88,7 +88,7 @@
       </td>
       <td style={verticalAlign : "middle"}>
         {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
-        {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
+        {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
       <td>
         {@props.data.begin}

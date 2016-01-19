@@ -92,19 +92,13 @@
               <%= yield %>
             </div>
           </div>
+
         </div>
       <!--/div -->
     <!--/div -->
-    <!--
     <footer>
-      <div class="container">
-        <div class="copy text-center">
-          Copyright 2015 <a href='#'>yinglang sport app</a>
-        </div>
-
-      </div>
+      <%= react_component 'OddChangeTable', {url: odd_changes_path(format: :json)}, :div %>
     </footer>
-    -->
   </body>
   <%= javascript_include_tag 'application',debug:  true %>
 </html>

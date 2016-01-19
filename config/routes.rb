@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :odd_changes
   devise_for :users, controllers: {registrations: "registrations"}
   resources :league_rankings
   resources :events
