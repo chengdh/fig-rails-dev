@@ -62,7 +62,7 @@
 @Match = React.createClass
   displayName: "Match",
   render: ->
-    <tr  style={verticalAlign : "middle"} className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
+    <tr className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
       <td style={verticalAlign : "middle"}>
         <button className="btn btn-default btn-xs btn-favorite" type="button" onClick={@._on_favorite_click}>
             <span className="glyphicon glyphicon-star favorite-star" aria-hidden="true"></span>
@@ -72,7 +72,7 @@
         {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
         {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
-      <td>
+      <td style={verticalAlign : "middle"}>
         <span>{@props.data.league.cn_name} {@props.data.match_time}</span>
         <p>
           {@props.data.current_match.home_yellow_card? and <span className="label label-warning">{@props.data.current_match.home_yellow_card}</span>}
