@@ -41,7 +41,7 @@
   _fetch_favorites: ->
     user_id = Android.getUserId()
     $.ajax(
-      url: "/my_favorites/" +user_id + ".json",
+      url: "/my_favorites/#{user_id }.json",
       dataType: 'json'
     )
     .done((data)->
@@ -62,7 +62,7 @@
 @Match = React.createClass
   displayName: "Match",
   render: ->
-    <tr className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
+    <tr  style={verticalAlign : "middle"} className={"match-tr match-"+@props.data.match_id} data-match={JSON.stringify(@props.data)}>
       <td style={verticalAlign : "middle"}>
         <button className="btn btn-default btn-xs btn-favorite" type="button" onClick={@._on_favorite_click}>
             <span className="glyphicon glyphicon-star favorite-star" aria-hidden="true"></span>
@@ -89,7 +89,7 @@
         {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
         {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
-      <td>
+      <td style={verticalAlign : "middle"}>
         {@props.data.begin}
         <p>
         {@props.data.team2.cn_name}
