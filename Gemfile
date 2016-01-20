@@ -47,6 +47,12 @@ group :development, :test do
 end
 
 
+gem 'will_paginate', '~> 3.1'
+gem 'cancancan', '~> 1.13', '>= 1.13.1'
+gem 'ransack', '~> 1.7'
+gem 'state_machine', '~> 1.2'
+gem 'acts_as_tree', '~> 2.4'
+gem 'lhm', '~> 2.2'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'

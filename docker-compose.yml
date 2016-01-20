@@ -7,11 +7,11 @@ mysql:
 web:
   build: .
   command: bundle exec rails s -b 0.0.0.0 -p 3000
+  container_name: nanyang-web-container
   volumes:
     # This seems to work as-is once you expose /Users to the boot2docker vm.
     - .:/rails_app
   links:
     - mysql
   ports:
-    - "8080:8080"
-    - "3000:3000"
+    - "5000:3000"
