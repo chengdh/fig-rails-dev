@@ -8,7 +8,7 @@
     change_nodes = @state.odd_changes.map (o)->
       <OddChangeItem key={"#{o.match.match_id}_#{o.timestamp}"} data={odd_change : o} />
 
-    <table className="table table-hover table-condensed table-striped" id="odd_changes_table" style={fontSize : "10px"}>
+    <table className="table table-hover table-condensed table-striped" id="odd_changes_table" style={fontSize : "12px",display : "none"}>
       <tbody>
         {change_nodes}
       </tbody>
@@ -31,8 +31,8 @@
     console.log "fetch odd changes success"
     #判断是否有新的数据
     this_el = ReactDOM.findDOMNode(@)
-    #if data.odd_changes.length > 0
-    #  $(this_el).fadeIn().delay(10000).fadeOut()
+    if data.odd_changes.length > 0
+      $(this_el).fadeIn().delay(10000).fadeOut()
 
     @setState
       odd_changes: data.odd_changes

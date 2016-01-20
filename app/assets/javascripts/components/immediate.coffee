@@ -39,8 +39,7 @@
 
   #获取当前用户关注的比赛
   _fetch_favorites: ->
-    #user_id = Android.getUserId()
-    user_id = 1
+    user_id = Android.getUserId()
     $.ajax(
       url: "/my_favorites/" +user_id + ".json",
       dataType: 'json'
@@ -81,7 +80,7 @@
           {@props.data.team1.cn_name}
         </p>
       </td>
-      <td>
+      <td style={verticalAlign : "middle"}>
         {@props.data.match_status_before_type_cast == 0 and "未开"}
         {@props.data.match_status_before_type_cast == 0 or @props.data.status}
         {@props.data.match_status_before_type_cast == 0 or <p style={margin : "0 0 2px 0"}><span className="label label-info">{@props.data.match_describe}</span></p>}
@@ -119,8 +118,7 @@
 
   #取消关注处理
   _unfavorite: ->
-    #user_id = Android.getUserId()
-    user_id = 1
+    user_id = Android.getUserId()
     if user_id < 0
       toastr.warn("您当前未登录!")
       return
@@ -143,8 +141,7 @@
 
   #关注处理
   _favorite: ->
-    #user_id = Android.getUserId()
-    user_id = 1 
+    user_id = Android.getUserId()
     console.log("user_id : " + user_id)
     if user_id < 0
       toastr.warn("您当前未登录!")
@@ -190,8 +187,7 @@
     setInterval(@_fetch_favorites, 120*1000);
 
   _fetch_favorites: (data)->
-    #user_id = Android.getUserId()
-    user_id = 1
+    user_id = Android.getUserId()
     $.ajax(
       url: "/my_favorites/" +user_id + ".json",
       dataType: 'json',

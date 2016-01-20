@@ -8,7 +8,7 @@ $ ->
     league_ids = (l.league_id for l in $("[data-leagues]").data("leagues"))
     q_leagues = $.param("q[league_id_in]" : league_ids )
     #FIXME  暂时注释
-    #Android.passString("q_leagues",q_leagues)
+    Android.passString("q_leagues",q_leagues)
     console.log("set leagues : " + q_leagues)
 
   #赛事筛选
@@ -72,5 +72,3 @@ $(".league-tabs .btn").on("click",(evt)->
     $(".league-tabs .btn").removeClass("btn-info")
     $(this_el).addClass("btn-info")
   )
-
-
