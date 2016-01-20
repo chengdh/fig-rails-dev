@@ -33,7 +33,6 @@ WORKDIR /rails_app
 RUN ruby -v
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
-RUN ruby -v
 RUN bundle install
 
 ADD . /rails_app

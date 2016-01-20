@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 20150504153457) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
-    t.string   "company_name",           limit: 60,                  null: false
     t.string   "address",                limit: 60
     t.string   "touch_man",              limit: 30
     t.string   "phone",                  limit: 20
