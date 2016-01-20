@@ -3,7 +3,7 @@ set :rails_env,     "production"
 set :app_env,     "production"
 
 set :application, "yinglang-sport-server"
-set :repo_url,  "git@github.com:chengdh/fig-rails-dev.git"
+set :repo_url,  "https://github.com/chengdh/fig-rails-dev.git"
 set :branch,"yinglang-sport-server"
 set :scm, :git
 
