@@ -32,7 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
       #
       # 添加其他字段
-      t.string :company_name,null: false,limit: 60
+      #t.string :company_name,null: false,limit: 60
       t.string :address,limit: 60
       t.string :touch_man,limit: 30
       t.string :phone,limit: 20
