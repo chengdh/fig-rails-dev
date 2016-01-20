@@ -74,7 +74,7 @@
       </td>
       <td style={verticalAlign : "middle"}>
         <span>{@props.data.league.cn_name} {@props.data.match_time}</span>
-        <p>
+        <p style={margin : 0}>
           {@props.data.current_match.home_yellow_card? and <span className="label label-warning">{@props.data.current_match.home_yellow_card}</span>}
           {@props.data.current_match.home_red_card? and <span className="label label-danger">{@props.data.current_match.home_red_card}</span>}
           {@props.data.team1.cn_name}
@@ -91,7 +91,7 @@
       </td>
       <td style={verticalAlign : "middle"}>
         {@props.data.begin}
-        <p>
+        <p style={margin : 0}>
         {@props.data.team2.cn_name}
         {@props.data.current_match.guest_red_card? and <span className="label label-danger">{@props.data.current_match.guest_red_card}</span>}
         {@props.data.current_match.guest_yellow_card? and <span className="label label-warning">{@props.data.current_match.guest_yellow_card}</span>}
@@ -102,7 +102,6 @@
             <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
         </button>
       </td>
-
     </tr>
 
   _on_bigdata_click: ->
