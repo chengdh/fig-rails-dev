@@ -50,8 +50,8 @@ test:
 #
 production:
   adapter: oracle_enhanced
-  host: 106.187.53.155
+  host: 203.110.165.238
   port: 1521
-  database: xe
+  database: orcl
   username: match
   password: match
