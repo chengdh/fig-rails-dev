@@ -13,7 +13,7 @@
       %tr
         - if e.ishome
           %td= e.try(:player_name1)
-          %td= image_tag("event_type_#{e.event_type}")
+          %td= image_tag("event_type_#{e.event_type}.png")
           %td= e.try(:happen_time).to_s + "'"
           %td
           %td
@@ -21,7 +21,7 @@
           %td
           %td
           %td= e.try(:happen_time).to_s + "'"
-          %td= image_tag("event_type_#{e.event_type}")
+          %td= image_tag("event_type_#{e.event_type}.png")
           %td= e.try(:player_name1)
   %tfoot
     %tr
