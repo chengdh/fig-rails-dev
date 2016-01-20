@@ -7,10 +7,11 @@ $ ->
     #如果点击的是收藏按钮,则直接返回
     el = evt.target
     if $(el).hasClass("favorite-star") or $(el).hasClass("btn-favorite")
-      evt.stopPropagation()
-      return
+      or $(el).hasClass("icon-bigdata") or $(el).hasClass("btn-bigdata")
+      or $(el).hasClass("recommend-flag")
+      or $(el).hasClass("btn-home-bigdata-recommand") or $(el).hasClass("btn-home-yinglang-recommand")
+      or $(el).hasClass("btn-guest-bigdata-recommand") or $(el).hasClass("btn-guest-yinglang-recommand")
 
-    if $(el).hasClass("icon-bigdata") or $(el).hasClass("btn-bigdata")
       evt.stopPropagation()
       return
 
