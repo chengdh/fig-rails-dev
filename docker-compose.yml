@@ -1,4 +1,4 @@
-mysql:
+nanyang_mysql:
   image: mysql
   environment:
     MYSQL_ROOT_PASSWORD: fizzbuzz
@@ -12,6 +12,6 @@ nanyang_web:
     # This seems to work as-is once you expose /Users to the boot2docker vm.
     - .:/rails_app
   links:
-    - mysql
+    - nanyang_mysql
   ports:
     - "5000:3000"

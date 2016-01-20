@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: root
   password: fizzbuzz
-  host: localhost
+  host: nanyang_mysql
 
 development:
   <<: *default
