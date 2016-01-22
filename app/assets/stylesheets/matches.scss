@@ -9,8 +9,10 @@
   -webkit-transform: translate3d( 0, 50px, 0 );
   transform: translate3d( 0, 50px, 0 );
 }
-#immediate_table .match-tr td{padding: 0;}
+#immediate_table .match-tr td{padding: 5px;}
 footer {
+    margin : 0;
+    padding : 0;
     position: fixed;
     bottom: 0;
     width: 100%;

@@ -1,3 +1,8 @@
+#测试用
+if not Android?
+    window.Android = {}
+    window.Android.getUserId = -> return 1
+
 #比赛信息列表
 @Immediate = React.createClass
   # Display name used for debugging
@@ -72,11 +77,11 @@
         {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
         {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
-      <td style={verticalAlign : "middle"}>
+      <td style={verticalAlign : "middle",width : "45%"}>
         <span>{@props.data.league.cn_name} {@props.data.match_time}</span>
-        <p style={margin : 0}>
-          {@props.data.current_match.home_yellow_card? and <span className="label label-warning">{@props.data.current_match.home_yellow_card}</span>}
-          {@props.data.current_match.home_red_card? and <span className="label label-danger">{@props.data.current_match.home_red_card}</span>}
+        <p style={margin : 0,fontSize: "10px"}>
+          {@props.data.current_match.home_yellow_card? and @props.data.current_match.home_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.current_match.home_yellow_card}</span>}
+          {@props.data.current_match.home_red_card? and @props.data.current_match.home_red_card > 0 and <span  style={padding: "2px"} className="label label-danger">{@props.data.current_match.home_red_card}</span>}
           {@props.data.team1.cn_name}
         </p>
       </td>
@@ -89,12 +94,12 @@
         {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
         {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
-      <td style={verticalAlign : "middle"}>
+      <td style={verticalAlign : "middle",width : "45%"}>
         {@props.data.begin}
-        <p style={margin : 0}>
+        <p style={margin : 0,fontSize: "5px"}>
         {@props.data.team2.cn_name}
-        {@props.data.current_match.guest_red_card? and <span className="label label-danger">{@props.data.current_match.guest_red_card}</span>}
-        {@props.data.current_match.guest_yellow_card? and <span className="label label-warning">{@props.data.current_match.guest_yellow_card}</span>}
+        {@props.data.current_match.guest_red_card? and @props.data.current_match.guest_red_card > 0 and <span style={padding: "2px"} className="label label-danger">{@props.data.current_match.guest_red_card}</span>}
+        {@props.data.current_match.guest_yellow_card? and @props.data.current_match.guest_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.current_match.guest_yellow_card}</span>}
         </p>
       </td>
       <td style={verticalAlign : "middle"}>
@@ -188,7 +193,7 @@
   _fetch_favorites: (data)->
     user_id = Android.getUserId()
     $.ajax(
-      url: "/my_favorites/" +user_id + ".json",
+      url: "/my_favorites/#{user_id}.json",
       dataType: 'json',
       data: data
       )

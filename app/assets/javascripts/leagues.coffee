@@ -2,13 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  #测试用
+  if not Android?
+    window.Android = {}
+    window.Android.getUserId = -> return 1
+
   toastr.options = {"positionClass": "toast-bottom-center"}
   #联赛筛选界面打开时,传入的筛选参数 q[league_id_in] =
-  if $("[data-leagues]").length > 0
+  if $("[data-leagues]").data("leagues")?
+    leagues = $("[data-leagues]").data("leagues")
     league_ids = (l.league_id for l in $("[data-leagues]").data("leagues"))
     q_leagues = $.param("q[league_id_in]" : league_ids )
     #FIXME  暂时注释
-    Android.passString("q_leagues",q_leagues)
+    #Android.passString("q_leagues",q_leagues)
     console.log("set leagues : " + q_leagues)
 
   #赛事筛选
