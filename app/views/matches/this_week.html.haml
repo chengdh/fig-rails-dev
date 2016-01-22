@@ -15,13 +15,15 @@
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json}
-        %td{:style => "vertical-align : middle;"}
+        %td{:style => "vertical-align : middle;width : 20%;"}
           = match.try(:league).try(:cn_name)
-          %p= match.match_time.strftime("%H:%M")
-        %td{:style => "vertical-align : middle;"}
+          %p{:style => "margin : 0;"}
+            = match.match_time.strftime("%H:%M")
+        %td{:style => "vertical-align : middle;width : 30%;"}
           = match.team1.cn_name
 
-        %td{:style => "vertical-align : middle;"} VS
+        %td{:style => "vertical-align : middle;"}
+          %span.label.label-danger vs
 
         %td{:style => "vertical-align : middle;"}
           = match.team2.cn_name

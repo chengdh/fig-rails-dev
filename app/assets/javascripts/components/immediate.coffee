@@ -85,7 +85,7 @@ if not Android?
           {@props.data.team1.cn_name}
         </p>
       </td>
-      <td style={verticalAlign : "middle"}>
+      <td style={verticalAlign : "middle",textAlign : "center"}>
         {@props.data.match_status_before_type_cast == 0 and "未开"}
         {@props.data.match_status_before_type_cast == 0 or @props.data.status}
         {@props.data.match_status_before_type_cast == 0 or <p style={margin : "0 0 2px 0"}><span className="label label-info">{@props.data.match_describe}</span></p>}
@@ -96,7 +96,7 @@ if not Android?
       </td>
       <td style={verticalAlign : "middle",width : "45%"}>
         {@props.data.begin}
-        <p style={margin : 0,fontSize: "5px"}>
+        <p style={margin : 0,fontSize: "10px"}>
         {@props.data.team2.cn_name}
         {@props.data.current_match.guest_red_card? and @props.data.current_match.guest_red_card > 0 and <span style={padding: "2px"} className="label label-danger">{@props.data.current_match.guest_red_card}</span>}
         {@props.data.current_match.guest_yellow_card? and @props.data.current_match.guest_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.current_match.guest_yellow_card}</span>}

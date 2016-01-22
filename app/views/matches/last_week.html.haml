@@ -15,22 +15,25 @@
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json}
-        %td
+        %td{:style => "vertical-align : middle;width : 15%;"}
           = match.try(:league).try(:cn_name)
-          %p= match.match_time.strftime("%H:%M")
-        %td{:style => "vertical-align : middle;"}
-          - if match.try(:current_match).try(:home_yellow_card).present?
-            %span.label.label-warning= match.try(:current_match).try(:home_yellow_card)
-          - if match.try(:current_match).try(:home_red_card).present?
-            %span.label.label-danger= match.try(:current_match).try(:home_red_card)
+          %p{:style => "margin : 0;"}
+            = match.match_time.strftime("%H:%M")
+        %td{:style => "vertical-align : middle; width : 35%;"}
+          - if match.try(:current_match).try(:home_yellow_card).present? and match.try(:current_match).try(:home_yellow_card) > 0
+            %span.label.label-warning{:style => "padding: 2px;"}= match.try(:current_match).try(:home_yellow_card)
+          - if match.try(:current_match).try(:home_red_card).present? and  match.try(:current_match).try(:home_red_card) > 0
+            %span.label.label-danger{:style => "padding: 2px;"}= match.try(:current_match).try(:home_red_card)
           = match.team1.cn_name
 
-        %td
-          = "#{match.home_score}:#{match.guest_score}"
-          %p= "(#{match.half_home_score}:#{match.half_guest_score})"
+        %td{:style => "vertical-align : middle;width : 10%;"}
+          %p{:style => "margin : 0;font-size : 5px;"}
+            = "#{match.home_score}:#{match.guest_score}"
+          %p{:style => "margin : 0;font-size : 5px;"}
+            = "(#{match.half_home_score}:#{match.half_guest_score})"
         %td{:style => "vertical-align : middle;"}
           = match.team2.cn_name
-          - if match.try(:current_match).try(:guest_red_card).present?
-            %span.label.label-danger= match.try(:current_match).try(:guest_red_card)
-          - if match.try(:current_match).try(:gues_yellow_card).present?
-            %span.label.label-warning= match.try(:current_match).try(:guest_yellow_card)
+          - if match.try(:current_match).try(:guest_red_card).present? and match.try(:current_match).try(:guest_red_card) > 0
+            %span.label.label-danger{:style => "padding: 2px;"}= match.try(:current_match).try(:guest_red_card)
+          - if match.try(:current_match).try(:gues_yellow_card).present? and  match.try(:current_match).try(:gues_yellow_card) > 0
+            %span.label.label-warning{:style => "padding: 2px;"}= match.try(:current_match).try(:guest_yellow_card)
