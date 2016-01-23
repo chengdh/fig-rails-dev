@@ -6,10 +6,12 @@ class Match < ActiveRecord::Base
   #如果当前是下午时间则显示今天十二点到明天十二点之间的比赛
   #如果是上午则显示昨天十二点到今天十二点之间的比赛
   #以即时比赛表数据为基础进行筛选
-  scope :immediate,-> {where("match_time >= ? and match_time <= ?",
-                             DateTime.now.hour < 12 ? DateTime.now.end_of_day - 36.hours : DateTime.now.end_of_day - 12.hours ,
-                             DateTime.now.hour < 12 ? DateTime.now.end_of_day - 12.hours : DateTime.now.end_of_day + 12.hours )
-  }
+  #scope :immediate,-> {where("match_time >= ? and match_time <= ?",
+  #                           DateTime.now.hour < 12 ? DateTime.now.end_of_day - 36.hours : DateTime.now.end_of_day - 12.hours ,
+  #                           DateTime.now.hour < 12 ? DateTime.now.end_of_day - 12.hours : DateTime.now.end_of_day + 12.hours )
+  #}
+  scope :immediate,-> {where("match_time >= ? and match_time <= ?",5.hours.ago ,5.hours.later)}
+
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛果 前7天
