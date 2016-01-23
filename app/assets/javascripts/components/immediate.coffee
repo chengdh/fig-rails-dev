@@ -180,7 +180,7 @@ if not Android?
     match_nodes = @state.matches.map (m)->
       <Match key={m.match_id} data={m} in_favorite={true} />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_table"}>
+    <table className="table table-hover table-condensed table-striped" id="immediate_table">
       <tbody>
         {match_nodes}
       </tbody>
