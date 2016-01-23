@@ -1,0 +1,12 @@
+= semantic_form_for @org do |f|
+  = f.inputs do
+    = f.input :name
+    = f.input :
+    = f.input :address
+    = f.input :org_type
+    = f.input :is_active
+    = f.input :order_by
+    = f.input :note
+
+  = f.actions do
+    = f.action :submit, :as => :input

@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @org.name
+%p
+  %b :
+  = @org.
+%p
+  %b Address:
+  = @org.address
+%p
+  %b Org type:
+  = @org.org_type
+%p
+  %b Is active:
+  = @org.is_active
+%p
+  %b Order by:
+  = @org.order_by
+%p
+  %b Note:
+  = @org.note
+
+= link_to 'Edit', edit_org_path(@org)
+\|
+= link_to 'Back', orgs_path
