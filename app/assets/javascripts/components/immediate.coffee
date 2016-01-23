@@ -180,7 +180,7 @@ if not Android?
     match_nodes = @state.matches.map (m)->
       <Match key={m.match_id} data={m} in_favorite={true} />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_table" style={fontSize : "10px"}>
+    <table className="table table-hover table-condensed table-striped" id="immediate_table"}>
       <tbody>
         {match_nodes}
       </tbody>
@@ -233,7 +233,7 @@ if not Android?
         odds_balls_current: m.odds_balls_current
       } />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_index_table" style={fontSize : "10px"}>
+    <table className="table table-hover table-condensed table-striped" id="immediate_index_table">
       {match_nodes}
     </table>
 
@@ -349,7 +349,7 @@ if not Android?
         is_guest_yinglang_recommed: m.is_guest_yinglang_recommend
       } />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_index_table" style={fontSize : "10px"}>
+    <table className="table table-hover table-condensed table-striped" id="immediate_index_table">
       <thead>
         <tr style={textAlign : 'center'}>
           <th></th>
