@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  system_function_group_id: 
+  is_active: false
+  order_by: 1
+  default_actioin: MyText
+
+two:
+  name: MyString
+  system_function_group_id: 
+  is_active: false
+  order_by: 1
+  default_actioin: MyText

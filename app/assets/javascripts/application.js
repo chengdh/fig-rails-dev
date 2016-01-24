@@ -15,8 +15,11 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js
-//require admin-lte/plugins/fastclick/fastclick
-//require admin-lte/dist/js/app.min
-//require admin-lte/plugins/sparkline/jquery.sparkline.min
-//require admin-lte/plugins/slimScroll/jquery.slimscroll.min
-//require admin-lte/plugins/chartjs/Chart.min
+//= require admin-lte/plugins/fastclick/fastclick
+//= require admin-lte/dist/js/app.min
+//= require admin-lte/plugins/sparkline/jquery.sparkline.min
+//= require admin-lte/plugins/slimScroll/jquery.slimscroll.min
+//= require admin-lte/plugins/chartjs/Chart.min
+//= require jquery-orgchart/jquery.orgchart
+//= require common
+//= require orgs

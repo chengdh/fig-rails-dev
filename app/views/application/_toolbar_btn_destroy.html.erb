@@ -1,0 +1,8 @@
+<%= link_to polymorphic_url(resource,:routing_type => :path),:method => :delete,
+  "data-confirm" => "你确定要删除吗?",
+  :class => "btn btn-default",
+  "data-toggle" => "tooltip",
+  "data-placement" => "top",
+  :title => "删除该记录" do %>
+  <i class="fa fa-trash"></i>
+<% end %>

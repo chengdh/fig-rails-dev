@@ -1,0 +1,19 @@
+%li
+  %p{:style => "font-size : 10px;"}
+    = link_to org.name,org
+  - if can? :update,org
+    = link_to edit_org_path(org), "data-toggle" => "tooltip","data-placement" => "bottom", :title => "修改当前机构" do
+      %i.fa.fa-edit
+  - if can? :destroy,org
+    = link_to org,
+      method: :delete,
+      "data-confirm" => "您确定要执行删除操作吗?",
+      "data-toggle" => "tooltip",
+      "data-placement" => "bottom",
+      title: "删除该机构" do
+      %i.fa.fa-trash
+
+  - if org.children.present?
+    %ul
+      - org.children.each do |child_org|
+        = render "org",org: child_org

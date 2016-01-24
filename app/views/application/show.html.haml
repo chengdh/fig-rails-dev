@@ -1,0 +1,16 @@
+<!-- Content Header (Page header) -->
+%section.content-header
+  %h1=  "查看#{resource_name}"
+
+<!-- Main content -->
+%section.content
+  <!-- Info boxes -->
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .box.box-solid.box-primary
+        .box-header
+          %h3.box-title
+            = render "dynamic_toolbar"
+
+        .box-body
+          = render "show",:show => resource

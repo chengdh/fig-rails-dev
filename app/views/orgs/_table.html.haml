@@ -1,0 +1,3 @@
+#org-tree
+  %ul{:id => "org-tree-data",:style => "display : none;"}
+    = render "org",org: Org.where(parent_id: nil).first

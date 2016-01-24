@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  role_id: 
+  system_function_operate_id: 
+  is_select: false
+
+two:
+  role_id: 
+  system_function_operate_id: 
+  is_select: false

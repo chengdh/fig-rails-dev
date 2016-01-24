@@ -65,6 +65,7 @@ gem "paperclip", "~> 4.2"
 gem 'bootstrap-datepicker-rails'
 gem 'net-ssh','2.9.2'
 gem 'devise'
+gem 'inherited_resources', '~> 1.6'
 
 group :development do
   gem 'better_errors'

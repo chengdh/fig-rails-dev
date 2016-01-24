@@ -1,3 +1,10 @@
 // Place all the styles related to the orgs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.orgChart {
+  font-size : 12px;
+}
+div.orgChart div.node.level0,
+div.orgChart div.node.level2 {
+    background-color: rgb(244, 227, 116);
+}

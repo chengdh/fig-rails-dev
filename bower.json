@@ -20,7 +20,7 @@
     "toastr": "~2.1.2",
     "fancybox": "*",
     "admin-lte": "*",
-    "jOrgChart": "https://github.com/wesnolte/jOrgChart.git",
+    "jquery-orgchart": "https://github.com/caprica/jquery-orgchart.git",
     "zTree": "https://git.oschina.net/zTree/zTree_v3.git",
     "blockUI" : "*"
   }

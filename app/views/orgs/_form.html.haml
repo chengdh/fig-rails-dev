@@ -1,12 +1,7 @@
-= semantic_form_for @org do |f|
+= semantic_form_for @org,:html => {:id => "#{resource_class.name.underscore}_form"}  do |f|
   = f.inputs do
     = f.input :name
-    = f.input :
     = f.input :address
     = f.input :org_type
-    = f.input :is_active
     = f.input :order_by
-    = f.input :note
-
-  = f.actions do
-    = f.action :submit, :as => :input
+    = f.input :is_active,label: false
