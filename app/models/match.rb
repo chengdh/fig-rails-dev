@@ -10,16 +10,16 @@ class Match < ActiveRecord::Base
   #                           DateTime.now.hour < 12 ? DateTime.now.end_of_day - 36.hours : DateTime.now.end_of_day - 12.hours ,
   #                           DateTime.now.hour < 12 ? DateTime.now.end_of_day - 12.hours : DateTime.now.end_of_day + 12.hours )
   #}
-  scope :immediate,-> {where("match_time >= ? and match_time <= ?",5.hours.ago ,5.hours.since)}
+  scope :immediate,-> {where("match_time >= ? and match_time <= ?",5.hours.ago + 8.hours ,5.hours.since+8.hours)}
 
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛果 前7天
-  scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago,7.days.ago)}
+  scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago + 8.hours ,7.days.ago + 8.hours)}
   #scope :last_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛程 本周
-  scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week,Date.today.end_of_week)}
+  scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week + 8.hours,Date.today.end_of_week + 8.hours)}
   #scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #sb滚球数据
@@ -86,11 +86,11 @@ class Match < ActiveRecord::Base
   end
   #近10场主队战绩
   def matches_recent_home
-    Match.where("team1_id = ? or team2_id = ? AND match_time <= ? ",team1_id,team1_id,1.days.ago).limit(10).order("match_time DESC")
+    Match.where("team1_id = ? or team2_id = ? AND match_time <= ? ",team1_id,team1_id,1.days.ago + 8.hours).limit(10).order("match_time DESC")
   end
   #近10场客队战绩
   def matches_recent_guest
-    Match.where("team1_id = ? OR team2_id = ? AND match_time <= ?",team2_id,team2_id,1.days.ago).limit(10).order("match_time DESC")
+    Match.where("team1_id = ? OR team2_id = ? AND match_time <= ?",team2_id,team2_id,1.days.ago + 8.hours).limit(10).order("match_time DESC")
   end
 
   #当前亚盘数据
