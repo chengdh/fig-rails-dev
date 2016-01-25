@@ -95,7 +95,7 @@ if not Android?
         {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
       <td style={verticalAlign : "middle",width : "45%"}>
-        <span  style={fontSize : '10px'>{@props.data.begin}</span>
+        <span  style={fontSize : '10px'}>{@props.data.begin}</span>
         <p style={margin : 0,fontSize: "10px"}>
         {@props.data.team2.cn_name}
         {@props.data.current_match.guest_red_card? and @props.data.current_match.guest_red_card > 0 and <span style={padding: "2px"} className="label label-danger">{@props.data.current_match.guest_red_card}</span>}
