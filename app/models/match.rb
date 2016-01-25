@@ -3,6 +3,8 @@
 class Match < ActiveRecord::Base
   self.table_name = "t_match"
   self.primary_key = "match_id"
+
+  default_scope {order("match_time DESC")}
   #如果当前是下午时间则显示今天十二点到明天十二点之间的比赛
   #如果是上午则显示昨天十二点到今天十二点之间的比赛
   #以即时比赛表数据为基础进行筛选
