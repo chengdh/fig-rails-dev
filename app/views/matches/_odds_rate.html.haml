@@ -16,9 +16,11 @@
       %th 客胜
   %tbody
     - odds_rates.each do |o|
-      %td= o.try(:home)
-      %td= o.try(:goal)
-      %td= o.try(:away)
-      %td= o.try(:hw)
-      %td= o.try(:st)
-      %td= o.try(:aw)
+      %tr
+        %td= o.try(:company).try(:name)
+        %td= o.try(:home)
+        %td= o.try(:goal)
+        %td= o.try(:away)
+        %td= o.try(:hw)
+        %td= o.try(:st)
+        %td= o.try(:aw)
