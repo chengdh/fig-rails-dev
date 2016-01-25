@@ -11,7 +11,6 @@ class Match < ActiveRecord::Base
                              DateTime.now.hour < 4 ? DateTime.now.end_of_day - 24.hours : DateTime.now.end_of_day - 4.hours ,
                              DateTime.now.hour < 4 ? DateTime.now.end_of_day - 4.hours : DateTime.now.end_of_day + 20.hours )
   }
-  #scope :immediate,-> {where("match_time >= ? and match_time <= ?",5.hours.ago + 8.hours ,5.hours.since+8.hours)}
 
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
@@ -194,6 +193,18 @@ class Match < ActiveRecord::Base
   def match_status_before_type_cast
     ret = try(:current_match).try(:match_status)
     ret = 0 if ret.blank?
+    #比赛结束后,home_score数值会被更新
+    ret = -1 if home_score.present?
+    ret
+  end
+
+  def status_des
+    status = match_status_before_type_cast
+    ret = ""
+    ret = "未开" if status == 0
+    #完场
+    ret = "#{home_score} : #{guest_score}" if status == -1
+    ret = "#{try(:current_match).try(:home_score)} : #{try(:current_match).try(:guest_score)}" if [1,2,3].include?(status)
     ret
   end
 

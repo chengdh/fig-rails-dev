@@ -8,7 +8,7 @@ json.matches @matches do |m|
   json.team2 m.try(:team2)
   json.status m.status
   json.match_status_before_type_cast m.match_status_before_type_cast
-  json.match_describe m.try(:match_status_before_type_cast) == 0 ? "未开" : "#{m.try(:current_match).try(:home_score)} : #{m.try(:current_match).try(:guest_score)}"
+  json.match_describe m.status_des
   json.begin goal_cn(m.begin)
   json.is_home_bigdata_recommend m.is_home_bigdata_recommend?
   json.is_home_yinglang_recommend m.is_home_yinglang_recommend?
