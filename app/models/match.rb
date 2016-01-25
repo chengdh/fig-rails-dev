@@ -169,7 +169,7 @@ class Match < ActiveRecord::Base
     match_status = match_status_before_type_cast
     #上半场
     if match_status == 1
-      start_ms = ((Time.now - current_match.first_time)/60).round
+      start_ms = ((Time.now + 8.hours - current_match.first_time)/60).round
       ret = "#{start_ms}'"
     #中场
     elsif match_status == 2
@@ -177,7 +177,7 @@ class Match < ActiveRecord::Base
 
     #下半场
     elsif match_status == 3
-      start_ms = ((Time.now - current_match.second_time)/60).round + 45
+      start_ms = ((Time.now + 8.hours - current_match.second_time)/60).round + 45
       ret = "#{start_ms}'"
       ret = "90+" if start_ms > 90
     elsif match_status == -1
