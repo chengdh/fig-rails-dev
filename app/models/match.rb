@@ -10,8 +10,8 @@ class Match < ActiveRecord::Base
   #以即时比赛表数据为基础进行筛选
   #DateTime.now 返回的是utd时间
   scope :immediate,-> {where("match_time >= ? and match_time <= ?",
-                             DateTime.now.hour < 4 ? DateTime.now.end_of_day - 24.hours : DateTime.now.end_of_day - 4.hours ,
-                             DateTime.now.hour < 4 ? DateTime.now.end_of_day - 4.hours : DateTime.now.end_of_day + 20.hours )
+                             (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
+                             (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours )
   }
 
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
