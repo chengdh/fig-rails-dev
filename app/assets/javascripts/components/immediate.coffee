@@ -33,7 +33,7 @@ if not Android?
 
   componentDidMount: ->
     @_fetch_immedates()
-    setInterval(@_fetch_immedates, 10*1000);
+    setInterval(@_fetch_immedates, 120*1000);
 
   _fetch_immedates: (data)->
     $.ajax(
