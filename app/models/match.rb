@@ -8,8 +8,8 @@ class Match < ActiveRecord::Base
   #如果当前是下午时间则显示今天十二点到明天十二点之间的比赛
   #如果是上午则显示昨天十二点到今天十二点之间的比赛
   #以即时比赛表数据为基础进行筛选
-  #DateTime.now 返回的是utd时间
-  scope :immediate,-> {where("match_time >= ? and match_time <= ?",
+  #DateTime.now 返回的是utc时间
+  scope :immediate,-> {joins(:current_match).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
                              (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
                              (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours )
   }
@@ -21,11 +21,11 @@ class Match < ActiveRecord::Base
   #scope :last_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛程 本周
-  scope :this_week,-> {where("match_time >= ? and match_time <= ?",Date.today.beginning_of_week + 8.hours,Date.today.end_of_week + 8.hours)}
+  scope :this_week,-> {where("match_time >= ? and match_time <= ?",(Date.today + 8.hours).beginning_of_week ,(Date.today + 8.hours).end_of_week )}
   #scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #sb滚球数据
-  scope :sb_list, -> {joins(:current_match).where("t_current_match.match_status != -1").order("t_match.match_time ASC")}
+  scope :sb_list, -> {joins(:current_match).where("t_current_match.match_status not in (-1,-10)").order("t_match.match_time ASC")}
 
 
   belongs_to :league
@@ -160,8 +160,13 @@ class Match < ActiveRecord::Base
     [companies,[ret_begin,ret_current,ret_final]]
   end
 
+  #是否已开赛
   def started?
     not [0,-11,-14].include?(match_status_before_type_cast)
+  end
+  #比赛是否已结束
+  def finished?
+    home_score.present? or try(:current_match).try(:match_status) == -1
   end
   #当前状态
   #中场
@@ -182,11 +187,16 @@ class Match < ActiveRecord::Base
       start_ms = ((Time.now + 8.hours - current_match.second_time)/60).round + 45
       ret = "#{start_ms}'"
       ret = "90+" if start_ms > 90
+    elsif match_status == 4
+      ret = "加实赛"
     elsif match_status == -1
       ret = "完"
+
+    elsif match_status == -10
+      ret = "取消"
     elsif match_status == -11
       ret = "待定"
-    elsif match_status == -11
+    elsif match_status == -14
       ret = "推迟"
 
     end

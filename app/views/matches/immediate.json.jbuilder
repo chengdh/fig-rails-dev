@@ -9,6 +9,7 @@ json.matches @matches do |m|
   json.status m.status
   json.match_status_before_type_cast m.match_status_before_type_cast
   json.match_describe m.status_des
+  json.finished m.finished?
   json.begin goal_cn(m.begin)
   json.is_home_bigdata_recommend m.is_home_bigdata_recommend?
   json.is_home_yinglang_recommend m.is_home_yinglang_recommend?

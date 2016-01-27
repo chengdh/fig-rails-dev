@@ -13,18 +13,27 @@ if not Android?
     matches: []
 
   render: ->
-    match_nodes = @state.matches.map (m)->
+    #将数据分组,已结束的比赛放到最后边
+    matches = (m for m in @state.matches when not m.finished)
+    finished_matches = (m for m in @state.matches when m.finished)
+
+    match_nodes = matches.map (m)->
       <Match key={m.match_id} data={m} />
+
+    finished_match_nodes = finished_matches.map (m)->
+      <Match key={m.match_id} data={m} />
+
 
     <table className="table table-hover table-condensed table-striped" id="immediate_table" style={fontSize : "12px"}>
       <tbody>
         {match_nodes}
+        {finished_match_nodes}
       </tbody>
     </table>
 
   componentDidMount: ->
     @_fetch_immedates()
-    setInterval(@_fetch_immedates, 120*1000);
+    setInterval(@_fetch_immedates, 10*1000);
 
   _fetch_immedates: (data)->
     $.ajax(
@@ -46,7 +55,7 @@ if not Android?
   _fetch_favorites: ->
     user_id = Android.getUserId()
     $.ajax(
-      url: "/my_favorites/#{user_id }.json",
+      url: "/my_favorites/#{user_id}.json",
       dataType: 'json'
     )
     .done((data)->
@@ -78,7 +87,7 @@ if not Android?
         {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
       </td>
       <td style={verticalAlign : "middle",width : "45%"}>
-        <span style={fontSize : '10px'}>{@props.data.league.cn_name} {@props.data.match_time}</span>
+        <span style={fontSize : '10px'}>{@props.data.league?.cn_name} {@props.data.match_time}</span>
         <p style={margin : 0,fontSize: "10px"}>
           {@props.data.current_match.home_yellow_card? and @props.data.current_match.home_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.current_match.home_yellow_card}</span>}
           {@props.data.current_match.home_red_card? and @props.data.current_match.home_red_card > 0 and <span  style={padding: "2px"} className="label label-danger">{@props.data.current_match.home_red_card}</span>}
