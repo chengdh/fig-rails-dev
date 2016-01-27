@@ -11,7 +11,7 @@
   %tbody
     - @match.events.each do  |e|
       %tr
-        - if e.ishome
+        - if e.ishome == 1
           %td= e.try(:player_name1)
           %td= image_tag("event_type_#{e.event_type}.png")
           %td= e.try(:happen_time).to_s + "'"
