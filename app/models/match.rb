@@ -9,12 +9,14 @@ class Match < ActiveRecord::Base
   #如果是上午则显示昨天十二点到今天十二点之间的比赛
   #以即时比赛表数据为基础进行筛选
   #DateTime.now 返回的是utc时间
+=begin
   scope :immediate,-> {joins(:current_match).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
                              (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
                              (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours )
   }
+=end
 
-  #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
+  scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛果 前7天
   scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago + 8.hours ,7.days.ago + 8.hours)}

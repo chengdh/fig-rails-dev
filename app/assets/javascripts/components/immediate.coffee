@@ -10,7 +10,7 @@ if not Android?
 
   getInitialState: ->
     # The people JSON array used to display the cards in the view
-    matches: []
+    matches: JSON.parse(@props.matches).matches
 
   render: ->
     #将数据分组,已结束的比赛放到最后边
@@ -32,7 +32,7 @@ if not Android?
     </table>
 
   componentDidMount: ->
-    @_fetch_immedates()
+    #@_fetch_immedates()
     setInterval(@_fetch_immedates, 120*1000);
 
   _fetch_immedates: (data)->

@@ -8,7 +8,8 @@ set :branch,"yinglang-sport-server"
 set :scm, :git
 
 #set :password, ask('Server password', nil)
-server '122.0.76.160', user: 'yinglang-sport-app', port: 22, password: fetch(:password), roles: %w{app web db}
+#server '122.0.76.160', user: 'yinglang-sport-app', port: 22, password: fetch(:password), roles: %w{app web db}
+server '106.187.53.155', user: 'yinglang-sport-app', port: 22, password: fetch(:password), roles: %w{app web db}
 #server '203.110.165.236', user: 'yinglang-sport-app', port: 22, password: fetch(:password), roles: %w{app web db}
 
 
