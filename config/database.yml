@@ -50,7 +50,7 @@ test:
 #
 production:
   adapter: oracle_enhanced
-  host: localhost
+  host: 127.0.0.1
   port: 1521
   database: xe
   username: match
