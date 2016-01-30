@@ -2,7 +2,8 @@
 if not Android?
     window.Android = {}
     window.Android.getUserId = -> return 1
-
+#刷新间隔
+REFRESH_RATE = 120*1000
 #比赛信息列表
 @Immediate = React.createClass
   # Display name used for debugging
@@ -33,7 +34,7 @@ if not Android?
 
   componentDidMount: ->
     #@_fetch_immedates()
-    setInterval(@_fetch_immedates, 120*1000);
+    setInterval(@_fetch_immedates, REFRESH_RATE);
 
   _fetch_immedates: (data)->
     $.ajax(
@@ -183,7 +184,7 @@ if not Android?
 
   getInitialState: ->
     # The people JSON array used to display the cards in the view
-    matches: []
+    matches: JSON.parse(@props.matches)?.matches
 
   render: ->
     match_nodes = @state.matches.map (m)->
@@ -196,8 +197,8 @@ if not Android?
     </table>
 
   componentDidMount: ->
-    @_fetch_favorites()
-    setInterval(@_fetch_favorites, 120*1000);
+    #@_fetch_favorites()
+    setInterval(@_fetch_favorites, REFRESH_RATE)
 
   _fetch_favorites: (data)->
     user_id = Android.getUserId()
@@ -227,7 +228,7 @@ if not Android?
   displayName: "ImmediateIndexTable",
   getInitialState: ->
     # The people JSON array used to display the cards in the view
-    matches: []
+    matches: JSON.parse(@props.matches)?.matches
 
   render: ->
     match_nodes = @state.matches.map (m)->
@@ -247,7 +248,7 @@ if not Android?
     </table>
 
   componentDidMount: ->
-    @_fetch_immedate_index()
+    #@_fetch_immedate_index()
     setInterval(@_fetch_immedate_index, 120*1000);
 
   _fetch_immedate_index: (data)->
@@ -343,7 +344,7 @@ if not Android?
   displayName: "SbList",
   getInitialState: ->
     # The people JSON array used to display the cards in the view
-    matches: []
+    matches: JSON.parse(@props.matches)?.matches
 
   render: ->
     match_nodes = @state.matches.map (m)->
@@ -374,8 +375,8 @@ if not Android?
     </table>
 
   componentDidMount: ->
-    @_fetch_sb_list()
-    setInterval(@_fetch_sb_list, 120*1000);
+    #@_fetch_sb_list()
+    setInterval(@_fetch_sb_list, REFRESH_RATE);
 
   _fetch_sb_list: (data)->
     $.ajax(
