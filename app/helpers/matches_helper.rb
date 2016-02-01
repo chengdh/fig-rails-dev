@@ -46,4 +46,12 @@ module MatchesHelper
     end
     ret
   end
+
+  #盘路结果描述
+  def odds_result_des(result)
+    ret = ""
+    ret = "赢" if result == 1
+    ret = "输" if result == 0
+    ret = "走" if result == 2
+  end
 end

@@ -44,22 +44,21 @@
   render: ->
     <tr onClick={@._open_odd_change}>
       <td>
-        {@props.data.odd_change.change_type == 1 and <span className="glyphicon glyphicon-arrow-up" style={color : "red"}></span>}
         {@props.data.odd_change.change_type == 1 and
-        <span>
+        <span style={color: "red"}>
           [{@props.data.odd_change.match_type_des}]
           {@props.data.odd_change.team?.cn_name}
           水位快速
-          {@props.data.odd_change.change_type_des}
+        </span>}
+        {@props.data.odd_change.change_type == 1 and <span className="glyphicon glyphicon-arrow-up" style={color : "red"}></span>}
+
+        {@props.data.odd_change.change_type == 2 and
+        <span style={color: "green"}>
+          [{@props.data.odd_change.match_type_des}]
+          {@props.data.odd_change.team?.cn_name}
+          水位快速
         </span>}
         {@props.data.odd_change.change_type == 2 and <span className="glyphicon glyphicon-arrow-down" style={color : "green"}></span>}
-        {@props.data.odd_change.change_type == 2 and
-        <span>
-          [{@props.data.odd_change.match_type_des}]
-          {@props.data.odd_change.team?.cn_name}
-          水位快速
-          {@props.data.odd_change.change_type_des}
-        </span>}
       </td>
     </tr>
 

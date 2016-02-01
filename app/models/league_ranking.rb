@@ -19,7 +19,7 @@ class LeagueRanking < ActiveRecord::Base
   end
   #胜率
   def win_rate
-    rate = win / (games.to_f)
-    "#{rate.round(2)*100}%"
+    rate = (win / (games.to_f) * 100).to_i
+    "#{rate}%"
   end
 end

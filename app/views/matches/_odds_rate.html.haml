@@ -17,7 +17,7 @@
   %tbody
     - odds_rates.each do |o|
       %tr
-        %td= o.try(:company).try(:name)
+        %td= o.try(:company).try(:cn_name)
         %td= o.try(:home)
         %td= o.try(:goal)
         %td= o.try(:away)

@@ -2,6 +2,10 @@
   %thead
     %tr
       %th{:style => "text-align : center;"}
+        - if @match.is_home_bigdata_recommend?
+          %span.glyphicon.glyphicon-tree-deciduous{"aria-hidden" => "true", :style => "color : red"}
+        - if @match.is_home_yinglang_recommend?
+          %span.glyphicon.glyphicon-thumbs-up{"aria-hidden" => "true", :style => "color : red"}
         = @match.team1.cn_name
       %th{:style => "text-align : center;"}
         %p{:style => "font-size : 12px;margin : 0;padding-top : 5px;"}
@@ -12,6 +16,10 @@
           = @match.status
       %th{:style => "text-align : center;"}
         = @match.team2.cn_name
+        - if @match.is_guest_bigdata_recommend?
+          %span.glyphicon.glyphicon-tree-deciduous{"aria-hidden" => "true", :style => "color : red"}
+        - if @match.is_guest_yinglang_recommend?
+          %span.glyphicon.glyphicon-thumbs-up{"aria-hidden" => "true", :style => "color : red"}
 
 / 大数据报告
 .analyse.well.well-sm

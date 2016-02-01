@@ -1,4 +1,4 @@
-%table.table.table-hover.table-condensed.table-striped{:style => "font-size : 10px;","data-leagues" => Match.last_week_leagues.to_json}
+%table.table.table-hover.table-condensed.table-striped{:style => "","data-leagues" => Match.last_week_leagues.to_json}
   %tr
     %td
       %a.btn.btn-sm.btn-default.btn-last-week-yesterday{:href =>"#",:role =>"button","data-day" => @yesterday}
@@ -15,21 +15,21 @@
   %tbody
     - @matches.each do |match|
       %tr.match-tr{"data-match" => match.to_json}
-        %td{:style => "vertical-align : middle;width : 15%;"}
+        %td{:style => "vertical-align : middle;width : 20%;font-size: 10px;"}
           = match.try(:league).try(:cn_name)
           %p{:style => "margin : 0;"}
             = match.match_time.strftime("%H:%M")
-        %td{:style => "vertical-align : middle; width : 35%;"}
+        %td{:style => "vertical-align : middle; width : 30%;"}
           - if match.try(:current_match).try(:home_yellow_card).present? and match.try(:current_match).try(:home_yellow_card) > 0
             %span.label.label-warning{:style => "padding: 2px;"}= match.try(:current_match).try(:home_yellow_card)
           - if match.try(:current_match).try(:home_red_card).present? and  match.try(:current_match).try(:home_red_card) > 0
             %span.label.label-danger{:style => "padding: 2px;"}= match.try(:current_match).try(:home_red_card)
           = match.team1.cn_name
 
-        %td{:style => "vertical-align : middle;width : 10%;"}
-          %p{:style => "margin : 0;font-size : 5px;"}
+        %td{:style => "vertical-align : middle;text-align : center;font-size: 10px;width : 15%;"}
+          %p{:style => "margin : 0;"}
             = "#{match.home_score}:#{match.guest_score}"
-          %p{:style => "margin : 0;font-size : 5px;"}
+          %p{:style => "margin : 0;"}
             = "(#{match.half_home_score}:#{match.half_guest_score})"
         %td{:style => "vertical-align : middle;"}
           = match.team2.cn_name

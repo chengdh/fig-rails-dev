@@ -280,20 +280,24 @@ REFRESH_RATE = 120*1000
     i = 0
     ret = []
     match_head_1 =
-      <tr key={@props.data.match.match_id + "_head_1"}>
+      <tr key={@props.data.match.match_id + "_head_1"} style={verticalAlign: 'middle'}>
         <th colSpan="10">
           <h5>
             <span className="label label-primary">{@props.data.match.league.cn_name}</span>
             <span>&nbsp;{@props.data.match.match_time}&nbsp;</span>
+            {@props.data.match.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
+            {@props.data.match.is_home_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
             <span>{@props.data.match.team1.cn_name}</span>
             <span className="label label-danger">vs</span>
             <span>{@props.data.match.team2.cn_name}</span>
+            {@props.data.match.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
+            {@props.data.match.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-thumbs-up" ariaHidden="true" style={color : 'red'}></span>}
           </h5>
         </th>
       </tr>
 
     match_head_2 =
-      <tr key={@props.data.match.match_id + "_head_2"}>
+      <tr key={@props.data.match.match_id + "_head_2"} style={fontSize: '10px',verticalAlign: 'middle'}>
         <th style={textAlign : 'center'}>公司</th>
         <th style={textAlign : 'center'}>主队</th>
         <th style={textAlign : 'center'}>让球</th>
@@ -311,7 +315,7 @@ REFRESH_RATE = 120*1000
 
     for c in @props.data.companies
       ret.push(
-        <tr key={@props.data.match.match_id + "_head_3"}>
+        <tr key={@props.data.match.match_id + "_head_3"} style={fontSize: '10px'} data-company-id={c.company_id}>
           <td rowSpan="2" style={verticalAlign: 'middle'}>{c.cn_name}</td>
           <td>{@props.data.odds_asians_begin[i]?.home}</td>
           <td>{@props.data.odds_asians_begin[i]?.goal}</td>
@@ -323,7 +327,7 @@ REFRESH_RATE = 120*1000
           <td>{@props.data.odds_balls_begin[i]?.goal}</td>
           <td>{@props.data.odds_balls_begin[i]?.under}</td>
         </tr>
-        <tr key={@props.data.match.match_id + "_head_4"}>
+        <tr key={@props.data.match.match_id + "_head_4"} style={fontSize: '10px'} data-company-id={c.company_id}>
           <td>{@props.data.odds_asians_current[i]?.home}</td>
           <td>{@props.data.odds_asians_current[i]?.goal}</td>
           <td>{@props.data.odds_asians_current[i]?.away}</td>

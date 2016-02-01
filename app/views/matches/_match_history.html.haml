@@ -11,21 +11,25 @@
           %h5= team.cn_name
 
     %tr
-      %th 日期
+      %th{:style => "text-align : center;"} 日期
       %th 赛事
       %th 主场
-      %th 比分
+      %th{:style => "text-align : center;"} 比分
       %th 客场
-      %th 盘路
+      %th{:style => "text-align : center;"} 盘路
   %tbody
     - matches.each do |match|
       %tr
-        %td= match.match_time.strftime("%Y-%m-%d")
-        %td= match.league.cn_name
-        %td= match.team1.cn_name
-        %td
+        %td{:style => "vertical-align : middle;"}= match.match_time.strftime("%Y-%m-%d")
+        %td{:style => "vertical-align : middle;"}= match.league.cn_name
+        %td{:style => "vertical-align : middle;"}= match.team1.cn_name
+        %td{:style => "text-align : center;vertical-align : middle;width : 50px;font-size : 10px;"}
+          %p{:style => "margin : 0;"}
+            %em= "#{match.home_score} : #{match.guest_score}"
           %em= "(#{match.half_home_score} : #{match.half_guest_score})"
-          %p{:style => "margin : 0 0 3px 0;"}
-          %em= "#{match.half_home_score} : #{match.half_guest_score}"
-        %td= match.team2.cn_name
-        %td  todo
+        %td{:style => "vertical-align : middle;"}= match.team2.cn_name
+        %td{:style => "text-align : center;vertical-align : middle;width : 50px;font-size : 10px;"}
+          %p{:style => "margin : 0;"}
+            %em= match.odds_value
+          %em= odds_result_des(match.odds_result)
+

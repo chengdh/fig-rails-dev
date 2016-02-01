@@ -20,6 +20,6 @@
 //= require react_ujs
 //= require components
 //= require fancybox/source/jquery.fancybox
-//= require matches
 //= require leagues
+//= require matches
 //= require match_recommands

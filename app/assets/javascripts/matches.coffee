@@ -38,7 +38,7 @@ $ ->
       "q[match_time_eq]" : match_time
     }
     param = $.param(q)
-    window.location.href = "/matches/last_week?" + param
+    window.location.href = "/matches/last_week?#{param}"
   )
   $(".btn-last-week-yesterday,.btn-last-week-tomorrow").on("click", ->
     the_day = $(this).data("day")
@@ -52,9 +52,20 @@ $ ->
       "q[match_time_eq]" : match_time
     }
     param = $.param(q)
-    window.location.href = "/matches/this_week?" + param
+    window.location.href = "/matches/this_week?#{param}"
   )
   $(".btn-this-week-yesterday,.btn-this-week-tomorrow").on("click", ->
     the_day = $(this).data("day")
     $("#select_this_week_match_time_eq").val(the_day).trigger("change")
   )
+
+  #即时指数界面,按照公司查询
+  $("#select_company_id_eq").on("change", ->
+    company_id = $(this).val()
+    if !!company_id
+      $("[data-company-id]").hide()
+      $("[data-company-id='#{company_id}']").show()
+    else
+      $("[data-company-id]").show()
+  )
+
