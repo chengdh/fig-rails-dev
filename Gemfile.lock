@@ -8,7 +8,7 @@ GIT
       railties (~> 4.0)
 
 GEM
-  remote: http://rubygems.org/
+  remote: https://taobao.ruby.org/
   specs:
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
@@ -351,4 +351,4 @@ DEPENDENCIES
   will_paginate (~> 3.0.5)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
