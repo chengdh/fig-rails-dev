@@ -38,8 +38,7 @@ REFRESH_RATE = 120*1000
     $("#table_immediate_list").pageless(
       totalPages: @props.total_pages,
       url: '/matches/immediate.json',
-      loaderMsg: '稍侯...',
-      loaderImage: "/assets/load.gif"
+      loaderImage: "<%=asset_path('load.gif') %>",
       scrape: (data)->
         new_matches = JSON.parse(data)?.matches
         self.setState((previousState, currentProps)->
@@ -273,8 +272,8 @@ REFRESH_RATE = 120*1000
     $("#table_immediate_index").pageless(
       totalPages: @props.total_pages,
       url: '/matches/immediate_index.json',
-      loaderMsg: '稍侯...',
-      loaderImage: "/assets/load.gif"
+      loaderMsg: '',
+      loaderImage: "<%=asset_path('load.gif') %>",
       scrape: (data)->
         new_matches = JSON.parse(data)?.matches
         self.setState((previousState, currentProps)->
@@ -420,8 +419,7 @@ REFRESH_RATE = 120*1000
     $("#table_sb_list").pageless(
       totalPages: @props.total_pages,
       url: '/matches/sb_list.json',
-      loaderMsg: '稍侯...',
-      loaderImage: "/assets/load.gif"
+      loaderImage: "<%=asset_path('load.gif') %>",
       scrape: (data)->
         new_matches = JSON.parse(data)?.matches
         self.setState((previousState, currentProps)->
