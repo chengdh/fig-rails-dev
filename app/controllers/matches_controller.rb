@@ -51,7 +51,7 @@ class MatchesController < ApplicationController
   #GET /matches/immediate_index.json
   #即时指数
   def immediate_index
-    @q = Match.immediate.includes(:odds_asians,:odds_europes,:odds_balls).ransack(params[:q])
+    @q = Match.immediate.ransack(params[:q])
     @matches = @q.result
   end
 
