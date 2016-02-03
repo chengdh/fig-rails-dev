@@ -231,7 +231,11 @@ REFRESH_RATE = 120*1000
     matches: JSON.parse(@props.matches)?.matches
 
   render: ->
-    match_nodes = @state.matches.map (m)->
+    #将数据分组,已结束的比赛放到最后边
+    matches = (m for m in @state.matches when not m.finished)
+    finished_matches = (m for m in @state.matches when m.finished)
+
+    match_nodes = matches.concat(finished_matches).map (m)->
       <ImmediateIndexItem key={m.match_id} data={
         match: m,
         companies: m.companies,
