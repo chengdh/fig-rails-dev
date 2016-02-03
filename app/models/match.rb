@@ -9,7 +9,7 @@ class Match < ActiveRecord::Base
   #如果是上午则显示昨天十二点到今天十二点之间的比赛
   #以即时比赛表数据为基础进行筛选
   #DateTime.now 返回的是utc时间
-  scope :immediate,-> {joins(:current_match).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
+  scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:current_match).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
                              (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
                              (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours )
   }
@@ -25,7 +25,7 @@ class Match < ActiveRecord::Base
   #scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #sb滚球数据
-  scope :sb_list, -> {joins(:current_match).where("t_current_match.match_status not in (-1,-10)").order("t_match.match_time ASC")}
+  scope :sb_list, -> {joins(:current_match).includes(:league,:team1,:team2,:current_match,:odds_asians,:odds_europes,:odds_balls).where("t_current_match.match_status not in (-1,-10)").order("t_match.match_time ASC")}
 
 
   belongs_to :league
@@ -102,10 +102,10 @@ class Match < ActiveRecord::Base
     ret_final = {}
     companies = Company.all
     companies.each do |c|
-      home = odds_asians.where(company: c,odds_type: 1).first
+      home = odds_asians.where(company: c,odds_type: 1).limit(1)
       #即时盘只用显示最新的数据
-      goal = odds_asians.where(company: c).first
-      away = odds_asians.where(company: c,odds_type: 3).first
+      goal = odds_asians.where(company: c).limit(1)
+      away = odds_asians.where(company: c,odds_type: 3).limit(1)
       if home.blank? and goal.blank? and away.blank?
         companies -= [c]
       else
@@ -125,10 +125,10 @@ class Match < ActiveRecord::Base
     ret_final = {}
     companies = Company.all
     companies.each do |c|
-      beg = odds_europes.where(company: c,odds_type: 1).first
+      beg = odds_europes.where(company: c,odds_type: 1).limit(1)
       #即时盘只用显示最新的数据
-      current = odds_europes.where(company: c).first
-      final = odds_europes.where(company: c,odds_type: 3).first
+      current = odds_europes.where(company: c).limit(1)
+      final = odds_europes.where(company: c,odds_type: 3).limit(1)
 
       if beg.blank? and current.blank? and final.blank?
         companies -= [c]
@@ -147,10 +147,10 @@ class Match < ActiveRecord::Base
     ret_final = {}
     companies = Company.all
     companies.each do |c|
-      beg = odds_balls.where(company: c,odds_type: 1).first
+      beg = odds_balls.where(company: c,odds_type: 1).limit(1)
       #即时盘只用显示最新的数据
-      current = odds_balls.where(company: c).first
-      final = odds_balls.where(company: c,odds_type: 3).first
+      current = odds_balls.where(company: c).limit(1)
+      final = odds_balls.where(company: c,odds_type: 3).limit(1)
 
       if beg.blank? and current.blank? and final.blank?
         companies -= [c]
@@ -225,13 +225,13 @@ class Match < ActiveRecord::Base
 
   #亚盘初盘
   def begin
-    odds_asians.where(odds_type: 1).try(:first).try(:goal)
+    odds_asians.where(odds_type: 1).limit(1).try(:goal)
   end
   def current
-    odds_asians.where(odds_type: 2).try(:first).try(:goal)
+    odds_asians.where(odds_type: 2).limit(1).try(:goal)
   end
   def final
-    odds_asians.where(odds_type: 3).try(:first).try(:goal)
+    odds_asians.where(odds_type: 3).limit(1).try(:goal)
   end
 
   #推荐情况

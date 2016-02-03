@@ -4,24 +4,23 @@
 $ ->
   #测试用
   if not Android?
-    Android =
+    window.Android =
       getUserId : -> return 1
       passString : (k,v)-> return 1
 
   #赛事筛选中的全选与不选处理
-  Android.func_select_all_leagues = ->
+  window.Android.func_select_all_leagues = ->
     console.log("select all leagues")
     $(".btn-league-select").data("select",true)
     $(".btn-league-select").addClass("btn-select")
     $(".btn-league-select").addClass("btn-success")
 
 
-  Android.func_unselect_all_leagues = ->
+  window.Android.func_unselect_all_leagues = ->
     console.log("not select all leagues")
     $(".btn-league-select").data("select",false)
     $(".btn-league-select").removeClass("btn-select")
     $(".btn-league-select").removeClass("btn-success")
-
 
   toastr.options = {"positionClass": "toast-bottom-center"}
   #联赛筛选界面打开时,传入的筛选参数 q[league_id_in] =
@@ -30,7 +29,7 @@ $ ->
     league_ids = (l.league_id for l in $("[data-leagues]").data("leagues"))
     q_leagues = $.param("q[league_id_in]" : league_ids )
     #FIXME  暂时注释
-    Android.passString("q_leagues",q_leagues)
+    window.Android.passString("q_leagues",q_leagues)
     console.log("set leagues : " + q_leagues)
 
   #赛事筛选
@@ -45,7 +44,7 @@ $ ->
     #将选中的赛事id发送给android
     league_ids = ($(el).data('league').league_id for el in $(".btn-league-select") when $(el).data("select"))
     q_leagues = $.param("q[league_id_in]" : league_ids )
-    Android.passString("q_leagues",q_leagues)
+    window.Android.passString("q_leagues",q_leagues)
   )
 
 
@@ -60,8 +59,8 @@ $ ->
       toastr.error("请输入查询关键字!")
       return
     q_leagues = $.param("q[cn_name_or_country_cn_name_cont]" : $("#input_search_league_kw").val())
-    Android.passString("q_leagues",q_leagues)
-    Android.openLeagueSearchActivity()
+    window.Android.passString("q_leagues",q_leagues)
+    window.Android.openLeagueSearchActivity()
   )
   $(".btn-continent-select").on("click", ->
     $('.btn-continent-select').removeClass("btn-primary")
@@ -75,15 +74,15 @@ $ ->
   $(".btn-country-select").on("click",->
     country = $(this).data("country")
     q_leagues = $.param("q[country_country_id_eq]" : country.country_id)
-    Android.passString("q_leagues",q_leagues)
-    Android.openLeagueListActivity()
+    window.Android.passString("q_leagues",q_leagues)
+    window.Android.openLeagueListActivity()
   )
 
   #选择赛事
   $(".league-select").on("click",->
     league = $(this).data("league")
-    Android.passString("league_id",league.league_id)
-    Android.openLeagueShowActivity()
+    window.Android.passString("league_id",league.league_id)
+    window.Android.openLeagueShowActivity()
   )
 
   #赛事资料tab切换
