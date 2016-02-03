@@ -11,7 +11,7 @@ class MatchesController < ApplicationController
   #GET /matches/immediate.json
   def immediate
     @q = Match.immediate.ransack(params[:q])
-    @matches = @q.result
+    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 15)
   end
 
   #GET /matches/last_week
@@ -51,15 +51,15 @@ class MatchesController < ApplicationController
   #滚球界面
   def sb_list
     @q = Match.immediate.ransack(params[:q])
-    @matches = @q.result
+    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 10)
   end
 
   #GET /matches/immediate_index
   #GET /matches/immediate_index.json
   #即时指数
   def immediate_index
-    @q = Match.immediate.limit(20).ransack(params[:q])
-    @matches = @q.result
+    @q = Match.immediate.ransack(params[:q])
+    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 10)
   end
 
   #GET /matches/search_by_league

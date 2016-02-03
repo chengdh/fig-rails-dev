@@ -18,6 +18,7 @@
 //= require toastr/toastr
 //= require react
 //= require react_ujs
+//= require pageless/lib/jquery.pageless
 //= require components
 //= require fancybox/source/jquery.fancybox
 //= require leagues

@@ -34,6 +34,22 @@ REFRESH_RATE = 120*1000
 
   componentDidMount: ->
     #@_fetch_immedates()
+    self = this
+    $("#table_immediate_list").pageless(
+      totalPages: @props.total_pages,
+      url: '/matches/immediate.json',
+      loaderMsg: '稍侯...',
+      loaderImage: "/assets/load.gif"
+      scrape: (data)->
+        new_matches = JSON.parse(data)?.matches
+        self.setState((previousState, currentProps)->
+          old_matches = previousState.matches
+          return matches: old_matches.concat(new_matches)
+        )
+        return null
+
+    )
+
     setInterval(@_fetch_immedates, REFRESH_RATE);
 
   _fetch_immedates: (data)->
@@ -253,6 +269,22 @@ REFRESH_RATE = 120*1000
 
   componentDidMount: ->
     #@_fetch_immedate_index()
+    self = this
+    $("#table_immediate_index").pageless(
+      totalPages: @props.total_pages,
+      url: '/matches/immediate_index.json',
+      loaderMsg: '稍侯...',
+      loaderImage: "/assets/load.gif"
+      scrape: (data)->
+        new_matches = JSON.parse(data)?.matches
+        self.setState((previousState, currentProps)->
+          old_matches = previousState.matches
+          return matches: old_matches.concat(new_matches)
+        )
+        return null
+
+    )
+
     setInterval(@_fetch_immedate_index, 120*1000);
 
   _fetch_immedate_index: (data)->
@@ -383,7 +415,23 @@ REFRESH_RATE = 120*1000
     </table>
 
   componentDidMount: ->
+    self = this
     #@_fetch_sb_list()
+    $("#table_sb_list").pageless(
+      totalPages: @props.total_pages,
+      url: '/matches/sb_list.json',
+      loaderMsg: '稍侯...',
+      loaderImage: "/assets/load.gif"
+      scrape: (data)->
+        new_matches = JSON.parse(data)?.matches
+        self.setState((previousState, currentProps)->
+          old_matches = previousState.matches
+          return matches: old_matches.concat(new_matches)
+        )
+        return null
+
+    )
+
     setInterval(@_fetch_sb_list, REFRESH_RATE);
 
   _fetch_sb_list: (data)->

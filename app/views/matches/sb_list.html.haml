@@ -1,3 +1,4 @@
 / 滚球
 %input{:type => "hidden", "data-leagues" => Match.immediate_leagues.to_json}
-= react_component 'SbList', {matches: render(file: "matches/sb_list.json.jbuilder"),url: sb_list_matches_path(q: params[:q],format: :json)}, :div
+= react_component 'SbList', {matches: render(file: "matches/sb_list.json.jbuilder"),total_pages: @matches.total_entries,url: sb_list_matches_path(q: params[:q],format: :json)}, {id: "table_sb_list"}
+
