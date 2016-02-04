@@ -17,6 +17,6 @@
         %td= sb.over
         %td= sb.void
         %td= sb.under
-        %td= "#{(sb.over/sb.games).round(3)*100}%"
-        %td= "#{(sb.void/sb.games).round(3)*100}%"
-        %td= "#{(sb.under/sb.games).round(3)*100}%"
+        %td= "#{sb.games > 0 ? (sb.over/sb.games).round(3)*100 : 0}%"
+        %td= "#{sb.games > 0 ? (sb.void/sb.games).round(3)*100 : 0}%"
+        %td= "#{sb.games > 0 ? (sb.under/sb.games).round(3)*100: 0}%"
