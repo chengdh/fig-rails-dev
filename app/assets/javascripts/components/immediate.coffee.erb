@@ -43,9 +43,8 @@ REFRESH_RATE = 120*1000
           return matches: old_matches.concat(new_matches)
         )
         return null
-      complete: ->
-        self._fetch_favorites()
     )
+    self._fetch_favorites()
 
     setInterval(@_fetch_immedates, REFRESH_RATE);
 
@@ -213,6 +212,7 @@ REFRESH_RATE = 120*1000
 
   componentDidMount: ->
     #@_fetch_favorites()
+    $(".favorite-star").css(color : 'red').addClass("favorite")
     setInterval(@_fetch_favorites, REFRESH_RATE)
 
   _fetch_favorites: (data)->
