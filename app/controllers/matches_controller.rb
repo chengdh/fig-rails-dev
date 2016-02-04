@@ -59,7 +59,7 @@ class MatchesController < ApplicationController
   #即时指数
   def immediate_index
     @q = Match.immediate.ransack(params[:q])
-    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 10)
+    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 6)
   end
 
   #GET /matches/search_by_league
