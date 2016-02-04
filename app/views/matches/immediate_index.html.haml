@@ -1,5 +1,5 @@
 / 即时指数界面
-%input{:type => "hidden", "data-leagues" => Match.immediate_leagues.to_json}
+%input{:type => "hidden", "data-leagues" => @matches.to_a.map{|m| m.league}.to_json}
 .well.well-sm
   = select_tag "select_company_id_eq",options_for_select(companies_for_select),
     :prompt => "显示所有公司",
