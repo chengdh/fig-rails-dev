@@ -11,7 +11,7 @@ class MatchesController < ApplicationController
   #GET /matches/immediate.json
   def immediate
     @q = Match.immediate.ransack(params[:q])
-    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 1)
+    @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 15)
   end
 
   #GET /matches/last_week
