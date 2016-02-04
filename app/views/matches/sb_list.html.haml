@@ -1,4 +1,4 @@
 / 滚球
-%input{:type => "hidden", "data-leagues" => Match.immediate_leagues.to_json}
+%input{:type => "hidden", "data-leagues" => @matches.select{|m| m.league}.to_json}
 = react_component 'SbList', {matches: render(file: "matches/sb_list.json.jbuilder"),total_pages: @matches.total_pages,url: sb_list_matches_path(q: params[:q],format: :json)}, {id: "table_sb_list"}
 

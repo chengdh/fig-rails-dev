@@ -1,4 +1,4 @@
-json.immediate_leagues Match.immediate_leagues
+json.immediate_leagues  @matches.select{|m| m.league}
 json.matches @matches do |m|
   json.match_id m.match_id
   json.match_time m.match_time.strftime("%H:%M")

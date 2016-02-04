@@ -22,11 +22,7 @@ class MatchesController < ApplicationController
     @current_day = 1.days.ago.strftime("%Y-%m-%d") if @current_day.blank?
     @yesterday = (Date.strptime(@current_day,"%Y-%m-%d") - 1.days).strftime("%Y-%m-%d")
     @tomorrow = (Date.strptime(@current_day,"%Y-%m-%d") + 1.days).strftime("%Y-%m-%d")
-    if params[:q].try(:[],:match_time_eq).blank?
-      @q = Match.last_week.ransack(match_time_eq: @current_day)
-    else
-      @q = Match.last_week.ransack(params[:q])
-    end
+    @q = Match.last_week(@current_day).ransack(params[:q])
     @matches = @q.result
   end
 
@@ -38,11 +34,7 @@ class MatchesController < ApplicationController
     @current_day = 1.days.since.strftime("%Y-%m-%d") if @current_day.blank?
     @yesterday = (Date.strptime(@current_day,"%Y-%m-%d") - 1.days).strftime("%Y-%m-%d")
     @tomorrow = (Date.strptime(@current_day,"%Y-%m-%d") + 1.days).strftime("%Y-%m-%d")
-    if params[:q].try(:[],:match_time_eq).blank?
-      @q = Match.last_week.ransack(match_time_eq: @current_day)
-    else
-      @q = Match.last_week.ransack(params[:q])
-    end
+    @q = Match.this_week(@current_day).ransack(params[:q])
     @matches = @q.result
   end
 

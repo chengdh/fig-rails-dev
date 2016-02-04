@@ -1,4 +1,4 @@
-%table.table.table-hover.table-condensed.table-striped{:style => "","data-leagues" => Match.this_week_leagues.to_json}
+%table.table.table-hover.table-condensed.table-striped{:style => "","data-leagues" =>  @matches.select{|m| m.league}.to_json}
   %tr
     %td
       %a.btn.btn-sm.btn-default.btn-this-week-yesterday{:href =>"#",:role =>"button","data-day" => @yesterday}

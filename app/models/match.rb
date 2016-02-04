@@ -9,23 +9,23 @@ class Match < ActiveRecord::Base
   #如果是上午则显示昨天十二点到今天十二点之间的比赛
   #以即时比赛表数据为基础进行筛选
   #DateTime.now 返回的是utc时间
-  scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
-                             (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
-                             (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours ).order("t_current_match.match_status ASC,t_match.match_time DESC")
+  scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
+                                                                                   (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
+                                                                                   (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours ).order("t_current_match.match_status DESC,t_match.match_time ASC")
   }
   #
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛果 前7天
-  scope :last_week,-> {where("match_time <= ? and match_time >= ?",1.days.ago + 8.hours ,7.days.ago + 8.hours)}
+  scope :last_week,->(d) {where("TO_CHAR(match_time,'YYYY-MM-DD') = ? ",d)}
   #scope :last_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛程 本周
-  scope :this_week,-> {where("match_time >= ? and match_time <= ?",(Date.today + 8.hours).beginning_of_week ,(Date.today + 8.hours).end_of_week )}
+  scope :this_week,->(d) {where("TO_CHAR(match_time,'YYYY-MM-DD') = ? ",d)}
   #scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #sb滚球数据
-  scope :sb_list, -> {joins(:current_match).includes(:league,:team1,:team2).where("t_current_match.match_status not in (-1,-10)").order("t_match.match_time ASC")}
+  scope :sb_list, -> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("t_current_match.match_status not in (-1,-10)").order("t_match.match_time ASC")}
 
 
   belongs_to :league
@@ -230,13 +230,13 @@ class Match < ActiveRecord::Base
 
   #亚盘初盘
   def begin
-    odds_asians.where(odds_type: 1).limit(1).try(:goal)
+    odds_asians.where(odds_type: 1).limit(1).first.try(:goal)
   end
   def current
-    odds_asians.where(odds_type: 2).limit(1).try(:goal)
+    odds_asians.where(odds_type: 2).limit(1).first.try(:goal)
   end
   def final
-    odds_asians.where(odds_type: 3).limit(1).try(:goal)
+    odds_asians.where(odds_type: 3).limit(1).first.try(:goal)
   end
 
   #推荐情况
