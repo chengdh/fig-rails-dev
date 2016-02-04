@@ -5,4 +5,5 @@ class CupSchedule < ActiveRecord::Base
   belongs_to :season
   belongs_to :stage
   belongs_to :team
+  belongs_to :match
 end
