@@ -36,7 +36,8 @@ REFRESH_RATE = 120*1000
     #@_fetch_immedates()
     self = this
     $("#table_immediate_list").pageless(
-      totalPages: @props.total_pages,
+      #totalPages: @props.total_pages,
+      totalPages: 10,
       url: '/matches/immediate.json',
       loaderImage: "<%=asset_path('load.gif') %>",
       scrape: (data)->
@@ -55,7 +56,9 @@ REFRESH_RATE = 120*1000
     $.ajax(
       url: @props.url,
       dataType: 'json',
-      data: data
+      data:
+        page: 1,
+        per_page: 200
       )
     .done @_fetch_data_done
     .fail @_fetch_data_fail
@@ -290,7 +293,9 @@ REFRESH_RATE = 120*1000
     $.ajax(
       url: @props.url,
       dataType: 'json',
-      data: data
+      data:
+        page: 1,
+        per_page: 200
       )
     .done @_fetch_data_done
     .fail @_fetch_data_fail
@@ -436,7 +441,10 @@ REFRESH_RATE = 120*1000
     $.ajax(
       url: @props.url,
       dataType: 'json',
-      data: data
+      data:
+        page: 1,
+        per_page: 200
+
       )
     .done @_fetch_data_done
     .fail @_fetch_data_fail

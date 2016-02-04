@@ -11,7 +11,7 @@ class Match < ActiveRecord::Base
   #DateTime.now 返回的是utc时间
   scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
                              (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
-                             (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours )
+                             (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours ).order("t_current_match.match_status DESC")
   }
   #
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
