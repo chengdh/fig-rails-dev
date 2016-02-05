@@ -1,3 +1,4 @@
-= DateTime.now
+%p= DateTime.now
+%p= DateTime.now.end_of_day + 8.hours
 %input{:type => "hidden", "data-leagues" => @matches.to_a.map{|m| m.league}.to_json}
 = react_component 'Immediate', {matches: render(file: "matches/immediate.json.jbuilder"),total_pages: @matches.total_pages,url: immediate_matches_path(q: params[:q],format: :json)},{id: "table_immediate_list"}
