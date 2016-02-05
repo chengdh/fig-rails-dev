@@ -3,6 +3,7 @@
 class Season < ActiveRecord::Base
   self.table_name = "t_season"
   self.primary_key = "season_id"
+  default_scope {order("season_name DESC")}
   belongs_to :league
   has_many :schedules
   has_many :season_rankings
