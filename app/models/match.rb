@@ -10,10 +10,13 @@ class Match < ActiveRecord::Base
   #以即时比赛表数据为基础进行筛选
   #DateTime.now 返回的是utc时间
   # (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
+  #
   #                                                                                   (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours ).order("t_current_match.match_status DESC,t_match.match_time ASC")
+  #服务器是操作系统是北京时间
+  #数据库中的数据是北京时间
   scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("(t_current_match.match_status > 0) OR (match_time >= ? and match_time <= ?)",
-                                                                                                     DateTime.now.hour  <= 12 ? DateTime.now.end_of_day + 8.hours - 36.hours : DateTime.now.end_of_day + 8.hours  - 12.hours ,
-                                                                                                     DateTime.now.hour  <= 12 ? DateTime.now.end_of_day  + 8.hours- 12.hours : DateTime.now.end_of_day + 8.hours + 12.hours ).order("t_current_match.match_status DESC,t_match.match_time ASC")
+                                                                                                     DateTime.now.hour  <= 12 ? DateTime.now.end_of_day - 36.hours : DateTime.now.end_of_day  - 12.hours ,
+                                                                                                     DateTime.now.hour  <= 12 ? DateTime.now.end_of_day - 12.hours : DateTime.now.end_of_day  + 12.hours ).order("t_current_match.match_status DESC,t_match.match_time ASC")
   }
   #
   #scope :immediate,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
