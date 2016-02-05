@@ -19,6 +19,7 @@
   "dependencies": {
     "toastr": "~2.1.2",
     "pageless": "https://github.com/jney/jquery.pageless.git",
-    "fancybox": ""
+    "fancybox": "",
+    "multiple-select": "~1.2.1"
   }
 }

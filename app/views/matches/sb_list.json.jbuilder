@@ -24,7 +24,7 @@ json.matches @matches do |m|
   end
   json.odds_ball do
     json.over m.odds_rolls.limit(1).try(:first).try(:over)
-    json.goal m.odds_rolls.limit(1).try(:first).try(:goal)
+    json.goal m.odds_rolls.limit(1).try(:first).try(:goalou)
     json.under m.odds_rolls.limit(1).try(:first).try(:under)
   end
   json.odds_europe do

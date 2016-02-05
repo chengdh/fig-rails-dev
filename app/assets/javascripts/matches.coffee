@@ -59,14 +59,28 @@ $ ->
     $("#select_this_week_match_time_eq").val(the_day).trigger("change")
   )
 
-  #即时指数界面,按照公司查询
-  $("#select_company_id_eq").on("change", ->
-    company_id = $(this).val()
-    if !!company_id
-      $("[data-company-id]").hide()
-      $("[data-company-id='#{company_id}']").show()
-    else
+  func_select_company = (view)->
+    select_company_ids = $('#select_company_id_eq').multipleSelect('getSelects')
+    if select_company_ids.length == 0
       $("[data-company-id]").show()
+      return
+    $("[data-company-id]").hide()
+    $("[data-company-id='#{company_id}']").show() for company_id in select_company_ids
+
+
+  $("#select_company_id_eq").multipleSelect(
+    selectAllText: "全选",
+    allSelected: "全部",
+    onClick: func_select_company
   )
+  #即时指数界面,按照公司查询
+  # $("#select_company_id_eq").on("change", ->
+  #   company_id = $(this).val()
+  #   if !!company_id
+  #     $("[data-company-id]").hide()
+  #     $("[data-company-id='#{company_id}']").show()
+  #   else
+  #     $("[data-company-id]").show()
+  # )
 
   

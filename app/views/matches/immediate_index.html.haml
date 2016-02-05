@@ -2,6 +2,7 @@
 %input{:type => "hidden", "data-leagues" => @matches.to_a.map{|m| m.league}.to_json}
 .well.well-sm
   = select_tag "select_company_id_eq",options_for_select(companies_for_select),
-    :prompt => "显示所有公司",
-    :class => "form-control input-sm select-company"
+    :multiple => true,
+    :style => "width : 85%;",
+    :class => "select-company"
 = react_component 'ImmediateIndexTable', {matches: render(file: "matches/immediate_index.json.jbuilder"),total_pages: @matches.total_pages,url: immediate_index_matches_path(q: params[:q],format: :json)}, {id: "table_immediate_index"}

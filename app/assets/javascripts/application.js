@@ -19,6 +19,7 @@
 //= require react
 //= require react_ujs
 //= require pageless/lib/jquery.pageless
+//= require multiple-select/multiple-select
 //= require components
 //= require fancybox/source/jquery.fancybox
 //= require leagues
