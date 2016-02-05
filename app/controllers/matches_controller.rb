@@ -48,7 +48,7 @@ class MatchesController < ApplicationController
   #GET /matches/immediate_index.json
   #即时指数
   def immediate_index
-    @q = Match.immediate.ransack(params[:q])
+    @q = Match.immediate.where("t_current_match.match_status = 0").ransack(params[:q])
     @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 6)
   end
 

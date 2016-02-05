@@ -17,10 +17,10 @@ REFRESH_RATE = 120*1000
 
   render: ->
     #将数据分组,已结束的比赛放到最后边
-    matches = (m for m in @state.matches when not m.finished)
-    finished_matches = (m for m in @state.matches when m.finished)
+    #matches = (m for m in @state.matches when not m.finished)
+    #finished_matches = (m for m in @state.matches when m.finished)
 
-    match_nodes = matches.concat(finished_matches).map (m)->
+    match_nodes = @state.matches.map (m)->
       <Match key={m.match_id} data={m} />
 
     <table className="table table-hover table-condensed table-striped" id="immediate_table" style={fontSize : "12px"}>
@@ -432,7 +432,8 @@ REFRESH_RATE = 120*1000
 
     )
 
-    setInterval(@_fetch_sb_list, REFRESH_RATE);
+    #10秒刷新一次
+    setInterval(@_fetch_sb_list, 10*1000);
 
   _fetch_sb_list: (data)->
     $.ajax(
@@ -509,5 +510,3 @@ REFRESH_RATE = 120*1000
   _on_bigdata_click: ->
     match_id = @props.data.match.match_id
     Android.openMatchShowBigdataActivity(match_id)
-
-

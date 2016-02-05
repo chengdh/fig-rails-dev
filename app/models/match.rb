@@ -84,15 +84,15 @@ class Match < ActiveRecord::Base
   #
   #对赛往绩
   def matches_history
-    Match.where("(team1_id = ? AND team2_id = ?) OR (team1_id = ? AND team2_id = ?) AND match_time <= ?",team1_id,team2_id,team2_id,team1_id,1.days.ago).limit(10).order("data_time DESC")
+    Match.where("home_score IS NOT NULL AND (team1_id = ? AND team2_id = ?) OR (team1_id = ? AND team2_id = ?) AND match_time <= ?",team1_id,team2_id,team2_id,team1_id,1.days.ago).limit(10).order("data_time DESC")
   end
   #近10场主队战绩
   def matches_recent_home
-    Match.where("team1_id = ? or team2_id = ? AND match_time <= ? ",team1_id,team1_id,1.days.ago + 8.hours).limit(10).order("data_time DESC")
+    Match.where("home_score IS NOT NULL AND (team1_id = ? OR team2_id = ?) AND match_time <= ? ",team1_id,team1_id,1.days.ago + 8.hours).limit(10).order("data_time DESC")
   end
   #近10场客队战绩
   def matches_recent_guest
-    Match.where("team1_id = ? OR team2_id = ? AND match_time <= ?",team2_id,team2_id,1.days.ago + 8.hours).limit(10).order("data_time DESC")
+    Match.where("home_score IS NOT NULL AND (team1_id = ? OR team2_id = ?) AND match_time <= ?",team2_id,team2_id,1.days.ago + 8.hours).limit(10).order("data_time DESC")
   end
 
   #当前亚盘数据

@@ -1,9 +1,9 @@
 - if @league.read_attribute_before_type_cast(:league_type) == 1
-  %h4
-    = @league.cn_name
-    .pull-right
-      %select.form-control.input-sm
-        = options_for_select(seasons_for_select(@league.league_id))
+  .well.well-sm
+    %h4{:style => "text-align : center;"}= @league.cn_name
+    =select_tag "people", options_from_collection_for_select(seasons_for_select(@league.league_id),:first,:second)
+    %select.form-control.input-sm
+      = options_for_select(seasons_for_select(@league.league_id))
 
   .btn-group.btn-group-justified.league-tabs{:role => "group","aria-label" => "..."}
     = link_to "积分", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".season-rankings"
@@ -30,15 +30,14 @@
 
 
 - else
-  %h4
-    = @league.cn_name
-    .pull-right
-      %select.form-control.input-sm
-        %option 选择阶段
+  .well.well-sm
+    %h4{:style => "text-align : center;"}= @league.cn_name
+    %select.form-control.input-sm
+      = options_for_select(seasons_for_select(@league.league_id))
 
-    .pull-right
-      %select.form-control.input-sm
-        = options_for_select(seasons_for_select(@league.league_id))
+    %select.form-control.input-sm
+      %option 选择阶段
+
 
   .btn-group.btn-group-justified.league-tabs{:role => "group","aria-label" => "..."}
     = link_to "积分", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".cup-rankings"
