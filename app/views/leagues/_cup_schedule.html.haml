@@ -10,7 +10,7 @@
   %tbody
     - cup_schedules.each do |s|
       %tr
-        %td= s.match.try(:match_time).strftime("%Y-%m-%d %H:%M")
+        %td= s.match.try(:match_time).try(:strftime,"%Y-%m-%d %H:%M")
         %td= s.match.try(:status)
         %td= s.match.try(:team1).try(:cn_name)
         - if s.match.try(:started?)

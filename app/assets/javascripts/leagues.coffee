@@ -94,3 +94,20 @@ $ ->
     $(".league-tabs .btn").removeClass("btn-info")
     $(this_el).addClass("btn-info")
   )
+
+#赛季切换
+  $(".select-season").on("change", ->
+    league_id = $(".input_league_id").val()
+    params = $.param("q[season_id_eq]": $(this).val())
+    window.location.href = "/leagues/#{league_id}?#{params}"
+  )
+  #杯赛阶段切换
+  $(".select-stage").on("change", ->
+    league_id = $(".input_league_id").val()
+    params = $.param(
+      "q[season_id_eq]": $(".select-season").val(),
+      "q[stage_id_eq]": $(this).val()
+    )
+    window.location.href = "/leagues/#{league_id}?#{params}"
+  )
+
