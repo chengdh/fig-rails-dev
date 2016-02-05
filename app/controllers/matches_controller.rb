@@ -40,7 +40,7 @@ class MatchesController < ApplicationController
   #GET /matches/sb_list.json
   #滚球界面
   def sb_list
-    @q = Match.immediate.ransack(params[:q])
+    @q = Match.immediate.where("t_current_match.match_status > 0").ransack(params[:q])
     @matches = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 10)
   end
 
