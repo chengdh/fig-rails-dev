@@ -68,7 +68,9 @@ $ ->
     $("[data-company-id='#{company_id}']").show() for company_id in select_company_ids
 
 
+
   $("#select_company_id_eq").multipleSelect(
+    placeholder: "请选择公司",
     selectAllText: "全选",
     allSelected: "全部",
     onClick: func_select_company
