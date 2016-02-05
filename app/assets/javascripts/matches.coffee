@@ -73,6 +73,7 @@ $ ->
     placeholder: "请选择公司",
     selectAllText: "全选",
     allSelected: "全部",
+    multiple: true,
     onClick: func_select_company
   )
   #即时指数界面,按照公司查询
