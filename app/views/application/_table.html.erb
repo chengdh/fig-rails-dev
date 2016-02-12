@@ -1,4 +1,4 @@
-<table id="<%= resource_class.name.underscore.pluralize %>_index_table" class="table">
+<table id="<%= resource_class.name.underscore.pluralize %>_index_table" class="table table-condensed table-hover talbe-striped">
   <thead>
     <tr>
       <th>序号</th>
@@ -23,11 +23,31 @@
       <td><%= value %></td>
     <% end %>
     <td>
-      <%= link_to "查看", resource_url(resource),:class => "show_link",:style => 'display : none;'%>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <%= link_to image_tag("application--pencil.png"),  edit_resource_path(resource),:title => "修改当前记录",:class => "tipsy edit_link",:style => 'display : none;' if can? :update,resource%>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <%= link_to image_tag("cross.png"), resource,:method => :delete,:class =>"tipsy delete_link",:style => 'display : none;',:title => "删除该记录",:confirm => "你确定要删除吗?" if can? :destroy,resource %>
+      <div class="btn-group" role="group" aria-label="...">
+        <%= link_to  resource_url(resource),:class => "btn btn-sm btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do%>
+          <i class="fa fa-eye"></i>
+        <% end %>
+        <% if can? :update,resource %>
+          <%= link_to edit_resource_path(resource),
+            :class => "btn btn-sm btn-default",
+            "data-toggle" => "tooltip",
+            "data-placement" => "top",
+            :title => "修改当前记录" do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+        <% end %>
+
+        <% if can? :destroy,resource %>
+          <%= link_to polymorphic_url(resource,:routing_type => :path),:method => :delete,
+            "data-confirm" => "你确定要删除吗?",
+            :class => "btn btn-default btn-sm",
+            "data-toggle" => "tooltip",
+            "data-placement" => "top",
+            :title => "删除该记录" do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        <% end %>
+      </div>
     </td>
   </tr>
 <% end %>

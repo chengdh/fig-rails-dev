@@ -1,0 +1,19 @@
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-bank"></i>
+    <%= current_user.current_org.name %>
+    <i class="fa fa-angle-down"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <ul class="menu">
+        <% current_user.orgs.each do |o| %>
+          <li>
+            <%= link_to o.name,update_default_attr_user_path(current_user,"user[default_org_id]" => o.id),method: :put %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</li>
+

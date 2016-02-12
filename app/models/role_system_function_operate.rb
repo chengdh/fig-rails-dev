@@ -3,5 +3,5 @@
 class RoleSystemFunctionOperate < ActiveRecord::Base
   belongs_to :role,touch: true
   belongs_to :system_function_operate
-  validates :role_id,:system_function_operate_id, presence: true
+  validates  :system_function_operate_id, presence: true
 end

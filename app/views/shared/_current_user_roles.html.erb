@@ -1,0 +1,19 @@
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-user-md"></i>
+    <%= current_user.current_role.name %>
+    <i class="fa fa-angle-down"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <li>
+      <!-- inner menu: contains the actual data -->
+      <ul class="menu">
+        <% current_user.roles.each do |r| %>
+          <li>
+            <%= link_to r.name,update_default_attr_user_path(current_user,"user[default_role_id]" => r.id),method: :put %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</li>

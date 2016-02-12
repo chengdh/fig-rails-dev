@@ -5,7 +5,7 @@ class Role < ActiveRecord::Base
   validates :name, presence: true
   has_many :users,through: :user_roles
   has_many :user_roles
-  has_many :role_system_function_operates,-> {includes(:system_function_operate)}
+  has_many :role_system_function_operates,-> {includes(:system_function_operate)},dependent: :destroy
 
   #is_select标志为true的role_system_function_operates
   has_many :selected_rsfos,-> {where(is_select: true)},class_name: "RoleSystemFunctionOperate"
@@ -23,7 +23,7 @@ class Role < ActiveRecord::Base
       end
       all_role_sfos = role_system_function_operates
     end
-    .all_role_sfos
+    all_role_sfos
   end
   #根据系统功能得到对应的role_system_function_operate
   def single_function_operates(sf)
@@ -43,7 +43,7 @@ class Role < ActiveRecord::Base
     if ids.blank?
       @system_finctions =[]
     else
-      @system_functions ||= SystemFunction.find(ids,:conditions => {:is_active => true},:include => [:system_function_group]) if ids.present?
+      @system_functions ||= SystemFunction.where(is_active: true).includes(:system_function_group).find(ids)
     end
   end
   #得到被授权的system_function_group
@@ -54,5 +54,4 @@ class Role < ActiveRecord::Base
   def to_s
     name
   end
-
 end

@@ -1,7 +1,7 @@
 #coding: utf-8
 #基础类库
 class BaseController < InheritedResources::Base
-  authorize_resource :except => :index
+  load_and_authorize_resource
   helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns
   respond_to :html,:xml,:js,:json,:csv
   private
@@ -29,19 +29,19 @@ class BaseController < InheritedResources::Base
     @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).ransack(params[:q])
     set_collection_ivar(@search.result.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
+
+  #inherited resource使用strong paramters
+  #参考http://abernardes.github.io/2013/08/21/inherited-resources-with-strong-parameters.html
+  def permitted_params
+    params.permit!
+  end
+
   def show_or_hide_fields_for_export(html_str)
     require 'nokogiri'
     doc = Nokogiri::HTML(html_str)
     #处理显示问题
     show_fields = params[:show_fields]
     hide_fields = params[:hide_fields]
-    #如果显示carrying_fee_total,carrying_fee_total_th,k_carrying_fee_total,则显示关联发货短途及到货短途
-    #show_relate_fields = ""
-    #show_relate_fields +=',.from_short_carrying_fee,.to_short_carrying_fee' if show_fields.try(:include?,'.carrying_fee_total')
-    #show_relate_fields +=',.from_short_carrying_fee_th,.to_short_carrying_fee_th' if show_fields.try(:include?,'.carrying_fee_th_total')
-    #show_relate_fields +=',.k_from_short_carrying_fee,.k_to_short_carrying_fee' if show_fields.try(:include?,'.k_carrying_fee_total')
-    #show_fields += show_relate_fields if show_fields.present?
-
     doc.css(show_fields).remove_class('hide') if show_fields.present?
     doc.css(hide_fields).remove() if hide_fields.present?
     doc.css(".hide").remove()
@@ -65,4 +65,3 @@ class BaseController < InheritedResources::Base
     params[:search]
   end
 end
-

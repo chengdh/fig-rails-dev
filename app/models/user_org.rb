@@ -3,5 +3,5 @@
 class UserOrg < ActiveRecord::Base
   belongs_to :user
   belongs_to :org
-  validates :user_id,:org_id, presence: true
+  validates :org_id, presence: true
 end

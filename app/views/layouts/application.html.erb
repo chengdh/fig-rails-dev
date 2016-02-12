@@ -7,10 +7,6 @@
     <title>综合信息管理平台</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
     <%= stylesheet_link_tag  'application',media: 'all',debug: true %>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -71,13 +67,18 @@
                   <li class="footer"><a href="#">See All Messages</a></li>
                 </ul>
               </li>
+              <!--所属机构-->
+              <%= render "shared/current_user_orgs" %>
+              <!--角色-->
+              <%= render "shared/current_user_roles" %>
+
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="glyphicon glyphicon-user"></span>
-                  <span class="hidden-xs"><%= current_user.username %></span>
+                  <span class="hidden-xs"><%= current_user.real_name %></span>
                 </a>
-                <ul class="dropdown-menu" style="right : auto;">
+                <ul class="dropdown-menu">
                   <li>
                     <%= link_to edit_user_password_path do%>
                       <i class="fa fa-key"></i>
@@ -103,18 +104,7 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header">导航菜单</li>
-            <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-              </ul>
-            </li>
-          </ul>
+          <%= render "shared/sidebar_menu" %>
         </section>
         <!-- /.sidebar -->
       </aside>

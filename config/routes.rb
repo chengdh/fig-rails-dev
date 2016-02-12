@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations" }
 
+  resources :roles
+
   resources :orgs
 
-  resources :users
+  resources :users do
+    member do
+      put :update_default_attr
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

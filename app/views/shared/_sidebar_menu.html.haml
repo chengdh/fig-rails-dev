@@ -1,0 +1,17 @@
+- cache "menu_bar_#{current_user.id}_#{current_user.updated_at.to_i}" do
+  %ul.sidebar-menu
+    %li.header
+      %h4 功能菜单
+    %li.treeview
+      - current_user.current_role.system_function_groups.each do |f_group,functions|
+        %a{:href => "#"}
+          %i.fa.fa-dashboard
+          %span= f_group.name
+          %i.fa.fa-angle-left.pull-right
+
+        %ul.treeview-menu
+          - functions.each do |f|
+            %li
+              = link_to instance_eval(f.default_action) do
+                %i.fa.fa-circle-o
+                = f.name

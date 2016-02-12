@@ -1,0 +1,40 @@
+zh-CN:
+  activerecord:
+
+    models:
+      user: 用户
+      org: 机构信息
+      role: 角色信息
+
+    attributes:
+      public_attrs:
+        is_active: 有效
+        is_admin: 超级用户
+        name: 名称
+        order_by: 显示顺序
+
+      user:
+        username: 用户名
+        real_name: 姓名
+        default_org_id: 默认机构
+        default_org: 默认机构
+        default_role_id: 默认角色
+        default_role: 默认角色
+        current_sign_in_at: 当前登录
+        last_sign_in_at:  最后登录
+        current_sign_in_ip: 登录ip
+        last_sign_in_ip: 最后登录ip
+        password: 密码
+        password_confirmation: 确认密码
+        is_admin: 超级用户
+        is_active: 有效
+      
+      org:
+        name: 机构名称
+        address: 地址
+        org_type: 机构类别
+        order_by: 显示顺序
+        is_active: 有效
+      role:
+        name: 角色名称
+        is_active: 有效

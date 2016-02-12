@@ -11,9 +11,9 @@ class User < ActiveRecord::Base
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   belongs_to :default_org,class_name: "Org"
   belongs_to :default_role,class_name: "Role"
-  has_many :user_roles
+  has_many :user_roles,dependent: :destroy
   has_many :roles,through: :user_roles
-  has_many :user_orgs,-> {includes(:org)}
+  has_many :user_orgs,-> {includes(:org)},dependent: :destroy
   has_many :orgs,through: :user_orgs
   accepts_nested_attributes_for :user_roles,:user_orgs,allow_destroy: true
 
@@ -42,6 +42,15 @@ class User < ActiveRecord::Base
     ret.all_user_orgs!
     ret
   end
+
+  #用户当前所属角色
+  def current_role
+    default_role || roles.first
+  end
+  def current_org
+    default_org || orgs.first
+  end
+
 
   #显示所有部门,包括当前角色具备与不具备的部门
   def all_user_roles!
