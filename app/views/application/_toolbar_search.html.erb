@@ -1,5 +1,5 @@
 <%= link_to self.send("search_#{controller_name.tableize}_path",:format => :js),
-  :class => "btn btn-default",
+  :class => "btn btn-default fancybox fancybox.ajax",
   "data-toggle" => "tooltip",
   "data-placement" => "top",
   :title => "查询#{resource_class.model_name.human}" do %>

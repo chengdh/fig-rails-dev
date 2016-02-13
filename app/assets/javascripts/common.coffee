@@ -5,3 +5,4 @@ $ ->
     form_id = $(this).data("form-id")
     $("##{form_id}").trigger("submit")
   )
+  $(".fancybox").fancybox()

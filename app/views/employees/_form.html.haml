@@ -1,0 +1,37 @@
+= semantic_form_for @employee,html: {id: "employee_form"} do |f|
+  = f.inputs do
+    = f.input :org,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :name,input_html: {style: "width : 30%;"}
+    = f.input :avatar,as: :file
+    = f.input :gender,as: :select,collection: genders_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+
+    = f.input :birthday,as: :string,input_html: {readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-language" => "zh-CN",
+      style: "width : 15%;"}
+    = f.input :academic,input_html: {style: "width : 60%;"}
+
+    = f.input :graduate_from,input_html: {style: "width : 60%;"}
+
+    = f.input :id_no,input_html: {style: "width : 30%;"}
+
+    = f.input :mobile,input_html: {style: "width : 30%;"}
+
+    = f.input :address,input_html: {style: "width : 40%;"}
+
+    = f.input :email,input_html: {style: "width : 30%;"}
+
+    = f.input :qq,input_html: {style: "width : 20%;"}
+
+    = f.input :wechat,input_html: {style: "width : 20%;"}
+
+    = f.input :work_day,as: :string,input_html: {readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-language" => "zh-CN",
+      style: "width : 15%;"}
+
+    = f.input :post,input_html: {style: "width : 40%;"}
+
+    = f.input :note,input_html: {rows: 2,style: "width : 40%;"}

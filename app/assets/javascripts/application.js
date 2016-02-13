@@ -21,5 +21,6 @@
 //= require admin-lte/plugins/slimScroll/jquery.slimscroll.min
 //= require admin-lte/plugins/chartjs/Chart.min
 //= require jquery-orgchart/jquery.orgchart
+//= require fancybox/source/jquery.fancybox
 //= require common
 //= require orgs

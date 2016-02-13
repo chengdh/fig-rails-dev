@@ -5,6 +5,7 @@ zh-CN:
       user: 用户
       org: 机构信息
       role: 角色信息
+      employee: 员工信息
 
     attributes:
       public_attrs:
@@ -38,3 +39,21 @@ zh-CN:
       role:
         name: 角色名称
         is_active: 有效
+
+      employee:
+        name: 姓名
+        org_id: 所属机构
+        org: 所属机构
+        avatar: 照片
+        gender: 性别
+        birthday: 生日
+        id_no: 身份证号
+        academic: 学历
+        graduate_from: 毕业院校
+        mobile: 手机
+        qq: QQ号
+        wechat: 微信号
+        post: 职位
+        note: 备注
+        work_day: 工作时间
+        address: 住址
