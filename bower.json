@@ -24,6 +24,7 @@
     "zTree": "https://git.oschina.net/zTree/zTree_v3.git",
     "blockUI" : "*",
     "font-awesome": "*",
-    "ionicons": "https://github.com/driftyco/ionicons.git"
+    "ionicons": "https://github.com/driftyco/ionicons.git",
+    "jquery.peekABar": "*"
   }
 }

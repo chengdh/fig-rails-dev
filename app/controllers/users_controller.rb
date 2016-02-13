@@ -5,9 +5,9 @@ class UsersController < BaseController
   #PUT users/:id/update_default
   #更新默认机构及默认角色
   def update_default_attr
-    params.require(:user).permit! #(:default_org_id,:default_role_id)
+    attrs = params.require(:user).permit(:default_org_id,:default_role_id)
     user = User.find(params[:id])
-    user.update_attributes(params[:user])
+    user.update_attributes(attrs)
     redirect_to :back
   end
 end
