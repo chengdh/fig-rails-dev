@@ -67,6 +67,7 @@ gem 'net-ssh','2.9.2'
 gem 'devise'
 gem 'inherited_resources', '~> 1.6'
 gem 'show_for', '~> 0.4.0'
+gem 'will_paginate-bootstrap'
 
 group :development do
   gem 'better_errors'

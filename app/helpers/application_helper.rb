@@ -31,10 +31,6 @@ module ApplicationHelper
     ret
   end
 
-  #性别
-  def genders_for_select
-    [['男','m'],['女','f']]
-  end
 
   #search form for formtastic
   def semantic_search_form_for(*args, &block)

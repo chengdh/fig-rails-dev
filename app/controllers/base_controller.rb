@@ -4,6 +4,11 @@ class BaseController < InheritedResources::Base
   load_and_authorize_resource
   helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns
   respond_to :html,:xml,:js,:json,:csv
+
+  def search
+    render partial: "search"
+  end
+
   private
   #排序方法
   #见http://asciicasts.com/episodes/228-sortable-table-columns
@@ -24,9 +29,10 @@ class BaseController < InheritedResources::Base
   def resources_name
     resource_name.pluralize
   end
+
   protected
   def collection
-    @q= end_of_association_chain.accessible_by(current_ability,:read_with_conditions).ransack(params[:q])
+    @q= end_of_association_chain.accessible_by(current_ability,:read).ransack(params[:q])
     set_collection_ivar(@q.result.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 
@@ -63,5 +69,13 @@ class BaseController < InheritedResources::Base
     end
     params[:q].merge!(new_search_params) if new_search_params.present?
     params[:q]
+  end
+
+  #当期可用机构的ids
+  def current_ability_org_ids
+    default_org = current_user.current_org
+    ret = ActiveSupport::OrderedHash.new
+    child_org_ids = default_org.children.map {|child_org|  child_org.id}
+    [default_org.id] + child_org_ids
   end
 end

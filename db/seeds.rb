@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+EquipmentCategory.destroy_all
+Employee.destroy_all
 User.destroy_all
 Role.destroy_all
 Org.destroy_all
@@ -50,3 +52,14 @@ Org.where(is_active: true).each do |o|
 end
 
 user.save!
+
+#150个员工数据
+(1..150).each do |i|
+  Employee.create!(name: "员工_#{i}",org: Org.first,email: "a_#{i}@b.com")
+end
+
+#设备分类
+categs = %w(台式机 笔记本 耗材 数码相机 其他)
+categs.each do |c|
+  EquipmentCategory.create!(name: c)
+end

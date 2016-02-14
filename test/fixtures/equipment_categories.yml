@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  order_by: 1
+  is_active: false
+  org_id: 
+
+two:
+  name: MyString
+  order_by: 1
+  is_active: false
+  org_id: 

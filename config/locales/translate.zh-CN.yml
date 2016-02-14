@@ -6,6 +6,7 @@ zh-CN:
       org: 机构信息
       role: 角色信息
       employee: 员工信息
+      equipment_category: 设备类别
 
     attributes:
       public_attrs:
@@ -13,6 +14,8 @@ zh-CN:
         is_admin: 超级用户
         name: 名称
         order_by: 显示顺序
+        org_id: 机构
+        org: 机构
 
       user:
         username: 用户名
@@ -57,3 +60,9 @@ zh-CN:
         note: 备注
         work_day: 工作时间
         address: 住址
+
+    equipment_category:
+      name: 名称
+      order_by: 排序
+
+      is_active: 有效

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213030238) do
+ActiveRecord::Schema.define(version: 20160214071030) do
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -39,6 +39,18 @@ ActiveRecord::Schema.define(version: 20160213030238) do
 
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
   add_index "employees", ["org_id"], name: "index_employees_on_org_id", using: :btree
+
+  create_table "equipment_categories", force: :cascade do |t|
+    t.string   "name",       limit: 60,                null: false
+    t.integer  "order_by",   limit: 4,  default: 1
+    t.boolean  "is_active",  limit: 1,  default: true
+    t.integer  "org_id",     limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", using: :btree
+  add_index "equipment_categories", ["org_id"], name: "index_equipment_categories_on_org_id", using: :btree
 
   create_table "orgs", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false
@@ -158,6 +170,7 @@ ActiveRecord::Schema.define(version: 20160213030238) do
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   add_foreign_key "employees", "orgs"
+  add_foreign_key "equipment_categories", "orgs"
   add_foreign_key "role_system_function_operates", "roles"
   add_foreign_key "role_system_function_operates", "system_function_operates"
   add_foreign_key "system_function_operates", "system_functions"

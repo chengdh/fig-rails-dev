@@ -1,0 +1,47 @@
+%table.table.table-condensed.table-hover.table-bordered
+  %tr
+    %th 姓名
+    %td= resource.name
+    %th 性别
+    %td= gender_des(resource.gender)
+    %td{:rowspan => 3}
+      = image_tag resource.avatar.url(:medium)
+
+  %tr
+    %th 出生年月
+    %td= resource.birthday
+    %th 民族
+    %td
+  %tr
+    %th 籍贯
+    %td
+    %th 婚姻状况
+    %td
+  %tr
+    %th 政治面貌 
+    %td
+    %th 学历
+    %td= resource.academic
+  %tr
+    %th 专业
+    %td
+    %th 毕业院校 
+    %td{:colspan => 2}= resource.graduate_from
+  %tr
+    %th  手机
+    %td= resource.mobile
+    %th 住址
+    %td{:colspan => 2}= resource.address
+  %tr
+    %th 身份证号
+    %td{:colspan => 4}= resource.id_no
+  %tr
+    %th Email
+    %td= resource.email
+    %th 其他联系方式
+    %td{:colspan => 2}= "QQ:#{resource.qq}  微信:#{resource.wechat}"
+  %tr
+    %th 个人简介 
+    %td{:colspan => 4}= resource.note
+
+

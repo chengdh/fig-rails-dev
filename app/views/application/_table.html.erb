@@ -17,45 +17,41 @@
         <% index_table_columns.each do |column| %>
           <%
               value = resource.send(foreign_key_to_association(column))
-          value = '是' if value == true
-          value = '否' if value == false
-        %>
-      <td><%= value %></td>
-    <% end %>
-    <td>
-      <div class="btn-group" role="group" aria-label="...">
-        <%= link_to  resource_url(resource),:class => "btn btn-sm btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do%>
-          <i class="fa fa-eye"></i>
+              value = '是' if value == true
+              value = '否' if value == false
+          %>
+          <td><%= value %></td>
         <% end %>
-        <% if can? :update,resource %>
-          <%= link_to edit_resource_path(resource),
-            :class => "btn btn-sm btn-default",
-            "data-toggle" => "tooltip",
-            "data-placement" => "top",
-            :title => "修改当前记录" do %>
-            <i class="fa fa-edit"></i>
-          <% end %>
-        <% end %>
+        <td>
+          <div class="btn-group" role="group" aria-label="...">
+            <%= link_to  resource_url(resource),:class => "btn btn-sm btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do%>
+              <i class="fa fa-eye"></i>
+            <% end %>
+            <% if can? :update,resource %>
+              <%= link_to edit_resource_path(resource),
+                :class => "btn btn-sm btn-default",
+                "data-toggle" => "tooltip",
+                "data-placement" => "top",
+                :title => "修改当前记录" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+            <% end %>
 
-        <% if can? :destroy,resource %>
-          <%= link_to polymorphic_url(resource,:routing_type => :path),:method => :delete,
-            "data-confirm" => "你确定要删除吗?",
-            :class => "btn btn-default btn-sm",
-            "data-toggle" => "tooltip",
-            "data-placement" => "top",
-            :title => "删除该记录" do %>
-            <i class="fa fa-trash"></i>
-          <% end %>
-        <% end %>
-      </div>
-    </td>
-  </tr>
-<% end %>
+            <% if can? :destroy,resource %>
+              <%= link_to polymorphic_url(resource,:routing_type => :path),:method => :delete,
+                "data-confirm" => "你确定要删除吗?",
+                :class => "btn btn-default btn-sm",
+                "data-toggle" => "tooltip",
+                "data-placement" => "top",
+                :title => "删除该记录" do %>
+                <i class="fa fa-trash"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
   <%= render  "table_foot" %>
 </table>
-<div class="actions-bar wat-cf">
-  <div class="actions">
-    <%=will_paginate collection%>
-  </div>
-</div>
+<%= will_paginate collection, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next") %>
