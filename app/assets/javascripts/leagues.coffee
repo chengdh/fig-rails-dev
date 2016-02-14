@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   #测试用
-  if not Android?
-    window.Android =
-      getUserId : -> return 1
-      passString : (k,v)-> return 1
+  #if not Android?
+  #  window.Android =
+  #    getUserId : -> return 1
+  #    passString : (k,v)-> return 1
 
   #赛事筛选中的全选与不选处理
   window.Android.func_select_all_leagues = ->
