@@ -26,8 +26,8 @@ class BaseController < InheritedResources::Base
   end
   protected
   def collection
-    @search = end_of_association_chain.accessible_by(current_ability,:read_with_conditions).ransack(params[:q])
-    set_collection_ivar(@search.result.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
+    @q= end_of_association_chain.accessible_by(current_ability,:read_with_conditions).ransack(params[:q])
+    set_collection_ivar(@q.result.select("DISTINCT #{resource_class.table_name}.*").order(sort_column + ' ' + sort_direction).paginate(:page => params[:page]))
   end
 
   #inherited resource使用strong paramters
@@ -52,16 +52,16 @@ class BaseController < InheritedResources::Base
 
   #处理查询时,传入的机构代码,如果传入的机构有下级机构,则进行处理
   def pre_process_search_params
-    return if params[:search].blank?
+    return if params[:q].blank?
     new_search_params ={}
-    params[:search].each do |key,value|
+    params[:q].each do |key,value|
       if  ['carrying_bills_from_org_id_eq','carrying_bills_to_org_id_eq','carrying_bills_transit_org_id_eq','carrying_bills_to_org_id_or_carrying_bills_transit_org_id_eq','from_org_id_eq','to_org_id_eq','from_org_id_or_to_org_id_eq','transit_org_id_eq','to_org_id_or_transit_org_id_eq'].include?(key) and value.present? and (the_org = Org.includes(:children).find(value)).children.present?
         change_key = key.to_s.gsub(/_eq/,'_in')
         new_search_params[change_key] = [value] + the_org.children.collect(&:id)
         new_search_params[key]= nil
       end
     end
-    params[:search].merge!(new_search_params) if new_search_params.present?
-    params[:search]
+    params[:q].merge!(new_search_params) if new_search_params.present?
+    params[:q]
   end
 end
