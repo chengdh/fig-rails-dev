@@ -465,9 +465,11 @@ REFRESH_RATE = 120*1000
       <tr key={@props.data.match.match_id+"_tr_1"} style={textAlign : 'center'}>
         <td>{@props.data.match.league.cn_name}</td>
         <td>{@props.data.match.current_match.home_score}</td>
-        <td style={verticalAlign : "middle"}>
+        <td style={verticalAlign : "middle",fontSize: "10px"}>
           {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
+          {@props.data.match.current_match.home_yellow_card? and @props.data.match.current_match.home_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.match.current_match.home_yellow_card}</span>}
+          {@props.data.match.current_match.home_red_card? and @props.data.match.current_match.home_red_card > 0 and <span  style={padding: "2px"} className="label label-danger">{@props.data.match.current_match.home_red_card}</span>}
           {@props.data.match.team1.cn_name}
         </td>
         <td>{@props.data.match.odds_asian.home}</td>
@@ -493,10 +495,12 @@ REFRESH_RATE = 120*1000
       <tr  key={@props.data.match.match_id+"_tr_3"} style={textAlign : 'center'}>
         <td></td>
         <td>{@props.data.match.current_match.guest_score}</td>
-        <td style={verticalAlign : "middle"}>
+        <td style={verticalAlign : "middle",fontSize: "10px"}>
           {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.match.team2.cn_name}
+          {@props.data.match.current_match.guest_red_card? and @props.data.match.current_match.guest_red_card > 0 and <span style={padding: "2px"} className="label label-danger">{@props.data.match.current_match.guest_red_card}</span>}
+          {@props.data.match.current_match.guest_yellow_card? and @props.data.match.current_match.guest_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.match.current_match.guest_yellow_card}</span>}
         </td>
         <td>{@props.data.match.odds_asian.away}</td>
         <td>{@props.data.match.odds_ball.under}</td>
