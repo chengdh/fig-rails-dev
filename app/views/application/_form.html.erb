@@ -1,3 +1,3 @@
-<%= semantic_form_for resource,:html => {:class => "form-horizontal",:id => "#{resource_class.name.underscore}_form"} do |f| %>
+<%= semantic_form_for resource,html: {class: "default-formtastic-form", id: "#{resource_class.name.underscore}_form"} do |f| %>
   <%= f.inputs %>
 <% end %>

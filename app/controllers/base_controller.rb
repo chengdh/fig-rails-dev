@@ -1,6 +1,7 @@
 #coding: utf-8
 #基础类库
 class BaseController < InheritedResources::Base
+  include InheritedResources::TableBuilder
   load_and_authorize_resource
   helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns
   respond_to :html,:xml,:js,:json,:csv

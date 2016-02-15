@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214080832) do
+ActiveRecord::Schema.define(version: 20160215140844) do
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -118,6 +118,14 @@ ActiveRecord::Schema.define(version: 20160214080832) do
   end
 
   add_index "system_functions", ["system_function_group_id"], name: "index_system_functions_on_system_function_group_id", using: :btree
+
+  create_table "units", force: :cascade do |t|
+    t.string   "name",       limit: 30,                null: false
+    t.integer  "order_by",   limit: 4,  default: 1
+    t.boolean  "is_active",  limit: 1,  default: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
 
   create_table "user_orgs", force: :cascade do |t|
     t.integer  "user_id",    limit: 4

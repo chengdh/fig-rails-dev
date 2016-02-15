@@ -7,9 +7,11 @@ zh-CN:
       role: 角色信息
       employee: 员工信息
       equipment_category: 设备类别
+      unit: 计量单位
 
     attributes:
       public_attrs:
+        id: 编码id
         is_active: 有效
         is_admin: 超级用户
         name: 名称
@@ -32,15 +34,11 @@ zh-CN:
         password_confirmation: 确认密码
         is_admin: 超级用户
         is_active: 有效
-      
       org:
         name: 机构名称
         address: 地址
         org_type: 机构类别
         order_by: 显示顺序
-        is_active: 有效
-      role:
-        name: 角色名称
         is_active: 有效
 
       employee:
@@ -61,8 +59,8 @@ zh-CN:
         work_day: 工作时间
         address: 住址
 
-    equipment_category:
-      name: 名称
-      order_by: 排序
 
-      is_active: 有效
+      equipment_category:
+        name: 名称
+        order_by: 排序
+        is_active: 有效

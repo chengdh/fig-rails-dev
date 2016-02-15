@@ -1,0 +1,13 @@
+.show_for .wrapper{
+  background: #fff;
+}
+.show_for .wrapper .label{
+  color : #000;
+}
+.default-formtastic-form  input.form-control{
+  width : 30%;
+}
+
+.default-formtastic-form  .boolean .form-label{
+  display : none;
+}

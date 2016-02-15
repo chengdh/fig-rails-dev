@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
+Unit.destroy_all
 EquipmentCategory.destroy_all
 Employee.destroy_all
 User.destroy_all
@@ -62,4 +62,10 @@ end
 categs = %w(台式机 笔记本 耗材 数码相机 其他)
 categs.each do |c|
   EquipmentCategory.create!(name: c)
+end
+
+#计量单位
+units = %w(个 件 台 量 张 本)
+units.each do |u|
+  Unit.create!(name: u)
 end

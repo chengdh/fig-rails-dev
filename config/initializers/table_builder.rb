@@ -57,4 +57,4 @@ module InheritedResources
     end
   end
 end
-InheritedResources::Base.send(:include,InheritedResources::TableBuilder)
+#InheritedResources::Base.send(:include,InheritedResources::TableBuilder)
