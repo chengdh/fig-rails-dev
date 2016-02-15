@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215140844) do
+ActiveRecord::Schema.define(version: 20160215153034) do
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -51,6 +51,21 @@ ActiveRecord::Schema.define(version: 20160215140844) do
 
   add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", using: :btree
   add_index "equipment_categories", ["org_id"], name: "index_equipment_categories_on_org_id", using: :btree
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "name",         limit: 30,                   null: false
+    t.integer  "warehouse_id", limit: 4
+    t.string   "x",            limit: 20,    default: "0"
+    t.string   "y",            limit: 20,    default: "0"
+    t.string   "z",            limit: 20,    default: "0"
+    t.integer  "order_by",     limit: 4,     default: 1
+    t.boolean  "is_active",    limit: 1,     default: true
+    t.text     "note",         limit: 65535
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "locations", ["warehouse_id"], name: "index_locations_on_warehouse_id", using: :btree
 
   create_table "orgs", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false
@@ -176,6 +191,34 @@ ActiveRecord::Schema.define(version: 20160215140844) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  create_table "warehouse_types", force: :cascade do |t|
+    t.string   "name",       limit: 30,                null: false
+    t.integer  "order_by",   limit: 4,  default: 1
+    t.boolean  "is_active",  limit: 1,  default: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  create_table "warehouses", force: :cascade do |t|
+    t.string   "name",                limit: 30,                                            null: false
+    t.integer  "org_id",              limit: 4,                                             null: false
+    t.integer  "warehouse_type_id",   limit: 4
+    t.integer  "default_location_id", limit: 4
+    t.string   "address",             limit: 60
+    t.string   "leader",              limit: 30
+    t.integer  "order_by",            limit: 4,                              default: 1
+    t.boolean  "is_active",           limit: 1,                              default: true
+    t.string   "phone",               limit: 30
+    t.decimal  "area",                              precision: 15, scale: 2
+    t.decimal  "volume",                            precision: 15, scale: 2
+    t.text     "note",                limit: 65535
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
+  end
+
+  add_index "warehouses", ["org_id"], name: "index_warehouses_on_org_id", using: :btree
+  add_index "warehouses", ["warehouse_type_id"], name: "index_warehouses_on_warehouse_type_id", using: :btree
 
   add_foreign_key "employees", "orgs"
   add_foreign_key "equipment_categories", "orgs"

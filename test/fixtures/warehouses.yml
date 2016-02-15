@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  org_id: 
+  warehouse_type_id: 
+  default_location_id: 1
+  address: MyString
+  leader: MyString
+  order_by: 1
+  is_active: false
+  phone: MyString
+  area: 9.99
+  volume: 9.99
+  note: MyString
+
+two:
+  name: MyString
+  org_id: 
+  warehouse_type_id: 
+  default_location_id: 1
+  address: MyString
+  leader: MyString
+  order_by: 1
+  is_active: false
+  phone: MyString
+  area: 9.99
+  volume: 9.99
+  note: MyString

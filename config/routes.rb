@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :locations
+  resources :warehouses
+  resources :warehouse_types
   resources :units
   resources :equipment_categories
   devise_for :users, controllers: {registrations: "registrations" }

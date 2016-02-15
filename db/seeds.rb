@@ -6,6 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Unit.destroy_all
+WarehouseType.destroy_all
 EquipmentCategory.destroy_all
 Employee.destroy_all
 User.destroy_all
@@ -68,4 +69,9 @@ end
 units = %w(个 件 台 量 张 本)
 units.each do |u|
   Unit.create!(name: u)
+end
+
+warehouse_types = %w(普通仓库 固定资产库 低值易耗品库)
+warehouse_types.each do |wt|
+  WarehouseType.create!(name: wt)
 end
