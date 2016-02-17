@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :inout_lines
+  resources :receipts
+  resources :inout_bills
+  resources :equipment
   resources :locations
   resources :warehouses
   resources :warehouse_types

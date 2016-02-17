@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  inout_bill_id: 
+  f_location_id: 1
+  t_location_id: 1
+  move_date: 2016-02-17
+  state: MyString
+  qty: 1
+  price: 9.99
+  amt: 9.99
+
+two:
+  inout_bill_id: 
+  f_location_id: 1
+  t_location_id: 1
+  move_date: 2016-02-17
+  state: MyString
+  qty: 1
+  price: 9.99
+  amt: 9.99

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215153034) do
+ActiveRecord::Schema.define(version: 20160217094341) do
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -40,6 +40,28 @@ ActiveRecord::Schema.define(version: 20160215153034) do
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
   add_index "employees", ["org_id"], name: "index_employees_on_org_id", using: :btree
 
+  create_table "equipment", force: :cascade do |t|
+    t.string   "name",                  limit: 30,                                          null: false
+    t.integer  "equipment_category_id", limit: 4,                                           null: false
+    t.integer  "unit_id",               limit: 4,                                           null: false
+    t.decimal  "purchase_price",                    precision: 10, scale: 2
+    t.datetime "purchase_date"
+    t.string   "factory_name",          limit: 60
+    t.string   "model",                 limit: 60
+    t.integer  "guarantee_days",        limit: 4,                            default: 180
+    t.integer  "order_by",              limit: 4,                            default: 1
+    t.boolean  "is_active",             limit: 1,                            default: true
+    t.datetime "created_at",                                                                null: false
+    t.datetime "updated_at",                                                                null: false
+    t.string   "photo_file_name",       limit: 255
+    t.string   "photo_content_type",    limit: 255
+    t.integer  "photo_file_size",       limit: 4
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "equipment", ["equipment_category_id"], name: "index_equipment_on_equipment_category_id", using: :btree
+  add_index "equipment", ["unit_id"], name: "index_equipment_on_unit_id", using: :btree
+
   create_table "equipment_categories", force: :cascade do |t|
     t.string   "name",       limit: 60,                null: false
     t.integer  "order_by",   limit: 4,  default: 1
@@ -51,6 +73,36 @@ ActiveRecord::Schema.define(version: 20160215153034) do
 
   add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", using: :btree
   add_index "equipment_categories", ["org_id"], name: "index_equipment_categories_on_org_id", using: :btree
+
+  create_table "inout_bills", force: :cascade do |t|
+    t.integer  "org_id",        limit: 4
+    t.date     "bill_date",                   null: false
+    t.integer  "user_id",       limit: 4
+    t.integer  "f_location_id", limit: 4,     null: false
+    t.integer  "t_location_id", limit: 4,     null: false
+    t.string   "operater",      limit: 30
+    t.string   "state",         limit: 60
+    t.string   "type",          limit: 60
+    t.text     "note",          limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "inout_bills", ["user_id"], name: "index_inout_bills_on_user_id", using: :btree
+
+  create_table "inout_lines", force: :cascade do |t|
+    t.integer  "inout_bill_id", limit: 4,                                       null: false
+    t.integer  "f_location_id", limit: 4,                                       null: false
+    t.integer  "t_location_id", limit: 4,                                       null: false
+    t.date     "move_date"
+    t.string   "state",         limit: 60
+    t.integer  "qty",           limit: 4,                           default: 1
+    t.decimal  "price",                    precision: 15, scale: 2
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+  end
+
+  add_index "inout_lines", ["inout_bill_id"], name: "index_inout_lines_on_inout_bill_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "name",         limit: 30,                   null: false

@@ -11,6 +11,9 @@ zh-CN:
       warehouse_type: 仓库类型
       warehouse: 仓库信息管理
       location: 库位信息
+      equipment: 设备资料
+      inout_bill: 出入库单据
+      receipt: 采购入库单
 
     attributes:
       public_attrs:
@@ -22,6 +25,7 @@ zh-CN:
         org_id: 机构
         org: 机构
         note: 备注
+        state: 状态
 
       user:
         username: 用户名
@@ -85,3 +89,26 @@ zh-CN:
         y: 走廊
         z: 层
         note: 备注
+
+      equipment:
+        name: 设备名称
+        equipment_category_id: 所属类别
+        equipment_category: 所属类别
+        unit: 计量单位
+        unit_id: 计量单位
+        purchase_date: 采购日期
+        purchase_price: 采购价格
+        factory_name: 生产厂商
+        model: 规格型号
+        guarantee_days: 保修时间(天)
+        photo: 设备图片
+
+      inout_bill:
+        bill_date: 单据日期
+        user: 操作员
+        user_id: 操作员
+        f_location_id: 源库位
+        f_location: 源库位
+        t_location_id: 目标库位
+        t_location: 目标库位
+        operator: 经办人

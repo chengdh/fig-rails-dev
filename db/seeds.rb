@@ -75,3 +75,21 @@ warehouse_types = %w(普通仓库 固定资产库 低值易耗品库)
 warehouse_types.each do |wt|
   WarehouseType.create!(name: wt)
 end
+
+Warehouse.destroy_all
+#每个机构一个仓库
+Org.all.each do |o|
+  Warehouse.create!(name: "#{o.name}_仓库",org_id: o.id)
+end
+
+Location.destroy_all
+#每个仓库一个库位
+Warehouse.all.each do |w|
+  Location.create!(name: "#{w.name}->默认库位",warehouse: w)
+end
+
+Equipment.destroy_all
+#100件设备
+(1...100).each do |index|
+  Equipment.create!(name: "设备_#{index}",equipment_category: EquipmentCategory.first,unit: Unit.first)
+end
