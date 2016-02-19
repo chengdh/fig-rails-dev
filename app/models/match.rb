@@ -16,12 +16,12 @@ class Match < ActiveRecord::Base
   #数据库中的数据是北京时间
   #rails认为数据库中的时间字段是utc时间,但是实际上数据库中的时间字段是北京时间
   #查询时,rails会自动把日期转换为utc时间
-  # scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("(t_current_match.match_status > 0) OR (match_time - 8/24 >= ? and match_time - 8/24 <= ?)",
-  #                                                                                                   DateTime.now.hour  <= 12 ? DateTime.now.end_of_day - 36.hours  : DateTime.now.end_of_day  - 12.hours  ,
-  #                                                                                                   DateTime.now.hour  <= 12 ? DateTime.now.end_of_day - 12.hours  : DateTime.now.end_of_day  + 12.hours  ).order("t_current_match.match_status DESC,t_match.match_time ASC")
-  # }
+  scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("(t_current_match.match_status > 0) OR (match_time - 8/24 >= ? and match_time - 8/24 <= ?)",
+                                                                                                    DateTime.now.hour  <= 12 ? DateTime.now.end_of_day - 36.hours  : DateTime.now.end_of_day  - 12.hours  ,
+                                                                                                    DateTime.now.hour  <= 12 ? DateTime.now.end_of_day - 12.hours  : DateTime.now.end_of_day  + 12.hours  ).order("t_current_match.match_status DESC,t_match.match_time ASC")
+  }
 
-  scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where(match_id: [1130325,1130328,1130319,1080205,1155680])}
+  #scope :immediate,-> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #赛果 前7天
   scope :last_week,->(d) {where("home_score IS NOT NULL AND TO_CHAR(match_time,'YYYY-MM-DD') = ? ",d)}
