@@ -9,4 +9,10 @@ module ApplicationHelper
   def this_week_for_select
     (Date.today.to_datetime...6.days.since.to_datetime).map {|d| [d.strftime("%Y年%m月%d日")+"星期#{d.wday.eql?(0) ? "日" : d.wday}",d.strftime("%Y-%m-%d")]}
   end
+
+  #将类似与1.0 2.0 这种数组转换为整数
+  def dec2int(dec)
+    return "" if dec.blank?
+    dec == dec.to_i ? dec.to_i : dec
+  end
 end

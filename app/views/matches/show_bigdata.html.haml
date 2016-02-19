@@ -22,7 +22,7 @@
           %span.glyphicon.glyphicon-thumbs-up{"aria-hidden" => "true", :style => "color : red"}
 
 / 大数据报告
-.analyse.well.well-sm
+.analyse
   %h5 联赛积分排名
   = render "league_rankings",league_rankings: @match.home_league_rankings,team: @match.team1
   = render "league_rankings",league_rankings: @match.guest_league_rankings,team: @match.team2

@@ -1,8 +1,23 @@
 #测试用
-#if not Android?
-#  window.Android =
-#    getUserId : -> return 1
-#    passString : (k,v)-> return 1
+if typeof(window.Android) == "undefined"
+  window.Android =
+    getUserId : -> return 1
+    passString : (k,v)-> return 1
+
+#删除数组中重复的元素
+#参考https://coffeescript-cookbook.github.io/chapters/arrays/removing-duplicate-elements-from-arrays
+Array::unique = ->
+  output = {}
+  output[@[key]] = @[key] for key in [0...@length]
+  value for key, value of output
+
+#数据发生变化时,重新设置要传入到android端的联赛查询参数
+func_set_leagues_param = (matches)->
+  league_ids = (m.league?.league_id for m in matches).unique()
+  q_leagues = $.param("q[league_id_in]" : league_ids )
+  #FIXME  暂时注释
+  window.Android.passString("q_leagues",q_leagues)
+  console.log("set leagues : " + q_leagues)
 
 #刷新间隔
 REFRESH_RATE = 120*1000
@@ -40,7 +55,9 @@ REFRESH_RATE = 120*1000
         new_matches = JSON.parse(data)?.matches
         self.setState((previousState, currentProps)->
           old_matches = previousState.matches
-          return matches: old_matches.concat(new_matches)
+          merged_matches = old_matches.concat(new_matches)
+          func_set_leagues_param(merged_matches)
+          return matches: merged_matches
         )
         return null
     )
@@ -148,7 +165,7 @@ REFRESH_RATE = 120*1000
   _unfavorite: ->
     user_id = Android.getUserId()
     if user_id < 0
-      toastr.warn("您当前未登录!")
+      toastr.warning("您当前未登录!")
       return
     else
       $.ajax(
@@ -172,7 +189,7 @@ REFRESH_RATE = 120*1000
     user_id = Android.getUserId()
     console.log("user_id : " + user_id)
     if user_id < 0
-      toastr.warn("您当前未登录!")
+      toastr.warning("您当前未登录!")
       return
     else
       $.ajax(
@@ -262,7 +279,7 @@ REFRESH_RATE = 120*1000
         odds_balls_current: m.odds_balls_current
       } />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_index_table">
+    <table className="table table-hover table-condensed table-striped table-bordered" id="immediate_index_table">
       {match_nodes}
     </table>
 
@@ -278,7 +295,9 @@ REFRESH_RATE = 120*1000
         new_matches = JSON.parse(data)?.matches
         self.setState((previousState, currentProps)->
           old_matches = previousState.matches
-          return matches: old_matches.concat(new_matches)
+          merged_matches = old_matches.concat(new_matches)
+          func_set_leagues_param(merged_matches)
+          return matches: merged_matches
         )
         return null
 
@@ -319,7 +338,7 @@ REFRESH_RATE = 120*1000
     match_head_1 =
       <tr key={@props.data.match.match_id + "_head_1"} style={verticalAlign: 'middle'}>
         <th colSpan="10">
-          <h5>
+          <h5 style={fontSize : "10px"}>
             <span className="label label-primary">{@props.data.match.league.cn_name}</span>
             <span>&nbsp;{@props.data.match.match_time}&nbsp;</span>
             {@props.data.match.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
@@ -352,28 +371,28 @@ REFRESH_RATE = 120*1000
 
     for c in @props.data.companies
       ret.push(
-        <tr key={@props.data.match.match_id + "_head_3"} style={fontSize: '10px'} data-company-id={c.company_id}>
-          <td rowSpan="2" style={verticalAlign: 'middle'}>{c.cn_name}</td>
-          <td>{@props.data.odds_asians_begin[i]?.home}</td>
-          <td>{@props.data.odds_asians_begin[i]?.goal}</td>
-          <td>{@props.data.odds_asians_begin[i]?.away}</td>
-          <td>{@props.data.odds_europes_begin[i]?.hw}</td>
-          <td>{@props.data.odds_europes_begin[i]?.st}</td>
-          <td>{@props.data.odds_europes_begin[i]?.aw}</td>
-          <td>{@props.data.odds_balls_begin[i]?.over}</td>
-          <td>{@props.data.odds_balls_begin[i]?.goal}</td>
-          <td>{@props.data.odds_balls_begin[i]?.under}</td>
+        <tr key={@props.data.match.match_id + c.company_id + "_head_3"} style={fontSize: '10px'} data-company-id={c.company_id}>
+          <td rowSpan="2" style={textAlign: 'center',verticalAlign: 'middle'}>{c.cn_name}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_asians_begin[i]?.home}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_asians_begin[i]?.goal}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_asians_begin[i]?.away}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_europes_begin[i]?.hw}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_europes_begin[i]?.st}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_europes_begin[i]?.aw}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_balls_begin[i]?.over}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_balls_begin[i]?.goal}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_balls_begin[i]?.under}</td>
         </tr>
-        <tr key={@props.data.match.match_id + "_head_4"} style={fontSize: '10px'} data-company-id={c.company_id}>
-          <td>{@props.data.odds_asians_current[i]?.home}</td>
-          <td>{@props.data.odds_asians_current[i]?.goal}</td>
-          <td>{@props.data.odds_asians_current[i]?.away}</td>
-          <td>{@props.data.odds_europes_current[i]?.hw}</td>
-          <td>{@props.data.odds_europes_current[i]?.st}</td>
-          <td>{@props.data.odds_europes_current[i]?.aw}</td>
-          <td>{@props.data.odds_balls_current[i]?.over}</td>
-          <td>{@props.data.odds_balls_current[i]?.goal}</td>
-          <td>{@props.data.odds_balls_current[i]?.under}</td>
+        <tr key={@props.data.match.match_id  + c.company_id + "_head_4"} style={fontSize: '10px'} data-company-id={c.company_id}>
+          <td style={textAlign : 'center'}>{@props.data.odds_asians_current[i]?.home}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_asians_current[i]?.goal}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_asians_current[i]?.away}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_europes_current[i]?.hw}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_europes_current[i]?.st}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_europes_current[i]?.aw}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.over}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.goal}</td>
+          <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.under}</td>
       </tr>
       )
       i++
@@ -402,14 +421,13 @@ REFRESH_RATE = 120*1000
 
     <table className="table table-hover table-condensed table-striped" id="immediate_index_table">
       <thead>
-        <tr style={textAlign : 'center'}>
+        <tr>
           <th></th>
           <th></th>
-          <th>球队</th>
-          <th>亚赔</th>
-          <th>大小</th>
-          <th>欧赔</th>
-          <th></th>
+          <th style={textAlign : 'center',width : "50%"}>球队</th>
+          <th style={textAlign : 'center'}>亚赔</th>
+          <th style={textAlign : 'center'}>大小</th>
+          <th style={textAlign : 'center'}>欧赔</th>
         </tr>
       </thead>
       {match_nodes}
@@ -426,7 +444,9 @@ REFRESH_RATE = 120*1000
         new_matches = JSON.parse(data)?.matches
         self.setState((previousState, currentProps)->
           old_matches = previousState.matches
-          return matches: old_matches.concat(new_matches)
+          merged_matches = old_matches.concat(new_matches)
+          func_set_leagues_param(merged_matches)
+          return matches: merged_matches
         )
         return null
 
@@ -475,12 +495,6 @@ REFRESH_RATE = 120*1000
         <td>{@props.data.match.odds_asian.home}</td>
         <td>{@props.data.match.odds_ball.over}</td>
         <td>{@props.data.match.odds_europe.hw}</td>
-        <td rowSpan="3" style={verticalAlign : "middle"}>
-          <button className="btn btn-default btn-xs btn-bigdata" type="button" onClick={@._on_bigdata_click}>
-            <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
-          </button>
-        </td>
-
       </tr>
     tr_2 =
       <tr  key={@props.data.match.match_id+"_tr_2"} style={textAlign : 'center'}>
@@ -493,14 +507,18 @@ REFRESH_RATE = 120*1000
       </tr>
     tr_3 =
       <tr  key={@props.data.match.match_id+"_tr_3"} style={textAlign : 'center'}>
-        <td></td>
+        <td style={verticalAlign : "middle"}>
+          <button className="btn btn-default btn-xs btn-bigdata" type="button" onClick={@._on_bigdata_click}>
+            <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
+          </button>
+        </td>
         <td>{@props.data.match.current_match.guest_score}</td>
         <td style={verticalAlign : "middle",fontSize: "10px"}>
           {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
-          {@props.data.match.team2.cn_name}
           {@props.data.match.current_match.guest_red_card? and @props.data.match.current_match.guest_red_card > 0 and <span style={padding: "2px"} className="label label-danger">{@props.data.match.current_match.guest_red_card}</span>}
           {@props.data.match.current_match.guest_yellow_card? and @props.data.match.current_match.guest_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.match.current_match.guest_yellow_card}</span>}
+          {@props.data.match.team2.cn_name}
         </td>
         <td>{@props.data.match.odds_asian.away}</td>
         <td>{@props.data.match.odds_ball.under}</td>

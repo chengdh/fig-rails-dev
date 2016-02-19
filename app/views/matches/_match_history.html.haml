@@ -17,19 +17,19 @@
       %th{:style => "text-align : center;"} 比分
       %th 客场
       %th{:style => "text-align : center;"} 盘路
-  %tbody
+  %tbody{:style => "font-size : 10px;"}
     - matches.each do |match|
       %tr
-        %td{:style => "vertical-align : middle;"}= match.match_time.strftime("%Y-%m-%d")
-        %td{:style => "vertical-align : middle;"}= match.league.cn_name
-        %td{:style => "vertical-align : middle;"}= match.team1.cn_name
+        %td{:style => "width : 50px;font-size : 10px;vertical-align : middle;"}= match.match_time.strftime("%m-%d")
+        %td{:style => "font-size : 10px;vertical-align : middle;"}= match.league.cn_name
+        %td{:style => "font-size : 10px;vertical-align : middle;"}= match.team1.cn_name
         %td{:style => "text-align : center;vertical-align : middle;width : 50px;font-size : 10px;"}
           %p{:style => "margin : 0;"}
-            %em= "#{match.home_score} : #{match.guest_score}"
-          %em= "(#{match.half_home_score} : #{match.half_guest_score})"
-        %td{:style => "vertical-align : middle;"}= match.team2.cn_name
-        %td{:style => "text-align : center;vertical-align : middle;width : 50px;font-size : 10px;"}
+            %span= "#{match.home_score} : #{match.guest_score}"
+          %span= "(#{match.half_home_score} : #{match.half_guest_score})"
+        %td{:style => "font-size : 10px;vertical-align : middle;"}= match.team2.cn_name
+        %td{:style => "font-size : 10px;text-align : center;vertical-align : middle;width : 50px;font-size : 10px;"}
           %p{:style => "margin : 0;"}
-            %em= match.odds_value
-          %em= odds_result_des(match.odds_result)
+            %span= match.odds_value
+          %span= odds_result_des(match.odds_result)
 

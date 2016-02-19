@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   #测试用
-  #if not Android?
-  #  window.Android =
-  #    getUserId : -> return 1
-  #    passString : (k,v)-> return 1
+  if typeof(window.Android) == "undefined"
+    window.Android =
+      getUserId : -> return 1
+      passString : (k,v)-> return 1
 
   #赛事筛选中的全选与不选处理
   window.Android.func_select_all_leagues = ->
@@ -23,6 +23,7 @@ $ ->
     $(".btn-league-select").removeClass("btn-success")
 
   toastr.options = {"positionClass": "toast-bottom-center"}
+
   #联赛筛选界面打开时,传入的筛选参数 q[league_id_in] =
   if $("[data-leagues]").data("leagues")?
     leagues = $("[data-leagues]").data("leagues")
