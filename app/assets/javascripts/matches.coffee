@@ -67,14 +67,14 @@ $ ->
     $("[data-company-id]").hide()
     $("[data-company-id='#{company_id}']").show() for company_id in select_company_ids
 
-
-
   $("#select_company_id_eq").multipleSelect(
     placeholder: "请选择公司",
     selectAllText: "全选",
     allSelected: "全部",
     multiple: true,
-    onClick: func_select_company
+    onClick: func_select_company,
+    onCheckAll: -> $("[data-company-id]").show(),
+    onUncheckAll: -> $("[data-company-id]").show()
   )
   #即时指数界面,按照公司查询
   # $("#select_company_id_eq").on("change", ->
