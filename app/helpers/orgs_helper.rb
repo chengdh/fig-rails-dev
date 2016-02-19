@@ -12,4 +12,12 @@ module OrgsHelper
     default_org.children.each {|child_org|  ret["#{child_org.name}"] = child_org.id}
     ret
   end
+  #当期可用机构的ids
+  def current_ability_org_ids
+    default_org = current_user.current_org
+    ret = ActiveSupport::OrderedHash.new
+    child_org_ids = default_org.children.map {|child_org|  child_org.id}
+    [default_org.id] + child_org_ids
+  end
+
 end

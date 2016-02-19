@@ -2,6 +2,7 @@
 class CreateInoutLines < ActiveRecord::Migration
   def change
     create_table :inout_lines do |t|
+      t.references :equipment,null: false
       t.references :inout_bill, index: true,null: false
       t.integer :f_location_id,null: false
       t.integer :t_location_id,null: false

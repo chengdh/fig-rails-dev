@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217094341) do
+ActiveRecord::Schema.define(version: 20160217122407) do
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160217094341) do
   add_index "inout_bills", ["user_id"], name: "index_inout_bills_on_user_id", using: :btree
 
   create_table "inout_lines", force: :cascade do |t|
+    t.integer  "equipment_id",  limit: 4,                                       null: false
     t.integer  "inout_bill_id", limit: 4,                                       null: false
     t.integer  "f_location_id", limit: 4,                                       null: false
     t.integer  "t_location_id", limit: 4,                                       null: false
@@ -243,6 +244,26 @@ ActiveRecord::Schema.define(version: 20160217094341) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  create_table "v_stock", id: false, force: :cascade do |t|
+    t.integer "location_id",  limit: 4,                            null: false
+    t.integer "equipment_id", limit: 4,                            null: false
+    t.decimal "qty",                    precision: 33, default: 0, null: false
+  end
+
+  create_table "v_stock_in", id: false, force: :cascade do |t|
+    t.integer "t_location_id", limit: 4,                          null: false
+    t.integer "equipment_id",  limit: 4,                          null: false
+    t.decimal "qty",                     precision: 32
+    t.decimal "amt",                     precision: 47, scale: 2
+  end
+
+  create_table "v_stock_out", id: false, force: :cascade do |t|
+    t.integer "f_location_id", limit: 4,                          null: false
+    t.integer "equipment_id",  limit: 4,                          null: false
+    t.decimal "qty",                     precision: 32
+    t.decimal "amt",                     precision: 47, scale: 2
+  end
 
   create_table "warehouse_types", force: :cascade do |t|
     t.string   "name",       limit: 30,                null: false

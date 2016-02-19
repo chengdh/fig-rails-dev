@@ -111,4 +111,5 @@ zh-CN:
         f_location: 源库位
         t_location_id: 目标库位
         t_location: 目标库位
-        operator: 经办人
+        operater: 经办人
+        note: 备注

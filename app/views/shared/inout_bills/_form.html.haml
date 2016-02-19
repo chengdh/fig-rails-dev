@@ -1,0 +1,56 @@
+= semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form"} do |f|
+  = f.semantic_errors
+  = f.inputs do
+    = f.input :org_id,as: :select,collection:  current_ability_orgs_for_select,input_html: {class: "input-sm",style: "width : 30%;"}
+
+    = f.input :bill_date,as: :string,input_html: {class: "input-sm",readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-language" => "zh-CN",
+      style: "width : 15%;"}
+    = f.input :f_location_id,as: :select,collection: current_ability_locations_for_select ,include_blank: false,input_html: {class: "input-sm",style: "width : 30%;"}
+    = f.input :t_location_id,as: :select,collection: current_ability_locations_for_select ,include_blank: false,input_html: {class: "input-sm",style: "width : 30%;"}
+    = f.input :operater,input_html: {class: "input-sm",style: "width : 30%;"}
+
+    = f.input :user_id,as: :hidden,input_html: {class: "input-sm",value: current_user.id}
+    = f.input :note,input_html: {class: "input-sm",rows: 2,style: "width : 40%;"}
+
+
+  %h4 设备明细
+  %table.table.table-condensed.table-hover.table-bordered
+    %tr
+      %th 设备名称
+      %th 生产厂商
+      %th 规格型号
+      %th 单价
+      %th 数量
+      %th 金额
+      %th 删除
+    = semantic_fields_for :inout_lines do |line_field|
+      %tr
+        %td
+          = line_field.input :equipment_id,as: :hidden
+          %span.equipment_name
+        %td
+          %span.factory_name
+        %td
+          %span.model
+        %td
+          = line_field.input :price,label: false,input_html: {class: "input-sm",style: "width : 60px;"}
+        %td
+          = line_field.input :qty,label: false,input_html: {class: "input-sm",style: "width : 60px;"}
+
+        %td
+          %span.amt
+        %td
+          = line_field.input :_destroy,as: :boolean,label: false
+      %tr
+        %td{:colspan => 7,:style => "text-align : left;" }
+          %button.btn.btn-primary.btn-sm
+            添加设备
+            %i.glyphicon.glyphicon-plus
+
+
+
+
+
