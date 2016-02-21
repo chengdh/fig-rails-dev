@@ -5,4 +5,6 @@ class MatchRecommand < ActiveRecord::Base
   self.primary_keys = :match_id,:team_id,:recommend_type
   belongs_to :match
   belongs_to :team
+
+  scope :unread,->(data_time) {where("data_time >= ? ",data_time)}
 end

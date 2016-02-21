@@ -6,7 +6,8 @@ class MatchRecommandsController < ApplicationController
   # GET /match_recommands
   # GET /match_recommands.json
   def index
-    @match_recommands = MatchRecommand.all
+    @q = MatchRecommand.ransack(params[:q])
+    @match_recommands = @q.result
   end
 
   # GET /match_recommands/1
