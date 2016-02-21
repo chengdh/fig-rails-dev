@@ -6,7 +6,7 @@ class MatchRecommandsController < ApplicationController
   # GET /match_recommands
   # GET /match_recommands.json
   def index
-    @q = MatchRecommand.ransack(params[:q])
+    @q = MatchRecommand.unread(params[:data_time]).ransack(params[:q])
     @match_recommands = @q.result
   end
 
