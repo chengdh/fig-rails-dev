@@ -19,18 +19,18 @@ json.matches  new_matches do |m|
 
   #亚盘初盘
   json.odds_asian do
-    json.home m.odds_rolls.limit(1).try(:first).try(:home)
-    json.goal m.odds_rolls.limit(1).try(:first).try(:goal)
-    json.away m.odds_rolls.limit(1).try(:first).try(:away)
+    json.home dec2int(m.odds_rolls.limit(1).try(:first).try(:home))
+    json.goal dec2int(m.odds_rolls.limit(1).try(:first).try(:goal))
+    json.away  dec2int(m.odds_rolls.limit(1).try(:first).try(:away))
   end
   json.odds_ball do
-    json.over m.odds_rolls.limit(1).try(:first).try(:over)
-    json.goal m.odds_rolls.limit(1).try(:first).try(:goalou)
-    json.under m.odds_rolls.limit(1).try(:first).try(:under)
+    json.over  dec2int(m.odds_rolls.limit(1).try(:first).try(:over))
+    json.goal  dec2int(m.odds_rolls.limit(1).try(:first).try(:goalou))
+    json.under  dec2int(m.odds_rolls.limit(1).try(:first).try(:under))
   end
   json.odds_europe do
-    json.hw m.odds_rolls.limit(1).try(:first).try(:hw)
-    json.st m.odds_rolls.limit(1).try(:first).try(:st)
-    json.aw m.odds_rolls.limit(1).try(:first).try(:aw)
+    json.hw  dec2int(m.odds_rolls.limit(1).try(:first).try(:hw))
+    json.st  dec2int(m.odds_rolls.limit(1).try(:first).try(:st))
+    json.aw  dec2int(m.odds_rolls.limit(1).try(:first).try(:aw))
   end
 end

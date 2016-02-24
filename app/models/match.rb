@@ -113,13 +113,13 @@ class Match < ActiveRecord::Base
       #即时盘只用显示最新的数据
       goal = odds_asians.where(company: c).limit(1).first
       away = odds_asians.where(company: c,odds_type: 3).limit(1).first
-      if home.blank? and goal.blank? and away.blank?
-        companies -= [c]
-      else
+      #if home.blank? and goal.blank? and away.blank?
+      #  companies -= [c]
+      #else
         ret_begin[c] = home
         ret_current[c] = goal
         ret_final[c] = away
-      end
+      #end
     end
     [companies,[ret_begin,ret_current,ret_final]]
   end
@@ -139,13 +139,13 @@ class Match < ActiveRecord::Base
       final = odds_europes.where(company: c,odds_type: 3).limit(1).first
 
 
-      if beg.blank? and current.blank? and final.blank?
-        companies -= [c]
-      else
+      #if beg.blank? and current.blank? and final.blank?
+      #  companies -= [c]
+      #else
         ret_begin[c] = beg
         ret_current[c] = current
         ret_final[c] = final
-      end
+      #end
     end
     [companies,[ret_begin,ret_current,ret_final]]
   end
@@ -164,13 +164,13 @@ class Match < ActiveRecord::Base
       final = odds_balls.where(company: c,odds_type: 3).limit(1).first
 
 
-      if beg.blank? and current.blank? and final.blank?
-        companies -= [c]
-      else
+      #if beg.blank? and current.blank? and final.blank?
+      #  companies -= [c]
+      #else
         ret_begin[c] = beg
         ret_current[c] = current
         ret_final[c] = final
-      end
+      #end
     end
     [companies,[ret_begin,ret_current,ret_final]]
   end
