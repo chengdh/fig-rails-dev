@@ -394,7 +394,12 @@ REFRESH_RATE = 120*1000
           <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.goal}</td>
           <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.under}</td>
       </tr>
-      )
+      ) unless @props.data.odds_asians_begin[i].home == "" and @props.data.odds_asians_begin[i].goal== "" and
+       @props.data.odds_asians_begin[i].away == "" and 
+       @props.data.odds_europes_begin[i].hw== "" and @props.data.odds_europes_begin[i].st == "" and
+       @props.data.odds_balls_begin[i].over == "" and 
+       @props.data.odds_balls_begin[i].goal == "" and @props.data.odds_balls_begin[i].under == ""
+
       i++
 
     <tbody>{ret}</tbody>
