@@ -16,7 +16,7 @@ default: &default
   #database: xe
   database: orcl
   username: match
-  password: match
+  password: maQW09@
 
 development:
   <<: *default
