@@ -1,5 +1,6 @@
 json.immediate_leagues  @matches.select{|m| m.league}
-json.matches @matches do |m|
+new_matches = @matches.find_all {|ma| ma.odds_rolls.limit(1).try(:first).present?}
+json.matches  new_matches do |m|
   json.match_id m.match_id
   json.match_time m.match_time.strftime("%H:%M")
   json.league m.league
