@@ -18,11 +18,15 @@
     @_fetch_odd_changes()
     setInterval(@_fetch_odd_changes, 120*1000)
 
-  _fetch_odd_changes: (data)->
+  _fetch_odd_changes: ->
+    last_fetch_time = Android.getPrefString("last_odd_change_data_time")
+    params =
+      data_time_gt: last_fetch_time
+
     $.ajax(
       url: @props.url,
       dataType: 'json',
-      data: data
+      data: params
       )
     .done @_fetch_data_done
     .fail @_fetch_data_fail
@@ -31,8 +35,10 @@
     console.log "fetch odd changes success"
     #判断是否有新的数据
     this_el = ReactDOM.findDOMNode(@)
-    if (not @props.not_auto_hide?) and data.odd_changes.length > 0
-      $(this_el).fadeIn().delay(10000).fadeOut()
+    if data.odd_changes.length > 0
+      #$(this_el).fadeIn().delay(10000).fadeOut()
+      $(this_el).fadeIn()
+      Android.putPrefString("last_odd_change_data_time",data.odd_changes[0].data_time_str)
 
     @setState
       odd_changes: data.odd_changes

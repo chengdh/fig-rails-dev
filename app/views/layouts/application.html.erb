@@ -97,7 +97,7 @@
       <!--/div -->
     <!--/div -->
     <footer>
-      <%= react_component 'OddChangeTable', {url: odd_changes_path(format: :json)}, :div %>
+      <%= react_component 'OddChangeTable', {url: unread_odd_changes_path(format: :json)}, :div %>
     </footer>
   </body>
   <%= javascript_include_tag 'application',debug:  true %>

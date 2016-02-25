@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :odd_changes
   devise_for :users, controllers: {registrations: "registrations"}
+
+  resources :odd_changes do
+    get :unread,on: :collection
+  end
   resources :league_rankings
   resources :events
   resources :odds_balls

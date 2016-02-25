@@ -6,7 +6,16 @@ class OddChangesController < ApplicationController
   # GET /odd_changes
   # GET /odd_changes.json
   def index
-    @odd_changes = OddChange.limit(50)
+    @q = OddChange.ransack(params[:q])
+    @odd_changes = @q.result.limit(50)
+  end
+
+  #GET /odd_changes/unread
+  #GET /odd_changes/unread.json
+  #用户未读的数据
+  def unread
+    @q = OddChange.unread(params[:data_time_gt]).ransack(params[:q])
+    @odd_changes = @q.result.limit(5)
   end
 
   # GET /odd_changes/1
