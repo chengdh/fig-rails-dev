@@ -21,7 +21,10 @@
       %td{:class => "match-recommend-admin-visible"}= br.win_money
   %tr
     %td{:style => "color : red;"} 胜率
-    %td{:style => "color : red;"}= @bigdata_match_recommands.sum(:result_type)/2
+    %td{:style => "color : red;"}
+      = @bigdata_match_recommands.sum(:result_type)/2
+      %span 场
+
     %td{:style => "color : red;"} 
       = (@success_bigdata_match_recommands.sum(1).to_f / @bigdata_match_recommands.where("result_type <> 0").sum(1).to_f*100).round(1)
       %span %
@@ -42,7 +45,9 @@
       %td{:class => "match-recommend-admin-visible"}= yr.win_money
   %tr
     %td{:style => "color : red;"} 胜率
-    %td{:style => "color : red;"}= @yinglang_match_recommands.sum(:result_type)/2
+    %td{:style => "color : red;"}
+      = @yinglang_match_recommands.sum(:result_type)/2
+      %span 场
     %td{:style => "color : red;"} 
       = (@success_yinglang_match_recommands.sum(1).to_f / @yinglang_match_recommands.sum(1).to_f*100).round(1)
       %span %
