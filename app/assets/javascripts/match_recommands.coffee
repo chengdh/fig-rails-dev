@@ -85,5 +85,27 @@ $ ->
         func_recommend(match,team2_id,"2")
         match["is_guest_yinglang_recommend?"] = false
         $(this).find(".recommend-flag").css(color : "true")
-
   )
+  #推荐统计tab切换
+  $(".match-recommand-tabs .match-recommend-bigdata").on("click", ->
+    $(this).addClass("btn-info")
+    $(".table-match-recommend-report-bigdata").show()
+    $(".table-match-recommend-report-yinglang").hide()
+    $(".match-recommend-yinglang").removeClass("btn-info")
+  )
+  $(".match-recommand-tabs .match-recommend-yinglang").on("click", ->
+    $(this).addClass("btn-info")
+    $(".match-recommend-bigdata").removeClass("btn-info")
+    $(".table-match-recommend-report-bigdata").hide()
+    $(".table-match-recommend-report-yinglang").show()
+  )
+  #统计时间发生变换
+  $("#select_match_recommend_data_time_eq").on("change", ->
+    data_time = $(this).val()
+    q ={
+      "data_time_eq" : data_time
+    }
+    param = $.param(q)
+    window.location.href = "/match_recommands/report?#{param}"
+  )
+

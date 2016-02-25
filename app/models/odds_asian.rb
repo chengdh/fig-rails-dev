@@ -6,4 +6,5 @@ class OddsAsian < ActiveRecord::Base
   default_scope {includes(:company).order("data_time DESC")}
   belongs_to :match
   belongs_to :company
+
 end

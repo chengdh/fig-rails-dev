@@ -5,7 +5,7 @@ class MatchRecommand < ActiveRecord::Base
   self.primary_keys = :match_id,:team_id,:recommend_type
   belongs_to :match
   belongs_to :team
-  default_scope {order("data_time DESC")}
+  default_scope {includes(:team).order("data_time DESC")}
 
-  scope :unread,->(data_time) {where("data_time >= ? ",data_time)}
+  scope :unread,->(data_time) {where("data_time > ? ",data_time)}
 end

@@ -9,6 +9,19 @@ class MatchRecommandsController < ApplicationController
     @q = MatchRecommand.unread(params[:data_time]).ransack(params[:q])
     @match_recommands = @q.result
   end
+  # GET /match_recommands/report
+  # GET /match_recommands/report.json
+  # 推荐胜负统计
+  def report
+    if params[:data_time_eq].blank?
+      params[:data_time_eq] = 1.days.ago.strftime("%Y-%m-%d")
+    end
+    @q = MatchRecommand.where("TO_CHAR(data_time,'YYYY-MM-DD') = ? ",params[:data_time_eq]).ransack(params[:q])
+    @yinglang_match_recommands = @q.result.where("result_type IS NOT NULL").where(recommend_type: 2)
+    @success_yinglang_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 2)
+    @bigdata_match_recommands = @q.result.where("result_type IS NOT NULL").where(recommend_type: 1)
+    @success_bigdata_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 1)
+  end
 
   # GET /match_recommands/1
   # GET /match_recommands/1.json

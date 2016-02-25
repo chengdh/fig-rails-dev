@@ -8,13 +8,14 @@
       %th 变
   %tbody
     - balls.first.each do |c|
-      %tr
-        %td= c.cn_name
-        %td= balls[1][0][c].try(:over)
-        %td= balls[1][0][c].try(:goal)
-        %td= balls[1][0][c].try(:under)
-        %td= balls[1][1][c].try(:over)
-        %td= balls[1][1][c].try(:goal)
-        %td= balls[1][1][c].try(:under)
-        %td{:style => "text-align : center;"}
-          = link_to ">",odds_balls_path("q[match_id_eq]" => match.match_id,"q[company_id_eq]" => c.company_id,"q[type_eq]" => 2,format: :js),class: "btn btn-sm btn-primary fancybox fancybox.ajax"
+      - if balls[1][0][c].try(:over).present? or balls[1][0][c].try(:goal).present? or balls[1][0][c].try(:under).present?
+        %tr
+          %td= c.cn_name
+          %td= balls[1][0][c].try(:over)
+          %td= balls[1][0][c].try(:goal)
+          %td= balls[1][0][c].try(:under)
+          %td= balls[1][1][c].try(:over)
+          %td= balls[1][1][c].try(:goal)
+          %td= balls[1][1][c].try(:under)
+          %td{:style => "text-align : center;"}
+            = link_to ">",odds_balls_path("q[match_id_eq]" => match.match_id,"q[company_id_eq]" => c.company_id,"q[type_eq]" => 2,format: :js),class: "btn btn-sm btn-primary fancybox fancybox.ajax"

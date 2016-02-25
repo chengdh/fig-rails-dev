@@ -33,7 +33,9 @@ Rails.application.routes.draw do
   end
 
   constraints(:id => /\w+(,\w+)(,\w+)*/) do
-    resources :match_recommands
+    resources :match_recommands do
+      get :report,on: :collection
+    end
   end
 
 
