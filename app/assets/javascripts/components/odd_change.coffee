@@ -37,8 +37,7 @@
     #判断是否有新的数据
     this_el = ReactDOM.findDOMNode(@)
     if data.odd_changes.length > 0
-      #$(this_el).fadeIn().delay(10000).fadeOut()
-      $(this_el).fadeIn()
+      $(this_el).fadeIn().delay(10000).fadeOut()
       Android.putPrefString("last_odd_change_data_time",data.odd_changes[0].data_time_str)
 
     @setState
