@@ -6,6 +6,7 @@ $ ->
   if typeof(window.Android) == "undefined"
     window.Android =
       getUserId : -> return 1
+      getUserIsAdmin: -> return false
       passString : (k,v)-> return 1
 
   #赛事筛选中的全选与不选处理

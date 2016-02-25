@@ -1,0 +1,50 @@
+.well.well-sm
+  = select_tag "select_match_recommend_data_time_eq",options_for_select(last_week_for_select,params[:data_time_eq]),
+    :class => "input-sm form-control select-match-recommend-data-time"
+
+.btn-group.btn-group-justified.match-recommand-tabs{:role => "group","aria-label" => "..."}
+  = link_to "大数据", "#",class: "btn btn-sm btn-info match-recommend-bigdata"
+  = link_to "赢朗推荐", "#",class: "btn btn-sm match-recommend-yinglang"
+
+%table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-bigdata
+  %tr
+    %th 球队
+    %th 胜负
+    %th{:class => "match-recommend-admin-visible"} 赢
+    %th 时间
+  %tr
+    %td{:style => "color : red;"} 胜率
+    %td{:style => "color : red;"} 
+      = (@success_bigdata_match_recommands.sum(1).to_f / @bigdata_match_recommands.sum(1).to_f*100).round(1)
+      %span %
+    %td{:class => "match-recommend-admin-visible",:style => "color : red;"}= @bigdata_match_recommands.sum(:win_money)
+    %td
+
+
+  - @bigdata_match_recommands.each do |br|
+    %tr
+      %td= br.team.cn_name
+      %td= result_type_des(br.result_type)
+      %td{:class => "match-recommend-admin-visible"}= br.win_money
+      %td= br.data_time.strftime("%Y-%m-%d %H:%M")
+
+%table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-yinglang{:style => "display : none;"}
+  %tr
+    %th 球队
+    %th 胜负
+    %th{:class => "match-recommend-admin-visible"} 赢
+    %th 时间
+  %tr
+    %td{:style => "color : red;"} 胜率
+    %td{:style => "color : red;"} 
+      = (@success_yinglang_match_recommands.sum(1).to_f / @yinglang_match_recommands.sum(1).to_f*100).round(1)
+      %span %
+    %td{:class => "match-recommend-admin-visible",:style => "color : red;"}= @yinglang_match_recommands.sum(:win_money)
+    %td
+
+  - @yinglang_match_recommands.each do |yr|
+    %tr
+      %td= yr.team.cn_name
+      %td= result_type_des(yr.result_type)
+      %td{:class => "match-recommend-admin-visible"}= yr.win_money
+      %td= yr.data_time.strftime("%Y-%m-%d %H:%M")

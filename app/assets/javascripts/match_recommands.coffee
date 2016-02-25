@@ -109,3 +109,10 @@ $ ->
     window.location.href = "/match_recommands/report?#{param}"
   )
 
+  #如果登录用户不是admin,不显示win_money
+  if window.Android.getUserIsAdmin()
+    $(".match-recommend-admin-visible").show()
+  else
+    $(".match-recommend-admin-visible").hide()
+
+
