@@ -20,6 +20,7 @@
 
   _fetch_odd_changes: ->
     last_fetch_time = Android.getPrefString("last_odd_change_data_time")
+    console.log "fetch_odd_changes last_odd_change_data_time : " + last_fetch_time
     params =
       data_time_gt: last_fetch_time
 
