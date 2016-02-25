@@ -300,7 +300,7 @@ REFRESH_RATE = 120*1000
           return matches: merged_matches
         )
         return null
-
+      complete: -> self._filter_select_company()
     )
 
     setInterval(@_fetch_immedate_index, 120*1000);
@@ -321,8 +321,19 @@ REFRESH_RATE = 120*1000
     @setState
       matches: data.matches
 
+    @_filter_select_company()
+
   _fetch_data_fail: (xhr, status, err)->
     console.error "fetch immediate_index.json error"
+
+  #过滤公司数据
+  _filter_select_company: ->
+    select_company_ids = $('#select_company_id_eq').multipleSelect('getSelects')
+    if select_company_ids.length == 0
+      $("[data-company-id]").show()
+      return
+    $("[data-company-id]").hide()
+    $("[data-company-id='#{company_id}']").show() for company_id in select_company_ids
 
 
 #即时指数单条记录

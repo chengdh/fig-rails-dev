@@ -5,5 +5,5 @@ class OddChange < ActiveRecord::Base
   belongs_to :team
   belongs_to :match
   #默认显示最近5条
-  default_scope {order("data_time DESC").limit(5)}
+  default_scope {order("data_time DESC")}
 end

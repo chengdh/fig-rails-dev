@@ -6,7 +6,7 @@ class OddChangesController < ApplicationController
   # GET /odd_changes
   # GET /odd_changes.json
   def index
-    @odd_changes = OddChange.all
+    @odd_changes = OddChange.limit(50)
   end
 
   # GET /odd_changes/1

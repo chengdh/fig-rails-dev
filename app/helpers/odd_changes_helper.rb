@@ -13,4 +13,11 @@ module OddChangesHelper
       2 => "下降"
     }[change_type]
   end
+  def position_type_des(pos_type)
+    {
+      1 => "水位",
+      2 => "盘口"
+    }[pos_type]
+  end
+
 end
