@@ -6,4 +6,4 @@
     %tr
       %td= o.data_time.strftime("%Y-%m-%d %H:%M")
       %td
-        = "[#{match_type_des(o.match_type)}]#{o.team.cn_name}水位快速#{o.change_type ==1 ? '上升' : '下降'}"
+        = "[#{match_type_des(o.match_type)}]#{o.team.cn_name}#{o.position_type == 1 ? '水位' : '盘口'}快速#{o.change_type ==1 ? '上升' : '下降'}"
