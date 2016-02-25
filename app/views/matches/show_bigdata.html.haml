@@ -23,16 +23,16 @@
 
 / 大数据报告
 .analyse
-  %h5 联赛积分排名
-  = render "league_rankings",league_rankings: @match.home_league_rankings,team: @match.team1
-  = render "league_rankings",league_rankings: @match.guest_league_rankings,team: @match.team2
+/  %h5 联赛积分排名
+/  = render "league_rankings",league_rankings: @match.home_league_rankings,team: @match.team1
+/  = render "league_rankings",league_rankings: @match.guest_league_rankings,team: @match.team2
   / 对赛往绩
-  = render "match_history",title: "对赛往绩",matches: @match.matches_history,team: nil
+/  = render "match_history",title: "对赛往绩",matches: @match.matches_history,team: nil
   / 近期战绩-主队
-  = render "match_history",title: "近期战绩",matches: @match.matches_recent_home,team: @match.team1
+/  = render "match_history",title: "近期战绩",matches: @match.matches_recent_home,team: @match.team1
 
   / 近期战绩-客队
-  = render "match_history",matches: @match.matches_recent_guest,team: @match.team2,title: nil
+/  = render "match_history",matches: @match.matches_recent_guest,team: @match.team2,title: nil
 
   / 亚欧赔率初盘统计
   = render "odds_rate",odds_rates: @match.odds_rates_begin,title: "亚欧赔率初盘统计"
