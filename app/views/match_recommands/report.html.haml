@@ -8,43 +8,42 @@
 
 %table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-bigdata
   %tr
+    %th 时间
     %th 球队
     %th 胜负
     %th{:class => "match-recommend-admin-visible"} 赢
-    %th 时间
-  %tr
-    %td{:style => "color : red;"} 胜率
-    %td{:style => "color : red;"} 
-      = (@success_bigdata_match_recommands.sum(1).to_f / @bigdata_match_recommands.sum(1).to_f*100).round(1)
-      %span %
-    %td{:class => "match-recommend-admin-visible",:style => "color : red;"}= @bigdata_match_recommands.sum(:win_money)
-    %td
-
 
   - @bigdata_match_recommands.each do |br|
     %tr
+      %td= br.data_time.strftime("%Y-%m-%d %H:%M")
       %td= br.team.cn_name
       %td= result_type_des(br.result_type)
       %td{:class => "match-recommend-admin-visible"}= br.win_money
-      %td= br.data_time.strftime("%Y-%m-%d %H:%M")
+  %tr
+    %td{:style => "color : red;"} 胜率
+    %td{:style => "color : red;"}= @bigdata_match_recommands.sum(:result_type)/2
+    %td{:style => "color : red;"} 
+      = (@success_bigdata_match_recommands.sum(1).to_f / @bigdata_match_recommands.where("result_type <> 0").sum(1).to_f*100).round(1)
+      %span %
+    %td{:class => "match-recommend-admin-visible",:style => "color : red;"}= @bigdata_match_recommands.sum(:win_money)
+
 
 %table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-yinglang{:style => "display : none;"}
   %tr
+    %th 时间
     %th 球队
     %th 胜负
     %th{:class => "match-recommend-admin-visible"} 赢
-    %th 时间
+  - @yinglang_match_recommands.each do |yr|
+    %tr
+      %td= yr.data_time.strftime("%Y-%m-%d %H:%M")
+      %td= yr.team.cn_name
+      %td= result_type_des(yr.result_type)
+      %td{:class => "match-recommend-admin-visible"}= yr.win_money
   %tr
     %td{:style => "color : red;"} 胜率
+    %td{:style => "color : red;"}= @yinglang_match_recommands.sum(:result_type)/2
     %td{:style => "color : red;"} 
       = (@success_yinglang_match_recommands.sum(1).to_f / @yinglang_match_recommands.sum(1).to_f*100).round(1)
       %span %
     %td{:class => "match-recommend-admin-visible",:style => "color : red;"}= @yinglang_match_recommands.sum(:win_money)
-    %td
-
-  - @yinglang_match_recommands.each do |yr|
-    %tr
-      %td= yr.team.cn_name
-      %td= result_type_des(yr.result_type)
-      %td{:class => "match-recommend-admin-visible"}= yr.win_money
-      %td= yr.data_time.strftime("%Y-%m-%d %H:%M")

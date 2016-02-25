@@ -114,5 +114,3 @@ $ ->
     $(".match-recommend-admin-visible").show()
   else
     $(".match-recommend-admin-visible").hide()
-
-
