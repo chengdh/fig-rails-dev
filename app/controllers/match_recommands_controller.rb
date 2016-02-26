@@ -16,7 +16,7 @@ class MatchRecommandsController < ApplicationController
     if params[:data_time_eq].blank?
       params[:data_time_eq] = 1.days.ago.strftime("%Y-%m-%d")
     end
-    @q = MatchRecommand.where("TO_CHAR(data_time,'YYYY-MM-DD') = ? ",params[:data_time_eq]).ransack(params[:q])
+    @q = MatchRecommand.where("TO_CHAR(data_time - 8/24,'YYYY-MM-DD') = ? ",params[:data_time_eq]).ransack(params[:q])
     @yinglang_match_recommands = @q.result.where("result_type IS NOT NULL").where(recommend_type: 2)
     @success_yinglang_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 2)
     @bigdata_match_recommands = @q.result.where("result_type IS NOT NULL").where(recommend_type: 1)

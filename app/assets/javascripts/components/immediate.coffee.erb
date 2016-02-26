@@ -1,13 +1,14 @@
 #测试用
-# if typeof(window.Android) == "undefined"
-#   window.Android =
-#       getUserId : -> return 1
-#       getUserIsAdmin: -> return false
-#       passString : (k,v)-> return 1
-#       getPrefString: (k)-> return "2016-02-01 00:00"
-#       putPrefString: (k,v)-> return true
-#       passString : (k,v)-> return 1
-#
+if typeof(window.Android) == "undefined"
+  window.Android =
+      getUserId : -> return 1
+      getUserIsAdmin: -> return false
+      passString : (k,v)-> return 1
+      getPrefString: (k)-> return "2016-02-01 00:00"
+      putPrefString: (k,v)-> return true
+      passString : (k,v)-> return 1
+      passObject: (k,v)-> return 1
+
 
 #删除数组中重复的元素
 #参考https://coffeescript-cookbook.github.io/chapters/arrays/removing-duplicate-elements-from-arrays
@@ -545,9 +546,11 @@ REFRESH_RATE = 120*1000
         <td>{@props.data.match.odds_ball.under}</td>
         <td>{@props.data.match.odds_europe.aw}</td>
       </tr>
+    tr_4 = <tr><td style={borderBottom : "2px solid #009ABF"} colSpan="6"></td></tr>
     ret.push(tr_1)
     ret.push(tr_2)
     ret.push(tr_3)
+    ret.push(tr_4)
     <tbody>{ret}</tbody>
 
   _on_bigdata_click: ->

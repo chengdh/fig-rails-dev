@@ -12,7 +12,7 @@ class Match < ActiveRecord::Base
   # (DateTime.now + 8.hours).hour  <= 12 ? (DateTime.now + 8.hours).end_of_day - 36.hours : (DateTime.now + 8.hours).end_of_day  - 12.hours ,
   #
   #                                                                                   (DateTime.now + 8.hours).hour <= 12 ? (DateTime.now + 8.hours).end_of_day - 12.hours : (DateTime.now + 8.hours).end_of_day + 12.hours ).order("t_current_match.match_status DESC,t_match.match_time ASC")
-  #服务器是操作系统是北京时间
+  #服务器操作系统是北京时间
   #数据库中的数据是北京时间
   #rails认为数据库中的时间字段是utc时间,但是实际上数据库中的时间字段是北京时间
   #查询时,rails会自动把日期转换为utc时间
