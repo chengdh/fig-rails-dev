@@ -1,12 +1,12 @@
 / 比赛事件
-%table.table.table-striped.table-condensed.table-hover
+%table.table.table-striped.table-condensed.table-hover{:style => "text-align : center;"}
   %thead
     %tr
-      %th{:style => "text-align : center;"}
-      %th{:style => "text-align : center;"}= @match.try(:team1).try(:cn_name)
-      %th{:style => "text-align : center;"} 时间
-      %th{:style => "text-align : center;"}= @match.try(:team2).try(:cn_name)
-      %th{:style => "text-align : center;"}
+      %th
+      %th= @match.try(:team1).try(:cn_name)
+      %th 时间
+      %th= @match.try(:team2).try(:cn_name)
+      %th
 
   %tbody
     - @match.events.each do  |e|
