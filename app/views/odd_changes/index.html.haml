@@ -6,4 +6,9 @@
     %tr
       %td= o.data_time.strftime("%Y-%m-%d %H:%M")
       %td
-        = "[#{match_type_des(o.match_type)}]#{o.team.cn_name}#{o.position_type == 1 ? '水位' : '盘口'}快速#{o.change_type ==1 ? '上升' : '下降'}"
+        %span= "[#{match_type_des(o.match_type)}]"
+        - if o.is_bigdata_recommend?
+          %span{:class => "glyphicon glyphicon-tree-deciduous", "aria-hidden" => "true",:style =>"color : red"}
+        - if o.is_yinglang_recommend?
+          %span{:class => "glyphicon glyphicon-thumbs-up", "aria-hidden" => "true",:style =>"color : red"}
+        %span= "#{o.team.cn_name}#{o.position_type == 1 ? '水位' : '盘口'}快速#{o.change_type ==1 ? '上升' : '下降'}"

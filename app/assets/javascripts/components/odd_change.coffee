@@ -54,7 +54,8 @@
         <span style={color: "red"}>
           [{@props.data.odd_change.match_type_des}]
           {@props.data.odd_change.team?.cn_name}
-          水位快速
+          {@props.data.odd_change.position_type_des}
+          快速
         </span>}
         {@props.data.odd_change.change_type == 1 and <span className="glyphicon glyphicon-arrow-up" style={color : "red"}></span>}
 
@@ -62,7 +63,8 @@
         <span style={color: "green"}>
           [{@props.data.odd_change.match_type_des}]
           {@props.data.odd_change.team?.cn_name}
-          水位快速
+          {@props.data.odd_change.position_type_des}
+          快速
         </span>}
         {@props.data.odd_change.change_type == 2 and <span className="glyphicon glyphicon-arrow-down" style={color : "green"}></span>}
       </td>
