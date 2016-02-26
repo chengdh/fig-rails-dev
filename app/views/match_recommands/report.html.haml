@@ -49,6 +49,6 @@
       = @yinglang_match_recommands.sum(:result_type)/2
       %span 场
     %td{:style => "color : red;"} 
-      = (@success_yinglang_match_recommands.sum(1).to_f / @yinglang_match_recommands.sum(1).to_f*100).round(1)
+      = (@success_yinglang_match_recommands.sum(1).to_f / @yinglang_match_recommands.where("result_type <> 0").sum(1).to_f*100).round(1)
       %span %
     %td{:class => "match-recommend-admin-visible",:style => "color : red;"}= @yinglang_match_recommands.sum(:win_money)
