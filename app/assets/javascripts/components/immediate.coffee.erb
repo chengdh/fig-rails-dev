@@ -1,5 +1,6 @@
 #测试用
-DEBUG = false
+#DEBUG = false
+DEBUG = true
 if DEBUG and typeof(window.Android) == "undefined"
   window.Android =
       getUserId : -> return 1
@@ -22,7 +23,6 @@ Array::unique = ->
 func_set_leagues_param = (matches)->
   league_ids = (m.league?.league_id for m in matches).unique()
   q_leagues = $.param("q[league_id_in]" : league_ids )
-  #FIXME  暂时注释
   window.Android.passString("q_leagues",q_leagues)
   console.log("set leagues : " + q_leagues)
 
@@ -402,15 +402,51 @@ REFRESH_RATE = 120*1000
           <td style={textAlign : 'center'}>{@props.data.odds_balls_begin[i]?.under}</td>
         </tr>
         <tr key={@props.data.match.match_id  + c.company_id + "_head_4"} style={fontSize: '10px'} data-company-id={c.company_id}>
-          <td style={textAlign : 'center'}>{@props.data.odds_asians_current[i]?.home}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_asians_current[i]?.goal}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_asians_current[i]?.away}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_europes_current[i]?.hw}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_europes_current[i]?.st}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_europes_current[i]?.aw}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.over}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.goal}</td>
-          <td style={textAlign : 'center'}>{@props.data.odds_balls_current[i]?.under}</td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_asians_current[i]?.home > @props.data.odds_asians_begin[i]?.home and <span style={color : "red"}>{@props.data.odds_asians_current[i]?.home}</span>}
+          {@props.data.odds_asians_current[i]?.home < @props.data.odds_asians_begin[i]?.home and <span style={color : "green"}>{@props.data.odds_asians_current[i]?.home}</span>}
+          {@props.data.odds_asians_current[i]?.home == @props.data.odds_asians_begin[i]?.home and <span>{@props.data.odds_asians_current[i]?.home}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_asians_current[i]?.goal > @props.data.odds_asians_begin[i]?.goal and <span style={color : "red"}>{@props.data.odds_asians_current[i]?.goal}</span>}
+          {@props.data.odds_asians_current[i]?.goal < @props.data.odds_asians_begin[i]?.goal and <span style={color : "green"}>{@props.data.odds_asians_current[i]?.goal}</span>}
+          {@props.data.odds_asians_current[i]?.goal == @props.data.odds_asians_begin[i]?.goal and <span>{@props.data.odds_asians_current[i]?.goal}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_asians_current[i]?.away > @props.data.odds_asians_begin[i]?.away and <span style={color : "red"}>{@props.data.odds_asians_current[i]?.away}</span>}
+          {@props.data.odds_asians_current[i]?.away < @props.data.odds_asians_begin[i]?.away and <span style={color : "green"}>{@props.data.odds_asians_current[i]?.away}</span>}
+          {@props.data.odds_asians_current[i]?.away == @props.data.odds_asians_begin[i]?.away and <span>{@props.data.odds_asians_current[i]?.away}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_europes_current[i]?.hw > @props.data.odds_europes_begin[i]?.hw and <span style={color : "red"}>{@props.data.odds_europes_current[i]?.hw}</span>}
+          {@props.data.odds_europes_current[i]?.hw < @props.data.odds_europes_begin[i]?.hw and <span style={color : "green"}>{@props.data.odds_europes_current[i]?.hw}</span>}
+          {@props.data.odds_europes_current[i]?.hw == @props.data.odds_europes_begin[i]?.hw and <span>{@props.data.odds_europes_current[i]?.hw}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_europes_current[i]?.st > @props.data.odds_europes_begin[i]?.st and <span style={color : "red"}>{@props.data.odds_europes_current[i]?.st}</span>}
+          {@props.data.odds_europes_current[i]?.st < @props.data.odds_europes_begin[i]?.st and <span style={color : "green"}>{@props.data.odds_europes_current[i]?.st}</span>}
+          {@props.data.odds_europes_current[i]?.st == @props.data.odds_europes_begin[i]?.st and <span>{@props.data.odds_europes_current[i]?.st}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_europes_current[i]?.aw > @props.data.odds_europes_begin[i]?.aw and <span style={color : "red"}>{@props.data.odds_europes_current[i]?.aw}</span>}
+          {@props.data.odds_europes_current[i]?.aw < @props.data.odds_europes_begin[i]?.aw and <span style={color : "green"}>{@props.data.odds_europes_current[i]?.aw}</span>}
+          {@props.data.odds_europes_current[i]?.aw == @props.data.odds_europes_begin[i]?.aw and <span>{@props.data.odds_europes_current[i]?.aw}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_balls_current[i]?.over > @props.data.odds_balls_begin[i]?.over and <span style={color : "red"}>{@props.data.odds_balls_current[i]?.over}</span>}
+          {@props.data.odds_balls_current[i]?.over < @props.data.odds_balls_begin[i]?.over and <span style={color : "green"}>{@props.data.odds_balls_current[i]?.over}</span>}
+          {@props.data.odds_balls_current[i]?.over == @props.data.odds_balls_begin[i]?.over and <span>{@props.data.odds_balls_current[i]?.over}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_balls_current[i]?.goal > @props.data.odds_balls_begin[i]?.goal and <span style={color : "red"}>{@props.data.odds_balls_current[i]?.goal}</span>}
+          {@props.data.odds_balls_current[i]?.goal < @props.data.odds_balls_begin[i]?.goal and <span style={color : "green"}>{@props.data.odds_balls_current[i]?.goal}</span>}
+          {@props.data.odds_balls_current[i]?.goal == @props.data.odds_balls_begin[i]?.goal and <span>{@props.data.odds_balls_current[i]?.goal}</span>}
+          </td>
+          <td style={textAlign : 'center'}>
+          {@props.data.odds_balls_current[i]?.under > @props.data.odds_balls_begin[i]?.under and <span style={color : "red"}>{@props.data.odds_balls_current[i]?.under}</span>}
+          {@props.data.odds_balls_current[i]?.under < @props.data.odds_balls_begin[i]?.under and <span style={color : "green"}>{@props.data.odds_balls_current[i]?.under}</span>}
+          {@props.data.odds_balls_current[i]?.under == @props.data.odds_balls_begin[i]?.under and <span>{@props.data.odds_balls_current[i]?.under}</span>}
+          </td>
       </tr>
       ) unless @props.data.odds_asians_begin[i].home == "" and @props.data.odds_asians_begin[i].goal== "" and
        @props.data.odds_asians_begin[i].away == "" and 
