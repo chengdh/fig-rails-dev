@@ -1,5 +1,6 @@
 #测试用
-if typeof(window.Android) == "undefined"
+DEBUG = false
+if DEBUG and typeof(window.Android) == "undefined"
   window.Android =
       getUserId : -> return 1
       getUserIsAdmin: -> return false
