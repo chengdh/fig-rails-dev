@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fire_fighting_equipments
   resources :inout_lines
   resources :receipts
   resources :inout_bills

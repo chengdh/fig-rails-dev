@@ -1,4 +1,5 @@
 #coding: utf-8
+#出入库单据
 class InoutBill < ActiveRecord::Base
   belongs_to :org
   belongs_to :user

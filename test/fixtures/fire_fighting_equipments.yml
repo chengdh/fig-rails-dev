@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  name: MyString
+  model: MyString
+  location: MyString
+  qty: 1
+  out_factory_date: 2016-02-29
+  valid_date: 2016-02-29
+  last_upkeep_date: 2016-02-29
+  note: MyText
+  is_active: false
+  user_id: 
+  duty_person: MyString
+
+two:
+  org_id: 
+  name: MyString
+  model: MyString
+  location: MyString
+  qty: 1
+  out_factory_date: 2016-02-29
+  valid_date: 2016-02-29
+  last_upkeep_date: 2016-02-29
+  note: MyText
+  is_active: false
+  user_id: 
+  duty_person: MyString

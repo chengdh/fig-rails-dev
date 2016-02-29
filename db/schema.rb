@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217122407) do
+ActiveRecord::Schema.define(version: 20160229135637) do
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -73,6 +73,29 @@ ActiveRecord::Schema.define(version: 20160217122407) do
 
   add_index "equipment_categories", ["name"], name: "index_equipment_categories_on_name", using: :btree
   add_index "equipment_categories", ["org_id"], name: "index_equipment_categories_on_org_id", using: :btree
+
+  create_table "fire_fighting_equipments", force: :cascade do |t|
+    t.integer  "org_id",           limit: 4,                    null: false
+    t.string   "name",             limit: 60,                   null: false
+    t.string   "model",            limit: 60
+    t.string   "location",         limit: 6
+    t.integer  "qty",              limit: 4,     default: 1
+    t.integer  "unit_id",          limit: 4
+    t.date     "out_factory_date"
+    t.integer  "use_year",         limit: 4
+    t.date     "valid_date"
+    t.date     "last_upkeep_date"
+    t.text     "note",             limit: 65535
+    t.integer  "user_id",          limit: 4
+    t.string   "duty_person",      limit: 30
+    t.boolean  "is_active",        limit: 1,     default: true
+    t.integer  "order_by",         limit: 4
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "fire_fighting_equipments", ["org_id"], name: "index_fire_fighting_equipments_on_org_id", using: :btree
+  add_index "fire_fighting_equipments", ["user_id"], name: "index_fire_fighting_equipments_on_user_id", using: :btree
 
   create_table "inout_bills", force: :cascade do |t|
     t.integer  "org_id",        limit: 4

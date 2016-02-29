@@ -4,6 +4,7 @@ zh-CN:
     models:
       user: 用户
       org: 机构信息
+      org_id: 机构信息
       role: 角色信息
       employee: 员工信息
       equipment_category: 设备类别
@@ -14,6 +15,7 @@ zh-CN:
       equipment: 设备资料
       inout_bill: 出入库单据
       receipt: 采购入库单
+      fire_fighting_equipment: 消防设施
 
     attributes:
       public_attrs:
@@ -26,6 +28,10 @@ zh-CN:
         org: 机构
         note: 备注
         state: 状态
+        user_id: 用户
+        user: 用户
+        unit_id: 单位
+        unit: 单位
 
       user:
         username: 用户名
@@ -113,3 +119,17 @@ zh-CN:
         t_location: 目标库位
         operater: 经办人
         note: 备注
+
+      fire_fighting_equipment:
+        model: 规格型号
+        location: 设置地点
+        qty: 数量
+        out_factory_date: 出厂日期
+        use_year: 使用年限
+        valid_date: 有效期
+        last_upkeep_date: 上次维保时间
+        duty_person: 责任人
+        unit: 单位
+        unit_id: 单位
+
+
