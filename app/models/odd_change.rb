@@ -8,7 +8,7 @@ class OddChange < ActiveRecord::Base
 
   default_scope {order("data_time DESC")}
 
-  scope :unread,->(data_time) {where("TO_CHAR(data_time,'YYYY-MM-DD HH24:MI') > ? ",data_time)}
+  scope :unread,->(data_time) {where("TO_CHAR(data_time - 8/24,'YYYY-MM-DD HH24:MI') > ? ",data_time)}
 
   #是否大数据推荐
   def is_bigdata_recommend?
@@ -17,5 +17,4 @@ class OddChange < ActiveRecord::Base
   def is_yinglang_recommend?
     match_recommands.where(match_id: match_id,recommend_type: 2).exists?
   end
-
 end

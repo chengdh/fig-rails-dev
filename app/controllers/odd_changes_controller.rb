@@ -6,8 +6,8 @@ class OddChangesController < ApplicationController
   # GET /odd_changes
   # GET /odd_changes.json
   def index
-    @q = OddChange.ransack(params[:q])
-    @odd_changes = @q.result.limit(50)
+    @q = OddChange.unread(1.days.ago.strftime("%Y-%m-%d 00:00")).ransack(params[:q])
+    @odd_changes = @q.result
   end
 
   #GET /odd_changes/unread

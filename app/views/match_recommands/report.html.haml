@@ -1,3 +1,4 @@
+= DateTime.now
 .well.well-sm
   = select_tag "select_match_recommend_data_time_eq",options_for_select(last_week_for_select,params[:data_time_eq]),
     :class => "input-sm form-control select-match-recommend-data-time"
@@ -22,7 +23,7 @@
   %tr
     %td{:style => "color : red;"} 胜率
     %td{:style => "color : red;"}
-      = @bigdata_match_recommands.sum(:result_type)/2
+      = @bigdata_match_recommands.sum(:result_type).to_f/2
       %span 场
 
     %td{:style => "color : red;"} 
@@ -46,7 +47,7 @@
   %tr
     %td{:style => "color : red;"} 胜率
     %td{:style => "color : red;"}
-      = @yinglang_match_recommands.sum(:result_type)/2
+      = @yinglang_match_recommands.sum(:result_type).to_f/2
       %span 场
     %td{:style => "color : red;"} 
       = (@success_yinglang_match_recommands.sum(1).to_f / @yinglang_match_recommands.where("result_type <> 0").sum(1).to_f*100).round(1)
