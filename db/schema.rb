@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229135637) do
+ActiveRecord::Schema.define(version: 20160301011259) do
+
+  create_table "drivers", force: :cascade do |t|
+    t.integer  "org_id",          limit: 4,                    null: false
+    t.string   "name",            limit: 60,                   null: false
+    t.integer  "vehicle_id",      limit: 4,                    null: false
+    t.string   "driver_no",       limit: 30
+    t.string   "id_no",           limit: 30
+    t.string   "mobile",          limit: 20
+    t.date     "next_check_date"
+    t.boolean  "is_active",       limit: 1,     default: true
+    t.text     "note",            limit: 65535
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "drivers", ["org_id"], name: "index_drivers_on_org_id", using: :btree
+  add_index "drivers", ["vehicle_id"], name: "index_drivers_on_vehicle_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false
@@ -286,6 +303,21 @@ ActiveRecord::Schema.define(version: 20160229135637) do
     t.integer "equipment_id",  limit: 4,                          null: false
     t.decimal "qty",                     precision: 32
     t.decimal "amt",                     precision: 47, scale: 2
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.integer  "org_id",          limit: 4,                    null: false
+    t.string   "vehicle_no",      limit: 20,                   null: false
+    t.string   "model",           limit: 60
+    t.string   "register_no",     limit: 30,                   null: false
+    t.string   "license_no",      limit: 40,                   null: false
+    t.date     "buy_date"
+    t.date     "expire_date"
+    t.date     "last_check_date"
+    t.boolean  "is_active",       limit: 1,     default: true
+    t.text     "note",            limit: 65535
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "warehouse_types", force: :cascade do |t|

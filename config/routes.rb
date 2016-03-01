@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :drivers
+  resources :vehicles
   resources :fire_fighting_equipments
   resources :inout_lines
   resources :receipts

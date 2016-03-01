@@ -16,6 +16,8 @@ zh-CN:
       inout_bill: 出入库单据
       receipt: 采购入库单
       fire_fighting_equipment: 消防设施
+      vehicle: 车辆信息
+      driver: 司机信息
 
     attributes:
       public_attrs:
@@ -131,5 +133,26 @@ zh-CN:
         duty_person: 责任人
         unit: 单位
         unit_id: 单位
+
+      vehicle:
+        vehicle_no: 车牌号
+        model: 品牌型号
+        register_no: 登记证书
+        license_no: 行驶证号
+        buy_date: 购置日期
+        expire_date: 报废日期
+        last_check_date: 上次年检日期
+        note: 事故记录
+
+      driver:
+        vehicle: 车辆
+        vehicle_id: 车辆
+        driver_no: 驾驶证号
+        id_no: 身份证号
+        mobile: 联系电话
+        next_check_date: 下次申请证件日期
+
+
+
 
 

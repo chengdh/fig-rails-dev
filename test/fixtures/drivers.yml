@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  name: MyString
+  vehicle_id: 
+  driver_no: MyString
+  id_no: MyString
+  mobile: MyString
+  next_check_date: 2016-03-01
+  is_active: false
+  note: MyText
+
+two:
+  org_id: 
+  name: MyString
+  vehicle_id: 
+  driver_no: MyString
+  id_no: MyString
+  mobile: MyString
+  next_check_date: 2016-03-01
+  is_active: false
+  note: MyText
