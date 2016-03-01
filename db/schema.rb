@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301011259) do
+ActiveRecord::Schema.define(version: 20160301015636) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -193,6 +193,25 @@ ActiveRecord::Schema.define(version: 20160301011259) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end
+
+  create_table "spec_equipments", force: :cascade do |t|
+    t.string   "equip_type",      limit: 20,                                            null: false
+    t.integer  "org_id",          limit: 4,                                             null: false
+    t.date     "equip_date"
+    t.string   "vendor",          limit: 60
+    t.string   "model",           limit: 50
+    t.string   "location",        limit: 60
+    t.decimal  "ton",                           precision: 10, scale: 2, default: 1.0
+    t.decimal  "volume",                        precision: 10, scale: 2, default: 1.0
+    t.string   "usage",           limit: 60
+    t.date     "last_check_date"
+    t.text     "note",            limit: 65535
+    t.boolean  "is_active",       limit: 1,                              default: true
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
+  end
+
+  add_index "spec_equipments", ["org_id"], name: "index_spec_equipments_on_org_id", using: :btree
 
   create_table "system_function_groups", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false

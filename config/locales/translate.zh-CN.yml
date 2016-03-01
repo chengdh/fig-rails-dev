@@ -18,6 +18,8 @@ zh-CN:
       fire_fighting_equipment: 消防设施
       vehicle: 车辆信息
       driver: 司机信息
+      spec_equipment: 特种设备
+
 
     attributes:
       public_attrs:
@@ -151,6 +153,20 @@ zh-CN:
         id_no: 身份证号
         mobile: 联系电话
         next_check_date: 下次申请证件日期
+
+      spec_equipment:
+        equip_type: 设备类型
+        equip_type_des: 设备类型
+        equip_date: 购置(安装)时间
+        vendor: 供应厂商
+        model: 型号
+        location: 所在场所
+        ton: 吨位
+        volume: 容积
+        usage: 用途
+        last_check_date: 检测时间
+        note: 备注
+
 
 
 
