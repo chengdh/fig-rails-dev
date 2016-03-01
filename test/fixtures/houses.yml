@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  name: MyString
+  location: MyString
+  build_date: 2016-03-01
+  building_area: 9.99
+  is_rent: false
+  usage: MyString
+  have_safe_contract: false
+  rent_to: 2016-03-01
+  is_active: false
+  note: MyText
+
+two:
+  org_id: 
+  name: MyString
+  location: MyString
+  build_date: 2016-03-01
+  building_area: 9.99
+  is_rent: false
+  usage: MyString
+  have_safe_contract: false
+  rent_to: 2016-03-01
+  is_active: false
+  note: MyText

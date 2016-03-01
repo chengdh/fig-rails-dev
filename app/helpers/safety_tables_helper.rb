@@ -1,0 +1,2 @@
+module SafetyTablesHelper
+end

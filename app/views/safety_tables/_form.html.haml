@@ -1,0 +1,50 @@
+= semantic_form_for resource,html: {id: "safety_table_form"} do |f|
+  = f.inputs do
+    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :mth,as: :select,collection: months_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :table_date,as: :string,input_html: {readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-language" => "zh-CN",
+      :value => Date.today,
+      style: "width : 20%;"}
+
+
+  = f.inputs "安全检查" do
+    = f.input :safety_check_count,input_html: {style: "width : 30%;"}
+    = f.input :special_safety_check_count,input_html: {style: "width : 30%;"}
+    = f.input :evening_safety_check_count,input_html: {style: "width : 30%;"}
+
+  = f.inputs "隐患整改" do
+    = f.input :danger_count,input_html: {style: "width : 20%;"}
+    = f.input :fixed_danger_count,input_html: {style: "width : 20%;"}
+
+  = f.inputs "三级教育" do
+
+    = f.input :third_edu_persons,input_html: {style: "width : 20%;"}
+    = f.input :third_edu_percent,input_html: {style: "width : 20%;"}
+
+  = f.inputs "特种工教育" do
+
+    = f.input :special_worker_edu_persons,input_html: {style: "width : 20%;"}
+    = f.input :special_worker_edu_percent,input_html: {style: "width : 20%;"}
+
+  = f.inputs "全员教育" do
+
+    = f.input :common_edu_persons,input_html: {style: "width : 20%;"}
+    = f.input :no_duplicate_persons,input_html: {style: "width : 20%;"}
+    = f.input :common_edu_percent,input_html: {style: "width : 20%;"}
+
+  = f.inputs "安保投入" do
+
+    = f.input :invest_equipment_money,input_html: {style: "width : 20%;"}
+    = f.input :invest_faclities_money,input_html: {style: "width : 20%;"}
+    = f.input :fixed_danger_money,input_html: {style: "width : 20%;"}
+    = f.input :safety_edu_money,input_html: {style: "width : 20%;"}
+    = f.input :safety_reward_money,input_html: {style: "width : 20%;"}
+
+  = f.inputs "专题安全会议" do
+
+    = f.input :safety_meeting_count,input_html: {style: "width : 20%;"}
+    = f.input :safety_meeting_persons,input_html: {style: "width : 20%;"}
+    = f.input :safety_meeting_solve_questions,input_html: {style: "width : 20%;"}

@@ -28,6 +28,8 @@ zh-CN:
       temporary_employee: 相关方人员
       protect_equipment_category: 劳动防护用品分类
       protect_equipment: 劳动防护用品
+      house: 房舍(院落)
+      safety_table: 安全工作情况月报
 
 
     attributes:
@@ -47,6 +49,7 @@ zh-CN:
         unit: 单位
         mobile: 联系电话
         qty: 数量
+        location: 位置
 
       user:
         username: 用户名
@@ -231,6 +234,42 @@ zh-CN:
         post: 工种(岗位)
         save_days: 保存期限(天)
         maintain_days: 维保期限(天)
+
+      house:
+        build_date: 建造时间
+        usage: 使用性质
+        is_rent: 是否租赁
+        have_safe_contract: 是否签订安全协议
+        rent_to: 租赁期至
+        building_area: 建筑面积
+
+
+      safety_table:
+        mth: 月份
+        sum_safety_check_count: 安全检查总数
+        safety_check_count: 安全检查次数
+        special_safety_check_count: 专题检查次数
+        evening_safety_check_count: 夜间抽查次数
+        danger_count: 查出隐患处数
+        fixed_danger_count: 已整改处数
+        fixed_danger_rate: 整改率
+        third_edu_persons: 三级教育-参加人数
+        third_edu_percent: 三级教育-占应参加人数
+        special_worker_edu_persons: 特种工教育-参加人数(%)
+        special_worker_edu_percent: 特种工教育-占应参加人数(%)
+        common_edu_persons: 全员教育人次 
+        no_duplicate_persons: 不重复人数 
+        common_edu_percent: 占全员(%)
+        invest_equipment_money: 安保投入-购置器材(万元) 
+        invest_faclities_money: 安保投入-安保设施(万元)
+        fixed_danger_money: 安保投入-隐患整改(万元)
+        safety_edu_money: 安保投入-安保教育(万元)
+        safety_reward_money: 安保投入-安保奖励(万元)
+        safety_meeting_count: 专题安全会议-次数
+        safety_meeting_persons: 专题安全会议-参加人数
+        safety_meeting_solve_questions: 专题安全会议-解决问题数
+        table_date: 填报日期
+
 
 
 

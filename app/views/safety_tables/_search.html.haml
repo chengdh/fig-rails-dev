@@ -1,0 +1,5 @@
+.well.well-sm
+  = search_form_for @q,html: {class: "form-inline"} do |f|
+    = f.select :org_id_eq,options_for_select(current_ability_orgs_for_select),{:include_blank => true},:class => "input-sm form-control"
+    = f.select :mth_eq,options_for_select(months_for_select),{:include_blank => true},:class => "input-sm form-control"
+    = f.submit "查询报表",class: "btn btn-primary btn-sm"

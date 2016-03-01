@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :safety_tables
+  resources :houses
   resources :protect_equipments
   resources :protect_equipment_categories
   resources :temporary_employees

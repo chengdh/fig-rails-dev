@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  mth: MyString
+  safety_check_count: 1
+  special_safety_check_count: 1
+  evening_safety_check_count: 1
+  danger_count: 1
+  fixed_danger_count: 1
+  third_edu_persons: 1
+  third_edu_percent: 9.99
+  special_worker_edu_persons: 1
+  special_worker_edu_percent: 9.99
+  common_edu_persons: 1
+  no_duplicate_persons: 1
+  common_edu_percent: 9.99
+  invest_equipment_money: 9.99
+  invest_faclities_money: 9.99
+  fixed_danger_money: 9.99
+  safety_edu_money: 9.99
+  safety_reward_money: 9.99
+  safety_meeting_count: 1
+  safety_meeting_persons: 1
+  safety_meeting_solve_questions: 1
+  table_date: 2016-03-01
+  user_id: 
+
+two:
+  org_id: 
+  mth: MyString
+  safety_check_count: 1
+  special_safety_check_count: 1
+  evening_safety_check_count: 1
+  danger_count: 1
+  fixed_danger_count: 1
+  third_edu_persons: 1
+  third_edu_percent: 9.99
+  special_worker_edu_persons: 1
+  special_worker_edu_percent: 9.99
+  common_edu_persons: 1
+  no_duplicate_persons: 1
+  common_edu_percent: 9.99
+  invest_equipment_money: 9.99
+  invest_faclities_money: 9.99
+  fixed_danger_money: 9.99
+  safety_edu_money: 9.99
+  safety_reward_money: 9.99
+  safety_meeting_count: 1
+  safety_meeting_persons: 1
+  safety_meeting_solve_questions: 1
+  table_date: 2016-03-01
+  user_id: 
