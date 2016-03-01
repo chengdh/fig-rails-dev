@@ -20,6 +20,11 @@ zh-CN:
       driver: 司机信息
       spec_equipment: 特种设备
       spec_warehouse: 仓库信息
+      electric_equipment: 电气设施
+      high_pressure_room: 高压配电室
+      low_pressure_room: 低压配电室
+      transformer: 变压器
+      distribute_box: 配电柜
 
 
     attributes:
@@ -184,7 +189,25 @@ zh-CN:
         is_fire_fighting_alarm_system: 消防报警系统
         is_auto_fire_fighting_system: 自动灭火系统
         is_fire_hydrant_system: 消火栓系统
-        is_lightning_protector: 防类装置
+        is_lightning_protector: 防雷装置
+
+      electric_equipment:
+        electric_equipment_type: 设备类型
+        electric_equipment_type_des: 设备类型
+        area: 占地面积
+        fire_level: 防火等级
+        fire_level_des: 防火等级
+        build_date: 建造时间
+        manage_org_id: 管理部门
+        manage_org: 管理部门
+        qty: 数量
+        buy_date: 购买时间
+        power: 功率
+        volume: 容量
+        work_type: 工作方式
+        work_type_des: 工作方式
+        last_check_date: 检测时间
+
 
 
 

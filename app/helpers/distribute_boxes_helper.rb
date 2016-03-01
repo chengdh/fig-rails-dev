@@ -1,0 +1,2 @@
+module DistributeBoxesHelper
+end

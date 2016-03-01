@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301030306) do
+ActiveRecord::Schema.define(version: 20160301044532) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -29,6 +29,28 @@ ActiveRecord::Schema.define(version: 20160301030306) do
 
   add_index "drivers", ["org_id"], name: "index_drivers_on_org_id", using: :btree
   add_index "drivers", ["vehicle_id"], name: "index_drivers_on_vehicle_id", using: :btree
+
+  create_table "electric_equipments", force: :cascade do |t|
+    t.integer  "org_id",          limit: 4,                                             null: false
+    t.decimal  "area",                          precision: 10
+    t.integer  "fire_level",      limit: 4
+    t.date     "build_date"
+    t.integer  "manage_org_id",   limit: 4
+    t.integer  "qty",             limit: 4,                              default: 1
+    t.date     "buy_date"
+    t.integer  "power",           limit: 4
+    t.decimal  "volume",                        precision: 15, scale: 2, default: 10.0
+    t.string   "work_type",       limit: 255
+    t.date     "last_check_date"
+    t.boolean  "is_active",       limit: 1,                              default: true
+    t.string   "type",            limit: 60,                                            null: false
+    t.text     "note",            limit: 65535
+    t.datetime "created_at",                                                            null: false
+    t.datetime "updated_at",                                                            null: false
+  end
+
+  add_index "electric_equipments", ["manage_org_id"], name: "index_electric_equipments_on_manage_org_id", using: :btree
+  add_index "electric_equipments", ["org_id"], name: "index_electric_equipments_on_org_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.integer  "org_id",              limit: 4,     null: false

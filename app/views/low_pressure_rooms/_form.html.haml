@@ -1,0 +1,15 @@
+= semantic_form_for resource,html: {id: "low_pressure_room_form"} do |f|
+  = f.inputs do
+    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :area,input_html: {style: "width : 30%;"}
+    = f.input :fire_level,as: :select,collection: fire_levels_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :build_date,as: :string,input_html: {readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-language" => "zh-CN",
+      style: "width : 20%;"}
+
+    = f.input :manage_org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+
+    = f.input :note,input_html: {cols: 3,rows: 4}
+    = f.input :is_active,label: false

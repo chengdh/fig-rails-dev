@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :distribute_boxes
+  resources :transformers
+  resources :low_pressure_rooms
+  resources :high_pressure_rooms
+  resources :electric_equipments
   resources :spec_warehouses
   resources :spec_equipments
   resources :drivers
