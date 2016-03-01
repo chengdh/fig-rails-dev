@@ -25,6 +25,7 @@ zh-CN:
       low_pressure_room: 低压配电室
       transformer: 变压器
       distribute_box: 配电柜
+      temporary_employee: 相关方人员
 
 
     attributes:
@@ -42,6 +43,7 @@ zh-CN:
         user: 用户
         unit_id: 单位
         unit: 单位
+        mobile: 联系电话
 
       user:
         username: 用户名
@@ -207,6 +209,17 @@ zh-CN:
         work_type: 工作方式
         work_type_des: 工作方式
         last_check_date: 检测时间
+
+      temporary_employee:
+        gender: 性别
+        gender_des: 性别
+        id_no: 身份证号
+        manage_org: 主管部门
+        manage_org_id: 主管部门
+        post: 岗位(工种)
+        belong_to_unit: 派遣单位
+        begin_date: 上岗时间
+
 
 
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :temporary_employees
   resources :distribute_boxes
   resources :transformers
   resources :low_pressure_rooms

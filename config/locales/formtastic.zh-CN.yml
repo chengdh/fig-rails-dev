@@ -18,6 +18,7 @@ zh-CN:
       org: 机构
       location: 所在位置
       note: 备注
+      mobile: 联系电话
 
     placeholders:
       name: 名称

@@ -1,0 +1,22 @@
+= semantic_form_for resource,html: {id: "temporary_employee_form"} do |f|
+  = f.inputs do
+    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :name,input_html: {style: "width : 30%;"}
+    = f.input :gender,as: :select,collection: genders_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+
+    = f.input :id_no,input_html: {style: "width : 30%;"}
+
+    = f.input :manage_org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :post,as: :select,collection: posts_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+
+    = f.input :belong_to_unit,input_html: {style: "width : 60%;"}
+
+    = f.input :mobile,input_html: {style: "width : 30%;"}
+    = f.input :begin_date,as: :string,input_html: {readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-language" => "zh-CN",
+      style: "width : 15%;"}
+
+
+    = f.input :note,input_html: {rows: 2,style: "width : 40%;"}

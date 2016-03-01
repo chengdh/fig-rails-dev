@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301044532) do
+ActiveRecord::Schema.define(version: 20160301065942) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -291,6 +291,24 @@ ActiveRecord::Schema.define(version: 20160301044532) do
   end
 
   add_index "system_functions", ["system_function_group_id"], name: "index_system_functions_on_system_function_group_id", using: :btree
+
+  create_table "temporary_employees", force: :cascade do |t|
+    t.integer  "org_id",         limit: 4,                    null: false
+    t.string   "name",           limit: 30,                   null: false
+    t.string   "gender",         limit: 10
+    t.string   "id_no",          limit: 30
+    t.integer  "manage_org_id",  limit: 4
+    t.string   "post",           limit: 30
+    t.string   "belong_to_unit", limit: 60
+    t.date     "begin_date"
+    t.string   "mobile",         limit: 60
+    t.boolean  "is_active",      limit: 1,     default: true
+    t.text     "note",           limit: 65535
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "temporary_employees", ["org_id"], name: "index_temporary_employees_on_org_id", using: :btree
 
   create_table "units", force: :cascade do |t|
     t.string   "name",       limit: 30,                null: false
