@@ -1,0 +1,2 @@
+module ProtectEquipmentsHelper
+end

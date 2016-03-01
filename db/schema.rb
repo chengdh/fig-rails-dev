@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301065942) do
+ActiveRecord::Schema.define(version: 20160301073943) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -196,6 +196,34 @@ ActiveRecord::Schema.define(version: 20160301065942) do
     t.string   "phone",      limit: 30
     t.string   "email",      limit: 30
   end
+
+  create_table "protect_equipment_categories", force: :cascade do |t|
+    t.string   "name",       limit: 60,                null: false
+    t.integer  "order_by",   limit: 4,  default: 1
+    t.boolean  "is_active",  limit: 1,  default: true
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  create_table "protect_equipments", force: :cascade do |t|
+    t.integer  "protect_equipment_category_id", limit: 4,                    null: false
+    t.integer  "org_id",                        limit: 4,                    null: false
+    t.string   "name",                          limit: 60,                   null: false
+    t.integer  "deliver_org_id",                limit: 4
+    t.string   "post",                          limit: 30
+    t.integer  "qty",                           limit: 4,     default: 10
+    t.integer  "unit_id",                       limit: 4
+    t.integer  "save_days",                     limit: 4
+    t.integer  "maintain_days",                 limit: 4
+    t.boolean  "is_active",                     limit: 1,     default: true
+    t.text     "note",                          limit: 65535
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+  end
+
+  add_index "protect_equipments", ["org_id"], name: "index_protect_equipments_on_org_id", using: :btree
+  add_index "protect_equipments", ["protect_equipment_category_id"], name: "index_protect_equipments_on_protect_equipment_category_id", using: :btree
+  add_index "protect_equipments", ["unit_id"], name: "index_protect_equipments_on_unit_id", using: :btree
 
   create_table "role_system_function_operates", force: :cascade do |t|
     t.integer  "role_id",                    limit: 4

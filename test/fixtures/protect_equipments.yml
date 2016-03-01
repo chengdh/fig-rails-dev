@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  protect_equipment_category_id: 
+  org_id: 
+  name: MyString
+  deliver_org_id: 1
+  post: MyString
+  qty: 1
+  unit_id: 
+  save_days: 1
+  maintain_days: 1
+  is_active: false
+  note: MyText
+
+two:
+  protect_equipment_category_id: 
+  org_id: 
+  name: MyString
+  deliver_org_id: 1
+  post: MyString
+  qty: 1
+  unit_id: 
+  save_days: 1
+  maintain_days: 1
+  is_active: false
+  note: MyText

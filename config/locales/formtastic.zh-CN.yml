@@ -19,6 +19,9 @@ zh-CN:
       location: 所在位置
       note: 备注
       mobile: 联系电话
+      unit: 单位
+      unit_id: 单位
+      qty: 数量
 
     placeholders:
       name: 名称

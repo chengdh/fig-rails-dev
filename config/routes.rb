@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :protect_equipments
+  resources :protect_equipment_categories
   resources :temporary_employees
   resources :distribute_boxes
   resources :transformers

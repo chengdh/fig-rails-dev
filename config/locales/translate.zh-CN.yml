@@ -26,6 +26,8 @@ zh-CN:
       transformer: 变压器
       distribute_box: 配电柜
       temporary_employee: 相关方人员
+      protect_equipment_category: 劳动防护用品分类
+      protect_equipment: 劳动防护用品
 
 
     attributes:
@@ -44,6 +46,7 @@ zh-CN:
         unit_id: 单位
         unit: 单位
         mobile: 联系电话
+        qty: 数量
 
       user:
         username: 用户名
@@ -219,6 +222,16 @@ zh-CN:
         post: 岗位(工种)
         belong_to_unit: 派遣单位
         begin_date: 上岗时间
+
+      protect_equipment:
+        protect_equipment_category: 类别
+        protect_equipment_category_id: 类别
+        deliver_org_id: 发放部门
+        deliver_org: 发放部门
+        post: 工种(岗位)
+        save_days: 保存期限(天)
+        maintain_days: 维保期限(天)
+
 
 
 
