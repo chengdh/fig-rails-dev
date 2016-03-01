@@ -6,6 +6,9 @@ zh-CN:
       is_active: 有效
       org_id: 机构
       org: 机构
+      location: 所在位置
+      note: 备注
+      
 
     labels:
       name: 名称
@@ -13,6 +16,8 @@ zh-CN:
       is_active: 有效
       org_id: 机构
       org: 机构
+      location: 所在位置
+      note: 备注
 
     placeholders:
       name: 名称

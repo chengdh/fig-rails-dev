@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301015636) do
+ActiveRecord::Schema.define(version: 20160301030306) do
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -212,6 +212,30 @@ ActiveRecord::Schema.define(version: 20160301015636) do
   end
 
   add_index "spec_equipments", ["org_id"], name: "index_spec_equipments_on_org_id", using: :btree
+
+  create_table "spec_warehouses", force: :cascade do |t|
+    t.string   "warehouse_type",                limit: 20,                                               null: false
+    t.string   "name",                          limit: 60,                                               null: false
+    t.integer  "org_id",                        limit: 4,                                                null: false
+    t.string   "location",                      limit: 60
+    t.date     "build_date"
+    t.decimal  "building_area",                               precision: 15, scale: 2
+    t.integer  "room_count",                    limit: 4,                              default: 1
+    t.integer  "fire_level",                    limit: 4,                              default: 1
+    t.decimal  "max_volume",                                  precision: 15, scale: 2, default: 10000.0
+    t.decimal  "act_volume",                                  precision: 15, scale: 2, default: 10000.0
+    t.boolean  "is_camera_moniter",             limit: 1,                              default: true
+    t.boolean  "is_fire_fighting_alarm_system", limit: 1,                              default: true
+    t.boolean  "is_auto_fire_fighting_system",  limit: 1,                              default: true
+    t.boolean  "is_fire_hydrant_system",        limit: 1,                              default: true
+    t.boolean  "is_lightning_protector",        limit: 1,                              default: true
+    t.boolean  "is_active",                     limit: 1,                              default: true
+    t.text     "note",                          limit: 65535
+    t.datetime "created_at",                                                                             null: false
+    t.datetime "updated_at",                                                                             null: false
+  end
+
+  add_index "spec_warehouses", ["org_id"], name: "index_spec_warehouses_on_org_id", using: :btree
 
   create_table "system_function_groups", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false

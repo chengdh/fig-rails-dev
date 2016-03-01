@@ -19,6 +19,7 @@ zh-CN:
       vehicle: 车辆信息
       driver: 司机信息
       spec_equipment: 特种设备
+      spec_warehouse: 仓库信息
 
 
     attributes:
@@ -166,6 +167,24 @@ zh-CN:
         usage: 用途
         last_check_date: 检测时间
         note: 备注
+
+      spec_warehouse:
+        warehouse_type: 仓库类别
+        warehouse_type_des: 仓库类别
+        name: 仓库名称
+        location: 所在位置
+        build_date: 建造时间
+        building_area: 建筑面积
+        room_count: 库房数量
+        fire_level: 耐火等级
+        fire_level_des: 耐火等级
+        max_volume: 最大容量
+        act_volume: 实际容量
+        is_camera_moniter: 视频监控系统
+        is_fire_fighting_alarm_system: 消防报警系统
+        is_auto_fire_fighting_system: 自动灭火系统
+        is_fire_hydrant_system: 消火栓系统
+        is_lightning_protector: 防类装置
 
 
 

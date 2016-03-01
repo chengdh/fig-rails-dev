@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :spec_warehouses
   resources :spec_equipments
   resources :drivers
   resources :vehicles
