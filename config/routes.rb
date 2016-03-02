@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :trainings
+  resources :check_trainings do
+    member do
+      get :show_check
+    end
+  end
   resources :accident_headers
   resources :accidents do
     collection do

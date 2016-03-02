@@ -1,6 +1,7 @@
 = semantic_form_for resource,html: {id: "training_form"} do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
+  = f.hidden_field :check_state,value: "draft"
   %table#training_form_table.table.table-condensed.table-bordered
     %tr
       %th 上报机构

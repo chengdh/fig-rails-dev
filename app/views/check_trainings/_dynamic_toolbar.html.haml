@@ -1,0 +1,18 @@
+- if can? :read,resource_class
+  = link_to collection_path(check_state: "draft"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待审批列表" do
+    %i.fa.fa-list-ul
+
+  - if self.respond_to?("search_#{controller_name.tableize}_path")
+    = render :partial => 'toolbar_search'
+
+- if ["show"].include?(params[:action]) and can? :show_check,resource
+  = link_to show_check_check_training_path(resource),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "审批" do
+    %i.fa.fa-gavel
+
+- if ["show_check"].include?(params[:action])
+  = link_to "#",:class => "btn btn-default btn-submit-form",
+  "data-toggle" => "tooltip",
+  "data-placement" => "top",
+  "data-form-id" => "check_training_form",
+  :title => "保存审批信息" do
+    %i.fa.fa-save
