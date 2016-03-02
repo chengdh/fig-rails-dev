@@ -1,0 +1,59 @@
+= semantic_form_for resource,html: {id: "accident_header_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  .well.well-sm.form-inline
+    = f.hidden_field :user_id,value: current_user.id
+    = f.label :org_id,"填报单位:"
+    = f.select :org_id,current_ability_orgs_for_select,{include_blank: false},:class => "form-control"
+    = f.label :mth,"填报月份:"
+    = f.select :mth,months_for_select,{include_blank: false},:class => "form-control"
+  %table#accident_header_table.table.table-condensed.table-bordered
+    %thead
+      %tr
+        %th{:rowspan => 2}
+        %th{:colspan => 5} 工业
+        %th{:colspan => 5} 商业
+      %tr
+        %th 事故次数
+        %th 死亡(人)
+        %th 受重伤(人)
+        %th 直接经济损失(万元)
+        %th 备注
+        %th 事故次数
+        %th 死亡(人)
+        %th 受重伤(人)
+        %th 直接经济损失(万元)
+        %th 备注
+    %tbody
+      = f.semantic_fields_for :accidents do |f_accident|
+        %tr
+          %th
+            = f_accident.object.accident_type.name
+            = f_accident.hidden_field :accident_type_id
+          %td
+            = f_accident.input :industry_accident_count,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :industry_die_persons,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :industry_wounded_persons,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :industry_economic_losses,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :industry_note,as: :string,label: false,input_html: {cols: 3,rows: 1,class: "input-sm"}
+          %td
+            = f_accident.input :commerical_accident_count,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :commerical_die_persons,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :commerical_wounded_persons,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :commerical_economic_losses,label: false,input_html: {class: "input-sm"}
+          %td
+            = f_accident.input :commerical_note,as: :string,label: false,input_html: {cols: 3,rows: 1,class: "input-sm"}
+      %tr
+        %th 
+          事故简情况:
+          %p (伤亡人数，
+          %p 直接经济损失，
+          %p 事故责任者、
+          %p 原因经过)
+        %td{:colspan => 10}= f.input :note,label: false,input_html: {cols: 12,rows: 4}

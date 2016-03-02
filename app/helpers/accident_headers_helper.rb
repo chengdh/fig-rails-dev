@@ -1,0 +1,2 @@
+module AccidentHeadersHelper
+end

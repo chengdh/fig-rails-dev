@@ -1,0 +1,7 @@
+<%= link_to new_resource_path("accident_header[org_id]" => current_user.default_org_id,"accident_header[mth]" => 1.month.ago.strftime("%Y%m")),
+  :class => "btn btn-default",
+  "data-toggle" => "tooltip",
+  "data-placement" => "top",
+  :title => "新建#{resource_class.model_name.human}" do %>
+  <i class="fa fa-plus"></i>
+<% end %>

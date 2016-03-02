@@ -102,6 +102,8 @@ GEM
     colorize (0.7.7)
     columnize (0.9.0)
     debug_inspector (0.0.2)
+    default_value_for (3.0.1)
+      activerecord (>= 3.2.0, < 5.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -310,6 +312,7 @@ DEPENDENCIES
   capistrano-rbenv (~> 2.0)
   capistrano3-unicorn
   coffee-rails (~> 4.1.0)
+  default_value_for (~> 3.0.0)
   devise
   formtastic (~> 3.0)
   formtastic-bootstrap

@@ -1,0 +1,50 @@
+%table#training_show_table.table.table-condensed.table-bordered
+  %tr
+    %th 上报机构
+    %td{:colspan => 3}= resource.org.name
+    %th 上报日期
+    %td= resource.table_date
+  %tr
+    %th 培训名称
+    %td{:colspan => 5}= resource.name
+  %tr
+    %th 讲师
+    %td= resource.teachers
+    %th 时间
+    %td= resource.training_date
+    %th 培训时长
+    %td= resource.training_length
+
+  %tr
+    %th 参加人员
+    %td{:colspan => 3}= resource.join_persons
+
+    %th 人数
+    %td= resource.join_count
+  %tr
+    %th{:colspan => 6} 培训内容
+  %tr
+    %td{:colspan => 6}
+      = resource.training_content
+  %tr
+    %th{:colspan => 6} 培训照片
+  %tr
+    %td= image_tag resource.photo_1.url(:thumb)
+    %td= image_tag resource.photo_2.url(:thumb)
+    %td= image_tag resource.photo_3.url(:thumb)
+    %td= image_tag resource.photo_4.url(:thumb)
+    %td= image_tag resource.photo_5.url(:thumb)
+    %td= image_tag resource.photo_6.url(:thumb)
+  %tr
+    %th 有无考核
+    %td
+      = resource.is_assess? ? "有" : "无"
+    %th 考核方式
+    %td= resource.assess_type_des
+    %th 合格率
+    %td= resource.qualified_rate
+  %tr
+    %th 审核结果
+    %td= resource.check_state_des
+    %th 审核意见
+    %td{:colspan => 3}= resource.check_opinion

@@ -13,7 +13,7 @@
     <%= render :partial => 'toolbar_btn_new' %>
   <%end%>
 
-  <%if params[:action] == "new"%>
+  <%if params[:action] == "new"  or (params[:action] == "upate" and not resource.valid? ) or (params[:action] == "create" and not resource.valid?)%>
     <%= render :partial => 'toolbar_btn_save' %>
   <%end%>
   <%if params[:action] == "edit" %>

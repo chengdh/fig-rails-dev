@@ -30,6 +30,8 @@ zh-CN:
       protect_equipment: 劳动防护用品
       house: 房舍(院落)
       safety_table: 安全工作情况月报
+      accident_header: 事故月报
+      training: 教育培训
 
 
     attributes:
@@ -50,6 +52,7 @@ zh-CN:
         mobile: 联系电话
         qty: 数量
         location: 位置
+        table_date: 填报日期
 
       user:
         username: 用户名
@@ -269,6 +272,27 @@ zh-CN:
         safety_meeting_persons: 专题安全会议-参加人数
         safety_meeting_solve_questions: 专题安全会议-解决问题数
         table_date: 填报日期
+
+      accident_header:
+        mth: 月份
+        table_date: 填报日期
+
+      training:
+        training_date: 培训时间
+        teachers: 讲师
+        training_length: 培训时长
+        join_persons: 参加人员
+        join_count: 人数
+        training_content: 培训内容
+        is_assess: 有无考核
+        assess_type: 考核方式
+        qualified_rate: 合格率
+        check_state: 审核结果
+        check_state_des: 审核结果
+        check_opinion: 审核意见
+        checker_id: 审核人
+        check_date: 审核日期
+
 
 
 

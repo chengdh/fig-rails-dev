@@ -1,0 +1,66 @@
+%table#accident_header_table.table.table-condensed.table-bordered
+  %thead
+    %tr
+      %th{:colspan => 12}
+        %h3 南阳市烟草专卖局(公司)事故月报
+    %tr
+      %th 填报单位:
+      %th= resource.org.name
+      %th
+      %th
+      %th= resource.mth
+      %th
+      %th
+      %th
+      %th
+      %th
+      %th
+      %th
+    %tr
+      %th{:rowspan => 2}
+      %th{:colspan => 5} 工业
+      %th{:colspan => 5} 商业
+    %tr
+      %th 事故次数
+      %th 死亡(人)
+      %th 受重伤(人)
+      %th 直接经济损失(万元)
+      %th 备注
+      %th 事故次数
+      %th 死亡(人)
+      %th 受重伤(人)
+      %th 直接经济损失(万元)
+      %th 备注
+  %tbody
+    - resource.accidents.each do |accident|
+      %tr
+        %th
+          = accident.accident_type.name
+        %td
+          = accident.industry_accident_count
+        %td
+          = accident.industry_die_persons
+        %td
+          = accident.industry_wounded_persons
+        %td
+          = accident.industry_economic_losses
+        %td
+          = accident.industry_note
+        %td
+          = accident.commerical_accident_count
+        %td
+          = accident.commerical_die_persons
+        %td
+          = accident.commerical_wounded_persons
+        %td
+          = accident.commerical_economic_losses
+        %td
+          = accident.commerical_note
+    %tr
+      %th
+        %p 事故简情况:
+        %p (伤亡人数，
+        %p 直接经济损失，
+        %p 事故责任者、
+        %p 原因经过)
+      %td{:colspan => 10}= resource.note

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  mth: MyString
+  table_date: 2016-03-01
+  user_id: 
+  note: MyText
+
+two:
+  org_id: 
+  mth: MyString
+  table_date: 2016-03-01
+  user_id: 
+  note: MyText

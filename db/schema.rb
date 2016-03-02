@@ -11,7 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301133414) do
+ActiveRecord::Schema.define(version: 20160302125951) do
+
+  create_table "accident_headers", force: :cascade do |t|
+    t.integer  "org_id",     limit: 4,     null: false
+    t.string   "mth",        limit: 6,     null: false
+    t.date     "table_date"
+    t.integer  "user_id",    limit: 4
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "accident_headers", ["org_id"], name: "index_accident_headers_on_org_id", using: :btree
+  add_index "accident_headers", ["user_id"], name: "index_accident_headers_on_user_id", using: :btree
+
+  create_table "accident_types", force: :cascade do |t|
+    t.string   "name",           limit: 60,                 null: false
+    t.integer  "order_by",       limit: 4,  default: 1
+    t.boolean  "is_active",      limit: 1,  default: true
+    t.boolean  "is_work_injury", limit: 1,  default: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  create_table "accidents", force: :cascade do |t|
+    t.integer  "accident_type_id",           limit: 4,                                null: false
+    t.integer  "industry_accident_count",    limit: 4,                    default: 0
+    t.integer  "industry_die_persons",       limit: 4,                    default: 0
+    t.integer  "industry_wounded_persons",   limit: 4,                    default: 0
+    t.decimal  "industry_economic_losses",                 precision: 10, default: 0
+    t.text     "industry_note",              limit: 65535
+    t.integer  "commerical_accident_count",  limit: 4,                    default: 0
+    t.integer  "commerical_die_persons",     limit: 4,                    default: 0
+    t.integer  "commerical_wounded_persons", limit: 4,                    default: 0
+    t.decimal  "commerical_economic_losses",               precision: 10, default: 0
+    t.text     "commerical_note",            limit: 65535
+    t.text     "note",                       limit: 65535
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+    t.integer  "accident_header_id",         limit: 4,                                null: false
+  end
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -387,6 +427,59 @@ ActiveRecord::Schema.define(version: 20160301133414) do
   end
 
   add_index "temporary_employees", ["org_id"], name: "index_temporary_employees_on_org_id", using: :btree
+
+  create_table "trainings", force: :cascade do |t|
+    t.integer  "org_id",               limit: 4,                                                null: false
+    t.date     "table_date",                                                                    null: false
+    t.integer  "user_id",              limit: 4
+    t.string   "name",                 limit: 60,                                               null: false
+    t.date     "training_date",                                                                 null: false
+    t.string   "teachers",             limit: 255,                                              null: false
+    t.integer  "training_length",      limit: 4,                              default: 1,       null: false
+    t.string   "join_persons",         limit: 255,                                              null: false
+    t.integer  "join_count",           limit: 4,                              default: 10
+    t.text     "training_content",     limit: 65535
+    t.boolean  "is_assess",            limit: 1,                              default: false
+    t.string   "assess_type",          limit: 20
+    t.decimal  "qualified_rate",                     precision: 15, scale: 2
+    t.string   "check_state",          limit: 255,                            default: "draft", null: false
+    t.text     "check_opinion",        limit: 65535
+    t.integer  "checker_id",           limit: 4
+    t.date     "check_date"
+    t.datetime "created_at",                                                                    null: false
+    t.datetime "updated_at",                                                                    null: false
+    t.string   "photo_1_file_name",    limit: 255
+    t.string   "photo_1_content_type", limit: 255
+    t.integer  "photo_1_file_size",    limit: 4
+    t.datetime "photo_1_updated_at"
+    t.string   "photo_2_file_name",    limit: 255
+    t.string   "photo_2_content_type", limit: 255
+    t.integer  "photo_2_file_size",    limit: 4
+    t.datetime "photo_2_updated_at"
+    t.string   "photo_3_file_name",    limit: 255
+    t.string   "photo_3_content_type", limit: 255
+    t.integer  "photo_3_file_size",    limit: 4
+    t.datetime "photo_3_updated_at"
+    t.string   "photo_4_file_name",    limit: 255
+    t.string   "photo_4_content_type", limit: 255
+    t.integer  "photo_4_file_size",    limit: 4
+    t.datetime "photo_4_updated_at"
+    t.string   "photo_5_file_name",    limit: 255
+    t.string   "photo_5_content_type", limit: 255
+    t.integer  "photo_5_file_size",    limit: 4
+    t.datetime "photo_5_updated_at"
+    t.string   "photo_6_file_name",    limit: 255
+    t.string   "photo_6_content_type", limit: 255
+    t.integer  "photo_6_file_size",    limit: 4
+    t.datetime "photo_6_updated_at"
+    t.string   "photo_7_file_name",    limit: 255
+    t.string   "photo_7_content_type", limit: 255
+    t.integer  "photo_7_file_size",    limit: 4
+    t.datetime "photo_7_updated_at"
+  end
+
+  add_index "trainings", ["org_id"], name: "index_trainings_on_org_id", using: :btree
+  add_index "trainings", ["user_id"], name: "index_trainings_on_user_id", using: :btree
 
   create_table "units", force: :cascade do |t|
     t.string   "name",       limit: 30,                null: false

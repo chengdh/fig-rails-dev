@@ -93,3 +93,18 @@ Equipment.destroy_all
 (1...100).each do |index|
   Equipment.create!(name: "设备_#{index}",equipment_category: EquipmentCategory.first,unit: Unit.first)
 end
+
+#事故类型
+AccidentType.destroy_all
+types_1 = %w(火灾 设备 交通 盗窃 刑事治安)
+#工伤
+types_2 = %w(物体打击 机械工具伤害 高空坠落 触电 爆炸 车辆伤害 其它伤害 人为破坏)
+types_1.each_with_index do |t,i|
+  AccidentType.create!(name: t,order_by: i+1)
+end
+
+types_2.each_with_index do |t,i|
+  AccidentType.create!(name: t,order_by: 10 + i ,is_work_injury: true)
+end
+
+

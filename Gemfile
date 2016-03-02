@@ -68,6 +68,7 @@ gem 'devise'
 gem 'inherited_resources', '~> 1.6'
 gem 'show_for', '~> 0.4.0'
 gem 'will_paginate-bootstrap'
+gem "default_value_for", "~> 3.0.0"
 
 group :development do
   gem 'better_errors'

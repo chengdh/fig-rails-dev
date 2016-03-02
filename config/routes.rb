@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :trainings
+  resources :accident_headers
+  resources :accidents do
+    collection do
+      get :batch_new
+    end
+  end
   resources :safety_tables
   resources :houses
   resources :protect_equipments
