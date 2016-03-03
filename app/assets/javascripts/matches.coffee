@@ -76,14 +76,6 @@ $ ->
     onCheckAll: -> $("[data-company-id]").show(),
     onUncheckAll: -> $("[data-company-id]").show()
   )
-  #即时指数界面,按照公司查询
-  # $("#select_company_id_eq").on("change", ->
-  #   company_id = $(this).val()
-  #   if !!company_id
-  #     $("[data-company-id]").hide()
-  #     $("[data-company-id='#{company_id}']").show()
-  #   else
-  #     $("[data-company-id]").show()
-  # )
+  #默认选择5家公司
+  $("#select_company_id_eq").multipleSelect("setSelects",[8,9,23,31,17]).trigger("click")
 
-  

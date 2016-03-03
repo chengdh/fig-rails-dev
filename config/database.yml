@@ -12,10 +12,12 @@
 default: &default
   adapter: oracle_enhanced
   host: 203.110.165.238
-  #host: 192.168.1.105
+  #host: 192.168.100.204
+  #host: 192.168.1.104
   database: orcl
   username: match
   password: maQW09@
+  #password: match
 
 development:
   <<: *default

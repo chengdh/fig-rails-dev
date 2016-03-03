@@ -18,9 +18,10 @@
     - odds_rates.each do |o|
       %tr
         %td= o.try(:company).try(:cn_name)
-        %td= o.try(:home)
-        %td= o.try(:goal)
-        %td= o.try(:away)
-        %td= o.try(:hw)
-        %td= o.try(:st)
-        %td= o.try(:aw)
+        %td= o.try(:home).present? ?  o.try(:home) : "无"
+        %td= o.try(:goal).present? ?  o.try(:goal) : "无"
+        %td= o.try(:away).present? ?  o.try(:away) : "无"
+        %td= o.try(:hw).present?  ? o.try(:hw) : "无"
+        %td= o.try(:st).present?  ?  o.try(:st) : "无"
+        %td= o.try(:aw).present?  ?  o.try(:aw) : "无"
+

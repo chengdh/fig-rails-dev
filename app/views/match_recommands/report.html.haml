@@ -1,7 +1,9 @@
-= DateTime.now
 .well.well-sm
-  = select_tag "select_match_recommend_data_time_eq",options_for_select(last_week_for_select,params[:data_time_eq]),
-    :class => "input-sm form-control select-match-recommend-data-time"
+  = select_tag "select_match_recommend_data_time_gte",options_for_select(last_week_for_select,params[:data_time_gte]),
+    :class => "input-sm form-control select-match-recommend-data-time-gte"
+  = select_tag "select_match_recommend_data_time_lte",options_for_select(last_week_for_select,params[:data_time_lte]),
+    :class => "input-sm form-control select-match-recommend-data-time-lte"
+
 
 .btn-group.btn-group-justified.match-recommand-tabs{:role => "group","aria-label" => "..."}
   = link_to "大数据", "#",class: "btn btn-sm btn-info match-recommend-bigdata"

@@ -100,10 +100,12 @@ $ ->
     $(".table-match-recommend-report-yinglang").show()
   )
   #统计时间发生变换
-  $("#select_match_recommend_data_time_eq").on("change", ->
-    data_time = $(this).val()
+  $("#select_match_recommend_data_time_gte,#select_match_recommend_data_time_lte").on("change", ->
+    data_time_gte = $("#select_match_recommend_data_time_gte").val()
+    data_time_lte = $("#select_match_recommend_data_time_lte").val()
     q ={
-      "data_time_eq" : data_time
+      "data_time_gte" : data_time_gte,
+      "data_time_gte" : data_time_lte
     }
     param = $.param(q)
     window.location.href = "/match_recommands/report?#{param}"
