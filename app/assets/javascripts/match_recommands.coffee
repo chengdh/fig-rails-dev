@@ -105,7 +105,7 @@ $ ->
     data_time_lte = $("#select_match_recommend_data_time_lte").val()
     q ={
       "data_time_gte" : data_time_gte,
-      "data_time_gte" : data_time_lte
+      "data_time_lte" : data_time_lte
     }
     param = $.param(q)
     window.location.href = "/match_recommands/report?#{param}"
