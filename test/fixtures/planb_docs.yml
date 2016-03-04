@@ -1,0 +1,75 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  table_date: 2016-03-04
+  user_id: 
+  name: MyString
+  plan_date: 2016-03-04
+  plan_length: 1
+  plan_type: MyString
+  join_persons: MyString
+  join_count: 1
+  plan_content: MyText
+  plan_process: MyText
+  document_name: MyString
+  audit_date: 2016-03-04
+  audit_persons: MyString
+  audit_item_1_state: false
+  audit_item_2_state: false
+  audit_item_3_state: false
+  audit_item_3_state: false
+  audit_item_4_state: false
+  audit_item_5_state: false
+  audit_item_6_state: false
+  audit_item_7_state: false
+  audit_item_1_fix: MyString
+  audit_item_2_fix: MyString
+  audit_item_3_fix: MyString
+  audit_item_4_fix: MyString
+  audit_item_5_fix: MyString
+  audit_item_6_fix: MyString
+  audit_item_7_fix: MyString
+  note: MyText
+  checker: MyString
+  checker_id: 1
+  check_state: MyString
+  check_opinion: MyString
+  check_date: 2016-03-04
+
+two:
+  org_id: 
+  table_date: 2016-03-04
+  user_id: 
+  name: MyString
+  plan_date: 2016-03-04
+  plan_length: 1
+  plan_type: MyString
+  join_persons: MyString
+  join_count: 1
+  plan_content: MyText
+  plan_process: MyText
+  document_name: MyString
+  audit_date: 2016-03-04
+  audit_persons: MyString
+  audit_item_1_state: false
+  audit_item_2_state: false
+  audit_item_3_state: false
+  audit_item_3_state: false
+  audit_item_4_state: false
+  audit_item_5_state: false
+  audit_item_6_state: false
+  audit_item_7_state: false
+  audit_item_1_fix: MyString
+  audit_item_2_fix: MyString
+  audit_item_3_fix: MyString
+  audit_item_4_fix: MyString
+  audit_item_5_fix: MyString
+  audit_item_6_fix: MyString
+  audit_item_7_fix: MyString
+  note: MyText
+  checker: MyString
+  checker_id: 1
+  check_state: MyString
+  check_opinion: MyString
+  check_date: 2016-03-04

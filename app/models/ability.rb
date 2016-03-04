@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
   attr_accessor :user
   def initialize(user)
-    #can :manage,:all
+    can :manage,:all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -35,8 +35,12 @@ class Ability
   end
   private
   def set_alias_actions
+    #设置默认权限,可以修改/新建/删除,就具备查看权限
+    alias_action :read ,:to => :create
+    alias_action :read ,:to => :update
+    alias_action :read ,:to => :destroy
     #可以查看,就可以查询
-    alias_action :search,:to => :read
+    alias_action :read,:to => :search
 
     #导出到excel，从export映射到export_excel
     alias_action :read,:to => :export_excel

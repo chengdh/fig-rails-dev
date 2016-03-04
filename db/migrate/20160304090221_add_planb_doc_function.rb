@@ -1,14 +1,14 @@
 #coding: utf-8
-class AddTrainingFunction < ActiveRecord::Migration
+class AddPlanbDocFunction < ActiveRecord::Migration
   def change
     group_name = "安保-动态情况管理"
-    sf_name = "教育培训信息录入"
-    subject = "Training"
+    sf_name = "应急预案演练信息录入"
+    subject = "PlanbDoc"
     sf_hash = {
       group_name:  group_name,
       name: sf_name,
       subject: subject,
-      default_action: 'trainings_path',
+      default_action: 'planb_docs_path',
       function: {
         read: {name: "查看"},
         create: {name: "新建"},
@@ -17,5 +17,6 @@ class AddTrainingFunction < ActiveRecord::Migration
       }
     }
     SystemFunction.create_by_hash(sf_hash)
+ 
   end
 end

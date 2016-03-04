@@ -10,6 +10,7 @@ class AddLocationFunction < ActiveRecord::Migration
       subject: subject,
       default_action: 'locations_path',
       function: {
+        read: {name: "查看"},
         create: {name: "新建"},
         update: {name: "修改"},
         destroy: {name:"删除"}

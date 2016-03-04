@@ -11,6 +11,7 @@ class AddSpecEquipmentFunction < ActiveRecord::Migration
       subject: subject,
       default_action: 'spec_equipments_path',
       function: {
+        read: {name: "查看"},
         create: {name: "新建"},
         update: {name: "修改"},
         destroy: {name:"删除"}

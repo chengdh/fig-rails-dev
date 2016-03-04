@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302153202) do
+ActiveRecord::Schema.define(version: 20160304090221) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20160302153202) do
   end
 
   create_table "accidents", force: :cascade do |t|
+    t.integer  "accident_header_id",         limit: 4,                                null: false
     t.integer  "accident_type_id",           limit: 4,                                null: false
     t.integer  "industry_accident_count",    limit: 4,                    default: 0
     t.integer  "industry_die_persons",       limit: 4,                    default: 0
@@ -50,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160302153202) do
     t.text     "note",                       limit: 65535
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
-    t.integer  "accident_header_id",         limit: 4,                                null: false
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -254,6 +254,81 @@ ActiveRecord::Schema.define(version: 20160302153202) do
     t.string   "phone",      limit: 30
     t.string   "email",      limit: 30
   end
+
+  create_table "planb_docs", force: :cascade do |t|
+    t.integer  "org_id",               limit: 4,                       null: false
+    t.date     "table_date"
+    t.integer  "user_id",              limit: 4,                       null: false
+    t.string   "name",                 limit: 60,                      null: false
+    t.date     "plan_date",                                            null: false
+    t.integer  "plan_length",          limit: 4,     default: 10,      null: false
+    t.string   "plan_type",            limit: 30,                      null: false
+    t.string   "join_persons",         limit: 100,                     null: false
+    t.integer  "join_count",           limit: 4,     default: 20,      null: false
+    t.text     "plan_content",         limit: 65535,                   null: false
+    t.text     "plan_process",         limit: 65535,                   null: false
+    t.string   "document_name",        limit: 60,                      null: false
+    t.date     "audit_date",                                           null: false
+    t.string   "audit_persons",        limit: 60,                      null: false
+    t.boolean  "audit_item_1_state",   limit: 1,     default: true,    null: false
+    t.boolean  "audit_item_2_state",   limit: 1,     default: true,    null: false
+    t.boolean  "audit_item_3_state",   limit: 1,     default: true,    null: false
+    t.boolean  "audit_item_4_state",   limit: 1,     default: true,    null: false
+    t.boolean  "audit_item_5_state",   limit: 1,     default: true,    null: false
+    t.boolean  "audit_item_6_state",   limit: 1,     default: true,    null: false
+    t.boolean  "audit_item_7_state",   limit: 1,     default: true,    null: false
+    t.string   "audit_item_1_fix",     limit: 60
+    t.string   "audit_item_2_fix",     limit: 60
+    t.string   "audit_item_3_fix",     limit: 60
+    t.string   "audit_item_4_fix",     limit: 60
+    t.string   "audit_item_5_fix",     limit: 60
+    t.string   "audit_item_6_fix",     limit: 60
+    t.string   "audit_item_7_fix",     limit: 60
+    t.text     "note",                 limit: 65535,                   null: false
+    t.string   "check_leader",         limit: 60,                      null: false
+    t.integer  "checker_id",           limit: 4
+    t.string   "check_state",          limit: 255,   default: "draft", null: false
+    t.string   "check_opinion",        limit: 255
+    t.date     "check_date"
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.string   "photo_1_file_name",    limit: 255
+    t.string   "photo_1_content_type", limit: 255
+    t.integer  "photo_1_file_size",    limit: 4
+    t.datetime "photo_1_updated_at"
+    t.string   "photo_2_file_name",    limit: 255
+    t.string   "photo_2_content_type", limit: 255
+    t.integer  "photo_2_file_size",    limit: 4
+    t.datetime "photo_2_updated_at"
+    t.string   "photo_3_file_name",    limit: 255
+    t.string   "photo_3_content_type", limit: 255
+    t.integer  "photo_3_file_size",    limit: 4
+    t.datetime "photo_3_updated_at"
+    t.string   "photo_4_file_name",    limit: 255
+    t.string   "photo_4_content_type", limit: 255
+    t.integer  "photo_4_file_size",    limit: 4
+    t.datetime "photo_4_updated_at"
+    t.string   "photo_5_file_name",    limit: 255
+    t.string   "photo_5_content_type", limit: 255
+    t.integer  "photo_5_file_size",    limit: 4
+    t.datetime "photo_5_updated_at"
+    t.string   "photo_6_file_name",    limit: 255
+    t.string   "photo_6_content_type", limit: 255
+    t.integer  "photo_6_file_size",    limit: 4
+    t.datetime "photo_6_updated_at"
+    t.string   "photo_7_file_name",    limit: 255
+    t.string   "photo_7_content_type", limit: 255
+    t.integer  "photo_7_file_size",    limit: 4
+    t.datetime "photo_7_updated_at"
+    t.string   "photo_8_file_name",    limit: 255
+    t.string   "photo_8_content_type", limit: 255
+    t.integer  "photo_8_file_size",    limit: 4
+    t.datetime "photo_8_updated_at"
+    t.string   "note_taker",           limit: 45
+  end
+
+  add_index "planb_docs", ["org_id"], name: "index_planb_docs_on_org_id", using: :btree
+  add_index "planb_docs", ["user_id"], name: "index_planb_docs_on_user_id", using: :btree
 
   create_table "protect_equipment_categories", force: :cascade do |t|
     t.string   "name",       limit: 60,                null: false

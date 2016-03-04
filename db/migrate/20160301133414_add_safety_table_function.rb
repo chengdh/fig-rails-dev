@@ -10,6 +10,7 @@ class AddSafetyTableFunction < ActiveRecord::Migration
       subject: subject,
       default_action: 'safety_tables_path("q[org_id_in]" => current_ability_org_ids,"q[mth_eq]" => 1.month.ago.strftime("%Y%m"))',
       function: {
+        read: {name: "查看"},
         create: {name: "新建"},
         update: {name: "修改"},
         destroy: {name:"删除"}

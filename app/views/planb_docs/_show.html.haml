@@ -1,0 +1,105 @@
+%table#training_form_table.table.table-condensed.table-bordered
+  %tr
+    %th 上报机构
+    %td{:colspan => 3}= resource.org
+    %th 上报时间
+    %td= resource.table_date
+  %tr
+    %th 演练项目
+    %td{:colspan => 6}= resource.name
+  %tr
+    %th 演练时间
+    %td= resource.plan_date
+    %th 演练时长
+    %td= resource.plan_length
+    %th 演练方式
+    %td= resource.plan_type_des
+
+  %tr
+    %th 参加人员
+    %td{:colspan => 3}= resource.join_persons
+
+    %th 人数
+    %td= resource.join_count
+  %tr
+    %th{:colspan => 6} 演练内容
+  %tr
+    %td{:colspan => 6}
+      = resource.plan_content
+  %tr
+    %th{:colspan => 6} 演练过程
+  %tr
+    %td{:colspan => 6}
+      = resource.plan_process
+  %tr
+    %th{:colspan => 6} 演练照片
+  %tr
+    %td= image_tag resource.photo_1.url(:thumb)
+    %td= image_tag resource.photo_2.url(:thumb)
+    %td= image_tag resource.photo_3.url(:thumb)
+    %td= image_tag resource.photo_4.url(:thumb)
+    %td= image_tag resource.photo_5.url(:thumb)
+    %td= image_tag resource.photo_6.url(:thumb)
+  %tr
+    %th{:colspan => 6} 应急预案评审
+  %tr
+    %th 预案名称
+    %td{:colspan => 5}= resource.document_name
+  %tr
+    %th 评审时间
+    %td{:colspan => 2}= resource.audit_date
+    %th 评审人员
+    %td{:colspan => 2}= resource.audit_persons
+  %tr
+    %th{:colspan => 2} 评审内容
+    %th{:colspan => 2} 评审
+    %th{:colspan => 2} 需改进的内容
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_1_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_1_state)
+    %td{:colspan => 2}= resource.audit_item_1_fix
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_2_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_2_state)
+    %td{:colspan => 2}= resource.audit_item_2_fix
+
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_3_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_3_state)
+    %td{:colspan => 2}= resource.audit_item_3_fix
+
+
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_4_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_4_state)
+    %td{:colspan => 2}= resource.audit_item_4_fix
+
+
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_5_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_5_state)
+    %td{:colspan => 2}= resource.audit_item_5_fix
+
+
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_6_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_6_state)
+    %td{:colspan => 2}= resource.audit_item_6_fix
+
+
+  %tr
+    %td{:colspan => 2}= resource_class.human_attribute_name(:audit_item_7_state)
+    %td{:colspan => 2}= audit_item_state_des(resource.audit_item_7_state)
+    %td{:colspan => 2}= resource.audit_item_7_fix
+
+  %tr
+    %th{:colspan => 6} 应急预案修订意见
+  %tr
+    %td{:colspan => 6}
+      = resource.note
+  %tr
+    %th 审核领导
+    %td{:colspan => 2}= resource.check_leader
+
+    %th 记录人
+    %td{:colspan => 2}= resource.note_taker

@@ -32,6 +32,7 @@ zh-CN:
       safety_table: 安全工作情况月报
       accident_header: 事故月报
       training: 教育培训
+      planb_doc: 应急预案演练
 
 
     attributes:
@@ -293,13 +294,38 @@ zh-CN:
         checker_id: 审核人
         check_date: 审核日期
 
-
-
-
-
-
-
-
-
-
-
+      planb_doc:
+        name: 演练项目
+        plan_date: 演练时间
+        plan_length: 演练时长
+        plan_type: 演练方式
+        plan_type_des: 演练方式
+        join_persons: 参加人员
+        join_count: 人数
+        plan_content: 演练方案
+        plan_process: 演练过程
+        document_name: 预案名称
+        audit_date: 评审时间
+        audit_persons: 评审人员
+        audit_item_1_state: 1、人员配置的合理性
+        audit_item_2_state: 2、参与人员的反应能力与处理能力
+        audit_item_3_state: 3、应急预案的操作性
+        audit_item_4_state: 4、应急设备的有效性
+        audit_item_5_state: 5、预案演练的组织协调性
+        audit_item_6_state: 6、外部机构响应的及时性
+        audit_item_7_state: 7、应急预案的经济性、有效性
+        audit_item_1_fix: 需要改进的内容1 
+        audit_item_2_fix: 需要改进的内容2
+        audit_item_3_fix: 需要改进的内容3
+        audit_item_4_fix: 需要改进的内容4
+        audit_item_5_fix: 需要改进的内容5
+        audit_item_6_fix: 需要改进的内容6
+        audit_item_7_fix: 需要改进的内容7
+        note: 应急预案修订意见
+        check_leader: 审核领导
+        note_taker: 记录人
+        checker_id: 审核操作员
+        check_state: 审核状态
+        check_state_des: 审核状态
+        check_opinion: 审核意见
+        check_date: 审核日期

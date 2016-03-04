@@ -8,8 +8,9 @@ class AddEquipmentFunction < ActiveRecord::Migration
       group_name:  group_name,
       name: sf_name,
       subject: subject,
-      default_action: 'equipment_path',
+      default_action: 'equipment_index_path',
       function: {
+        read: {name: "查看"},
         create: {name: "新建"},
         update: {name: "修改"},
         destroy: {name:"删除"}

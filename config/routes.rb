@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :planb_docs
   resources :trainings
   resources :check_trainings do
     member do

@@ -8,7 +8,7 @@ class CreateEquipment < ActiveRecord::Migration
       t.references :unit, index: true,null: false
       t.decimal :purchase_price,precision: 10,scale: 2
       #购买日期
-      t.dtetime :purchase_date
+      t.datetime :purchase_date
       t.string :factory_name,limit: 60
       #型号
       t.string :model,limit: 60
