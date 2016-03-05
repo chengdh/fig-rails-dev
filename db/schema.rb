@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305024952) do
+ActiveRecord::Schema.define(version: 20160305075040) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -175,6 +175,30 @@ ActiveRecord::Schema.define(version: 20160305024952) do
 
   add_index "fire_fighting_equipments", ["org_id"], name: "index_fire_fighting_equipments_on_org_id", using: :btree
   add_index "fire_fighting_equipments", ["user_id"], name: "index_fire_fighting_equipments_on_user_id", using: :btree
+
+  create_table "hidden_dangers", force: :cascade do |t|
+    t.integer  "org_id",        limit: 4,                       null: false
+    t.integer  "user_id",       limit: 4,                       null: false
+    t.date     "table_date",                                    null: false
+    t.integer  "danger_org_id", limit: 4,                       null: false
+    t.integer  "parent_id",     limit: 4
+    t.string   "name",          limit: 60,                      null: false
+    t.date     "danger_date",                                   null: false
+    t.integer  "fix_period",    limit: 4,                       null: false
+    t.string   "fixed_state",   limit: 30,    default: "draft", null: false
+    t.date     "fixed_date"
+    t.integer  "fixer_id",      limit: 4
+    t.date     "review_date"
+    t.string   "review_state",  limit: 255,   default: "draft", null: false
+    t.integer  "reviewer_id",   limit: 4
+    t.text     "note",          limit: 65535
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "hidden_dangers", ["danger_org_id"], name: "index_hidden_dangers_on_danger_org_id", using: :btree
+  add_index "hidden_dangers", ["org_id"], name: "index_hidden_dangers_on_org_id", using: :btree
+  add_index "hidden_dangers", ["user_id"], name: "index_hidden_dangers_on_user_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
     t.integer  "org_id",             limit: 4,                                              null: false

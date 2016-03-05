@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :hidden_dangers
   resources :check_meetings do
     member do
       get :show_check

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  danger_org_id: 1
+  parent_id: 1
+  name: MyString
+  danger_date: 2016-03-05
+  fix_period: 1
+  fixed_state: MyString
+  fixed_date: 2016-03-05
+  fixer_id: 1
+  review_date: 2016-03-05
+  review_state: MyString
+  reviewer_id: 1
+  note: MyText
+
+two:
+  org_id: 
+  danger_org_id: 1
+  parent_id: 1
+  name: MyString
+  danger_date: 2016-03-05
+  fix_period: 1
+  fixed_state: MyString
+  fixed_date: 2016-03-05
+  fixer_id: 1
+  review_date: 2016-03-05
+  review_state: MyString
+  reviewer_id: 1
+  note: MyText

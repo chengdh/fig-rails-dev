@@ -34,6 +34,7 @@ zh-CN:
       training: 教育培训
       planb_doc: 应急预案演练
       meeting: 会议记录
+      hidden_danger: 事故隐患整改
 
 
     attributes:
@@ -344,3 +345,21 @@ zh-CN:
         check_opinion: 审核意见
         checker_id: 审核人
         check_date: 审核日期
+
+      hidden_danger:
+        danger_org_id: 隐患部门
+        danger_org: 隐患部门
+        name: 隐患名称
+        danger_date: 发现隐患时间
+        fix_period: 整改期限
+        fix_period_des: 整改期限
+        fixed_state: 整改情况
+        fixed_state_des: 整改情况
+        fixed_date: 整改上报时间
+        fixer_id: 上报人
+        fixer: 上报人
+        review_date: 复查时间
+        reviewer_id: 复查人
+        reviewer: 复查人
+        review_state: 复查结果
+        review_state_des: 复查结果
