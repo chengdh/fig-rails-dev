@@ -55,8 +55,12 @@ class Ability
       user.default_role.selected_sfos.each  { |sfo| set_single_operate_power(sfo)}
     end
     #教育培训信息,可以审批 就可以read update
-    can :read,Training if can? :show_check,Training
-    can :update,Training if can? :show_check,Training
+    can [:read,:update], Training if can? :show_check,Training
+    #应急预案演练信息,可以审批 就可以read update
+    can [:read,:update],PlanbDoc if can? :show_check,PlanbDoc
+
+    can [:read,:update],Meeting if can? :show_check,Meeting
+
   end
   #设置单个operate的权限
   def set_single_operate_power(sfo)

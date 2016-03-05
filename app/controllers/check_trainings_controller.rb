@@ -19,6 +19,4 @@ class CheckTrainingsController < TrainingsController
   def training_params
     params.require(:training).permit(:org_id, :table_date, :user_id, :name, :training_date, :teachers, :training_length, :join_persons, :join_count, :training_content, :is_assess, :assess_type, :qualified_rate, :check_state, :check_opinion, :checker_id)
   end
-
-
 end

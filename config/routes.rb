@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  resources :check_meetings do
+    member do
+      get :show_check
+    end
+  end
+
+  resources :meetings
+  resources :check_planb_docs do
+    member do
+      get :show_check
+    end
+  end
+
   resources :planb_docs
   resources :trainings
   resources :check_trainings do

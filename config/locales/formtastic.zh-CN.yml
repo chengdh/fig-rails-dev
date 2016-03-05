@@ -23,6 +23,10 @@ zh-CN:
       unit_id: 单位
       qty: 数量
       table_date: 填报日期
+      check_state: 审核状态
+      check_state_des: 审核状态
+
+
 
 
 

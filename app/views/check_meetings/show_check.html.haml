@@ -1,0 +1,18 @@
+<!-- Content Header (Page header) -->
+%section.content-header
+  %h3=  "会议记录审批"
+
+<!-- Main content -->
+%section.content
+  <!-- Info boxes -->
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .box.box-primary
+        .box-header
+          %h3.box-title
+            = render "dynamic_toolbar"
+
+        .box-body
+          %div{:id => "#{resource_class.name.underscore}_form_wrap"}
+            = render "meetings/show"
+            = render "form"

@@ -1,0 +1,2 @@
+module CheckPlanbDocsHelper
+end

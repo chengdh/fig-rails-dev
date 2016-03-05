@@ -33,6 +33,7 @@ zh-CN:
       accident_header: 事故月报
       training: 教育培训
       planb_doc: 应急预案演练
+      meeting: 会议记录
 
 
     attributes:
@@ -54,6 +55,8 @@ zh-CN:
         qty: 数量
         location: 位置
         table_date: 填报日期
+        check_state: 审核状态
+        check_state_des: 审核状态
 
       user:
         username: 用户名
@@ -328,4 +331,16 @@ zh-CN:
         check_state: 审核状态
         check_state_des: 审核状态
         check_opinion: 审核意见
+        check_date: 审核日期
+      meeting:
+        name: 会议名称
+        meeting_date: 会议时间
+        meeting_length: 会议时长
+        presenter: 主持人
+        join_persons: 参加人员
+        join_count: 参加人数
+        meeting_content: 会议内容
+        check_state: 审核状态
+        check_opinion: 审核意见
+        checker_id: 审核人
         check_date: 审核日期

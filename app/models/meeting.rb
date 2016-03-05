@@ -1,10 +1,14 @@
 #coding: utf-8
-#培训管理
-class Training < ActiveRecord::Base
+#会议记录
+class Meeting < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
   belongs_to :checker,class_name: "User"
-  default_scope {order("training_date DESC")}
+
+  default_scope {order("meeting_date DESC")}
+  default_value_for(:table_date) {Date.today}
+  default_value_for(:meeting_date) {Date.today}
+
   has_attached_file :photo_1, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :photo_1, content_type: /\Aimage\/.*\Z/
 
@@ -26,17 +30,11 @@ class Training < ActiveRecord::Base
   has_attached_file :photo_7, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :photo_7, content_type: /\Aimage\/.*\Z/
 
-  validates :org_id,:table_date,:user_id,:name,:training_date,:teachers,:training_length,:join_persons,:join_count,:training_content,:assess_type, presence: true
-  default_value_for(:table_date) {Date.today}
-  default_value_for(:training_date) {Date.today}
 
-  def assess_type_des
-    ret = ""
-    ret = "测试" if assess_type.eql?("test")
-    ret = "提问" if assess_type.eql?("question")
-    ret = "座谈" if assess_type.eql?("conversion")
-    ret
-  end
+
+  validates :org_id,:user_id,:name,:meeting_date,:meeting_length,:presenter,
+    :join_persons,:join_count,:meeting_content,:check_state, presence: true
+  validates :meeting_length,:join_count, numericality: true
   def check_state_des
     ret = ""
     ret = "草稿(未审批)" if check_state.eql?("draft")
@@ -44,4 +42,5 @@ class Training < ActiveRecord::Base
     ret = "不通过" if check_state.eql?("rejected")
     ret
   end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304090221) do
+ActiveRecord::Schema.define(version: 20160305024952) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -239,6 +239,57 @@ ActiveRecord::Schema.define(version: 20160304090221) do
   end
 
   add_index "locations", ["warehouse_id"], name: "index_locations_on_warehouse_id", using: :btree
+
+  create_table "meetings", force: :cascade do |t|
+    t.integer  "org_id",               limit: 4
+    t.integer  "user_id",              limit: 4
+    t.date     "table_date"
+    t.string   "name",                 limit: 60,                      null: false
+    t.date     "meeting_date",                                         null: false
+    t.integer  "meeting_length",       limit: 4,     default: 2,       null: false
+    t.string   "presenter",            limit: 30,                      null: false
+    t.string   "join_persons",         limit: 200,                     null: false
+    t.integer  "join_count",           limit: 4,     default: 10,      null: false
+    t.text     "meeting_content",      limit: 65535,                   null: false
+    t.string   "check_state",          limit: 30,    default: "draft"
+    t.string   "check_opinion",        limit: 100
+    t.integer  "checker_id",           limit: 4
+    t.date     "check_date"
+    t.text     "note",                 limit: 65535
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.string   "photo_1_file_name",    limit: 255
+    t.string   "photo_1_content_type", limit: 255
+    t.integer  "photo_1_file_size",    limit: 4
+    t.datetime "photo_1_updated_at"
+    t.string   "photo_2_file_name",    limit: 255
+    t.string   "photo_2_content_type", limit: 255
+    t.integer  "photo_2_file_size",    limit: 4
+    t.datetime "photo_2_updated_at"
+    t.string   "photo_3_file_name",    limit: 255
+    t.string   "photo_3_content_type", limit: 255
+    t.integer  "photo_3_file_size",    limit: 4
+    t.datetime "photo_3_updated_at"
+    t.string   "photo_4_file_name",    limit: 255
+    t.string   "photo_4_content_type", limit: 255
+    t.integer  "photo_4_file_size",    limit: 4
+    t.datetime "photo_4_updated_at"
+    t.string   "photo_5_file_name",    limit: 255
+    t.string   "photo_5_content_type", limit: 255
+    t.integer  "photo_5_file_size",    limit: 4
+    t.datetime "photo_5_updated_at"
+    t.string   "photo_6_file_name",    limit: 255
+    t.string   "photo_6_content_type", limit: 255
+    t.integer  "photo_6_file_size",    limit: 4
+    t.datetime "photo_6_updated_at"
+    t.string   "photo_7_file_name",    limit: 255
+    t.string   "photo_7_content_type", limit: 255
+    t.integer  "photo_7_file_size",    limit: 4
+    t.datetime "photo_7_updated_at"
+  end
+
+  add_index "meetings", ["org_id"], name: "index_meetings_on_org_id", using: :btree
+  add_index "meetings", ["user_id"], name: "index_meetings_on_user_id", using: :btree
 
   create_table "orgs", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false
