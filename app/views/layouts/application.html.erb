@@ -24,9 +24,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>管</b>理</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>综合信息</b>平台</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -120,14 +120,7 @@
         <%= yield %>
       </div>
       <!-- /.content-wrapper -->
-
-      <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.2
-        </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-        reserved.
-      </footer>
+      <%= render "shared/footer" %>
     </div>
     <!-- ./wrapper -->
     <%= javascript_include_tag "application",debug: true %>
