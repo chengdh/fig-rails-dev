@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
-  resources :hidden_dangers
+  resources :danger_org_hidden_dangers do
+    member do
+      patch :fix
+    end
+  end
+  resources :hidden_dangers do
+    member do
+      patch :deliver
+      patch :review_ok
+      patch :review_reject
+    end
+  end
   resources :check_meetings do
     member do
       get :show_check

@@ -5,6 +5,8 @@ class CreateHiddenDangers < ActiveRecord::Migration
     create_table :hidden_dangers do |t|
       t.references :org, index: true, null: false
       t.references :user, index: true, null: false
+      t.integer :deliver_id, index: true
+      t.date :deliver_date, index: true
       t.date :table_date,null: false
       t.integer :danger_org_id,index:true,null: false
       t.integer :parent_id

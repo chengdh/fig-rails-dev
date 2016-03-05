@@ -4,6 +4,8 @@ class HiddenDanger < ActiveRecord::Base
   belongs_to :org
   belongs_to :danger_org,class_name: "Org"
   belongs_to :user
+  belongs_to :deliver,class_name: "User"
+
   acts_as_tree order: "danger_date ASC"
 
   #上报整改情况用户
@@ -26,6 +28,7 @@ class HiddenDanger < ActiveRecord::Base
   def fixed_state_des
     ret = ""
     ret = "草稿(未处理)" if fixed_state.eql?("draft")
+    ret = "已下发" if fixed_state.eql?("deliveried")
     ret = "处理中" if fixed_state.eql?("processing")
     ret = "整改完成" if fixed_state.eql?("fixed")
     ret
@@ -34,7 +37,29 @@ class HiddenDanger < ActiveRecord::Base
     ret = ""
     ret = "草稿(未处理)" if review_state.eql?("draft")
     ret = "合格" if review_state.eql?("review_ok")
-    ret = "不合格" if review_state.eql?("review_err")
+    ret = "不合格" if review_state.eql?("review_reject")
+    ret
+  end
+  #复查
+  def review(review_ok = true,attrs)
+    ret = false
+    if review_ok
+      attrs.merge!(review_state: "review_ok")
+      ret = update_attributes(attrs)
+    else
+      attrs.merge!(review_state: "review_reject")
+      ret = update_attributes(attrs)
+      #创建新的隐患记录
+      new_hidden_danger = HiddenDanger.new(parent_id: id,
+                                           org_id: org_id,
+                                           danger_org_id: danger_org_id,
+                                           user_id: attrs[:reviewer_id],
+                                           fix_period: fix_period,
+                                           name: "#{name}第#{children.size + 1}次复查不合格")
+      ret = new_hidden_danger.save!
+      #下发新的隐患记录
+      ret = new_hidden_danger.update_attributes(fixed_state: "deliveried",deliver_date: Date.today,deliver_id: attrs[:reviewer_id])
+    end
     ret
   end
 

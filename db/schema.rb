@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305075040) do
+ActiveRecord::Schema.define(version: 20160305140808) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -179,6 +179,8 @@ ActiveRecord::Schema.define(version: 20160305075040) do
   create_table "hidden_dangers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
     t.integer  "user_id",       limit: 4,                       null: false
+    t.integer  "deliver_id",    limit: 4
+    t.date     "deliver_date"
     t.date     "table_date",                                    null: false
     t.integer  "danger_org_id", limit: 4,                       null: false
     t.integer  "parent_id",     limit: 4
@@ -197,6 +199,8 @@ ActiveRecord::Schema.define(version: 20160305075040) do
   end
 
   add_index "hidden_dangers", ["danger_org_id"], name: "index_hidden_dangers_on_danger_org_id", using: :btree
+  add_index "hidden_dangers", ["deliver_date"], name: "index_hidden_dangers_on_deliver_date_id", using: :btree
+  add_index "hidden_dangers", ["deliver_id"], name: "index_hidden_dangers_on_deliver_id_id", using: :btree
   add_index "hidden_dangers", ["org_id"], name: "index_hidden_dangers_on_org_id", using: :btree
   add_index "hidden_dangers", ["user_id"], name: "index_hidden_dangers_on_user_id", using: :btree
 

@@ -1,0 +1,14 @@
+.btn-group{:role => "group", "aria-label" =>"..."}
+  -if ["show"].include? params[:action]
+    = render :partial => 'toolbar_btn_back'
+
+  - if can? :read,resource_class
+    = link_to collection_path("q[fixed_state_eq]" => "deliveried"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待处理列表" do
+      %i.fa.fa-list-ul
+
+    - if self.respond_to?("search_#{controller_name.tableize}_path")
+      = render :partial => 'toolbar_search'
+
+  - if ["show"].include?(params[:action]) and can? :fix,resource
+    = link_to fix_danger_org_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定整改完成吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "整改完成" do
+      %i.fa.fa-send-o

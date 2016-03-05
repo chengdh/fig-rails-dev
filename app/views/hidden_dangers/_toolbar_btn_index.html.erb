@@ -1,0 +1,9 @@
+<%= link_to collection_path("q[fixed_state_eq]" => "draft"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待下发事故隐患" do %>
+  <i class="fa fa-list-ul" style="color: blue;"></i>
+<% end %>
+<%= link_to collection_path("q[fixed_state_eq]" => "fixed"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待复查事故隐患" do %>
+  <i class="fa fa-list-ul" style="color: green;"></i>
+<% end %>
+<%= link_to collection_path,:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "所有事故隐患" do %>
+  <i class="fa fa-list-ul"></i>
+<% end %>

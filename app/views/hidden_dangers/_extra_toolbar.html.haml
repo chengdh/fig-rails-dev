@@ -1,0 +1,11 @@
+- if params[:action].eql?("show")
+  - if can? :deliver,resource
+    = link_to deliver_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定要下发吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "下发数据" do
+      %i.fa.fa-clock-o{style: "color : blue;"}
+  - if can? :review,resource
+    = link_to review_ok_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定该隐患复查合格吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "复查合格" do
+      %i.fa.fa-check
+
+  - if can? :review,resource
+    = link_to review_reject_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定该隐患复查不合格吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "复查不合格" do
+      %i.fa.fa-ban{style: "color : red;"}

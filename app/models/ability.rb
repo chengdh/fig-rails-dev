@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
   attr_accessor :user
   def initialize(user)
-    can :manage,:all
+    #can :manage,:all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -46,6 +46,9 @@ class Ability
     alias_action :read,:to => :export_excel
     alias_action :export_excel,:to => :export
     alias_action :before_new,:to => :create
+
+    #隐患复查
+    alias_action :review_ok,:review_reject,:to => :review
   end
   #设置当前用户权限
   def set_user_powers
@@ -61,11 +64,15 @@ class Ability
 
     can [:read,:update],Meeting if can? :show_check,Meeting
 
+    #事故隐患整改
+    can [:read],HiddenDanger if can? :review,HiddenDanger
+    can [:read],HiddenDanger if can? :deliver,HiddenDanger
+    can [:read],HiddenDanger if can? :fix,HiddenDanger
+
   end
   #设置单个operate的权限
   def set_single_operate_power(sfo)
     begin
-      current_ability_org_ids = user.current_ability_org_ids
       f_obj = sfo.function_obj
       subject_class = f_obj[:subject].constantize
       action = f_obj[:action].to_sym

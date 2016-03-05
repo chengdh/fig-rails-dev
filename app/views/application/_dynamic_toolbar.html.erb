@@ -23,7 +23,7 @@
     <%end%>
   <%end%>
   <%if params[:action] == "show"%>
-    <%if can? :update,resource%>
+    <%if can? :update,resource %>
       <%= render :partial => 'toolbar_btn_update' %>
     <%end%>
     <%if can? :destroy,resource%>
