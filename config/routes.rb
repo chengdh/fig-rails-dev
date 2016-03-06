@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :salary_tables
+  resources :salary_tables do
+    collection do
+      get :search
+    end
+
+  end
   resources :salary_item_headers
   resources :salary_items
   resources :own_tasks do
@@ -8,18 +13,30 @@ Rails.application.routes.draw do
       patch :save_line
       patch :finish
     end
+    collection do
+      get :search
+    end
   end
   resources :tasks do
     member do
       patch :deliver
       patch :confirm
     end
+    collection do
+      get :search
+    end
+
   end
   resources :task_categories
   resources :danger_org_hidden_dangers do
     member do
       patch :fix
     end
+    collection do
+      get :search
+    end
+
+
   end
   resources :hidden_dangers do
     member do
@@ -27,48 +44,131 @@ Rails.application.routes.draw do
       patch :review_ok
       patch :review_reject
     end
+    collection do
+      get :search
+    end
   end
   resources :check_meetings do
     member do
       get :show_check
     end
+    collection do
+      get :search
+    end
+
   end
 
-  resources :meetings
+  resources :meetings do
+    collection do
+      get :search
+    end
+  end
   resources :check_planb_docs do
     member do
       get :show_check
     end
+    collection do
+      get :search
+    end
+
   end
 
-  resources :planb_docs
-  resources :trainings
+  resources :planb_docs do
+    collection do
+      get :search
+    end
+
+
+  end
+  resources :trainings do
+    collection do
+      get :search
+    end
+  end
   resources :check_trainings do
     member do
       get :show_check
     end
-  end
-  resources :accident_headers
-  resources :accidents do
     collection do
-      get :batch_new
+      get :search
     end
   end
-  resources :safety_tables
-  resources :houses
-  resources :protect_equipments
+  resources :accident_headers do
+    collection do
+      get :search
+    end
+  end
+  resources :safety_tables do
+    collection do
+      get :search
+    end
+  end
+  resources :houses do
+    collection do
+      get :search
+    end
+  end
+  resources :protect_equipments do
+    collection do
+      get :search
+    end
+  end
   resources :protect_equipment_categories
-  resources :temporary_employees
-  resources :distribute_boxes
-  resources :transformers
-  resources :low_pressure_rooms
-  resources :high_pressure_rooms
-  resources :electric_equipments
-  resources :spec_warehouses
-  resources :spec_equipments
-  resources :drivers
-  resources :vehicles
-  resources :fire_fighting_equipments
+  resources :temporary_employees do
+    collection do
+      get :search
+    end
+  end
+  resources :distribute_boxes do
+    collection do
+      get :search
+    end
+  end
+  resources :transformers do
+    collection do
+      get :search
+    end
+  end
+  resources :low_pressure_rooms do
+    collection do
+      get :search
+    end
+  end
+  resources :high_pressure_rooms do
+    collection do
+      get :search
+    end
+  end
+  resources :electric_equipments do
+    collection do
+      get :search
+    end
+  end
+  resources :spec_warehouses do
+    collection do
+      get :search
+    end
+  end
+  resources :spec_equipments do
+    collection do
+      get :search
+    end
+  end
+  resources :drivers do
+    collection do
+      get :search
+    end
+  end
+  resources :vehicles do
+    collection do
+      get :search
+    end
+  end
+  resources :fire_fighting_equipments do
+    collection do
+      get :search
+    end
+  end
   resources :inout_lines
   resources :receipts
   resources :inout_bills
