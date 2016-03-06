@@ -13,4 +13,8 @@ module EmployeesHelper
     ret
   end
 
+  #当前可用的人员信息
+  def current_ability_org_employees_for_select
+    Employee.where(is_active: true,org_id: current_ability_org_ids).map {|e| [e.name,e.id]}
+  end
 end

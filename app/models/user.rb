@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   #如果是最末级机构,只可访问自己的数据,如果是上级机构,则可访问所有下级机构数据
   #FIXME 注意,当前只支持二级机构
   def current_ability_orgs
-    [default_org] + default_org.children
+    [current_org] +  current_org.children
   end
 
   def current_ability_org_ids

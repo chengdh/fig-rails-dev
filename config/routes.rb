@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :tasks do
+    member do
+      patch :deliver
+      patch :confirm
+    end
+  end
+  resources :task_categories
   resources :danger_org_hidden_dangers do
     member do
       patch :fix

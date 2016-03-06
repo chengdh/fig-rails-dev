@@ -1,0 +1,37 @@
+%table.table.table-condensed.table-bordered.table-stripped
+  %tr
+    %th{:colspan => 2,:style => "text-align : left;"}
+      %span.label.label-warning= resource.executer
+    %th{:colspan => 2,:style => "text-align : right;"}
+      %span.label.label-info= resource.state_des
+  %tr
+    %th 所属机构
+    %td= resource.org
+    %th 录入日期
+    %td= resource.task_date
+  %tr
+    %th 任务分类
+    %td= resource.task_category
+    %th 录入人
+    %td= resource.user
+  %tr
+    %th 任务名称
+    %td{:colspan => 3}= resource.name
+  %tr
+    %th 任务描述
+    %td{:colspan => 3}= resource.note
+  %tr
+    %th 下发时间
+    %td= resource.try(:deliver_date)
+    %th 下发人
+    %td= resource.try(:deliver)
+  %tr
+    %th 完成时间
+    %td= resource.try(:finish_date)
+    %th 完成人
+    %td= resource.try(:finisher)
+  %tr
+    %th 确认时间
+    %td= resource.try(:confirm_date)
+    %th 确认人
+    %td= resource.try(:confirmer)

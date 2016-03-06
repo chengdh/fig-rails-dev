@@ -1,0 +1,14 @@
+<%= link_to collection_path,:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "所有任务" do %>
+  <i class="fa fa-list-ul"></i>
+<% end %>
+<%= link_to collection_path("q[state_eq]" => "draft"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待发布任务" do %>
+  <i class="fa fa-list-ul" style="color: blue;"></i>
+<% end %>
+<%= link_to collection_path("q[state_eq]" => "processing"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "进行中任务" do %>
+  <i class="fa fa-list-ul" style="color: green;"></i>
+<% end %>
+<%= link_to collection_path("q[state_eq]" => "finished"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待确认任务" do %>
+  <i class="fa fa-list-ul" style="color: red;"></i>
+<% end %>
+
+

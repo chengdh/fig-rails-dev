@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305140808) do
+ActiveRecord::Schema.define(version: 20160305173839) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -114,10 +114,12 @@ ActiveRecord::Schema.define(version: 20160305140808) do
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
+    t.integer  "user_id",             limit: 4
   end
 
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
   add_index "employees", ["org_id"], name: "index_employees_on_org_id", using: :btree
+  add_index "employees", ["user_id"], name: "index_employees_on_user_id", using: :btree
 
   create_table "equipment", force: :cascade do |t|
     t.string   "name",                  limit: 30,                                          null: false
@@ -563,6 +565,38 @@ ActiveRecord::Schema.define(version: 20160305140808) do
   end
 
   add_index "system_functions", ["system_function_group_id"], name: "index_system_functions_on_system_function_group_id", using: :btree
+
+  create_table "task_categories", force: :cascade do |t|
+    t.string   "name",       limit: 60,                   null: false
+    t.integer  "order_by",   limit: 4,     default: 1
+    t.boolean  "is_active",  limit: 1,     default: true
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer  "org_id",           limit: 4,                       null: false
+    t.integer  "user_id",          limit: 4,                       null: false
+    t.integer  "task_category_id", limit: 4
+    t.date     "task_date"
+    t.string   "name",             limit: 60,                      null: false
+    t.text     "note",             limit: 65535
+    t.integer  "executer_id",      limit: 4,                       null: false
+    t.string   "state",            limit: 30,    default: "draft", null: false
+    t.integer  "deliver_id",       limit: 4
+    t.date     "deliver_date"
+    t.date     "confirm_date"
+    t.integer  "confirmer_id",     limit: 4
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
+  end
+
+  add_index "tasks", ["deliver_date"], name: "index_tasks_on_deliver_date", using: :btree
+  add_index "tasks", ["deliver_id"], name: "index_tasks_on_deliver_id", using: :btree
+  add_index "tasks", ["org_id"], name: "index_tasks_on_org_id", using: :btree
+  add_index "tasks", ["task_category_id"], name: "index_tasks_on_task_category_id", using: :btree
+  add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
 
   create_table "temporary_employees", force: :cascade do |t|
     t.integer  "org_id",         limit: 4,                    null: false

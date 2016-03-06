@@ -68,6 +68,10 @@ class Ability
     can [:read],HiddenDanger if can? :review,HiddenDanger
     can [:read],HiddenDanger if can? :deliver,HiddenDanger
     can [:read],HiddenDanger if can? :fix,HiddenDanger
+    #任务
+    can [:read],Task if can? :deliver,Task
+    can [:read],Task if can? :confirm,Task
+    can [:read],Task if can? :finish,Task
 
   end
   #设置单个operate的权限

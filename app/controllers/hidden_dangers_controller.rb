@@ -53,4 +53,3 @@ class HiddenDangersController < BaseController
     params.require(:hidden_danger).permit(:org_id, :danger_org_id, :parent_id, :name, :danger_date, :fix_period, :fixed_state, :fixed_date, :fixer_id, :review_date, :review_state, :reviewer_id, :note)
   end
 end
-

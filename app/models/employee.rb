@@ -2,6 +2,7 @@
 #雇员信息
 class Employee < ActiveRecord::Base
   belongs_to :org
+  belongs_to :user
   validates :name,:org_id, presence: true
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
   default_scope {order("org_id")}
