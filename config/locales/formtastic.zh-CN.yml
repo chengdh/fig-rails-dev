@@ -25,10 +25,7 @@ zh-CN:
       table_date: 填报日期
       check_state: 审核状态
       check_state_des: 审核状态
-
-
-
-
+      mth: 月份
 
     placeholders:
       name: 名称
@@ -36,6 +33,7 @@ zh-CN:
       is_active: 有效
       org_id: 机构
       org: 机构
+      mth: 月份
 
 
 

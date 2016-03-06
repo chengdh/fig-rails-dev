@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :salary_tables
+  resources :salary_item_headers
+  resources :salary_items
   resources :own_tasks do
     member do
       get :show_line

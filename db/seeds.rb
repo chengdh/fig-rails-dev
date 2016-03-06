@@ -107,4 +107,38 @@ types_2.each_with_index do |t,i|
   AccidentType.create!(name: t,order_by: 10 + i ,is_work_injury: true)
 end
 
+#工资表项目
+SalaryItemHeader.destroy_all
+default_salary_item_header = SalaryItemHeader.new(name: "默认工资表")
+default_salary_item_header.save!
 
+pay_items = %w(岗位工资 绩效工资 独生子女补助 目标管理奖 绩效考核奖 旺季补贴 补充医疗 年终奖 其它)
+deduct_items = %w(养老保险 医疗保险 大病救助 失业保险 住房公积金 企业年金 工资扣个税 目标管理奖扣个税 绩效考核奖扣个税 旺季补贴扣个税 补充医疗扣个税 年终奖扣个税 其它扣个税 水电费)
+pay_items.each_with_index do |item,idx|
+  default_salary_item_header.salary_items.create(name: item,code: "pay_item_#{idx + 1}",order_by: idx+1,item_type: "pay_item")
+end
+#应发合计
+default_salary_item_header.salary_items.create(name: "应发合计",
+                                               code: "pay_item_#{default_salary_item_header.salary_items.length + 1}",
+                                               is_calculate: true,
+                                               formula: "pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9",
+                                               order_by: default_salary_item_header.salary_items.length + 1,
+                                               item_type: "pay_item")
+deduct_items.each_with_index do |item,idx|
+  default_salary_item_header.salary_items.create(name: item,code: "deduct_item_#{default_salary_item_header.salary_items.length + 1}",
+                                                 order_by: default_salary_item_header.salary_items.length+1,item_type: "deduct_item")
+end
+#扣款合计
+default_salary_item_header.salary_items.create(name: "应扣合计",
+                                               code: "deduct_item_#{default_salary_item_header.salary_items.length + 1}",
+                                               is_calculate: true,
+                                               formula: "deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13",
+                                               order_by: default_salary_item_header.salary_items.length + 1,
+                                               item_type: "deduct_item")
+#实发合计
+default_salary_item_header.salary_items.create(name: "实发合计",
+                                               code: "pay_item_#{default_salary_item_header.salary_items.length + 1}",
+                                               is_calculate: true,
+                                               formula: "sum_pay_item - sum_deduct_item",
+                                               order_by:  default_salary_item_header.salary_items.length + 1,
+                                               item_type: "pay_item")

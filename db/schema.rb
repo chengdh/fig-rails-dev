@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306070101) do
+ActiveRecord::Schema.define(version: 20160306113656) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20160306070101) do
   add_index "electric_equipments", ["org_id"], name: "index_electric_equipments_on_org_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "org_id",              limit: 4,     null: false
-    t.string   "name",                limit: 30,    null: false
+    t.integer  "org_id",              limit: 4,                    null: false
+    t.string   "name",                limit: 30,                   null: false
     t.string   "gender",              limit: 1
     t.date     "birthday"
     t.string   "academic",            limit: 60
@@ -108,13 +108,14 @@ ActiveRecord::Schema.define(version: 20160306070101) do
     t.date     "work_day"
     t.string   "post",                limit: 30
     t.text     "note",                limit: 65535
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
     t.integer  "user_id",             limit: 4
+    t.boolean  "is_active",           limit: 1,     default: true
   end
 
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
@@ -201,8 +202,8 @@ ActiveRecord::Schema.define(version: 20160306070101) do
   end
 
   add_index "hidden_dangers", ["danger_org_id"], name: "index_hidden_dangers_on_danger_org_id", using: :btree
-  add_index "hidden_dangers", ["deliver_date"], name: "index_hidden_dangers_on_deliver_date_id", using: :btree
-  add_index "hidden_dangers", ["deliver_id"], name: "index_hidden_dangers_on_deliver_id_id", using: :btree
+  add_index "hidden_dangers", ["deliver_date"], name: "index_hidden_dangers_on_deliver_date", using: :btree
+  add_index "hidden_dangers", ["deliver_id"], name: "index_hidden_dangers_on_deliver_id", using: :btree
   add_index "hidden_dangers", ["org_id"], name: "index_hidden_dangers_on_org_id", using: :btree
   add_index "hidden_dangers", ["user_id"], name: "index_hidden_dangers_on_user_id", using: :btree
 
@@ -367,6 +368,7 @@ ActiveRecord::Schema.define(version: 20160306070101) do
     t.string   "audit_item_7_fix",     limit: 60
     t.text     "note",                 limit: 65535,                   null: false
     t.string   "check_leader",         limit: 60,                      null: false
+    t.string   "note_taker",           limit: 60,                      null: false
     t.integer  "checker_id",           limit: 4
     t.string   "check_state",          limit: 255,   default: "draft", null: false
     t.string   "check_opinion",        limit: 255
@@ -405,7 +407,6 @@ ActiveRecord::Schema.define(version: 20160306070101) do
     t.string   "photo_8_content_type", limit: 255
     t.integer  "photo_8_file_size",    limit: 4
     t.datetime "photo_8_updated_at"
-    t.string   "note_taker",           limit: 45
   end
 
   add_index "planb_docs", ["org_id"], name: "index_planb_docs_on_org_id", using: :btree
@@ -489,6 +490,135 @@ ActiveRecord::Schema.define(version: 20160306070101) do
 
   add_index "safety_tables", ["org_id"], name: "index_safety_tables_on_org_id", using: :btree
   add_index "safety_tables", ["user_id"], name: "index_safety_tables_on_user_id", using: :btree
+
+  create_table "salary_item_headers", force: :cascade do |t|
+    t.integer  "org_id",     limit: 4
+    t.string   "name",       limit: 60,                   null: false
+    t.integer  "order_by",   limit: 4,     default: 1
+    t.boolean  "is_active",  limit: 1,     default: true
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "salary_item_headers", ["org_id"], name: "index_salary_item_headers_on_org_id", using: :btree
+
+  create_table "salary_items", force: :cascade do |t|
+    t.integer  "salary_item_header_id", limit: 4,                         null: false
+    t.string   "name",                  limit: 30,                        null: false
+    t.string   "code",                  limit: 255,                       null: false
+    t.integer  "order_by",              limit: 4,   default: 1
+    t.string   "item_type",             limit: 30,  default: "plus_item"
+    t.boolean  "is_active",             limit: 1,   default: true
+    t.boolean  "is_calculate",          limit: 1,   default: false
+    t.string   "formula",               limit: 300
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+  end
+
+  create_table "salary_table_lines", force: :cascade do |t|
+    t.integer  "salary_table_id", limit: 4,                                        null: false
+    t.integer  "employee_id",     limit: 4
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+    t.decimal  "pay_item_1",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_2",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_3",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_4",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_5",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_6",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_7",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_8",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_9",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_10",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_11",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_12",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_13",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_14",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_15",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_16",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_17",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_18",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_19",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_20",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_21",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_22",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_23",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_24",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_25",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_26",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_27",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_28",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_29",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_30",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_31",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_32",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_33",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_34",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_35",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_36",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_37",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_38",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_39",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_40",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_1",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_2",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_3",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_4",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_5",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_6",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_7",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_8",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_9",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_10",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_11",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_12",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_13",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_14",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_15",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_16",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_17",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_18",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_19",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_20",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_21",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_22",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_23",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_24",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_25",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_26",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_27",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_28",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_29",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_30",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_31",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_32",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_33",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_34",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_35",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_36",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_37",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_38",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_39",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_40",            precision: 15, scale: 2, default: 0.0
+  end
+
+  add_index "salary_table_lines", ["employee_id"], name: "index_salary_table_lines_on_employee_id", using: :btree
+  add_index "salary_table_lines", ["salary_table_id"], name: "index_salary_table_lines_on_salary_table_id", using: :btree
+
+  create_table "salary_tables", force: :cascade do |t|
+    t.integer  "org_id",     limit: 4
+    t.string   "name",       limit: 60,    null: false
+    t.string   "mth",        limit: 6,     null: false
+    t.date     "table_date"
+    t.text     "note",       limit: 65535
+    t.integer  "user_id",    limit: 4,     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "salary_tables", ["org_id"], name: "index_salary_tables_on_org_id", using: :btree
+  add_index "salary_tables", ["user_id"], name: "index_salary_tables_on_user_id", using: :btree
 
   create_table "spec_equipments", force: :cascade do |t|
     t.string   "equip_type",      limit: 20,                                            null: false
@@ -598,6 +728,8 @@ ActiveRecord::Schema.define(version: 20160306070101) do
     t.string   "state",            limit: 30,    default: "draft", null: false
     t.integer  "deliver_id",       limit: 4
     t.date     "deliver_date"
+    t.integer  "finisher_id",      limit: 4
+    t.date     "finish_date"
     t.date     "confirm_date"
     t.integer  "confirmer_id",     limit: 4
     t.datetime "created_at",                                       null: false
@@ -606,6 +738,8 @@ ActiveRecord::Schema.define(version: 20160306070101) do
 
   add_index "tasks", ["deliver_date"], name: "index_tasks_on_deliver_date", using: :btree
   add_index "tasks", ["deliver_id"], name: "index_tasks_on_deliver_id", using: :btree
+  add_index "tasks", ["finish_date"], name: "index_tasks_on_finish_date", using: :btree
+  add_index "tasks", ["finisher_id"], name: "index_tasks_on_finisher_id", using: :btree
   add_index "tasks", ["org_id"], name: "index_tasks_on_org_id", using: :btree
   add_index "tasks", ["task_category_id"], name: "index_tasks_on_task_category_id", using: :btree
   add_index "tasks", ["user_id"], name: "index_tasks_on_user_id", using: :btree
@@ -806,6 +940,7 @@ ActiveRecord::Schema.define(version: 20160306070101) do
   add_foreign_key "equipment_categories", "orgs"
   add_foreign_key "role_system_function_operates", "roles"
   add_foreign_key "role_system_function_operates", "system_function_operates"
+  add_foreign_key "salary_table_lines", "employees"
   add_foreign_key "system_function_operates", "system_functions"
   add_foreign_key "system_functions", "system_function_groups"
   add_foreign_key "user_orgs", "orgs"

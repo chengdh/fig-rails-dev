@@ -1,0 +1,28 @@
+%table.table.table-condensed.table-bordered
+  %thead
+    %tr
+      %th{:colspan => 2,:style => "text-align : center;vertical-align : middle;"}= resource.name
+    %tr
+      %th= resource.org
+      %th= resource.mth
+
+%table#salary_table_form_table.table.table-condensed.table-bordered
+  %tr
+    %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 序号
+    %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 姓名
+    %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "pay_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 发放项
+    %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 应发合计
+    %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "deduct_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 代扣代缴款项
+    %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  扣款合计
+    %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  实发合计
+    %tr
+      - SalaryItemHeader.first.salary_items.where(is_calculate: false).each do |item|
+        %th{:style => "text-align : center;vertical-align : middle;"}= item.name 
+
+    - resource.salary_table_lines.each_with_index do |line,idx|
+      %tr
+        %th{:style => "text-align : center;vertical-align : middle;"}= idx+1
+        %th{:style => "text-align : center;vertical-align : middle;"}
+          = line.employee.name
+        - SalaryItemHeader.first.salary_items.where(is_active: true).each do |item|
+          %td= line.try(item.code.to_sym)

@@ -38,6 +38,9 @@ zh-CN:
       task_category: 任务分类
       task: 工作任务
       task_line: 任务反馈
+      salary_item_header: 工资表项目
+      salary_item: 工资表项目
+      salary_table: 工资表
 
     attributes:
       public_attrs:
@@ -60,6 +63,7 @@ zh-CN:
         table_date: 填报日期
         check_state: 审核状态
         check_state_des: 审核状态
+        mth: 月份
 
       user:
         username: 用户名
@@ -377,3 +381,10 @@ zh-CN:
 
       task_line:
         note: 反馈情况
+
+      salary_item:
+        code: 代码
+        item_type: 项目类型
+        item_type_des: 项目类型
+        is_calculate: 计算项目
+        formula: 公式

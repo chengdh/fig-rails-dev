@@ -3,7 +3,7 @@
 class TrainingsController < BaseController
   table :org,:name,:training_date,:teachers,:training_length,:check_state_des
 
-  protected
+    protected
   def collection
     @q= end_of_association_chain.where(org_id: current_ability_org_ids,check_state: ["draft","rejected"]).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
