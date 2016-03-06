@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305173839) do
+ActiveRecord::Schema.define(version: 20160306070101) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -574,6 +574,18 @@ ActiveRecord::Schema.define(version: 20160305173839) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
+
+  create_table "task_lines", force: :cascade do |t|
+    t.integer  "task_id",    limit: 4,     null: false
+    t.text     "note",       limit: 65535, null: false
+    t.date     "line_date",                null: false
+    t.integer  "user_id",    limit: 4,     null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "task_lines", ["task_id"], name: "index_task_lines_on_task_id", using: :btree
+  add_index "task_lines", ["user_id"], name: "index_task_lines_on_user_id", using: :btree
 
   create_table "tasks", force: :cascade do |t|
     t.integer  "org_id",           limit: 4,                       null: false

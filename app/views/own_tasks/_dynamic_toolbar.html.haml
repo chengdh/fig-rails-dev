@@ -1,0 +1,25 @@
+.btn-group{:role => "group", "aria-label" =>"..."}
+  - if ["show"].include? params[:action]
+    = render :partial => 'toolbar_btn_back'
+
+  - if can? :read,resource_class
+    = link_to collection_path("q[state_eq]" => "deliveried"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待处理列表" do
+      %i.fa.fa-list-ul{:style => "color: blue;"}
+    = link_to collection_path("q[state_eq]" => "finished"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已完成列表" do
+      %i.fa.fa-list-ul{:style => "color: green;"}
+    = link_to collection_path("q[state_eq]" => "confirmed"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已确认列表" do
+      %i.fa.fa-list-ul{:style => "color: red;"}
+
+    - if self.respond_to?("search_#{controller_name.tableize}_path")
+      = render :partial => 'toolbar_search'
+
+  - if ["show_line"].include?(params[:action])
+    = render :partial => 'toolbar_btn_save'
+
+  - if ["show"].include?(params[:action])
+    - if can? :save_line,resource
+      = link_to show_line_own_task_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "反馈信息" do
+        %i.fa.fa-comments{:style => "color : green;"}
+    - if can? :finish,resource
+      = link_to finish_own_task_path(resource),:method => :patch,"data-confirm" => "你确定该任务已完成吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "任务完成" do
+        %i.fa.fa-send-o

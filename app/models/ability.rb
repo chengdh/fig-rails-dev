@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
   attr_accessor :user
   def initialize(user)
-    #can :manage,:all
+    can :manage,:all
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -49,6 +49,9 @@ class Ability
 
     #隐患复查
     alias_action :review_ok,:review_reject,:to => :review
+
+    #task 任务反馈
+    alias_action :show_line,:to => :save_line
   end
   #设置当前用户权限
   def set_user_powers

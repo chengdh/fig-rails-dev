@@ -1,0 +1,6 @@
+= semantic_form_for resource,url: {action: :save_line},html: {id: "task_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.input :state,as: :hidden,input_html: {value: "processing"}
+  = f.semantic_fields_for :task_lines,TaskLine.new do |f_line|
+    = f_line.input :user_id,as: :hidden,input_html: {value: current_user.id}
+    = f_line.input :note,label: "反馈情况",input_html: {cols: 3,rows: 2}

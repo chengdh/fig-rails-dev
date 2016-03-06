@@ -37,6 +37,7 @@ zh-CN:
       hidden_danger: 事故隐患整改
       task_category: 任务分类
       task: 工作任务
+      task_line: 任务反馈
 
     attributes:
       public_attrs:
@@ -373,3 +374,6 @@ zh-CN:
         executer_id: 执行人
         executer: 执行人
         state_des: 任务状态
+
+      task_line:
+        note: 反馈情况

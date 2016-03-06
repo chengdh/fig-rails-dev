@@ -8,7 +8,9 @@ class Task < ActiveRecord::Base
   belongs_to :confirmer,class_name: "User"
   belongs_to :deliver,class_name: "User"
   belongs_to :finisher,class_name: "User"
+  has_many :task_lines
   validates :org_id,:user_id,:executer_id,:name,:state, presence: true
+  accepts_nested_attributes_for :task_lines,reject_if: :all_blank
 
   default_value_for(:task_date) {Date.today}
 

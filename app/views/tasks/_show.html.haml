@@ -35,3 +35,11 @@
     %td= resource.try(:confirm_date)
     %th 确认人
     %td= resource.try(:confirmer)
+  - resource.task_lines.each do |l|
+    %tr
+      %th{:colspan => 4}
+        %span.label.label-info= l.line_date
+        %span.label.label-success= l.user
+    %tr
+      %td{:colspan => 4}= l.note
+

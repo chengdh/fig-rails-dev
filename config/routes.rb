@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :own_tasks do
+    member do
+      get :show_line
+      patch :save_line
+      patch :finish
+    end
+  end
   resources :tasks do
     member do
       patch :deliver
