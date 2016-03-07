@@ -1,33 +1,34 @@
-.btn-group.btn-group-justified.odd-change-tabs{:role => "group","aria-label" => "..."}
-  = link_to "数据变化", "#",class: "btn btn-sm btn-info btn-odd-change"
-  = link_to "推荐", "#",class: "btn btn-sm btn-match-recommend"
-
-
-%table.table.table-condensed.table-striped.table-hover.table-bordered.table-odd-change
-  %tr
-    %th{:style => "text-align : center;"} 时间
-    %th{:style => "text-align : center;"}  内容
-  - @odd_changes.each do |o|
+.well.well-sm
+  .btn-group.btn-group-justified.odd-change-tabs{:role => "group","aria-label" => "..."}
+    = link_to "数据变化", "#",class: "btn btn-sm btn-info btn-odd-change"
+    = link_to "推荐", "#",class: "btn btn-sm btn-match-recommend"
+  
+  
+  %table.table.table-condensed.table-striped.table-hover.table-bordered.table-odd-change
     %tr
-      %td= o.data_time.strftime("%H:%M")
-      %td
-        %span= "[#{match_type_des(o.match_type)}]"
-        - if o.is_bigdata_recommend?
-          %span{:class => "glyphicon glyphicon-tree-deciduous", "aria-hidden" => "true",:style =>"color : red"}
-        - if o.is_yinglang_recommend?
-          %span{:class => "glyphicon glyphicon-thumbs-up", "aria-hidden" => "true",:style =>"color : red"}
-        %span= "#{o.team.cn_name}#{o.position_type == 1 ? '水位' : '盘口'}快速#{o.change_type ==1 ? '上升' : '下降'}"
-
-%table.table.table-condensed.table-striped.table-hover.table-bordered.table-match-recommend{:style => "display : none;"}
-  %tr
-    %th{:style => "text-align : center;"} 时间
-    %th{:style => "text-align : center;"} 球队
-  - @match_recommends.each do |m|
+      %th{:style => "text-align : center;"} 时间
+      %th{:style => "text-align : center;"}  内容
+    - @odd_changes.each do |o|
+      %tr
+        %td= o.data_time.strftime("%H:%M")
+        %td
+          %span= "[#{match_type_des(o.match_type)}]"
+          - if o.is_bigdata_recommend?
+            %span{:class => "glyphicon glyphicon-tree-deciduous", "aria-hidden" => "true",:style =>"color : red"}
+          - if o.is_yinglang_recommend?
+            %span{:class => "glyphicon glyphicon-thumbs-up", "aria-hidden" => "true",:style =>"color : red"}
+          %span= "#{o.team.cn_name}#{o.position_type == 1 ? '水位' : '盘口'}快速#{o.change_type ==1 ? '上升' : '下降'}"
+  
+  %table.table.table-condensed.table-striped.table-hover.table-bordered.table-match-recommend{:style => "display : none;"}
     %tr
-      %td= m.data_time.strftime("%H:%M")
-      %td
-        - if m.recommend_type == 1
-          %span{:class => "glyphicon glyphicon-tree-deciduous", "aria-hidden" => "true",:style =>"color : red"}
-        - if m.recommend_type == 2
-          %span{:class => "glyphicon glyphicon-thumbs-up", "aria-hidden" => "true",:style =>"color : red"}
-        %span= m.team.cn_name
+      %th{:style => "text-align : center;"} 时间
+      %th{:style => "text-align : center;"} 球队
+    - @match_recommends.each do |m|
+      %tr
+        %td= m.data_time.strftime("%H:%M")
+        %td
+          - if m.recommend_type == 1
+            %span{:class => "glyphicon glyphicon-tree-deciduous", "aria-hidden" => "true",:style =>"color : red"}
+          - if m.recommend_type == 2
+            %span{:class => "glyphicon glyphicon-thumbs-up", "aria-hidden" => "true",:style =>"color : red"}
+          %span= m.team.cn_name
