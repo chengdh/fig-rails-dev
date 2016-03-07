@@ -9,6 +9,8 @@ class InoutBill < ActiveRecord::Base
   accepts_nested_attributes_for :inout_lines,reject_if: proc { |attributes| attributes['equipment_id'].blank? },allow_destroy: true
   validates :bill_date,:org_id,:f_location_id,:t_location_id, presence: true
 
+  default_value_for(:bill_date) {Date.today}
+
 
   state_machine :initial => :draft do
     after_transition :draft => :confirmed do |bill, transition|

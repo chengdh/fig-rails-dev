@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306113656) do
+ActiveRecord::Schema.define(version: 20160307133612) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -237,6 +237,9 @@ ActiveRecord::Schema.define(version: 20160306113656) do
     t.text     "note",          limit: 65535
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "bill_no",       limit: 30
+    t.string   "ref_partner",   limit: 60
+    t.string   "name",          limit: 60
   end
 
   add_index "inout_bills", ["user_id"], name: "index_inout_bills_on_user_id", using: :btree
@@ -257,16 +260,17 @@ ActiveRecord::Schema.define(version: 20160306113656) do
   add_index "inout_lines", ["inout_bill_id"], name: "index_inout_lines_on_inout_bill_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
-    t.string   "name",         limit: 30,                   null: false
-    t.integer  "warehouse_id", limit: 4
-    t.string   "x",            limit: 20,    default: "0"
-    t.string   "y",            limit: 20,    default: "0"
-    t.string   "z",            limit: 20,    default: "0"
-    t.integer  "order_by",     limit: 4,     default: 1
-    t.boolean  "is_active",    limit: 1,     default: true
-    t.text     "note",         limit: 65535
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.string   "name",          limit: 30,                           null: false
+    t.integer  "warehouse_id",  limit: 4
+    t.string   "x",             limit: 20,    default: "0"
+    t.string   "y",             limit: 20,    default: "0"
+    t.string   "z",             limit: 20,    default: "0"
+    t.integer  "order_by",      limit: 4,     default: 1
+    t.boolean  "is_active",     limit: 1,     default: true
+    t.text     "note",          limit: 65535
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "location_type", limit: 60,    default: "normal_loc", null: false
   end
 
   add_index "locations", ["warehouse_id"], name: "index_locations_on_warehouse_id", using: :btree

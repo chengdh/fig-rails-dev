@@ -1,0 +1,21 @@
+.box.box-default{:style => "width : 800px;"}
+  .box-header.with-border
+    .box-title.form-inline
+      %input#equipment_name_cont{:type => "text",:class => "form-control input-sm",:placeholder => "设备名称"}
+      = select_tag :equipment_category_id_eq,options_for_select(equipment_categories_for_select),prompt: "--选择设备类别--",class: "form-control input-sm",id: "equipment_category_id_eq"
+      %input#equipment_model_cont{:type => "text",:class => "form-control input-sm",:placeholder => "规格型号"}
+      %input#equipment_factory_name_cont{:type => "text",:class => "form-control input-sm",:placeholder => "生产厂家"}
+      %button#btn_show_query_equipment.btn.btn-primary.btn-sm
+        %span.glyphicon.glyphicon-search
+
+  .box-body
+    %table.table.table-condensed.table-stripped.table-hover.table-bordered{:style => "text-align : center;"}
+      %thead
+        %th 选择
+        %th 序号
+        %th 名称
+        %th 类别
+        %th 单位
+        %th 生产厂家
+        %th 规格型号
+      %tbody#equipment_list_temp_wrapper

@@ -22,5 +22,7 @@
 //= require admin-lte/plugins/chartjs/Chart.min
 //= require jquery-orgchart/jquery.orgchart
 //= require fancybox/source/jquery.fancybox
+//= require jquery-load-template/dist/jquery.loadTemplate-1.5.6
 //= require common
 //= require orgs
+//= require equipment
