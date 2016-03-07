@@ -77,6 +77,6 @@ $ ->
     onUncheckAll: -> $("[data-company-id]").show()
   )
   #默认选择5家公司
-  $("#select_company_id_eq").multipleSelect("setSelects",[8,9,23,31,17])
+  $("#select_company_id_eq").multipleSelect("setSelects",[8,14,23,31,17])
   func_select_company(null)
 
