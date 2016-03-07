@@ -25,3 +25,4 @@
 //= require leagues
 //= require matches
 //= require match_recommands
+//= require odd_changes

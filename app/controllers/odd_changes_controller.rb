@@ -8,6 +8,7 @@ class OddChangesController < ApplicationController
   def index
     @q = OddChange.unread(1.days.ago.strftime("%Y-%m-%d 00:00")).ransack(params[:q])
     @odd_changes = @q.result
+    @match_recommends =  MatchRecommand.unread(1.days.ago.strftime("%Y-%m-%d 00:00"))
   end
 
   #GET /odd_changes/unread

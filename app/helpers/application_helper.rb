@@ -27,4 +27,7 @@ module ApplicationHelper
     return "" if dec.blank?
     dec == dec.to_i ? dec.to_i : dec
   end
+  def thirty_days_ago_for_select
+    (30.days.ago.to_datetime...Date.today.to_datetime).map {|d| [d.strftime("%Y年%m月%d日")+"星期#{get_wday_cn(d.wday)}",d.strftime("%Y-%m-%d")]}
+  end
 end
