@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :move_bills do
+    member do
+      patch :confirm
+    end
+  end
   resources :salary_tables do
     collection do
       get :search

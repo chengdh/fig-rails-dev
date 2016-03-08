@@ -3,6 +3,7 @@
 class InoutBill < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
+  belongs_to :confirmer,class_name: "User"
   belongs_to :f_location,class_name: "Location"
   belongs_to :t_location,class_name: "Location"
   has_many :inout_lines,dependent: :destroy
@@ -20,4 +21,11 @@ class InoutBill < ActiveRecord::Base
       transition :draft => :confirmed
     end
   end
+  def state_des
+    ret = ""
+    ret = "进行中" if state.eql?("processing")
+    ret = "已完成" if state.eql?("confirmed")
+    ret
+  end
+
 end

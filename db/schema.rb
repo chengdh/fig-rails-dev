@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307133612) do
+ActiveRecord::Schema.define(version: 20160308075552) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -240,6 +240,8 @@ ActiveRecord::Schema.define(version: 20160307133612) do
     t.string   "bill_no",       limit: 30
     t.string   "ref_partner",   limit: 60
     t.string   "name",          limit: 60
+    t.integer  "confirmer_id",  limit: 4
+    t.date     "confirm_date"
   end
 
   add_index "inout_bills", ["user_id"], name: "index_inout_bills_on_user_id", using: :btree

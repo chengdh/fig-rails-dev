@@ -41,6 +41,7 @@ zh-CN:
       salary_item_header: 工资表项目
       salary_item: 工资表项目
       salary_table: 工资表
+      move_bill: 移库单
 
     attributes:
       public_attrs:
