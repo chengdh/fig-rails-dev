@@ -20,10 +20,10 @@
       %td{:colspan => 3}= f.input :ref_partner,label: false,input_html: {class: "input-sm",placeholder: "可填入供货商或相关组织名称",style: "width : 60%;"}
     %tr
       %th 源库位
-      %td= f.input :f_location_id,as: :select,collection: vendor_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+      %td= f.input :t_location_id,as: :select,collection: current_ability_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
 
       %th 目标库位
-      %td= f.input :t_location_id,as: :select,collection: current_ability_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+      %td= f.input :f_location_id,as: :select,collection: repair_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
     %tr
       %td 备注
       %td{:colspan => 3}

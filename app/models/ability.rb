@@ -52,6 +52,8 @@ class Ability
 
     #task 任务反馈
     alias_action :show_line,:to => :save_line
+    #设备出入库确认
+    alias_action :read,:to => :confirm
   end
   #设置当前用户权限
   def set_user_powers

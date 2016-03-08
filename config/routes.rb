@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  resources :worthless_bills do
+    member do
+      patch :confirm
+    end
+  end
+  resources :repair_bills do
+    member do
+      patch :confirm
+    end
+  end
+  resources :shippments do
+    member do
+      patch :confirm
+    end
+  end
   resources :move_bills do
     member do
       patch :confirm
@@ -175,7 +190,11 @@ Rails.application.routes.draw do
     end
   end
   resources :inout_lines
-  resources :receipts
+  resources :receipts do
+    member do
+      patch :confirm
+    end
+  end
   resources :inout_bills
   resources :equipment do
     collection do

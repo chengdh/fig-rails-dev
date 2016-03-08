@@ -4,7 +4,30 @@ module LocationsHelper
   def current_ability_locations_for_select
     ret = []
     Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
-      ret += w.locations
+      ret += w.locations.where(location_type: "normal_loc")
+    end
+    ret.map {|l| [l.name,l.id]}
+  end
+
+  def vendor_locations_for_select
+    ret = []
+    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
+      ret += w.locations.where(location_type: "vendor_loc")
+    end
+    ret.map {|l| [l.name,l.id]}
+
+  end
+  def repair_locations_for_select
+    ret = []
+    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
+      ret += w.locations.where(location_type: "repair_loc")
+    end
+    ret.map {|l| [l.name,l.id]}
+  end
+  def worthless_locations_for_select
+    ret = []
+    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
+      ret += w.locations.where(location_type: "worthless_loc")
     end
     ret.map {|l| [l.name,l.id]}
   end
