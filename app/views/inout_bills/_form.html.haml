@@ -1,4 +1,4 @@
-= semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form"} do |f|
+= semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form","data-resource-name" => "#{resource_class.name.underscore}"} do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
   %table.table.table-condensed.table-stripped.table-bordered
@@ -29,7 +29,7 @@
       %td{:colspan => 3}
         = f.input :note,label: false,input_html: {class: "input-sm",placeholder: "备注说明",rows: 2,style: "width : 40%;"}
 
-  = render "line_form"
+  = render "line_form",f: f
 
   .well.well-sm.clearfix
     = link_to "选择设备", select_equipment_index_path,class: "fancybox fancybox.ajax btn btn-primary btn-sm pull-right"

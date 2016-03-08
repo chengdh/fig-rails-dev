@@ -26,3 +26,4 @@
 //= require common
 //= require orgs
 //= require equipment
+//= require inout_bills

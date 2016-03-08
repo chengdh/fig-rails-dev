@@ -1,19 +1,43 @@
 %script#equipment_list_temp{:type => "text/html"}
   %tr
     %td
-    %td{"data-content" => "idx"}
-    %td{"data-content" => "name"}
-    %td{"data-content" => "equipment_category_name"}
-    %td{"data-content" => "unit_name"}
-    %td{"data-content" => "factory_name"}
-    %td{"data-content" => "model"}
+      %input{:type => "checkbox",:class=> "cbx-select-equipment","data-value" => "id"}
+    %td
+      %span{class:"name","data-content" => "name"}
+    %td
+      %span{class: "equipment_category_name","data-content" => "equipment_category_name"}
+    %td
+      %span{class: "unit_name","data-content" => "unit_name"}
+    %td
+      %span{class: "factory_name","data-content" => "factory_name"}
+    %td
+      %span{class: "model","data-content" => "model"}
+    %td
+      %span{class: "purchase_price","data-content" => "purchase_price"}
 
 %script#inout_line_temp{:type => "text/html"}
-  %tr
-    %td{"data-content" => "idx"}
-    %td{"data-content" => "name"}
-    %td{"data-content" => "model"}
-    %td{"data-content" => "price"}
-    %td{"data-content" => "qty"}
-    %td{"data-content" => "amt"}
+  %tr{class: "tr-inout-line"}
+    %td
+      %input{type: "hidden","data-value" => "equipment_id",class: "equipment_id"}
+      %span{class:"name","data-content" => "name"}
+    %td
+      %span{class: "equipment_category_name","data-content" => "equipment_category_name"}
+    %td{style: "text-align : center;"}
+      %span{class: "unit_name","data-content" => "unit_name"}
+    %td
+      %span{class: "factory_name","data-content" => "factory_name"}
+    %td
+      %span{class: "model","data-content" => "model"}
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 50px;",class: "price form-control input-sm","data-value" => "purchase_price"}
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 50px;",class: "qty form-control input-sm",value: 0}
+    %td{style: "text-align : center;"}
+      %span{class: "amt","data-content" => "amt"}
+    %td{style: "text-align : center;"}
+      %input{type: "hidden",class: "destroy"}
+      %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
+        %i.fa.fa-close
+
+
 
