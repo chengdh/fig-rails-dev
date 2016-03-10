@@ -29,6 +29,8 @@ $ ->
 
 
   $(".btn-home-bigdata-recommand,.btn-home-yinglang-recommand,.btn-guest-bigdata-recommand,.btn-guest-yinglang-recommand").on("click", ->
+    if not window.confirm("确认推荐吗?")
+      return
     recommend_type = $(this).data("recommend-type")
     recommend_home_or_guest =  $(this).data("recommend-home-or-guest")
     match = $(this).parents(".match-tr").data("match")
