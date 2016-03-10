@@ -4,10 +4,6 @@
 $ ->
   #添加球队推荐
   func_recommend = (match,team_id,recommend_type) ->
-    if not window.confirm("确认推荐吗?")
-      return
-
-
     $.ajax(
         type: "POST",
         url: "/match_recommands.json",
@@ -22,9 +18,6 @@ $ ->
 
 
   func_unrecommend = (match,team_id,recommend_type) ->
-    if not window.confirm("确认取消推荐吗?")
-      return
-
     $.ajax(
         type: "DELETE",
         url: "/match_recommands/#{match.match_id},#{team_id},#{recommend_type}.json",
@@ -36,6 +29,9 @@ $ ->
 
 
   $(".btn-home-bigdata-recommand,.btn-home-yinglang-recommand,.btn-guest-bigdata-recommand,.btn-guest-yinglang-recommand").on("click", ->
+    if not window.confirm("确认该操作吗?")
+      return
+
     recommend_type = $(this).data("recommend-type")
     recommend_home_or_guest =  $(this).data("recommend-home-or-guest")
     match = $(this).parents(".match-tr").data("match")
