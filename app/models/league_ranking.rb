@@ -3,7 +3,7 @@
 class LeagueRanking < ActiveRecord::Base
   self.table_name = "t_league_rankings"
   self.primary_keys = :match_id, :team_id,:odds_type
-  default_scope {order("odds_type ASC")}
+  default_scope {order("t_league_rankings.odds_type ASC")}
   belongs_to :match
   belongs_to :team
 
