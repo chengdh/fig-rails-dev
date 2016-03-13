@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308085926) do
+ActiveRecord::Schema.define(version: 20160313134909) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -880,9 +880,11 @@ ActiveRecord::Schema.define(version: 20160308085926) do
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   create_table "v_stock", id: false, force: :cascade do |t|
-    t.integer "location_id",  limit: 4,                            null: false
-    t.integer "equipment_id", limit: 4,                            null: false
-    t.decimal "qty",                    precision: 33, default: 0, null: false
+    t.integer  "location_id",  limit: 4,                            null: false
+    t.integer  "equipment_id", limit: 4,                            null: false
+    t.decimal  "qty",                    precision: 33, default: 0, null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
   create_table "v_stock_in", id: false, force: :cascade do |t|

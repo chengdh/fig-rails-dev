@@ -45,6 +45,7 @@ zh-CN:
       shippment: 出库单
       repair_bill: 设备维修
       worthless_bill: 设备报废单
+      stock: 库存情况
 
     attributes:
       public_attrs:
@@ -396,4 +397,11 @@ zh-CN:
         item_type_des: 项目类型
         is_calculate: 计算项目
         formula: 公式
+      stock:
+        location: 库位
+        location_id: 库位
+        warehouse: 仓库
+        equipment: 设备
+        equipment_id: 设备
+        qty: 数量
         

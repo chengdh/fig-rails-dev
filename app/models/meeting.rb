@@ -35,6 +35,12 @@ class Meeting < ActiveRecord::Base
   validates :org_id,:user_id,:name,:meeting_date,:meeting_length,:presenter,
     :join_persons,:join_count,:meeting_content,:check_state, presence: true
   validates :meeting_length,:join_count, numericality: true
+
+  #待审批
+  scope :waitting_confirm,->(org_ids){ where(state: "draft",org_id: org_ids)}
+  #待修改
+  scope :rejected,->(org_id){ where(state: "rejected",org_id: org_id)}
+
   def check_state_des
     ret = ""
     ret = "草稿(未审批)" if check_state.eql?("draft")

@@ -30,6 +30,12 @@ class Training < ActiveRecord::Base
   default_value_for(:table_date) {Date.today}
   default_value_for(:training_date) {Date.today}
 
+
+  #待审批
+  scope :waitting_confirm,->(org_ids){ where(state: "draft",org_id: org_ids)}
+  #待修改
+  scope :rejected,->(org_id){ where(state: "rejected",org_id: org_id)}
+
   def assess_type_des
     ret = ""
     ret = "测试" if assess_type.eql?("test")

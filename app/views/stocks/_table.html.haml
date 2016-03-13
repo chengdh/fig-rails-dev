@@ -1,0 +1,17 @@
+= render "search"
+%table#stock_table.table.table-bordered.table-hover.table-condensed.table-stripped{:style => "text-align: center;vertical-align : middle;"}
+  %thead
+    %tr
+      %th 所属仓库
+      %th 所属库位
+      %th 设备名称
+      %th 当期库存
+  %tbody
+    - collection.each do |t|
+      %tr
+        %td= t.location.try(:warehouse)
+        %td= t.location
+        %td= t.equipment.name
+        %td= t.qty
+
+= will_paginate collection, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next")

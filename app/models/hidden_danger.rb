@@ -16,6 +16,10 @@ class HiddenDanger < ActiveRecord::Base
   default_value_for(:danger_date) {Date.today}
   default_value_for(:table_date) {Date.today}
   default_scope {order("danger_date ASC,fixed_state,review_state")}
+  #待处理
+  scope :waitting_process,->(org_ids){ where(state: "deliveried",danger_org_id: org_ids)}
+  #待复查
+  scope :waitting_review,->(org_ids){ where(state: "fixed",review_state: "draft",org_id: org_ids)}
 
   def fix_period_des
     ret = ""

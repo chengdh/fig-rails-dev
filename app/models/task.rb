@@ -13,6 +13,10 @@ class Task < ActiveRecord::Base
   accepts_nested_attributes_for :task_lines,reject_if: :all_blank
 
   default_value_for(:task_date) {Date.today}
+  #待处理
+  scope :waitting_process,->(user_id){ where(state: "deliveried",executer_id: user_id)}
+  #待确认
+  scope :waitting_finish,->(user_id){ where(state: "processing",user_id: user_id)}
 
   def state_des
     ret = ""

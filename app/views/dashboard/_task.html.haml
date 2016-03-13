@@ -1,0 +1,24 @@
+.box.box-info
+  .box-header
+    %h3.box-title 任务列表
+  .box-body
+    %table.table.table-condensed.table-stripped.table-hover
+      - @waitting_process_tasks.each do |t|
+        %tr
+          %td
+            %span.label.label-info 待处理
+          %td= t.task_date
+          %td= t.user
+          %td= link_to t.name,own_task_path(t)
+      - @waitting_finish_tasks.each do |t|
+        %tr
+          %td
+            %span.label.label-success 待确认
+          %td= t.task_date
+          %td= t.user
+          %td= link_to t.name,t
+
+      - if @waitting_finish_tasks.size == 0 or @waitting_process_tasks.size == 0
+        %tr
+          %td{colspan: 4}
+            %span.label.label-warning 当前无任务需要处理

@@ -72,7 +72,7 @@ class BaseController < InheritedResources::Base
     params[:q]
   end
 
-  #当期可用机构的ids
+  #当前可用机构的ids
   def current_ability_org_ids
     default_org = current_user.current_org
     ret = ActiveSupport::OrderedHash.new
