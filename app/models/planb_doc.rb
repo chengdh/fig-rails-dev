@@ -32,9 +32,9 @@ class PlanbDoc < ActiveRecord::Base
     :audit_item_4_state,:audit_item_5_state,:audit_item_6_state,:audit_item_7_state,:note,:check_leader, presence: true
   validates :plan_length,:join_count, numericality: true
   #待审批
-  scope :waitting_confirm,->(org_ids){ where(state: "draft",org_id: org_ids)}
+  scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
   #待修改
-  scope :rejected,->(org_id){ where(state: "rejected",org_id: org_id)}
+  scope :rejected,->(org_id){ where(check_state: "rejected",org_id: org_id)}
 
 
   default_value_for :table_date do

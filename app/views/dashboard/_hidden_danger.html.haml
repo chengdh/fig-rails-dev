@@ -1,0 +1,25 @@
+.box.box-info
+  .box-header
+    %h3.box-title 安全隐患核查
+  .box-body
+    %table.table.table-condensed.table-stripped.table-hover
+      - @waitting_hidden_dangers.each do |t|
+        %tr
+          %td
+            %span.label.label-info 待处理
+          %td= t.danger_date
+          %td= t.org
+          %td= link_to t.name,danger_org_hidden_danger_path(t)
+
+      - @waitting_review_hidden_dangers.each do |t|
+        %tr
+          %td
+            %span.label.label-error 待复查
+          %td= t.danger_date
+          %td= t.danger_org
+          %td= link_to t.name,t
+
+      - if @waitting_hidden_dangers.size == 0 and @waitting_review_hidden_dangers.size == 0
+        %tr
+          %td{colspan: 4}
+            %span.label.label-warning 未查询到数据

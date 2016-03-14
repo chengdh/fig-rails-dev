@@ -1,0 +1,25 @@
+.box.box-info
+  .box-header
+    %h3.box-title 待处会议信息
+  .box-body
+    %table.table.table-condensed.table-stripped.table-hover
+      - @waitting_meetings.each do |t|
+        %tr
+          %td
+            %span.label.label-info 待审批
+          %td= t.meeting_date
+          %td= t.org
+          %td= link_to t.name,check_meeting_path(t)
+
+      - @rejected_meetings.each do |t|
+        %tr
+          %td
+            %span.label.label-error 已驳回
+          %td= t.meeting_date
+          %td= t.org
+          %td= link_to t.name,t
+
+      - if @waitting_meetings.size == 0 and @rejected_meetings.size == 0
+        %tr
+          %td{colspan: 4}
+            %span.label.label-warning 当前无数据

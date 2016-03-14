@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
     #事故隐患
     @waitting_hidden_dangers = HiddenDanger.waitting_process(current_ability_org_ids)
     #已拒绝
-    @rejected_meetings = HiddenDanger.waitting_review(current_ability_org_ids)
+    @waitting_review_hidden_dangers = HiddenDanger.waitting_review(current_ability_org_ids)
 
     #消防器材
     @expired_fire_fighting_equipments = FireFightingEquipment.expired(current_ability_org_ids)
@@ -39,5 +39,4 @@ class DashboardController < ApplicationController
     child_org_ids = default_org.children.map {|child_org|  child_org.id}
     [default_org.id] + child_org_ids
   end
-
 end

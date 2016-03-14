@@ -48,6 +48,8 @@ zh-CN:
       stock: 库存情况
 
     attributes:
+      previous: 上一页
+      next: 下一页
       public_attrs:
         id: 编码id
         is_active: 有效

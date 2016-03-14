@@ -1,0 +1,25 @@
+<!-- Messages: style can be found in dropdown.less-->
+<% if FireFightingEquipment.expired(current_user.current_ability_org_ids).try(:size) > 0 %>
+  <li class="dropdown messages-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <i class="fa fa-envelope-o"></i>
+      <span class="label label-success"><%= FireFightingEquipment.expired(current_user.current_ability_org_ids).try(:size) %></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="header">有<%= FireFightingEquipment.expired(current_user.current_ability_org_ids).try(:size) %>处消防设施即将过期</li>
+      <li>
+        <!-- inner menu: contains the actual data -->
+        <ul class="menu">
+          <% FireFightingEquipment.expired(current_user.current_ability_org_ids).each do |f| %>
+            <li><!-- start message -->
+              <%= f.org %>
+              <span class="label label-success"><%= f.name %></span>
+              <span class="label label-error"><%= f.valid_date%></span>
+            </li>
+          <% end %>
+          <!-- end message -->
+        </ul>
+      </li>
+    </ul>
+  </li>
+<% end %>

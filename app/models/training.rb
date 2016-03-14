@@ -32,9 +32,9 @@ class Training < ActiveRecord::Base
 
 
   #待审批
-  scope :waitting_confirm,->(org_ids){ where(state: "draft",org_id: org_ids)}
+  scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
   #待修改
-  scope :rejected,->(org_id){ where(state: "rejected",org_id: org_id)}
+  scope :rejected,->(org_id){ where(check_state: "rejected",org_id: org_id)}
 
   def assess_type_des
     ret = ""

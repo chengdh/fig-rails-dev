@@ -1,17 +1,29 @@
 <!-- Content Header (Page header) -->
 %section.content-header
+  %h3{style: "text-align : center;"}
+    %i.fa.fa-desktop
+    个人工作台
 <!-- Main content -->
 %section.content
   <!-- Info boxes -->
   .row
-    .col-md-3
+    .col-md-3.col-md-offset-2
+      / 任务
       = render "task"
-    .col-md-3
-      = render "task"
-    .col-md-3
-      = render "task"
-    .col-md-3
-      = render "task"
+    .col-md-3.col-md-offset-2
+      / 教育培训
+      = render "training"
   .row
-    .col-md-3
-      = render "task"
+    .col-md-3.col-md-offset-2
+      / 应急预案
+      = render "planb_doc"
+    .col-md-3.col-md-offset-2
+      / 会议
+      = render "meeting"
+  .row
+    .col-md-3.col-md-offset-2
+      / 隐患整改
+      = render "hidden_danger"
+    .col-md-3.col-md-offset-2
+      / 演练
+      = render "fire_fighting_equipment"

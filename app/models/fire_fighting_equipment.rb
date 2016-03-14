@@ -7,5 +7,6 @@ class FireFightingEquipment < ActiveRecord::Base
   default_scope {order("org_id DESC")}
 
   #过期设备
-  scope :expired,->(org_ids){ransack(:valid_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
+  #scope :expired,->(org_ids){ransack(:valid_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
+  scope :expired,->(org_ids){order(:created_at)}
 end
