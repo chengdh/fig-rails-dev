@@ -1,0 +1,34 @@
+.box.box-default.box-solid.box-info
+  .box-header
+    %h4.box-title 查询
+  .box-body
+    = semantic_search_form_for @q,html: {style: "width: 400px;"} do |f|
+      = f.input :org_id_eq,as: :select,label: "所属机构",collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
+      = f.input :work_type_eq,as: :select,collection: work_types_for_select,label: "工作方式",input_html: {:class => "input-sm form-control"}
+      = f.input :build_date_gte,as: :string,label: "建造日期",input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.input :build_date_lte,as: :string,label: "~",input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.input :last_check_date_gte,as: :string,label: "最后检验日期",input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.input :last_check_date_lte,as: :string,label: "~",input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+      = f.input :is_active_eq,label: false
+
+      = f.actions do
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}

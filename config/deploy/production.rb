@@ -4,11 +4,11 @@ set :app_env,     "production"
 
 set :application, "shangwuju"
 set :repo_url,  "git@github.com:chengdh/fig-rails-dev.git"
-set :branch,"shangwuju"
+set :branch,"nanyang"
 set :scm, :git
 
 #set :password, ask('Server password', nil)
-server '106.186.18.163', user: 'jinshuiyuan', port: 22, password: fetch(:password), roles: %w{app web db}
+server '10.67.192.116', user: 'rails-dev', port: 22, password: fetch(:password), roles: %w{app web db}
 
 
 set :deploy_to,"~/app/shangwuju"

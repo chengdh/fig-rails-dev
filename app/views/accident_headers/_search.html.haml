@@ -1,0 +1,21 @@
+.box.box-default.box-solid.box-info
+  .box-header
+    %h4.box-title 查询
+  .box-body
+    = semantic_search_form_for @q,html: {id: "search_accident_header_form",method: :get,style: "width : 400px;" } do |f|
+      = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
+      = f.input :mth_eq,as: :select,collection: months_for_select,input_html: {:class => "input-sm form-control"}
+      = f.input :table_date_gte,as: :string,input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.input :table_date_lte,as: :string,input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.actions do
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}

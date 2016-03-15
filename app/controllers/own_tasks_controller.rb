@@ -42,7 +42,6 @@ class OwnTasksController < BaseController
       flash[:err] = "保存任务完成状态失败!"
       render :back
     end
-    redirect_to own_task_path(@task)
   end
 
   protected

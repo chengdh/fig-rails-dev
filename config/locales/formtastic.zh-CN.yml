@@ -8,7 +8,6 @@ zh-CN:
       org: 机构
       location: 所在位置
       note: 备注
-      
 
     labels:
       name: 名称
@@ -23,9 +22,17 @@ zh-CN:
       unit_id: 单位
       qty: 数量
       table_date: 填报日期
+      table_date_gte: 填报日期
+      table_date_lte: 填报日期
       check_state: 审核状态
       check_state_des: 审核状态
       mth: 月份
+      mth_eq: 月份
+      electric_equipment:
+        work_type_eq: 工作模式
+        build_date_gte: 建造日期
+        last_check_date_gte: 最近检测日期
+
 
     placeholders:
       name: 名称
