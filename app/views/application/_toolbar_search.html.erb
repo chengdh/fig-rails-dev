@@ -1,7 +1,18 @@
-<%= link_to self.send("search_#{controller_name.tableize}_path",:format => :js),
-  :class => "btn btn-default fancybox fancybox.ajax",
-  "data-toggle" => "tooltip",
-  "data-placement" => "top",
-  :title => "查询#{resource_class.model_name.human}" do %>
-  <i class="fa fa-search"></i>
+<%if respond_to?("search_#{controller_name.tableize}_path") %>
+  <%= link_to self.send("search_#{controller_name.tableize}_path",:format => :js),
+    :class => "btn btn-default fancybox fancybox.ajax",
+    "data-toggle" => "tooltip",
+    "data-placement" => "top",
+    :title => "查询#{resource_class.model_name.human}" do %>
+    <i class="fa fa-search"></i>
+  <% end %>
+<% end %>
+<%if respond_to?("search_#{controller_name.tableize}_index_path") %>
+  <%= link_to self.send("search_#{controller_name.tableize}_index_path",:format => :js),
+    :class => "btn btn-default fancybox fancybox.ajax",
+    "data-toggle" => "tooltip",
+    "data-placement" => "top",
+    :title => "查询#{resource_class.model_name.human}" do %>
+    <i class="fa fa-search"></i>
+  <% end %>
 <% end %>

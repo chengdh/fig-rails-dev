@@ -1,0 +1,12 @@
+.box.box-default.box-solid.box-info
+  .box-header
+    %h4.box-title 查询
+  .box-body
+    = semantic_search_form_for @q,html: {id: "search_equipment_form",method: :get,style: "width : 400px;" } do |f|
+      = f.input :name_or_model_or_factory_name_cont,label: "名称",input_html: {placeholder: "名称或型号或厂商",class: "input-sm"}
+      = f.input :equipment_category_id_eq,as: :select,collection: equipment_categories_for_select,label: "设备类别",input_html: {class: "input-sm"}
+      = f.input :is_active,as: :boolean,label: false
+      = f.actions do
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}
+
+

@@ -5,7 +5,7 @@
   <%end%>
   <%if can? :read,resource_class%>
     <%= render :partial => 'toolbar_btn_index' %>
-    <%if self.respond_to?("search_#{controller_name.tableize}_path")%>
+    <%if self.respond_to?("search_#{controller_name.tableize}_path") or self.respond_to?("search_#{controller_name.tableize}_index_path")%>
       <%= render :partial => 'toolbar_search' %>
     <%end%>
   <%end%>
