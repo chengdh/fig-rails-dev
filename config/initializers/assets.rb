@@ -10,5 +10,5 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'co
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( devise.css fontawesome-webfont.ttf fontawesome-webfont.woff fontawesome-webfont.svg fontawesome-webfont.woff2 fontawesome-webfont.eot)
+Rails.application.config.assets.precompile += %w( devise.css font-awesome/fontawesome-webfont.*)
 
