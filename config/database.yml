@@ -54,5 +54,5 @@ production:
   pool: 5
   database: nanyang_production
   username: root
-  password: ssapp
+  password: rails-dev
   socket: /var/run/mysqld/mysqld.sock

@@ -2,8 +2,9 @@
 set :rails_env,     "production"
 set :app_env,     "production"
 
-set :application, "shangwuju"
-set :repo_url,  "git@github.com:chengdh/fig-rails-dev.git"
+set :application, "nanyang_plat"
+#set :repo_url,  "git@github.com:chengdh/fig-rails-dev.git"
+set :repo_url,  "https://github.com/chengdh/fig-rails-dev.git"
 set :branch,"nanyang"
 set :scm, :git
 
@@ -11,7 +12,7 @@ set :scm, :git
 server '10.67.192.116', user: 'rails-dev', port: 22, password: fetch(:password), roles: %w{app web db}
 
 
-set :deploy_to,"~/app/shangwuju"
+set :deploy_to,"~/app/nanyang_plat"
 
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.1.4'
