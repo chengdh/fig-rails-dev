@@ -4,7 +4,7 @@ class PlanbDocsController < BaseController
   table :org,:name,:plan_date,:plan_length,:plan_type_des,:check_state_des
   protected
   def collection
-    @q= end_of_association_chain.where(org_id: current_ability_org_ids,check_state: ["draft","rejected"]).ransack(params[:q])
+    @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
 

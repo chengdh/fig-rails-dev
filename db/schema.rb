@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313134909) do
+ActiveRecord::Schema.define(version: 20160323132823) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -445,6 +445,52 @@ ActiveRecord::Schema.define(version: 20160313134909) do
   add_index "protect_equipments", ["org_id"], name: "index_protect_equipments_on_org_id", using: :btree
   add_index "protect_equipments", ["protect_equipment_category_id"], name: "index_protect_equipments_on_protect_equipment_category_id", using: :btree
   add_index "protect_equipments", ["unit_id"], name: "index_protect_equipments_on_unit_id", using: :btree
+
+  create_table "rewards", force: :cascade do |t|
+    t.integer  "org_id",               limit: 4,                       null: false
+    t.date     "table_date",                                           null: false
+    t.integer  "user_id",              limit: 4,                       null: false
+    t.integer  "checker_id",           limit: 4
+    t.string   "check_state",          limit: 60,    default: "draft"
+    t.date     "check_date"
+    t.text     "note",                 limit: 65535
+    t.integer  "marks",                limit: 4,     default: 0
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
+    t.string   "photo_1_file_name",    limit: 255
+    t.string   "photo_1_content_type", limit: 255
+    t.integer  "photo_1_file_size",    limit: 4
+    t.datetime "photo_1_updated_at"
+    t.string   "photo_2_file_name",    limit: 255
+    t.string   "photo_2_content_type", limit: 255
+    t.integer  "photo_2_file_size",    limit: 4
+    t.datetime "photo_2_updated_at"
+    t.string   "photo_3_file_name",    limit: 255
+    t.string   "photo_3_content_type", limit: 255
+    t.integer  "photo_3_file_size",    limit: 4
+    t.datetime "photo_3_updated_at"
+    t.string   "photo_4_file_name",    limit: 255
+    t.string   "photo_4_content_type", limit: 255
+    t.integer  "photo_4_file_size",    limit: 4
+    t.datetime "photo_4_updated_at"
+    t.string   "photo_5_file_name",    limit: 255
+    t.string   "photo_5_content_type", limit: 255
+    t.integer  "photo_5_file_size",    limit: 4
+    t.datetime "photo_5_updated_at"
+    t.string   "photo_6_file_name",    limit: 255
+    t.string   "photo_6_content_type", limit: 255
+    t.integer  "photo_6_file_size",    limit: 4
+    t.datetime "photo_6_updated_at"
+    t.string   "photo_7_file_name",    limit: 255
+    t.string   "photo_7_content_type", limit: 255
+    t.integer  "photo_7_file_size",    limit: 4
+    t.datetime "photo_7_updated_at"
+    t.string   "name",                 limit: 45,                      null: false
+    t.string   "check_opinion",        limit: 600
+  end
+
+  add_index "rewards", ["org_id"], name: "index_rewards_on_org_id", using: :btree
+  add_index "rewards", ["user_id"], name: "index_rewards_on_user_id", using: :btree
 
   create_table "role_system_function_operates", force: :cascade do |t|
     t.integer  "role_id",                    limit: 4

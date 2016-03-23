@@ -17,7 +17,7 @@
     %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  实发合计
     %tr
       - SalaryItemHeader.first.salary_items.where(is_calculate: false).each do |item|
-        %th{:style => "text-align : center;vertical-align : middle;"}= item.name 
+        %th{:style => "text-align : center;vertical-align : middle;"}= item.name
 
     - resource.salary_table_lines.each_with_index do |line,idx|
       %tr

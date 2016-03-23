@@ -9,7 +9,7 @@
     %thead
       %tr
         %th{:colspan => 100}
-          = f.input :name,label: false,input_html: {placeholder: "工资表名称",style: "width : 300px;"}
+          = f.text_field :name,placeholder: "工资表名称",style: "width : 100%;text-align: center;"
       %tr
         %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 序号
         %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 姓名

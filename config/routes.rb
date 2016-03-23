@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  resources :check_rewards do
+    member do
+      get :show_check
+    end
+    collection do
+      get :search
+    end
+  end
+
+  resources :rewards do
+    collection do
+      get :search
+    end
+  end
+ 
   resources :stocks
   resources :worthless_bills do
     member do
@@ -23,8 +38,9 @@ Rails.application.routes.draw do
   resources :salary_tables do
     collection do
       get :search
+      get :show_import_xls
+      post :import_xls
     end
-
   end
   resources :salary_item_headers
   resources :salary_items

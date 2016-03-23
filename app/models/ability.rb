@@ -69,6 +69,8 @@ class Ability
 
     can [:read,:update],Meeting if can? :show_check,Meeting
 
+    can [:read,:update],Reward if can? :show_check,Reward
+
     #事故隐患整改
     can [:read],HiddenDanger if can? :review,HiddenDanger
     can [:read],HiddenDanger if can? :deliver,HiddenDanger

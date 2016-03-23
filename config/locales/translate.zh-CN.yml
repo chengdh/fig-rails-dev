@@ -46,6 +46,7 @@ zh-CN:
       repair_bill: 设备维修
       worthless_bill: 设备报废单
       stock: 库存情况
+      reward: 奖励情况
 
     attributes:
       previous: 上一页
@@ -399,6 +400,7 @@ zh-CN:
         item_type_des: 项目类型
         is_calculate: 计算项目
         formula: 公式
+
       stock:
         location: 库位
         location_id: 库位
@@ -406,4 +408,10 @@ zh-CN:
         equipment: 设备
         equipment_id: 设备
         qty: 数量
+
+      reward:
+        reward_org: 被奖单位
+        reward_org_id: 被奖单位
+        marks: 奖励分数
+        note: 标占描述
         

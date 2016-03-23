@@ -1,0 +1,2 @@
+module CheckRewardsHelper
+end

@@ -1,0 +1,32 @@
+%table#reward_show_table.table.table-condensed.table-bordered
+  %tr
+    %th 上报机构
+    %td{:colspan => 3}= resource.org.name
+    %th 上报日期
+    %td= resource.table_date
+  %tr
+    %th 表彰项目
+    %td{:colspan => 5}= resource.name
+  %tr
+    %th{:colspan => 6} 表彰描述
+  %tr
+    %td{:colspan => 6}
+      = resource.note
+  %tr
+    %th{:colspan => 6} 照片
+  %tr
+    %td= image_tag resource.photo_1.url(:thumb)
+    %td= image_tag resource.photo_2.url(:thumb)
+    %td= image_tag resource.photo_3.url(:thumb)
+    %td= image_tag resource.photo_4.url(:thumb)
+    %td= image_tag resource.photo_5.url(:thumb)
+    %td= image_tag resource.photo_6.url(:thumb)
+  %tr
+    %th 加分情况
+    %td= resource.marks
+    %td 审核意见
+    %td= resource.check_opinion
+    %th 审核结果
+    %td
+      %label.label.label-info
+        = resource.check_state_des

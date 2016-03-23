@@ -27,6 +27,7 @@
     "blockUI" : "*",
     "font-awesome": "*",
     "ionicons": "https://github.com/driftyco/ionicons.git",
-    "jquery.peekABar": "*"
+    "jquery.peekABar": "*",
+    "notifyjs": ""
   }
 }
