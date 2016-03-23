@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323132823) do
+ActiveRecord::Schema.define(version: 20160323144811) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -52,6 +52,33 @@ ActiveRecord::Schema.define(version: 20160323132823) do
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
   end
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer  "org_id",                    limit: 4
+    t.date     "table_date",                                                null: false
+    t.string   "mth",                       limit: 20,                      null: false
+    t.string   "check_state",               limit: 30,    default: "draft", null: false
+    t.integer  "user_id",                   limit: 4,                       null: false
+    t.integer  "checker_id",                limit: 4
+    t.date     "check_date"
+    t.string   "name",                      limit: 60,                      null: false
+    t.text     "note",                      limit: 65535
+    t.integer  "k_safety_table_marks",      limit: 4,     default: 0
+    t.integer  "k_accident_marks",          limit: 4,     default: 0
+    t.integer  "k_training_marks",          limit: 4,     default: 0
+    t.integer  "k_planb_doc_marks",         limit: 4,     default: 0
+    t.integer  "k_meeting_marks",           limit: 4,     default: 0
+    t.integer  "k_hidden_danger_marks",     limit: 4,     default: 0
+    t.integer  "k_big_hidden_danger_marks", limit: 4,     default: 0
+    t.integer  "k_big_accident_marks",      limit: 4,     default: 0
+    t.integer  "k_punishment_marks",        limit: 4,     default: 0
+    t.integer  "reward_marks",              limit: 4,     default: 0
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+  end
+
+  add_index "assessments", ["org_id"], name: "index_assessments_on_org_id", using: :btree
+  add_index "assessments", ["user_id"], name: "index_assessments_on_user_id", using: :btree
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -445,6 +472,27 @@ ActiveRecord::Schema.define(version: 20160323132823) do
   add_index "protect_equipments", ["org_id"], name: "index_protect_equipments_on_org_id", using: :btree
   add_index "protect_equipments", ["protect_equipment_category_id"], name: "index_protect_equipments_on_protect_equipment_category_id", using: :btree
   add_index "protect_equipments", ["unit_id"], name: "index_protect_equipments_on_unit_id", using: :btree
+
+  create_table "punishments", force: :cascade do |t|
+    t.integer  "org_id",        limit: 4,                       null: false
+    t.integer  "user_id",       limit: 4,                       null: false
+    t.integer  "punish_org_id", limit: 4,                       null: false
+    t.date     "table_date",                                    null: false
+    t.string   "name",          limit: 60,                      null: false
+    t.integer  "marks",         limit: 4,     default: 0
+    t.text     "note",          limit: 65535
+    t.integer  "poster_id",     limit: 4
+    t.date     "post_date"
+    t.date     "punish_date"
+    t.string   "check_state",   limit: 30,    default: "draft"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+  end
+
+  add_index "punishments", ["org_id"], name: "index_punishments_on_org_id", using: :btree
+  add_index "punishments", ["punish_org_id"], name: "index_punishments_on_punish_org_id", using: :btree
+  add_index "punishments", ["table_date"], name: "index_punishments_on_table_date", using: :btree
+  add_index "punishments", ["user_id"], name: "index_punishments_on_user_id", using: :btree
 
   create_table "rewards", force: :cascade do |t|
     t.integer  "org_id",               limit: 4,                       null: false

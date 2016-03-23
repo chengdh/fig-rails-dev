@@ -1,0 +1,4 @@
+- if params[:action].eql?("show")
+  - if can? :confirm,resource
+    = link_to confirm_punishment_path(resource),:method => :patch,"data-confirm" => "你确定要发布吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "发布处罚信息" do
+      %i.fa.fa-clock-o{style: "color : blue;"}

@@ -1,0 +1,7 @@
+.btn-group{role: "group", "aria-label" => "..."}
+  - if can? :read,resource_class
+    = link_to collection_path("q[check_state_eq]" => "confirmed"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已发布处罚信息列表" do
+      %i.fa.fa-list-ul
+
+    - if self.respond_to?("search_#{controller_name.tableize}_path")
+      = render :partial => 'toolbar_search'

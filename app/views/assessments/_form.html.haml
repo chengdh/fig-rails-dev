@@ -1,0 +1,38 @@
+= semantic_form_for resource,html: {id: "assessment_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.hidden_field :user_id,value: current_user.id
+  = f.hidden_field :check_state,value: "draft"
+  %table.table.table-condensed.table-bordered
+    %tr
+      %th 上报机构
+      %td= f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {style: "width : 30%;"}
+      %th 月份
+      %td= f.input :mth,as: :select,collection: months_for_select,label: false,include_blank: false,input_html: {style: "width : 30%;"}
+
+      %th 上报时间
+      %td
+        = f.input :table_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
+          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+
+    %tr
+      %th 标题
+      %td{:colspan => 5}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 80%"}
+    %tr
+      %td{:colspan => 6}
+        = f.input :note,label: false,input_html: {placeholder: "备注",cols: 12,rows: 4}
+    %tr
+      %th 安全工作月报扣分
+      %th 事故报告扣分
+      %th 教育培训扣分
+      %th 应急演练扣分
+      %th 安委会会议扣分
+      %th 事故隐患扣分
+    %tr
+      %th 较大安全隐患扣分
+      %th 重大事故扣分
+      %th 处罚扣分
+      %th 奖励分
+      %th 
+      %th
+
+

@@ -1,0 +1,37 @@
+= semantic_form_for resource,html: {id: "punishment_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.hidden_field :user_id,value: current_user.id
+  = f.hidden_field :check_state,value: "draft"
+  %table.table.table-condensed.table-bordered
+    %tr
+      %th 录入机构
+      %td= f.select :org_id,current_ability_orgs_for_select,{include_blank: false},:class => "form-control input-sm"
+      %th 录入时间
+      %td
+        = f.input :table_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
+          :style => "width : 40%;",
+          "data-provide" => "datepicker",
+          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+    %tr
+      %th 被罚机构
+      %td= f.select :punish_org_id,current_ability_orgs_for_select,{include_blank: false},:class => "form-control input-sm"
+      %th 处罚时间
+      %td
+        = f.input :punish_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
+          :style => "width : 40%;",
+          "data-provide" => "datepicker",
+          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+    %tr
+      %th 处罚项目
+      %td{:colspan => 3}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 80%"}
+    %tr
+      %th{:colspan => 4} 处罚描述
+    %tr
+      %td{:colspan => 4}
+        = f.input :note,label: false,input_html: {cols: 12,rows: 4}
+    %tr
+      %th 扣分
+      %td
+        = f.input :marks,label: false
+      %td
+      %td

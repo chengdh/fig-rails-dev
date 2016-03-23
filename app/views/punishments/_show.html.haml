@@ -1,0 +1,26 @@
+%table#reward_show_table.table.table-condensed.table-bordered
+  %tr
+    %th 录入机构
+    %td= resource.org
+    %th 录入日期
+    %td= resource.table_date
+  %tr
+    %th 被罚机构
+    %td= resource.punish_org
+    %th 处罚日期
+    %td= resource.table_date
+  %tr
+    %th 处罚项目
+    %td{:colspan => 3}= resource.name
+  %tr
+    %th{:colspan => 4} 处罚描述
+  %tr
+    %td{:colspan => 4}
+      = resource.note
+  %tr
+    %th 扣分情况
+    %td= resource.marks
+    %th 审核结果
+    %td
+      %label.label.label-info
+        = resource.check_state_des

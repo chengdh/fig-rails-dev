@@ -47,6 +47,8 @@ zh-CN:
       worthless_bill: 设备报废单
       stock: 库存情况
       reward: 奖励情况
+      punishment: 处罚信息
+      assessment: 考评表
 
     attributes:
       previous: 上一页
@@ -413,5 +415,25 @@ zh-CN:
         reward_org: 被奖单位
         reward_org_id: 被奖单位
         marks: 奖励分数
-        note: 标占描述
-        
+        note: 表彰描述
+
+      punishment:
+        punish_org: 被罚单位
+        punish_org_id: 被罚单位
+        marks: 扣分
+        punish_date: 处罚时间
+
+      assessment:
+        k_safety_table_marks: 安全工作月报扣分
+        k_accident_marks: 事故报告扣分
+        k_training_marks: 教育培训扣分
+        k_planb_doc_marks: 应急演练扣分
+        k_meeting_marks: 安委会会议扣分
+        k_hidden_danger_marks: 事故隐患扣分
+        k_big_hidden_danger_marks: 较大安全隐患扣分
+        k_big_accident_marks: 重大事故扣分
+        k_punishment_marks: 处罚扣分
+        reward_marks: 奖励分
+
+
+

@@ -1,4 +1,15 @@
+#coding: utf-8
 Rails.application.routes.draw do
+  resources :assessments
+  resources :punish_org_punishments
+  resources :punishments do
+    member do
+      patch :confirm
+    end
+    collection do
+      get :search
+    end
+  end
   resources :check_rewards do
     member do
       get :show_check

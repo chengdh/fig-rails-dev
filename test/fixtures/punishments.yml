@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  user_id: 
+  punish_org_id: 1
+  table_date: 2016-03-23
+  name: MyString
+  note: MyText
+  poster_id: 1
+  post_date: 2016-03-23
+  punish_date: 2016-03-23
+
+two:
+  org_id: 
+  user_id: 
+  punish_org_id: 1
+  table_date: 2016-03-23
+  name: MyString
+  note: MyText
+  poster_id: 1
+  post_date: 2016-03-23
+  punish_date: 2016-03-23
