@@ -51,21 +51,37 @@ Rails.application.routes.draw do
     member do
       patch :confirm
     end
+    collection do
+      get :search
+    end
+
   end
   resources :repair_bills do
     member do
       patch :confirm
     end
+    collection do
+      get :search
+    end
+
   end
   resources :shippments do
     member do
       patch :confirm
     end
+    collection do
+      get :search
+    end
+
   end
   resources :move_bills do
     member do
       patch :confirm
     end
+    collection do
+      get :search
+    end
+
   end
   resources :salary_tables do
     collection do

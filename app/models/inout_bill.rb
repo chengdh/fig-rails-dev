@@ -23,6 +23,7 @@ class InoutBill < ActiveRecord::Base
   end
   def state_des
     ret = ""
+    ret = "草稿" if state.eql?("draft")
     ret = "进行中" if state.eql?("processing")
     ret = "已完成" if state.eql?("confirmed")
     ret
