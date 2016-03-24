@@ -84,6 +84,9 @@ class Ability
     can [:read],Task if can? :deliver,Task
     can [:read],Task if can? :confirm,Task
     can [:read],Task if can? :finish,Task
+    #工资表导入
+    can [:show_import_xls],SalaryTable if can? :create,SalaryTable
+    can [:import_xls],SalaryTable if can? :create,SalaryTable
 
   end
   #设置单个operate的权限
