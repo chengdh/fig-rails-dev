@@ -18,10 +18,10 @@
   ],
   "dependencies": {
     "toastr": "https://github.com/CodeSeven/toastr.git",
-    "fancybox": "*",
-    "twbs-pagination": "~1.2.5",
+    "fancybox": "https://github.com/fancyapps/fancyBox.git",
+    "twbs-pagination": "https://github.com/esimakin/twbs-pagination.git",
     "jquery-load-template": "https://github.com/codepb/jquery-template.git",
-    "admin-lte": "*",
+    "admin-lte": "https://github.com/almasaeed2010/AdminLTE.git",
     "jquery-orgchart": "https://github.com/caprica/jquery-orgchart.git",
     "zTree": "https://git.oschina.net/zTree/zTree_v3.git",
     "blockUI" : "https://github.com/malsup/blockui.git",
