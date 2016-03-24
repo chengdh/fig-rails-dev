@@ -74,6 +74,7 @@ zh-CN:
         check_state: 审核状态
         check_state_des: 审核状态
         mth: 月份
+        is_active_eq: 有效
 
       user:
         username: 用户名

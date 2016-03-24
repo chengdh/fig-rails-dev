@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     end
 
   end
-  resources :punish_org_punishments
+  resources :punish_org_punishments do
+    collection do
+      get :search
+    end
+  end
   resources :punishments do
     member do
       patch :confirm
@@ -41,7 +45,7 @@ Rails.application.routes.draw do
       get :search
     end
   end
- 
+
   resources :stocks
   resources :worthless_bills do
     member do

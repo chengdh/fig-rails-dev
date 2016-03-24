@@ -6,7 +6,7 @@ class CheckPlanbDocsController < PlanbDocsController
   #the load part of a load_and_authorize_resource call will not work correctly.
   #See https://github.com/ryanb/cancan/issues/274 for the discussions.
   #参照https://github.com/CanCanCommunity/cancancan/wiki/Inherited-Resources解决该问题
-  skip_load_and_authorize_resource :only => :index
+  skip_load_and_authorize_resource :only => [:index,:search]
   #load_and_authorize_resource :training
   table :org,:name,:plan_date,:plan_length,:plan_type_des,:check_state_des
   #GET check_trainings/:id/show_check

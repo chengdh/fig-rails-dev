@@ -2,7 +2,7 @@
   .box-header
     %h4.box-title 查询
   .box-body
-    = semantic_search_form_for @q,html: {id: "search_hidden_danger_form",method: :get,style: "width : 400px;" } do |f|
+    = semantic_search_form_for @q,url: collection_path,html: {id: "search_hidden_danger_form",method: :get,style: "width : 400px;" } do |f|
       = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "上级单位",input_html: {class: "input-sm"}
       = f.input :danger_org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "隐患单位",input_html: {class: "input-sm"}
       = f.input :name_cont,label: "隐患名称",input_html: {:class => "input-sm form-control"}

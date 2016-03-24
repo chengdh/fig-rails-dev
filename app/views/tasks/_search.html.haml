@@ -1,0 +1,24 @@
+.box.box-default.box-solid.box-info
+  .box-header
+    %h4.box-title 查询
+  .box-body
+    = semantic_search_form_for @q,url: collection_path,html: {id: "search_training_form",method: :get,style: "width : 400px;" } do |f|
+      = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
+      = f.input :executer_id_eq,as: :select,collection: users_for_select,label: "执行人",input_html: {class: "input-sm"}
+      = f.input :name_cont,label: "任务名称",input_html: {class: "input-sm"}
+      = f.input :task_category_id_eq,as: :select,collection: task_categories_for_select,label: "任务类别",input_html: {class: "input-sm"}
+      = f.input :task_date_gte,as: :string,label: "任务日期",input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.input :task_date_lte,as: :string,label: "~",input_html: {readonly: true,
+         "data-provide" => "datepicker",
+         "data-date-format" => "yyyy-mm-dd",
+         "data-date-language" => "zh-CN",
+         :value => Date.today}
+
+      = f.input :state_eq,as: :select,collection: task_states_for_select,label: "状态",input_html: {class: "input-sm"}
+      = f.actions do
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}

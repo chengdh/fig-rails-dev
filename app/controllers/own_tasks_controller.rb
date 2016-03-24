@@ -1,12 +1,12 @@
 #coding: utf-8
 #个人任务
-class OwnTasksController < BaseController
+class OwnTasksController < TasksController
   defaults :resource_class => Task, :collection_name => 'tasks', :instance_name => 'task'
   #Warning: when overwriting the collection method in a controller
   #the load part of a load_and_authorize_resource call will not work correctly.
   #See https://github.com/ryanb/cancan/issues/274 for the discussions.
   #参照https://github.com/CanCanCommunity/cancancan/wiki/Inherited-Resources解决该问题
-  skip_load_and_authorize_resource :only => :index
+  skip_load_and_authorize_resource :only => [:index,:search]
   #load_and_authorize_resource :training
   table :org,:task_date,:user,:task_category,:executer,:state_des
   #GET tasks/:id/show_line

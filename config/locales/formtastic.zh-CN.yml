@@ -13,6 +13,7 @@ zh-CN:
       name: 名称
       order_by: 排序
       is_active: 有效
+      is_active_eq: 有效
       org_id: 机构
       org: 机构
       location: 所在位置
@@ -28,12 +29,15 @@ zh-CN:
       check_state_des: 审核状态
       mth: 月份
       mth_eq: 月份
+      is_rent: 是否租赁
+      is_rent_eq: 是否租赁
+
+
       electric_equipment:
         work_type_eq: 工作模式
         build_date_gte: 建造日期
         last_check_date_gte: 最近检测日期
-
-
+      
     placeholders:
       name: 名称
       order_by: 排序
