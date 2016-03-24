@@ -24,10 +24,10 @@
     "admin-lte": "*",
     "jquery-orgchart": "https://github.com/caprica/jquery-orgchart.git",
     "zTree": "https://git.oschina.net/zTree/zTree_v3.git",
-    "blockUI" : "*",
-    "font-awesome": "*",
+    "blockUI" : "https://github.com/malsup/blockui.git",
+    "font-awesome": "https://github.com/FortAwesome/Font-Awesome.git",
     "ionicons": "https://github.com/driftyco/ionicons.git",
-    "jquery.peekABar": "*",
-    "notifyjs": ""
+    "jquery.peekABar": "https://github.com/kunalnagar/jquery.peekABar.git",
+    "notifyjs": "https://github.com/notifyjs/notifyjs.git"
   }
 }
