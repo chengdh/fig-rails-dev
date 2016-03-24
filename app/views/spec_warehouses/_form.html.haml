@@ -1,4 +1,4 @@
-= semantic_form_for resource,html: {id: "spec_equipment_form"} do |f|
+= semantic_form_for resource,html: {id: "spec_warehouse_form"} do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.inputs do
     = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}

@@ -13,4 +13,3 @@ class ElectricEquipmentsController < BaseController
     params.require(:electric_equipment).permit(:org_id, :area, :fire_level, :build_date, :manage_org, :qty, :buy_date, :power, :work_type, :last_check_date, :is_active, :note)
   end
 end
-

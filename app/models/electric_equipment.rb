@@ -33,5 +33,5 @@ class ElectricEquipment < ActiveRecord::Base
 
   belongs_to :org
   belongs_to :manage_org,class_name: "Org"
-  validates :org_id,:electric_equipment_type,presence: true
+  validates :org_id,presence: true
 end

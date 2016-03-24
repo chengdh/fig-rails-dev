@@ -1,6 +1,6 @@
 #coding: utf-8
 class TemporaryEmployeesController < BaseController
-  table :org,:name,:gender_des,:id_no,:manage_org,:post,:belong_to_unit,:begin_date,:mobile
+  table :org,:name,:id_no,:manage_org,:post,:belong_to_unit,:begin_date,:mobile
   protected
   def collection
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
