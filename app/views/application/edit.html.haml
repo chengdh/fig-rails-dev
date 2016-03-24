@@ -12,7 +12,7 @@
           %h3.box-title
             = render "dynamic_toolbar"
 
-        .box-body{style: "overflow-y : scroll;"}
+        .box-body{style: "overflow-x : scroll;"}
           %div{:id => "#{resource_class.name.underscore}_form_before_wrap"}
             = render 'form_before'
             = yield :form_before
