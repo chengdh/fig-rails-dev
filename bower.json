@@ -17,7 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "toastr": "~2.1.2",
+    "toastr": "https://github.com/CodeSeven/toastr.git",
     "fancybox": "*",
     "twbs-pagination": "~1.2.5",
     "jquery-load-template": "https://github.com/codepb/jquery-template.git",
