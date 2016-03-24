@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
+    "jquery": "https://github.com/jquery/jquery.git#2.1.4",
     "toastr": "https://github.com/CodeSeven/toastr.git",
     "fancybox": "https://github.com/fancyapps/fancyBox.git",
     "twbs-pagination": "https://github.com/esimakin/twbs-pagination.git",
