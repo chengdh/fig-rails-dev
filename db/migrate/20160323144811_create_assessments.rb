@@ -7,8 +7,11 @@ class CreateAssessments < ActiveRecord::Migration
       t.string :mth,limit: 20,null: false
       t.string :check_state,limit: 30,null: false,default: 'draft'
       t.references :user, index: true,null: false
+      t.integer :submiter_id
+      t.integer :submit_date
       t.integer :checker_id
       t.date :check_date
+      t.string :check_opinion,limit: 60
       t.string :name,null: false,limit: 60
       t.text :note
       t.integer :k_safety_table_marks,default: 0

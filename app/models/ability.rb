@@ -73,6 +73,9 @@ class Ability
     can [:read,:update],Punishment if can? :confirm,Punishment
     can [:read],Punishment if can? :read_confirm,Punishment
 
+    can [:read,:update],Assessment if can? :submit,Assessment
+    can [:read,:update],Assessment if can? :show_check,Assessment
+
     #事故隐患整改
     can [:read],HiddenDanger if can? :review,HiddenDanger
     can [:read],HiddenDanger if can? :deliver,HiddenDanger

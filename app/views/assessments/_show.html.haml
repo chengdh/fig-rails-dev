@@ -1,50 +1,48 @@
-%table#training_show_table.table.table-condensed.table-bordered
+%table.table.table-condensed.table-bordered
+  %tr
+    %th{colspan: 6,style: "text-align:right;"}
+      %label.label.label-info
+        = resource.check_state_des
   %tr
     %th 上报机构
-    %td{:colspan => 3}= resource.org.name
+    %td= resource.org
+    %th 月份
+    %td= resource.mth
     %th 上报日期
     %td= resource.table_date
   %tr
-    %th 培训名称
+    %th 名称
     %td{:colspan => 5}= resource.name
   %tr
-    %th 讲师
-    %td= resource.teachers
-    %th 时间
-    %td= resource.training_date
-    %th 培训时长
-    %td= resource.training_length
-
-  %tr
-    %th 参加人员
-    %td{:colspan => 3}= resource.join_persons
-
-    %th 人数
-    %td= resource.join_count
-  %tr
-    %th{:colspan => 6} 培训内容
-  %tr
     %td{:colspan => 6}
-      = resource.training_content
+      = resource.note
   %tr
-    %th{:colspan => 6} 培训照片
+    %th 安全工作月报扣分
+    %th 事故报告扣分
+    %th 教育培训扣分
+    %th 应急演练扣分
+    %th 安委会会议扣分
+    %th 事故隐患扣分
   %tr
-    %td= image_tag resource.photo_1.url(:thumb)
-    %td= image_tag resource.photo_2.url(:thumb)
-    %td= image_tag resource.photo_3.url(:thumb)
-    %td= image_tag resource.photo_4.url(:thumb)
-    %td= image_tag resource.photo_5.url(:thumb)
-    %td= image_tag resource.photo_6.url(:thumb)
+    %td= resource.k_safety_table_marks
+    %td= resource.k_accident_marks
+    %td= resource.k_training_marks
+    %td= resource.k_planb_doc_marks
+    %td= resource.k_meeting_marks
+    %td= resource.k_hidden_danger_marks
   %tr
-    %th 有无考核
+    %th 较大安全隐患扣分
+    %th 重大事故扣分
+    %th 处罚扣分
+    %th 奖励分
+    %th 实际得分
+    %th
+  %tr
+    %td= resource.k_big_hidden_danger_marks
+    %td= resource.k_big_accident_marks
+    %td= resource.k_punishment_marks
+    %td= resource.reward_marks
     %td
-      = resource.is_assess? ? "有" : "无"
-    %th 考核方式
-    %td= resource.assess_type_des
-    %th 合格率
-    %td= resource.qualified_rate
-  %tr
-    %th 审核结果
-    %td= resource.check_state_des
-    %th 审核意见
-    %td{:colspan => 3}= resource.check_opinion
+      %label.label-primary
+        = resource.sum_marks
+    %td

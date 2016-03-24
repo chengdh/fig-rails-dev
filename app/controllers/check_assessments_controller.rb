@@ -1,21 +1,24 @@
 #coding: utf-8
-class AssessmentsController < BaseController
+#考评表审批
+class CheckAssessmentsController < AssessmentsController
+  defaults :resource_class => Assessment, :collection_name => 'assessments', :instance_name => 'assessment'
+  #Warning: when overwriting the collection method in a controller
+  #the load part of a load_and_authorize_resource call will not work correctly.
+  #See https://github.com/ryanb/cancan/issues/274 for the discussions.
+  #参照https://github.com/CanCanCommunity/cancancan/wiki/Inherited-Resources解决该问题
+  skip_load_and_authorize_resource :only => :index
+  #load_and_authorize_resource :training
   table :org,:name,:table_date,:check_state_des
-  #PATCH assessments/:id/submit
-  #提交考评表
-  def submit
+
+  #GET assessments/:id/show_check
+  #GET assessments/:id/show_check.json
+  #显示审批界面
+  def show_check
     @assessment = Assessment.find(params[:id])
-    if @assessment.update_attributes(check_state: "submited",submit_date: Date.today,submiter: current_user)
-      flash[:success] = "数据提交成功."
-      redirect_to @assessment
-    else
-      flash[:error] = "数据提交失败"
-      redirect_to :back
-    end
   end
   protected
   def collection
-    @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
+    @q= end_of_association_chain.where(org_id: current_ability_org_ids,check_state: ["submited","confirmed","rejected"]).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
 
@@ -33,5 +36,5 @@ class AssessmentsController < BaseController
                                        :k_punishment_marks,
                                        :reward_marks)
   end
-end
 
+end

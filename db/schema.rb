@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323144811) do
+ActiveRecord::Schema.define(version: 20160324005045) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -59,8 +59,11 @@ ActiveRecord::Schema.define(version: 20160323144811) do
     t.string   "mth",                       limit: 20,                      null: false
     t.string   "check_state",               limit: 30,    default: "draft", null: false
     t.integer  "user_id",                   limit: 4,                       null: false
+    t.integer  "submiter_id",               limit: 4
+    t.integer  "submit_date",               limit: 4
     t.integer  "checker_id",                limit: 4
     t.date     "check_date"
+    t.string   "check_opinion",             limit: 60
     t.string   "name",                      limit: 60,                      null: false
     t.text     "note",                      limit: 65535
     t.integer  "k_safety_table_marks",      limit: 4,     default: 0

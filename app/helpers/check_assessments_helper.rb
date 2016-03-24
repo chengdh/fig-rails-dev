@@ -1,0 +1,2 @@
+module CheckAssessmentsHelper
+end

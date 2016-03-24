@@ -1,6 +1,23 @@
 #coding: utf-8
 Rails.application.routes.draw do
-  resources :assessments
+  resources :check_assessments do
+    member do
+      get :show_check
+    end
+    collection do
+      get :search
+    end
+  end
+
+  resources :assessments do
+    member do
+      patch :submit
+    end
+    collection do
+      get :search
+    end
+
+  end
   resources :punish_org_punishments
   resources :punishments do
     member do

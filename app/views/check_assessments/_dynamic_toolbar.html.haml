@@ -1,0 +1,23 @@
+.btn-group{role: "group", "aria-label" => "..."}
+  - if can? :read,resource_class
+    = link_to collection_path("q[check_state_eq]" => "submited"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待审批" do
+      %i.fa.fa-list-ul
+    = link_to collection_path("q[check_state_eq]" => "confirmed"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已审批" do
+      %i.fa.fa-list-ul{style: "color: blue;"}
+    = link_to collection_path("q[check_state_eq]" => "rejected"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已驳回" do
+      %i.fa.fa-list-ul{style: "color: red;"}
+
+    - if self.respond_to?("search_#{controller_name.tableize}_path")
+      = render :partial => 'toolbar_search'
+
+  - if ["show"].include?(params[:action]) and can? :show_check,resource
+    = link_to show_check_check_assessment_path(resource),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "审批" do
+      %i.fa.fa-gavel
+
+  - if ["show_check"].include?(params[:action])
+    = link_to "#",:class => "btn btn-default btn-submit-form",
+    "data-toggle" => "tooltip",
+    "data-placement" => "top",
+    "data-form-id" => "check_assessment_form",
+    :title => "保存审批信息" do
+      %i.fa.fa-save
