@@ -97,6 +97,7 @@ class Ability
       action = f_obj[:action].to_sym
       conditions = eval(f_obj[:conditions].to_s)
       can action,subject_class,conditions
+      can :search,subject_class if can? :read,subject_class
     rescue
     end
   end
