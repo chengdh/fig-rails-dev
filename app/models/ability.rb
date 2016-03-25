@@ -63,6 +63,7 @@ class Ability
       user.current_role.selected_sfos.each  { |sfo| set_single_operate_power(sfo)}
     end
     can [:update_default_attr,:edit_password,:update_password],User
+    can :select,Equipment
     #教育培训信息,可以审批 就可以read update
     can [:read,:update], Training if can? :show_check,Training
     #应急预案演练信息,可以审批 就可以read update
