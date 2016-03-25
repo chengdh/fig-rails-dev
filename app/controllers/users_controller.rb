@@ -10,4 +10,18 @@ class UsersController < BaseController
     user.update_attributes(attrs)
     redirect_to :back
   end
+  # GET users/edit_password
+  # 修改当前登录用户的密码
+  def edit_password ; end
+
+  #PUT users/:id/update_password
+  def update_password
+    @user = current_user
+    if @user.update_with_password(params.require(:user).permit(:password,:current_password,:password_confirmation))
+      flash[:success]="更新密码成功!"
+      redirect_to :back
+    else
+      render :edit_password
+    end
+  end
 end

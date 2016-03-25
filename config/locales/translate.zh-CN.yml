@@ -87,6 +87,7 @@ zh-CN:
         last_sign_in_at:  最后登录
         current_sign_in_ip: 登录ip
         last_sign_in_ip: 最后登录ip
+        current_password: 当前密码
         password: 密码
         password_confirmation: 确认密码
         is_admin: 超级用户

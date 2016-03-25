@@ -272,7 +272,8 @@ Rails.application.routes.draw do
   resources :warehouse_types
   resources :units
   resources :equipment_categories
-  devise_for :users, controllers: {registrations: "registrations" }
+
+  devise_for :users
 
   resources :roles
 
@@ -281,6 +282,10 @@ Rails.application.routes.draw do
   resources :users do
     member do
       put :update_default_attr
+    end
+    collection do
+      get :edit_password
+      put :update_password
     end
   end
 

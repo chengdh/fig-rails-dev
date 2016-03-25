@@ -4,17 +4,19 @@ class User < ActiveRecord::Base
   attr_accessor :login
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable,:rememberable
+  #:recoverable, , :trackable, :validatable
 
   validates :username,presence: true,uniqueness: {case_sensitive: false}
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   belongs_to :default_org,class_name: "Org"
   belongs_to :default_role,class_name: "Role"
   has_many :user_roles,dependent: :destroy
-  has_many :roles,through: :user_roles
+  has_many :selected_user_roles, -> {where(is_select: true)},dependent: :destroy,class_name: "UserRole"
+  has_many :roles,through: :selected_user_roles
   has_many :user_orgs,-> {includes(:org)},dependent: :destroy
-  has_many :orgs,through: :user_orgs
+  has_many :selected_user_orgs,-> {includes(:org).where(is_select: true)},dependent: :destroy,class_name: "UserOrg"
+  has_many :orgs,through: :selected_user_orgs
   accepts_nested_attributes_for :user_roles,:user_orgs,allow_destroy: true
 
   default_scope -> {includes(:default_role,:default_org)}
@@ -45,12 +47,15 @@ class User < ActiveRecord::Base
 
   #用户当前所属角色
   def current_role
-    default_role || roles.first
+    role = default_role
+    role = roles.first if default_role.blank?
+    role
   end
   def current_org
-    default_org || orgs.first
+    org = default_org
+    org = orgs.first if default_org.blank?
+    org
   end
-
 
   #显示所有部门,包括当前角色具备与不具备的部门
   def all_user_roles!
