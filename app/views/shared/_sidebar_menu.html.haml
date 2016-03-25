@@ -3,7 +3,7 @@
     %li.header
       %h4 功能菜单
       - current_user.current_role.system_function_groups.each do |f_group,functions|
-        %li.treeview
+        %li.treeview{"data-func-group-id" => f_group.id}
           %a{:href => "#"}
             %i.fa.fa-dashboard
             %span= f_group.name
@@ -11,7 +11,7 @@
 
           %ul.treeview-menu
             - functions.each do |f|
-              %li
+              %li{"data-func-id" => f.id}
                 = link_to instance_eval(f.default_action) do
                   %i.fa.fa-circle-o
                   = f.name

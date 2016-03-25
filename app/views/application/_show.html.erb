@@ -1,5 +1,11 @@
 <%= show_for resource do |a| %>
-  <% show_view_columns.each do |column| %>
-    <%= a.attribute column %>
-  <% end %>
+  <table class="table table-condensed table-hover table-sripped table-bordered">
+    <% show_view_columns.each do |column| %>
+      <% if not [:id,:created_at,:updated_at].include?(column)%>
+        <tr>
+          <%= a.attribute column,separator: "",wrapper_html: {class: "show-for-wrapper"},wrapper_tag: "tr",content_tag: "td",label_html: {class: "show-for-label"},label_tag: "th"%>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
 <%end%>

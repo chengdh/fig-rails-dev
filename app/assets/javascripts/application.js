@@ -24,8 +24,10 @@
 //= require notifyjs/dist/notify
 //= require fancybox/source/jquery.fancybox
 //= require jquery-load-template/dist/jquery.loadTemplate-1.5.6
+//= require jquery-cookie/src/js.cookie
 //= require common
 //= require orgs
 //= require equipment
 //= require inout_bills
 //= require salary_tables
+//= require roles
