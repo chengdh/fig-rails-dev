@@ -36,4 +36,9 @@ class Assessment < ActiveRecord::Base
       k_planb_doc_marks - k_meeting_marks- k_hidden_danger_marks - k_big_hidden_danger_marks -
       k_big_accident_marks - k_punishment_marks
   end
+
+  #自动生成考评表
+  #每月3号生成上月
+  def self.auto_generate(mth,org_id)
+  end
 end
