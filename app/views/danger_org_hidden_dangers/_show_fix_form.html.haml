@@ -1,0 +1,12 @@
+= semantic_form_for resource,url: {action: :fix},method: :patch,html: {id: "fix_hidden_danger_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  %table.table.table-condensed.table-bordered
+    %tr
+      %td{colspan: 2}
+        = f.input :fixed_note,label: false,input_html: {placeholder: "请录入整改情况说明",class: "input-sm",cols: 5,rows: 3}
+    %tr
+      %td
+        = f.input :fix_photo_1,as: :file,label: "整改图片",input_html: {accept: 'image/png,image/gif,image/jpeg' }
+      %td
+        = f.input :fix_photo_2,as: :file,label: "整改图片",input_html: {accept: 'image/png,image/gif,image/jpeg' }
+

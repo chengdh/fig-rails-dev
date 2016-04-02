@@ -3,9 +3,14 @@
     = link_to deliver_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定要下发吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "下发数据" do
       %i.fa.fa-clock-o{style: "color : blue;"}
   - if can? :review,resource
-    = link_to review_ok_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定该隐患复查合格吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "复查合格" do
+    = link_to show_review_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "隐患复查" do
       %i.fa.fa-check
-
-  - if can? :review,resource
-    = link_to review_reject_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定该隐患复查不合格吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "复查不合格" do
-      %i.fa.fa-ban{style: "color : red;"}
+<!--整改确认按钮-->
+- if ["show_review"].include?(params[:action]) and can? :review,resource
+  = link_to "#",:class => "btn btn-default btn-submit-form",
+    "data-toggle" => "tooltip",
+    "data-placement" => "top",
+    "data-confirm" => "你确定保存复查信息吗?",
+    "data-form-id" => "review_hidden_danger_form",
+    :title => "保存复查信息" do
+    %i.fa.fa-save

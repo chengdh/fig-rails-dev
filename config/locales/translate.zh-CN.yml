@@ -94,6 +94,7 @@ zh-CN:
         is_active: 有效
       org:
         name: 机构名称
+        code: 编码
         address: 地址
         parent_id: 上级机构
         parent: 上级机构
@@ -372,22 +373,37 @@ zh-CN:
         check_date: 审核日期
 
       hidden_danger:
+        org_id: 检查单位
+        org: 检查单位
         danger_org_id: 隐患部门
         danger_org: 隐患部门
         name: 隐患名称
         danger_date: 发现隐患时间
         fix_period: 整改期限
         fix_period_des: 整改期限
-        fixed_state: 整改情况
-        fixed_state_des: 整改情况
+        fixed_state: 隐患整改状态
+        fixed_state_des: 隐患整改状态
         fixed_date: 整改上报时间
         fixer_id: 上报人
         fixer: 上报人
-        review_date: 复查时间
-        reviewer_id: 复查人
-        reviewer: 复查人
+        review_date: 审批时间
+        reviewer_id: 审批人
+        reviewer: 审批人
         review_state: 复查结果
         review_state_des: 复查结果
+        is_big: 属重大隐患
+        fixed_note: 整改情况说明
+        review_note: 复查说明
+        bill_no: 隐患编号
+        checker_name: 复查人
+        check_date: 复查时间
+        k_marks: 扣分情况
+        note: 整改说明及意见建议
+        review_count: 复查次数
+        postponement_days: 延期天数
+        postponement_oper_id: 延期操作人
+        postponement_date: 延期操作时间
+        postponement_note: 延期说明
 
       task:
         task_date: 任务日期
@@ -428,6 +444,7 @@ zh-CN:
         punish_date: 处罚时间
 
       assessment:
+        org: 检查单位
         k_safety_table_marks: 安全工作月报扣分
         k_accident_marks: 事故报告扣分
         k_training_marks: 教育培训扣分

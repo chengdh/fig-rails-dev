@@ -1,0 +1,17 @@
+= semantic_form_for resource,url: {action: :review},method: :patch,html: {id: "review_hidden_danger_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  %table.table.table-condensed.table-bordered
+    %tr
+      %th 复查人
+      %td
+        = f.input :checker_name,label: false,input_html: {class: "input-sm"}
+      %th 复查时间
+      %td
+        = f.input :check_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
+          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 200px;"}
+      %th 复查结果
+      %td
+        = f.input :review_state,as: :select,label: false,collection: review_states_for_select,include_blank: false,input_html: {class: "input-sm"}
+    %tr
+      %td{colspan: 6}
+        = f.input :review_note,label: false,input_html: {placeholder: "请录入复查情况说明",class: "input-sm",cols: 5,rows: 3}

@@ -9,6 +9,31 @@
     - if self.respond_to?("search_#{controller_name.tableize}_path")
       = render :partial => 'toolbar_search'
 
+  /整改确认按钮
   - if ["show"].include?(params[:action]) and can? :fix,resource
-    = link_to fix_danger_org_hidden_danger_path(resource),:method => :patch,"data-confirm" => "你确定整改完成吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "整改完成" do
+    = link_to show_fix_danger_org_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "录入整改信息" do
       %i.fa.fa-send-o
+
+  /延期操作
+  - if ["show"].include?(params[:action]) and can? :postponement,resource
+    = link_to show_postponement_danger_org_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "延期操作" do
+      %i.fa.fa-calendar
+
+  /整改确认按钮
+  - if ["show_fix"].include?(params[:action]) and can? :fix,resource
+    = link_to "#",:class => "btn btn-default btn-submit-form",
+      "data-toggle" => "tooltip",
+      "data-placement" => "top",
+      "data-confirm" => "你确定整改完成吗?",
+      "data-form-id" => "fix_hidden_danger_form",
+      :title => "保存整改情况" do
+      %i.fa.fa-save
+
+  - if ["show_postponement"].include?(params[:action]) and can? :postponement,resource
+    = link_to "#",:class => "btn btn-default btn-submit-form",
+      "data-toggle" => "tooltip",
+      "data-placement" => "top",
+      "data-confirm" => "你确定要延期吗?",
+      "data-form-id" => "postponement_hidden_danger_form",
+      :title => "保存延期信息" do
+      %i.fa.fa-save

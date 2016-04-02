@@ -1,39 +1,106 @@
 %table#hidden_danger_table.table.table-condensed.table-bordered
   %tr
-    %th 下发部门
+    %td{colspan: 8,style: "text-align: right;"}
+      %span{class: resource.fixed_state_class}
+        = resource.fixed_state_des
+  %tr
+    %th 隐患下达单位
     %td= resource.org
-    %th 接收部门
+    %th 隐患接收单位
     %td= resource.danger_org
+    %th 下发人
+    %td= resource.deliver
+    %th 隐患编号
+    %td= resource.bill_no
+  
+
+  %tr
     %th 录入时间
     %td= resource.table_date
   %tr
     %th 隐患名称
-    %td{:colspan => 6}= resource.name
+    %td{:colspan => 5}= resource.name
+    %th 隐患类型
+    %td{style: "text-align: right;"}
+      - if resource.is_big?
+        %span.label.label-danger
+          = resource.categ_des
+      - else
+        = resource.categ_des
   %tr
     %th 发现隐患时间
     %td= resource.danger_date
+    %th 下达隐患时间
+    %td= resource.deliver_date
     %th 整改期限
     %td= resource.fix_period_des
+    %th 整改截至时间
+    %td= resource.expire_fix_date
   %tr
-    %th 下发时间
-    %td= resource.try(:deliver_date)
-    %th 下发人
-    %td= resource.try(:deliver).try(:real_name)
-    %td
-    %td
+    %th 整改说明及建议
+    %td{colspan: 7}= resource.note
+  %tr
+    %td{colspan: 8}
+      .row
+        .col-md-2
+          - if resource.photo_1.present?
+            = link_to resource.photo_1.url(:medium),class: "thumbnail fancybox" do
+              = image_tag resource.photo_1.url(:thumb)
+        .col-md-2
+          - if resource.photo_2.present?
+            = link_to resource.photo_2.url(:medium),class: "thumbnail fancybox" do
+              = image_tag resource.photo_2.url(:thumb)
 
-  %tr
-    %th 整改上报时间
-    %td= resource.try(:fix_date)
-    %th 上报人
-    %td= resource.try(:fixer).try(:real_name)
-    %td 整改状态
-    %td= resource.try(:fixed_state_des)
 
-  %tr
-    %th 复查时间
-    %td= resource.try(:fix_date)
-    %th 复查人
-    %td= resource.try(:reviewer).try(:real_name)
-    %td 复查状态
-    %td= resource.try(:review_state_des)
+  - if ["fixed"].include?(resource.fixed_state)
+    %tr
+      %th 整改上报时间
+      %td= resource.try(:fixed_date)
+      %th 上报人
+      %td= resource.try(:fixer).try(:real_name)
+      %th 整改情况
+      %td= resource.fix_result
+      - if resource.postponement_days > 0
+        %td 申请延期时间
+        %td= resource.try(:postponement_days)
+      - else
+        %td
+        %td
+    %tr
+      %th 整改情况说明
+      %td{colspan: 7}= resource.fixed_note
+    %tr
+      %td{colspan: 8}
+        .row
+          .col-md-2
+            - if resource.fixed_photo_1.present?
+              = link_to resource.fixed_photo_1.url(:medium),class: "thumbnail fancybox" do
+                = image_tag resource.fixed_photo_1.url(:thumb)
+
+            .col-md-2
+              - if resource.fixed_photo_2.present?
+                = link_to resource.fixed_photo_2.url(:medium),class: "thumbnail fancybox" do
+                  = image_tag resource.fixed_photo_2.url(:thumb)
+
+
+  - if ["review_ok","review_reject"].include?(resource.review_state)
+    %tr
+      %th 复查时间
+      %td= resource.try(:check_date)
+      %th 复查人
+      %td= resource.try(:checker_name)
+      %td{rowspan: 2,style: "vertical-align: middle;"} 复查结果
+      %td{rowspan: 2,style: "vertical-align: middle;"}
+        %span{class: resource.review_state_class}
+          = resource.try(:review_state_des)
+      %td{rowspan: 2,style: "vertical-align: middle;"} 扣分情况
+      %td{rowspan: 2,style: "vertical-align: middle;"}= resource.try(:k_marks)
+
+    %tr
+      %th 审批时间
+      %td= resource.try(:review_date)
+      %th 审批人
+      %td= resource.try(:reviewer).try(:name)
+    %tr
+      %th 复查说明
+      %td{colspan: 7}= resource.try(:review_note)

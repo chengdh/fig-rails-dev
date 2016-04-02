@@ -47,9 +47,6 @@ class Ability
     alias_action :export_excel,:to => :export
     alias_action :before_new,:to => :create
 
-    #隐患复查
-    alias_action :review_ok,:review_reject,:to => :review
-
     #task 任务反馈
     alias_action :show_line,:to => :save_line
     #设备出入库确认
@@ -80,8 +77,11 @@ class Ability
 
     #事故隐患整改
     can [:read],HiddenDanger if can? :review,HiddenDanger
+    can [:show_review],HiddenDanger if can? :review,HiddenDanger
     can [:read],HiddenDanger if can? :deliver,HiddenDanger
     can [:read],HiddenDanger if can? :fix,HiddenDanger
+    can [:show_fix],HiddenDanger if can? :fix,HiddenDanger
+    can [:show_postponement],HiddenDanger if can? :postponement,HiddenDanger
     #任务
     can [:read],Task if can? :deliver,Task
     can [:read],Task if can? :confirm,Task

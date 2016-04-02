@@ -1,0 +1,4 @@
+= semantic_form_for resource,url: {action: :postponement},method: :patch,html: {id: "postponement_hidden_danger_form"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.input :postponement_days,as: :select,collection: postponement_periods_for_select,include_blank: false,input_html: {class: "input-sm"}
+  = f.input :postponement_note,input_html: {placeholder: "延期说明",class: "input-sm",rows: 2,cols: 3}

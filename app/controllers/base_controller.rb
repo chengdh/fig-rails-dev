@@ -7,7 +7,7 @@ class BaseController < InheritedResources::Base
   respond_to :html,:xml,:js,:json,:csv
 
   def search
-    @q = resource_class.ransack(params[:q])
+    @q =resource_class.ransack(params[:q])
     render partial: "search"
   end
 

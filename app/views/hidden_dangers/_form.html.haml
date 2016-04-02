@@ -1,12 +1,17 @@
-= semantic_form_for resource,html: {id: "hidden_danger_form"} do |f|
+= semantic_form_for resource,html: {multipart: true,id: "hidden_danger_form"} do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
-  = f.input :table_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 30%;"}
+  = f.inputs do
+    = f.input :table_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 200px;"}
 
-  = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
-  = f.input :danger_org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
-  = f.input :table_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 30%;"}
-  = f.input :name,input_html: {class: "input-sm",style: "width : 80%"}
-  = f.input :fix_period,as: :select,collection: fix_periods_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :danger_org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :danger_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 200px;"}
+    = f.input :is_big,as: :boolean,label: false
+    = f.input :name,input_html: {class: "input-sm",style: "width : 80%"}
+    = f.input :note,label: false,input_html: {placeholder: "整改说明及意见建议",class: "input-sm",rows: 3,cols: 4}
+    = f.input :fix_period,as: :select,collection: fix_periods_for_select,include_blank: false,input_html: {class: "input-sm",style: "width : 30%;"}
+    = f.input :photo_1,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+    = f.input :photo_2,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}

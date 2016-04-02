@@ -11,15 +11,14 @@
  * file per style scope.
  *
  */
-@import "font-awesome";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "formtastic";
 @import "formtastic-bootstrap";
 @import "bootstrap-datepicker3";
 @import "jquery-orgchart/jquery.orgchart";
 @import "AdminLTE";
 @import "admin-lte/dist/css/skins/_all-skins.min";
 @import "fancybox/source/jquery.fancybox";
+@import "font-awesome";
 @import "fancybox_override";
 @import "override"

@@ -8,22 +8,51 @@ class DangerOrgHiddenDangersController < HiddenDangersController
   skip_load_and_authorize_resource :only => [:index,:search]
   #load_and_authorize_resource :training
   table :org,:danger_org,:name,:danger_date,:fix_period_des,:fixed_state_des,:review_date,:review_state_des
+
+  #GET danger_org_hidden_dangers/:id/show_fix
+  #显示整改界面
+  def show_fix ; end
   #PATCH danger_org_hidden_dangers/:id/fix
   #PATCH danger_org_hidden_dangers/:id/fix.json
   def fix
     @hidden_danger = HiddenDanger.find(params[:id])
-    if @hidden_danger.update_attributes(fixed_state: "fixed",fixer: current_user,fixed_date: Date.today)
+    #判断是否超期
+    if @hidden_danger.fix(current_user,hidden_danger_params)
       flash[:success] = "数据更新成功!"
     else
       flash[:success] = "数据更新失败!"
     end
     redirect_to danger_org_hidden_danger_path(@hidden_danger)
   end
+
+  #GET danger_org_hidden_dangers/:id/show_postponement
+  #GET danger_org_hidden_dangers/:id/show_postponement.json
+  #显示延期界面
+  def show_postponement ; end
+  #PATCH danger_org_hidden_dangers/:id/postponement
+  #PATCH danger_org_hidden_dangers/:id/postponement.json
+  #延期
+  def postponement
+    @hidden_danger = HiddenDanger.find(params[:id])
+    if @hidden_danger.postponement(current_user,hidden_danger_params)
+      flash[:success] = "延期操作成功!"
+    else
+      flash[:success] = "延期操作失败!"
+    end
+    redirect_to danger_org_hidden_danger_path(@hidden_danger)
+  end
   protected
   def collection
-    @q= end_of_association_chain.where(danger_org_id: current_ability_org_ids,fixed_state: ["deliveried","fixed","processing"]).ransack(params[:q])
+    @q= end_of_association_chain.where(danger_org_id: current_user.current_org.id,fixed_state: ["deliveried","fixed","processing"]).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
+  private
 
-
+  def hidden_danger_params
+    params.require(:hidden_danger).permit(:org_id, :danger_org_id, :parent_id, :name, :danger_date,
+                                          :fix_period, :fixed_state, :fixed_date, :fixer_id, :review_date,
+                                          :review_state, :reviewer_id,:checker_name,:check_date, :note,
+                                          :postponement_oper_id,:postponement_days,:postponement_date,:postponement_note,
+                                          :fixed_note,:review_note)
+  end
 end

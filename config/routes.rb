@@ -115,7 +115,10 @@ Rails.application.routes.draw do
   resources :task_categories
   resources :danger_org_hidden_dangers do
     member do
+      get :show_fix
       patch :fix
+      get :show_postponement
+      patch :postponement
     end
     collection do
       get :search
@@ -126,8 +129,8 @@ Rails.application.routes.draw do
   resources :hidden_dangers do
     member do
       patch :deliver
-      patch :review_ok
-      patch :review_reject
+      patch :review
+      get :show_review
     end
     collection do
       get :search

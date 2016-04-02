@@ -1,0 +1,18 @@
+<!-- Content Header (Page header) -->
+%section.content-header
+  %h3=  "隐患整改"
+
+<!-- Main content -->
+%section.content
+  <!-- Info boxes -->
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .box.box-primary
+        .box-header
+          %h3.box-title
+            = render "dynamic_toolbar"
+
+        .box-body
+          %div{:id => "#{resource_class.name.underscore}_form_wrap"}
+            = render "hidden_dangers/show"
+            = render "show_fix_form"

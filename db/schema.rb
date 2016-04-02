@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324005045) do
+ActiveRecord::Schema.define(version: 20160402091131) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -210,25 +210,85 @@ ActiveRecord::Schema.define(version: 20160324005045) do
   add_index "fire_fighting_equipments", ["user_id"], name: "index_fire_fighting_equipments_on_user_id", using: :btree
 
   create_table "hidden_dangers", force: :cascade do |t|
-    t.integer  "org_id",        limit: 4,                       null: false
-    t.integer  "user_id",       limit: 4,                       null: false
-    t.integer  "deliver_id",    limit: 4
+    t.integer  "org_id",                     limit: 4,                                                null: false
+    t.integer  "user_id",                    limit: 4,                                                null: false
+    t.integer  "deliver_id",                 limit: 4
     t.date     "deliver_date"
-    t.date     "table_date",                                    null: false
-    t.integer  "danger_org_id", limit: 4,                       null: false
-    t.integer  "parent_id",     limit: 4
-    t.string   "name",          limit: 60,                      null: false
-    t.date     "danger_date",                                   null: false
-    t.integer  "fix_period",    limit: 4,                       null: false
-    t.string   "fixed_state",   limit: 30,    default: "draft", null: false
+    t.date     "table_date",                                                                          null: false
+    t.integer  "danger_org_id",              limit: 4,                                                null: false
+    t.integer  "parent_id",                  limit: 4
+    t.string   "name",                       limit: 60,                                               null: false
+    t.date     "danger_date",                                                                         null: false
+    t.integer  "fix_period",                 limit: 4,                                                null: false
+    t.string   "fixed_state",                limit: 30,                             default: "draft", null: false
     t.date     "fixed_date"
-    t.integer  "fixer_id",      limit: 4
+    t.integer  "fixer_id",                   limit: 4
     t.date     "review_date"
-    t.string   "review_state",  limit: 255,   default: "draft", null: false
-    t.integer  "reviewer_id",   limit: 4
-    t.text     "note",          limit: 65535
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.string   "review_state",               limit: 255,                            default: "draft", null: false
+    t.integer  "reviewer_id",                limit: 4
+    t.text     "note",                       limit: 65535
+    t.datetime "created_at",                                                                          null: false
+    t.datetime "updated_at",                                                                          null: false
+    t.boolean  "is_big",                     limit: 1,                              default: false
+    t.text     "fixed_note",                 limit: 65535
+    t.text     "review_note",                limit: 65535
+    t.string   "bill_no",                    limit: 255,                                              null: false
+    t.string   "checker_name",               limit: 30
+    t.date     "check_date"
+    t.decimal  "k_marks",                                  precision: 15, scale: 2, default: 0.0
+    t.string   "photo_1_file_name",          limit: 255
+    t.string   "photo_1_content_type",       limit: 255
+    t.integer  "photo_1_file_size",          limit: 4
+    t.datetime "photo_1_updated_at"
+    t.string   "photo_2_file_name",          limit: 255
+    t.string   "photo_2_content_type",       limit: 255
+    t.integer  "photo_2_file_size",          limit: 4
+    t.datetime "photo_2_updated_at"
+    t.string   "photo_3_file_name",          limit: 255
+    t.string   "photo_3_content_type",       limit: 255
+    t.integer  "photo_3_file_size",          limit: 4
+    t.datetime "photo_3_updated_at"
+    t.string   "photo_4_file_name",          limit: 255
+    t.string   "photo_4_content_type",       limit: 255
+    t.integer  "photo_4_file_size",          limit: 4
+    t.datetime "photo_4_updated_at"
+    t.string   "photo_5_file_name",          limit: 255
+    t.string   "photo_5_content_type",       limit: 255
+    t.integer  "photo_5_file_size",          limit: 4
+    t.datetime "photo_5_updated_at"
+    t.string   "photo_6_file_name",          limit: 255
+    t.string   "photo_6_content_type",       limit: 255
+    t.integer  "photo_6_file_size",          limit: 4
+    t.datetime "photo_6_updated_at"
+    t.string   "fixed_photo_1_file_name",    limit: 255
+    t.string   "fixed_photo_1_content_type", limit: 255
+    t.integer  "fixed_photo_1_file_size",    limit: 4
+    t.datetime "fixed_photo_1_updated_at"
+    t.string   "fixed_photo_2_file_name",    limit: 255
+    t.string   "fixed_photo_2_content_type", limit: 255
+    t.integer  "fixed_photo_2_file_size",    limit: 4
+    t.datetime "fixed_photo_2_updated_at"
+    t.string   "fixed_photo_3_file_name",    limit: 255
+    t.string   "fixed_photo_3_content_type", limit: 255
+    t.integer  "fixed_photo_3_file_size",    limit: 4
+    t.datetime "fixed_photo_3_updated_at"
+    t.string   "fixed_photo_4_file_name",    limit: 255
+    t.string   "fixed_photo_4_content_type", limit: 255
+    t.integer  "fixed_photo_4_file_size",    limit: 4
+    t.datetime "fixed_photo_4_updated_at"
+    t.string   "fixed_photo_5_file_name",    limit: 255
+    t.string   "fixed_photo_5_content_type", limit: 255
+    t.integer  "fixed_photo_5_file_size",    limit: 4
+    t.datetime "fixed_photo_5_updated_at"
+    t.string   "fixed_photo_6_file_name",    limit: 255
+    t.string   "fixed_photo_6_content_type", limit: 255
+    t.integer  "fixed_photo_6_file_size",    limit: 4
+    t.datetime "fixed_photo_6_updated_at"
+    t.integer  "review_count",               limit: 4,                              default: 0
+    t.integer  "postponement_days",          limit: 4,                              default: 0
+    t.integer  "postponement_oper_id",       limit: 4
+    t.string   "postponement_date",          limit: 255
+    t.text     "postponement_note",          limit: 65535
   end
 
   add_index "hidden_dangers", ["danger_org_id"], name: "index_hidden_dangers_on_danger_org_id", using: :btree
@@ -371,6 +431,7 @@ ActiveRecord::Schema.define(version: 20160324005045) do
     t.string   "manager",    limit: 30
     t.string   "phone",      limit: 30
     t.string   "email",      limit: 30
+    t.string   "code",       limit: 30
   end
 
   create_table "planb_docs", force: :cascade do |t|
