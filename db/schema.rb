@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402091131) do
+ActiveRecord::Schema.define(version: 20160404022022) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -55,29 +55,30 @@ ActiveRecord::Schema.define(version: 20160402091131) do
 
   create_table "assessments", force: :cascade do |t|
     t.integer  "org_id",                    limit: 4
-    t.date     "table_date",                                                null: false
-    t.string   "mth",                       limit: 20,                      null: false
-    t.string   "check_state",               limit: 30,    default: "draft", null: false
-    t.integer  "user_id",                   limit: 4,                       null: false
+    t.date     "table_date",                                                                         null: false
+    t.string   "mth",                       limit: 20,                                               null: false
+    t.string   "check_state",               limit: 30,                             default: "draft", null: false
+    t.integer  "user_id",                   limit: 4,                                                null: false
     t.integer  "submiter_id",               limit: 4
     t.integer  "submit_date",               limit: 4
     t.integer  "checker_id",                limit: 4
     t.date     "check_date"
     t.string   "check_opinion",             limit: 60
-    t.string   "name",                      limit: 60,                      null: false
+    t.string   "name",                      limit: 60,                                               null: false
     t.text     "note",                      limit: 65535
-    t.integer  "k_safety_table_marks",      limit: 4,     default: 0
-    t.integer  "k_accident_marks",          limit: 4,     default: 0
-    t.integer  "k_training_marks",          limit: 4,     default: 0
-    t.integer  "k_planb_doc_marks",         limit: 4,     default: 0
-    t.integer  "k_meeting_marks",           limit: 4,     default: 0
-    t.integer  "k_hidden_danger_marks",     limit: 4,     default: 0
-    t.integer  "k_big_hidden_danger_marks", limit: 4,     default: 0
-    t.integer  "k_big_accident_marks",      limit: 4,     default: 0
-    t.integer  "k_punishment_marks",        limit: 4,     default: 0
-    t.integer  "reward_marks",              limit: 4,     default: 0
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.integer  "k_safety_table_marks",      limit: 4,                              default: 0
+    t.integer  "k_accident_marks",          limit: 4,                              default: 0
+    t.integer  "k_training_marks",          limit: 4,                              default: 0
+    t.integer  "k_planb_doc_marks",         limit: 4,                              default: 0
+    t.integer  "k_meeting_marks",           limit: 4,                              default: 0
+    t.integer  "k_hidden_danger_marks",     limit: 4,                              default: 0
+    t.integer  "k_big_hidden_danger_marks", limit: 4,                              default: 0
+    t.integer  "k_big_accident_marks",      limit: 4,                              default: 0
+    t.integer  "k_punishment_marks",        limit: 4,                              default: 0
+    t.integer  "reward_marks",              limit: 4,                              default: 0
+    t.datetime "created_at",                                                                         null: false
+    t.datetime "updated_at",                                                                         null: false
+    t.decimal  "k_files_marks",                           precision: 10, scale: 2, default: 0.0
   end
 
   add_index "assessments", ["org_id"], name: "index_assessments_on_org_id", using: :btree

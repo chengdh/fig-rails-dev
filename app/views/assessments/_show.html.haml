@@ -17,32 +17,21 @@
     %td{:colspan => 6}
       = resource.note
   %tr
-    %th 安全工作月报扣分
-    %th 事故报告扣分
-    %th 教育培训扣分
-    %th 应急演练扣分
     %th 安委会会议扣分
-    %th 事故隐患扣分
+    %th 工作及事故报报扣分
+    %th 教育培训扣分
+    %th 演练评审扣分
+    %th 档案及台帐记录扣分
+    %th 安全检查及事故隐患扣分
   %tr
+    %td= resource.k_meeting_marks
     %td= resource.k_safety_table_marks
-    %td= resource.k_accident_marks
     %td= resource.k_training_marks
     %td= resource.k_planb_doc_marks
-    %td= resource.k_meeting_marks
+    %td= resource.k_files_marks
     %td= resource.k_hidden_danger_marks
   %tr
-    %th 较大安全隐患扣分
-    %th 重大事故扣分
-    %th 处罚扣分
-    %th 奖励分
     %th 实际得分
-    %th
-  %tr
-    %td= resource.k_big_hidden_danger_marks
-    %td= resource.k_big_accident_marks
-    %td= resource.k_punishment_marks
-    %td= resource.reward_marks
-    %td
-      %label.label-primary
+    %td{colspan: 5}
+      %label.label-warning
         = resource.sum_marks
-    %td
