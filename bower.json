@@ -21,7 +21,7 @@
     "toastr": "https://github.com/CodeSeven/toastr.git",
     "fancybox": "https://github.com/fancyapps/fancyBox.git",
     "twbs-pagination": "https://github.com/esimakin/twbs-pagination.git",
-    "jquery-load-template": "https://github.com/codepb/jquery-template.git",
+    "jquery-load-template": "https://github.com/codepb/jquery-template.git#1.5.6",
     "admin-lte": "https://github.com/almasaeed2010/AdminLTE.git",
     "jquery-orgchart": "https://github.com/caprica/jquery-orgchart.git",
     "zTree": "https://git.oschina.net/zTree/zTree_v3.git",
