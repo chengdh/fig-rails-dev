@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404022022) do
+ActiveRecord::Schema.define(version: 20160405084403) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -857,6 +857,7 @@ ActiveRecord::Schema.define(version: 20160404022022) do
     t.text     "default_action",           limit: 65535
     t.datetime "created_at",                                            null: false
     t.datetime "updated_at",                                            null: false
+    t.string   "target",                   limit: 30
   end
 
   add_index "system_functions", ["system_function_group_id"], name: "index_system_functions_on_system_function_group_id", using: :btree
@@ -1102,6 +1103,18 @@ ActiveRecord::Schema.define(version: 20160404022022) do
 
   add_index "warehouses", ["org_id"], name: "index_warehouses_on_org_id", using: :btree
   add_index "warehouses", ["warehouse_type_id"], name: "index_warehouses_on_warehouse_type_id", using: :btree
+
+  create_table "websites", force: :cascade do |t|
+    t.string   "name",        limit: 60
+    t.string   "home_url",    limit: 255
+    t.string   "backend_url", limit: 255
+    t.boolean  "is_active",   limit: 1,     default: true
+    t.text     "note",        limit: 65535
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "username",    limit: 60
+    t.string   "password",    limit: 60
+  end
 
   add_foreign_key "employees", "orgs"
   add_foreign_key "equipment_categories", "orgs"
