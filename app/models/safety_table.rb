@@ -24,7 +24,7 @@ class SafetyTable < ActiveRecord::Base
     if q.result.count() > 0
       ret = q.result.sum("third_edu_persons") / q.result.sum("third_edu_persons/(third_edu_percent/100)")*100
     end
-    ret
+    ret.round(2)
   end
   #特种教育比例
   def self.special_worker_edu_percent(q)
@@ -32,7 +32,7 @@ class SafetyTable < ActiveRecord::Base
     if q.result.count() > 0
       ret = q.result.sum("special_worker_edu_persons") / q.result.sum("special_worker_edu_persons/(special_worker_edu_percent/100)")*100
     end
-    ret
+    ret.round(2)
   end
   #全员教育比例
   def self.common_edu_percent(q)
@@ -40,7 +40,7 @@ class SafetyTable < ActiveRecord::Base
     if q.result.count() > 0
       ret = q.result.sum("common_edu_persons") / q.result.sum("common_edu_persons/(common_edu_percent/100)")*100
     end
-    ret
+    ret.round(2)
   end
 
 
