@@ -131,9 +131,11 @@ Rails.application.routes.draw do
       patch :deliver
       patch :review
       get :show_review
+      get :export_excel_single
     end
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :check_meetings do

@@ -51,8 +51,8 @@ class DangerOrgHiddenDangersController < HiddenDangersController
   def hidden_danger_params
     params.require(:hidden_danger).permit(:org_id, :danger_org_id, :parent_id, :name, :danger_date,
                                           :fix_period, :fixed_state, :fixed_date, :fixer_id, :review_date,
-                                          :review_state, :reviewer_id,:checker_name,:check_date, :note,
-                                          :postponement_oper_id,:postponement_days,:postponement_date,:postponement_note,
-                                          :fixed_note,:review_note)
+                                          :review_state, :reviewer_id,:checker_name,:check_date, :note,:fixed_note,:review_note,
+                                          :photo_1,:photo_2,:photo_3,:photo_4,:photo_5,:photo_6,
+                                          :fixed_photo_1,:fixed_photo_2,:fixed_photo_3,:fixed_photo_4,:fixed_photo_5,:fixed_photo_6)
   end
 end

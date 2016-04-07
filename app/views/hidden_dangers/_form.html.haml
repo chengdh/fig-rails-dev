@@ -2,9 +2,6 @@
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
   = f.inputs do
-    = f.input :table_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-      "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 200px;"}
-
     = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
     = f.input :danger_org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
     = f.input :danger_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
@@ -15,3 +12,6 @@
     = f.input :fix_period,as: :select,collection: fix_periods_for_select,include_blank: false,input_html: {class: "input-sm",style: "width : 30%;"}
     = f.input :photo_1,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}
     = f.input :photo_2,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+    = f.input :photo_3,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+    = f.input :photo_4,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+    = f.input :photo_5,label: "隐患照片",as: :file,input_html: {accept: 'image/png,image/gif,image/jpeg'}

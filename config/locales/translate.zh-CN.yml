@@ -375,10 +375,12 @@ zh-CN:
       hidden_danger:
         org_id: 检查单位
         org: 检查单位
-        danger_org_id: 隐患部门
-        danger_org: 隐患部门
+        categ_des: 隐患类型
+        danger_org_id: 隐患部门(单位)
+        danger_org: 隐患部门(单位)
         name: 隐患名称
         danger_date: 发现隐患时间
+        deliver_date: 下达隐患整改时间
         fix_period: 整改期限
         fix_period_des: 整改期限
         fixed_state: 隐患整改状态
@@ -386,6 +388,7 @@ zh-CN:
         fixed_date: 整改上报时间
         fixer_id: 上报人
         fixer: 上报人
+        expire_fix_date: 整改截至时间
         review_date: 审批时间
         reviewer_id: 审批人
         reviewer: 审批人

@@ -53,7 +53,6 @@ class HiddenDanger < ActiveRecord::Base
   validates_attachment_content_type :fixed_photo_6, content_type: /\Aimage\/.*\Z/
 
 
-  default_scope {order("danger_date ASC,fixed_state,review_state")}
   #待处理
   scope :waitting_process,->(org_ids){ where(fixed_state: "deliveried",danger_org_id: org_ids)}
   #待复查
@@ -61,6 +60,8 @@ class HiddenDanger < ActiveRecord::Base
   default_value_for(:danger_date) {Date.today}
   default_value_for(:table_date) {Date.today}
   before_create :gen_bill_no
+
+  default_scope {order("deliver_date ASC,org_id,danger_org_id,is_big DESC,fix_period,fixed_state,review_state")}
 
 
   def fix_period_des
@@ -77,8 +78,8 @@ class HiddenDanger < ActiveRecord::Base
     ret = "待整改" if fixed_state.eql?("deliveried")
     ret = "处理中" if fixed_state.eql?("processing")
     ret = "待复查" if fixed_state.eql?("fixed")
-    ret = "整改完成" if review_state.eql?("review_ok") and fixed_state.eql?("fixed")
-    ret = "复查不合格" if review_state.eql?("review_reject") and fixed_state.eql?("fixed")
+    ret = "复查完毕" if (review_state.eql?("review_reject") or review_state.eql?("review_ok")) and fixed_state.eql?("fixed")
+    #ret = "复查不合格" if review_state.eql?("review_reject") and fixed_state.eql?("fixed")
     ret
   end
   #整改情况说明
@@ -103,8 +104,8 @@ class HiddenDanger < ActiveRecord::Base
   end
   def review_state_des
     ret = ""
-    ret = "草稿(未处理)" if review_state.eql?("draft")
-    ret = "待处理" if fixed_state.eql?("fixed")
+    #ret = "草稿(未处理)" if review_state.eql?("draft")
+    #ret = "待处理" if fixed_state.eql?("fixed")
     ret = "合格" if review_state.eql?("review_ok")
     ret = "不合格" if review_state.eql?("review_reject")
     ret
@@ -142,17 +143,46 @@ class HiddenDanger < ActiveRecord::Base
       attrs.merge!(review_state: "review_reject",k_marks: marks)
       ret = update_attributes(attrs)
       #创建新的隐患记录
-      new_hidden_danger = HiddenDanger.new(parent_id: id,
-                                           org_id: org_id,
-                                           danger_org_id: danger_org_id,
-                                           user_id: attrs[:reviewer_id],
-                                           fix_period: fix_period,
-                                           review_count: children.size + 1,
-                                           name: name
-                                          )
+      new_hidden_danger = dup()
+      new_hidden_danger = HiddenDanger.new(attributes.except('id',
+                                                             'photo_1_file_name', 'photo_1_content_type', 'photo_1_file_size', 'photo_1_updated_at',
+                                                             'photo_2_file_name', 'photo_2_content_type', 'photo_2_file_size', 'photo_2_updated_at',
+                                                             'photo_3_file_name', 'photo_3_content_type', 'photo_3_file_size', 'photo_3_updated_at',
+                                                             'photo_4_file_name', 'photo_4_content_type', 'photo_4_file_size', 'photo_4_updated_at',
+                                                             'photo_5_file_name', 'photo_5_content_type', 'photo_5_file_size', 'photo_5_updated_at',
+                                                             'photo_6_file_name', 'photo_6_content_type', 'photo_6_file_size', 'photo_6_updated_at',
+                                                             'fixed_photo_1_file_name', 'fixed_photo_1_content_type', 'fixed_photo_1_file_size', 'fixed_photo_1_updated_at',
+                                                             'fixed_photo_2_file_name', 'fixed_photo_2_content_type', 'fixed_photo_2_file_size', 'fixed_photo_2_updated_at',
+                                                             'fixed_photo_3_file_name', 'fixed_photo_3_content_type', 'fixed_photo_3_file_size', 'fixed_photo_3_updated_at',
+                                                             'fixed_photo_4_file_name', 'fixed_photo_4_content_type', 'fixed_photo_4_file_size', 'fixed_photo_4_updated_at',
+                                                             'fixed_photo_5_file_name', 'fixed_photo_5_content_type', 'fixed_photo_5_file_size', 'fixed_photo_5_updated_at',
+                                                             'fixed_photo_6_file_name', 'fixed_photo_6_content_type', 'fixed_photo_6_file_size', 'fixed_photo_6_updated_at'
+                                                            ))
+      #初始生成,需要判断parent_id,多次复查不合格,就无需判断了
+      new_hidden_danger.parent_id = id if parent_id.blank?
+      new_hidden_danger.deliver_date = Date.today
+      new_hidden_danger.fixed_state = "deliveried"
+      new_hidden_danger.fix_period = 15
+      new_hidden_danger.review_state = 'draft'
+      new_hidden_danger.postponement_days = 0
+      new_hidden_danger.review_count = children.size + 1
+
+      new_hidden_danger.photo_1 = photo_1
+      new_hidden_danger.photo_2 = photo_2
+      new_hidden_danger.photo_3 = photo_3
+      new_hidden_danger.photo_4 = photo_4
+      new_hidden_danger.photo_5 = photo_5
+      new_hidden_danger.photo_6 = photo_6
+
+      new_hidden_danger.fixed_date = nil
+      new_hidden_danger.fixer_id = nil
+      new_hidden_danger.fixed_note = nil
+
+      new_hidden_danger.review_date = nil
+      new_hidden_danger.reviewer_id = nil
+      new_hidden_danger.review_note = nil
+
       ret = new_hidden_danger.save!
-      #下发新的隐患记录
-      ret = new_hidden_danger.update_attributes(fixed_state: "deliveried",deliver_date: Date.today,deliver_id: attrs[:reviewer_id])
     end
     ret
   end
@@ -172,14 +202,14 @@ class HiddenDanger < ActiveRecord::Base
 
   #隐患类型描述
   def categ_des
-    ret = "普通隐患"
-    ret = "重大隐患" if is_big?
+    ret = "一般"
+    ret = "重大" if is_big?
     ret
   end
 
   #整改截至时间
   def expire_fix_date
-    (deliver_date || danger_date) + fix_period.days
+    (deliver_date || danger_date) + fix_period.days + postponement_days.days
   end
   #当年隐患数量
   def this_year_danger_count
@@ -188,7 +218,15 @@ class HiddenDanger < ActiveRecord::Base
   protected
   #年份（2位）+单位代码（2位）+顺序编号（3位）。如2016年发现的桐柏县局第13个事故隐患，即1630013。
   def gen_bill_no
-    self.bill_no = "#{Date.today.year}#{danger_org.try(:code)}#{'%03d' % (this_year_danger_count)}"
+    no = "#{Date.today.year}#{danger_org.try(:code)}#{'%03d' % (this_year_danger_count)}"
+    #判断是否隐患复查不合格生成的
+    if parent_id.present?
+      no = parent.bill_no
+      #附加编号从2开始
+      suf = parent.children.size + 2
+      no = "#{no}-#{suf}"
+    end
+    self.bill_no = no
   end
 
   #计算扣分

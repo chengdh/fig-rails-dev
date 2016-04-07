@@ -18,4 +18,30 @@ class SafetyTable < ActiveRecord::Base
   def sum_safety_check_count
     safety_check_count.to_i+special_safety_check_count.to_i + evening_safety_check_count.to_i
   end
+  #三级教育比例
+  def self.third_edu_percent(q)
+    ret = 0
+    if q.result.count() > 0
+      ret = q.result.sum("third_edu_persons") / q.result.sum("third_edu_persons/(third_edu_percent/100)")*100
+    end
+    ret
+  end
+  #特种教育比例
+  def self.special_worker_edu_percent(q)
+    ret = 0
+    if q.result.count() > 0
+      ret = q.result.sum("special_worker_edu_persons") / q.result.sum("special_worker_edu_persons/(special_worker_edu_percent/100)")*100
+    end
+    ret
+  end
+  #全员教育比例
+  def self.common_edu_percent(q)
+    ret = 0
+    if q.result.count() > 0
+      ret = q.result.sum("common_edu_persons") / q.result.sum("common_edu_persons/(common_edu_percent/100)")*100
+    end
+    ret
+  end
+
+
 end

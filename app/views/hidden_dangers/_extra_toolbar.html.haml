@@ -5,12 +5,20 @@
   - if can? :review,resource
     = link_to show_review_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "隐患复查" do
       %i.fa.fa-check
+  = link_to export_excel_single_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+
 <!--整改确认按钮-->
 - if ["show_review"].include?(params[:action]) and can? :review,resource
   = link_to "#",:class => "btn btn-default btn-submit-form",
     "data-toggle" => "tooltip",
     "data-placement" => "top",
-    "data-confirm" => "你确定保存复查信息吗?",
     "data-form-id" => "review_hidden_danger_form",
     :title => "保存复查信息" do
     %i.fa.fa-save
+
+- if params[:action].eql?("index")
+  = link_to export_excel_hidden_dangers_path(params),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+
+

@@ -51,6 +51,7 @@ class Ability
     alias_action :show_line,:to => :save_line
     #设备出入库确认
     alias_action :read,:to => :confirm
+
   end
   #设置当前用户权限
   def set_user_powers
@@ -100,6 +101,8 @@ class Ability
       conditions = eval(f_obj[:conditions].to_s)
       can action,subject_class,conditions
       can :search,subject_class if can? :read,subject_class
+      can :export_excel,subject_class if can? :read,subject_class
+      can :export_excel_single,subject_class if can? :read,subject_class
     rescue
     end
   end

@@ -4,6 +4,9 @@
       %span{class: resource.fixed_state_class}
         = resource.fixed_state_des
   %tr
+    %th{colspan: 8,style: "text-align: center;background: #3C8DBC;"}
+      隐患下达阶段
+  %tr
     %th 隐患下达单位
     %td= resource.org
     %th 隐患接收单位
@@ -12,11 +15,7 @@
     %td= resource.deliver
     %th 隐患编号
     %td= resource.bill_no
-  
 
-  %tr
-    %th 录入时间
-    %td= resource.table_date
   %tr
     %th 隐患名称
     %td{:colspan => 5}= resource.name
@@ -44,15 +43,37 @@
       .row
         .col-md-2
           - if resource.photo_1.present?
-            = link_to resource.photo_1.url(:medium),class: "thumbnail fancybox" do
-              = image_tag resource.photo_1.url(:thumb)
+            = link_to  asset_url(resource.photo_1.url),class: "thumbnail fancybox" do
+              = image_tag  asset_url(resource.photo_1.url(:thumb))
         .col-md-2
           - if resource.photo_2.present?
-            = link_to resource.photo_2.url(:medium),class: "thumbnail fancybox" do
-              = image_tag resource.photo_2.url(:thumb)
+            = link_to  asset_url(resource.photo_2.url),class: "thumbnail fancybox" do
+              = image_tag  asset_url(resource.photo_2.url(:thumb))
+
+        .col-md-2
+          - if resource.photo_3.present?
+            = link_to  asset_url(resource.photo_3.url),class: "thumbnail fancybox" do
+              = image_tag  asset_url(resource.photo_3.url(:thumb))
+        .col-md-2
+          - if resource.photo_4.present?
+            = link_to  asset_url(resource.photo_4.url),class: "thumbnail fancybox" do
+              = image_tag asset_url(resource.photo_4.url(:thumb))
+        .col-md-2
+          - if resource.photo_5.present?
+            = link_to  asset_url(resource.photo_5.url),class: "thumbnail fancybox" do
+              = image_tag  asset_url(resource.photo_5.url(:thumb))
+        .col-md-2
+          - if resource.photo_6.present?
+            = link_to  asset_url(resource.photo_6.url),class: "thumbnail fancybox" do
+              = image_tag  asset_url(resource.photo_6.url(:thumb))
+
 
 
   - if ["fixed"].include?(resource.fixed_state)
+    %tr
+      %th{colspan: 8,style: "text-align: center;background: #3C8DBC;"}
+        隐患整改阶段
+
     %tr
       %th 整改上报时间
       %td= resource.try(:fixed_date)
@@ -61,8 +82,8 @@
       %th 整改情况
       %td= resource.fix_result
       - if resource.postponement_days > 0
-        %td 申请延期时间
-        %td= resource.try(:postponement_days)
+        %th 申请延期时间
+        %td= "#{resource.try(:postponement_days)}天"
       - else
         %td
         %td
@@ -74,16 +95,37 @@
         .row
           .col-md-2
             - if resource.fixed_photo_1.present?
-              = link_to resource.fixed_photo_1.url(:medium),class: "thumbnail fancybox" do
-                = image_tag resource.fixed_photo_1.url(:thumb)
+              = link_to  asset_url(resource.fixed_photo_1.url),class: "thumbnail fancybox" do
+                = image_tag  asset_url(resource.fixed_photo_1.url(:thumb))
 
-            .col-md-2
-              - if resource.fixed_photo_2.present?
-                = link_to resource.fixed_photo_2.url(:medium),class: "thumbnail fancybox" do
-                  = image_tag resource.fixed_photo_2.url(:thumb)
+          .col-md-2
+            - if resource.fixed_photo_2.present?
+              = link_to  asset_url(resource.fixed_photo_2.url),class: "thumbnail fancybox" do
+                = image_tag  asset_url(resource.fixed_photo_2.url(:thumb))
+          .col-md-2
+            - if resource.fixed_photo_3.present?
+              = link_to  asset_url(resource.fixed_photo_3.url),class: "thumbnail fancybox" do
+                = image_tag  asset_url(resource.fixed_photo_3.url(:thumb))
 
+          .col-md-2
+            - if resource.fixed_photo_4.present?
+              = link_to  asset_url(resource.fixed_photo_4.url),class: "thumbnail fancybox" do
+                = image_tag  asset_url(resource.fixed_photo_4.url(:thumb))
+          .col-md-2
+            - if resource.fixed_photo_5.present?
+              = link_to  asset_url(resource.fixed_photo_5.url),class: "thumbnail fancybox" do
+                = image_tag  asset_url(resource.fixed_photo_5.url(:thumb))
+
+          .col-md-2
+            - if resource.fixed_photo_6.present?
+              = link_to  asset_url(resource.fixed_photo_6.url),class: "thumbnail fancybox" do
+                = image_tag  asset_url(resource.fixed_photo_6.url(:thumb))
 
   - if ["review_ok","review_reject"].include?(resource.review_state)
+    %tr
+      %th{colspan: 8,style: "text-align: center;background: #3C8DBC;"}
+        隐患复查阶段
+
     %tr
       %th 复查时间
       %td= resource.try(:check_date)
@@ -100,7 +142,7 @@
       %th 审批时间
       %td= resource.try(:review_date)
       %th 审批人
-      %td= resource.try(:reviewer).try(:name)
+      %td= resource.try(:reviewer).try(:real_name)
     %tr
       %th 复查说明
       %td{colspan: 7}= resource.try(:review_note)

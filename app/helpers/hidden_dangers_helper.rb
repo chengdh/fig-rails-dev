@@ -5,7 +5,7 @@ module HiddenDangersHelper
   end
   #延期时段选择
   def postponement_periods_for_select
-    [["7天",7],["15日",15]]
+    [["7天",7]]
   end
 
   def fix_states_for_select
