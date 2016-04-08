@@ -6,26 +6,24 @@
     %tr
       %th 填报单位:
       %th= resource.org.name
-      %th
       %th 填报年月:
       %th= resource.mth
       %th
       %th
-      %th
-      %th
-      %th
-      %th
-      %th
+      -# %th
+      -# %th
+      -# %th
+      -# %th
     %tr
       %th{:rowspan => 2}
-      %th{:colspan => 5} 工业
+      -# %th{:colspan => 5} 工业
       %th{:colspan => 5} 商业
     %tr
-      %th 事故次数
-      %th 死亡(人)
-      %th 受重伤(人)
-      %th 直接经济损失(万元)
-      %th 备注
+      -# %th 事故次数
+      -# %th 死亡(人)
+      -# %th 受重伤(人)
+      -# %th 直接经济损失(万元)
+      -# %th 备注
       %th 事故次数
       %th 死亡(人)
       %th 受重伤(人)
@@ -36,16 +34,16 @@
       %tr
         %th
           = accident.accident_type.name
-        %td
-          = accident.industry_accident_count == 0 ? "" : accident.industry_accident_count
-        %td
-          = accident.industry_die_persons == 0 ? "" : accident.industry_die_persons 
-        %td
-          = accident.industry_wounded_persons == 0 ? "" : accident.industry_wounded_persons 
-        %td
-          = accident.industry_economic_losses == 0 ? "" : accident.industry_economic_losses 
-        %td
-          = accident.industry_note
+        -# %td
+        -#   = accident.industry_accident_count == 0 ? "" : accident.industry_accident_count
+        -# %td
+        -#   = accident.industry_die_persons == 0 ? "" : accident.industry_die_persons 
+        -# %td
+        -#   = accident.industry_wounded_persons == 0 ? "" : accident.industry_wounded_persons 
+        -# %td
+        -#   = accident.industry_economic_losses == 0 ? "" : accident.industry_economic_losses 
+        -# %td
+        -#   = accident.industry_note
         %td
           = accident.commerical_accident_count == 0 ? "" : accident.commerical_accident_count
         %td
