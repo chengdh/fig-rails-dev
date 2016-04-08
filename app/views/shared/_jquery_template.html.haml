@@ -20,24 +20,40 @@
     %td
       %input{type: "hidden","data-value" => "equipment_id",class: "equipment_id"}
       %span{class:"name","data-content" => "name"}
-    %td
-      %span{class: "equipment_category_name","data-content" => "equipment_category_name"}
+
     %td{style: "text-align : center;"}
       %span{class: "unit_name","data-content" => "unit_name"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "no form-control input-sm"}
+
     %td
-      %span{class: "factory_name","data-content" => "factory_name"}
+      %input{type: "text",style: "width : 100px;",class: "brand form-control input-sm","data-value" => "factory_name"}
+
     %td
-      %span{class: "model","data-content" => "model"}
+      %input{type: "text",style: "width : 100px;",class: "model form-control input-sm","data-value" => "model"}
+
     %td{style: "text-align : center;"}
-      %input{type: "text",style: "width : 50px;",class: "price form-control input-sm","data-value" => "purchase_price"}
+      %input{type: "text",style: "width : 100px;",class: "purchase_date form-control input-sm","data-provide" => "datepicker","data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",readonly: true,"data-value" => "purchase_price"}
+
+    %td
+      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "form-control input-sm"
+    %td
+      %input{type: "text",style: "width : 100px;",class: "duty_person form-control input-sm" }
+
     %td{style: "text-align : center;"}
-      %input{type: "text",style: "width : 50px;",class: "qty form-control input-sm",value: 0}
+      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1}
+
     %td{style: "text-align : center;"}
-      %span{class: "amt","data-content" => "amt"}
+      %input{type: "text",style: "width : 100px;",class: "note form-control input-sm"}
+
+    -# %td
+    -#   %input{type: "text",style: "width : 100px;",class: "price form-control input-sm" }
+    -#
+    -# %td{style: "text-align : center;"}
+    -#   %span{class: "amt","data-content" => "amt"}
+
     %td{style: "text-align : center;"}
       %input{type: "hidden",class: "destroy"}
       %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
         %i.fa.fa-close
-
-
-

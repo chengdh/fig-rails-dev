@@ -7,7 +7,7 @@ class DangerOrgHiddenDangersController < HiddenDangersController
   #参照https://github.com/CanCanCommunity/cancancan/wiki/Inherited-Resources解决该问题
   skip_load_and_authorize_resource :only => [:index,:search]
   #load_and_authorize_resource :training
-  table :org,:danger_org,:name,:danger_date,:fix_period_des,:fixed_state_des,:review_date,:review_state_des
+  table :org,:danger_org,:bill_no,:name,:categ_des,:deliver_date,:fix_period_des,:expire_fix_date,:fixed_state_des,:review_state_des
 
   #GET danger_org_hidden_dangers/:id/show_fix
   #显示整改界面

@@ -1,0 +1,51 @@
+%table.table.table-condensed.table-hover.talbe-striped
+  %thead
+    %tr
+      %th 序号
+      %th 检查单位
+      %th 隐患部门(单位)
+      %th 隐患名称
+      %th 隐患类型
+      %th 下达隐患整改时间
+      %th 整改期限
+      %th 整改截至时间
+      %th 隐患整改状态
+      %th 复查结果
+      %th
+  %tbody
+    - collection.each_with_index do |d,i|
+      %tr
+        %td= order_no(i,params[:page])
+        %td= d.org
+        %td= d.danger_org
+        %td= d.name
+        %td= d.categ_des
+        %td= d.deliver_date
+        %td= d.fix_period
+        %td= d.expire_fix_date
+        %td= d.fixed_state_des
+        %td
+          %label{class: d.review_state_class}
+            = d.review_state_des
+        %td
+          .btn-group{role: "group","aria-label" => "..."}
+            = link_to  resource_url(d),:class => "btn btn-sm btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do
+              %i.fa.fa-eye
+            - if can? :update,d
+              = link_to edit_resource_path(d),
+                :class => "btn btn-sm btn-default",
+                "data-toggle" => "tooltip",
+                "data-placement" => "top",
+                :title => "修改当前记录" do
+                %i.fa.fa-edit
+
+            - if can? :destroy,d
+              = link_to polymorphic_url(d,:routing_type => :path),:method => :delete,
+                "data-confirm" => "你确定要删除吗?",
+                :class => "btn btn-default btn-sm",
+                "data-toggle" => "tooltip",
+                "data-placement" => "top",
+                :title => "删除该记录" do
+                %i.fa.fa-trash
+
+= will_paginate collection, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next")

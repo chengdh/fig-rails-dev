@@ -5,6 +5,8 @@ class InoutLine < ActiveRecord::Base
   belongs_to :f_location,class_name: "Location"
   belongs_to :t_location,class_name: "Location"
   belongs_to :equipment
+  belongs_to :own_org,class_name: "Org"
+
   state_machine :initial => :draft do
     event :confirm do
       transition :draft => :confirmed

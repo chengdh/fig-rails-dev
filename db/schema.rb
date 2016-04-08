@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407014634) do
+ActiveRecord::Schema.define(version: 20160408031553) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",     limit: 4,     null: false
@@ -338,16 +338,23 @@ ActiveRecord::Schema.define(version: 20160407014634) do
   add_index "inout_bills", ["user_id"], name: "index_inout_bills_on_user_id", using: :btree
 
   create_table "inout_lines", force: :cascade do |t|
-    t.integer  "equipment_id",  limit: 4,                                       null: false
-    t.integer  "inout_bill_id", limit: 4,                                       null: false
-    t.integer  "f_location_id", limit: 4,                                       null: false
-    t.integer  "t_location_id", limit: 4,                                       null: false
+    t.integer  "equipment_id",  limit: 4,                                        null: false
+    t.integer  "inout_bill_id", limit: 4,                                        null: false
+    t.integer  "f_location_id", limit: 4,                                        null: false
+    t.integer  "t_location_id", limit: 4,                                        null: false
     t.date     "move_date"
     t.string   "state",         limit: 60
-    t.integer  "qty",           limit: 4,                           default: 1
-    t.decimal  "price",                    precision: 15, scale: 2
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.integer  "qty",           limit: 4,                            default: 1
+    t.decimal  "price",                     precision: 15, scale: 2
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.string   "no",            limit: 30
+    t.string   "brand",         limit: 40
+    t.string   "model",         limit: 60
+    t.date     "purchase_date"
+    t.integer  "own_org_id",    limit: 4
+    t.string   "duty_person",   limit: 30
+    t.string   "note",          limit: 255
   end
 
   add_index "inout_lines", ["inout_bill_id"], name: "index_inout_lines_on_inout_bill_id", using: :btree
@@ -1040,25 +1047,43 @@ ActiveRecord::Schema.define(version: 20160407014634) do
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
   create_table "v_stock", id: false, force: :cascade do |t|
-    t.integer  "location_id",  limit: 4,                            null: false
-    t.integer  "equipment_id", limit: 4,                            null: false
-    t.decimal  "qty",                    precision: 33, default: 0, null: false
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.integer  "location_id",   limit: 4,                             null: false
+    t.integer  "equipment_id",  limit: 4,                             null: false
+    t.decimal  "qty",                      precision: 33, default: 0, null: false
+    t.string   "no",            limit: 30
+    t.string   "brand",         limit: 40
+    t.string   "model",         limit: 60
+    t.date     "purchase_date"
+    t.integer  "own_org_id",    limit: 4
+    t.string   "duty_person",   limit: 30
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   create_table "v_stock_in", id: false, force: :cascade do |t|
-    t.integer "t_location_id", limit: 4,                          null: false
-    t.integer "equipment_id",  limit: 4,                          null: false
-    t.decimal "qty",                     precision: 32
-    t.decimal "amt",                     precision: 47, scale: 2
+    t.integer "t_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.date    "purchase_date"
+    t.integer "own_org_id",    limit: 4
+    t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
   end
 
   create_table "v_stock_out", id: false, force: :cascade do |t|
-    t.integer "f_location_id", limit: 4,                          null: false
-    t.integer "equipment_id",  limit: 4,                          null: false
-    t.decimal "qty",                     precision: 32
-    t.decimal "amt",                     precision: 47, scale: 2
+    t.integer "f_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.date    "purchase_date"
+    t.integer "own_org_id",    limit: 4
+    t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
   end
 
   create_table "vehicles", force: :cascade do |t|

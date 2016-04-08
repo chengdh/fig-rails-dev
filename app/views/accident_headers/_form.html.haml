@@ -10,14 +10,14 @@
     %thead
       %tr
         %th{:rowspan => 2}
-        %th{:colspan => 5} 工业
+        /%th{:colspan => 5} 工业
         %th{:colspan => 5} 商业
       %tr
-        %th 事故次数
-        %th 死亡(人)
-        %th 受重伤(人)
-        %th 直接经济损失(万元)
-        %th 备注
+        -# %th 事故次数
+        -# %th 死亡(人)
+        -# %th 受重伤(人)
+        -# %th 直接经济损失(万元)
+        -# %th 备注
         %th 事故次数
         %th 死亡(人)
         %th 受重伤(人)
@@ -29,16 +29,16 @@
           %th
             = f_accident.object.accident_type.name
             = f_accident.hidden_field :accident_type_id
-          %td
-            = f_accident.input :industry_accident_count,label: false,input_html: {class: "input-sm"}
-          %td
-            = f_accident.input :industry_die_persons,label: false,input_html: {class: "input-sm"}
-          %td
-            = f_accident.input :industry_wounded_persons,label: false,input_html: {class: "input-sm"}
-          %td
-            = f_accident.input :industry_economic_losses,label: false,input_html: {class: "input-sm"}
-          %td
-            = f_accident.input :industry_note,as: :string,label: false,input_html: {cols: 3,rows: 1,class: "input-sm"}
+          -# %td
+          -#   = f_accident.input :industry_accident_count,label: false,input_html: {class: "input-sm"}
+          -# %td
+          -#   = f_accident.input :industry_die_persons,label: false,input_html: {class: "input-sm"}
+          -# %td
+          -#   = f_accident.input :industry_wounded_persons,label: false,input_html: {class: "input-sm"}
+          -# %td
+          -#   = f_accident.input :industry_economic_losses,label: false,input_html: {class: "input-sm"}
+          -# %td
+          -#   = f_accident.input :industry_note,as: :string,label: false,input_html: {cols: 3,rows: 1,class: "input-sm"}
           %td
             = f_accident.input :commerical_accident_count,label: false,input_html: {class: "input-sm"}
           %td

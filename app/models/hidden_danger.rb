@@ -97,7 +97,7 @@ class HiddenDanger < ActiveRecord::Base
   def fixed_state_class
     css = ""
     css = "label label-warning" if ["draft","deliveried"].include?(fixed_state)
-    css = "label label-info" if ["processing","fixed"].include?(fixed_state)
+    css = "label label-fixed" if ["processing","fixed"].include?(fixed_state)
     css = "label label-success" if ["review_ok"].include?(fixed_state)
     css = "label label-danger" if review_state.eql?("review_reject")
     css

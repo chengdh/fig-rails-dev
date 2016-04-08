@@ -34,7 +34,8 @@ class InoutBillsController < BaseController
   private
   def inout_bill_params
     params.require(resource_class.name.underscore.to_sym).permit(:org_id, :bill_date,:user_id,:f_location_id,:t_location_id,:operator,
-                                       :note,:bill_no,:ref_partner,:name,inout_lines_attributes: [:id,:inout_bill_id,:qty,:price,:equipment_id,:_destroy])
+                                       :note,:bill_no,:ref_partner,:name,
+                                       inout_lines_attributes: [:id,:inout_bill_id,:no,:qty,:price,:brand,:model,:duty_person,:purchase_date,:own_org_id,:note,:equipment_id,:_destroy])
   end
 end
 

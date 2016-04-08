@@ -139,9 +139,9 @@
       %td{rowspan: 2,style: "vertical-align: middle;"}= resource.try(:k_marks)
 
     %tr
-      %th 审批时间
+      %th 审核时间
       %td= resource.try(:review_date)
-      %th 审批人
+      %th 审核人
       %td= resource.try(:reviewer).try(:real_name)
     %tr
       %th 复查说明

@@ -20,4 +20,11 @@ module OrgsHelper
     [default_org.id] + child_org_ids
   end
 
+  #当前登录机构的二级机构
+  def current_children_orgs_for_select
+    default_org = current_user.current_org
+    ret = ActiveSupport::OrderedHash.new
+    default_org.children.each {|child_org|  ret["#{child_org.name}"] = child_org.id}
+    ret
+  end
 end

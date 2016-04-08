@@ -1,13 +1,13 @@
 %table#accident_header_table.table.table-condensed.table-bordered
   %thead
-    %tr
-      %th{:colspan => 12}
-        %h3 南阳市烟草专卖局(公司)事故月报
+    -# %tr
+    -#   %th{:colspan => 12}
+    -#     %h3 南阳市烟草专卖局(公司)事故月报
     %tr
       %th 填报单位:
       %th= resource.org.name
       %th
-      %th
+      %th 填报年月:
       %th= resource.mth
       %th
       %th
@@ -37,23 +37,23 @@
         %th
           = accident.accident_type.name
         %td
-          = accident.industry_accident_count
+          = accident.industry_accident_count == 0 ? "" : accident.industry_accident_count
         %td
-          = accident.industry_die_persons
+          = accident.industry_die_persons == 0 ? "" : accident.industry_die_persons 
         %td
-          = accident.industry_wounded_persons
+          = accident.industry_wounded_persons == 0 ? "" : accident.industry_wounded_persons 
         %td
-          = accident.industry_economic_losses
+          = accident.industry_economic_losses == 0 ? "" : accident.industry_economic_losses 
         %td
           = accident.industry_note
         %td
-          = accident.commerical_accident_count
+          = accident.commerical_accident_count == 0 ? "" : accident.commerical_accident_count
         %td
-          = accident.commerical_die_persons
+          = accident.commerical_die_persons == 0 ? "" : accident.commerical_die_persons 
         %td
-          = accident.commerical_wounded_persons
+          = accident.commerical_wounded_persons == 0 ? "" : accident.commerical_wounded_persons 
         %td
-          = accident.commerical_economic_losses
+          = accident.commerical_economic_losses == 0 ? "" : accident.commerical_economic_losses
         %td
           = accident.commerical_note
     %tr

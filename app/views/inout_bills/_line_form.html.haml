@@ -2,13 +2,17 @@
   %thead
     %tr
       %th{style: "text-align : center;"} 设备名称
-      %th{style: "text-align : center;"} 类别
       %th{style: "text-align : center;"} 单位
-      %th{style: "text-align : center;"} 厂家
-      %th{style: "text-align : center;"} 规格型号
-      %th{style: "text-align : center;"} 单价
+      %th{style: "text-align : center;"} 编号
+      %th{style: "text-align : center;"} 品牌
+      %th{style: "text-align : center;"} 型号
+      %th{style: "text-align : center;"} 购置时间
+      %th{style: "text-align : center;"} 科室
+      %th{style: "text-align : center;"} 责任人
       %th{style: "text-align : center;"} 数量
-      %th{style: "text-align : center;"} 金额
+      / %th{style: "text-align : center;"} 单价
+      / %th{style: "text-align : center;"} 金额
+      %th{style: "text-align : center;"} 备注
       %th{style: "text-align : center;"} 操作
     %tbody
       = f.semantic_fields_for :inout_lines do |f_line|
@@ -16,17 +20,32 @@
           %td
             = f_line.object.equipment.name
             = f_line.input :equipment_id,as: :hidden
-
-          %td= f_line.object.equipment.try(:equipment_category_name).try(:name)
-          %td{style: "text-align : center;"}= f_line.object.equipment.try(:unit).try(:name)
-          %td= f_line.object.equipment.try(:factory_name)
-          %td= f_line.object.equipment.model
-          %td
-            = f_line.input :price,label: false,input_html: {class: "input-sm",style: "width: 20%;"}
-          %td
-            = f_line.input :qty,label: false,input_html: {class: "input-sm",style: "width: 50px;"}
           %td{style: "text-align : center;"}
-            %span{:class => "amt"}
+            = f_line.object.equipment.try(:unit).try(:name)
+          %td
+            = f_line.input :no,label: false,input_html: {class: "input-sm",style: "width: 120px;"}
+          %td
+            = f_line.input :brand,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
+          %td
+            = f_line.input :model,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
+          %td
+            = f_line.input :purchase_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
+              :style => "width :  120px;",
+              "data-provide" => "datepicker",
+              "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+          %td
+            = f_line.input :own_org_id,as: :select,collection: current_children_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+
+          %td
+            = f_line.input :duty_person,label: false,input_html: {class: "input-sm",style: "width: 100px;"}
+          %td
+            = f_line.input :qty,label: false,input_html: {class: "input-sm",style: "width: 100px;"}
+          -# %td
+          -#   = f_line.input :price,label: false,input_html: {class: "input-sm",style: "width: 20%;"}
+          -# %td{style: "text-align : center;"}
+          -#   %span{:class => "amt"}
+          %td
+            = f_line.input :note,label: false,input_html: {class: "input-sm",style: "width: 150px;"}
           %td{style: "text-align : center;"}
             = f_line.hidden_field :_destroy,class: "destroy"
             %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}

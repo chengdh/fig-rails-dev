@@ -1,5 +1,5 @@
 .btn-group{:role => "group", "aria-label" =>"..."}
-  -if ["show"].include? params[:action]
+  - if ["new","show","edit","show_fix","show_postponement"].include? params[:action]
     = render :partial => 'toolbar_btn_back'
 
   - if can? :read,resource_class

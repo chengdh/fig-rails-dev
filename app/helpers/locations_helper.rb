@@ -15,7 +15,6 @@ module LocationsHelper
       ret += w.locations.where(location_type: "vendor_loc")
     end
     ret.map {|l| [l.name,l.id]}
-
   end
   def repair_locations_for_select
     ret = []
