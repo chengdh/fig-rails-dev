@@ -35,7 +35,6 @@
               "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
           %td
             = f_line.input :own_org_id,as: :select,collection: current_children_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
-
           %td
             = f_line.input :duty_person,label: false,input_html: {class: "input-sm",style: "width: 100px;"}
           %td

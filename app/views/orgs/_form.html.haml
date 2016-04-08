@@ -1,8 +1,8 @@
 = semantic_form_for @org,:html => {:id => "#{resource_class.name.underscore}_form"}  do |f|
   = f.inputs do
+    = f.input :parent_id,as: :select,collection: orgs_for_select
     = f.input :name
     = f.input :code
-    = f.input :parent_id,as: :select,collection: orgs_for_select
     = f.input :address
     = f.input :org_type
     = f.input :order_by

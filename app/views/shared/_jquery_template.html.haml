@@ -37,7 +37,7 @@
       %input{type: "text",style: "width : 100px;",class: "purchase_date form-control input-sm","data-provide" => "datepicker","data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",readonly: true,"data-value" => "purchase_price"}
 
     %td
-      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "form-control input-sm"
+      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "own_org_id form-control input-sm"
     %td
       %input{type: "text",style: "width : 100px;",class: "duty_person form-control input-sm" }
 
