@@ -33,7 +33,7 @@ json.match do
   #主队伤兵
   json.home_wounded_line_ups m.home_wounded_line_ups
   #主队停赛
-  json.home_stopped_line_ups .home_stopped_line_ups
+  json.home_stopped_line_ups m.home_stopped_line_ups
 
   #客队首发阵容
   json.guest_start_line_ups m.guest_start_line_ups
