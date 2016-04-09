@@ -24,5 +24,5 @@ json.matches @matches do |m|
   json.is_home_yinglang_recommend m.is_home_yinglang_recommend?
   json.is_guest_bigdata_recommend m.is_guest_bigdata_recommend?
   json.is_guest_yinglang_recommend m.is_guest_yinglang_recommend?
-  json.match_recommands m.try(:match_recommand)
+  json.match_recommands m.try(:match_recommands)
 end
