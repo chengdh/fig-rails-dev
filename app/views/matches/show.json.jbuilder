@@ -27,7 +27,7 @@ json.match do
   #事件
   json.events m.events
   #主队首发阵容
-  json.home_start_line_ups.home_start_line_ups
+  json.home_start_line_ups m.home_start_line_ups
   #主队替补阵容
   json.home_substitute_line_ups m.home_substitute_line_ups
   #主队伤兵
