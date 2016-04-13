@@ -52,30 +52,37 @@ class Ability
     #设备出入库确认
     alias_action :read,:to => :confirm
 
+    #审批功能映射
+    alias_action :check,:read,:to => :show_check
+
+
   end
+
   #设置当前用户权限
   def set_user_powers
-    if user.is_admin?
-      SystemFunctionOperate.all.each { |sfo| set_single_operate_power(sfo)}
-    else
-      user.current_role.selected_sfos.each  { |sfo| set_single_operate_power(sfo)}
-    end
+    # if user.is_admin?
+    #   SystemFunctionOperate.all.each { |sfo| set_single_operate_power(sfo)}
+    # else
+    #   user.current_role.selected_sfos.each  { |sfo| set_single_operate_power(sfo)}
+    # end
+
+    user.current_role.selected_sfos.each  { |sfo| set_single_operate_power(sfo)}
     can [:update_default_attr,:edit_password,:update_password],User
     can :select,Equipment
     #教育培训信息,可以审批 就可以read update
-    can [:read,:update], Training if can? :show_check,Training
+    #can [:read,:update], Training if can? :show_check,Training
     #应急预案演练信息,可以审批 就可以read update
-    can [:read,:update],PlanbDoc if can? :show_check,PlanbDoc
-
-    can [:read,:update],Meeting if can? :show_check,Meeting
-
-    can [:read,:update],Reward if can? :show_check,Reward
-    can [:read,:update],Punishment if can? :confirm,Punishment
-    can [:read],Punishment if can? :read_confirm,Punishment
-
-    can [:read,:update],Assessment if can? :submit,Assessment
-    can [:read,:update],Assessment if can? :show_check,Assessment
-
+    # can [:read,:update],PlanbDoc if can? :show_check,PlanbDoc
+    #
+    # can [:read,:update],Meeting if can? :show_check,Meeting
+    #
+    # can [:read,:update],Reward if can? :show_check,Reward
+    # can [:read,:update],Punishment if can? :confirm,Punishment
+    # can [:read],Punishment if can? :read_confirm,Punishment
+    #
+    # can [:read,:update],Assessment if can? :submit,Assessment
+    # can [:read,:update],Assessment if can? :show_check,Assessment
+    #
     #事故隐患整改
     can [:read],HiddenDanger if can? :review,HiddenDanger
     can [:show_review],HiddenDanger if can? :review,HiddenDanger

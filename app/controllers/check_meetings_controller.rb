@@ -14,5 +14,4 @@ class CheckMeetingsController < MeetingsController
   def show_check
     @meeting = Meeting.find(params[:id])
   end
-
 end

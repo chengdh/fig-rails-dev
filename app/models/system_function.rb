@@ -33,7 +33,6 @@ class SystemFunction < ActiveRecord::Base
       sfo = self.system_function_operates.find_by(name: value[:name])
       sfo = self.system_function_operates.build(:name => value[:name]) unless sfo
       sfo.function_obj = {:subject => attrs[:subject],:action => key,:conditions => value[:conditions]}
-      sfo.new_function_obj = {:subject => attrs[:subject],:action => key,:conditions => value[:conditions]}
       sfo.save!
     end
   end

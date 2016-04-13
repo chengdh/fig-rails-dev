@@ -11,16 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408031553) do
+ActiveRecord::Schema.define(version: 20160413132813) do
 
   create_table "accident_headers", force: :cascade do |t|
-    t.integer  "org_id",     limit: 4,     null: false
-    t.string   "mth",        limit: 6,     null: false
+    t.integer  "org_id",       limit: 4,                       null: false
+    t.string   "mth",          limit: 6,                       null: false
     t.date     "table_date"
-    t.integer  "user_id",    limit: 4
-    t.text     "note",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "user_id",      limit: 4
+    t.text     "note",         limit: 65535
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.integer  "submitter_id", limit: 4
+    t.date     "submit_date"
+    t.text     "submit_note",  limit: 65535
+    t.string   "check_state",  limit: 30,    default: "draft"
   end
 
   add_index "accident_headers", ["org_id"], name: "index_accident_headers_on_org_id", using: :btree
@@ -421,6 +425,9 @@ ActiveRecord::Schema.define(version: 20160408031553) do
     t.string   "photo_7_content_type", limit: 255
     t.integer  "photo_7_file_size",    limit: 4
     t.datetime "photo_7_updated_at"
+    t.integer  "submitter_id",         limit: 4
+    t.date     "submit_date"
+    t.text     "submit_note",          limit: 65535
   end
 
   add_index "meetings", ["org_id"], name: "index_meetings_on_org_id", using: :btree
@@ -512,6 +519,9 @@ ActiveRecord::Schema.define(version: 20160408031553) do
     t.string   "photo_8_content_type", limit: 255
     t.integer  "photo_8_file_size",    limit: 4
     t.datetime "photo_8_updated_at"
+    t.integer  "submitter_id",         limit: 4
+    t.date     "submit_date"
+    t.text     "submit_note",          limit: 65535
   end
 
   add_index "planb_docs", ["org_id"], name: "index_planb_docs_on_org_id", using: :btree
@@ -983,6 +993,9 @@ ActiveRecord::Schema.define(version: 20160408031553) do
     t.string   "photo_7_content_type", limit: 255
     t.integer  "photo_7_file_size",    limit: 4
     t.datetime "photo_7_updated_at"
+    t.integer  "submitter_id",         limit: 4
+    t.date     "submit_date"
+    t.text     "submit_note",          limit: 65535
   end
 
   add_index "trainings", ["org_id"], name: "index_trainings_on_org_id", using: :btree

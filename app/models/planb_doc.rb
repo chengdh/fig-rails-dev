@@ -1,9 +1,11 @@
 #coding: utf-8
 #应急预案演练
 class PlanbDoc < ActiveRecord::Base
+  include ModelStateMachine
   belongs_to :org
   belongs_to :user
   belongs_to :checker,class_name: "User"
+  belongs_to :submitter,class_name: "User"
   has_attached_file :photo_1, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :photo_1, content_type: /\Aimage\/.*\Z/
 
@@ -55,12 +57,4 @@ class PlanbDoc < ActiveRecord::Base
     ret = "现场演练" if plan_type.eql?("act")
     ret
   end
-  def check_state_des
-    ret = ""
-    ret = "草稿(未审批)" if check_state.eql?("draft")
-    ret = "通过" if check_state.eql?("confirmed")
-    ret = "不通过" if check_state.eql?("rejected")
-    ret
-  end
-
 end

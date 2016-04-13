@@ -310,7 +310,7 @@ zh-CN:
       training:
         training_date: 培训时间
         teachers: 讲师
-        training_length: 培训时长
+        training_length: 培训时长(小时)
         join_persons: 参加人员
         join_count: 人数
         training_content: 培训内容
@@ -326,7 +326,7 @@ zh-CN:
       planb_doc:
         name: 演练项目
         plan_date: 演练时间
-        plan_length: 演练时长
+        plan_length: 演练时长(小时)
         plan_type: 演练方式
         plan_type_des: 演练方式
         join_persons: 参加人员
@@ -362,7 +362,7 @@ zh-CN:
       meeting:
         name: 会议名称
         meeting_date: 会议时间
-        meeting_length: 会议时长
+        meeting_length: 会议时长(小时)
         presenter: 主持人
         join_persons: 参加人员
         join_count: 参加人数

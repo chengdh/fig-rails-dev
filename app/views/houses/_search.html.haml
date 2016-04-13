@@ -6,15 +6,17 @@
       = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
       = f.input :name_cont,label: "名称",input_html: {class: "input-sm"}
       = f.input :location_cont,label: "位置",input_html: {class: "input-sm"}
-      = f.input :build_date_gte,as: :string,label: "建造时间",input_html: {readonly: true,
+      = f.input :build_date_gteq,as: :string,label: "建造时间",input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
-      = f.input :build_date_lte,as: :string,label: "~",input_html: {readonly: true,
+      = f.input :build_date_lteq,as: :string,label: "~",input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
@@ -23,5 +25,4 @@
       = f.input :is_active_eq,as: :boolean,label: false
       = f.actions do
         = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}
-
 

@@ -141,6 +141,7 @@ Rails.application.routes.draw do
   resources :check_meetings do
     member do
       get :show_check
+      patch :check
     end
     collection do
       get :search
@@ -152,10 +153,14 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
+    member do
+      patch :submit
+    end
   end
   resources :check_planb_docs do
     member do
       get :show_check
+      patch :check
     end
     collection do
       get :search
@@ -167,17 +172,23 @@ Rails.application.routes.draw do
     collection do
       get :search
     end
-
-
+    member do
+      patch :submit
+    end
   end
   resources :trainings do
     collection do
       get :search
     end
+    member do
+      patch :submit
+    end
+
   end
   resources :check_trainings do
     member do
       get :show_check
+      patch :check
     end
     collection do
       get :search
@@ -186,6 +197,9 @@ Rails.application.routes.draw do
   resources :accident_headers do
     collection do
       get :search
+    end
+    member do
+      patch :submit
     end
   end
   resources :safety_tables do

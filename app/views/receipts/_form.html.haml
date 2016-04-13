@@ -1,36 +1,38 @@
 = semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form","data-resource-name" => "#{resource_class.name.underscore}"} do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
-  %table.table.table-condensed.table-stripped.table-bordered
-    %tr
-      %th 所属机构
-      %td= f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm",style: "width : 30%;"}
+  .table-responsive
+    %table.table.table-condensed.table-stripped.table-bordered
+      %tr
+        %th 所属机构
+        %td= f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm",style: "width : 30%;"}
 
-      %th 单据日期
-      %td
-        = f.input :bill_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
-          :style => "width : 30%;",
-          "data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
-    %tr
-      %th 单据说明
-      %td{:colspan => 3}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 60%;"}
-    %tr
-      %th 关联机构
-      %td{:colspan => 3}= f.input :ref_partner,label: false,input_html: {class: "input-sm",placeholder: "可填入供货商或相关组织名称",style: "width : 60%;"}
-    %tr
-      %th 源库位
-      %td= f.input :f_location_id,as: :select,collection: vendor_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+        %th 单据日期
+        %td
+          = f.input :bill_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
+            :style => "width : 30%;",
+            "data-provide" => "datepicker",
+            "data-date-end-date" => "0d",
+            "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+      %tr
+        %th 单据说明
+        %td{:colspan => 3}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 60%;"}
+      %tr
+        %th 关联机构
+        %td{:colspan => 3}= f.input :ref_partner,label: false,input_html: {class: "input-sm",placeholder: "可填入供货商或相关组织名称",style: "width : 60%;"}
+      %tr
+        %th 源库位
+        %td= f.input :f_location_id,as: :select,collection: vendor_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
 
-      %th 目标库位
-      %td= f.input :t_location_id,as: :select,collection: current_ability_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
-    %tr
-      %td 备注
-      %td{:colspan => 3}
-        = f.input :note,label: false,input_html: {class: "input-sm",placeholder: "备注说明",rows: 2,style: "width : 40%;"}
+        %th 目标库位
+        %td= f.input :t_location_id,as: :select,collection: current_ability_locations_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+      %tr
+        %td 备注
+        %td{:colspan => 3}
+          = f.input :note,label: false,input_html: {class: "input-sm",placeholder: "备注说明",rows: 2,style: "width : 40%;"}
 
-  = render "inout_bills/line_form",f: f
+    = render "inout_bills/line_form",f: f
 
-  .well.well-sm.clearfix
-    = link_to "选择设备", select_equipment_index_path,class: "fancybox fancybox.ajax btn btn-primary btn-sm pull-right"
+    .well.well-sm.clearfix
+      = link_to "选择设备", select_equipment_index_path,class: "fancybox fancybox.ajax btn btn-primary btn-sm pull-right"
 

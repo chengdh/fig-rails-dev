@@ -17,8 +17,24 @@ class CheckTrainingsController < TrainingsController
     @training = Training.find(params[:id])
   end
 
+  #PATCH check_trainings/:id/check
+  #审批
+  def check
+    @training = Training.find(params[:id])
+    if @training.update_attributes(training_params)
+      flash[:success] = "数据保存成功."
+      redirect_to resource
+    else
+      flash[:error] = "数据保存失败."
+      redirect_to :back
+    end
+  end
+
   private
   def training_params
-    params.require(:training).permit(:org_id, :table_date, :user_id, :name, :training_date, :teachers, :training_length, :join_persons, :join_count, :training_content, :is_assess, :assess_type, :qualified_rate, :check_state, :check_opinion, :checker_id)
+    params.require(:training).permit(:org_id, :table_date, :user_id, :name, :training_date, :teachers,
+                                     :training_length, :join_persons, :join_count, :training_content,
+                                     :is_assess, :assess_type, :qualified_rate, :check_state,
+                                     :check_opinion, :checker_id)
   end
 end

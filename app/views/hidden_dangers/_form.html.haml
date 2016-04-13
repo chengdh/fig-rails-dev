@@ -4,8 +4,12 @@
   = f.inputs do
     = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
     = f.input :danger_org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
-    = f.input :danger_date,as: :string,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-      "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN",style: "width : 200px;"}
+    = f.input :danger_date,as: :string,input_html: {class: "input-sm",readonly: true,
+      "data-provide" => "datepicker",
+      "data-date-format" => "yyyy-mm-dd",
+      "data-date-end-date" => "0d",
+      "data-date-language" => "zh-CN",
+      style: "width : 200px;"}
     = f.input :is_big,as: :boolean,label: false
     = f.input :name,input_html: {class: "input-sm",style: "width : 80%"}
     = f.input :note,label: false,input_html: {placeholder: "整改说明及意见建议",class: "input-sm",rows: 3,cols: 4}

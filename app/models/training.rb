@@ -1,9 +1,12 @@
 #coding: utf-8
 #培训管理
 class Training < ActiveRecord::Base
+  include ModelStateMachine
   belongs_to :org
   belongs_to :user
+  belongs_to :submitter,class_name: "User"
   belongs_to :checker,class_name: "User"
+
   default_scope {order("training_date DESC")}
   has_attached_file :photo_1, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :photo_1, content_type: /\Aimage\/.*\Z/
@@ -41,13 +44,6 @@ class Training < ActiveRecord::Base
     ret = "测试" if assess_type.eql?("test")
     ret = "提问" if assess_type.eql?("question")
     ret = "座谈" if assess_type.eql?("conversion")
-    ret
-  end
-  def check_state_des
-    ret = ""
-    ret = "草稿(未审批)" if check_state.eql?("draft")
-    ret = "通过" if check_state.eql?("confirmed")
-    ret = "不通过" if check_state.eql?("rejected")
     ret
   end
 end

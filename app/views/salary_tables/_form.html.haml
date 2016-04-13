@@ -5,27 +5,28 @@
     = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,:include_blank => false,input_html: {class: "input-sm"}
     = f.input :mth,label: false,input_html: {readonly: true,class: "input-sm"}
 
-  %table#salary_table_form_table.table.table-condensed.table-bordered
-    %thead
-      %tr
-        %th{:colspan => 100}
-          = f.text_field :name,placeholder: "工资表名称",style: "width : 100%;text-align: center;"
-      %tr
-        %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 序号
-        %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 姓名
-        %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "pay_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 发放项
-        %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 应发合计
-        %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "deduct_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 代扣代缴款项
-        %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  扣款合计
-        %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  实发合计
-      %tr
-        - SalaryItemHeader.first.salary_items.where(is_calculate: false).each do |item|
-          %th{:style => "text-align : center;vertical-align : middle;"}= item.name 
-      = f.semantic_fields_for :salary_table_lines do |f_line|
+  .table-responsive
+    %table#salary_table_form_table.table.table-condensed.table-bordered
+      %thead
         %tr
-          %th
-          %th{:style => "text-align : center;vertical-align : middle;"}
-            = f_line.object.employee.name
-            = f_line.input :employee_id,as: :hidden
-          - SalaryItemHeader.first.salary_items.where(is_active: true).each do |item|
-            %td= f_line.input item.code,as: :string,label: false,input_html: {class: "input-sm",style: "width : 50px;"}
+          %th{:colspan => 100}
+            = f.text_field :name,placeholder: "工资表名称",style: "width : 100%;text-align: center;"
+        %tr
+          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 序号
+          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 姓名
+          %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "pay_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 发放项
+          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 应发合计
+          %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "deduct_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 代扣代缴款项
+          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  扣款合计
+          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  实发合计
+        %tr
+          - SalaryItemHeader.first.salary_items.where(is_calculate: false).each do |item|
+            %th{:style => "text-align : center;vertical-align : middle;"}= item.name 
+        = f.semantic_fields_for :salary_table_lines do |f_line|
+          %tr
+            %th
+            %th{:style => "text-align : center;vertical-align : middle;"}
+              = f_line.object.employee.name
+              = f_line.input :employee_id,as: :hidden
+            - SalaryItemHeader.first.salary_items.where(is_active: true).each do |item|
+              %td= f_line.input item.code,as: :string,label: false,input_html: {class: "input-sm",style: "width : 50px;"}

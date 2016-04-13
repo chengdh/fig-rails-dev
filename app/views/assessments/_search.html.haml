@@ -7,15 +7,17 @@
       = f.input :name_cont,label: "名称",input_html: {class: "input-sm"}
 
       = f.input :mth_eq,as: :select,collection: months_for_select,label: "月份",input_html: {class: "input-sm"}
-      = f.input :table_date_gte,as: :string,input_html: {readonly: true,
+      = f.input :table_date_gteq,as: :string,input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
-      = f.input :table_date_lte,as: :string,input_html: {readonly: true,
+      = f.input :table_date_lteq,as: :string,input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 

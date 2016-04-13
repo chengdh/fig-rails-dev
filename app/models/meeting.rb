@@ -1,6 +1,7 @@
 #coding: utf-8
 #会议记录
 class Meeting < ActiveRecord::Base
+  include ModelStateMachine
   belongs_to :org
   belongs_to :user
   belongs_to :checker,class_name: "User"
@@ -40,13 +41,5 @@ class Meeting < ActiveRecord::Base
   scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
   #待修改
   scope :rejected,->(org_id){ where(check_state: "rejected",org_id: org_id)}
-
-  def check_state_des
-    ret = ""
-    ret = "草稿(未审批)" if check_state.eql?("draft")
-    ret = "通过" if check_state.eql?("confirmed")
-    ret = "不通过" if check_state.eql?("rejected")
-    ret
-  end
 
 end

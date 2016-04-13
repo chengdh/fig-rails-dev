@@ -1,10 +1,12 @@
-= semantic_form_for resource,url: {action: :update},html: {id: "check_training_form"} do |f|
+= semantic_form_for resource,url: {action: :check},html: {id: "check_training_form"} do |f|
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :checker_id,value: current_user.id
-  %table#training_form_table.table.table-condensed.table-bordered
-    %tr
-      %th 审核结果
-      %td
-        = f.input :check_state,as: :select,collection: check_states_for_select,include_blank: false,label: false,input_html: {class: "input-sm"}
-      %th 审核意见
-      %td{:colspan => 3}= f.input :check_opinion,label: false,input_html: {cols: 3,rows: 2}
+
+  .table-responsive
+    %table#training_form_table.table.table-condensed.table-bordered
+      %tr
+        %th 审核结果
+        %td
+          = f.input :check_state,as: :select,collection: check_states_for_select,include_blank: false,label: false,input_html: {class: "input-sm"}
+        %th 审核意见
+        %td{:colspan => 3}= f.input :check_opinion,label: false,input_html: {cols: 3,rows: 2}

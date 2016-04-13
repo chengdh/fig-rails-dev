@@ -5,15 +5,17 @@
     = semantic_search_form_for @q,html: {id: "search_accident_header_form",method: :get,style: "width : 400px;" } do |f|
       = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
       = f.input :mth_eq,as: :select,collection: months_for_select,input_html: {:class => "input-sm form-control"}
-      = f.input :table_date_gte,as: :string,input_html: {readonly: true,
+      = f.input :table_date_gteq,as: :string,input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
-      = f.input :table_date_lte,as: :string,input_html: {readonly: true,
+      = f.input :table_date_lteq,as: :string,label: false,input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 

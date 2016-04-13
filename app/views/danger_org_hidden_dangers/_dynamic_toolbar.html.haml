@@ -6,6 +6,9 @@
     = link_to collection_path("q[fixed_state_eq]" => "deliveried"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "待处理列表" do
       %i.fa.fa-list-ul
 
+    = link_to collection_path,:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "所有隐患列表" do
+      %i.fa.fa-list-ul{ style: "color: green;"}
+
     - if self.respond_to?("search_#{controller_name.tableize}_path")
       = render :partial => 'toolbar_search'
 

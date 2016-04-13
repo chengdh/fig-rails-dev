@@ -2,112 +2,128 @@
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
   = f.hidden_field :check_state,value: "draft"
-  %table#training_form_table.table.table-condensed.table-bordered
-    %tr
-      %th 上报机构
-      %td{:colspan => 3}
-        = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {style: "width : 30%;"}
-      %th 上报时间
-      %td
-        = f.input :table_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+  .table-responsive
+    %table#training_form_table.table.table-condensed.table-bordered
+      %tr
+        %th 上报机构
+        %td{:colspan => 3}
+          = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {style: "width : 30%;"}
+        %th 上报时间
+        %td
+          = f.input :table_date,as: :string,label: false,input_html: {class: "input-sm",
+            readonly: true,
+            style: "width: 100px",
+            "data-provide" => "datepicker",
+            "data-date-format" => "yyyy-mm-dd",
+            "data-date-end-date" => "0d",
+            "data-date-language" => "zh-CN"}
  
-    %tr
-      %th 演练项目
-      %td{:colspan => 6}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 80%"}
-    %tr
-      %th 演练时间
-      %td
-        = f.input :plan_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
-      %th 演练时长
-      %td= f.input :plan_length,label: false,input_html: {class: "input-sm"}
-      %th 演练方式
-      %td= f.input :plan_type,as: :select,collection: plan_types_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+      %tr
+        %th 演练项目
+        %td{:colspan => 6}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 80%"}
+      %tr
+        %th 演练时间
+        %td
+          = f.input :plan_date,as: :string,label: false,input_html: {class: "input-sm",
+            readonly: true,
+            style: "width: 100px",
+            "data-provide" => "datepicker",
+            "data-date-format" => "yyyy-mm-dd",
+            "data-date-end-date" => "0d",
+            "data-date-language" => "zh-CN"}
+        %th 演练时长
+        %td= f.input :plan_length,label: false,input_html: {class: "input-sm"}
+        %th 演练方式
+        %td= f.input :plan_type,as: :select,collection: plan_types_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
 
-    %tr
-      %th 参加人员
-      %td{:colspan => 3}= f.input :join_persons,label: false,input_html: {class: "input-sm"}
+      %tr
+        %th 参加人员
+        %td{:colspan => 3}= f.input :join_persons,label: false,input_html: {class: "input-sm"}
 
-      %th 人数
-      %td= f.input :join_count,label: false,input_html: {class: "input-sm"}
-    %tr
-      %th{:colspan => 6}= f.label :plan_content
-    %tr
-      %td{:colspan => 6}
-        = f.input :plan_content,label: false,input_html: {cols: 12,rows: 4}
-    %tr
-      %th{:colspan => 6}= f.label :plan_process
-    %tr
-      %td{:colspan => 6}
-        = f.input :plan_process,label: false,input_html: {cols: 12,rows: 4}
-    %tr
-      %th{:colspan => 6} 演练照片
-    %tr
-      %td= f.input :photo_1,as: :file,label: false
-      %td= f.input :photo_2,as: :file,label: false
-      %td= f.input :photo_3,as: :file,label: false
-      %td= f.input :photo_4,as: :file,label: false
-      %td= f.input :photo_5,as: :file,label: false
-      %td= f.input :photo_6,as: :file,label: false
-    %tr
-      %th{:colspan => 6} 应急预案评审
-    %tr
-      %th 预案名称
-      %td{:colspan => 5}
-        = f.input :document_name,label: false
-    %tr
-      %th 评审时间
-      %td{:colspan => 2}
-        = f.input :audit_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
-      %th 评审人员
-      %td{:colspan => 2}
-        = f.input :audit_persons,label: false,input_html: {class: "input-sm"}
-    %tr
-      %th{:colspan => 2} 评审内容
-      %th{:colspan => 2} 评审
-      %th{:colspan => 2} 需改进的内容
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_1_state
-      %td{:colspan => 2}= f.input :audit_item_1_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_1_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_2_state
-      %td{:colspan => 2}= f.input :audit_item_2_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_2_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_2_state
-      %td{:colspan => 2}= f.input :audit_item_2_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_2_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_3_state
-      %td{:colspan => 2}= f.input :audit_item_3_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_3_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_4_state
-      %td{:colspan => 2}= f.input :audit_item_4_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_4_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_5_state
-      %td{:colspan => 2}= f.input :audit_item_5_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_5_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_6_state
-      %td{:colspan => 2}= f.input :audit_item_6_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_6_fix,label: false
-    %tr
-      %td{:colspan => 2}= f.label :audit_item_7_state
-      %td{:colspan => 2}= f.input :audit_item_7_state,label: false
-      %td{:colspan => 2}= f.input :audit_item_7_fix,label: false
-    %tr
-      %th{:colspan => 6}= f.label :note
-    %tr
-      %td{:colspan => 6}
-        = f.input :note,label: false,input_html: {cols: 12,rows: 4}
-    %tr
-      %th= f.label :check_leader
-      %td{:colspan => 2}= f.input :check_leader,label: false,input_html: {class: "input-sm"}
+        %th 人数
+        %td= f.input :join_count,label: false,input_html: {class: "input-sm"}
+      %tr
+        %th{:colspan => 6}= f.label :plan_content
+      %tr
+        %td{:colspan => 6}
+          = f.input :plan_content,label: false,input_html: {cols: 12,rows: 4,placeholder: "请简述下应急演练的类别（综合性演练、专项演练还是处置方案演练）、方案、人员分组情况等。"}
+      %tr
+        %th{:colspan => 6}= f.label :plan_process
+      %tr
+        %td{:colspan => 6}
+          = f.input :plan_process,label: false,input_html: {cols: 12,rows: 4,placeholder: "请简述下演练经过（从发生、发现事故到处置完毕全过程）。"}
+      %tr
+        %th{:colspan => 6} 演练照片
+      %tr
+        %td{colspan: 3}= f.input :photo_1,as: :file,label: false
+        %td{colspan: 3}= f.input :photo_2,as: :file,label: false
+      %tr
+        %td{colspan: 3}= f.input :photo_3,as: :file,label: false
+        %td{colspan: 3}= f.input :photo_4,as: :file,label: false
+        -# %td= f.input :photo_5,as: :file,label: false
+        -# %td= f.input :photo_6,as: :file,label: false
+      %tr
+        %th{:colspan => 6} 应急预案评审
+      %tr
+        %th 预案名称
+        %td{:colspan => 5}
+          = f.input :document_name,label: false
+      %tr
+        %th 评审时间
+        %td{:colspan => 2}
+          = f.input :audit_date,as: :string,label: false,input_html: {class: "input-sm",
+            readonly: true,
+            "data-provide" => "datepicker",
+            "data-date-format" => "yyyy-mm-dd",
+            "data-date-end-date" => "0d",
+            "data-date-language" => "zh-CN"}
+        %th 评审人员
+        %td{:colspan => 2}
+          = f.input :audit_persons,label: false,input_html: {class: "input-sm"}
+      %tr
+        %th{:colspan => 2} 评审内容
+        %th{:colspan => 2} 评审
+        %th{:colspan => 2} 需改进的内容
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_1_state
+        %td{:colspan => 2}= f.input :audit_item_1_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_1_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_2_state
+        %td{:colspan => 2}= f.input :audit_item_2_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_2_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_2_state
+        %td{:colspan => 2}= f.input :audit_item_2_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_2_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_3_state
+        %td{:colspan => 2}= f.input :audit_item_3_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_3_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_4_state
+        %td{:colspan => 2}= f.input :audit_item_4_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_4_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_5_state
+        %td{:colspan => 2}= f.input :audit_item_5_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_5_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_6_state
+        %td{:colspan => 2}= f.input :audit_item_6_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_6_fix,label: false
+      %tr
+        %td{:colspan => 2}= f.label :audit_item_7_state
+        %td{:colspan => 2}= f.input :audit_item_7_state,label: false
+        %td{:colspan => 2}= f.input :audit_item_7_fix,label: false
+      %tr
+        %th{:colspan => 6}= f.label :note
+      %tr
+        %td{:colspan => 6}
+          = f.input :note,label: false,input_html: {cols: 12,rows: 4}
+      %tr
+        %th= f.label :check_leader
+        %td{:colspan => 2}= f.input :check_leader,label: false,input_html: {class: "input-sm"}
 
-      %th= f.label :note_taker
-      %td{:colspan => 2}= f.input :note_taker,label: false,input_html: {class: "input-sm"}
+        %th= f.label :note_taker
+        %td{:colspan => 2}= f.input :note_taker,label: false,input_html: {class: "input-sm"}

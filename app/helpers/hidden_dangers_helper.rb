@@ -11,7 +11,7 @@ module HiddenDangersHelper
   def fix_states_for_select
     [["草稿(未处理)","draft"],
      ["待整改","deliveried"],
-     ["处理中","processing"],
+     #["处理中","processing"],
      ["待复查","fixed"],
      ["整改完成","revicew_ok"]
     ]

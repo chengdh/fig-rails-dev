@@ -2,36 +2,43 @@
   = f.semantic_errors *f.object.errors.keys
   = f.hidden_field :user_id,value: current_user.id
   = f.hidden_field :check_state,value: "draft"
-  %table.table.table-condensed.table-bordered
-    %tr
-      %th 上报机构
-      %td= f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
-      %th 月份
-      %td= f.input :mth,as: :select,collection: months_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
 
-      %th 上报时间
-      %td
-        = f.input :table_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
-          "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+  .table-responsive
+    %table.table.table-condensed.table-bordered
+      %tr
+        %th 上报机构
+        %td= f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
+        %th 月份
+        %td= f.input :mth,as: :select,collection: months_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
 
-    %tr
-      %th 标题
-      %td{:colspan => 5}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 80%"}
-    %tr
-      %th 标题
-      %td{:colspan => 5}
-        = f.input :note,label: false,input_html: {placeholder: "备注",cols: 12,rows: 4,style: "width: 100%;"}
-    %tr
-      %td= f.input :k_safety_table_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_accident_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_training_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_planb_doc_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_meeting_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_hidden_danger_marks,input_html: {readonly: true,style: "width: 60px;"}
-    %tr
-      %td= f.input :k_big_hidden_danger_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_big_accident_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :k_punishment_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td= f.input :reward_marks,input_html: {readonly: true,style: "width: 60px;"}
-      %td
-      %td
+        %th 上报时间
+        %td
+          = f.input :table_date,as: :string,label: false,input_html: {class: "input-sm",
+            readonly: true,
+            style: "width: 100px;",
+            "data-provide" => "datepicker",
+            "data-date-end-date" => "0d",
+            "data-date-format" => "yyyy-mm-dd",
+            "data-date-language" => "zh-CN"}
+
+      %tr
+        %th 标题
+        %td{:colspan => 5}= f.input :name,label: false,input_html: {class: "input-sm",style: "width : 80%"}
+      %tr
+        %th 标题
+        %td{:colspan => 5}
+          = f.input :note,label: false,input_html: {placeholder: "备注",cols: 12,rows: 4,style: "width: 100%;"}
+      %tr
+        %td= f.input :k_safety_table_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_accident_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_training_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_planb_doc_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_meeting_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_hidden_danger_marks,input_html: {readonly: true,style: "width: 60px;"}
+      %tr
+        %td= f.input :k_big_hidden_danger_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_big_accident_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :k_punishment_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td= f.input :reward_marks,input_html: {readonly: true,style: "width: 60px;"}
+        %td
+        %td

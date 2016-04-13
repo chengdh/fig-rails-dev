@@ -7,15 +7,17 @@
       = f.input :executer_id_eq,as: :select,collection: users_for_select,label: "执行人",input_html: {class: "input-sm"}
       = f.input :name_cont,label: "任务名称",input_html: {class: "input-sm"}
       = f.input :task_category_id_eq,as: :select,collection: task_categories_for_select,label: "任务类别",input_html: {class: "input-sm"}
-      = f.input :task_date_gte,as: :string,label: "任务日期",input_html: {readonly: true,
+      = f.input :task_date_gteq,as: :string,label: "任务日期",input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
-      = f.input :task_date_lte,as: :string,label: "~",input_html: {readonly: true,
+      = f.input :task_date_lteq,as: :string,label: "~",input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 

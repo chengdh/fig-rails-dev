@@ -13,4 +13,5 @@
             = render "dynamic_toolbar"
 
         .box-body{style: "overflow-x : scroll;"}
-          = render "show",:show => resource
+          .table-responsive
+            = render "show",:show => resource

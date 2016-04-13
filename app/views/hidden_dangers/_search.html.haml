@@ -3,22 +3,25 @@
     %h4.box-title 查询
   .box-body
     = semantic_search_form_for @q,url: collection_path,html: {id: "search_hidden_danger_form",method: :get,style: "width : 400px;" } do |f|
-      = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "上级单位",input_html: {class: "input-sm"}
+      /= f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "上级单位",input_html: {class: "input-sm"}
       = f.input :danger_org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "隐患单位",input_html: {class: "input-sm"}
       = f.input :name_cont,label: "隐患名称",input_html: {:class => "input-sm form-control"}
-      = f.input :deliver_date_gte,as: :string,label: "下发日期",input_html: {readonly: true,
+      = f.input :deliver_date_gteq,as: :string,label: "下达隐患时间范围",input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
-      = f.input :deliver_date_lte,as: :string,label: "~",input_html: {readonly: true,
+      = f.input :deliver_date_lteq,as: :string,label: "~",input_html: {readonly: true,
          "data-provide" => "datepicker",
          "data-date-format" => "yyyy-mm-dd",
+         "data-date-end-date" => "0d",
          "data-date-language" => "zh-CN",
          :value => Date.today}
 
-      = f.input :fixed_state_eq,as: :select,collection: fix_states_for_select,label: "状态",input_html: {class: "input-sm"}
+      = f.input :fixed_state_eq,as: :select,collection: fix_states_for_select,label: "整改状态",input_html: {class: "input-sm"}
+      = f.input :review_state_eq,as: :select,collection: review_states_for_select,label: "复查状态",input_html: {class: "input-sm"}
 
       = f.actions do
         = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}

@@ -1,6 +1,7 @@
 #coding: utf-8
 #事故月报
 class AccidentHeadersController < BaseController
+  table :org,:org,:table_date,:check_state_des,:user
 
   #GET accident_headers/new
   #GET accident_headers/new.json
@@ -14,6 +15,19 @@ class AccidentHeadersController < BaseController
       AccidentType.where(is_active: true).each do |t|
         @accident_header.accidents.build(accident_type: t)
       end
+    end
+  end
+
+  #PATCH accident_headers/:id/submit
+  #提交月报
+  def submit
+    @accident_header = AccidentHeader.find(params[:id])
+    if @accident_header.update_attributes(submitter_id: current_user.id,submit_date: Date.today,check_state: "submitted")
+      flash[:success] = "数据已正常提交!"
+      redirect_to :accident_header
+    else
+      flash[:error] = "数据提交失败!"
+      redirect_to :back
     end
   end
 
