@@ -78,6 +78,13 @@
           %td= t.safety_meeting_persons
           %td= t.safety_meeting_solve_questions
           %td
+            = link_to  resource_path(t),
+              :class => "btn btn-sm btn-default",
+              "data-toggle" => "tooltip",
+              "data-placement" => "top",
+              :title => "查看详细信息" do
+              %i.fa.fa-eye
+
             - if can? :update,t
               = link_to edit_resource_path(t),
                 :class => "btn btn-sm btn-default",

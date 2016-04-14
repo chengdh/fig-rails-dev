@@ -202,9 +202,25 @@ Rails.application.routes.draw do
       patch :submit
     end
   end
+  resources :check_safety_tables do
+    member do
+      get :show_check
+      patch :check
+    end
+    collection do
+      get :search
+    end
+
+  end
+
+
   resources :safety_tables do
     collection do
       get :search
+    end
+    member do
+      patch :submit
+
     end
   end
   resources :houses do

@@ -4,19 +4,6 @@ class TrainingsController < BaseController
   include ControllerStateMachine
   table :org,:name,:training_date,:teachers,:training_length,:check_state_des
 
-  #PATCH accident_headers/:id/submit
-  #提交月报
-  def submit
-    @training = Training.find(params[:id])
-    if @training.update_attributes(submitter_id: current_user.id,submit_date: Date.today,check_state: "submitted")
-      flash[:success] = "数据已正常提交!"
-      redirect_to resource
-    else
-      flash[:error] = "数据提交失败!"
-      redirect_to :back
-    end
-  end
-
   protected
   def collection
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])

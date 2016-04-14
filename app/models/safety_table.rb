@@ -1,8 +1,10 @@
 #coding: utf-8
 class SafetyTable < ActiveRecord::Base
+  include ModelStateMachine
   validates :org_id,:mth, presence: true
   belongs_to :org
   belongs_to :user
+  belongs_to :submitter,class_name: "User"
 
   #整改率
   def fixed_danger_rate

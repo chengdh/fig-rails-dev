@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160413132813) do
+ActiveRecord::Schema.define(version: 20160414133845) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",       limit: 4,                       null: false
@@ -642,32 +642,36 @@ ActiveRecord::Schema.define(version: 20160413132813) do
   end
 
   create_table "safety_tables", force: :cascade do |t|
-    t.integer  "org_id",                         limit: 4,                                      null: false
-    t.string   "mth",                            limit: 6,                                      null: false
-    t.integer  "safety_check_count",             limit: 4,                          default: 0
-    t.integer  "special_safety_check_count",     limit: 4,                          default: 0
-    t.integer  "evening_safety_check_count",     limit: 4,                          default: 0
-    t.integer  "danger_count",                   limit: 4,                          default: 0
-    t.integer  "fixed_danger_count",             limit: 4,                          default: 0
-    t.integer  "third_edu_persons",              limit: 4,                          default: 0
-    t.decimal  "third_edu_percent",                        precision: 15, scale: 2
-    t.integer  "special_worker_edu_persons",     limit: 4,                          default: 0
-    t.decimal  "special_worker_edu_percent",               precision: 15, scale: 2
-    t.integer  "common_edu_persons",             limit: 4,                          default: 0
-    t.integer  "no_duplicate_persons",           limit: 4,                          default: 0
-    t.decimal  "common_edu_percent",                       precision: 15, scale: 2
-    t.decimal  "invest_equipment_money",                   precision: 15, scale: 2
-    t.decimal  "invest_faclities_money",                   precision: 15, scale: 2
-    t.decimal  "fixed_danger_money",                       precision: 15, scale: 2
-    t.decimal  "safety_edu_money",                         precision: 15, scale: 2
-    t.decimal  "safety_reward_money",                      precision: 15, scale: 2
-    t.integer  "safety_meeting_count",           limit: 4,                          default: 0
-    t.integer  "safety_meeting_persons",         limit: 4,                          default: 0
-    t.integer  "safety_meeting_solve_questions", limit: 4,                          default: 0
+    t.integer  "org_id",                         limit: 4,                                                null: false
+    t.string   "mth",                            limit: 6,                                                null: false
+    t.integer  "safety_check_count",             limit: 4,                              default: 0
+    t.integer  "special_safety_check_count",     limit: 4,                              default: 0
+    t.integer  "evening_safety_check_count",     limit: 4,                              default: 0
+    t.integer  "danger_count",                   limit: 4,                              default: 0
+    t.integer  "fixed_danger_count",             limit: 4,                              default: 0
+    t.integer  "third_edu_persons",              limit: 4,                              default: 0
+    t.decimal  "third_edu_percent",                            precision: 15, scale: 2
+    t.integer  "special_worker_edu_persons",     limit: 4,                              default: 0
+    t.decimal  "special_worker_edu_percent",                   precision: 15, scale: 2
+    t.integer  "common_edu_persons",             limit: 4,                              default: 0
+    t.integer  "no_duplicate_persons",           limit: 4,                              default: 0
+    t.decimal  "common_edu_percent",                           precision: 15, scale: 2
+    t.decimal  "invest_equipment_money",                       precision: 15, scale: 2
+    t.decimal  "invest_faclities_money",                       precision: 15, scale: 2
+    t.decimal  "fixed_danger_money",                           precision: 15, scale: 2
+    t.decimal  "safety_edu_money",                             precision: 15, scale: 2
+    t.decimal  "safety_reward_money",                          precision: 15, scale: 2
+    t.integer  "safety_meeting_count",           limit: 4,                              default: 0
+    t.integer  "safety_meeting_persons",         limit: 4,                              default: 0
+    t.integer  "safety_meeting_solve_questions", limit: 4,                              default: 0
     t.date     "table_date"
     t.integer  "user_id",                        limit: 4
-    t.datetime "created_at",                                                                    null: false
-    t.datetime "updated_at",                                                                    null: false
+    t.datetime "created_at",                                                                              null: false
+    t.datetime "updated_at",                                                                              null: false
+    t.integer  "submitter_id",                   limit: 4
+    t.date     "submit_date"
+    t.text     "submit_note",                    limit: 65535
+    t.string   "check_state",                    limit: 30,                             default: "draft"
   end
 
   add_index "safety_tables", ["org_id"], name: "index_safety_tables_on_org_id", using: :btree

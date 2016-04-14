@@ -55,6 +55,11 @@ class Ability
     #审批功能映射
     alias_action :check,:read,:to => :show_check
 
+    #隐患延期
+    alias_action :show_postponement,:to =>:postponement
+
+    alias_action :show_review,:to =>:review
+    alias_action :show_fix,:to => :fix
 
   end
 
@@ -85,11 +90,8 @@ class Ability
     #
     #事故隐患整改
     can [:read],HiddenDanger if can? :review,HiddenDanger
-    can [:show_review],HiddenDanger if can? :review,HiddenDanger
     can [:read],HiddenDanger if can? :deliver,HiddenDanger
     can [:read],HiddenDanger if can? :fix,HiddenDanger
-    can [:show_fix],HiddenDanger if can? :fix,HiddenDanger
-    can [:show_postponement],HiddenDanger if can? :postponement,HiddenDanger
     #任务
     can [:read],Task if can? :deliver,Task
     can [:read],Task if can? :confirm,Task

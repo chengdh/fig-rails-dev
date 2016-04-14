@@ -1,5 +1,6 @@
 #coding: utf-8
 class SafetyTablesController < BaseController
+  include ControllerStateMachine
   protected
   def collection
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])

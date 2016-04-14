@@ -1,0 +1,106 @@
+%table#safety_table.table.table-bordered.table-hover.table-condensed.table-stripped{:style => "text-align: center;vertical-align : middle;"}
+  %thead
+    %tr
+      %td{colspan: 8,style: "text-align: right;"}
+        %span{class: resource.check_state_class}
+          = resource.check_state_des
+
+
+
+    %tr
+      %th 填报单位:
+      %th{colspan: 2}= resource.org
+
+      %th 填报日期:
+      %th= resource.table_date.strftime("%Y-%m-%d")
+
+      %th 填报月份:
+      %th= resource.mth
+    %tr
+      %th{colspan: 7,style: "text-align: center;background: #3C8DBC;"} 安全检查
+    %tr
+      %th{rowspan: 2} 次数
+      %th{colspan: 6} 其中
+    %tr
+      %th{colspan: 2} 安全检查
+      %th{colspan: 2} 专题检查
+      %th{colspan: 2} 夜间抽查
+    %tr
+      %td= resource.sum_safety_check_count
+      %td{colspan: 2}= resource.safety_check_count
+      %td{colspan: 2}= resource.special_safety_check_count
+      %td{colspan: 2}= resource.evening_safety_check_count
+
+    %tr
+      %th{colspan: 7,style: "text-align: center;background: #3C8DBC;"} 隐患整改
+    %tr
+      %th{colspan: 2} 查出隐患处数
+      %th{colspan: 2} 已整改处数
+      %th{colspan: 3} 整改率(%)
+    %tr
+      %td{colspan: 2}= resource.danger_count
+      %td{colspan: 2}= resource.fixed_danger_count
+      %td{colspan: 3}= resource.fixed_danger_rate
+
+
+    %tr
+      %th{colspan: 7,style: "text-align: center;background: #3C8DBC;"} 安全教育
+    %tr
+      %th{:colspan => 2} 三级教育
+      %th{:colspan => 2} 特种工教育
+      %th{:colspan => 3} 全员教育
+    %tr
+      %th 参加人数
+      %th 占应参加人数
+
+      %th 参加人数
+      %th 占应参加人数
+
+      %th 人次
+      %th 不重复人数
+      %th 占全员(%)
+    %tr
+      %td= resource.third_edu_persons
+      %td= resource.third_edu_percent
+
+      %td= resource.special_worker_edu_persons
+      %td= resource.special_worker_edu_percent
+
+      %td= resource.common_edu_persons
+      %td= resource.no_duplicate_persons
+      %td= resource.common_edu_percent
+
+    %tr
+      %th{colspan: 7,style: "text-align: center;background: #3C8DBC;"} 安保投入(万元)
+
+    %tr
+      %th{:rowspan => 2} 总金额
+      %th{:colspan => 6} 其中
+    %tr
+      %th{colspan: 2} 购置器材
+      %th 安保设施
+      %th 隐患整改
+      %th 安保教育
+      %th 安保奖励
+    %tr
+      %td{colspan: 2}= resource.sum_invest
+      %td= resource.invest_equipment_money
+      %td= resource.invest_faclities_money
+      %td= resource.fixed_danger_money
+      %td= resource.safety_edu_money
+      %td= resource.safety_reward_money
+
+
+
+    %tr
+      %th{colspan: 7,style: "text-align: center;background: #3C8DBC;"} 专题安全会议
+
+    %tr
+      %th{colspan: 2}  次数
+      %th{colspan: 2}  参加人数
+      %th{colspan: 3}  解决问题数
+    %tr
+      %td{colspan: 2}= resource.safety_meeting_count
+      %td{colspan: 2}= resource.safety_meeting_persons
+      %td{colspan: 3}= resource.safety_meeting_solve_questions
+ 
