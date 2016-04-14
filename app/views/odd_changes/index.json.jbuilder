@@ -1,6 +1,13 @@
 json.odd_changes @odd_changes.limit(5) do |o|
   #球队
-  json.team o.try(:team)
+  json.team do
+    #队伍id
+    json.team_id o.try(:team).try(:team_id)
+    #队伍名称
+    json.cn_name o.try(:team).try(:cn_name)
+    #队伍图标url
+    json.logo_url asset_url(o.try(:team).try(:team_logoname))
+  end
   #关联比赛
   json.match o.try(:match)
   #变化类型-参考数据库设计文档

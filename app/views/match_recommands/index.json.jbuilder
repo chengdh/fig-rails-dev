@@ -7,4 +7,8 @@ json.array!(@match_recommands) do |mr|
   json.data_time mr.data_time.strftime("%Y-%m-%d %H:%M")
   #盘口
   json.begin goal_cn(mr.match.begin)
+  #推荐结果
+  json.result_type mr.result_type
+  #钱
+  json.win_money mr.win_money
 end
