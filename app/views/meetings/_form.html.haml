@@ -33,7 +33,6 @@
         %th= f.label :meeting_length
         %td
           = f.input :meeting_length,label: false,input_html: {class: "input-sm"}
-          小时
         %th= f.label :presenter
         %td= f.input :presenter,label: false,input_html: {class: "input-sm"}
 
@@ -51,10 +50,14 @@
       %tr
         %th{:colspan => 6} 照片
       %tr
-        %td{colspan: 3}= f.input :photo_1,as: :file,label: false
-        %td{colspan: 3}= f.input :photo_2,as: :file,label: false
+        %td{colspan: 3}= f.input :photo_1,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
+        %td{colspan: 3}= f.input :photo_2,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
       %tr
-        %td{colspan: 3}= f.input :photo_3,as: :file,label: false
-        %td{colspan: 3}= f.input :photo_4,as: :file,label: false
+        %td{colspan: 3}= f.input :photo_3,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
+        %td{colspan: 3}= f.input :photo_4,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
         -# %td= f.input :photo_5,as: :file,label: false
         -# %td= f.input :photo_6,as: :file,label: false

@@ -1,5 +1,16 @@
 %table#meeting_form_table.table.table-condensed.table-bordered
   %tr
+    %td{colspan: 8,style: "text-align: right;"}
+      %span{class: resource.check_state_class}
+        = resource.check_state_des
+
+
+  %tr
+    %td{colspan: 8,style: "text-align: right;"}
+      %span{class: resource.check_state_class}
+        = resource.check_state_des
+
+  %tr
     %th 上报机构
     %td{:colspan => 3}= resource.org
     %th 上报时间
@@ -29,12 +40,25 @@
   %tr
     %th{:colspan => 6} 会议照片
   %tr
-    %td= image_tag resource.photo_1.url(:thumb)
-    %td= image_tag resource.photo_2.url(:thumb)
-    %td= image_tag resource.photo_3.url(:thumb)
-    %td= image_tag resource.photo_4.url(:thumb)
-    %td= image_tag resource.photo_5.url(:thumb)
-    %td= image_tag resource.photo_6.url(:thumb)
+    %td
+    %td
+      - if resource.photo_1.present?
+        = link_to  asset_url(resource.photo_1.url),class: "thumbnail fancybox" do
+          = image_tag  asset_url(resource.photo_1.url(:thumb))
+    %td
+      - if resource.photo_2.present?
+        = link_to  asset_url(resource.photo_2.url),class: "thumbnail fancybox" do
+          = image_tag  asset_url(resource.photo_2.url(:thumb))
+    %td
+      - if resource.photo_3.present?
+        = link_to  asset_url(resource.photo_3.url),class: "thumbnail fancybox" do
+          = image_tag  asset_url(resource.photo_3.url(:thumb))
+    %td
+      - if resource.photo_4.present?
+        = link_to  asset_url(resource.photo_4.url),class: "thumbnail fancybox" do
+          = image_tag  asset_url(resource.photo_4.url(:thumb))
+
+    %td
   %tr
     %th 审核领导
     %td= resource.try(:checker).try(:username)

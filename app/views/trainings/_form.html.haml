@@ -26,9 +26,12 @@
         %td= f.input :teachers,label: false,input_html: {class: "input-sm"}
         %th 时间
         %td
-          = f.input :training_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,"data-provide" => "datepicker",
+          = f.input :training_date,as: :string,label: false,input_html: {class: "input-sm",
+            readonly: true,
+            "data-provide" => "datepicker",
+            "data-date-end-date" => "0d",
             "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
-        %th 培训时长
+        %th 培训时长(小时)
         %td= f.input :training_length,label: false,input_html: {class: "input-sm"}
 
       %tr
@@ -45,20 +48,26 @@
       %tr
         %th{:colspan => 6} 培训照片
       %tr
-        %td{colspan: 3}= f.input :photo_1,as: :file,label: false
-        %td{colspan: 3}= f.input :photo_2,as: :file,label: false
+        %td{colspan: 3}= f.input :photo_1,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
+        %td{colspan: 3}= f.input :photo_2,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
       %tr
-        %td{colspan: 3}= f.input :photo_3,as: :file,label: false
-        %td{colspan: 3}= f.input :photo_4,as: :file,label: false
+        %td{colspan: 3}= f.input :photo_3,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
+        %td{colspan: 3}= f.input :photo_4,as: :file,label: false,input_html: {accept: 'image/png,image/gif,image/jpeg'}
+
       -#   %td= f.input :photo_5,as: :file,label: false
       -#   %td= f.input :photo_6,as: :file,label: false
       %tr
         %th 有无考核
         %td
           = f.input :is_assess,label: false
-        %th 考核方式
+        %th
+          %span.assess_type_label{style: "display : none;"} 考核方式
         %td
-          = f.input :assess_type,as: :select,collection: assess_types_for_select,include_blank: false,label: false,input_html: {class: "input-sm"}
-        %th 合格率
+          = f.input :assess_type,as: :select,collection: assess_types_for_select,include_blank: false,label: false,input_html: {class: "input-sm",style: "display: none;"}
+        %th
+          %span.qualified_rate_label{style: "display : none;"}  合格率
         %td
-          = f.input :qualified_rate,label: false,input_html: {class: "input-sm"}
+          = f.input :qualified_rate,label: false,input_html: {style: "display: none;",class: "input-sm"}

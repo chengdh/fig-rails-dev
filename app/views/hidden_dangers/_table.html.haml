@@ -4,6 +4,7 @@
       %th 序号
       %th 检查单位
       %th 隐患部门(单位)
+      %th 隐患编号
       %th 隐患名称
       %th 隐患类型
       %th 下达隐患整改时间
@@ -18,6 +19,7 @@
         %td= order_no(i,params[:page])
         %td= d.org
         %td= d.danger_org
+        %td= d.bill_no
         %td= d.name
         %td= d.categ_des
         %td= d.deliver_date

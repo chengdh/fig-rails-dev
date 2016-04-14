@@ -32,3 +32,4 @@
 //= require salary_tables
 //= require roles
 //= require hidden_dangers
+//= require trainings
