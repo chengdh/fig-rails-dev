@@ -45,6 +45,14 @@ class SafetyTable < ActiveRecord::Base
     end
     ret.round(2)
   end
+  #隐患整改比例
+  def self.fixed_danger_percent(q)
+    ret = 0
+    if q.result.count() > 0
+      ret = q.result.sum("fixed_danger_count") / q.result.sum("danger_count")*100
+    end
+    ret.round(2)
+  end
 
 
 end

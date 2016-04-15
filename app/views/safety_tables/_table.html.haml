@@ -81,7 +81,7 @@
           %td= t.safety_meeting_solve_questions
           %td
             .btn-group{ role: "group","aria-label" => "..."}
-              = link_to  resource_path(t),
+              = link_to  resource_url(t),
                 :class => "btn btn-sm btn-default",
                 "data-toggle" => "tooltip",
                 "data-placement" => "top",
@@ -114,7 +114,7 @@
         %td= @q.result.sum("evening_safety_check_count")
         %td= @q.result.sum("danger_count")
         %td= @q.result.sum("fixed_danger_count")
-        %td= (@q.result.sum("fixed_danger_count").to_f/@q.result.sum("danger_count").to_f).round(3)*100
+        %td= "#{SafetyTable.fixed_danger_percent(@q)}%"
 
         %td= @q.result.sum("third_edu_persons")
         %td= "#{SafetyTable.third_edu_percent(@q)}%"
@@ -137,6 +137,4 @@
         %td= @q.result.sum("safety_meeting_persons")
         %td= @q.result.sum("safety_meeting_solve_questions")
         %td
-
-
 = will_paginate collection, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next")
