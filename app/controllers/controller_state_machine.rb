@@ -5,9 +5,10 @@ module ControllerStateMachine
   def check
     model = resource_class.find(params[:id])
     set_resource_ivar(model)
-    if model.check(send("#{resource_class.model_name.singular}_params".to_sym))
+    attrs = self.send("#{resource_class.model_name.singular}_params".to_sym)
+    if model.check(attrs)
       flash[:success] = "数据保存成功."
-      redirect_to  polymorphic_path(resource)
+      redirect_to  resource_url(resource)
     else
       flash[:error] = "数据保存失败."
       redirect_to :back
@@ -20,7 +21,7 @@ module ControllerStateMachine
     set_resource_ivar(model)
     if model.submit(submitter_id: current_user.id)
       flash[:success] = "数据已正常提交!"
-      redirect_to  polymorphic_path(resource)
+      redirect_to  resource_url(resource)
     else
       flash[:error] = "数据提交失败!"
       redirect_to :back

@@ -32,7 +32,8 @@ class Meeting < ActiveRecord::Base
   validates_attachment_content_type :photo_7, content_type: /\Aimage\/.*\Z/
 
 
-
+ 
+  validates :meeting_content,length: { in: 50..2000 }
   validates :org_id,:user_id,:name,:meeting_date,:meeting_length,:presenter,
     :join_persons,:join_count,:meeting_content,:check_state, presence: true
   validates :meeting_length,:join_count, numericality: true

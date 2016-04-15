@@ -34,6 +34,7 @@ class Training < ActiveRecord::Base
   default_value_for(:training_date) {Date.today}
 
 
+  validates :training_content,length: { in: 30..2000 }
   #待审批
   scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
   #待修改
