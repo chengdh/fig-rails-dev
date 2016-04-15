@@ -11,20 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414133845) do
+ActiveRecord::Schema.define(version: 20160415020733) do
 
   create_table "accident_headers", force: :cascade do |t|
-    t.integer  "org_id",       limit: 4,                       null: false
-    t.string   "mth",          limit: 6,                       null: false
+    t.integer  "org_id",          limit: 4,                       null: false
+    t.string   "mth",             limit: 6,                       null: false
     t.date     "table_date"
-    t.integer  "user_id",      limit: 4
-    t.text     "note",         limit: 65535
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "submitter_id", limit: 4
+    t.integer  "user_id",         limit: 4
+    t.text     "note",            limit: 65535
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.integer  "submitter_id",    limit: 4
     t.date     "submit_date"
-    t.text     "submit_note",  limit: 65535
-    t.string   "check_state",  limit: 30,    default: "draft"
+    t.text     "submit_note",     limit: 65535
+    t.string   "check_state",     limit: 30,    default: "draft"
+    t.integer  "checker_id",      limit: 4
+    t.text     "checker_opinion", limit: 65535
+    t.date     "checker_date"
   end
 
   add_index "accident_headers", ["org_id"], name: "index_accident_headers_on_org_id", using: :btree
@@ -672,6 +675,9 @@ ActiveRecord::Schema.define(version: 20160414133845) do
     t.date     "submit_date"
     t.text     "submit_note",                    limit: 65535
     t.string   "check_state",                    limit: 30,                             default: "draft"
+    t.integer  "checker_id",                     limit: 4
+    t.text     "checker_opinion",                limit: 65535
+    t.date     "checker_date"
   end
 
   add_index "safety_tables", ["org_id"], name: "index_safety_tables_on_org_id", using: :btree

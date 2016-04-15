@@ -1,0 +1,2 @@
+module CheckAccidentHeadersHelper
+end

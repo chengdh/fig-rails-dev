@@ -202,6 +202,19 @@ Rails.application.routes.draw do
       patch :submit
     end
   end
+
+  resources :check_accident_headers do
+    member do
+      get :show_check
+      patch :check
+    end
+    collection do
+      get :search
+    end
+
+  end
+
+
   resources :check_safety_tables do
     member do
       get :show_check

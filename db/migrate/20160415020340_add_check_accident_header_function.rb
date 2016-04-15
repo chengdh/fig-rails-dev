@@ -1,14 +1,14 @@
 #coding: utf-8
-class AddCheckSafetyTableFunction < ActiveRecord::Migration
+class AddCheckAccidentHeaderFunction < ActiveRecord::Migration
   def change
     group_name = "安保-动态情况管理"
-    sf_name = "安全工作月报审批"
-    subject = "SafetyTable"
+    sf_name = "事故报告审批"
+    subject = "AccidentHeader"
     sf_hash = {
       group_name:  group_name,
       name: sf_name,
       subject: subject,
-      default_action: 'check_safety_tables_path("q[check_state_eq]" => "submitted")',
+      default_action: 'check_accident_headers_path("q[check_state_eq]" => "submitted")',
       function: {
         show_check: {name: "审批",conditions: {:check_state => ["submitted"]}}
       }

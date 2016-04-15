@@ -1,5 +1,1 @@
-- if params[:action].eql?("show")
-  - if can? :submit,resource
-    = link_to submit_accident_header_path(resource),:method => :patch,"data-confirm" => "你确定要上报吗?",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "上报数据" do
-      %i.fa.fa-cloud-upload{style: "color : blue;"}
- 
+= render  "shared/state_machine_extra_toolbar"

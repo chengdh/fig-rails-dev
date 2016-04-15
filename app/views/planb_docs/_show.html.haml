@@ -3,8 +3,8 @@
     %td{colspan: 8,style: "text-align: right;"}
       %span{class: resource.check_state_class}
         = resource.check_state_des
-
-
+  %tr
+    %th{colspan: 6,style: "text-align: center;background: #3C8DBC;"} 应急预案演练 %tr
   %tr
     %th 上报机构
     %td{:colspan => 3}= resource.org
@@ -12,7 +12,7 @@
     %td= resource.table_date
   %tr
     %th 演练项目
-    %td{:colspan => 6}= resource.name
+    %td{:colspan => 5}= resource.name
   %tr
     %th 演练时间
     %td= resource.plan_date
@@ -60,7 +60,7 @@
 
     %td
   %tr
-    %th{:colspan => 6} 应急预案评审
+    %th{colspan: 6,style: "text-align: center;background: #3C8DBC;"} 应急预案评审
   %tr
     %th 预案名称
     %td{:colspan => 5}= resource.document_name

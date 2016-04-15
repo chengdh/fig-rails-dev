@@ -1,49 +1,51 @@
 = render "search"
-%table#safety_table.table.table-bordered.table-hover.table-condensed.table-stripped{:style => "text-align: center;vertical-align : middle;"}
+%table#safety_table.table.table-bordered.table-hover.table-condensed.table-striped{:style => "text-align: center;vertical-align : middle;"}
   %thead
     %tr
-      %th{:rowspan => 3} 管辖单位
-      %th{:colspan => 4} 安全检查
-      %th{:colspan => 3} 隐患整改
-      %th{:colspan => 7} 安全教育
-      %th{:colspan => 6} 安保投入(万元)
-      %th{:colspan => 3} 专题安全会议
-      %th{:rowspan => 3} 操作
+      %th{style: "text-align: center;background: #3C8DBC;"} 
+      %th{:colspan => 4,style: "text-align: center;background: #3C8DBC;"} 安全检查
+      %th{:colspan => 3,style: "text-align: center;background: #3C8DBC;"} 隐患整改
+      %th{:colspan => 7,style: "text-align: center;background: #3C8DBC;"} 安全教育
+      %th{:colspan => 6,style: "text-align: center;background: #3C8DBC;"} 安保投入(万元)
+      %th{:colspan => 3,style: "text-align: center;background: #3C8DBC;"} 专题安全会议
+      %th{style: "text-align: center;background: #3C8DBC;"}
     %tr
-      %th{:rowspan => 2} 次数
-      %th{:colspan => 3} 其中
-      %th{:rowspan => 2} 查出隐患处数
-      %th{:rowspan => 2} 已整改处数
-      %th{:rowspan => 2} 整改率(%) 
-      %th{:colspan => 2} 三级教育
-      %th{:colspan => 2} 特种工教育
-      %th{:colspan => 3} 全员教育
-      %th{:rowspan => 2} 总金额
-      %th{:colspan => 5} 其中
-      %th{:rowspan => 2}  次数
-      %th{:rowspan => 2}  参加人数
-      %th{:rowspan => 2}  解决问题数
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"} 管辖单位
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"} 次数
+      %th{:colspan => 3,style: "text-align: center;background: #F1F1F1;"} 其中
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"} 查出隐患处数
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"} 已整改处数
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"} 整改率(%)
+      %th{:colspan => 2,style: "text-align: center;background: #F1F1F1;"} 三级教育
+      %th{:colspan => 2,style: "text-align: center;background: #F1F1F1;"} 特种工教育
+      %th{:colspan => 3,style: "text-align: center;background: #F1F1F1;"} 全员教育
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"} 总金额
+      %th{:colspan => 5,style: "text-align: center;background: #F1F1F1;"} 其中
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"}  次数
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"}  参加人数
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"}  解决问题数
+      %th{:rowspan => 2,style: "text-align: center;background: #F1F1F1;"}
     %tr
-      %th 安全检查
-      %th 专题检查
-      %th 夜间抽查
+      %th{style: "text-align: center;background: #F1F1F1;"} 安全检查
+      %th{style: "text-align: center;background: #F1F1F1;"}  专题检查
+      %th{style: "text-align: center;background: #F1F1F1;"}  夜间抽查
 
-      %th 参加人数
-      %th 占应参加人数
+      %th{style: "text-align: center;background: #F1F1F1;"}  参加人数
+      %th{style: "text-align: center;background: #F1F1F1;"}  占应参加人数
 
-      %th 参加人数
-      %th 占应参加人数
+      %th{style: "text-align: center;background: #F1F1F1;"}  参加人数
+      %th{style: "text-align: center;background: #F1F1F1;"}  占应参加人数
 
-      %th 人次
-      %th 不重复人数
-      %th 占全员(%)
+      %th{style: "text-align: center;background: #F1F1F1;"}  人次
+      %th{style: "text-align: center;background: #F1F1F1;"}  不重复人数
+      %th{style: "text-align: center;background: #F1F1F1;"}  占全员(%)
 
 
-      %th 购置器材
-      %th 安保设施
-      %th 隐患整改
-      %th 安保教育
-      %th 安保奖励
+      %th{style: "text-align: center;background: #F1F1F1;"}  购置器材
+      %th{style: "text-align: center;background: #F1F1F1;"}  安保设施
+      %th{style: "text-align: center;background: #F1F1F1;"}  隐患整改
+      %th{style: "text-align: center;background: #F1F1F1;"}  安保教育
+      %th{style: "text-align: center;background: #F1F1F1;"}  安保奖励
     %tbody
       - collection.each do |t|
         %tr
@@ -78,29 +80,30 @@
           %td= t.safety_meeting_persons
           %td= t.safety_meeting_solve_questions
           %td
-            = link_to  resource_path(t),
-              :class => "btn btn-sm btn-default",
-              "data-toggle" => "tooltip",
-              "data-placement" => "top",
-              :title => "查看详细信息" do
-              %i.fa.fa-eye
-
-            - if can? :update,t
-              = link_to edit_resource_path(t),
+            .btn-group{ role: "group","aria-label" => "..."}
+              = link_to  resource_path(t),
                 :class => "btn btn-sm btn-default",
                 "data-toggle" => "tooltip",
                 "data-placement" => "top",
-                :title => "修改当前记录" do
-                %i.fa.fa-edit
+                :title => "查看详细信息" do
+                %i.fa.fa-eye
 
-            - if can? :destroy,t
-              = link_to t,:method => :delete,
-                "data-confirm" => "你确定要删除吗?",
-                :class => "btn btn-default btn-sm",
-                "data-toggle" => "tooltip",
-                "data-placement" => "top",
-                :title => "删除该记录" do
-                %i.fa.fa-trash
+              - if can? :update,t
+                = link_to edit_resource_path(t),
+                  :class => "btn btn-sm btn-default",
+                  "data-toggle" => "tooltip",
+                  "data-placement" => "top",
+                  :title => "修改当前记录" do
+                  %i.fa.fa-edit
+
+              - if can? :destroy,t
+                = link_to t,:method => :delete,
+                  "data-confirm" => "你确定要删除吗?",
+                  :class => "btn btn-default btn-sm",
+                  "data-toggle" => "tooltip",
+                  "data-placement" => "top",
+                  :title => "删除该记录" do
+                  %i.fa.fa-trash
 
     %tfoot{:style => "font-weight : bold;color :red;"}
       %tr
