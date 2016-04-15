@@ -24,33 +24,34 @@ class SafetyTable < ActiveRecord::Base
   #三级教育比例
   def self.third_edu_percent(q)
     ret = 0
-    if q.result.count() > 0
-      ret = q.result.sum("third_edu_persons") / q.result.sum("third_edu_persons/(third_edu_percent/100)")*100
-    end
+    sum =  q.result.sum("third_edu_persons/(third_edu_percent/100)")
+    return 0 if sum == 0
+    ret = q.result.sum("third_edu_persons") / sum * 100
     ret.round(2)
   end
   #特种教育比例
   def self.special_worker_edu_percent(q)
     ret = 0
-    if q.result.count() > 0
-      ret = q.result.sum("special_worker_edu_persons") / q.result.sum("special_worker_edu_persons/(special_worker_edu_percent/100)")*100
-    end
+    sum = q.result.sum("special_worker_edu_persons/(special_worker_edu_percent/100)")
+    return 0 if sum == 0
+    ret = q.result.sum("special_worker_edu_persons") / sum * 100
     ret.round(2)
   end
   #全员教育比例
   def self.common_edu_percent(q)
     ret = 0
-    if q.result.count() > 0
-      ret = q.result.sum("common_edu_persons") / q.result.sum("common_edu_persons/(common_edu_percent/100)")*100
-    end
+    sum = q.result.sum("common_edu_persons/(common_edu_percent/100)")
+    return 0 if sum == 0
+
+    ret = q.result.sum("common_edu_persons") / sum *100
     ret.round(2)
   end
   #隐患整改比例
   def self.fixed_danger_percent(q)
     ret = 0
-    if q.result.count() > 0
-      ret = q.result.sum("fixed_danger_count") / q.result.sum("danger_count")*100
-    end
+    sum = q.result.sum("danger_count")
+    return 0 if sum == 0
+    ret = q.result.sum("fixed_danger_count")/sum*100
     ret.round(2)
   end
 
