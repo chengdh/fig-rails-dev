@@ -59,7 +59,7 @@ class MatchRecommandsController < ApplicationController
   # POST /match_recommands/create_temp
   # POST /match_recommands/create_temp.json
   def create_temp
-    @match_recommand_temp = MatchRecommendTmp.new(match_recommend_temp_params)
+    @match_recommend_temp = MatchRecommendTmp.new(match_recommend_temp_params)
     respond_to do |format|
       if @match_recommend_temp.save
         format.html { redirect_to @match_recommend_temp, notice: 'Match recommand was successfully created.' }
