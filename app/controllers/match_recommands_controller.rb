@@ -62,7 +62,7 @@ class MatchRecommandsController < ApplicationController
     @match_recommend_temp = MatchRecommendTmp.new(match_recommend_temp_params)
     respond_to do |format|
       if @match_recommend_temp.save
-        format.json { render @match_recommend_temp, status: :created, location: ""}
+        format.json { render json: @match_recommend_temp, status: :created, location: ""}
       else
         format.json { render json: @match_recommend_temp.errors, status: :unprocessable_entity }
       end
