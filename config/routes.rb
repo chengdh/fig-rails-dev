@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   constraints(:id => /\w+(,\w+)(,\w+)*/) do
     resources :match_recommands do
       get :report,on: :collection
+      post :create_temp,on: :collection
     end
   end
 

@@ -46,7 +46,6 @@ class MatchRecommandsController < ApplicationController
   # POST /match_recommands.json
   def create
     @match_recommand = MatchRecommand.new(match_recommand_params)
-
     respond_to do |format|
       if @match_recommand.save
         format.html { redirect_to @match_recommand, notice: 'Match recommand was successfully created.' }
@@ -57,6 +56,22 @@ class MatchRecommandsController < ApplicationController
       end
     end
   end
+  # POST /match_recommands/create_temp
+  # POST /match_recommands/create_temp.json
+  def create_temp
+    @match_recommand_temp = MatchRecommendTmp.new(match_recommend_temp_params)
+    respond_to do |format|
+      if @match_recommend_temp.save
+        format.html { redirect_to @match_recommend_temp, notice: 'Match recommand was successfully created.' }
+        format.json { render :show, status: :created, location: @match_recommend_temp}
+      else
+        format.html { render :new }
+        format.json { render json: @match_recommend_temp.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
 
   # PATCH/PUT /match_recommands/1
   # PATCH/PUT /match_recommands/1.json
@@ -91,5 +106,8 @@ class MatchRecommandsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_recommand_params
       params.require(:match_recommand).permit!
+    end
+    def match_recommend_temp_params
+      params.require(:match_recommend_temp).permit(:match_id,:team_id,:recommend_type)
     end
 end

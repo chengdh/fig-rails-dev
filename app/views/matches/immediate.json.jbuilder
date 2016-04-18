@@ -31,6 +31,16 @@ json.matches @matches do |m|
   #比赛状态描述
   json.match_describe m.status_des
 
+  #主队进球数
+  json.home_score m.home_score
+  #客队进球数
+  json.guest_score m.guest_score
+
+  #半场主队进球数
+  json.half_home_score m.half_home_score
+  #半场客队进球数
+  json.half_guest_score m.half_guest_score
+
   json.match_status_before_type_cast m.match_status_before_type_cast
   #比赛是否结束
   json.finished m.finished?

@@ -6,12 +6,12 @@ $ ->
   func_recommend = (match,team_id,recommend_type) ->
     $.ajax(
         type: "POST",
-        url: "/match_recommands.json",
+        url: "/match_recommands/create_temp.json",
         dataType: 'json',
         data:
-          "match_recommand[match_id]": match.match_id,
-          "match_recommand[team_id]": team_id,
-          "match_recommand[recommend_type]": recommend_type
+          "match_recommend_temp[match_id]": match.match_id,
+          "match_recommend_temp[team_id]": team_id,
+          "match_recommend_temp[recommend_type]": recommend_type
       )
       .done(-> toastr.success("推荐成功!"))
       .fail(-> toastr.error("推荐更新失败!"))
