@@ -7,5 +7,5 @@ class MatchRecommand < ActiveRecord::Base
   belongs_to :team
   default_scope {includes(:team,:match).order("t_match.match_time DESC")}
 
-  scope :unread,->(data_time) {where("TO_CHAR(data_time,'YYYY-MM-DD HH24:MI') > ? ",data_time)}
+  scope :unread,->(data_time) {where("TO_CHAR(t_match_recommend.data_time,'YYYY-MM-DD HH24:MI') > ? ",data_time)}
 end
