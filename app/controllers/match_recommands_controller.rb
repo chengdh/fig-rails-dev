@@ -9,6 +9,14 @@ class MatchRecommandsController < ApplicationController
     @q = MatchRecommand.unread(params[:data_time]).ransack(params[:q])
     @match_recommands = @q.result
   end
+
+  #最近胜场
+  # GET /match_recommands/recent_win
+  # GET /match_recommands/recent_win.json
+  def recent_win
+    @q = MatchRecommand.recent_win.ransack(params[:q])
+    @match_recommands = @q.result
+  end
   # GET /match_recommands/report
   # GET /match_recommands/report.json
   # 推荐胜负统计
