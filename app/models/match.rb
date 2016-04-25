@@ -236,6 +236,10 @@ class Match < ActiveRecord::Base
     ret
   end
 
+  #推荐盘口
+  def recommend_goal
+    match_recommands.try(:first).try(:goal)
+  end
   #亚盘初盘
   def begin
     odds_asians.where(odds_type: 1).limit(1).first.try(:goal)
