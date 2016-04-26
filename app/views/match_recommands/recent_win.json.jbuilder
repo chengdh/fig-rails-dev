@@ -43,6 +43,11 @@ json.array!(@match_recommands) do |mr|
   json.match_status_before_type_cast mr.match.match_status_before_type_cast
   #比赛是否结束
   json.finished mr.match.finished?
+
+  #推荐水位
+  json.recommend_goal_des goal_cn(mr.match.recommend_goal)
+  json.recommend_goal mr.match.recommend_goal
+
   #初盘水位
   json.begin goal_cn(mr.match.begin)
   #推荐结果
