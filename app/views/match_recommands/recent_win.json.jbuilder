@@ -45,8 +45,8 @@ json.array!(@match_recommands) do |mr|
   json.finished mr.match.finished?
 
   #推荐水位
-  json.recommend_goal_des goal_cn(mr.match.recommend_goal)
-  json.recommend_goal mr.match.recommend_goal
+  json.recommend_goal_des goal_cn(mr.goal)
+  json.recommend_goal mr.goal
 
   #初盘水位
   json.begin goal_cn(mr.match.begin)
