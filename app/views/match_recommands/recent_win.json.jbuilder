@@ -2,6 +2,8 @@ json.array!(@match_recommands) do |mr|
   json.match_id mr.match_id
   json.recommend_type_des  mr.recommend_type == 1 ? "大数据推荐" : "赢朗推荐"
   json.match_des "#{mr.team.cn_name}"
+  #推荐队伍id
+  json.team_id mr.team_id
   #比赛时间
   json.match_time mr.match.match_time.strftime("%Y-%m-%d %H:%M")
   #关联联赛
