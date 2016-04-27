@@ -1,5 +1,9 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :equip_virtuals
+  resources :equip_consumes
+  resources :equip_its
+  resources :equip_assets
   resources :check_assessments do
     member do
       get :show_check
