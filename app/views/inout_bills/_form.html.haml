@@ -32,7 +32,7 @@
         %td{:colspan => 3}
           = f.input :note,label: false,input_html: {class: "input-sm",placeholder: "备注说明",rows: 2,style: "width : 40%;"}
 
-    = render "line_form",f: f
+    = render "line_form_simple",f: f
 
     .well.well-sm.clearfix
       = link_to "选择设备", select_equipment_index_path,class: "fancybox fancybox.ajax btn btn-primary btn-sm pull-right"

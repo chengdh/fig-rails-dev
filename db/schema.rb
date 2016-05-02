@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427140344) do
+ActiveRecord::Schema.define(version: 20160429025400) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -90,6 +90,31 @@ ActiveRecord::Schema.define(version: 20160427140344) do
 
   add_index "assessments", ["org_id"], name: "index_assessments_on_org_id", using: :btree
   add_index "assessments", ["user_id"], name: "index_assessments_on_user_id", using: :btree
+
+  create_table "base_purchase_orders", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.string   "bill_no",       limit: 255
+    t.integer  "org_id",        limit: 4
+    t.date     "bill_date"
+    t.integer  "user_id",       limit: 4
+    t.integer  "f_location_id", limit: 4,     null: false
+    t.integer  "t_location_id", limit: 4,     null: false
+    t.string   "operator",      limit: 30
+    t.string   "state",         limit: 30,    null: false
+    t.string   "type",          limit: 60
+    t.integer  "confirmer_id",  limit: 4
+    t.date     "confirm_date"
+    t.text     "note",          limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "base_purchase_orders", ["bill_date"], name: "index_base_purchase_orders_on_bill_date", using: :btree
+  add_index "base_purchase_orders", ["confirmer_id"], name: "index_base_purchase_orders_on_confirmer_id", using: :btree
+  add_index "base_purchase_orders", ["f_location_id"], name: "index_base_purchase_orders_on_f_location_id", using: :btree
+  add_index "base_purchase_orders", ["org_id"], name: "index_base_purchase_orders_on_org_id", using: :btree
+  add_index "base_purchase_orders", ["t_location_id"], name: "index_base_purchase_orders_on_t_location_id", using: :btree
+  add_index "base_purchase_orders", ["user_id"], name: "index_base_purchase_orders_on_user_id", using: :btree
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
@@ -530,6 +555,21 @@ ActiveRecord::Schema.define(version: 20160427140344) do
 
   add_index "planb_docs", ["org_id"], name: "index_planb_docs_on_org_id", using: :btree
   add_index "planb_docs", ["user_id"], name: "index_planb_docs_on_user_id", using: :btree
+
+  create_table "po_lines", force: :cascade do |t|
+    t.integer  "equipment_id",           limit: 4
+    t.integer  "base_purchase_order_id", limit: 4
+    t.string   "state",                  limit: 60
+    t.integer  "qty",                    limit: 4,                           default: 1
+    t.decimal  "price",                             precision: 15, scale: 2, default: 0.0
+    t.string   "brand",                  limit: 60
+    t.string   "model",                  limit: 60
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+  end
+
+  add_index "po_lines", ["base_purchase_order_id"], name: "index_po_lines_on_base_purchase_order_id", using: :btree
+  add_index "po_lines", ["equipment_id"], name: "index_po_lines_on_equipment_id", using: :btree
 
   create_table "protect_equipment_categories", force: :cascade do |t|
     t.string   "name",       limit: 60,                null: false
@@ -1084,8 +1124,116 @@ ActiveRecord::Schema.define(version: 20160427140344) do
     t.datetime "updated_at",                                          null: false
   end
 
+  create_table "v_stock_asset", id: false, force: :cascade do |t|
+    t.integer  "location_id",   limit: 4,                             null: false
+    t.integer  "equipment_id",  limit: 4,                             null: false
+    t.decimal  "qty",                      precision: 33, default: 0, null: false
+    t.string   "no",            limit: 30
+    t.string   "brand",         limit: 40
+    t.string   "model",         limit: 60
+    t.date     "purchase_date"
+    t.integer  "own_org_id",    limit: 4
+    t.string   "duty_person",   limit: 30
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  create_table "v_stock_asset_in", id: false, force: :cascade do |t|
+    t.integer "t_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.date    "purchase_date"
+    t.integer "own_org_id",    limit: 4
+    t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_asset_out", id: false, force: :cascade do |t|
+    t.integer "f_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.date    "purchase_date"
+    t.integer "own_org_id",    limit: 4
+    t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_consume", id: false, force: :cascade do |t|
+    t.integer  "location_id",  limit: 4,                             null: false
+    t.integer  "equipment_id", limit: 4,                             null: false
+    t.decimal  "qty",                     precision: 33, default: 0, null: false
+    t.string   "brand",        limit: 40
+    t.string   "model",        limit: 60
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  create_table "v_stock_consume_in", id: false, force: :cascade do |t|
+    t.integer "t_location_id", limit: 4,                           null: false
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_consume_out", id: false, force: :cascade do |t|
+    t.integer "f_location_id", limit: 4,                           null: false
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
   create_table "v_stock_in", id: false, force: :cascade do |t|
     t.integer "t_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.date    "purchase_date"
+    t.integer "own_org_id",    limit: 4
+    t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_it", id: false, force: :cascade do |t|
+    t.integer  "location_id",   limit: 4,                             null: false
+    t.integer  "equipment_id",  limit: 4,                             null: false
+    t.decimal  "qty",                      precision: 33, default: 0, null: false
+    t.string   "no",            limit: 30
+    t.string   "brand",         limit: 40
+    t.string   "model",         limit: 60
+    t.date     "purchase_date"
+    t.integer  "own_org_id",    limit: 4
+    t.string   "duty_person",   limit: 30
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
+  end
+
+  create_table "v_stock_it_in", id: false, force: :cascade do |t|
+    t.integer "t_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.date    "purchase_date"
+    t.integer "own_org_id",    limit: 4
+    t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_it_out", id: false, force: :cascade do |t|
+    t.integer "f_location_id", limit: 4,                           null: false
     t.string  "no",            limit: 30
     t.integer "equipment_id",  limit: 4,                           null: false
     t.string  "brand",         limit: 40
@@ -1106,6 +1254,36 @@ ActiveRecord::Schema.define(version: 20160427140344) do
     t.date    "purchase_date"
     t.integer "own_org_id",    limit: 4
     t.string  "duty_person",   limit: 30
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_virtual", id: false, force: :cascade do |t|
+    t.integer  "location_id",  limit: 4,                             null: false
+    t.integer  "equipment_id", limit: 4,                             null: false
+    t.decimal  "qty",                     precision: 33, default: 0, null: false
+    t.string   "brand",        limit: 40
+    t.string   "model",        limit: 60
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  create_table "v_stock_virtual_in", id: false, force: :cascade do |t|
+    t.integer "t_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
+    t.decimal "qty",                      precision: 32
+    t.decimal "amt",                      precision: 47, scale: 2
+  end
+
+  create_table "v_stock_virtual_out", id: false, force: :cascade do |t|
+    t.integer "f_location_id", limit: 4,                           null: false
+    t.string  "no",            limit: 30
+    t.integer "equipment_id",  limit: 4,                           null: false
+    t.string  "brand",         limit: 40
+    t.string  "model",         limit: 60
     t.decimal "qty",                      precision: 32
     t.decimal "amt",                      precision: 47, scale: 2
   end

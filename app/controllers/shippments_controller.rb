@@ -3,4 +3,3 @@
 class ShippmentsController < InoutBillsController
   defaults :resource_class => Shippment, :collection_name => 'shippments', :instance_name => 'shippment'
 end
-

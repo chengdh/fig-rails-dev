@@ -28,6 +28,7 @@
 //= require common
 //= require orgs
 //= require equipment
+//= require base_stocks
 //= require inout_bills
 //= require salary_tables
 //= require roles

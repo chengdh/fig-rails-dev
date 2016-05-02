@@ -7,7 +7,7 @@
         %th{style: "text-align : center;"} 编号
         %th{style: "text-align : center;"} 品牌
         %th{style: "text-align : center;"} 型号
-        %th{style: "text-align : center;"} 购置时间
+        / %th{style: "text-align : center;"} 购置时间
         %th{style: "text-align : center;"} 科室
         %th{style: "text-align : center;"} 责任人
         %th{style: "text-align : center;"} 数量
@@ -29,11 +29,11 @@
               = f_line.input :brand,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
             %td
               = f_line.input :model,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
-            %td
-              = f_line.input :purchase_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
-                :style => "width :  120px;",
-                "data-provide" => "datepicker",
-                "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+            -# %td
+            -#   = f_line.input :purchase_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
+            -#     :style => "width :  120px;",
+            -#     "data-provide" => "datepicker",
+            -#     "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
             %td
               = f_line.input :own_org_id,as: :select,collection: current_children_orgs_for_select,label: false,include_blank: false,input_html: {class: "input-sm"}
             %td
@@ -50,5 +50,5 @@
               = f_line.hidden_field :_destroy,class: "destroy"
               %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
                 %i.fa.fa-close
-  
+
       %tbody#inout_line_temp_wrapper

@@ -8,7 +8,7 @@ class AddWorthlessBillFunction < ActiveRecord::Migration
       group_name:  group_name,
       name: sf_name,
       subject: subject,
-      default_action: 'shippments_path("q[state_eq]" => "draft")',
+      default_action: 'worthless_bills_path("q[state_eq]" => "draft")',
       function: {
         read: {name: "查看"},
         create: {name: "新建"},

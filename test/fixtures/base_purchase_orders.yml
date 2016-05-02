@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  bill_date: 2016-04-28
+  user_id: 
+  f_location_id: 1
+  t_location_id: 1
+  operator: MyString
+  state: MyString
+  type: 
+  confirmer_id: 1
+  confirm_date: 2016-04-28
+  note: MyText
+  name: MyString
+  bill_no: MyString
+
+two:
+  org_id: 
+  bill_date: 2016-04-28
+  user_id: 
+  f_location_id: 1
+  t_location_id: 1
+  operator: MyString
+  state: MyString
+  type: 
+  confirmer_id: 1
+  confirm_date: 2016-04-28
+  note: MyText
+  name: MyString
+  bill_no: MyString

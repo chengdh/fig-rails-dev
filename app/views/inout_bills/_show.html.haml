@@ -32,9 +32,6 @@
       %th{style: "text-align : center;"} 编号
       %th{style: "text-align : center;"} 品牌
       %th{style: "text-align : center;"} 型号
-      %th{style: "text-align : center;"} 购置时间
-      %th{style: "text-align : center;"} 科室
-      %th{style: "text-align : center;"} 责任人
       %th{style: "text-align : center;"} 数量
       %th{style: "text-align : center;"} 备注
 
@@ -46,9 +43,5 @@
           %td= line.try(:no)
           %td= line.try(:brand)
           %td= line.try(:model)
-          %td= line.try(:purchase_date)
-          %td= line.try(:own_org)
-          %td= line.try(:duty_person)
           %td= line.qty
           %td= line.note
-

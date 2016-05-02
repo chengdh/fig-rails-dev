@@ -1,7 +1,7 @@
 #coding: utf-8
 #出入库明细
 class InoutLine < ActiveRecord::Base
-  belongs_to :inout_bill,polymorphic: true
+  belongs_to :inout_bill
   belongs_to :f_location,class_name: "Location"
   belongs_to :t_location,class_name: "Location"
   belongs_to :equipment
@@ -26,5 +26,4 @@ class InoutLine < ActiveRecord::Base
     ret = "已完成" if state.eql?("confirmed")
     ret
   end
-
 end

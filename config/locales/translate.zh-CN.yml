@@ -45,6 +45,7 @@ zh-CN:
       shippment: 出库单
       repair_bill: 设备维修
       worthless_bill: 设备报废单
+      receive_bill: 设备领用单
       stock: 库存情况
       reward: 奖励情况
       punishment: 处罚信息

@@ -1,8 +1,31 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :stock_its do
+    collection do
+      get :select
+      get :search
+    end
+  end
+
+  resources :receive_bills do
+    member do
+      patch :confirm
+    end
+  end
+  resources :base_purchase_orders
   resources :equip_virtuals
-  resources :equip_consumes
-  resources :equip_its
+  resources :equip_consumes do
+    collection do
+      get :select
+      get :search
+    end
+  end
+  resources :equip_its do
+    collection do
+      get :select
+      get :search
+    end
+  end
   resources :equip_assets
   resources :check_assessments do
     member do

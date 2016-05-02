@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  equipment_id: 
+  base_purchase_order_id: 
+  state: MyString
+  qty: 1
+  price: 9.99
+  brand: MyString
+  model: MyString
+
+two:
+  equipment_id: 
+  base_purchase_order_id: 
+  state: MyString
+  qty: 1
+  price: 9.99
+  brand: MyString
+  model: MyString

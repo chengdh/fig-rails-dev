@@ -1,3 +1,4 @@
+/ 设备列表
 %script#equipment_list_temp{:type => "text/html"}
   %tr
     %td
@@ -15,6 +16,28 @@
     %td
       %span{class: "purchase_price","data-content" => "purchase_price"}
 
+/ 库存设备列表
+%script#stock_list_temp{:type => "text/html"}
+  %tr
+    %td
+      %input{:type => "checkbox",:class=> "cbx-select-stock","data-value" => "equipment_id"}
+    %td
+      %span{class:"no","data-content" => "no"}
+    %td
+      %span{class:"name","data-content" => "equipment_name"}
+    %td
+      %span{class: "equipment_category_name","data-content" => "equipment_category_name"}
+    %td
+      %span{class: "unit_name","data-content" => "unit_name"}
+    %td
+      %span{class: "brand","data-content" => "brand"}
+    %td
+      %span{class: "model","data-content" => "model"}
+    %td
+      %span{class: "qty","data-content" => "qty"}
+    %td
+      %span{class: "purchase_price","data-content" => "purchase_price"}
+
 %script#inout_line_temp{:type => "text/html"}
   %tr{class: "tr-inout-line"}
     %td
@@ -25,7 +48,7 @@
       %span{class: "unit_name","data-content" => "unit_name"}
 
     %td{style: "text-align : center;"}
-      %input{type: "text",style: "width : 100px;",class: "no form-control input-sm"}
+      %input{type: "text",style: "width : 100px;",class: "no form-control input-sm","data-content" => "line_no"}
 
     %td
       %input{type: "text",style: "width : 100px;",class: "brand form-control input-sm","data-value" => "factory_name"}
@@ -52,6 +75,119 @@
     -#
     -# %td{style: "text-align : center;"}
     -#   %span{class: "amt","data-content" => "amt"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "hidden",class: "destroy"}
+      %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
+        %i.fa.fa-close
+
+%script#inout_line_simple_temp{:type => "text/html"}
+  %tr{class: "tr-inout-line"}
+    %td
+      %input{type: "hidden","data-value" => "equipment_id",class: "equipment_id"}
+      %span{class:"name","data-content" => "name"}
+
+    %td{style: "text-align : center;"}
+      %span{class: "unit_name","data-content" => "unit_name"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "no form-control input-sm","data-value" => "line_no"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "brand form-control input-sm","data-value" => "factory_name"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "model form-control input-sm","data-value" => "model"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "price form-control input-sm" }
+
+    %td{style: "text-align : center;"}
+      %span{class: "amt","data-content" => "amt"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "note form-control input-sm"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "hidden",class: "destroy"}
+      %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
+        %i.fa.fa-close
+
+/ 出库明细模板
+%script#inout_line_simple_temp_for_out{:type => "text/html"}
+  %tr{class: "tr-inout-line"}
+    %td
+      %input{type: "hidden","data-value" => "equipment_id",class: "equipment_id"}
+      %span{class:"name","data-content" => "name"}
+
+    %td{style: "text-align : center;"}
+      %span{class: "unit_name","data-content" => "unit_name"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",readonly: true,class: "no form-control input-sm","data-value" => "line_no"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",readonly: true,class: "brand form-control input-sm","data-value" => "factory_name"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",readonly: true,class: "model form-control input-sm","data-value" => "model"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1,readonly: true}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "price form-control input-sm" }
+
+    %td{style: "text-align : center;"}
+      %span{class: "amt","data-content" => "amt"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "note form-control input-sm"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "hidden",class: "destroy"}
+      %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
+        %i.fa.fa-close
+
+/ 领用模板
+%script#inout_line_temp_for_receive{:type => "text/html"}
+  %tr{class: "tr-inout-line"}
+    %td
+      %input{type: "hidden","data-value" => "equipment_id",class: "equipment_id"}
+      %span{class:"name","data-content" => "name"}
+
+    %td{style: "text-align : center;"}
+      %span{class: "unit_name","data-content" => "unit_name"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",readonly: true,class: "no form-control input-sm","data-value" => "line_no"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",readonly: true,class: "brand form-control input-sm","data-value" => "factory_name"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",readonly: true,class: "model form-control input-sm","data-value" => "model"}
+
+    %td
+      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "own_org_id form-control input-sm"
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "duty_person form-control input-sm" }
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1,readonly: true}
+
+
+    -# %td
+    -#   %input{type: "text",style: "width : 100px;",class: "price form-control input-sm" }
+    -#
+    -# %td{style: "text-align : center;"}
+    -#   %span{class: "amt","data-content" => "amt"}
+    -#
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "note form-control input-sm"}
 
     %td{style: "text-align : center;"}
       %input{type: "hidden",class: "destroy"}

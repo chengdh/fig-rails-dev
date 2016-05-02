@@ -10,11 +10,13 @@ $ ->
         "q[model_cont]": $("#equipment_model_cont").val(),
         "q[factory_name_cont]": $("#equipment_factory_name_cont").val()
 
-    $.ajax("/equipment.json",
+    url = $(this).data("url")
+    setting = 
+      url: url,
       data: params,
-      dataType: "json",
-      success: (json)->
-      ).done((json)->
+      dataType: "json"
+
+    $.ajax(setting).done((json)->
         $("#equipment_list_temp_wrapper").loadTemplate($("#equipment_list_temp"),json.equipment_list)
       )
 
