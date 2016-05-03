@@ -51,6 +51,7 @@ zh-CN:
       worthless_bill: 设备报废单
       worthless_bill_asset: 固定资产-报废单
       receive_bill: 设备领用单
+      receive_bill_asset: 固定资产-领用单
       stock_it: 信息设备-库存
       reward: 奖励情况
       punishment: 处罚信息

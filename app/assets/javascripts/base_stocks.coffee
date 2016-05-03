@@ -50,7 +50,7 @@ $ ->
       )
     is_receive = false
 
-    if $("form.receive_bill").length > 0
+    if $("form.receive_bill,form.receive_bill_asset").length > 0
       is_receive = true
 
     #is_reveive 是否是领用单据

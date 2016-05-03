@@ -1,5 +1,14 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :receive_bill_assets do
+    member do
+      patch :confirm
+    end
+    collection do
+      get :search
+    end
+
+  end
   resources :worthless_bill_assets do
     member do
       patch :confirm
