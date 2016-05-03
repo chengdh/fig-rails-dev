@@ -1,0 +1,2 @@
+module WorthlessBillAssetsHelper
+end
