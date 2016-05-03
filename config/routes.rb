@@ -1,5 +1,13 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :move_bill_assets do
+    member do
+      patch :confirm
+    end
+    collection do
+      get :search
+    end
+  end
   resources :stock_assets do
     collection do
       get :select
@@ -9,6 +17,9 @@ Rails.application.routes.draw do
   resources :shippment_assets do
     member do
       patch :confirm
+    end
+    collection do
+      get :search
     end
   end
   resources :receipt_assets do
