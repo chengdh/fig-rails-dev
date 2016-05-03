@@ -1,5 +1,13 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :purchase_order_consumes do
+    member do
+      patch :confirm
+    end
+    collection do
+      get :search
+    end
+  end
   resources :purchase_order_assets do
     member do
       patch :confirm
