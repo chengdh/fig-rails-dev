@@ -8,6 +8,11 @@ class MatchRecommandsController < ApplicationController
   def index
     @q = MatchRecommand.unread(params[:data_time]).ransack(params[:q])
     @match_recommands = @q.result
+
+    @yinglang_match_recommands = @q.result.where("result_type IS NOT NULL").where(recommend_type: 2)
+    @success_yinglang_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 2)
+    @bigdata_match_recommands = @q.result.where("result_type IS NOT NULL").where(recommend_type: 1)
+    @success_bigdata_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 1)
   end
 
   #最近胜场
