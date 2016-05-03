@@ -3,4 +3,3 @@
 class ReceiveBillAssetsController < InoutBillsController
   defaults :resource_class => ReceiveBillAsset, :collection_name => 'receive_bill_asset', :instance_name => 'receive_bill_assets'
 end
-

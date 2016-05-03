@@ -1,5 +1,19 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :receipt_consumes do
+    member do
+      patch :confirm
+    end
+    collection do
+      get :search
+    end
+  end
+  resources :stock_consumes do
+    collection do
+      get :select
+      get :search
+    end
+  end
   resources :receive_bill_assets do
     member do
       patch :confirm
@@ -65,8 +79,13 @@ Rails.application.routes.draw do
       patch :confirm
     end
   end
-  resources :base_purchase_orders
-  resources :equip_virtuals
+  #resources :base_purchase_orders
+  resources :equip_virtuals do
+    collection do
+      get :select
+      get :search
+    end
+  end
   resources :equip_consumes do
     collection do
       get :select

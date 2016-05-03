@@ -85,8 +85,11 @@ class Ability
 
     can :select,StockAsset
     can :select,StockIt
+    can :select,StockConsume
+
     can :read,StockAsset
     can :read,StockIt
+    can :read,StockConsume
 
     # can :select,StockConsume
     # can :select,StockVirtual

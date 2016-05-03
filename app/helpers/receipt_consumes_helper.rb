@@ -1,0 +1,2 @@
+module ReceiptConsumesHelper
+end

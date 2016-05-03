@@ -13,9 +13,14 @@ zh-CN:
       warehouse: 仓库信息管理
       location: 库位信息
       equipment: 设备资料
+      equip_it: 信息设备资料
+      equip_asset: 固定资产资料
+      equip_consume: 易耗品资料
+      equip_virtual: 无形资产资料
       inout_bill: 出入库单据
       receipt: 采购入库单
       receipt_asset: 固定资产-入库单
+      receipt_consume: 易耗品-入库单
       fire_fighting_equipment: 消防设施
       vehicle: 车辆信息
       driver: 司机信息
@@ -54,6 +59,7 @@ zh-CN:
       receive_bill_asset: 固定资产-领用单
       stock_it: 信息设备-库存统计
       stock_asset: 固定资产-库存统计
+      stock_consume: 易耗品-库存统计
       reward: 奖励情况
       punishment: 处罚信息
       assessment: 考评表

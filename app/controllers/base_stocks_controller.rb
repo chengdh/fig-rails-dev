@@ -12,7 +12,6 @@ class BaseStocksController < BaseController
     set_collection_ivar(@q.result.paginate(:page => params[:page]))
   end
 
-  private
   def current_ability_locations_ids
     ret = []
     Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
@@ -21,4 +20,3 @@ class BaseStocksController < BaseController
     ret.map {|l| l.id}
   end
 end
-
