@@ -15,6 +15,7 @@ zh-CN:
       equipment: 设备资料
       inout_bill: 出入库单据
       receipt: 采购入库单
+      receipt_asset: 固定资产-入库单
       fire_fighting_equipment: 消防设施
       vehicle: 车辆信息
       driver: 司机信息
@@ -43,10 +44,11 @@ zh-CN:
       salary_table: 工资表
       move_bill: 移库单
       shippment: 出库单
+      shippment_asset: 固定资产-出库单
       repair_bill: 设备维修
       worthless_bill: 设备报废单
       receive_bill: 设备领用单
-      stock: 库存情况
+      stock_it: 信息设备-库存
       reward: 奖励情况
       punishment: 处罚信息
       assessment: 考评表

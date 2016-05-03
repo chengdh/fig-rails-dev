@@ -77,9 +77,17 @@ class Ability
     can :select,EquipAsset
     can :select,EquipVirtual
     can :select,EquipConsume
+
+    can :read,EquipIt
+    can :read,EquipAsset
+    can :read,EquipVirtual
+    can :read,EquipConsume
+
+    can :select,StockAsset
     can :select,StockIt
+    can :read,StockAsset
     can :read,StockIt
-    # can :select,StockAsset
+
     # can :select,StockConsume
     # can :select,StockVirtual
     #教育培训信息,可以审批 就可以read update

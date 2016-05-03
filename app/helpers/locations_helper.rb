@@ -1,41 +1,30 @@
 #coding: utf-8
 module LocationsHelper
-  #只显示管辖范围内的库位
-  def current_ability_locations_for_select
+  def locations_for_select(wh_type = WarehouseType::WH_TYPE_IT,loc_type = Location::LOC_TYPE_NORNAL)
     ret = []
-    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
-      ret += w.locations.where(location_type: Location::LOC_TYPE_NORMAL)
+    wh_type_id = WarehouseType.find_by(code: wh_type).id
+    Warehouse.where(is_active: true,org_id: current_ability_org_ids,warehouse_type_id: wh_type_id ).each do |w|
+      ret += w.locations.where(location_type: loc_type)
     end
     ret.map {|l| [l.name,l.id]}
   end
 
-  def vendor_locations_for_select
-    ret = []
-    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
-      ret += w.locations.where(location_type: Location::LOC_TYPE_VENDOR)
-    end
-    ret.map {|l| [l.name,l.id]}
+  #只显示管辖范围内的库位
+  def current_ability_locations_for_select(wh_type = WarehouseType::WH_TYPE_IT)
+    locations_for_select(wh_type,Location::LOC_TYPE_NORMAL)
   end
-  def repair_locations_for_select
-    ret = []
-    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
-      ret += w.locations.where(location_type: Location::LOC_TYPE_REPAIR)
-    end
-    ret.map {|l| [l.name,l.id]}
+
+  def vendor_locations_for_select(wh_type = WarehouseType::WH_TYPE_IT)
+    locations_for_select(wh_type,Location::LOC_TYPE_VENDOR)
   end
-  def worthless_locations_for_select
-    ret = []
-    Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
-      ret += w.locations.where(location_type: Location::LOC_TYPE_WORTHLESS)
-    end
-    ret.map {|l| [l.name,l.id]}
+  def repair_locations_for_select(wh_type = WarehouseType::WH_TYPE_IT)
+    locations_for_select(wh_type,Location::LOC_TYPE_REPAIR)
   end
-  def employee_locations_for_select
-    ret = []
-   Warehouse.where(is_active: true,org_id: current_ability_org_ids).each do |w|
-      ret += w.locations.where(location_type: Location::LOC_TYPE_EMPLOYEE)
-    end
-    ret.map {|l| [l.name,l.id]}
+  def worthless_locations_for_select(wh_type = WarehouseType::WH_TYPE_IT)
+    locations_for_select(wh_type,Location::LOC_TYPE_WORTHLESS)
+  end
+  def employee_locations_for_select(wh_type = WarehouseType::WH_TYPE_IT)
+    locations_for_select(wh_type,Location::LOC_TYPE_EMPLOYEE)
   end
 
   def location_types_for_select

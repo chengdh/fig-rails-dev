@@ -71,9 +71,10 @@ units.each do |u|
   Unit.create!(name: u)
 end
 
-warehouse_types = %w(普通仓库 固定资产库 低值易耗品库)
-warehouse_types.each do |wt|
-  WarehouseType.create!(name: wt)
+warehouse_types = %w(设备仓库 固定资产库 低值易耗品库 无形资产库)
+warehouse_codes = %w(warehouse_type_it warehouse_type_asset warehouse_type_consume warehouse_type_virtual)
+warehouse_types.each_with_index do |wt,i|
+  WarehouseType.create!(name: wt,code: warehouse_codes[i])
 end
 
 Warehouse.destroy_all
@@ -85,7 +86,7 @@ end
 Location.destroy_all
 #每个仓库一个库位
 Warehouse.all.each do |w|
-  Location.create!(name: "#{w.name}->默认库位",warehouse: w)
+  Location.create!(name: "#{w.name}>默认库位",warehouse: w)
 end
 
 Equipment.destroy_all

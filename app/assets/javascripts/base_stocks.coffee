@@ -54,7 +54,7 @@ $ ->
       is_receive = true
 
     #is_reveive 是否是领用单据
-    $("#inout_line_temp_wrapper").trigger("select_stock_confirm",selected_items: selected_stock_list,is_receive: true)
+    $("#inout_line_temp_wrapper").trigger("select_stock_confirm",selected_items: selected_stock_list,is_receive: is_receive)
     $.fancybox.close()
 
   $(document).on("click","#btn_stock_select_confirm",func_on_select_stock_confirm)

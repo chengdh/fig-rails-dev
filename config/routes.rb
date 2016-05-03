@@ -1,5 +1,21 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :stock_assets do
+    collection do
+      get :select
+      get :search
+    end
+  end
+  resources :shippment_assets do
+    member do
+      patch :confirm
+    end
+  end
+  resources :receipt_assets do
+    member do
+      patch :confirm
+    end
+  end
   resources :stock_its do
     collection do
       get :select
@@ -26,7 +42,12 @@ Rails.application.routes.draw do
       get :search
     end
   end
-  resources :equip_assets
+  resources :equip_assets do
+    collection do
+      get :select
+      get :search
+    end
+  end
   resources :check_assessments do
     member do
       get :show_check

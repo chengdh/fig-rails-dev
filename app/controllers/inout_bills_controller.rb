@@ -38,4 +38,3 @@ class InoutBillsController < BaseController
                                        inout_lines_attributes: [:id,:inout_bill_id,:no,:qty,:price,:brand,:model,:duty_person,:purchase_date,:own_org_id,:note,:equipment_id,:_destroy])
   end
 end
-

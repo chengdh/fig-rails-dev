@@ -35,7 +35,7 @@ $ ->
   $("#inout_line_temp_wrapper").on("select_equipment_confirm",func_on_select_equipment_confirm)
 
   func_on_select_stock_confirm = (evt,obj)->
-    if obj.is_receive 
+    if obj.is_receive
       $("#inout_line_temp_wrapper").loadTemplate($("#inout_line_temp_for_receive"),obj.selected_items,{append: true})
     else
       $("#inout_line_temp_wrapper").loadTemplate($("#inout_line_simple_temp_for_out"),obj.selected_items,{append: true})

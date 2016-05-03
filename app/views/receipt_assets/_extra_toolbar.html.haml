@@ -1,0 +1,4 @@
+- if ["show","confirm"].include?(params[:action])
+  - if can? :confirm,resource
+    = link_to confirm_receipt_asset_path(resource),method: :patch,:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "确认" do
+      %i.fa.fa-check{:style => "color : green;"}

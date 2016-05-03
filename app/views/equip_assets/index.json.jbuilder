@@ -1,1 +1,1 @@
-render file: "equipment/index"
+json.partial! "equipment/index"

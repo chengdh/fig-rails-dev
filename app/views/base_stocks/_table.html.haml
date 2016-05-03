@@ -1,0 +1,31 @@
+= render "search"
+%table#stock_table.table.table-bordered.table-hover.table-condensed.table-stripped{:style => "text-align: center;vertical-align : middle;"}
+  %thead
+    %tr
+      %th{style: "text-align : center;"} 序号
+      %th{style: "text-align : center;"} 设备名称
+      %th{style: "text-align : center;"} 单位
+      %th{style: "text-align : center;"} 编号
+      %th{style: "text-align : center;"} 品牌
+      %th{style: "text-align : center;"} 型号
+      %th{style: "text-align : center;"} 购置时间
+      %th{style: "text-align : center;"} 科室
+      %th{style: "text-align : center;"} 责任人
+      %th{style: "text-align : center;"} 数量
+      %th{style: "text-align : center;"} 备注
+  %tbody
+    - collection.each_with_index do |t,i|
+      %tr
+        %td= i+1
+        %td= t.equipment.name
+        %td= t.equipment.try(:unit).try(:name)
+        %td= t.no
+        %td= t.brand
+        %td= t.model
+        %td= t.purchase_date
+        %td= t.own_org
+        %td= t.duty_person
+        %td= t.qty
+        %td
+
+= will_paginate collection, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next")

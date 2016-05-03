@@ -8,4 +8,3 @@ class StockItsController < BaseStocksController
     set_collection_ivar(@q.result.paginate(:page => params[:page]))
   end
 end
-
