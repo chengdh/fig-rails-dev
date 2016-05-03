@@ -48,7 +48,7 @@ class Role < ActiveRecord::Base
   end
   #得到被授权的system_function_group
   def system_function_groups
-     @system_function_groups ||= system_functions.group_by(&:system_function_group)
+    @system_function_groups ||= system_functions.group_by(&:system_function_group).sort_by {|k,v| k.order_by.present? ? k.order_by : 9999 }
   end
   #重写to_s方法
   def to_s

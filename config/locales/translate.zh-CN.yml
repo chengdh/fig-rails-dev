@@ -71,6 +71,7 @@ zh-CN:
       purchase_order_it: 设备-采购订单
       purchase_order_asset: 固定资产-采购订单
       purchase_order_consume: 易耗品-采购订单
+      purchase_order_virtual: 无形资产-采购订单
 
     attributes:
       previous: 上一页
