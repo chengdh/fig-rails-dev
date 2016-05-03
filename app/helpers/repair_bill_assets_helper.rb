@@ -1,0 +1,2 @@
+module RepairBillAssetsHelper
+end
