@@ -1,5 +1,5 @@
 #coding: utf-8
-class EquipVirtualsController < InheritedResources::Base
+class EquipVirtualsController < EquipmentController
   defaults :resource_class => EquipVirtual, :collection_name => 'equip_virtuals', :instance_name => 'equip_virtual'
   #Warning: when overwriting the collection method in a controller
   #the load part of a load_and_authorize_resource call will not work correctly.
