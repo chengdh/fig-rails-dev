@@ -1,7 +1,7 @@
 #coding: utf-8
 class PoLine < ActiveRecord::Base
-  belongs_to :equipment,polymorphic: true
-  belongs_to :base_purchase_order,polymorphic: true
+  belongs_to :equipment
+  belongs_to :base_purchase_order
 
   state_machine :initial => :draft do
     event :confirm do

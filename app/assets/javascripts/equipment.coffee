@@ -44,7 +44,11 @@ $ ->
         purchase_price: purchase_price
       )
 
-    $("#inout_line_temp_wrapper").trigger("select_equipment_confirm",selected_items: selected_equipment_list)
+    #判断是采购订单还是其他单据
+    if $("form.purchase_order_it,form.purchase_order_asset,form.purchase_order_consume,form.purchase_order_virtual").length > 0
+      $("#po_line_temp_wrapper").trigger("select_equipment_confirm",selected_items: selected_equipment_list)
+    else
+      $("#inout_line_temp_wrapper").trigger("select_equipment_confirm",selected_items: selected_equipment_list)
     $.fancybox.close()
 
   $(document).on("click","#btn_equipment_select_confirm",func_on_select_equipment_confirm)

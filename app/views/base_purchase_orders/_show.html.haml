@@ -1,0 +1,47 @@
+%table.table.table-condensed.table-stripped.table-bordered
+  %tr
+    %td{colspan: 4}
+      %span.label.label-info.pull-right= resource.state_des
+  %tr
+    %th 所属机构
+    %td= resource.org
+
+    %th 单据日期
+    %td= resource.bill_date
+  %tr
+    %th 单据说明
+    %td{:colspan => 3}= resource.name
+  %tr
+    %th 关联机构
+    %td{:colspan => 3}= resource.ref_partner
+  %tr
+    %th 源库位
+    %td= resource.f_location
+
+    %th 目标库位
+    %td= resource.t_location
+  %tr
+    %td 备注
+    %td{:colspan => 3}= resource.note
+
+%table.table.table-condensed.table-bordered.table-stripped.table-hover
+  %thead
+    %tr
+      %th{style: "text-align : center;"} 设备名称
+      %th{style: "text-align : center;"} 单位
+      %th{style: "text-align : center;"} 编号
+      %th{style: "text-align : center;"} 品牌
+      %th{style: "text-align : center;"} 型号
+      %th{style: "text-align : center;"} 数量
+      %th{style: "text-align : center;"} 备注
+
+    %tbody
+      - resource.inout_lines.each do |line|
+        %tr
+          %td= line.equipment.name
+          %td= line.equipment.unit.name
+          %td= line.try(:no)
+          %td= line.try(:brand)
+          %td= line.try(:model)
+          %td= line.qty
+          %td= line.note

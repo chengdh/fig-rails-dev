@@ -115,6 +115,37 @@
       %input{type: "hidden",class: "destroy"}
       %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
         %i.fa.fa-close
+%script#po_line_simple_temp{:type => "text/html"}
+  %tr{class: "tr-po-line"}
+    %td
+      %input{type: "hidden","data-value" => "equipment_id",class: "equipment_id"}
+      %span{class:"name","data-content" => "name"}
+
+    %td{style: "text-align : center;"}
+      %span{class: "unit_name","data-content" => "unit_name"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "brand form-control input-sm","data-value" => "factory_name"}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "model form-control input-sm","data-value" => "model"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1}
+
+    %td
+      %input{type: "text",style: "width : 100px;",class: "price form-control input-sm" }
+
+    %td{style: "text-align : center;"}
+      %span{class: "amt","data-content" => "amt"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",style: "width : 100px;",class: "note form-control input-sm"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "hidden",class: "destroy"}
+      %a{href: "#",class: "btn-delete-po-line",style: "color: red;"}
+        %i.fa.fa-close
 
 / 出库明细模板
 %script#inout_line_simple_temp_for_out{:type => "text/html"}

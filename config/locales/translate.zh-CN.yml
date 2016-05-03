@@ -59,6 +59,7 @@ zh-CN:
       receive_bill: 设备领用单
       receive_bill_asset: 固定资产-领用单
       receive_bill_consume: 易耗品-领用单
+      receive_bill_virtual: 无形资产-领用单
       stock_it: 信息设备-库存统计
       stock_asset: 固定资产-库存统计
       stock_consume: 易耗品-库存统计
@@ -66,6 +67,9 @@ zh-CN:
       reward: 奖励情况
       punishment: 处罚信息
       assessment: 考评表
+      base_purchase_order: 采购订单
+      purchase_order_it: 设备-采购订单
+      purchase_order_asset: 固定资产-采购订单
 
     attributes:
       previous: 上一页
@@ -187,6 +191,22 @@ zh-CN:
         t_location: 目标库位
         operater: 经办人
         note: 备注
+
+      base_purchase_order:
+        bill_date: 单据日期
+        bill_no: 单据号
+        ref_partner: 供货商
+        name: 单据说明
+        user: 操作员
+        user_id: 操作员
+        f_location_id: 源库位
+        f_location: 源库位
+        t_location_id: 目标库位
+        t_location: 目标库位
+        operater: 经办人
+        note: 备注
+
+
 
       fire_fighting_equipment:
         model: 规格型号

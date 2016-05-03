@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503035454) do
+ActiveRecord::Schema.define(version: 20160503074406) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20160503035454) do
     t.text     "note",          limit: 65535
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "ref_partner",   limit: 60
   end
 
   add_index "base_purchase_orders", ["bill_date"], name: "index_base_purchase_orders_on_bill_date", using: :btree

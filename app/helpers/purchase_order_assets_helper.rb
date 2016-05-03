@@ -1,0 +1,2 @@
+module PurchaseOrderAssetsHelper
+end

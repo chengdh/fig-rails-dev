@@ -34,3 +34,4 @@
 //= require roles
 //= require hidden_dangers
 //= require trainings
+//= require base_purchase_orders
