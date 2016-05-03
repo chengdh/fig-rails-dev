@@ -57,6 +57,7 @@ zh-CN:
       worthless_bill_asset: 固定资产-报废单
       receive_bill: 设备领用单
       receive_bill_asset: 固定资产-领用单
+      receive_bill_consume: 易耗品-领用单
       stock_it: 信息设备-库存统计
       stock_asset: 固定资产-库存统计
       stock_consume: 易耗品-库存统计
