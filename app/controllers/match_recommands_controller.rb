@@ -15,6 +15,17 @@ class MatchRecommandsController < ApplicationController
     @success_bigdata_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 1)
   end
 
+  #GET /report_interface.json
+  def report_interface
+    @q = MatchRecommand.where("result_type IS NOT NULL").ransack(params[:q])
+    @match_recommands = @q.result
+
+    @yinglang_match_recommands = @q.result.where(recommend_type: 2)
+    @success_yinglang_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 2)
+    @bigdata_match_recommands = @q.result.where(recommend_type: 1)
+    @success_bigdata_match_recommands = @q.result.where("result_type > 0").where(recommend_type: 1)
+  end
+
   #最近胜场
   # GET /match_recommands/recent_win
   # GET /match_recommands/recent_win.json
