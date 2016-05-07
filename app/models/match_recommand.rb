@@ -10,4 +10,13 @@ class MatchRecommand < ActiveRecord::Base
   scope :unread,->(data_time) {where("TO_CHAR(t_match_recommend.data_time,'YYYY-MM-DD HH24:MI') > ? ",data_time)}
   #最近胜场
   scope :recent_win,-> {where("t_match_recommend.result_type > 0 AND t_match_recommend.recommend_type = 1 ").limit(10)}
+
+  #计算胜率
+  def self.win_rate(q,recommend_type)
+    sum_win_all = q.result.where("result_type = 2 ").where(recommend_type: recommend_type).sum(1)
+    sum_win_half = q.result.where("result_type = 1 ").where(recommend_type: recommend_type).sum(0.5)
+    sum_matches = q.result.where("result_type <> 0 ").where(recommend_type: recommend_type).sum(1)
+    win_rate = ((sum_win_all + sum_win_half)/sum_matches*100).round(1)
+    win_rate
+  end
 end
