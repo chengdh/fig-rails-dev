@@ -16,7 +16,8 @@ class MatchRecommand < ActiveRecord::Base
     sum_win_all = q.result.where("result_type = 2 ").where(recommend_type: recommend_type).sum(1)
     sum_win_half = q.result.where("result_type = 1 ").where(recommend_type: recommend_type).sum(0.5)
     sum_matches = q.result.where("result_type <> 0 ").where(recommend_type: recommend_type).sum(1)
-    win_rate = ((sum_win_all + sum_win_half)/sum_matches*100).round(1)
+    win_rate = 0
+    win_rate = ((sum_win_all + sum_win_half)/sum_matches*100).round(1) if sum_matches > 0
     win_rate
   end
 end
