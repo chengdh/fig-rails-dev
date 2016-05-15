@@ -7,6 +7,8 @@ class Training < ActiveRecord::Base
   belongs_to :submitter,class_name: "User"
   belongs_to :checker,class_name: "User"
 
+  validates :training_length,:join_persons,:join_count,numericality: {only_integer: true, greater_than: 0}
+
   default_scope {order("training_date DESC")}
   has_attached_file :photo_1, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :photo_1, content_type: /\Aimage\/.*\Z/

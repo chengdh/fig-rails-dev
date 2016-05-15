@@ -2,6 +2,9 @@
 #特种设备
 class SpecEquipment < ActiveRecord::Base
   belongs_to :org
+
+  validates :ton,:volume,numericality: { greater_than: 0}
+
   def equip_type_des
     ret = ""
     ret = "锅炉" if equip_type.eql?('boier')

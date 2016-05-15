@@ -7,6 +7,17 @@ class SafetyTable < ActiveRecord::Base
   belongs_to :checker,class_name: "User"
   belongs_to :submitter,class_name: "User"
 
+  validates :safety_check_count,:special_safety_check_count,:evening_safety_check_count,
+    :danger_count,:fixed_danger_count,:third_edu_persons,:special_worker_edu_persons,:common_edu_persons,
+    :no_duplidate_persons,:safety_meeting_count,:safety_meeting_persons,:safety_meeting_solve_questions,
+    numericality: {only_integer: true, greater_than: 0}
+
+
+  validates :third_edu_percent,:special_worker_edu_percent,:common_edu_percent,
+    :invest_equipment_money,:invest_faclities_money,:fixed_danger_money,
+    :safety_edu_money,:safety_reward_money,
+    numericality: true
+
   #整改率
   def fixed_danger_rate
     return 0 if danger_count.to_f == 0

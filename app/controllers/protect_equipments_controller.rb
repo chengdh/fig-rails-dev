@@ -9,7 +9,6 @@ class ProtectEquipmentsController < BaseController
 
 
   private
-
   def protect_equipment_params
     params.require(:protect_equipment).permit(:protect_equipment_category_id, :org_id, :name, :deliver_org_id, :post, :qty, :unit_id, :save_days, :maintain_days, :is_active, :note)
   end

@@ -10,13 +10,14 @@
         %td{:colspan => 3}= f.select :org_id,current_ability_orgs_for_select,{include_blank: false},:class => "form-control"
         %th 上报时间
         %td
-          = f.input :table_date,as: :string,label: false,input_html: {readonly: true,
-            "data-provide" => "datepicker",
-            "data-date-format" => "yyyy-mm-dd",
-            "data-date-end-date" => "0d",
-            "data-date-language" => "zh-CN",
-            style: "width : 100px;"}
+          -# = f.input :table_date,as: :string,label: false,input_html: {readonly: true,
+          -#   "data-provide" => "datepicker",
+          -#   "data-date-format" => "yyyy-mm-dd",
+          -#   "data-date-end-date" => "0d",
+          -#   "data-date-language" => "zh-CN",
+          -#   style: "width : 100px;"}
 
+          = f.input :table_date,as: :string,label: false,input_html: {readonly: true,style: "width : 100px;"}
 
       %tr
         %th 培训名称
@@ -31,6 +32,7 @@
             "data-provide" => "datepicker",
             "data-date-end-date" => "0d",
             "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
+
         %th 培训时长(小时)
         %td= f.input :training_length,label: false,input_html: {class: "input-sm"}
 

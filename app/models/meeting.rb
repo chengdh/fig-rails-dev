@@ -7,6 +7,9 @@ class Meeting < ActiveRecord::Base
   belongs_to :checker,class_name: "User"
 
   default_scope {order("meeting_date DESC")}
+
+
+  validates :meeting_length,:join_persons,:join_count,numericality: {only_integer: true, greater_than: 0}
   default_value_for(:table_date) {Date.today}
   default_value_for(:meeting_date) {Date.today}
 
