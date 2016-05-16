@@ -9,7 +9,7 @@
 # Corrections? Improvements? Create a GitHub issue:
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
-
+/oracle_instant_client/*
 # bundler state
 /.bundle
 /vendor/bundle/

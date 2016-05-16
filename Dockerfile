@@ -50,11 +50,17 @@ RUN gem sources -l
 RUN gem install bundler
 RUN rbenv rehash
 
+ENV APP_HOME /rails_app
+WORKDIR $APP_HOME
+
+ADD Gemfile* $APP_HOME/
+# --- Add this to your Dockerfile ---
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_JOBS=2 \
+  BUNDLE_PATH=/bundle
+
 WORKDIR /rails_app
 
-ADD Gemfile Gemfile
-ADD Gemfile.lock Gemfile.lock
-RUN ruby -v
 RUN bundle install
 
-ADD . /rails_app
+ADD . $APP_HOME
