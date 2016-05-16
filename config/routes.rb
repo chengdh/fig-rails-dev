@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: {registrations: "registrations"}
+  devise_for :users, controllers: {registrations: "registrations",sessions: "sessions"}
 
+  resources :user_logs
   resources :odd_changes do
     get :unread,on: :collection
   end
@@ -45,6 +46,9 @@ Rails.application.routes.draw do
   end
 
 
+  #手机端注销
+  delete 'app_service/sign_out/:user_id' => 'app_service#sign_out'
+  get 'app_service/users' => 'app_service#users'
   #当前用户关注
   get 'my_favorites/:user_id' => 'user_favorites#my_favorites'
 

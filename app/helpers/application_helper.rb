@@ -30,4 +30,18 @@ module ApplicationHelper
   def thirty_days_ago_for_select
     (30.days.ago.to_datetime...Date.today.to_datetime).map {|d| [d.strftime("%Y年%m月%d日")+"星期#{get_wday_cn(d.wday)}",d.strftime("%Y-%m-%d")]}
   end
+  def semantic_search_form_for(*args, &block)
+    opts = args.extract_options!
+    opts[:builder] = FormtasticBootstrap::FormBuilder
+
+    # add the default form class
+    # (works whether existing class is a String like
+    # "foo bar" or an Array like ["foo", "bar"])
+    opts[:html] ||= {}
+    opts[:html][:class] ||= []
+    opts[:html][:class] << ' ' if opts[:html][:class].is_a? String
+    opts[:html][:class] << Formtastic::Helpers::FormHelper.default_form_class
+
+    search_form_for(*args, opts, &block)
+  end
 end

@@ -1,0 +1,25 @@
+%h4
+  %span 用户资料列表
+.well.well-sm
+  = semantic_search_form_for @q,url: app_service_users_path,html: {class: "form-inline"} do |f|
+    = f.input :user_name_eq,label: false,input_html: {class: "input-sm form-control",placeholder: "输入用户名"}
+    = f.input :phone_eq,label: false,input_html: {class: "input-sm form-control",placeholder: "输入手机号"}
+    = f.submit "查询用户",class: "btn btn-primary btn-sm"
+
+.table-responsive
+  %table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-bigdata
+    %tr
+      %th 用户名
+      %th 手机号
+      %th EMAIL
+      %th 注册时间
+      %th 登录日志
+    - @users.each_with_index do |u,i|
+      %tr
+        %td= u.user_name
+        %td= u.phone
+        %td= u.email
+        %td= u.created_at.strftime("%Y-%m-%d %H:%M")
+        %td= link_to "日志", user_logs_path("q[user_id_eq]" => u.id)
+
+  = will_paginate @users, previous_label: "上一页", next_label: "下一页"

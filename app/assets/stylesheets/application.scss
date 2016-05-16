@@ -11,10 +11,9 @@
  * file per style scope.
  *
  */
-@import "formtastic-bootstrap";
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "formtastic";
+@import "formtastic-bootstrap";
 @import "bootstrap-datepicker3";
 @import "toastr/toastr.scss";
 @import "fancybox/source/jquery.fancybox";

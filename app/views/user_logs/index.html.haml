@@ -1,0 +1,14 @@
+%h4
+  = link_to "<",:back
+  %span 用户登录日志
+.table-responsive
+  %table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-bigdata
+    %tr
+      %th 用户名
+      %th 操作类型
+      %th 操作时间
+    - @user_logs.each do |ul|
+      %tr
+        %td= ul.user.user_name
+        %td= ul.op_type_des
+        %td= u.created_at.strftime("%Y-%m-%d %H:%M")
