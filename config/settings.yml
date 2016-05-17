@@ -1,0 +1,4 @@
+sms_service:
+  server_url: http://222.73.117.156/msg/HttpBatchSendSM
+  username: ylty888
+  password: Ylty123456

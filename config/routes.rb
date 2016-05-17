@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :verify_sms
   devise_for :users, controllers: {registrations: "registrations",sessions: "sessions"}
 
   resources :user_logs

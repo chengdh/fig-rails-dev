@@ -34,6 +34,12 @@ gem 'react-rails', '~> 1.5.0'
 
 gem 'sprockets-coffee-react'
 
+gem "default_value_for", "~> 3.0.0"
+
+gem 'config'
+
+gem 'httpclient', '~> 2.8'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

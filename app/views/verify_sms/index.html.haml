@@ -1,0 +1,27 @@
+%h1 Listing verify_sms
+
+%table
+  %thead
+    %tr
+      %th Mobile
+      %th Verify code
+      %th Verity type
+      %th Is used
+      %th
+      %th
+      %th
+
+  %tbody
+    - @verify_sms.each do |verify_sm|
+      %tr
+        %td= verify_sm.mobile
+        %td= verify_sm.verify_code
+        %td= verify_sm.verity_type
+        %td= verify_sm.is_used
+        %td= link_to 'Show', verify_sm
+        %td= link_to 'Edit', edit_verify_sm_path(verify_sm)
+        %td= link_to 'Destroy', verify_sm, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Verify sm', new_verify_sm_path

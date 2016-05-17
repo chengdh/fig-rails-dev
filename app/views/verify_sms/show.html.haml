@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Mobile:
+  = @verify_sm.mobile
+%p
+  %b Verify code:
+  = @verify_sm.verify_code
+%p
+  %b Verity type:
+  = @verify_sm.verity_type
+%p
+  %b Is used:
+  = @verify_sm.is_used
+
+= link_to 'Edit', edit_verify_sm_path(@verify_sm)
+\|
+= link_to 'Back', verify_sms_path

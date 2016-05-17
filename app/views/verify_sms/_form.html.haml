@@ -1,0 +1,9 @@
+= semantic_form_for @verify_sm do |f|
+  = f.inputs do
+    = f.input :mobile
+    = f.input :verify_code
+    = f.input :verity_type
+    = f.input :is_used
+
+  = f.actions do
+    = f.action :submit, :as => :input
