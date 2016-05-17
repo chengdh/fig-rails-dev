@@ -20,4 +20,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def gender_des
+    ret = ""
+    ret = "男" if gender.eql?("m")
+    ret = "女" if gender.eql?("f")
+    ret
+  end
+
 end
