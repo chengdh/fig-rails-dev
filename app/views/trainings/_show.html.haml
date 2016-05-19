@@ -59,10 +59,14 @@
     %th 有无考核
     %td
       = resource.is_assess? ? "有" : "无"
-    %th 考核方式
-    %td= resource.assess_type_des
-    %th 合格率
-    %td= resource.qualified_rate
+    - if resource.is_assess?
+      %th 考核方式
+      %td= resource.assess_type_des
+      %th 合格率
+      %td= resource.qualified_rate
+    - else
+      %td{colspan: 4}
+
   %tr
     %th 审核结果
     %td= resource.check_state_des

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503145340) do
+ActiveRecord::Schema.define(version: 20160518125959) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160503145340) do
     t.text     "note",                       limit: 65535
     t.datetime "created_at",                                                          null: false
     t.datetime "updated_at",                                                          null: false
+    t.string   "mth",                        limit: 6,                                null: false
   end
 
   create_table "assessments", force: :cascade do |t|

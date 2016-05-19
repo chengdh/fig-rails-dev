@@ -1,7 +1,8 @@
 = semantic_form_for resource,html: {id: "safety_table_form"} do |f|
   = f.inputs do
     = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
-    = f.input :mth,as: :select,collection: months_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    / = f.input :mth,as: :select,collection: months_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :mth,input_html: {readonly: true,style: "width : 30%;"}
     -# = f.input :table_date,as: :string,input_html: {readonly: true,
     -#   "data-provide" => "datepicker",
     -#   "data-date-format" => "yyyy-mm-dd",

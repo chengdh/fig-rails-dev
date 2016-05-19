@@ -90,37 +90,47 @@
         %th{:colspan => 2} 评审
         %th{:colspan => 2} 需改进的内容
       %tr
-        %td{:colspan => 2}= f.label :audit_item_1_state
-        %td{:colspan => 2}= f.input :audit_item_1_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_1_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_1_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_1_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_1_fix,label: false,input_html: {readonly: true}
       %tr
-        %td{:colspan => 2}= f.label :audit_item_2_state
-        %td{:colspan => 2}= f.input :audit_item_2_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_2_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_2_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_2_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_2_fix,label: false,input_html: {readonly: true}
       %tr
-        %td{:colspan => 2}= f.label :audit_item_2_state
-        %td{:colspan => 2}= f.input :audit_item_2_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_2_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_3_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_3_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_3_fix,label: false,input_html: {readonly: true}
       %tr
-        %td{:colspan => 2}= f.label :audit_item_3_state
-        %td{:colspan => 2}= f.input :audit_item_3_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_3_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_4_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_4_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_4_fix,label: false,input_html: {readonly: true}
       %tr
-        %td{:colspan => 2}= f.label :audit_item_4_state
-        %td{:colspan => 2}= f.input :audit_item_4_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_4_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_5_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_5_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_5_fix,label: false,input_html: {readonly: true}
       %tr
-        %td{:colspan => 2}= f.label :audit_item_5_state
-        %td{:colspan => 2}= f.input :audit_item_5_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_5_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_6_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_6_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_6_fix,label: false,input_html: {readonly: true}
       %tr
-        %td{:colspan => 2}= f.label :audit_item_6_state
-        %td{:colspan => 2}= f.input :audit_item_6_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_6_fix,label: false
-      %tr
-        %td{:colspan => 2}= f.label :audit_item_7_state
-        %td{:colspan => 2}= f.input :audit_item_7_state,label: false
-        %td{:colspan => 2}= f.input :audit_item_7_fix,label: false
+        %td{style: "text-align: left;",:colspan => 2}= f.label :audit_item_7_state
+        %td{style: "text-align: left;",:colspan => 2}
+          = f.check_box :audit_item_7_state,class: "cbx_audit_item_state"
+          是否满足要求
+        %td{:colspan => 2}= f.input :audit_item_7_fix,label: false,input_html: {readonly: true}
       %tr
         %th{:colspan => 6}= f.label :note
       %tr

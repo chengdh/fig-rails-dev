@@ -18,6 +18,25 @@ class SafetyTable < ActiveRecord::Base
     :safety_edu_money,:safety_reward_money,
     numericality: true
 
+  #默认月份
+  #本月26日之后填写,月份是当月
+  #下月3日之前填写,月份是上月
+  default_value_for :mth do
+    default_mth
+  end
+
+  #判断是否在录入时间段内当月26至次月3日前
+  def self.in_upload_period?
+    Date.today.day >= 16 or Date.today.day <= 3
+  end
+
+  #获取数据录入月份
+  def self.default_mth
+    ret = ""
+    ret = Date.today.strftime("%Y%m") if Date.today.day >= 16
+    ret = 1.months.ago.strftime("%Y%m") if  Date.today.day <= 3
+    ret
+  end
   #整改率
   def fixed_danger_rate
     return 0 if danger_count.to_f == 0
@@ -45,7 +64,7 @@ class SafetyTable < ActiveRecord::Base
     ret = 0
     sum = q.result.sum("special_worker_edu_persons/(special_worker_edu_percent/100)")
     return 0 if sum == 0
-    ret = q.result.sum("special_worker_edu_persons") / sum * 100
+    ret = q.result.sum("special_worker_edu_persons").to_f / sum * 100
     ret.round(2)
   end
   #全员教育比例
@@ -54,7 +73,7 @@ class SafetyTable < ActiveRecord::Base
     sum = q.result.sum("common_edu_persons/(common_edu_percent/100)")
     return 0 if sum == 0
 
-    ret = q.result.sum("common_edu_persons") / sum *100
+    ret = q.result.sum("common_edu_persons").to_f / sum *100
     ret.round(2)
   end
   #隐患整改比例
@@ -62,9 +81,7 @@ class SafetyTable < ActiveRecord::Base
     ret = 0
     sum = q.result.sum("danger_count")
     return 0 if sum == 0
-    ret = q.result.sum("fixed_danger_count")/sum*100
+    ret = q.result.sum("fixed_danger_count").to_f/sum*100
     ret.round(2)
   end
-
-
 end

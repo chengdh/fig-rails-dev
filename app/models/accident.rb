@@ -9,4 +9,5 @@ class Accident < ActiveRecord::Base
 
   validates :commerical_accident_count,:commerical_die_persons,:commerical_wounded_persons,
     :commerical_economic_losses,numericality: {only_integer: true, greater_than_or_equal_to: 0}
-end
+
+  end

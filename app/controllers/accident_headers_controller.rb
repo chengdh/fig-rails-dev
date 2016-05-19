@@ -7,15 +7,22 @@ class AccidentHeadersController < BaseController
   #GET accident_headers/new
   #GET accident_headers/new.json
   def new
-    @accident_header = AccidentHeader.find_by(org_id: params[:accident_header].try(:[],:org_id),mth: params[:accident_header].try(:[],:mth))
-    if @accident_header.present?
-      flash[:warning] = "数据已存在."
-      render :show
-    else
-      @accident_header = AccidentHeader.new(accident_header_params)
-      AccidentType.where(is_active: true).each do |t|
-        @accident_header.accidents.build(accident_type: t)
+    #判断是否在录入时间段内当月26至次月3日前
+    if AccidentHeader.in_upload_period?
+      mth = AccidentHeader.default_mth
+      @accident_header = AccidentHeader.find_by(mth: mth,org_id: current_user.current_org.id)
+
+      if @accident_header.present?
+        render :show
+      else
+        @accident_header= AccidentHeader.new(mth: mth,org_id: current_user.current_org.id)
+        AccidentType.where(is_active: true).each do |t|
+          @accident_header.accidents.build(accident_type: t)
+        end
       end
+    else
+      flash[:warning] = "数据上报时段为当月26号至下月3号前,当前时间不在数据上报时间内!"
+      redirect_to :back
     end
   end
 

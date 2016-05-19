@@ -106,7 +106,7 @@ class HiddenDanger < ActiveRecord::Base
     ret = ""
     #ret = "草稿(未处理)" if review_state.eql?("draft")
     #ret = "待处理" if fixed_state.eql?("fixed")
-    ret = "合  格" if review_state.eql?("review_ok")
+    ret = "合&nbsp;&nbsp;&nbsp;格" if review_state.eql?("review_ok")
     ret = "不合格" if review_state.eql?("review_reject")
     ret
   end

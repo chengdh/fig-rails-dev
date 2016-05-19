@@ -17,4 +17,24 @@ class AccidentHeader < ActiveRecord::Base
   scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
   #待修改
   scope :rejected,->(org_id){ where(check_state: "rejected",org_id: org_id)}
+
+  #默认月份
+  #本月26日之后填写,月份是当月
+  #下月3日之前填写,月份是上月
+  default_value_for :mth do
+    default_mth
+  end
+
+  #判断是否在录入时间段内当月26至次月3日前
+  def self.in_upload_period?
+    Date.today.day >= 16 or Date.today.day <= 3
+  end
+
+  #获取数据录入月份
+  def self.default_mth
+    ret = ""
+    ret = Date.today.strftime("%Y%m") if Date.today.day >= 16
+    ret = 1.months.ago.strftime("%Y%m") if  Date.today.day <= 3
+    ret
+  end
 end

@@ -33,8 +33,17 @@
     %td= resource.deliver_date
     %th 整改期限
     %td= resource.fix_period_des
+    %td{colspan: 2}
+  - if resource.postponement_days > 0
+    %tr
+      %th 申请延期时间
+      %td= "#{resource.try(:postponement_days)}天"
+      %th 申请延期说明
+      %td{colspan: 5}= resource.postponement_note
+
+  %tr
     %th 整改截至时间
-    %td= resource.expire_fix_date
+    %td{colspan: 7}= resource.expire_fix_date
   %tr
     %th 整改说明及建议
     %td{colspan: 7}= resource.note

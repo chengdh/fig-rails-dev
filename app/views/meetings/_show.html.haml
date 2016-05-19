@@ -4,12 +4,6 @@
       %span{class: resource.check_state_class}
         = resource.check_state_des
 
-
-  %tr
-    %td{colspan: 8,style: "text-align: right;"}
-      %span{class: resource.check_state_class}
-        = resource.check_state_des
-
   %tr
     %th 上报机构
     %td{:colspan => 3}= resource.org
@@ -60,7 +54,7 @@
 
     %td
   %tr
-    %th 审核领导
+    %th 审核人
     %td= resource.try(:checker).try(:username)
 
     %th 审核状态

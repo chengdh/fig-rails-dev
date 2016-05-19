@@ -17,8 +17,8 @@
     = link_to show_fix_danger_org_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "录入整改信息" do
       %i.fa.fa-send-o
 
-  /延期操作
-  - if ["show"].include?(params[:action]) and can? :postponement,resource
+  /延期操作,复查不合格的隐患,不允许延期
+  - if ["show"].include?(params[:action]) and can? :postponement,resource and resource.parent.blank?
     = link_to show_postponement_danger_org_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "延期操作" do
       %i.fa.fa-calendar
 

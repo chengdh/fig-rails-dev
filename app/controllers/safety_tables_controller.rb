@@ -1,6 +1,24 @@
 #coding: utf-8
 class SafetyTablesController < BaseController
   include ControllerStateMachine
+
+  def new
+    #判断是否在录入时间段内当月26至次月3日前
+    if SafetyTable.in_upload_period?
+      mth = SafetyTable.default_mth
+      @salary_table = SafetyTable.find_by(mth: mth,org_id: current_user.current_org.id)
+
+      if @salary_table.present?
+        render :show
+      else
+        @salary_table = SafetyTable.new(mth: mth,org_id: current_user.current_org.id)
+      end
+    else
+      flash[:warning] = "数据上报时段为当月26号至下月3号前,当前时间不在数据上报时间内!"
+      redirect_to :back
+    end
+  end
+
   protected
   def collection
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
@@ -18,4 +36,3 @@ class SafetyTablesController < BaseController
                                          :safety_meeting_persons, :safety_meeting_solve_questions, :table_date, :user_id)
   end
 end
-

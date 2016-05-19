@@ -28,7 +28,7 @@
         %td= d.fixed_state_des
         %td
           %label{class: d.review_state_class}
-            = d.review_state_des
+            = d.review_state_des.html_safe
         %td
           .btn-group{role: "group","aria-label" => "..."}
             = link_to  resource_url(d),:class => "btn btn-sm btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do
