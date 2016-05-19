@@ -25,10 +25,10 @@ class VerifySmsController < ApplicationController
   # POST /verify_sms.json
   def create
     @verify_sm = VerifySm.new(verify_sm_params)
-    @verify_sm.send_verify_sms
 
     respond_to do |format|
       if @verify_sm.save
+        @verify_sm.send_verify_sms
         format.html { redirect_to @verify_sm, notice: 'Verify sm was successfully created.' }
         format.json { render :show, status: :created, location: @verify_sm }
       else
@@ -37,6 +37,25 @@ class VerifySmsController < ApplicationController
       end
     end
   end
+
+  # POST /send_reset_password_sms
+  # POST /send_reset_password_sms.json
+  def send_reset_password_sms
+    @verify_sm = VerifySm.new(verify_sm_params)
+
+    respond_to do |format|
+      if @verify_sm.save
+        @verify_sm.send_reset_password_sms
+        format.html { redirect_to @verify_sm, notice: 'Verify sm was successfully created.' }
+        format.json { render :show, status: :created, location: @verify_sm }
+      else
+        format.html { render :new }
+        format.json { render json: @verify_sm.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
 
   # PATCH/PUT /verify_sms/1
   # PATCH/PUT /verify_sms/1.json

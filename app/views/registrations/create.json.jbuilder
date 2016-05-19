@@ -4,4 +4,4 @@ json.email resource.email
 json.password resource.password
 json.gender resource.gender
 json.age resource.age
-json.address resource.adress
+json.address resource.address
