@@ -15,7 +15,11 @@
             "data-date-end-date" => "0d",
             "data-date-format" => "yyyy-mm-dd","data-date-language" => "zh-CN"}
       %tr
-        %th 关联机构
+        %th 单据说明
+        %td{:colspan => 3}= f.input :name,label: false,input_html: {class: "input-sm",placeholder: "单据说明",style: "width : 60%;"}
+
+      %tr
+        %th 供应商
         %td{:colspan => 3}= f.input :ref_partner,label: false,input_html: {class: "input-sm",placeholder: "可填入供货商或相关组织名称",style: "width : 60%;"}
       %tr
         %th 源库位

@@ -36,7 +36,7 @@
       %th{style: "text-align : center;"} 备注
 
     %tbody
-      - resource.inout_lines.each do |line|
+      - resource.po_lines.each do |line|
         %tr
           %td= line.equipment.name
           %td= line.equipment.unit.name
