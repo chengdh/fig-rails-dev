@@ -6,11 +6,16 @@ class SafetyTable < ActiveRecord::Base
   belongs_to :user
   belongs_to :checker,class_name: "User"
   belongs_to :submitter,class_name: "User"
+  default_scope {order("mth DESC,table_date ASC")}
 
   validates :safety_check_count,:special_safety_check_count,:evening_safety_check_count,
     :danger_count,:fixed_danger_count,:third_edu_persons,:special_worker_edu_persons,:common_edu_persons,
-    :no_duplidate_persons,:safety_meeting_count,:safety_meeting_persons,:safety_meeting_solve_questions,
-    numericality: {only_integer: true, greater_than: 0}
+    :no_duplicate_persons,:safety_meeting_count,:safety_meeting_persons,:safety_meeting_solve_questions,
+    numericality: {only_integer: true, greater_than_or_equal_to: 0}
+
+  validates  :third_edu_percent,:special_worker_edu_percent,:common_edu_percent,
+    :invest_equipment_money,:invest_faclities_money,:fixed_danger_money,:safety_edu_money,:safety_reward_money,
+    numericality: {greater_than_or_equal_to: 0}
 
 
   validates :third_edu_percent,:special_worker_edu_percent,:common_edu_percent,
@@ -18,11 +23,24 @@ class SafetyTable < ActiveRecord::Base
     :safety_edu_money,:safety_reward_money,
     numericality: true
 
+  default_value_for :special_worker_edu_percent,0.0
+  default_value_for :third_edu_percent,0.0
+  default_value_for :common_edu_percent,0.0
+  default_value_for :invest_equipment_money,0.0
+  default_value_for :invest_faclities_money,0.0
+  default_value_for :fixed_danger_money,0.0
+  default_value_for :safety_edu_money,0.0
+  default_value_for :safety_reward_money,0.0
+
+
   #默认月份
   #本月26日之后填写,月份是当月
   #下月3日之前填写,月份是上月
   default_value_for :mth do
     default_mth
+  end
+  default_value_for :table_date do
+    Date.today
   end
 
   #判断是否在录入时间段内当月26至次月3日前

@@ -327,7 +327,7 @@ zh-CN:
         fixed_danger_rate: 整改率
         third_edu_persons: 三级教育-参加人数
         third_edu_percent: 三级教育-占应参加人数
-        special_worker_edu_persons: 特种工教育-参加人数(%)
+        special_worker_edu_persons: 特种工教育-参加人数
         special_worker_edu_percent: 特种工教育-占应参加人数(%)
         common_edu_persons: 全员教育人次 
         no_duplicate_persons: 不重复人数 

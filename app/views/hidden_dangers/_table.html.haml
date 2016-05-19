@@ -2,16 +2,25 @@
   %thead
     %tr
       %th 序号
-      %th 检查单位
-      %th 隐患部门(单位)
-      %th 隐患编号
+      %th
+        = sort_link @q,:org_id,"检查单位",default_order: :asc
+      %th
+        = sort_link @q,:danger_org_id,"隐患部门(单位)",default_order: :asc
+      %th
+        = sort_link @q,:bill_no,"隐患编号",default_order: :desc
       %th 隐患名称
-      %th 隐患类型
-      %th 下达隐患整改时间
-      %th 整改期限
-      %th 整改截至时间
-      %th 隐患整改状态
-      %th 复查结果
+      %th
+        = sort_link @q,:is_big,"隐患类型",default_order: :desc
+      %th
+        = sort_link @q,:deliver_date,"下达隐患整改时间",default_order: :asc
+      %th
+        = sort_link @q,:fix_period,"整改期限",default_order: :asc
+      %th
+        = sort_link @q,:fix_period,"整改截至时间",default_order: :asc
+      %th
+        = sort_link @q,:fixed_state,"隐患整改状态",default_order: :desc
+      %th
+        = sort_link @q,:review_state,"复查结果",default_order: :desc
       %th
   %tbody
     - collection.each_with_index do |d,i|

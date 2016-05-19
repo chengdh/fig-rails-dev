@@ -77,13 +77,15 @@
       %th{:rowspan => 2} 总金额
       %th{:colspan => 6} 其中
     %tr
-      %th{colspan: 2} 购置器材
+      %th
+      %th 购置器材
       %th 安保设施
       %th 隐患整改
       %th 安保教育
       %th 安保奖励
     %tr
-      %td{colspan: 2}= resource.sum_invest
+      %td= resource.sum_invest
+      %th
       %td= resource.invest_equipment_money
       %td= resource.invest_faclities_money
       %td= resource.fixed_danger_money
