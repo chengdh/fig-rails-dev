@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  validates :user_name,:presence => true,uniqueness: {case_sensitive: false}
+  validates :user_name,:phone,:presence => true,uniqueness: {case_sensitive: false}
   has_many :user_favorites
   has_many :user_logs
 
