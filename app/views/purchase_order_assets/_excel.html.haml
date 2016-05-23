@@ -1,0 +1,46 @@
+%table
+  %tr
+    %td{colspan: 10,style: "text-align: center;"}
+      %h3{style: "text-align: center;"} 固定资产采购申请单
+  %tr
+    %th{colspan: 3} 
+      采购部门:
+      = resource.org
+    %td{colspan: 4}
+      = resource.bill_date.strftime("%Y年%m月%d日")
+
+    %td{colspan: 3}
+      编号:
+      = resource.bill_no
+    %tr
+      %th{colspan: 2} 固定资产名称
+      %th{colspan: 2} 规格及型号
+      %th{colspan: 2} 单位
+      %th 数量
+      %th{colspan: 2} 单价
+      %th 金额
+
+    - resource.po_lines.each do |pl|
+      %tr
+        %td{colspan: 2}= pl.equipment.name
+        %td{colspan: 2}= pl.model
+        %td{colspan: 2}= pl.equipment.unit
+        %td= pl.qty
+        %td{colspan: 2}= pl.price
+        %td= pl.price*pl.qty
+      %tr
+        %td{rowspan: 2} 主管领导审批意见
+        %td{rowspan: 2}
+        %td{rowspan: 2}  财务科长意见
+        %td{rowspan: 2}
+        %td{rowspan: 2}  领用部门
+        %td 负责人
+        %td
+        %td{rowspan: 2}  发出部门
+        %td 负责人
+        %td
+      %tr
+        %td 经手人
+        %td
+        %td 经手人
+        %td

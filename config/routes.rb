@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :purchase_order_assets do
     member do
       patch :confirm
+      get :export_excel
     end
     collection do
       get :search

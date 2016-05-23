@@ -30,11 +30,12 @@ class BasePurchaseOrder < ActiveRecord::Base
   end
   #由采购订单生成草稿入库单
   def build_receipt(resource_class)
-    po_attrs = attributes.except("id","created_at","updated_at","type","state","confirmer_id","confirm_date","operator")
+    po_attrs = attributes.except("id","created_at","bill_date","updated_at","type","state","confirmer_id","confirm_date","operator")
+    po_attrs['name'] = "自[#{po_attrs['name']}自动生成]"
     receipt = resource_class.new(po_attrs)
     receipt.base_purchase_order = self
     self.po_lines.each do |po_line|
-      receipt_line_attrs = po_line.attributes.except("id","base_purchase_order_id","created_at","updated_at")
+      receipt_line_attrs = po_line.attributes.except("id","state","base_purchase_order_id","created_at","updated_at")
       receipt_line_attrs["f_location_id"] = self.f_location_id
       receipt_line_attrs["t_location_id"] = self.t_location_id
       receipt.inout_lines.build(receipt_line_attrs)
