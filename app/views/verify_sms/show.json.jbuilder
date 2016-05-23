@@ -1,1 +1,5 @@
-json.extract! @verify_sm, :id, :mobile, :verify_code, :verity_type, :is_used, :created_at, :updated_at
+json.id @verify_sm.id
+json.mobile @verify_sm.mobile
+json.verify_type @verify_sm.verity_type
+json.is_used @verify_sm.is_used
+json.user_id User.find_by(phone: @verify_sm.mobile).try(:id)

@@ -6,8 +6,8 @@ class UserLog < ActiveRecord::Base
 
   def op_type_des
     ret = ""
-    ret = "登录" if op_type == 1
-    ret = "退出" if op_type == 2
+    ret = "登录" if op_type.eql?("1")
+    ret = "退出" if op_type.eql?("2")
     ret
   end
 end

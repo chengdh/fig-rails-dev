@@ -42,15 +42,17 @@ class VerifySmsController < ApplicationController
   # POST /send_reset_password_sms.json
   def send_reset_password_sms
     @verify_sm = VerifySm.new(verify_sm_params)
+    user_exists = User.exists?(phone: verify_sm_params[:mobile])
 
+    @verify_sm.errors.add(:user_id,"用户不存在") unless user_exists
     respond_to do |format|
-      if @verify_sm.save
+      if user_exists and @verify_sm.save
         @verify_sm.send_reset_password_sms
         format.html { redirect_to @verify_sm, notice: 'Verify sm was successfully created.' }
         format.json { render :show, status: :created, location: @verify_sm }
       else
         format.html { render :new }
-        format.json { render json: @verify_sm.errors, status: :unprocessable_entity }
+        format.json { render json: {errors: @verify_sm.errors}, status: :unprocessable_entity }
       end
     end
   end
