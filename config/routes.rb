@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :purchase_order_consumes do
     member do
       patch :confirm
+      get :export_excel
     end
     collection do
       get :search
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
   resources :purchase_order_its do
     member do
       patch :confirm
+      get :export_excel
     end
     collection do
       get :search
