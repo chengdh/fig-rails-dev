@@ -12,6 +12,17 @@ class InoutBillsController < BaseController
     set_resource_ivar(inout_bill)
     create!
    end
+  #导出查询结果为excel
+  #GET receive_billss/:id/export_excel
+  def export_excel
+    recevive_bill = resource_class.find(params[:id])
+    set_resource_ivar(recevive_bill)
+    xls = render_to_string(partial: "excel",layout: false)
+    xls = show_or_hide_fields_for_export(xls)
+    send_data xls,:filename => "领用审批单.xls"
+  end
+
+
 
   #PATCH inout_bills/:id/confirm
   #PATCH inout_bills/:id/confirm.json

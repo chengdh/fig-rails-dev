@@ -2,3 +2,6 @@
   - if can? :confirm,resource
     = link_to confirm_receive_bill_path(resource),method: :patch,:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "确认" do
       %i.fa.fa-check{:style => "color : green;"}
+  = link_to export_excel_receive_bill_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+

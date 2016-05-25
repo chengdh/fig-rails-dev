@@ -3,16 +3,16 @@
 class AddStockVirtualView < ActiveRecord::Migration
   def up
     execute "CREATE OR REPLACE VIEW v_stock_virtual_in AS " +
-      " SELECT a.t_location_id,a.no,a.equipment_id,a.brand,a.model,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
+      " SELECT a.t_location_id,a.no,a.equipment_id,a.brand,b.model,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
       " WHERE a.state='confirmed' AND a.equipment_id = b.id" +
       " AND b.type = 'EquipVirtual'" +
-      " group by a.t_location_id,a.equipment_id,a.brand,a.model"
+      " group by a.t_location_id,a.equipment_id,a.brand,b.model"
 
     execute "CREATE OR REPLACE VIEW v_stock_virtual_out AS " +
-      " SELECT a.f_location_id,a.no,a.equipment_id,a.brand,a.model,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
+      " SELECT a.f_location_id,a.no,a.equipment_id,a.brand,b.model,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
       " WHERE a.state='confirmed' AND a.equipment_id = b.id" +
       " AND b.type = 'EquipVirtual'"+
-      " group by a.f_location_id,a.equipment_id,a.brand,a.model"
+      " group by a.f_location_id,a.equipment_id,a.brand,b.model"
 
 
     execute "CREATE OR REPLACE VIEW v_stock_virtual AS " +

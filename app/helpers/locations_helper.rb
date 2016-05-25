@@ -9,6 +9,14 @@ module LocationsHelper
     ret.map {|l| [l.name,l.id]}
   end
 
+  #库存查询-库位列表(包括库存库位  领用库位 维修库位 报废库位)
+  def locations_select_for_stock(wh_type = WarehouseType::WH_TYPE_IT)
+    current_ability_locations_for_select(wh_type) +
+      employee_locations_for_select(wh_type) +
+      repair_locations_for_select(wh_type) +
+      worthless_locations_for_select(wh_type)
+  end
+
   #只显示管辖范围内的库位
   def current_ability_locations_for_select(wh_type = WarehouseType::WH_TYPE_IT)
     locations_for_select(wh_type,Location::LOC_TYPE_NORMAL)

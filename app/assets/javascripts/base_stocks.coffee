@@ -6,7 +6,7 @@ $ ->
   func_query_stock = ->
     params =
         "q[qty_gt]": 0,
-        "q[location_id_eq]": $("#t_location_id").val(),
+        "q[location_id_eq]": $("#f_location_id").val(),
         "q[no_eq]": $("#no_eq").val(),
         "q[equipment_name_cont]": $("#equipment_name_cont").val(),
         "q[equipment_category_id_eq]": $("#equipment_category_id_eq").val(),

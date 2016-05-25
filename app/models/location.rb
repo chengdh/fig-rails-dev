@@ -11,6 +11,6 @@ class Location < ActiveRecord::Base
   default_scope {order("warehouse_id,order_by ASC")}
 
   def to_s
-    "#{warehouse.name}>>#{name}"
+    name
   end
 end

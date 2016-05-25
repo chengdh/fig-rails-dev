@@ -1,0 +1,12 @@
+.well.well-sm
+  = semantic_search_form_for @q,html: {class: "form-inline"} do |f|
+    = f.hidden_field :qty_gt,value: 0
+    = f.input :location_id_eq,collection: locations_select_for_stock,include_blank: true,label: false,input_html: {:class => "input-sm form-control"}
+    = f.select :equipment_equipment_category_id_eq,options_for_select(equipment_categories_for_select),{prompt: "--设备类别--"},:class => "input-sm form-control"
+    = f.select :own_org_id_eq,options_for_select(current_children_orgs_for_select),{prompt: "--所属科室--"},:class => "input-sm form-control"
+    = f.text_field :duty_person_eq,:class => "input-sm form-control",placeholder: "责任人"
+    = f.text_field :equipment_name_cont,:class => "input-sm form-control",placeholder: "设备名称"
+    = f.text_field :no_eq,:class => "input-sm form-control",placeholder: "编号"
+    = f.text_field :brand_cont,:class => "input-sm form-control",placeholder: "品牌"
+    = f.text_field :model_cont,:class => "input-sm form-control",placeholder: "型号"
+    = f.submit "查询",class: "btn btn-primary btn-sm"

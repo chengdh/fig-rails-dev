@@ -176,6 +176,7 @@ zh-CN:
         purchase_date: 采购日期
         purchase_price: 采购价格
         factory_name: 生产厂商
+        brand: 品牌
         model: 规格型号
         guarantee_days: 保修时间(天)
         photo: 设备图片

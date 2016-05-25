@@ -8,7 +8,8 @@ class BaseStocksController < BaseController
   end
   protected
   def collection
-    @q= end_of_association_chain.where(location_id: current_ability_locations_ids).ransack(params[:q])
+    #@q= end_of_association_chain.where(location_id: current_ability_locations_ids).ransack(params[:q])
+    @q= end_of_association_chain.ransack(params[:q])
     set_collection_ivar(@q.result.paginate(:page => params[:page]))
   end
 

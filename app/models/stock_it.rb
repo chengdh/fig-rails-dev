@@ -5,6 +5,7 @@ class StockIt < ActiveRecord::Base
   belongs_to :location
   belongs_to :equipment
   belongs_to :own_org,class_name: "Org"
+  default_scope {includes(:location,:equipment)}
   def readonly?
     !new_record?
   end

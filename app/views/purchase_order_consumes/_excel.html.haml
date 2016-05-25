@@ -1,22 +1,22 @@
 %table
   %tr
     %td{colspan: 10,style: "text-align: center;"}
-      %h3{style: "text-align: center;"} 低值易耗品采购申请单
+      %h3{style: "text-align: center;"} 采购审批单
   %tr
-    %th{colspan: 3} 
+    %th{colspan: 3}
       采购部门:
       = resource.org
     %td{colspan: 4}
       = resource.bill_date.strftime("%Y年%m月%d日")
 
     %td{colspan: 3}
-    %tr
-      %th{colspan: 2} 固定资产名称
-      %th{colspan: 2} 规格及型号
-      %th{colspan: 2} 单位
-      %th 数量
-      %th{colspan: 2} 单价
-      %th 金额
+  %tr
+    %th{colspan: 2} 资产名称
+    %th{colspan: 2} 规格及型号
+    %th{colspan: 2} 单位
+    %th 数量
+    %th{colspan: 2} 单价
+    %th 金额
 
     - resource.po_lines.each do |pl|
       %tr

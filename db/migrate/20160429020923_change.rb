@@ -3,16 +3,16 @@
 class Change < ActiveRecord::Migration
   def up
     execute "CREATE OR REPLACE VIEW v_stock_it_in AS " +
-      " SELECT a.t_location_id,a.no,a.equipment_id,a.brand,a.model,a.purchase_date,a.own_org_id,a.duty_person,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
+      " SELECT a.t_location_id,a.no,a.equipment_id,a.brand,b.model,a.purchase_date,a.own_org_id,a.duty_person,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
       " WHERE a.state='confirmed' AND a.equipment_id = b.id" +
       " AND b.type = 'EquipIt'" +
-      " group by a.t_location_id,a.no,a.equipment_id,a.brand,a.model,a.purchase_date,a.own_org_id,a.duty_person"
+      " group by a.t_location_id,a.no,a.equipment_id,a.brand,b.model,a.purchase_date,a.own_org_id,a.duty_person"
 
     execute "CREATE OR REPLACE VIEW v_stock_it_out AS " +
-      " SELECT a.f_location_id,a.no,a.equipment_id,a.brand,a.model,a.purchase_date,a.own_org_id,a.duty_person,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
+      " SELECT a.f_location_id,a.no,a.equipment_id,a.brand,b.model,a.purchase_date,a.own_org_id,a.duty_person,sum(a.qty) qty,sum(a.qty*price) amt FROM inout_lines a,equipment b " +
       " WHERE a.state='confirmed' AND a.equipment_id = b.id" +
       " AND b.type = 'EquipIt'" + 
-      " group by a.f_location_id,a.no,a.equipment_id,a.brand,a.model,a.purchase_date,a.own_org_id,a.duty_person"
+      " group by a.f_location_id,a.no,a.equipment_id,a.brand,b.model,a.purchase_date,a.own_org_id,a.duty_person"
 
 
     execute "CREATE OR REPLACE VIEW v_stock_it AS " +

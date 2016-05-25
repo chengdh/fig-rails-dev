@@ -4,7 +4,7 @@ class StockItsController < BaseStocksController
   defaults :resource_class => StockIt, :collection_name => 'stock_its', :instance_name => 'stock_it'
   protected
   def collection
-    @q= end_of_association_chain.where(location_id: current_ability_locations_ids).ransack(params[:q])
+    @q= end_of_association_chain.ransack(params[:q])
     set_collection_ivar(@q.result.paginate(:page => params[:page]))
   end
 end

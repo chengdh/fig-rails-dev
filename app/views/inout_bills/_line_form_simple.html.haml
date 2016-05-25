@@ -21,19 +21,19 @@
             %td{style: "text-align : center;"}
               = f_line.object.equipment.try(:unit).try(:name)
             %td
-              = f_line.input :no,label: false,input_html: {class: "input-sm",style: "width: 120px;"}
+              = f_line.input :no,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :brand,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
+              = f_line.input :brand,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :model,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
+              = f_line.input :model,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :qty,label: false,input_html: {class: "input-sm",style: "width: 100px;"}
+              = f_line.input :qty,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :price,label: false,input_html: {class: "input-sm",style: "width: 20%;"}
+              = f_line.input :price,label: false,input_html: {class: "input-sm"}
             %td{style: "text-align : center;"}
               %span{:class => "amt"}
             %td
-              = f_line.input :note,label: false,input_html: {class: "input-sm",style: "width: 150px;"}
+              = f_line.input :note,label: false,input_html: {class: "input-sm",rows: 1}
             %td{style: "text-align : center;"}
               = f_line.hidden_field :_destroy,class: "destroy"
               %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}

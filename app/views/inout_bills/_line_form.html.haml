@@ -24,11 +24,11 @@
             %td{style: "text-align : center;"}
               = f_line.object.equipment.try(:unit).try(:name)
             %td
-              = f_line.input :no,label: false,input_html: {class: "input-sm",style: "width: 120px;"}
+              = f_line.input :no,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :brand,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
+              = f_line.input :brand,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :model,label: false,input_html: {class: "input-sm",style: "width:  120px;"}
+              = f_line.input :model,label: false,input_html: {class: "input-sm"}
             -# %td
             -#   = f_line.input :purchase_date,as: :string,label: false,input_html: {class: "input-sm",readonly: true,
             -#     :style => "width :  120px;",

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :purchase_order_virtuals do
     member do
       patch :confirm
+      get :export_excel
     end
     collection do
       get :search
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
   resources :receive_bill_consumes do
     member do
       patch :confirm
+      get :export_excel
     end
     collection do
       get :search
@@ -85,6 +87,7 @@ Rails.application.routes.draw do
   resources :receive_bill_assets do
     member do
       patch :confirm
+      get :export_excel
     end
     collection do
       get :search
@@ -145,6 +148,7 @@ Rails.application.routes.draw do
   resources :receive_bills do
     member do
       patch :confirm
+      get :export_excel
     end
   end
   #resources :base_purchase_orders

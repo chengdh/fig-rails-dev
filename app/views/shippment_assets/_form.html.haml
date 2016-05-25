@@ -23,8 +23,7 @@
         %td{:colspan => 3}= f.input :ref_partner,label: false,input_html: {class: "input-sm",placeholder: "可填入供货商或相关组织名称",style: "width : 60%;"}
       %tr
         %th 源库位
-        %td{colspan: 3}= f.input :f_location_id,as: :select,collection: current_ability_locations_for_select(WarehouseType::WH_TYPE_ASSET),label: false,include_blank: false,input_html: {class: "input-sm",id: "f_location_id",style: "width: 60%;"}
-
+        %td{colspan: 3}= f.input :f_location_id,as: :select,collection: locations_select_for_stock(WarehouseType::WH_TYPE_ASSET),label: false,include_blank: false,input_html: {class: "input-sm",id: "f_location_id",style: "width: 60%;"}
       %tr
         %th 目标库位
         %td{colspan: 3}= f.input :t_location_id,as: :select,collection: current_ability_locations_for_select(WarehouseType::WH_TYPE_ASSET),label: false,include_blank: false,input_html: {class: "input-sm",id: "t_location_id",style: "width: 60%;"}
