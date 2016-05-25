@@ -1,0 +1,10 @@
+- if ["index"].include?(params[:action])
+  = link_to export_excel_spec_equipments_path({"q[equip_type_eq]" => "boier"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-锅炉" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+  = link_to export_excel_spec_equipments_path({"q[equip_type_eq]" => "container"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-压力容器" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+  = link_to export_excel_spec_equipments_path({"q[equip_type_eq]" => "crane"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-起重设备" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+  = link_to export_excel_spec_equipments_path({"q[equip_type_eq]" => "elevator"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-电梯" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+

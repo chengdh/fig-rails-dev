@@ -1,0 +1,32 @@
+%table
+  %tr
+    %th{colspan: 9}
+      %h3{style: "text-align: center;"} 压力容器
+  %tr
+    %th
+      所属单位(部门)
+    %th
+      购置(安装)时间
+    %th
+      生产厂商
+    %th
+      型号
+    %th
+      所在场所
+    %th
+      容积
+    %th
+      用途
+    %th
+      检测时间
+
+  - @q.result.all.each do |eq|
+    %tr
+      %td= eq.org
+      %td= eq.equip_date
+      %td= eq.vendor
+      %td= eq.model
+      %td= eq.location
+      %td= eq.volume
+      %td= eq.usage
+      %td= eq.last_check_date

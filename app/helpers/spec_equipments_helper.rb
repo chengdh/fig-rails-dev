@@ -8,5 +8,6 @@ module SpecEquipmentsHelper
     ret = "锅炉" if type_code.eql?('boier')
     ret = "压力容器" if type_code.eql?('container')
     ret = "起重设备" if type_code.eql?('crane')
+    ret = "电梯" if type_code.eql?('elevator')
   end
 end

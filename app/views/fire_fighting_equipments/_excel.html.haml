@@ -1,0 +1,40 @@
+%table
+  %tr
+    %th{colspan: 11}
+      %h3{style: "text-align: center;"} 消防设施一览表
+  %tr
+    %td
+      单位名称
+    %td
+      设施名称
+    %td
+      设置地点
+    %td
+      品牌型号
+    %td
+      数量
+    %td
+      单位
+    %td
+      出厂日期
+    %td
+      使用年限
+    %td
+      有效期至
+    %td
+      上次维保日期
+    %td
+      责任人
+  - @q.result.all.each do |ffq|
+    %tr
+      %td= ffq.org
+      %td= ffq.name
+      %td= ffq.location
+      %td= ffq.model
+      %td= ffq.qty
+      %td= ffq.unit
+      %td= ffq.out_factory_date
+      %td= ffq.use_year
+      %td= ffq.valid_date
+      %td= ffq.last_upkeep_date
+      %td= ffq.duty_person

@@ -45,16 +45,15 @@ class BaseController < InheritedResources::Base
   end
 
   def show_or_hide_fields_for_export(html_str)
-    require 'nokogiri'
-    doc = Nokogiri::HTML.fragment(html_str,"UTF-8")
+    doc = Nokogiri::HTML.fragment(html_str,"utf-8")
     #处理显示问题
     show_fields = params[:show_fields]
     hide_fields = params[:hide_fields]
     doc.css(show_fields).remove_class('hide') if show_fields.present?
     doc.css(hide_fields).remove() if hide_fields.present?
     doc.css(".hide").remove()
-    doc.css('th').attr("style","border : thin solid #000;height : 8mm;text-align : center;vertical-align: middle;")
-    doc.css('td').attr("style","border : thin solid #000;height : 8mm;vertical-align: middle;")
+    doc.css('table th').attr("style","border: thin solid #000;height: 8mm;text-align: center;vertical-align: middle;")
+    doc.css('table td').attr("style","border: thin solid #000;height: 8mm;vertical-align: middle;")
     doc.to_html
   end
 

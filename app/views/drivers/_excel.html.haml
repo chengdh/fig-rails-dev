@@ -1,0 +1,30 @@
+%table
+  %tr
+    %th{colspan: 7}
+      %h3{style: "text-align: center;"} 驾驶员信息
+  %tr
+    %td
+      序号
+    %td
+      姓名
+    %td
+      车牌号
+    %td
+      驾驶证
+    %td
+      身份证
+    %td
+      联系电话
+    %td
+      下次证件申请日期
+
+  - @q.result.all.each_with_index do |v,i|
+    %tr
+      %td= i+1
+      %td= v.name
+      %td= v.vehicle.try(:vehicle_no)
+      %td= v.driver_no
+      %td= v.id_no
+      %td= v.mobile
+      %td= v.next_check_date
+

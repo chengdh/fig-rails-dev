@@ -461,21 +461,25 @@ Rails.application.routes.draw do
   resources :spec_equipments do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :drivers do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :vehicles do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :fire_fighting_equipments do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :inout_lines

@@ -1,0 +1,26 @@
+%table
+  %tr
+    %th{colspan: 6,style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      %h3{style: "text-align: center;"} 电梯
+  %tr
+    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      所属单位(部门)
+    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      购置(安装)时间
+    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      生产厂商
+    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      型号
+    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      所在场所
+    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+      检测时间
+
+  - @q.result.all.each do |eq|
+    %tr
+      %td= eq.org
+      %td= eq.equip_date
+      %td= eq.vendor
+      %td= eq.model
+      %td= eq.location
+      %td= eq.last_check_date
