@@ -1,31 +1,37 @@
+%h3{style: "text-align: center;display: none;"} 测试
 %table
   %tr
-    %td{colspan: 7}
-      %h3{style: "text-align: center;"} 锅炉
+    %td{:colspan => 7}
+      锅炉
   %tr
-    %td
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       所属单位
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       购置(安装)时间
-    %td
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       生产厂商
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       型号
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       所在场所
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       吨位
-    %th{style: "height: 8mm;border: thin solid #000;vertical-align: middle;text-align: center;"}
+    %th
       检测时间
 
   - @q.result.all.each do |ffq|
     %tr
-      %td= ffq.org
-      %td= ffq.equip_date
-      %td= ffq.vendor
-      %td= ffq.model
-      %td= ffq.location
-      %td= ffq.ton
-      %td= ffq.last_check_date
+      %td
+        = ffq.org
+      %td
+        = ffq.equip_date
+      %td
+        = ffq.vendor
+      %td
+        = ffq.model
+      %td
+        = ffq.location
+      %td
+        = ffq.ton
+      %td
+        = ffq.last_check_date

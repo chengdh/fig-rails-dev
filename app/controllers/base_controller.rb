@@ -52,8 +52,8 @@ class BaseController < InheritedResources::Base
     doc.css(show_fields).remove_class('hide') if show_fields.present?
     doc.css(hide_fields).remove() if hide_fields.present?
     doc.css(".hide").remove()
-    doc.css('table th').attr("style","border: thin solid #000;height: 8mm;text-align: center;vertical-align: middle;")
-    doc.css('table td').attr("style","border: thin solid #000;height: 8mm;vertical-align: middle;")
+    doc.css('table th').attr("style",'border: thin solid #000;height: 8mm;text-align: center;vertical-align: middle;')
+    doc.css('table td').attr("style",'border: thin solid #000;height: 8mm;vertical-align: middle;')
     doc.to_html
   end
 
