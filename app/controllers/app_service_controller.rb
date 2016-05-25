@@ -19,7 +19,7 @@ class AppServiceController < ApplicationController
   #重设密码
   def reset_password
     @user = User.find(params[:user][:id])
-    verify_code = VerifySm.find_by(mobile: params[:user][:phone],verity_type: 2)
+    verify_code = VerifySm.find_by(mobile: params[:user][:phone],verity_type: '2').try(:verify_code)
     if verify_code.blank? or not params[:user][:verify_code].eql?(verify_code)
       @user.errors.add(:verify_code,"验证码不正确")
     else
