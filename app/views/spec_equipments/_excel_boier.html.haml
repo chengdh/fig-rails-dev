@@ -1,7 +1,6 @@
-%h3{style: "text-align: center;display: none;"} 测试
 %table
   %tr
-    %td{:colspan => 7}
+    %th{:colspan => 7,style: "font-size: 15px;font-weight: bold;"}
       锅炉
   %tr
     %th
@@ -21,17 +20,10 @@
 
   - @q.result.all.each do |ffq|
     %tr
-      %td
-        = ffq.org
-      %td
-        = ffq.equip_date
-      %td
-        = ffq.vendor
-      %td
-        = ffq.model
-      %td
-        = ffq.location
-      %td
-        = ffq.ton
-      %td
-        = ffq.last_check_date
+      %td= ffq.org
+      %td= ffq.equip_date
+      %td= ffq.vendor
+      %td= ffq.model
+      %td= ffq.location
+      %td= ffq.ton
+      %td= ffq.last_check_date
