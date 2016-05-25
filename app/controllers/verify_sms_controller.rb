@@ -57,8 +57,6 @@ class VerifySmsController < ApplicationController
     end
   end
 
-
-
   # PATCH/PUT /verify_sms/1
   # PATCH/PUT /verify_sms/1.json
   def update

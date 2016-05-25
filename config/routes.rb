@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   #手机端注销
   delete 'app_service/sign_out/:user_id' => 'app_service#sign_out'
   get 'app_service/users' => 'app_service#users'
-  put 'app_service/reset_password' => 'app_service#reset_password'
+  post 'app_service/reset_password' => 'app_service#reset_password'
   #当前用户关注
   get 'my_favorites/:user_id' => 'user_favorites#my_favorites'
 

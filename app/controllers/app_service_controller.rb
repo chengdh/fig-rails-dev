@@ -15,7 +15,7 @@ class AppServiceController < ApplicationController
     @users = @q.result.paginate(page: params[:page], per_page: params[:per_page].present? ? params[:per_page] : 15)
   end
 
-  #PUT app_service/reset_password.json
+  #POST app_service/reset_password.json
   #重设密码
   def reset_password
     @user = User.find(params[:user][:id])
