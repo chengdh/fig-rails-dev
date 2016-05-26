@@ -43,12 +43,12 @@ class Role < ActiveRecord::Base
     if ids.blank?
       @system_finctions =[]
     else
-      @system_functions ||= SystemFunction.where(is_active: true).includes(:system_function_group).find(ids)
+      @system_functions ||= SystemFunction.includes(:system_function_group).where(id: ids,is_active: true)
     end
   end
   #得到被授权的system_function_group
   def system_function_groups
-    @system_function_groups ||= system_functions.group_by(&:system_function_group).sort_by {|k,v| k.order_by.present? ? k.order_by : 9999 }
+    @system_function_groups ||= system_functions.ransack(system_function_group_is_active_eq: true).result.group_by(&:system_function_group).sort_by {|k,v| k.order_by.present? ? k.order_by : 9999 }
   end
   #重写to_s方法
   def to_s

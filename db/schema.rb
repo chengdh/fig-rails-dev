@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524125744) do
+ActiveRecord::Schema.define(version: 20160526074522) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
