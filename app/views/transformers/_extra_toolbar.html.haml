@@ -1,0 +1,4 @@
+- if ["index"].include?(params[:action])
+  = link_to export_excel_transformers_path(params[:q]),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+

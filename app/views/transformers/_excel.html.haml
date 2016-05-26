@@ -1,0 +1,25 @@
+%table
+  %tr
+    %th{colspan: 6}
+      %h3{style: "text-align: center;"} 变压器
+  %tr
+    %td
+      单位名称
+    %td
+      数量
+    %td
+      购置(安装)时间
+    %td
+      功率
+    %td
+      干式/湿式
+    %td
+      检测时间
+  - @q.result.all.each do |ffq|
+    %tr
+      %td= ffq.org
+      %td= ffq.qty
+      %td= ffq.buy_date
+      %td= ffq.power
+      %td= work_type_desc(ffq.work_type)
+      %td= ffq.last_check_date

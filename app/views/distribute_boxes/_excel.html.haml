@@ -1,0 +1,23 @@
+%table
+  %tr
+    %th{colspan: 5}
+      %h3{style: "text-align: center;"} 配电柜 
+  %tr
+    %td
+      单位名称
+    %td
+      数量
+    %td
+      购置(安装)时间
+    %td
+      容量
+    %td
+      检测时间
+  - @q.result.all.each do |ffq|
+    %tr
+      %td= ffq.org
+      %td= ffq.qty
+      %td= ffq.buy_date
+      %td= ffq.volume
+      %td= ffq.last_check_date
+

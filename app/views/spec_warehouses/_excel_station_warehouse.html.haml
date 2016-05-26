@@ -1,0 +1,25 @@
+%table
+  %tr
+    %th{colspan: 9,style: "text-align: center;"} 烟叶收购站(点)仓库
+  %tr
+    %th 站点名称
+    %th 建造时间
+    %th 库房数量
+    %th 建筑面积
+    %th 耐火等级
+    %th 最大容量
+    %th 收购数量 
+    %th 是否配置消火栓系统
+    %th 是否安装防雷装置
+
+  - @q.result.all.each do |ffq|
+    %tr
+      %td= ffq.name
+      %td= ffq.build_date
+      %td= ffq.building_area
+      %td= ffq.room_count
+      %td= ffq.fire_level_des
+      %td= ffq.max_volume
+      %td= ffq.act_volume
+      %td= ffq.is_fire_hydrant_system ? "是" : "否"
+      %td= ffq.is_lightning_protector ? "是" : "否"

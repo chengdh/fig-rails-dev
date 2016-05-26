@@ -1,0 +1,23 @@
+%table
+  %tr
+    %th{colspan: 5}
+      %h3{style: "text-align: center;"} 高压配电室
+  %tr
+    %td
+      所属单位(部门)
+    %td
+      占地面积
+    %td
+      建筑物耐火等级
+    %td
+      建造时间
+    %td
+      管理部门
+
+  - @q.result.all.each do |ffq|
+    %tr
+      %td= ffq.org
+      %td= ffq.area
+      %td= ffq.fire_level_des
+      %td= ffq.build_date
+      %td= ffq.manage_org

@@ -3,9 +3,9 @@ class SpecWarehouse < ActiveRecord::Base
   belongs_to :org
   validates :warehouse_type,:name,:org_id, presence: true
 
-  validates :room_count, numericality: { only_integer: true,greater_than: 0}
-  validates :building_area, numericality: { greater_than: 0}
-  validates :max_volume,:act_volume, numericality: { greater_than: 0}
+  validates :room_count, numericality: { only_integer: true,greater_than_or_equal_to: 0}
+  validates :building_area, numericality: { greater_than_or_equal_to: 0}
+  validates :max_volume,:act_volume, numericality: { greater_than_or_equal_to: 0}
 
   default_scope {order("org_id,warehouse_type")}
 

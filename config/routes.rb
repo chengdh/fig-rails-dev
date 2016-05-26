@@ -415,37 +415,44 @@ Rails.application.routes.draw do
   resources :houses do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :protect_equipments do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :protect_equipment_categories
   resources :temporary_employees do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :distribute_boxes do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :transformers do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :low_pressure_rooms do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :high_pressure_rooms do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :electric_equipments do
@@ -456,6 +463,7 @@ Rails.application.routes.draw do
   resources :spec_warehouses do
     collection do
       get :search
+      get :export_excel
     end
   end
   resources :spec_equipments do

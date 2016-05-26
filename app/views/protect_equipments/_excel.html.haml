@@ -1,0 +1,33 @@
+%table
+  %tr
+    %th{colspan: 8}
+      %h3{style: "text-align: center;"} 劳动防护用品清单
+  %tr
+    %th{colspan: 3}
+      所在单位:
+      = collection.first.try(:org)
+    %th{colspan: 3}
+
+    %th{colspan: 2}
+      更新时间:
+      = collection.first.try(:updated_at).try(:strftime,"%Y-%m-%d")
+  %tr
+    %td 序号
+    %td 类别
+    %td 劳防用品名称
+    %td 发放部门
+    %td 配备岗位(部位)
+    %td 数量
+    %td 保存期限
+    %td 维保期限
+
+  - @q.result.all.each_with_index do |pe,i|
+    %tr
+      %td= i+1 
+      %td= pe.protect_equipment_category
+      %td= pe.name
+      %td= pe.deliver_org
+      %td= pe.post
+      %td= pe.qty
+      %td= pe.save_days
+      %td= pe.maintain_days

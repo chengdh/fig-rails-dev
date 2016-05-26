@@ -1,7 +1,6 @@
 #coding: utf-8
 #特种设备管理
 class SpecEquipmentsController < BaseController
-  BOM = "\377\376" #Byte Order Mark
   table :org,:equip_type_des,:equip_date,:vendor,:model,:location,:ton,:volume,:usage,:last_check_date
 
   #导出查询结果为excel

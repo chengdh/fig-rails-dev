@@ -1,0 +1,31 @@
+%table
+  %tr
+    %th{colspan: 11,style: "text-align: center;"} 卷烟物流中心仓库
+  %tr
+    %th 所属单位(部门)
+    %th 所在位置
+    %th 建筑面积
+    %th 库房耐火等级
+    %th 库存最大容量
+    %th 实际最大仓储量
+    %th 是否配置视频监控系统
+    %th 是否配置消防报警系统
+    %th 是否配置消火栓系统
+    %th 是否配置自动灭火系统
+    %th 是否安装防雷装置
+
+  - @q.result.all.each do |ffq|
+    %tr
+      %td= ffq.org
+      %td= ffq.location
+      %td= ffq.building_area
+      %td= ffq.fire_level_des
+      %td= ffq.max_volume
+      %td= ffq.act_volume
+      %td= ffq.is_camera_moniter ? "是" : "否"
+      %td= ffq.is_fire_fighting_alarm_system ? "是" : "否"
+      %td= ffq.is_auto_fire_fighting_system ? "是" : "否"
+      %td= ffq.is_fire_hydrant_system ? "是" : "否"
+      %td= ffq.is_lightning_protector ? "是" : "否"
+
+

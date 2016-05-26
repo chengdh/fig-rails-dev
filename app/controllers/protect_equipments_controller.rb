@@ -1,12 +1,22 @@
 #coding: utf-8
 #劳动防护用品
 class ProtectEquipmentsController < BaseController
+  #导出查询结果为excel
+  #GET protect_equipments/export_excel
+  def export_excel
+    @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
+    protect_equipments = @q.result
+    set_collection_ivar(protect_equipments)
+    xls = render_to_string(partial: "excel",layout: false)
+    xls = show_or_hide_fields_for_export(xls)
+    send_data xls,:filename => "劳动防护用品清单.xls"
+  end
+
   protected
   def collection
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
-
 
   private
   def protect_equipment_params
