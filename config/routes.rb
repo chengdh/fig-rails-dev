@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations",sessions: "sessions"}
 
   resources :user_logs
+  resources :payments,only: :index
   resources :odd_changes do
     get :unread,on: :collection
   end
@@ -51,8 +52,14 @@ Rails.application.routes.draw do
 
   #手机端注销
   delete 'app_service/sign_out/:user_id' => 'app_service#sign_out'
+  #用户列表
   get 'app_service/users' => 'app_service#users'
+  #重置密码
   post 'app_service/reset_password' => 'app_service#reset_password'
+
+  #付费接口回调用
+  get 'app_service/payment_callback' => 'app_service#payment_callback'
+
   #当前用户关注
   get 'my_favorites/:user_id' => 'user_favorites#my_favorites'
 

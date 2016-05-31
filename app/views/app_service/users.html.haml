@@ -16,6 +16,8 @@
       %th 性别
       %th 住址
       %th 注册时间
+
+      %th 付款记录
       %th 登录日志
     - @users.each_with_index do |u,i|
       %tr
@@ -26,6 +28,7 @@
         %td= u.gender_des
         %td= u.address
         %td= u.created_at.strftime("%Y-%m-%d %H:%M")
+        %td= link_to "付款记录", payments_path("q[cbi_eq]" => u.id)
         %td= link_to "日志", user_logs_path("q[user_id_eq]" => u.id)
 
   = will_paginate @users, previous_label: "上一页", next_label: "下一页"

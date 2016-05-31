@@ -1,16 +1,15 @@
 %h4
   = link_to :back do
     %i.glyphicon.glyphicon-arrow-left
-
-  %span 用户登录日志
+  %span 用户付款记录
 .table-responsive
   %table.table.table-hover.table-condensed.table-striped.table-match-recommend-report-bigdata
     %tr
       %th 用户名
-      %th 操作类型
-      %th 操作时间
-    - @user_logs.each do |ul|
+      %th 付款时间
+      %th 付款金额
+    - @payments.each do |ul|
       %tr
         %td= ul.user.user_name
-        %td= ul.op_type_des
-        %td= ul.created_at.strftime("%Y-%m-%d %H:%M")
+        %td= ul.payment_time.strftime("%Y-%m-%d %H:%M")
+        %td= ul.fee/100.0

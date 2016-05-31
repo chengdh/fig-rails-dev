@@ -26,6 +26,20 @@ class AppServiceController < ApplicationController
       @user.update(user_params)
     end
   end
+
+  #GET app_service/payment_callback
+  #易接付费调用接口
+  #参考https://www.1sdk.cn/omsdk-sdkenter-online/omsdk-sdkenter-server1/omsdk-sdkenter-server-consume.html
+  def payment_callback
+    #判断订单号是否重复
+    payment_params = params.permit(:app,:cbi,:ct,:fee,:pt,:sdk,:ssid,:st,:tcd,:uid,:ver,:sign)
+    tcd = payment_params[:tcd]
+    user_id = payment_params[:cbi].to_i
+    if not Payment.exists?(tcd: tcd)
+      payment = Payment.create!(payment_params)
+    end
+    render body: "SUCCESS"
+  end
   private
   def user_params
     params.require(:user).permit(:password, :password_confirmation)

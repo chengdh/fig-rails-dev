@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :user_name,:phone,:presence => true,uniqueness: {case_sensitive: false}
   has_many :user_favorites
   has_many :user_logs
+  has_many :payments,foreign_key: :cbi
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

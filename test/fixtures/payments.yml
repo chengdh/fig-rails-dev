@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  app: MyString
+  cbi: 1
+  ct: 1
+  fee: 1
+  pt: 1
+  sdk: MyString
+  ssid: MyString
+  st: 1
+  tcd: MyString
+  uid: MyString
+  ver: MyString
+  sign: MyString
+
+two:
+  app: MyString
+  cbi: 1
+  ct: 1
+  fee: 1
+  pt: 1
+  sdk: MyString
+  ssid: MyString
+  st: 1
+  tcd: MyString
+  uid: MyString
+  ver: MyString
+  sign: MyString
