@@ -1,11 +1,16 @@
 #coding: utf-8
 class SalaryTablesController < BaseController
   table :org,:name,:mth
+
+
+  #GET salary_tables/before_new
+  #显示新建窗口
+  def before_new
+    render partial: "before_new"
+  end
   #默认显示上月数据
   def new
-    org_id = current_user.current_org.id
-    mth = 1.month.ago.strftime("%Y%m")
-    @salary_table = SalaryTable.new_with_params(org_id,mth)
+    @salary_table = SalaryTable.new_with_params(params.permit(:org_id,:mth,:salary_item_header_id))
     if not @salary_table.new_record?
       flash[:info] = "工资表已存在!"
       redirect_to @salary_table

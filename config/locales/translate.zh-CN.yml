@@ -142,6 +142,10 @@ zh-CN:
         note: 备注
         work_day: 工作时间
         address: 住址
+        work_state: 工作状况
+        post_level: 职级
+        is_party_member: 是否党员
+        belongs_party: 所属支部
 
 
       equipment_category:

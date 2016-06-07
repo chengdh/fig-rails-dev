@@ -35,6 +35,16 @@
 
     = f.input :post,input_html: {style: "width : 40%;"}
 
+    = f.input :post_level,as: :select,collection: post_levels_for_select,label: "职级",include_blank: false,input_html: {style: "width : 40%;"}
+
     = f.input :user_id,as: :select,collection: users_for_select,label: "关联用户",input_html: {style: "width : 30%;"}
 
+    = f.input :is_party_member,as: :boolean,label: false
+
+    = f.input :belongs_party,as: :select,collection: parties_for_select,label: "所属支部",input_html: {style: "width : 30%;"}
+
+    = f.input :work_state,as: :select,collection: work_states_for_select,label: "工作状况",include_blank: false,input_html: {style: "width : 30%;"}
+
     = f.input :note,input_html: {rows: 2,style: "width : 40%;"}
+
+    = f.input :is_active,as: :boolean,label: false

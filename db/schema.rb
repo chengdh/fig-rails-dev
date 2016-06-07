@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160602080016) do
+ActiveRecord::Schema.define(version: 20160607135003) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(version: 20160602080016) do
   add_index "electric_equipments", ["org_id"], name: "index_electric_equipments_on_org_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "org_id",              limit: 4,                    null: false
-    t.string   "name",                limit: 30,                   null: false
+    t.integer  "org_id",              limit: 4,                         null: false
+    t.string   "name",                limit: 30,                        null: false
     t.string   "gender",              limit: 1
     t.date     "birthday"
     t.string   "academic",            limit: 60
@@ -173,14 +173,18 @@ ActiveRecord::Schema.define(version: 20160602080016) do
     t.date     "work_day"
     t.string   "post",                limit: 30
     t.text     "note",                limit: 65535
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
     t.integer  "user_id",             limit: 4
     t.boolean  "is_active",           limit: 1,     default: true
+    t.integer  "post_level",          limit: 4,     default: 9
+    t.boolean  "is_party_member",     limit: 1,     default: false
+    t.string   "belongs_party",       limit: 255
+    t.string   "work_state",          limit: 255,   default: "on_duty"
   end
 
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
@@ -730,28 +734,29 @@ ActiveRecord::Schema.define(version: 20160602080016) do
   add_index "safety_tables", ["user_id"], name: "index_safety_tables_on_user_id", using: :btree
 
   create_table "salary_item_headers", force: :cascade do |t|
-    t.integer  "org_id",     limit: 4
-    t.string   "name",       limit: 60,                   null: false
-    t.integer  "order_by",   limit: 4,     default: 1
-    t.boolean  "is_active",  limit: 1,     default: true
-    t.text     "note",       limit: 65535
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.integer  "org_id",         limit: 4
+    t.string   "name",           limit: 60,                   null: false
+    t.integer  "order_by",       limit: 4,     default: 1
+    t.boolean  "is_active",      limit: 1,     default: true
+    t.text     "note",           limit: 65535
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.text     "employee_where", limit: 65535
   end
 
   add_index "salary_item_headers", ["org_id"], name: "index_salary_item_headers_on_org_id", using: :btree
 
   create_table "salary_items", force: :cascade do |t|
-    t.integer  "salary_item_header_id", limit: 4,                         null: false
-    t.string   "name",                  limit: 30,                        null: false
-    t.string   "code",                  limit: 255,                       null: false
-    t.integer  "order_by",              limit: 4,   default: 1
-    t.string   "item_type",             limit: 30,  default: "plus_item"
-    t.boolean  "is_active",             limit: 1,   default: true
-    t.boolean  "is_calculate",          limit: 1,   default: false
-    t.string   "formula",               limit: 300
-    t.datetime "created_at",                                              null: false
-    t.datetime "updated_at",                                              null: false
+    t.integer  "salary_item_header_id", limit: 4,                           null: false
+    t.string   "name",                  limit: 30,                          null: false
+    t.string   "code",                  limit: 255,                         null: false
+    t.integer  "order_by",              limit: 4,     default: 1
+    t.string   "item_type",             limit: 30,    default: "plus_item"
+    t.boolean  "is_active",             limit: 1,     default: true
+    t.boolean  "is_calculate",          limit: 1,     default: false
+    t.text     "formula",               limit: 65535
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   create_table "salary_table_lines", force: :cascade do |t|
@@ -845,17 +850,20 @@ ActiveRecord::Schema.define(version: 20160602080016) do
   add_index "salary_table_lines", ["salary_table_id"], name: "index_salary_table_lines_on_salary_table_id", using: :btree
 
   create_table "salary_tables", force: :cascade do |t|
-    t.integer  "org_id",     limit: 4
-    t.string   "name",       limit: 60,    null: false
-    t.string   "mth",        limit: 6,     null: false
+    t.integer  "org_id",                limit: 4
+    t.string   "name",                  limit: 60,    null: false
+    t.string   "mth",                   limit: 6,     null: false
     t.date     "table_date"
-    t.text     "note",       limit: 65535
-    t.integer  "user_id",    limit: 4,     null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "note",                  limit: 65535
+    t.integer  "user_id",               limit: 4,     null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "salary_item_header_id", limit: 4
+    t.string   "work_state",            limit: 60
   end
 
   add_index "salary_tables", ["org_id"], name: "index_salary_tables_on_org_id", using: :btree
+  add_index "salary_tables", ["salary_item_header_id"], name: "index_salary_tables_on_salary_item_header_id", using: :btree
   add_index "salary_tables", ["user_id"], name: "index_salary_tables_on_user_id", using: :btree
 
   create_table "spec_equipments", force: :cascade do |t|

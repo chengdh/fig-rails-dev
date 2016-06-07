@@ -5,4 +5,5 @@ class SalaryItemHeader < ActiveRecord::Base
   validates :name, presence: true
   has_many :salary_items,dependent: :destroy
   accepts_nested_attributes_for :salary_items
+  serialize :employee_where
 end

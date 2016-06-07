@@ -263,6 +263,7 @@ Rails.application.routes.draw do
     collection do
       get :search
       get :show_import_xls
+      get :before_new
       post :import_xls
     end
   end
