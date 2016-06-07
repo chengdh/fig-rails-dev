@@ -48,7 +48,7 @@ class Ability
     alias_action :before_new,:to => :create
 
     #task 任务反馈
-    alias_action :show_line,:to => :save_line
+    alias_action :save_line,:to => :show_line
     #设备出入库确认
     alias_action :read,:to => :confirm
 
