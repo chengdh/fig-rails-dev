@@ -40,4 +40,17 @@ class Employee < ActiveRecord::Base
     ret = "三支部" if belongs_party.eql?("party_3")
     ret
   end
+  def is_not_main_des
+    ret = ""
+    ret = "三产" if is_not_main
+    ret = "在册" unless is_not_main
+    ret
+  end
+
+  def is_party_member_des
+    ret = ""
+    ret = "是" if is_party_member
+    ret = "否" unless is_party_member
+    ret
+  end
 end

@@ -1,9 +1,10 @@
-= semantic_form_for resource,html: {class: "form-inline",id: "salary_table_form"} do |f|
+= semantic_form_for resource,html: {class: "form-inline enter2tab",id: "salary_table_form"} do |f|
   = f.semantic_errors *f.object.errors.keys
+  -# = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,:include_blank => false,input_html: {class: "input-sm"}
   = f.hidden_field :user_id,value: current_user.id
-  .well.well-sm
-    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,:include_blank => false,input_html: {class: "input-sm"}
-    = f.input :mth,label: false,input_html: {readonly: true,class: "input-sm"}
+  = f.input :org_id,as: :hidden
+  = f.input :mth,as: :hidden
+  = f.input :salary_item_header_id,as: :hidden
 
   .table-responsive
     %table#salary_table_form_table.table.table-condensed.table-bordered
@@ -11,22 +12,37 @@
         %tr
           %th{:colspan => 100}
             = f.text_field :name,placeholder: "工资表名称",style: "width : 100%;text-align: center;"
+
         %tr
-          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 序号
-          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 姓名
-          %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "pay_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 发放项
-          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 应发合计
-          %th{:colspan => "#{SalaryItemHeader.first.salary_items.where(item_type: "deduct_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 代扣代缴款项
-          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  扣款合计
-          %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  实发合计
-        %tr
-          - SalaryItemHeader.first.salary_items.where(is_calculate: false).each do |item|
-            %th{:style => "text-align : center;vertical-align : middle;"}= item.name 
+          %th{colspan: 8}
+            机构名称:
+            = resource.org
+          %th{colspan: 4}
+            月份:
+            = resource.mth
+          %th{:colspan => 100}
+        = resource.salary_item_header.table_header.html_safe
+
+        -# %tr
+        -#   %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 序号
+        -#   %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 姓名
+        -#   %th{:colspan => "#{resource.salary_item_header.salary_items.where(item_type: "pay_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 发放项
+        -#   %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"} 应发合计
+        -#   %th{:colspan => "#{resource.salary_item_header.salary_items.where(item_type: "deduct_item",is_calculate: false).sum(1)}",:style => "text-align : center;vertical-align : middle;"} 代扣代缴款项
+        -#   %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  扣款合计
+        -#   %th{:rowspan => 2,:style => "text-align : center;vertical-align : middle;"}  实发合计
+        -# %tr
+        -#   - resource.salary_item_header.salary_items.where(is_calculate: false).each do |item|
+        -#     %th{:style => "text-align : center;vertical-align : middle;"}= item.name
+        -#
         = f.semantic_fields_for :salary_table_lines do |f_line|
           %tr
             %th
-            %th{:style => "text-align : center;vertical-align : middle;"}
-              = f_line.object.employee.name
               = f_line.input :employee_id,as: :hidden
-            - SalaryItemHeader.first.salary_items.where(is_active: true).each do |item|
-              %td= f_line.input item.code,as: :string,label: false,input_html: {class: "input-sm",style: "width : 50px;"}
+            - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
+              %td{:style => "text-align : center;vertical-align : middle;"}
+                - if item.item_type.eql?("employee_item")
+                  = f_line.object.employee.try(item.formula.to_sym)
+
+                - if item.item_type.eql?("pay_item") or item.item_type.eql?('deduct_item')
+                  = f_line.input item.code,as: :string,label: false,input_html: {class: "input-sm",style: "width : 50px;",readonly: item.is_calculate}

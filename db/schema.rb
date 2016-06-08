@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607135003) do
+ActiveRecord::Schema.define(version: 20160608021325) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -185,6 +185,7 @@ ActiveRecord::Schema.define(version: 20160607135003) do
     t.boolean  "is_party_member",     limit: 1,     default: false
     t.string   "belongs_party",       limit: 255
     t.string   "work_state",          limit: 255,   default: "on_duty"
+    t.boolean  "is_not_main",         limit: 1,     default: false
   end
 
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
@@ -742,6 +743,7 @@ ActiveRecord::Schema.define(version: 20160607135003) do
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.text     "employee_where", limit: 65535
+    t.text     "table_header",   limit: 65535
   end
 
   add_index "salary_item_headers", ["org_id"], name: "index_salary_item_headers_on_org_id", using: :btree

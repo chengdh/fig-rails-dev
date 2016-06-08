@@ -25,6 +25,7 @@
 //= require fancybox/source/jquery.fancybox
 //= require jquery-load-template/dist/jquery.loadTemplate-1.5.6
 //= require jquery-cookie/src/js.cookie
+//= require enter2tab
 //= require common
 //= require orgs
 //= require equipment
