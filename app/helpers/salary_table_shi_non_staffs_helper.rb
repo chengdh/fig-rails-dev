@@ -1,0 +1,2 @@
+module SalaryTableShiNonStaffsHelper
+end

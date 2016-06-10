@@ -1,0 +1,2 @@
+module SalaryTableXianNonStaffsHelper
+end

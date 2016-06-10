@@ -48,6 +48,15 @@ zh-CN:
       salary_item_header: 工资表项目
       salary_item: 工资表项目
       salary_table: 工资表
+      salary_table_xian_leader: 工资表-县局领导
+      salary_table_xian_on_duty: 工资表-县局在岗
+      salary_table_xian_retired: 工资表-县局内退
+      salary_table_xian_non_staff: 工资表-县局劳务
+      salary_table_shi_leader: 工资表-市局领导
+      salary_table_shi_on_duty: 工资表-市局在岗
+      salary_table_shi_retired: 工资表-市局内退
+      salary_table_shi_non_staff: 工资表-市局劳务
+
       move_bill: 调拨单
       move_bill_asset: 固定资产-调拨单
       shippment: 出库单

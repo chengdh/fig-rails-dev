@@ -34,7 +34,7 @@ SalaryItemHeader.destroy_all
 #                                                order_by:  default_salary_item_header.salary_items.length + 1,
 #                                                item_type: "pay_item")
 #县局领导
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局领导",employee_where: {post_level: 1,work_state: "on_duty"})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局领导",code: "xian_leader",employee_where: {post_level: 1,work_state: "on_duty"})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>
@@ -126,7 +126,7 @@ salary_item_header.salary_items.create(name: "实发合计",
 
 
 #县局在岗
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局在岗",employee_where: {post_level: [2,3,4,5,9],work_state: "on_duty"})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局在岗",code: "xian_on_duty",employee_where: {post_level: [2,3,4,5,9],work_state: "on_duty"})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>
@@ -227,7 +227,7 @@ salary_item_header.salary_items.create(name: "实发合计",
 
 
 #县内退
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局内退",employee_where: {work_state: "retired"})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局内退",code: "xian_retired",employee_where: {work_state: "retired"})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>
@@ -331,7 +331,7 @@ salary_item_header.salary_items.create!(name: "实发合计",
 
 
 #县劳务
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局劳务",employee_where: {work_state: "non_staff"})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局劳务",code: "xian_non_staff",employee_where: {work_state: "non_staff"})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>
@@ -433,7 +433,7 @@ salary_item_header.salary_items.create!(name: "实发合计",
 
 
 #市局领导
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局领导",employee_where: {post_level: 1,work_state: "on_duty"})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局领导",code: "shi_leader",employee_where: {post_level: 1,work_state: "on_duty"})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>
@@ -530,7 +530,7 @@ salary_item_header.salary_items.create!(name: "实发合计",
 
 
 #市局在岗
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局在岗",employee_where: {post_level: [2,3,4,5,9],work_state: "on_duty"})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局在岗",code: "shi_on_duty",employee_where: {post_level: [2,3,4,5,9],work_state: "on_duty"})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>
@@ -629,10 +629,8 @@ salary_item_header.salary_items.create!(name: "实发合计",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
-
-
 #市局遍外加内退
-salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局编外加内退",employee_where: {work_state: ["retired","no_staff"]})
+salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局编外加内退",code: "shi_non_staff",employee_where: {work_state: ["retired","no_staff"]})
 table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>序号</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>单位</th>

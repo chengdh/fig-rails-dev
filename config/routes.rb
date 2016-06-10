@@ -1,5 +1,6 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :salary_report_shis
   resources :purchase_order_virtuals do
     member do
       patch :confirm
@@ -267,8 +268,72 @@ Rails.application.routes.draw do
       post :import_xls
     end
   end
-  resources :salary_item_headers
-  resources :salary_items
+
+  resources :salary_table_xian_leaders do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+
+  resources :salary_table_xian_on_duties do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+
+  resources :salary_table_xian_retireds do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+
+
+  resources :salary_table_xian_non_staffs do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+
+  resources :salary_table_shi_leaders do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+
+  resources :salary_table_shi_on_duties do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+
+  resources :salary_table_shi_non_staffs do
+    collection do
+      get :search
+      get :show_import_xls
+      get :before_new
+      post :import_xls
+    end
+  end
+  #resources :salary_item_headers
+  #resources :salary_items
   resources :own_tasks do
     member do
       get :show_line

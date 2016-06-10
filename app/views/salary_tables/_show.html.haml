@@ -1,16 +1,18 @@
 %table.table.table-condensed.table-bordered
   %thead
     %tr
-      %th{:colspan => 2,:style => "text-align : center;vertical-align : middle;"}= resource.name
+      %th{:colspan => 2,:style => "text-align : center;vertical-align : middle;"}
+        %h3= resource.name
     %tr
-      %th= resource.org
-      %th= resource.mth
+      %th
+        机构名称:
+        = resource.org
+      %th
+        月份:
+        = resource.mth
 
-%table#salary_table_form_table.table.table-condensed.table-bordered
+%table.table.table-condensed.table-bordered
   = resource.salary_item_header.table_header.html_safe
-  %tr
-    - SalaryItemHeader.first.salary_items.where(is_calculate: false).each do |item|
-      %th{:style => "text-align : center;vertical-align : middle;"}= item.name
 
   - resource.salary_table_lines.each_with_index do |line,idx|
     %tr
@@ -18,7 +20,17 @@
       - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
         %td{:style => "text-align : center;vertical-align : middle;"}
           - if item.item_type.eql?("employee_item")
-            = item.employee.try(item.formula.to_sym)
+            = line.employee.try(item.formula.to_sym)
 
           - if item.item_type.eql?("pay_item") or item.item_type.eql?('deduct_item')
-            = item.code
+            = line.try(item.code.to_sym)
+  %tfoot
+    %tr{style: "color: red;font-weight: bold;"}
+      %td 合计:
+      - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
+        %td{:style => "text-align : center;vertical-align : middle;"}
+          - if item.item_type.eql?("employee_item")
+            &nbsp;
+
+          - if item.item_type.eql?("pay_item") or item.item_type.eql?('deduct_item')
+            = resource.salary_table_lines.sum(item.code.to_sym)

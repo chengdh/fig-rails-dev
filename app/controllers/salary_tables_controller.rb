@@ -1,8 +1,6 @@
 #coding: utf-8
 class SalaryTablesController < BaseController
   table :org,:name,:mth
-
-
   #GET salary_tables/before_new
   #显示新建窗口
   def before_new
@@ -10,10 +8,11 @@ class SalaryTablesController < BaseController
   end
   #默认显示上月数据
   def new
-    @salary_table = SalaryTable.new_with_params(params.permit(:org_id,:mth,:salary_item_header_id))
-    if not @salary_table.new_record?
+    salary_table = resource_class.new_with_params(params.permit(:org_id,:mth))
+    set_resource_ivar(salary_table)
+    if not salary_table.new_record?
       flash[:info] = "工资表已存在!"
-      redirect_to @salary_table
+      redirect_to salary_table
     else
       render :new
     end
@@ -30,14 +29,14 @@ class SalaryTablesController < BaseController
   def import_xls
     org_id = params[:org_id]
     mth = params[:mth]
-    @salary_table = SalaryTable.new_with_params(org_id,mth)
+    @salary_table = resource_class.new_with_params(org_id,mth)
     if not @salary_table.new_record?
       flash[:info] = "工资表已存在!"
       redirect_to @salary_table
     else
       excel_path = params[:file_excel].path
       begin
-        @salary_table = SalaryTable.create_with_excel(org_id,mth,excel_path,current_user.id)
+        @salary_table = resource_class.create_with_excel(org_id,mth,excel_path,current_user.id)
         redirect_to @salary_table
       rescue
         flash[:error] = "导入时出现错误,请确认excel文件是否正确."
@@ -56,6 +55,7 @@ class SalaryTablesController < BaseController
 
   private
   def salary_table_params
-    params.require(:salary_table).permit(:org_id, :mth, :table_date, :note, :user_id,salary_table_lines_attributes: [:id,:employee_id])
+    params.require(:salary_table).permit!
+    #(:org_id, :mth, :table_date, :note, :user_id,salary_table_lines_attributes: [:id,:employee_id])
   end
 end

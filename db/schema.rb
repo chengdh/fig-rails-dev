@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608021325) do
+ActiveRecord::Schema.define(version: 20160610030922) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -744,6 +744,7 @@ ActiveRecord::Schema.define(version: 20160608021325) do
     t.datetime "updated_at",                                  null: false
     t.text     "employee_where", limit: 65535
     t.text     "table_header",   limit: 65535
+    t.string   "code",           limit: 60
   end
 
   add_index "salary_item_headers", ["org_id"], name: "index_salary_item_headers_on_org_id", using: :btree
@@ -760,6 +761,83 @@ ActiveRecord::Schema.define(version: 20160608021325) do
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
   end
+
+  create_table "salary_report_shi_lines", force: :cascade do |t|
+    t.integer  "salary_report_shi_id",    limit: 4
+    t.string   "work_state",              limit: 60
+    t.string   "post_level",              limit: 60
+    t.boolean  "is_not_main",             limit: 1
+    t.integer  "mth_1st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_1st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_1st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_1st_persons_change",  limit: 65535
+    t.integer  "mth_2st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_2st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_2st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_2st_persons_change",  limit: 65535
+    t.integer  "mth_3st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_3st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_3st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_3st_persons_change",  limit: 65535
+    t.integer  "mth_4st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_4st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_4st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_4st_persons_change",  limit: 65535
+    t.integer  "mth_5st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_5st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_5st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_5st_persons_change",  limit: 65535
+    t.integer  "mth_6st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_6st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_6st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_6st_persons_change",  limit: 65535
+    t.integer  "mth_7st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_7st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_7st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_7st_persons_change",  limit: 65535
+    t.integer  "mth_8st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_8st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_8st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_8st_persons_change",  limit: 65535
+    t.integer  "mth_9st_persons",         limit: 4,                              default: 0
+    t.decimal  "mth_9st_shoud_pay",                     precision: 15, scale: 2
+    t.decimal  "mth_9st_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_9st_persons_change",  limit: 65535
+    t.integer  "mth_10st_persons",        limit: 4,                              default: 0
+    t.decimal  "mth_10st_shoud_pay",                    precision: 15, scale: 2
+    t.decimal  "mth_10st_act_pay",                      precision: 15, scale: 2
+    t.text     "mth_10st_persons_change", limit: 65535
+    t.integer  "mth_11st_persons",        limit: 4,                              default: 0
+    t.decimal  "mth_11st_shoud_pay",                    precision: 15, scale: 2
+    t.decimal  "mth_11st_act_pay",                      precision: 15, scale: 2
+    t.text     "mth_11st_persons_change", limit: 65535
+    t.integer  "mth_12st_persons",        limit: 4,                              default: 0
+    t.decimal  "mth_12st_shoud_pay",                    precision: 15, scale: 2
+    t.decimal  "mth_12st_act_pay",                      precision: 15, scale: 2
+    t.text     "mth_12st_persons_change", limit: 65535
+    t.integer  "mth_13st_persons",        limit: 4,                              default: 0
+    t.decimal  "mth_13st_shoud_pay",                    precision: 15, scale: 2
+    t.decimal  "mth_13t_act_pay",                       precision: 15, scale: 2
+    t.text     "mth_13st_persons_change", limit: 65535
+    t.datetime "created_at",                                                                 null: false
+    t.datetime "updated_at",                                                                 null: false
+  end
+
+  add_index "salary_report_shi_lines", ["salary_report_shi_id"], name: "index_salary_report_shi_lines_on_salary_report_shi_id", using: :btree
+
+  create_table "salary_report_shis", force: :cascade do |t|
+    t.string   "name",       limit: 60,    null: false
+    t.integer  "year",       limit: 4,     null: false
+    t.integer  "org_id",     limit: 4,     null: false
+    t.date     "table_date"
+    t.integer  "user_id",    limit: 4
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "salary_report_shis", ["org_id"], name: "index_salary_report_shis_on_org_id", using: :btree
+  add_index "salary_report_shis", ["user_id"], name: "index_salary_report_shis_on_user_id", using: :btree
 
   create_table "salary_table_lines", force: :cascade do |t|
     t.integer  "salary_table_id", limit: 4,                                        null: false
@@ -862,6 +940,7 @@ ActiveRecord::Schema.define(version: 20160608021325) do
     t.datetime "updated_at",                          null: false
     t.integer  "salary_item_header_id", limit: 4
     t.string   "work_state",            limit: 60
+    t.string   "type",                  limit: 60
   end
 
   add_index "salary_tables", ["org_id"], name: "index_salary_tables_on_org_id", using: :btree

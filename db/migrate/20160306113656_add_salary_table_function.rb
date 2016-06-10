@@ -17,6 +17,5 @@ class AddSalaryTableFunction < ActiveRecord::Migration
       }
     }
     SystemFunction.create_by_hash(sf_hash)
- 
   end
 end
