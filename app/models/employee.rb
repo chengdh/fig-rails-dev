@@ -6,7 +6,7 @@ class Employee < ActiveRecord::Base
   #内退
   WORK_STATE_RETIRED = "retired"
   #遍外离岗
-  WORK_STATE_NO_STAFF = "non_staff"
+  WORK_STATE_NON_STAFF = "non_staff"
 
   belongs_to :org
   belongs_to :user

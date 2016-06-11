@@ -72,7 +72,7 @@ class CreateSalaryReportShiLines < ActiveRecord::Migration
 
       t.integer :mth_13st_persons,default: 0
       t.decimal :mth_13st_shoud_pay,precision: 15,scale: 2
-      t.decimal :mth_13t_act_pay,precision: 15,scale: 2
+      t.decimal :mth_13st_act_pay,precision: 15,scale: 2
       t.text :mth_13st_persons_change
 
       t.timestamps null: false

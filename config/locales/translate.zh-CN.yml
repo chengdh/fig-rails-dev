@@ -56,6 +56,8 @@ zh-CN:
       salary_table_shi_on_duty: 工资表-市局在岗
       salary_table_shi_retired: 工资表-市局内退
       salary_table_shi_non_staff: 工资表-市局劳务
+      salary_report_shi: 工资总额使用情况表(市局机关)
+      salary_report_xian: 工资总额使用情况表(县局及中心)
 
       move_bill: 调拨单
       move_bill_asset: 固定资产-调拨单
@@ -512,6 +514,9 @@ zh-CN:
         k_big_accident_marks: 重大事故扣分
         k_punishment_marks: 处罚扣分
         reward_marks: 奖励分
+
+      salary_report_shi: 
+        year: 年度
 
 
 
