@@ -1,5 +1,6 @@
 #coding: utf-8
-class SalaryReportXiansController < BaseController
+#领导干部薪酬发放统计台帐
+class SalaryReportLeadersController < BaseController
   table :org,:name,:year,:table_date
 
   protected
@@ -9,8 +10,7 @@ class SalaryReportXiansController < BaseController
   end
 
   private
-  def salary_report_xian_params
-    params.require(:salary_report_xian).permit!
+  def salary_report_leader_params
+    params.require(:salary_report_leader).permit!
   end
 end
-
