@@ -25,6 +25,13 @@
           %tr
             %th
               = f_line.input :employee_id,as: :hidden
+              = f_line.input :name,as: :hidden
+              = f_line.input :id_no,as: :hidden
+              = f_line.input :post,as: :hidden
+              = f_line.input :post_level,as: :hidden
+              = f_line.input :is_party_member,as: :hidden
+              = f_line.input :belongs_party,as: :hidden
+              = f_line.input :is_not_main,as: :hidden
             - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
               %td{:style => "text-align : center;vertical-align : middle;"}
                 - if item.item_type.eql?("employee_item")

@@ -23,7 +23,11 @@ class SalaryTable < ActiveRecord::Base
     employee_where_hash = sih.employee_where
     Employee.where(org_id: options[:org_id],is_active: true).where(employee_where_hash).each do |e|
     #Employee.where(org_id: options[:org_id],is_active: true).each do |e|
-      table.salary_table_lines.build(employee: e)
+      table.salary_table_lines.build(employee: e,name: e.name,id_no: e.id_no,
+                                     post: e.post,post_level: e.post_level,
+                                     is_party_member: e.is_party_member,
+                                     is_not_main: e.is_not_main,
+                                     belongs_party: e.belongs_party)
     end
     table
   end

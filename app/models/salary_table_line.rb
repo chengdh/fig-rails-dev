@@ -1,3 +1,4 @@
+#coding: utf-8
 class SalaryTableLine < ActiveRecord::Base
   belongs_to :employee
   validates :employee_id, presence: true
@@ -8,5 +9,4 @@ class SalaryTableLine < ActiveRecord::Base
     :deduct_item_14,:deduct_item_15,:deduct_item_16,:deduct_item_17,:deduct_item_18,:deduct_item_19,:deduct_item_20,:deduct_item_21,:deduct_item_22,:deduct_item_23,:deduct_item_24,:deduct_item_25,:deduct_item_26,
     :deduct_item_27,:deduct_item_28,:deduct_item_29,:deduct_item_30,:deduct_item_31,:deduct_item_32,:deduct_item_33,:deduct_item_34,:deduct_item_35,:deduct_item_36,:deduct_item_37,:deduct_item_38,:deduct_item_39,
     numericality: {greater_than_or_equal_to: 0}
-
 end

@@ -1,0 +1,93 @@
+%table.table.table-condensed.table-bordered
+  %tr
+    %th{colspan: 100,style: "font-weight: bold;text-align: center;"}
+      = resource.name
+  %tr
+    %th{rowspan: 2,colspan: 2,style: "vertical-align: middle;text-align: center;"} 职级
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 人均收入
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 合计
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 1月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 2月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 3月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 4月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 5月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 6月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 7月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 8月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 9月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 10月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 11月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 12月
+    %th{colspan: 3,style: "vertical-align: middle;text-align: center;"} 年终奖
+  %tr
+    - (1..14).each do |idx|
+      %th{style: "vertical-align: middle;text-align: center;"} 人数
+      %th{style: "vertical-align: middle;text-align: center;"} 应发数
+      %th{style: "vertical-align: middle;text-align: center;"} 实发数
+
+  %tr
+    %th{colspan:2,style: "vertical-align: middle;text-align: center;"} 合计
+    %td= resource.avg_income
+    %td= resource.average_persons_group_by
+    %td= resource.sum_should_pay_group_by
+    %td= resource.sum_act_pay_group_by
+
+    - (1..13).each do |i|
+      %td= resource.salary_report_xian_lines.sum("mth_#{i}st_persons")
+      %td= resource.salary_report_xian_lines.sum("mth_#{i}st_shoud_pay")
+      %td= resource.salary_report_xian_lines.sum("mth_#{i}st_act_pay")
+
+  %tr
+    %th{colspan: 2,style: "text-align: center;vertical-align: middle;"} 领导
+    %td= resource.avg_income(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1)
+    %td= resource.average_persons_group_by(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1)
+    %td= resource.sum_should_pay_group_by(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1)
+    %td= resource.sum_act_pay_group_by(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1)
+
+    - (1..13).each do |i|
+      %td= resource.salary_report_xian_lines.where(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1).sum("mth_#{i}st_persons")
+      %td= resource.salary_report_xian_lines.where(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1).sum("mth_#{i}st_shoud_pay")
+      %td= resource.salary_report_xian_lines.where(work_state: Employee::WORK_STATE_ON_DUTY,post_level: 1).sum("mth_#{i}st_act_pay")
+
+  - [Employee::WORK_STATE_ON_DUTY,Employee::WORK_STATE_RETIRED].each do |ws|
+    - [6,7,9].each do |pl|
+      -[false,true].each do |not_main|
+        %tr
+          - if not not_main
+            %th{rowspan: 2,style: "text-align: center;vertical-align: middle;"}= post_level_des(pl)
+
+          %th= is_not_main_des(not_main)
+          %td= resource.avg_income(work_state: ws,post_level: pl)
+          %td= resource.average_persons_group_by(work_state: ws,post_level: pl)
+          %td= resource.sum_should_pay_group_by(work_state: ws,post_level: pl)
+          %td= resource.sum_act_pay_group_by(work_state: ws,post_level: pl)
+
+          - (1..13).each do |i|
+            %td= resource.salary_report_xian_lines.where(work_state: ws ,post_level: pl,is_not_main: not_main ).sum("mth_#{i}st_persons")
+            %td= resource.salary_report_xian_lines.where(work_state: ws ,post_level: pl,is_not_main: not_main  ).sum("mth_#{i}st_shoud_pay")
+            %td= resource.salary_report_xian_lines.where(work_state: ws ,post_level: pl,is_not_main: not_main  ).sum("mth_#{i}st_act_pay")
+    %tr
+      %th{colspan: 2,style: "text-align: center;vertical-align: middle;"} 小计
+      %td= resource.avg_income(work_state: ws)
+      %td= resource.average_persons_group_by(work_state: ws)
+      %td= resource.sum_should_pay_group_by(work_state: ws)
+      %td= resource.sum_act_pay_group_by(work_state: ws)
+
+      - (1..13).each do |i|
+        %td= resource.salary_report_xian_lines.where(work_state: ws).sum("mth_#{i}st_persons")
+        %td= resource.salary_report_xian_lines.where(work_state: ws).sum("mth_#{i}st_shoud_pay")
+        %td= resource.salary_report_xian_lines.where(work_state: ws).sum("mth_#{i}st_act_pay")
+
+  - [Employee::WORK_STATE_NON_STAFF].each do |ws|
+    %tr
+      %th{colspan: 2,style: "text-align: center;vertical-align: middle;"} 劳务
+
+      %td= resource.avg_income(work_state: ws)
+      %td= resource.average_persons_group_by(work_state: ws)
+      %td= resource.sum_should_pay_group_by(work_state: ws)
+      %td= resource.sum_act_pay_group_by(work_state: ws)
+
+      - (1..13).each do |i|
+        %td= resource.salary_report_xian_lines.where(work_state: ws ).sum("mth_#{i}st_persons")
+        %td= resource.salary_report_xian_lines.where(work_state: ws ).sum("mth_#{i}st_shoud_pay")
+        %td= resource.salary_report_xian_lines.where(work_state: ws ).sum("mth_#{i}st_act_pay")

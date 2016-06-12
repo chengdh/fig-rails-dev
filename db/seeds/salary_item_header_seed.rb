@@ -351,11 +351,11 @@ table_header = "<tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>岗位工资</th>
                       <th style='text-align : center;vertical-align : middle;'>绩效工资</th>
-                      <th style='text-align : center;vertical-align : middle;'>发放项１</th>
-                      <th style='text-align : center;vertical-align : middle;'>发放项２</th>
-                      <th style='text-align : center;vertical-align : middle;'>发放项３</th>
-                      <th style='text-align : center;vertical-align : middle;'>发放项４</th>
-                      <th style='text-align : center;vertical-align : middle;'>发放项５</th>
+                      <th style='text-align : center;vertical-align : middle;'>发放项1</th>
+                      <th style='text-align : center;vertical-align : middle;'>发放项2</th>
+                      <th style='text-align : center;vertical-align : middle;'>发放项3</th>
+                      <th style='text-align : center;vertical-align : middle;'>发放项4</th>
+                      <th style='text-align : center;vertical-align : middle;'>发放项5</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项6</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项7</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项8</th>
@@ -370,12 +370,12 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>住房公积金</th>
                       <th style='text-align : center;vertical-align : middle;'>企业年金</th>
                       <th style='text-align : center;vertical-align : middle;'>扣个税</th>
-                      <th style='text-align : center;vertical-align : middle;'>代扣项１</th>
-                      <th style='text-align : center;vertical-align : middle;'>代扣项２</th>
-                      <th style='text-align : center;vertical-align : middle;'>代扣项３</th>
-                      <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
-                      <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
-                      <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>代扣项1</th>
+                      <th style='text-align : center;vertical-align : middle;'>代扣项2</th>
+                      <th style='text-align : center;vertical-align : middle;'>代扣项3</th>
+                      <th style='text-align : center;vertical-align : middle;'>代扣项4</th>
+                      <th style='text-align : center;vertical-align : middle;'>代扣项5</th>
+                      <th style='text-align : center;vertical-align : middle;'>代扣项6</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -391,8 +391,8 @@ employee_items.each_with_index do |item,idx|
 end
 
 
-pay_items = %w(月度绩效基数 年终奖绩效基数 绩效系数 岗位工资 绩效工资 发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２	发放项１３)
-deduct_items = %w(养老保险	医疗保险	失业保险	住房公积金	企业年金	扣个税	代扣项１	代扣项２	代扣项３	代扣项４	代扣项５	代扣项６)
+pay_items = %w(月度绩效基数 年终奖绩效基数 绩效系数 岗位工资 绩效工资 发放项1 发放项2 发放项3 发放项4 发放项5 发放项6 发放项7 发放项8 发放项9 发放项10 发放项11 发放项12 发放项13)
+deduct_items = %w(养老保险 医疗保险 失业保险 住房公积金 企业年金 扣个税 代扣项1 代扣项2 代扣项3 代扣项4 代扣项5 代扣项6)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                           code: "pay_item_#{idx + 1}",

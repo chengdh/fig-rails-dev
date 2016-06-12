@@ -40,6 +40,8 @@ module EmployeesHelper
     ret = "正协" if post_level == 3
     ret = "副科" if post_level == 4
     ret = "副协" if post_level == 5
+    ret = "正股" if post_level == 6
+    ret = "副股" if post_level == 7
     ret = "一般人员" if post_level == 9
     ret
   end
@@ -48,6 +50,12 @@ module EmployeesHelper
     ret = "在岗" if work_state.eql?("on_duty")
     ret = "内退" if work_state.eql?("retired")
     ret = "编外离岗" if work_state.eql?("non_staff")
+    ret
+  end
+  def is_not_main_des(is_not_main)
+    ret = ""
+    ret = "三产" if is_not_main
+    ret = "在册" unless is_not_main
     ret
   end
 end

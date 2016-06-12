@@ -27,15 +27,15 @@
 
   %tr
     %th{colspan:2,style: "vertical-align: middle;text-align: center;"} 合计
-    %th= resource.avg_income
-    %th= resource.average_persons_group_by
-    %th= resource.sum_should_pay_group_by
-    %th= resource.sum_act_pay_group_by
+    %td= resource.avg_income
+    %td= resource.average_persons_group_by
+    %td= resource.sum_should_pay_group_by
+    %td= resource.sum_act_pay_group_by
 
     - (1..13).each do |i|
-      %th= resource.salary_report_shi_lines.sum("mth_#{i}st_persons")
-      %th= resource.salary_report_shi_lines.sum("mth_#{i}st_shoud_pay")
-      %th= resource.salary_report_shi_lines.sum("mth_#{i}st_act_pay")
+      %td= resource.salary_report_shi_lines.sum("mth_#{i}st_persons")
+      %td= resource.salary_report_shi_lines.sum("mth_#{i}st_shoud_pay")
+      %td= resource.salary_report_shi_lines.sum("mth_#{i}st_act_pay")
 
   - [Employee::WORK_STATE_ON_DUTY].each do |ws|
     - [1,2,3,4,5,9].each do |pl|
@@ -44,26 +44,26 @@
           %th{rowspan: 7,style: "vertical-align: middle;"}= work_state_des(ws)
 
         %th= post_level_des(pl)
-        %th= resource.avg_income(work_state: ws,post_level: pl)
-        %th= resource.average_persons_group_by(work_state: ws,post_level: pl)
-        %th= resource.sum_should_pay_group_by(work_state: ws,post_level: pl)
-        %th= resource.sum_act_pay_group_by(work_state: ws,post_level: pl)
+        %td= resource.avg_income(work_state: ws,post_level: pl)
+        %td= resource.average_persons_group_by(work_state: ws,post_level: pl)
+        %td= resource.sum_should_pay_group_by(work_state: ws,post_level: pl)
+        %td= resource.sum_act_pay_group_by(work_state: ws,post_level: pl)
 
         - (1..13).each do |i|
-          %th= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_persons")
-          %th= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_shoud_pay")
-          %th= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_act_pay")
+          %td= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_persons")
+          %td= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_shoud_pay")
+          %td= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_act_pay")
     %tr
       %th 小计
-      %th= resource.avg_income(work_state: ws)
-      %th= resource.average_persons_group_by(work_state: ws)
-      %th= resource.sum_should_pay_group_by(work_state: ws)
-      %th= resource.sum_act_pay_group_by(work_state: ws)
+      %td= resource.avg_income(work_state: ws)
+      %td= resource.average_persons_group_by(work_state: ws)
+      %td= resource.sum_should_pay_group_by(work_state: ws)
+      %td= resource.sum_act_pay_group_by(work_state: ws)
 
       - (1..13).each do |i|
-        %th= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_persons")
-        %th= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_shoud_pay")
-        %th= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_act_pay")
+        %td= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_persons")
+        %td= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_shoud_pay")
+        %td= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_act_pay")
 
   - [Employee::WORK_STATE_NON_STAFF,Employee::WORK_STATE_RETIRED ].each do |ws|
     - [2,3,4,5,9].each do |pl|
@@ -72,24 +72,24 @@
           %th{rowspan: 6,style: "vertical-align: middle;"}= work_state_des(ws)
 
         %th= post_level_des(pl)
-        %th= resource.avg_income(work_state: ws,post_level: pl)
-        %th= resource.average_persons_group_by(work_state: ws,post_level: pl)
-        %th= resource.sum_should_pay_group_by(work_state: ws,post_level: pl)
-        %th= resource.sum_act_pay_group_by(work_state: ws,post_level: pl)
+        %td= resource.avg_income(work_state: ws,post_level: pl)
+        %td= resource.average_persons_group_by(work_state: ws,post_level: pl)
+        %td= resource.sum_should_pay_group_by(work_state: ws,post_level: pl)
+        %td= resource.sum_act_pay_group_by(work_state: ws,post_level: pl)
 
         - (1..13).each do |i|
-          %th= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_persons")
-          %th= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_shoud_pay")
-          %th= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_act_pay")
+          %td= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_persons")
+          %td= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_shoud_pay")
+          %td= resource.salary_report_shi_lines.where(work_state: ws ,post_level: pl ).sum("mth_#{i}st_act_pay")
     %tr
       %th 小计
-      %th= resource.avg_income(work_state: ws)
-      %th= resource.average_persons_group_by(work_state: ws)
-      %th= resource.sum_should_pay_group_by(work_state: ws)
-      %th= resource.sum_act_pay_group_by(work_state: ws)
+      %td= resource.avg_income(work_state: ws)
+      %td= resource.average_persons_group_by(work_state: ws)
+      %td= resource.sum_should_pay_group_by(work_state: ws)
+      %td= resource.sum_act_pay_group_by(work_state: ws)
 
       - (1..13).each do |i|
-        %th= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_persons")
-        %th= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_shoud_pay")
-        %th= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_act_pay")
+        %td= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_persons")
+        %td= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_shoud_pay")
+        %td= resource.salary_report_shi_lines.where(work_state: ws).sum("mth_#{i}st_act_pay")
 

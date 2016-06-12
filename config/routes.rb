@@ -1,5 +1,6 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :salary_report_xians
   resources :salary_report_shis,only: [:index,:show]
   resources :purchase_order_virtuals do
     member do
