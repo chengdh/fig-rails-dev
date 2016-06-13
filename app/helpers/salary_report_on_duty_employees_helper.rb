@@ -1,0 +1,2 @@
+module SalaryReportOnDutyEmployeesHelper
+end

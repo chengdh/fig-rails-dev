@@ -1,5 +1,9 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :salary_report_non_staffs
+  resources :salary_report_retireds
+  resources :salary_report_on_duty_employees
+  resources :base_salary_reports
   resources :salary_report_leaders
   resources :salary_report_xians
   resources :salary_report_shis,only: [:index,:show]

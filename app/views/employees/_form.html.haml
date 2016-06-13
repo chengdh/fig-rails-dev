@@ -1,5 +1,5 @@
 = semantic_form_for @employee,html: {id: "employee_form"} do |f|
-  = f.inputs do
+  = f.inputs "基础资料" do
     = f.input :org,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
     = f.input :name,input_html: {style: "width : 30%;"}
     = f.input :avatar,as: :file
@@ -45,8 +45,49 @@
 
     = f.input :work_state,as: :select,collection: work_states_for_select,label: "工作状况",include_blank: false,input_html: {style: "width : 30%;"}
 
-
     = f.input :is_not_main,as: :boolean,label: false
     = f.input :is_active,as: :boolean,label: false
 
-    = f.input :note,input_html: {rows: 2,style: "width : 40%;"}
+  = f.inputs "工资项目" do
+    %table.table.table-condensed.table-bordered.wage-item-leader{style: "display: none;"}
+      %tr
+        %th 发放标准
+        %th= f.input :grant_rate,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 前年核定工资
+        %th= f.input :wage_before_last,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 去年核定工资
+        %th= f.input :wage_last,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+      %tr
+        %th 基本工资
+        %th= f.input :basic_salary,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 绩效工资
+        %th= f.input :pref_salary,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th
+        %th
+    / 在岗
+    %table.table.table-condensed.table-bordered.wage-item-on-duty
+      %tr
+        %th 月度绩效基数
+        %th= f.input :mth_pref_base,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 年度绩效基数 
+        %th= f.input :year_pref_base,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 绩效系数
+        %th= f.input :pref_rate,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+      %tr
+        %th 岗位工资
+        %th= f.input :post_salary,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 绩效工资
+        %th= f.input :pref_salary,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th
+        %th
+    %table.table.table-condensed.table-bordered.wage-item-retired{style: "display: none;"}
+      %tr
+        %th 生活费基数
+        %th= f.input :living_base,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 生活费系数
+        %th= f.input :living_salary_rate,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+        %th 生活费
+        %th= f.input :living_salary,label: false,input_html: {class: "input-sm",style: "width : 30%;"}
+
+
+

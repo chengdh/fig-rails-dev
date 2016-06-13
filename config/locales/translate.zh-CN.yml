@@ -58,6 +58,10 @@ zh-CN:
       salary_table_shi_non_staff: 工资表-市局劳务
       salary_report_shi: 工资总额使用情况表(市局机关)
       salary_report_xian: 工资总额使用情况表(县局及中心)
+      salary_report_leader: 领导干部薪酬发放统计台账
+      salary_report_on_duty_employee: 在岗员工收入台账(在册+三产)
+      salary_report_retired: 内退人员生活费收入台账(在册+三产)
+      salary_report_non_staff: 在工资中列支劳务人员收入台账
 
       move_bill: 调拨单
       move_bill_asset: 固定资产-调拨单
@@ -107,6 +111,7 @@ zh-CN:
         table_date: 填报日期
         check_state: 审核状态
         check_state_des: 审核状态
+        year: 年
         mth: 月份
         is_active_eq: 有效
 

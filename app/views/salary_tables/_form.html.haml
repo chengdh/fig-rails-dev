@@ -32,10 +32,23 @@
               = f_line.input :is_party_member,as: :hidden
               = f_line.input :belongs_party,as: :hidden
               = f_line.input :is_not_main,as: :hidden
+              = f_line.input :grant_rate, as: :hidden
+              = f_line.input :wage_before_last, as: :hidden
+              = f_line.input :wage_last,as: :hidden
+              = f_line.input :basic_salary,as: :hidden
+              = f_line.input :pref_salary,as: :hidden
+              = f_line.input :mth_pref_base,as: :hidden
+              = f_line.input :year_pref_base,as: :hidden
+              = f_line.input :pref_rate,as: :hidden
+              = f_line.input :post_salary,as: :hidden
+              = f_line.input :living_base,as: :hidden
+              = f_line.input :living_salary_rate,as: :hidden
+              = f_line.input :living_salary,as: :hidden
+
             - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
               %td{:style => "text-align : center;vertical-align : middle;"}
                 - if item.item_type.eql?("employee_item")
-                  = f_line.object.employee.try(item.formula.to_sym)
+                  = f_line.object.try(item.formula.to_sym)
 
                 - if item.item_type.eql?("pay_item") or item.item_type.eql?('deduct_item')
                   = f_line.input item.code,as: :string,label: false,input_html: {class: "input-sm",style: "width : 50px;",readonly: item.is_calculate}

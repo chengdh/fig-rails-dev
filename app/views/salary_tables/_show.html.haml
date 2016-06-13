@@ -1,17 +1,17 @@
 %table.table.table-condensed.table-bordered
   %thead
     %tr
-      %th{:colspan => 2,:style => "text-align : center;vertical-align : middle;"}
+      %th{:colspan => 100,:style => "text-align : center;vertical-align : middle;"}
         %h3= resource.name
     %tr
-      %th
+      %th{colspan: 25}
         机构名称:
         = resource.org
-      %th
+      %th{colspan: 100}
         月份:
         = resource.mth
 
-%table.table.table-condensed.table-bordered
+
   = resource.salary_item_header.table_header.html_safe
 
   - resource.salary_table_lines.each_with_index do |line,idx|

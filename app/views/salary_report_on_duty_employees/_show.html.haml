@@ -1,0 +1,128 @@
+%table.table.table-condensed.table-bordered
+  %tr
+    %th{colspan: 100,style: "font-weight: bold;text-align: center;"}
+      = resource.name
+  %tr
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 序号
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 单位
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 姓名
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 身份证号
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 部门
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 岗位
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 职级
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 员工性质 
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 是否党员
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 所在支部
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 发放月数
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 月度绩效基数
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 年终奖绩效基数
+    %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 绩效系数
+
+    %th{colspan: 6,style: "vertical-align: middle;text-align: center;"} 合计
+    - (1..12).each do |mth|
+      %th{colspan: 10,style: "vertical-align: middle;text-align: center;"}= "#{mth}月"
+  %tr
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 应发数合计
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 养老、医疗、失业保险合计
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 住房公积金合计
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 个税合计
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 其他代扣项合计
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 实发数合计
+    - (1..12).each do |mth|
+      %th{colspan: 4,style: "vertical-align: middle;text-align: center;"} 应发数
+      %th{colspan: 5,style: "vertical-align: middle;text-align: center;"} 代扣合计
+      %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 实发合计
+
+  %tr
+    - (1..12).each do |mth|
+      %th{style: "vertical-align: middle;text-align: center;"} 小计
+      %th{style: "vertical-align: middle;text-align: center;"} 岗位
+      %th{style: "vertical-align: middle;text-align: center;"} 绩效
+      %th{style: "vertical-align: middle;text-align: center;"} 其他
+
+      %th{style: "vertical-align: middle;text-align: center;"} 小计
+      %th{style: "vertical-align: middle;text-align: center;"} 养老、医疗、失业
+      %th{style: "vertical-align: middle;text-align: center;"} 住房公积金
+      %th{style: "vertical-align: middle;text-align: center;"} 个税
+      %th{style: "vertical-align: middle;text-align: center;"} 其他
+
+  %tr
+    %th 合计
+    %th{colspan: 13}
+    / 应发数合计
+    %td= resource.cal_sum("pay_item_13")
+    / 养老、医疗、失业保险合计
+    %td= resource.cal_sum("deduct_item_1+deduct_item_2+deduct_item_3")
+    / 住房公积金合计
+    %td= resource.cal_sum("deduct_item_4")
+    / 个税
+    %td= resource.cal_sum("deduct_item_6")
+    / 其他代扣项
+    %td= resource.cal_sum("deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+    / 实发数合计
+    %td= resource.cal_sum("pay_item_14")
+    - (1..12).each do |mth|
+      %td= resource.cal_sum_by_mth(mth,"pay_item_6")
+      %td= resource.cal_sum_by_mth(mth,"post_salary")
+      %td= resource.cal_sum_by_mth(mth,"pref_salary")
+      %td= resource.cal_sum_by_mth(mth,"pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5")
+
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_13")
+      / 养老、医疗、失业保险合计
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_1+deduct_item_2+deduct_item_3")
+      / 住房公积金合计
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_4")
+      / 个税
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_6")
+      / 其他代扣项
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+
+      /实发合计
+      %td= resource.cal_sum_by_mth(mth,"pay_item_7")
+  - resource.salary_report_lines.each_with_index do |l,idx|
+    %tr
+      %th= idx + 1
+      %th
+      %th= l.name
+      %th= l.id_no
+      %th
+      %th= l.post
+      %th= post_level_des(l.post_level)
+      %th= is_not_main_des(l.is_not_main)
+      %th= is_party_member_des(l.is_party_member)
+      %th= party_des(l.belongs_party)
+      %td
+      %td= l.mth_pref_base
+      %td= l.year_pref_base
+      %td= l.pref_rate
+
+      / 应发数合计
+      %td= l.cal_sum("pay_item_13")
+      / 养老、医疗、失业保险合计
+      %td= l.cal_sum("deduct_item_1+deduct_item_2+deduct_item_3")
+      / 住房公积金合计
+      %td= l.cal_sum("deduct_item_4")
+      / 个税
+      %td= l.cal_sum("deduct_item_6")
+      / 其他代扣项
+      %td= l.cal_sum("deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+      / 实发数合计
+      %td= l.cal_sum("pay_item_14")
+      - (1..12).each do |mth|
+        %td= l.cal_item(mth,"pay_item_13")
+        %td= l.cal_item(mth,"post_salary")
+        %td= l.cal_item(mth,"pref_salary")
+        %td= l.cal_item(mth,"pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5")
+
+        %td= l.cal_item(mth,"deduct_item_13")
+        / 养老、医疗、失业保险合计
+        %td= l.cal_item(mth,"deduct_item_1+deduct_item_2+deduct_item_3")
+        / 住房公积金合计
+        %td= l.cal_item(mth,"deduct_item_4")
+        / 个税
+        %td= l.cal_item(mth,"deduct_item_6")
+        / 其他代扣项
+        %td= l.cal_item(mth,"deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+
+        /实发合计
+        %td= l.cal_item(mth,"pay_item_14")

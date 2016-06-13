@@ -77,8 +77,8 @@ table_header = "<tr>
                     salary_item_header.table_header = table_header
 salary_item_header.save!
 
-employee_items = %w(单位 姓名项目	身份证号	职务	职级	是否党员	所在支部)
-employee_fields = %w(org name	id_no post_des post_level_des is_party_member_des belongs_party_des)
+employee_items = %w(单位 姓名项目	身份证号	职务	职级	是否党员	所在支部 发放标准 市局核定前年薪酬 市局核定去年薪酬 基本工资 绩效工资 )
+employee_fields = %w(org name	id_no post post_level_des is_party_member_des belongs_party_des grant_rate wage_before_last wage_last basic_salary pref_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -88,7 +88,7 @@ employee_items.each_with_index do |item,idx|
                                        item_type: "employee_item")
 end
 
-pay_items = %w(发放标准 市局核定前年薪酬 市局核定去年薪酬 基本工资 绩效工资 发放项１ 发放项２ 发放项３ 发放项４ 发放项５)
+pay_items = %w(发放项１ 发放项２ 发放项３ 发放项４ 发放项５)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                           code: "pay_item_#{idx + 1}",
@@ -99,7 +99,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                                code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").length + 1}",
                                                is_calculate: true,
-                                               formula: "pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9",
+                                               formula: "base_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5",
                                                order_by: salary_item_header.salary_items.length + 1,
                                                item_type: "pay_item")
 deduct_items = %w(养老保险 医疗保险 失业保险 住房公积金 企业年金 扣个税 代扣项１ 代扣项２ 代扣项３ 代扣项４ 代扣项５ 代扣项６)
@@ -120,7 +120,7 @@ salary_item_header.salary_items.create(name: "扣款合计",
 salary_item_header.salary_items.create(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").length + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
+                                       formula: "base_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -175,8 +175,8 @@ table_header = "<tr>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
-employee_items = %w(单位 姓名项目	身份证号	职级 员工性质	是否党员	所在支部)
-employee_fields = %w(org name	id_no post_level_des is_not_main_des is_party_member_des belongs_party_des)
+employee_items = %w(单位 姓名项目	身份证号	职级 员工性质	是否党员	所在支部 月度绩效基数	年终奖绩效基数	绩效系数 岗位工资	绩效工资	)
+employee_fields = %w(org name	id_no post_level_des is_not_main_des is_party_member_des belongs_party_des mth_pref_base year_pref_base pref_rate post_salary pref_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -187,7 +187,7 @@ employee_items.each_with_index do |item,idx|
 end
 
 
-pay_items = %w(月度绩效基数	年终奖绩效基数	绩效系数 岗位工资	绩效工资	发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２)
+pay_items = %w(发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２)
 deduct_items = %w(养老保险 医疗保险	失业保险	住房公积金	企业年金	扣个税	代扣项1	代扣项2	代扣项3	代扣项4	代扣项5	代扣项6)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create(name: item,
@@ -199,7 +199,7 @@ end
 salary_item_header.salary_items.create(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: " pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16 + pay_item_17",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -221,7 +221,7 @@ salary_item_header.salary_items.create(name: "扣款合计",
 salary_item_header.salary_items.create(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -278,8 +278,8 @@ table_header = "<tr>
                     salary_item_header.table_header = table_header
 salary_item_header.save!
 
-employee_items = %w(单位 姓名项目	身份证号 原部门 原岗位 原职级 员工性质	是否党员	所在支部)
-employee_fields = %w(org name	id_no org post_des post_level_des is_not_main_des is_party_member_des belongs_party_des)
+employee_items = %w(单位 姓名项目	身份证号 原部门 原岗位 原职级 员工性质	是否党员	所在支部 生活费基数	生活费系数 生活费)
+employee_fields = %w(org name	id_no org post post_level_des is_not_main_des is_party_member_des belongs_party_des living_base living_salary_rate living_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -290,7 +290,7 @@ employee_items.each_with_index do |item,idx|
 end
 
 
-pay_items = %w(生活费基数	生活费系数 生活费	发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２	发放项１３)
+pay_items = %w(发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２	发放项１３)
 deduct_items = %w(养老保险	医疗保险	失业保险	住房公积金	企业年金	扣个税	代扣项１	代扣项２	代扣项３	代扣项４	代扣项５	代扣项６)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
@@ -302,7 +302,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: " pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16",
+                                       formula: "living_base + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -324,7 +324,7 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "living_base + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -379,8 +379,8 @@ table_header = "<tr>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
-employee_items = %w(单位 姓名项目	身份证号 部门 岗位)
-employee_fields = %w(org name	id_no org post_des)
+employee_items = %w(单位 姓名项目	身份证号 部门 岗位 月度绩效基数 年终奖绩效基数 绩效系数 岗位工资 绩效工资 )
+employee_fields = %w(org name	id_no org post mth_pref_base year_pref_base pref_rate post_salary pref_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -391,7 +391,7 @@ employee_items.each_with_index do |item,idx|
 end
 
 
-pay_items = %w(月度绩效基数 年终奖绩效基数 绩效系数 岗位工资 绩效工资 发放项1 发放项2 发放项3 发放项4 发放项5 发放项6 发放项7 发放项8 发放项9 发放项10 发放项11 发放项12 发放项13)
+pay_items = %w(发放项1 发放项2 发放项3 发放项4 发放项5 发放项6 发放项7 发放项8 发放项9 发放项10 发放项11 发放项12 发放项13)
 deduct_items = %w(养老保险 医疗保险 失业保险 住房公积金 企业年金 扣个税 代扣项1 代扣项2 代扣项3 代扣项4 代扣项5 代扣项6)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
@@ -403,7 +403,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: " pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -425,7 +425,7 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -476,8 +476,8 @@ table_header = "<tr>
                     salary_item_header.table_header = table_header
 salary_item_header.save!
 
-employee_items = %w(单位 姓名项目	身份证号	职务	职级	是否党员	所在支部)
-employee_fields = %w(org name	id_no post_des post_level_des is_party_member_des belongs_party_des)
+employee_items = %w(单位 姓名项目	身份证号	职务	职级	是否党员	所在支部 发放标准 省局核定前年薪酬 省局核定去年薪酬 基本工资 绩效工资 )
+employee_fields = %w(org name	id_no post post_level_des is_party_member_des belongs_party_des grant_rate wage_before_last wage_last basic_salary pref_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -488,7 +488,7 @@ employee_items.each_with_index do |item,idx|
 end
 
 
-pay_items = %w(发放标准 省局核定前年薪酬 省局核定去年薪酬 基本工资 绩效工资 发放项１ 发放项２ 发放项３ 发放项４ 发放项５)
+pay_items = %w(发放项１ 发放项２ 发放项３ 发放项４ 发放项５)
 deduct_items = %w(养老保险 医疗保险 失业保险 住房公积金 企业年金 扣个税 代扣项１ 代扣项２ 代扣项３ 代扣项４ 代扣项５ 代扣项６)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
@@ -500,7 +500,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: " pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9",  
+                                       formula: "basic_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -522,7 +522,7 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9 ) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "basic_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -579,8 +579,8 @@ table_header = "<tr>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
-employee_items = %w(单位 姓名项目	身份证号	职级 员工性质	是否党员	所在支部)
-employee_fields = %w(org name	id_no post_level_des is_not_main_des is_party_member_des belongs_party_des)
+employee_items = %w(单位 姓名项目	身份证号	职级 员工性质	是否党员	所在支部 月度绩效基数	年终奖绩效基数	绩效系数 岗位工资	绩效工资)
+employee_fields = %w(org name	id_no post_level_des is_not_main_des is_party_member_des belongs_party_des mth_pref_base year_pref_base pref_rate post_salary pref_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -591,7 +591,7 @@ employee_items.each_with_index do |item,idx|
 end
 
 
-pay_items = %w(月度绩效基数	年终奖绩效基数	绩效系数 岗位工资	绩效工资	发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２)
+pay_items = %w(发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２)
 deduct_items = %w(养老保险 医疗保险	失业保险	住房公积金	企业年金	扣个税	代扣项1	代扣项2	代扣项3	代扣项4	代扣项5	代扣项6)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
@@ -603,7 +603,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: " pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -625,7 +625,7 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -679,8 +679,8 @@ table_header = "<tr>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
-employee_items = %w(单位 姓名项目	身份证号	职级 员工性质	是否党员	所在支部)
-employee_fields = %w(org name	id_no post_level_des is_not_main_des is_party_member_des belongs_party_des)
+employee_items = %w(单位 姓名项目	身份证号	职级 员工性质	是否党员	所在支部 月度绩效基数	年终奖绩效基数	绩效系数 岗位工资	绩效工资)
+employee_fields = %w(org name	id_no post_level_des is_not_main_des is_party_member_des belongs_party_des mth_pref_base year_pref_base pref_rate post_salary pref_salary)
 employee_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
                                        code: "employee_item_#{salary_item_header.salary_items.where(item_type: "employee_item").length + 1}",
@@ -690,7 +690,7 @@ employee_items.each_with_index do |item,idx|
                                        item_type: "employee_item")
 end
 
-pay_items = %w(月度绩效基数	年终奖绩效基数	绩效系数 岗位工资	绩效工资	发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２)
+pay_items = %w(发放项１	发放项２	发放项３	发放项４	发放项５	发放项６	发放项７	发放项８	发放项９	发放项１０	发放项１１	发放项１２)
 deduct_items = %w(养老保险 医疗保险	失业保险	住房公积金	企业年金	扣个税	代扣项1	代扣项2	代扣项3	代扣项4	代扣项5	代扣项6)
 pay_items.each_with_index do |item,idx|
   salary_item_header.salary_items.create!(name: item,
@@ -702,7 +702,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: " pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -724,6 +724,6 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "(pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 + pay_item_14 + pay_item_15 + pay_item_16) - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")

@@ -37,3 +37,4 @@
 //= require trainings
 //= require base_purchase_orders
 //= require planb_docs
+//= require employees 

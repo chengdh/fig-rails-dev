@@ -151,7 +151,7 @@ class SalaryReportXian < ActiveRecord::Base
       table_lines = SalaryTableLine.where(salary_table_id: table_ids)
     else
       salary_table = salary_table_clazz.find_by(org_id: org_id,mth: mth)
-      table_lines = salary_table.salary_table_lines
+      table_lines = salary_table.try(:salary_table_lines)
     end
     sum_persons = 0
     sum_should_pay = 0

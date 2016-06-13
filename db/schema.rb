@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612073618) do
+ActiveRecord::Schema.define(version: 20160613144918) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -118,6 +118,21 @@ ActiveRecord::Schema.define(version: 20160612073618) do
   add_index "base_purchase_orders", ["t_location_id"], name: "index_base_purchase_orders_on_t_location_id", using: :btree
   add_index "base_purchase_orders", ["user_id"], name: "index_base_purchase_orders_on_user_id", using: :btree
 
+  create_table "base_salary_reports", force: :cascade do |t|
+    t.string   "name",       limit: 60,    null: false
+    t.integer  "year",       limit: 4,     null: false
+    t.integer  "org_id",     limit: 4,     null: false
+    t.date     "table_date"
+    t.integer  "user_id",    limit: 4
+    t.text     "note",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "type",       limit: 60
+  end
+
+  add_index "base_salary_reports", ["org_id"], name: "index_base_salary_reports_on_org_id", using: :btree
+  add_index "base_salary_reports", ["user_id"], name: "index_base_salary_reports_on_user_id", using: :btree
+
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false
     t.string   "name",            limit: 60,                   null: false
@@ -158,8 +173,8 @@ ActiveRecord::Schema.define(version: 20160612073618) do
   add_index "electric_equipments", ["org_id"], name: "index_electric_equipments_on_org_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.integer  "org_id",              limit: 4,                         null: false
-    t.string   "name",                limit: 30,                        null: false
+    t.integer  "org_id",              limit: 4,                                                  null: false
+    t.string   "name",                limit: 30,                                                 null: false
     t.string   "gender",              limit: 1
     t.date     "birthday"
     t.string   "academic",            limit: 60
@@ -173,19 +188,31 @@ ActiveRecord::Schema.define(version: 20160612073618) do
     t.date     "work_day"
     t.string   "post",                limit: 30
     t.text     "note",                limit: 65535
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
+    t.datetime "created_at",                                                                     null: false
+    t.datetime "updated_at",                                                                     null: false
     t.string   "avatar_file_name",    limit: 255
     t.string   "avatar_content_type", limit: 255
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
     t.integer  "user_id",             limit: 4
-    t.boolean  "is_active",           limit: 1,     default: true
-    t.integer  "post_level",          limit: 4,     default: 9
-    t.boolean  "is_party_member",     limit: 1,     default: false
+    t.boolean  "is_active",           limit: 1,                              default: true
+    t.integer  "post_level",          limit: 4,                              default: 9
+    t.boolean  "is_party_member",     limit: 1,                              default: false
     t.string   "belongs_party",       limit: 255
-    t.string   "work_state",          limit: 255,   default: "on_duty"
-    t.boolean  "is_not_main",         limit: 1,     default: false
+    t.string   "work_state",          limit: 255,                            default: "on_duty"
+    t.boolean  "is_not_main",         limit: 1,                              default: false
+    t.decimal  "grant_rate",                        precision: 15, scale: 2, default: 0.0
+    t.decimal  "wage_before_last",                  precision: 15, scale: 2, default: 0.0
+    t.decimal  "wage_last",                         precision: 15, scale: 2, default: 0.0
+    t.decimal  "basic_salary",                      precision: 15, scale: 2, default: 0.0
+    t.decimal  "pref_salary",                       precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_pref_base",                     precision: 15, scale: 2, default: 0.0
+    t.decimal  "year_pref_base",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pref_rate",                         precision: 15, scale: 2, default: 0.0
+    t.decimal  "post_salary",                       precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_base",                       precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_salary_rate",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_salary",                     precision: 15, scale: 2, default: 0.0
   end
 
   add_index "employees", ["name"], name: "index_employees_on_name", using: :btree
@@ -762,8 +789,8 @@ ActiveRecord::Schema.define(version: 20160612073618) do
     t.datetime "updated_at",                                                null: false
   end
 
-  create_table "salary_report_leader_lines", force: :cascade do |t|
-    t.integer  "salary_report_leader_id", limit: 4
+  create_table "salary_report_lines", force: :cascade do |t|
+    t.integer  "base_salary_report_id",   limit: 4
     t.integer  "employee_id",             limit: 4
     t.string   "name",                    limit: 60
     t.string   "id_no",                   limit: 60
@@ -1307,25 +1334,69 @@ ActiveRecord::Schema.define(version: 20160612073618) do
     t.decimal  "mth_13st_deduct_item_19",             precision: 15, scale: 2, default: 0.0
     t.decimal  "mth_13st_pay_item_20",                precision: 15, scale: 2, default: 0.0
     t.decimal  "mth_13st_deduct_item_20",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "grant_rate",                          precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_pref_base",                       precision: 15, scale: 2, default: 0.0
+    t.decimal  "year_pref_base",                      precision: 15, scale: 2, default: 0.0
+    t.decimal  "pref_rate",                           precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_base",                         precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_salary_rate",                  precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_1st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_1st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_1st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_1st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_2st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_2st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_2st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_2st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_3st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_3st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_3st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_3st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_4st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_4st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_4st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_4st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_5st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_5st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_5st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_5st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_6st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_6st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_6st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_6st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_7st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_7st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_7st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_7st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_8st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_8st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_8st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_8st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_9st_basic_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_9st_pref_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_9st_post_salary",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_9st_living_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_10st_basic_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_10st_pref_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_10st_post_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_10st_living_salary",              precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_11st_basic_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_11st_pref_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_11st_post_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_11st_living_salary",              precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_12st_basic_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_12st_pref_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_12st_post_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_12st_living_salary",              precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_13st_basic_salary",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_13st_pref_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_13st_post_salary",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_13st_living_salary",              precision: 15, scale: 2, default: 0.0
   end
 
-  add_index "salary_report_leader_lines", ["employee_id"], name: "index_salary_report_leader_lines_on_employee_id", using: :btree
-  add_index "salary_report_leader_lines", ["post_level"], name: "index_salary_report_leader_lines_on_post_level", using: :btree
-  add_index "salary_report_leader_lines", ["salary_report_leader_id"], name: "index_salary_report_leader_lines_on_salary_report_leader_id", using: :btree
-
-  create_table "salary_report_leaders", force: :cascade do |t|
-    t.string   "name",       limit: 60,    null: false
-    t.integer  "year",       limit: 4,     null: false
-    t.integer  "org_id",     limit: 4,     null: false
-    t.date     "table_date"
-    t.integer  "user_id",    limit: 4
-    t.text     "note",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  add_index "salary_report_leaders", ["org_id"], name: "index_salary_report_leaders_on_org_id", using: :btree
-  add_index "salary_report_leaders", ["user_id"], name: "index_salary_report_leaders_on_user_id", using: :btree
+  add_index "salary_report_lines", ["base_salary_report_id"], name: "index_salary_report_lines_on_base_salary_report_id", using: :btree
+  add_index "salary_report_lines", ["employee_id"], name: "index_salary_report_lines_on_employee_id", using: :btree
+  add_index "salary_report_lines", ["post_level"], name: "index_salary_report_lines_on_post_level", using: :btree
 
   create_table "salary_report_shi_lines", force: :cascade do |t|
     t.integer  "salary_report_shi_id",    limit: 4
@@ -1482,97 +1553,109 @@ ActiveRecord::Schema.define(version: 20160612073618) do
   add_index "salary_report_xians", ["user_id"], name: "index_salary_report_xians_on_user_id", using: :btree
 
   create_table "salary_table_lines", force: :cascade do |t|
-    t.integer  "salary_table_id", limit: 4,                                         null: false
-    t.integer  "employee_id",     limit: 4
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
-    t.decimal  "pay_item_1",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_2",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_3",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_4",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_5",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_6",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_7",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_8",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_9",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_10",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_11",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_12",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_13",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_14",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_15",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_16",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_17",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_18",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_19",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_20",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_21",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_22",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_23",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_24",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_25",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_26",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_27",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_28",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_29",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_30",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_31",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_32",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_33",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_34",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_35",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_36",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_37",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_38",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_39",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "pay_item_40",                precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_1",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_2",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_3",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_4",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_5",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_6",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_7",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_8",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_9",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_10",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_11",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_12",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_13",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_14",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_15",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_16",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_17",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_18",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_19",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_20",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_21",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_22",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_23",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_24",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_25",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_26",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_27",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_28",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_29",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_30",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_31",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_32",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_33",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_34",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_35",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_36",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_37",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_38",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_39",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "deduct_item_40",             precision: 15, scale: 2, default: 0.0
-    t.string   "name",            limit: 60
-    t.string   "id_no",           limit: 60
-    t.string   "post",            limit: 60
-    t.integer  "post_level",      limit: 4
-    t.boolean  "is_party_member", limit: 1
-    t.string   "belongs_party",   limit: 60
-    t.boolean  "is_not_main",     limit: 1
+    t.integer  "salary_table_id",    limit: 4,                                         null: false
+    t.integer  "employee_id",        limit: 4
+    t.datetime "created_at",                                                           null: false
+    t.datetime "updated_at",                                                           null: false
+    t.decimal  "pay_item_1",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_2",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_3",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_4",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_5",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_6",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_7",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_8",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_9",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_10",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_11",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_12",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_13",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_14",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_15",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_16",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_17",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_18",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_19",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_20",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_21",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_22",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_23",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_24",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_25",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_26",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_27",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_28",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_29",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_30",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_31",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_32",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_33",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_34",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_35",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_36",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_37",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_38",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_39",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "pay_item_40",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_1",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_2",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_3",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_4",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_5",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_6",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_7",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_8",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_9",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_10",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_11",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_12",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_13",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_14",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_15",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_16",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_17",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_18",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_19",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_20",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_21",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_22",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_23",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_24",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_25",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_26",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_27",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_28",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_29",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_30",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_31",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_32",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_33",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_34",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_35",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_36",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_37",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_38",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_39",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "deduct_item_40",                precision: 15, scale: 2, default: 0.0
+    t.string   "name",               limit: 60
+    t.string   "id_no",              limit: 60
+    t.string   "post",               limit: 60
+    t.integer  "post_level",         limit: 4
+    t.boolean  "is_party_member",    limit: 1
+    t.string   "belongs_party",      limit: 60
+    t.boolean  "is_not_main",        limit: 1
+    t.decimal  "grant_rate",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "wage_before_last",              precision: 15, scale: 2, default: 0.0
+    t.decimal  "wage_last",                     precision: 15, scale: 2, default: 0.0
+    t.decimal  "basic_salary",                  precision: 15, scale: 2, default: 0.0
+    t.decimal  "pref_salary",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "mth_pref_base",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "year_pref_base",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "pref_rate",                     precision: 15, scale: 2, default: 0.0
+    t.decimal  "post_salary",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_base",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_salary_rate",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "living_salary",                 precision: 15, scale: 2, default: 0.0
   end
 
   add_index "salary_table_lines", ["employee_id"], name: "index_salary_table_lines_on_employee_id", using: :btree

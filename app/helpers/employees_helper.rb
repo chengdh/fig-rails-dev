@@ -15,7 +15,7 @@ module EmployeesHelper
 
   #职级选择
   def post_levels_for_select
-    [["领导",1],["正科",2],["正协",3],["副科",4],["副协",5],["正股",6],["副股",7],["一般人员",9]]
+    [["一般人员",9],["正科",2],["正协",3],["副科",4],["副协",5],["正股",6],["副股",7],["领导",1]]
   end
 
   #工作状态选择
@@ -31,6 +31,14 @@ module EmployeesHelper
   #当前可用的人员信息
   def current_ability_org_employees_for_select
     Employee.where(is_active: true,org_id: current_ability_org_ids).map {|e| [e.name,e.id]}
+  end
+
+  def party_des(party)
+    ret = ""
+    ret = "一支部" if party.eql?('party_1')
+    ret = "二支部" if party.eql?('party_2')
+    ret = "三支部" if party.eql?('party_3')
+    ret
   end
 
   def post_level_des(post_level)
@@ -56,6 +64,12 @@ module EmployeesHelper
     ret = ""
     ret = "三产" if is_not_main
     ret = "在册" unless is_not_main
+    ret
+  end
+  def is_party_member_des(is_party_member)
+    ret = ""
+    ret = "是" if is_party_member
+    ret = "否" unless is_party_member
     ret
   end
 end
