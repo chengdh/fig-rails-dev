@@ -1,0 +1,33 @@
+.table-responsive
+  %table.table.table-condensed.table-bordered.table-striped.table-hover
+    %tr
+      %th{style: "text-align: center;",colspan: 8}
+        = "#{resource.org}网络地址管理表"
+    %tr
+      %td{style: "text-align: right;",colspan: 7}
+        = resource.updated_at.strftime("%Y-%m-%d")
+      %td{style: "text-align: right;"}
+        %label{class: resource.check_state_class}= resource.check_state_des
+    %tr
+      %th{style: "text-align: center;"} 序号
+      %th{style: "text-align: center;"} 科室名称
+      %th{style: "text-align: center;"} 岗位职务
+      %th{style: "text-align: center;"} 责任人
+      %th{style: "text-align: center;"} ip地址
+      %th{style: "text-align: center;"} MAC
+      %th{style: "text-align: center;"} 外网业务
+      -# %th{style: "text-align: center;"} 审核状态
+      %th{style: "text-align: center;"} 备注
+
+    - resource.ip_info_lines.each_with_index do |line,idx|
+      %tr
+        %td{style: "text-align: center;"}= idx+1
+        %td{style: "text-align: center;"}= line.org
+        %td= line.post
+        %td{style: "text-align: center;"}= line.employee_name
+        %td{style: "text-align: center;"}= line.ip
+        %td{style: "text-align: center;"}= line.mac
+        %td{style: "text-align: center;"}= net_type_des(line.net_type)
+        -# %td{style: "text-align: center;"}
+          %label{class: line.state_class}= line.state_des
+        %td= line.note

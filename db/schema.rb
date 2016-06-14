@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613144918) do
+ActiveRecord::Schema.define(version: 20160614060817) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -427,6 +427,41 @@ ActiveRecord::Schema.define(version: 20160613144918) do
   end
 
   add_index "inout_lines", ["inout_bill_id"], name: "index_inout_lines_on_inout_bill_id", using: :btree
+
+  create_table "ip_info_headers", force: :cascade do |t|
+    t.integer  "org_id",        limit: 4
+    t.integer  "user_id",       limit: 4
+    t.string   "check_state",   limit: 60,    default: "draft", null: false
+    t.text     "note",          limit: 65535
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.date     "table_date",                                    null: false
+    t.integer  "submitter_id",  limit: 4
+    t.date     "submit_date"
+    t.integer  "checker_id",    limit: 4
+    t.date     "check_date"
+    t.string   "check_opinion", limit: 60
+  end
+
+  add_index "ip_info_headers", ["org_id"], name: "index_ip_info_headers_on_org_id", using: :btree
+  add_index "ip_info_headers", ["user_id"], name: "index_ip_info_headers_on_user_id", using: :btree
+
+  create_table "ip_info_lines", force: :cascade do |t|
+    t.integer  "ip_info_header_id", limit: 4
+    t.integer  "org_id",            limit: 4
+    t.string   "post",              limit: 60
+    t.string   "employee_name",     limit: 30
+    t.string   "ip",                limit: 60
+    t.string   "mac",               limit: 60
+    t.string   "net_type",          limit: 30
+    t.text     "note",              limit: 65535
+    t.string   "state",             limit: 30
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "ip_info_lines", ["ip_info_header_id"], name: "index_ip_info_lines_on_ip_info_header_id", using: :btree
+  add_index "ip_info_lines", ["org_id"], name: "index_ip_info_lines_on_org_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "name",          limit: 30,                           null: false

@@ -7,7 +7,6 @@
   - if ["show"].include?(params[:action]) and can? :show_check,resource
     = link_to send("show_check_check_#{resource_class.model_name.singular}_path",resource),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "审批" do
       %i.fa.fa-gavel
-  
   - if ["show_check"].include?(params[:action])
     = link_to "#",:class => "btn btn-default btn-submit-form",
     "data-toggle" => "tooltip",

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_info_header_id: 
+  org_id: 
+  post: MyString
+  employee_name: MyString
+  ip: MyString
+  mac: MyString
+  net_type: MyString
+  note: MyText
+  state: MyString
+
+two:
+  ip_info_header_id: 
+  org_id: 
+  post: MyString
+  employee_name: MyString
+  ip: MyString
+  mac: MyString
+  net_type: MyString
+  note: MyText
+  state: MyString

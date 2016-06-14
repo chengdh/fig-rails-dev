@@ -1,5 +1,17 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :check_ip_info_headers do
+    member do
+      get :show_check
+      patch :check
+    end
+  end
+
+  resources :ip_info_headers do
+    member do
+      patch :submit
+    end
+  end
   resources :salary_report_non_staffs
   resources :salary_report_retireds
   resources :salary_report_on_duty_employees

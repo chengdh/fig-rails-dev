@@ -62,6 +62,8 @@ zh-CN:
       salary_report_on_duty_employee: 在岗员工收入台账(在册+三产)
       salary_report_retired: 内退人员生活费收入台账(在册+三产)
       salary_report_non_staff: 在工资中列支劳务人员收入台账
+      ip_info_header: ip地址信息
+      ip_info_line: ip明细
 
       move_bill: 调拨单
       move_bill_asset: 固定资产-调拨单
@@ -114,6 +116,8 @@ zh-CN:
         year: 年
         mth: 月份
         is_active_eq: 有效
+        state: 状态
+        state_des: 状态
 
       user:
         username: 用户名
@@ -525,6 +529,16 @@ zh-CN:
 
       salary_report_xian:
         year: 年度
+
+      ip_info_line:
+        org_id: 所属科室
+        org: 所属科室
+        post: 岗位职务
+        employee_name: 责任人
+        ip: ip地址
+        mac: mac地址
+        net_type: 外网业务
+
 
 
 

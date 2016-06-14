@@ -1,0 +1,44 @@
+= semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form",class: "enter2tab"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :user_id,as: :hidden,input_html: {value: current_user.id}
+    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {style: "width : 30%;"}
+    = f.input :check_state,as: :hidden,input_html: {value: "draft",style: "width : 30%;"}
+  .table-responsive
+    %table.table.table-condensed.table-striped.table-bordered.table-hover
+      %tr{style: "text-align: center;"}
+        %th{style: "text-align: center;"} 科室名称
+        %th{style: "text-align: center;"} 岗位职务
+        %th{style: "text-align: center;"} 责任人
+        %th{style: "text-align: center;"} ip地址
+        %th{style: "text-align: center;"} MAC
+        %th{style: "text-align: center;"} 外网业务
+        %th{style: "text-align: center;"} 备注 
+        %th
+      %tbody
+        = f.semantic_fields_for :ip_info_lines do |f_line|
+          %tr.ip-info-line
+            %td
+              = f_line.input :org_id,as: :select,collection: current_children_orgs_for_select,
+                label: false,input_html: {class: "input-sm",style: "width: 60%;"}
+              = f_line.input :state,as: :hidden,label: false,input_html: {value: 'draft'}
+            %td= f_line.input :post,label: false,input_html: {class: "input-sm"}
+            %td= f_line.input :employee_name,label: false,input_html: {class: "input-sm"}
+            %td= f_line.input :ip,label: false,input_html: {class: "input-sm"}
+            %td= f_line.input :mac,label: false,input_html: {class: "input-sm"}
+            %td= f_line.input :net_type,label: false,as: :select,collection: net_types_for_select,input_html: {class: "input-sm"}
+            %td= f_line.input :note,label: false,as: :string,input_html: {class: "input-sm"}
+            %td{style: "text-align : center;"}
+              = f_line.hidden_field :_destroy,class: "destroy"
+              %a{href: "#",class: "btn-delete-ip-info-line",style: "color: red;"}
+                %i.fa.fa-close
+
+      %tbody#ip_info_line_tmpl_wrapper
+
+  .well.well-sm.clearfix
+    = link_to  "#",class: "btn-add-new-ip-info-line btn btn-primary btn-sm pull-right" do
+      新建行
+      %i.fa.fa-plus
+
+
+

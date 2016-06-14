@@ -1,6 +1,6 @@
 #coding: utf-8
 #安全月报检查
-class CheckSafetyTablesController < SafetyTablesController 
+class CheckSafetyTablesController < SafetyTablesController
   defaults :resource_class => SafetyTable, :collection_name => 'safety_tables', :instance_name => 'safety_table'
   #Warning: when overwriting the collection method in a controller
   #the load part of a load_and_authorize_resource call will not work correctly.
