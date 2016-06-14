@@ -22,28 +22,28 @@
           %th{:colspan => 100}
         = resource.salary_item_header.table_header.html_safe
         = f.semantic_fields_for :salary_table_lines do |f_line|
-          %tr
+          %tr.salary-table-line
             %th
-              = f_line.input :employee_id,as: :hidden
-              = f_line.input :name,as: :hidden
-              = f_line.input :id_no,as: :hidden
-              = f_line.input :post,as: :hidden
-              = f_line.input :post_level,as: :hidden
-              = f_line.input :is_party_member,as: :hidden
-              = f_line.input :belongs_party,as: :hidden
-              = f_line.input :is_not_main,as: :hidden
-              = f_line.input :grant_rate, as: :hidden
-              = f_line.input :wage_before_last, as: :hidden
-              = f_line.input :wage_last,as: :hidden
-              = f_line.input :basic_salary,as: :hidden
-              = f_line.input :pref_salary,as: :hidden
-              = f_line.input :mth_pref_base,as: :hidden
-              = f_line.input :year_pref_base,as: :hidden
-              = f_line.input :pref_rate,as: :hidden
-              = f_line.input :post_salary,as: :hidden
-              = f_line.input :living_base,as: :hidden
-              = f_line.input :living_salary_rate,as: :hidden
-              = f_line.input :living_salary,as: :hidden
+              = f_line.input :employee_id,as: :hidden,input_html: {col: "employee_id"}
+              = f_line.input :name,as: :hidden,input_html: {col: "name"}
+              = f_line.input :id_no,as: :hidden,input_html: {col: "id_no"}
+              = f_line.input :post,as: :hidden,input_html: {col: "post"}
+              = f_line.input :post_level,as: :hidden,input_html: {col: "post_level"}
+              = f_line.input :is_party_member,as: :hidden,input_html: {col: "is_party_member"}
+              = f_line.input :belongs_party,as: :hidden,input_html: {col: "belongs_party"}
+              = f_line.input :is_not_main,as: :hidden,input_html: {col: "is_not_main"}
+              = f_line.input :grant_rate, as: :hidden,input_html: {col: "grant_rate"}
+              = f_line.input :wage_before_last, as: :hidden,input_html: {col: "wage_before_last"}
+              = f_line.input :wage_last,as: :hidden,input_html: {col: "wage_last"}
+              = f_line.input :basic_salary,as: :hidden,input_html: {col: "basic_salary"}
+              = f_line.input :pref_salary,as: :hidden,input_html: {col: "pref_salary"}
+              = f_line.input :mth_pref_base,as: :hidden,input_html: {col: "mth_pref_base"}
+              = f_line.input :year_pref_base,as: :hidden,input_html: {col: "year_pref_base"}
+              = f_line.input :pref_rate,as: :hidden,input_html: {col: "pref_rate"}
+              = f_line.input :post_salary,as: :hidden,input_html: {col: "post_salary"}
+              = f_line.input :living_base,as: :hidden,input_html: {col: "living_base"}
+              = f_line.input :living_salary_rate,as: :hidden,input_html: {col: "living_salary_rate"}
+              = f_line.input :living_salary,as: :hidden,input_html: {col: "living_salary"}
 
             - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
               %td{:style => "text-align : center;vertical-align : middle;"}
@@ -51,4 +51,10 @@
                   = f_line.object.try(item.formula.to_sym)
 
                 - if item.item_type.eql?("pay_item") or item.item_type.eql?('deduct_item')
-                  = f_line.input item.code,as: :string,label: false,input_html: {class: "input-sm",style: "width : 50px;",readonly: item.is_calculate}
+                  = f_line.input item.code,as: :string,label: false,
+                    input_html: {"data-item" => item.to_json,
+                    is_calculate: item.is_calculate,
+                    col: item.code,
+                    class: "input-salary-item input-sm",
+                    style: "width : 50px;",
+                    readonly: item.is_calculate}

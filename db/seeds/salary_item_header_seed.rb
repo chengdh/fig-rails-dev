@@ -99,7 +99,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                                code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").length + 1}",
                                                is_calculate: true,
-                                               formula: "base_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5",
+                                               formula: "basic_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5",
                                                order_by: salary_item_header.salary_items.length + 1,
                                                item_type: "pay_item")
 deduct_items = %w(养老保险 医疗保险 失业保险 住房公积金 企业年金 扣个税 代扣项１ 代扣项２ 代扣项３ 代扣项４ 代扣项５ 代扣项６)
@@ -120,7 +120,7 @@ salary_item_header.salary_items.create(name: "扣款合计",
 salary_item_header.salary_items.create(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").length + 1}",
                                        is_calculate: true,
-                                       formula: "base_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
+                                       formula: "basic_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
