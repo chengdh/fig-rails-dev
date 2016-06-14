@@ -1,0 +1,2 @@
+module VpnInfosHelper
+end

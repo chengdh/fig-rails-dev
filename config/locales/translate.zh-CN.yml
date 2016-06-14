@@ -64,6 +64,8 @@ zh-CN:
       salary_report_non_staff: 在工资中列支劳务人员收入台账
       ip_info_header: ip地址信息
       ip_info_line: ip明细
+      vpn_info: IPSEC-VPN帐号信息
+      vpn_info_line: IPSEC-VPN帐号明细
 
       move_bill: 调拨单
       move_bill_asset: 固定资产-调拨单
@@ -539,6 +541,15 @@ zh-CN:
         mac: mac地址
         net_type: 外网业务
 
-
-
+      vpn_info:
+        org_id: 所属机构
+        org: 所属机构
+      vpn_info_line:
+        own_org_id: 所属部门
+        own_org: 所属部门
+        username: 用户名
+        pwd: 密码
+        ip: ip
+        employee_name: 责任人
+        power: 权限
 

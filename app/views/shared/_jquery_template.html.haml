@@ -248,11 +248,40 @@
       = select_tag :net_type,options_for_select(net_types_for_select),include_blank: false,class: "org_id form-control input-sm"
 
     %td{style: "text-align : center;"}
-      %input{type: "text",style: "width : 100px;",class: "note form-control input-sm","data-value" => "note"}
+      %input{type: "text",class: "note form-control input-sm","data-value" => "note"}
 
     %td{style: "text-align : center;"}
       = hidden_field_tag :_destroy,class: "destroy"
       %a{href: "#",class: "btn-delete-ip-info-line",style: "color: red;"}
         %i.fa.fa-close
 
+/ vpn地址模板
+%script#vpn_info_line_tmpl{:type => "text/html"}
+  %tr{class: "vpn-info-line"}
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "username form-control input-sm","data-value" => "username"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "pwd form-control input-sm","data-value" => "pwd"}
+
+    %td
+      %input{type: "text",class: "ip form-control input-sm","data-value" => "ip"}
+    %td
+      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "own_org_id form-control input-sm"
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "employee_name form-control input-sm","data-value" => "employee_name"}
+
+    %td
+      %input{type: "text",class: "mobile form-control input-sm","data-value" => "mobile"}
+    %td
+      %input{type: "text",class: "power form-control input-sm","data-value" => "power"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "note form-control input-sm","data-value" => "note"}
+
+    %td{style: "text-align : center;"}
+      = hidden_field_tag :_destroy,class: "destroy"
+      %a{href: "#",class: "btn btn-default btn-sm btn-delete-vpn-info-line",style: "color: red;"}
+        %i.fa.fa-close
 

@@ -1,5 +1,17 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :check_vpn_infos do
+    member do
+      get :show_check
+      patch :check
+    end
+  end
+
+  resources :vpn_infos do
+    member do
+      patch :submit
+    end
+  end
   resources :check_ip_info_headers do
     member do
       get :show_check

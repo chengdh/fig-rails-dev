@@ -1,0 +1,2 @@
+module CheckVpnInfosHelper
+end

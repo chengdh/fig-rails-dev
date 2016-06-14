@@ -1,0 +1,32 @@
+.table-responsive
+  %table.table.table-condensed.table-bordered.table-striped.table-hover
+    %tr
+      %th{style: "text-align: center;",colspan: 9}
+        = "#{resource.org}IPSEC-VPN帐号信息登记表"
+    %tr
+      %td{style: "text-align: right;",colspan: 8}
+        = resource.updated_at.strftime("%Y-%m-%d")
+      %td{style: "text-align: right;"}
+        %label{class: resource.check_state_class}= resource.check_state_des
+    %tr
+      %th{style: "text-align: center;"} 序号
+      %th{style: "text-align: center;"} 用户名
+      %th{style: "text-align: center;"} 密码
+      %th{style: "text-align: center;"} ip
+      %th{style: "text-align: center;"} 部门
+      %th{style: "text-align: center;"} 责任人
+      %th{style: "text-align: center;"} 电话
+      %th{style: "text-align: center;"} 权限 
+      %th{style: "text-align: center;"} 备注
+
+    - resource.vpn_info_lines.each_with_index do |line,idx|
+      %tr
+        %td{style: "text-align: center;"}= idx+1
+        %td= line.username
+        %td= line.pwd
+        %td{style: "text-align: center;"}= line.ip
+        %td{style: "text-align: center;"}= line.own_org
+        %td{style: "text-align: center;"}= line.employee_name
+        %td{style: "text-align: center;"}= line.mobile
+        %td{style: "text-align: center;"}= line.power
+        %td= line.note

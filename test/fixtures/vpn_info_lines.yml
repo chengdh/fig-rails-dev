@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vpn_info_id: 
+  username: MyString
+  pwd: MyString
+  ip: MyString
+  own_org_id: 1
+  employee_name: MyString
+  mobile: MyString
+  power: MyString
+  note: MyString
+
+two:
+  vpn_info_id: 
+  username: MyString
+  pwd: MyString
+  ip: MyString
+  own_org_id: 1
+  employee_name: MyString
+  mobile: MyString
+  power: MyString
+  note: MyString

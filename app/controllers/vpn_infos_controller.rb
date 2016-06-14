@@ -1,11 +1,11 @@
 #coding: utf-8
-#ip 地址管理
-class IpInfoHeadersController < BaseController
+#vpn帐号理
+class VpnInfosController < BaseController
   include ControllerStateMachine
   table :org,:table_date,:user,:check_state_des
   def new
-    @ip_info_header = IpInfoHeader.new
-    (1..10).each {|i| @ip_info_header.ip_info_lines.build }
+    @vpn_info = resource_class.new
+    (1..10).each {|i| @vpn_info.vpn_info_lines.build }
   end
 
   protected
@@ -15,10 +15,9 @@ class IpInfoHeadersController < BaseController
   end
 
   private
-  def ip_info_header_params
-    params.require(:ip_info_header).permit(:org_id, :state, :user_id,
+  def vpn_info_params
+    params.require(:vpn_info).permit(:org_id, :check_state, :user_id,
                                          :submitter_id,:submit_date,:check_state,:checker_id,:check_opinion,:check_date,
                                          :note,:table_date)
   end
 end
-

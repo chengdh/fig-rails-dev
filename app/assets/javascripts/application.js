@@ -39,3 +39,4 @@
 //= require planb_docs
 //= require employees
 //= require ip_info_headers
+//= require vpn_infos
