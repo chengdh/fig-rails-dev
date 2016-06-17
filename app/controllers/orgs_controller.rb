@@ -8,7 +8,6 @@ class OrgsController < BaseController
     @orgs = Org.where(is_active: true)
   end
 
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_org

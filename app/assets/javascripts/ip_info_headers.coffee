@@ -35,3 +35,16 @@ $ ->
       el_index += 1
 
   $(".btn-add-new-ip-info-line").on("click",func_add_new_line)
+
+  #机构发生变化时，更新部门列表
+  $(".ip_info_org_select").on("change",->
+    org_id = $(this).val()
+    $.get("/orgs/#{org_id}.json").done((ret)->
+      console.log(ret)
+      options = []
+      options.push("<option value=#{co.id}>#{co.name}</option>") for co in ret.children
+      $(".children_org_select").empty()
+      $(".children_org_select").val("").trigger("change")
+      $(".children_org_select").append(op)  for op in options
+    )
+  )
