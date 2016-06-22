@@ -1,0 +1,13 @@
+= form_tag session_path(:user),class: "form-inline",target: "_blank" do
+  .form-group
+    .input-group
+      %span.input-group-addon
+        %i.glyphicon.glyphicon-user
+      = text_field_tag 'user[login]',"",autofocus: true,class: "form-control input-sm", placeholder: "用户名"
+  .form-group
+    .input-group
+      %span.input-group-addon
+        %i.glyphicon.glyphicon-lock
+      = password_field_tag 'user[password]',"",autofocus: true,class: "form-control input-sm", placeholder: "密码"
+
+  %button{type: 'submit',class: "btn btn-primary btn-sm"} 登录综合管理平台

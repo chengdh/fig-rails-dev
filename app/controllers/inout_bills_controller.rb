@@ -1,7 +1,7 @@
 #coding: utf-8
 #出入库单
 class InoutBillsController < BaseController
-  table :org,:bill_date,:name,:bill_no,:ref_partner,:f_location,:t_location
+  table :org,:bill_date,:name,:bill_no,:ref_partner,:f_location,:t_location,:state_des
   def create
     inout_bill = resource_class.new(inout_bill_params)
     inout_bill.inout_lines.each do |l|

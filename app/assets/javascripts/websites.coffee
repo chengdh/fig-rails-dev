@@ -16,7 +16,7 @@ $ ->
   func_anbao_backend_login = ->
     $("#anbao_login_form").remove()
     form = $("<form id='anbao_login_form' action='http://10.67.192.116/html/website/admin.php?r=admin/Login/index' method='post' target='_blank' style='display: none;'>
-    <input type='text' name='user' value='admin'/>
+    <input type='text' name='username' value='admin'/>
     <input type='password' name='password' value='admin' />
     </form>
     ")

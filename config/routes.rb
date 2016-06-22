@@ -591,6 +591,9 @@ Rails.application.routes.draw do
     member do
       patch :confirm
     end
+    collection do
+      get :search
+    end
   end
   resources :inout_bills
   resources :equipment do
@@ -617,6 +620,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :edit_password
+      get :show_login_page
       put :update_password
     end
   end

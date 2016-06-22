@@ -9,7 +9,6 @@ class Meeting < ActiveRecord::Base
   default_scope {order("meeting_date DESC")}
 
 
-  validates :meeting_length,:join_persons,:join_count,numericality: {only_integer: true, greater_than: 0}
   default_value_for(:table_date) {Date.today}
   default_value_for(:meeting_date) {Date.today}
 
@@ -35,7 +34,7 @@ class Meeting < ActiveRecord::Base
   validates_attachment_content_type :photo_7, content_type: /\Aimage\/.*\Z/
 
 
- 
+  validates :meeting_length,:join_count,numericality: {only_integer: true, greater_than: 0}
   validates :meeting_content,length: { in: 50..2000 }
   validates :org_id,:user_id,:name,:meeting_date,:meeting_length,:presenter,
     :join_persons,:join_count,:meeting_content,:check_state, presence: true

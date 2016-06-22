@@ -1,5 +1,7 @@
 #coding: utf-8
 class UsersController < BaseController
+  skip_load_and_authorize_resource :only => [:show_login_page]
+  skip_before_filter :authenticate_user!, :only => :show_login_page
   table :username,:real_name,:is_active,:is_admin,:default_org_id,:default_role_id,:current_sign_in_at,:last_sign_in_at,:current_sign_in_ip,:last_sign_in_ip
 
   #PUT users/:id/update_default
@@ -23,5 +25,21 @@ class UsersController < BaseController
     else
       render :edit_password
     end
+  end
+
+  #GET users/show_login_page
+  #显示登录界面
+  def show_login_page
+    render layout: "devise"
+  end
+
+  def resource_name
+    :user
+  end
+  def resource
+    @resource ||= User.new
+  end
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
   end
 end
