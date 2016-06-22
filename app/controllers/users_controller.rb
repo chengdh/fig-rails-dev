@@ -2,6 +2,8 @@
 class UsersController < BaseController
   skip_load_and_authorize_resource :only => [:show_login_page]
   skip_before_filter :authenticate_user!, :only => :show_login_page
+  #参考 http://stackoverflow.com/questions/18445782/how-to-override-x-frame-options-for-a-controller-or-action-in-rails-4
+  after_action :allow_iframe, only: :show_login_page
   table :username,:real_name,:is_active,:is_admin,:default_org_id,:default_role_id,:current_sign_in_at,:last_sign_in_at,:current_sign_in_ip,:last_sign_in_ip
 
   #PUT users/:id/update_default
@@ -41,5 +43,9 @@ class UsersController < BaseController
   end
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
+  end
+  private
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
   end
 end
