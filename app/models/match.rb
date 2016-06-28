@@ -204,7 +204,9 @@ class Match < ActiveRecord::Base
       ret = "#{start_ms}'"
       ret = "90+" if start_ms > 90
     elsif match_status == 4
-      ret = "加实赛"
+      #ret = "加时赛"
+      #FIXME 20160628 客户要求加时显示 完
+      ret = "完"
     elsif match_status == -1
       ret = "完"
 
@@ -214,7 +216,6 @@ class Match < ActiveRecord::Base
       ret = "待定"
     elsif match_status == -14
       ret = "推迟"
-
     end
     ret
   end
@@ -231,7 +232,7 @@ class Match < ActiveRecord::Base
     ret = ""
     ret = "未开" if status == 0
     #完场
-    ret = "#{home_score} : #{guest_score}" if status == -1
+    ret = "#{home_score} : #{guest_score}" if status == -1 or status == 4
     ret = "#{try(:current_match).try(:home_score)} : #{try(:current_match).try(:guest_score)}" if [1,2,3].include?(status)
     ret
   end
