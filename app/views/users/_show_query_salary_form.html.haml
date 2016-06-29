@@ -1,0 +1,20 @@
+= form_tag get_mth_salary_users_path,method: :post do
+  .form-group
+    .input-group
+      %span.input-group-addon
+        %i.glyphicon.glyphicon-user
+      = text_field_tag 'salary_query[login]',"",autofocus: true,class: "form-control input-sm", placeholder: "请输入用户名"
+  .form-group
+    .input-group
+      %span.input-group-addon
+        %i.glyphicon.glyphicon-lock
+      = password_field_tag 'salary_query[password]',"",autofocus: true,class: "form-control input-sm", placeholder: "请输入密码"
+  .form-group
+    .input-group
+      %span.input-group-addon
+        %i.glyphicon.glyphicon-calendar
+      = select_tag 'salary_query[mth]',options_for_select(months_for_select),:include_blank => false,class: "form-control input-sm"
+
+  %button.btn.btn-sm.btn-primary.btn-block.btn-query-salary
+    %i.glyphicon.glyphicon-search
+    查询

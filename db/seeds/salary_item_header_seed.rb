@@ -113,14 +113,14 @@ end
 salary_item_header.salary_items.create(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").length + 1}",
                                        is_calculate: true,
-                                       formula: "deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13",
+                                       formula: "deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "deduct_item")
 #实发合计
 salary_item_header.salary_items.create(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").length + 1}",
                                        is_calculate: true,
-                                       formula: "basic_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
+                                       formula: "basic_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 - deduct_item_13 ",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -221,7 +221,7 @@ salary_item_header.salary_items.create(name: "扣款合计",
 salary_item_header.salary_items.create(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 + deduct_item_13 + deduct_item_13)",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12 )",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -302,7 +302,7 @@ end
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "living_base + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13",
+                                       formula: "living_base + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 ",
                                        order_by: salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -324,7 +324,7 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "living_base + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "living_base + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12  - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
@@ -425,7 +425,7 @@ salary_item_header.salary_items.create!(name: "扣款合计",
 salary_item_header.salary_items.create!(name: "实发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
                                        is_calculate: true,
-                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 + pay_item_13 - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
+                                       formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12  - (deduct_item_1 + deduct_item_2 + deduct_item_3 + deduct_item_4 + deduct_item_5 + deduct_item_6 + deduct_item_6 + deduct_item_7 + deduct_item_8 + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12)",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 

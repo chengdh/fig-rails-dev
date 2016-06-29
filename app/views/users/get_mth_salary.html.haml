@@ -1,0 +1,18 @@
+.container
+  .row
+    .alert.alert-success{role: "alert"}
+      %h4{style: "text-align: center;"} 工资查询
+
+    .well.well-sm
+      = render "show_query_salary_form"
+  .row
+    = flash[:error]
+    .well.well-sm.table-responsive
+      %table.table.table-striped.table-condensed.table-bordered
+        %tr
+          - @salary_info.each do |n,v|
+            %th= n
+        %tr
+          %tr
+            - @salary_info.each do |n,v|
+              %td= v

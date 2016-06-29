@@ -72,7 +72,6 @@ class User < ActiveRecord::Base
         user_orgs.build(:org => org) unless user_orgs.detect { |the_user_org| the_user_org.org.id == org.id }
       end
       all_user_orgs ||= user_orgs.to_a.select {|uo| uo.org.is_active?}
-
     end
     all_user_orgs
   end
@@ -89,6 +88,10 @@ class User < ActiveRecord::Base
 
   def current_ability_org_ids
     current_ability_orgs.map {|org| org.id}
+  end
+  def get_employee_ref
+    employee = Employee.find_by(user_id: id)
+    employee
   end
 
   def to_s

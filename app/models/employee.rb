@@ -55,4 +55,62 @@ class Employee < ActiveRecord::Base
     ret = "否" unless is_party_member
     ret
   end
+
+  def get_salary_item_header
+    #获取员工对应的工资表模板
+    header = nil
+    SalaryItemHeader.where(is_active: true).each do |sih|
+      wh = sih.employee_where
+      post_level_sel = false
+      if wh.key?(:post_level)
+        pl = wh[:post_level]
+        if pl.kind_of?(Array)
+          post_level_sel = true if pl.include?(post_level)
+        else
+          post_level_sel = true if pl.== post_level
+        end
+      end
+
+      work_state_sel = false
+      if wh.key?(:work_state)
+        wt = wh[:work_state]
+        if wt.kind_of?(Array)
+          work_state_sel = true if wt.include?(work_state)
+        else
+          work_state_sel = true if wt.== work_state
+        end
+      end
+      header = sih if post_level_sel and work_state_sel
+    end
+    header
+  end
+
+  #得到主要的工资项目
+  def get_salary_item_cols
+    header = get_salary_item_header
+    #基本
+    item_names = %w(生活费 基本工资 岗位工资 绩效工资 发放项１ 发放项２ 发放项３ 发放项４ 应发合计 养老保险 医疗保险 失业保险  住房公积金 企业年金 扣个税 扣款合计 实发合计)
+    item_hash = {}
+    item_names.each do |name|
+      salary_item  = header.salary_items.find_by(name: name)
+      if salary_item.present?
+        item_code  =  salary_item.try(:code)
+        #员工字段使用formula
+        item_code = salary_item.try(:formula) if salary_item.item_type.eql?("employee_item")
+
+        item_hash[item_code.to_sym] = name if item_code.present?
+      end
+    end
+    item_hash
+  end
+  #获取给定月份的工资数据
+  def get_salary_detail_by_mth(mth)
+    ret = {}
+    salary_item_cols = get_salary_item_cols
+    st = SalaryTableLine.ransack(employee_id_eq: id,salary_table_mth_eq: mth).result.limit(1).try(:first)
+    salary_item_cols.each do |code,name|
+      ret[name] = st.try(code)
+    end
+    ret
+  end
 end

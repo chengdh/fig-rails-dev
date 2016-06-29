@@ -621,7 +621,9 @@ Rails.application.routes.draw do
     collection do
       get :edit_password
       get :show_login_page
+      get :show_query_salary
       put :update_password
+      post :get_mth_salary
     end
   end
 
