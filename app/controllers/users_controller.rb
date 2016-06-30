@@ -41,7 +41,7 @@ class UsersController < BaseController
   def show_query_salary
     render layout: "devise"
   end
-  #GET users/get_mth_salary
+  #POST users/get_mth_salary
   #获取给给定月份的工资信息
   def get_mth_salary
     valid = true
