@@ -5,4 +5,7 @@ json.equipment_list collection do |eq|
   json.unit_name eq.try(:unit).try(:name)
   json.factory_name eq.try(:factory_name)
   json.model eq.try(:model)
+  json.brand eq.try(:brand)
+  json.purchase_price eq.try(:purchase_price)
+  json.guarantee_days eq.try(:guarantee_days)
 end

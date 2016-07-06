@@ -24,6 +24,8 @@ $ ->
       $(el_tr).find(".destroy").attr("name","#{resource_name}[po_lines_attributes][#{el_index}][_destroy]")
       el_index += 1
 
+    $("input.qty").trigger("change")
+
   $("#po_line_temp_wrapper").on("select_equipment_confirm",func_on_select_equipment_confirm)
 
   #删除按钮的处理
@@ -33,4 +35,12 @@ $ ->
     po_line_tr = $(evt.currentTarget).parents("tr.tr-po-line")
     $(po_line_tr).find(".destroy").val(1)
     $(po_line_tr).hide()
+  )
+
+  #价格及数量变化处理
+  $(document).on('change',"input.price,input.qty", ->
+    qty = $(this).parents("tr").find(".qty").val()
+    price = $(this).parents("tr").find(".price").val()
+    amt = parseFloat(qty)*parseFloat(price)
+    $(this).parents("tr").find(".amt").html(amt)
   )

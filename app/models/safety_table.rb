@@ -46,13 +46,14 @@ class SafetyTable < ActiveRecord::Base
   #判断是否在录入时间段内当月26至次月3日前
   def self.in_upload_period?
     Date.today.day >= 16 or Date.today.day <= 3
+    return true
   end
 
   #获取数据录入月份
   def self.default_mth
     ret = ""
     ret = Date.today.strftime("%Y%m") if Date.today.day >= 16
-    ret = 1.months.ago.strftime("%Y%m") if  Date.today.day <= 3
+    ret = 1.months.ago.strftime("%Y%m") if  Date.today.day <= 7
     ret
   end
   #整改率

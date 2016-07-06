@@ -33,9 +33,4 @@ $ ->
       $("table.wage-item-leader input").attr('disabled',true)
       $("table.wage-item-retired input").attr('disabled',true)
       $("table.wage-item-on-duty input").attr('disabled',false)
-
-
-
-
-
   )

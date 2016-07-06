@@ -172,10 +172,11 @@ class SalaryReportShi < ActiveRecord::Base
 
 
     if salary_table.present?
+      lines = salary_table.salary_table_lines.search(employee_work_state_eq: work_state,employee_post_level_eq: post_level).result
       #人数
-      sum_persons = salary_table.salary_table_lines.sum(1)
-      sum_should_pay = salary_table.salary_table_lines.sum(col_should_pay)
-      sum_act_pay = salary_table.salary_table_lines.sum(col_act_pay)
+      sum_persons = lines.sum(1)
+      sum_should_pay = lines.sum(col_should_pay)
+      sum_act_pay = lines.sum(col_act_pay)
     end
 
     report_line = report.salary_report_shi_lines.find_by(work_state: work_state,post_level: post_level)

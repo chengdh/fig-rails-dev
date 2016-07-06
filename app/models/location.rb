@@ -8,7 +8,7 @@ class Location < ActiveRecord::Base
   LOC_TYPE_EMPLOYEE = "employee_loc"
   belongs_to :warehouse
   validates :warehouse_id,:name, presence: true
-  default_scope {order("warehouse_id,order_by ASC")}
+  default_scope {order("warehouse_id,locations.order_by ASC")}
 
   def to_s
     name

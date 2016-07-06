@@ -1,17 +1,16 @@
 #coding: utf-8
 module LocationsHelper
-  def locations_for_select(wh_type = WarehouseType::WH_TYPE_IT,loc_type = Location::LOC_TYPE_NORNAL)
+  def locations_for_select(wh_type = WarehouseType::WH_TYPE_IT,loc_type = Location::LOC_TYPE_NORMAL)
     ret = []
     wh_type_id = WarehouseType.find_by(code: wh_type).id
-    Warehouse.where(is_active: true,org_id: current_ability_org_ids,warehouse_type_id: wh_type_id ).each do |w|
-      ret += w.locations.where(location_type: loc_type)
-    end
+    wh_ids = Warehouse.where(is_active: true,org_id: current_ability_org_ids,warehouse_type_id: wh_type_id ).pluck(:id)
+    ret = Location.where(warehouse_id: wh_ids,location_type: loc_type)
     ret.map {|l| [l.name,l.id]}
   end
 
   #库存查询-库位列表(包括库存库位  领用库位 维修库位 报废库位)
   def locations_select_for_stock(wh_type = WarehouseType::WH_TYPE_IT)
-    current_ability_locations_for_select(wh_type) +
+    ret = current_ability_locations_for_select(wh_type) +
       employee_locations_for_select(wh_type) +
       repair_locations_for_select(wh_type) +
       worthless_locations_for_select(wh_type)

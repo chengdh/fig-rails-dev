@@ -32,13 +32,13 @@ class BaseSalaryReport < ActiveRecord::Base
 
   #父机构生成数据
   def self.generate_data_by_parent_org(salary_table_clazz,parent_org_id,mth)
-    org = Org.find(org_id)
+    org = Org.find(parent_org_id)
     child_org_ids = Org.where(is_active: true,parent_id: parent_org_id).pluck(:id)
     year = mth[0..3].to_i
-    the_mth = mth[4..5]
-    report = self.find_by(org_id: org_id,year: year)
+    the_mth = mth[4..5].to_i
+    report = self.find_by(org_id: parent_org_id,year: year)
     if report.blank?
-      report = self.create!(org_id: org_id,
+      report = self.create!(org_id: parent_org_id,
                             year: year,
                             table_date: Date.today,
                             name: "#{org}-#{year}-薪酬发放统计台账")

@@ -17,8 +17,8 @@
         %td= t.equipment.name
         %td= t.equipment.try(:unit).try(:name)
         %td= t.no
-        %td= t.brand
-        %td= t.model
+        %td= t.equipment.try(:brand)
+        %td= t.equipment.try(:model)
         %td= t.qty
         %td
 

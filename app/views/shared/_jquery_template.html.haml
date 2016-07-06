@@ -37,6 +37,13 @@
       %span{class: "qty","data-content" => "qty"}
     %td
       %span{class: "purchase_price","data-content" => "purchase_price"}
+    -# %td
+    -#   %span{class: "own_org","data-content" => "own_org"}
+    -#   %input{class: "own_org_id",type: "hidden","data-value" => "own_org_id"}
+    -# %td
+    -#   %span{class: "duty_person","data-content" => "duty_person"}
+    -#
+
 
 %script#inout_line_temp{:type => "text/html"}
   %tr{class: "tr-inout-line"}
@@ -103,7 +110,7 @@
       %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1}
 
     %td
-      %input{type: "text",style: "width : 100px;",class: "price form-control input-sm" }
+      %input{type: "text",style: "width : 100px;",class: "price form-control input-sm","data-value" => "purchase_price" }
 
     %td{style: "text-align : center;"}
       %span{class: "amt","data-content" => "amt"}
@@ -115,6 +122,7 @@
       %input{type: "hidden",class: "destroy"}
       %a{href: "#",class: "btn-delete-inout-line",style: "color: red;"}
         %i.fa.fa-close
+
 %script#po_line_simple_temp{:type => "text/html"}
   %tr{class: "tr-po-line"}
     %td
@@ -134,7 +142,7 @@
       %input{type: "text",class: "qty form-control input-sm",value: 1}
 
     %td
-      %input{type: "text",class: "price form-control input-sm" }
+      %input{type: "text",class: "price form-control input-sm","data-value" => "purchase_price" }
 
     %td{style: "text-align : center;"}
       %span{class: "amt","data-content" => "amt"}
@@ -207,8 +215,9 @@
 
     %td
       %input{type: "text",style: "width : 100px;",class: "duty_person form-control input-sm" }
+
     %td{style: "text-align : center;"}
-      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1,readonly: true}
+      %input{type: "text",style: "width : 100px;",class: "qty form-control input-sm",value: 1}
 
 
     -# %td

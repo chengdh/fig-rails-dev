@@ -5,7 +5,7 @@ class Warehouse < ActiveRecord::Base
   belongs_to :warehouse_type
   has_many :locations
   validates :name,:org_id, presence: true
-  default_scope {order("order_by ASC")}
+  default_scope {order("warehouses.order_by ASC").includes(:locations)}
   def to_s
     name
   end

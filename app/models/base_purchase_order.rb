@@ -42,4 +42,10 @@ class BasePurchaseOrder < ActiveRecord::Base
     end
     receipt
   end
+  def sum_amt
+    po_lines.sum("qty*price")
+  end
+  def sum_qty
+    po_lines.sum(:qty)
+  end
 end

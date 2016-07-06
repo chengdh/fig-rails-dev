@@ -181,6 +181,10 @@ Rails.application.routes.draw do
       patch :confirm
       get :export_excel
     end
+    collection do
+      get :search
+    end
+
   end
   #resources :base_purchase_orders
   resources :equip_virtuals do

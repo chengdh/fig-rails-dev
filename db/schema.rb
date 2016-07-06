@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160622080520) do
+ActiveRecord::Schema.define(version: 20160705052926) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -1985,28 +1985,18 @@ ActiveRecord::Schema.define(version: 20160622080520) do
   end
 
   create_table "v_stock_asset", id: false, force: :cascade do |t|
-    t.integer  "location_id",   limit: 4,                             null: false
-    t.integer  "equipment_id",  limit: 4,                             null: false
-    t.decimal  "qty",                      precision: 33, default: 0, null: false
-    t.string   "no",            limit: 30
-    t.string   "brand",         limit: 60
-    t.string   "model",         limit: 60
-    t.date     "purchase_date"
-    t.integer  "own_org_id",    limit: 4
-    t.string   "duty_person",   limit: 30
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.integer  "location_id",  limit: 4,                             null: false
+    t.integer  "equipment_id", limit: 4,                             null: false
+    t.decimal  "qty",                     precision: 33, default: 0, null: false
+    t.string   "no",           limit: 30
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "v_stock_asset_in", id: false, force: :cascade do |t|
     t.integer "t_location_id", limit: 4,                           null: false
     t.string  "no",            limit: 30
     t.integer "equipment_id",  limit: 4,                           null: false
-    t.string  "brand",         limit: 60
-    t.string  "model",         limit: 60
-    t.date    "purchase_date"
-    t.integer "own_org_id",    limit: 4
-    t.string  "duty_person",   limit: 30
     t.decimal "qty",                      precision: 32
     t.decimal "amt",                      precision: 47, scale: 2
   end
@@ -2015,11 +2005,6 @@ ActiveRecord::Schema.define(version: 20160622080520) do
     t.integer "f_location_id", limit: 4,                           null: false
     t.string  "no",            limit: 30
     t.integer "equipment_id",  limit: 4,                           null: false
-    t.string  "brand",         limit: 60
-    t.string  "model",         limit: 60
-    t.date    "purchase_date"
-    t.integer "own_org_id",    limit: 4
-    t.string  "duty_person",   limit: 30
     t.decimal "qty",                      precision: 32
     t.decimal "amt",                      precision: 47, scale: 2
   end
@@ -2066,28 +2051,18 @@ ActiveRecord::Schema.define(version: 20160622080520) do
   end
 
   create_table "v_stock_it", id: false, force: :cascade do |t|
-    t.integer  "location_id",   limit: 4,                             null: false
-    t.integer  "equipment_id",  limit: 4,                             null: false
-    t.decimal  "qty",                      precision: 33, default: 0, null: false
-    t.string   "no",            limit: 30
-    t.string   "brand",         limit: 60
-    t.string   "model",         limit: 60
-    t.date     "purchase_date"
-    t.integer  "own_org_id",    limit: 4
-    t.string   "duty_person",   limit: 30
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
+    t.integer  "location_id",  limit: 4,                             null: false
+    t.integer  "equipment_id", limit: 4,                             null: false
+    t.decimal  "qty",                     precision: 33, default: 0, null: false
+    t.string   "no",           limit: 30
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "v_stock_it_in", id: false, force: :cascade do |t|
     t.integer "t_location_id", limit: 4,                           null: false
     t.string  "no",            limit: 30
     t.integer "equipment_id",  limit: 4,                           null: false
-    t.string  "brand",         limit: 60
-    t.string  "model",         limit: 60
-    t.date    "purchase_date"
-    t.integer "own_org_id",    limit: 4
-    t.string  "duty_person",   limit: 30
     t.decimal "qty",                      precision: 32
     t.decimal "amt",                      precision: 47, scale: 2
   end
@@ -2096,11 +2071,6 @@ ActiveRecord::Schema.define(version: 20160622080520) do
     t.integer "f_location_id", limit: 4,                           null: false
     t.string  "no",            limit: 30
     t.integer "equipment_id",  limit: 4,                           null: false
-    t.string  "brand",         limit: 60
-    t.string  "model",         limit: 60
-    t.date    "purchase_date"
-    t.integer "own_org_id",    limit: 4
-    t.string  "duty_person",   limit: 30
     t.decimal "qty",                      precision: 32
     t.decimal "amt",                      precision: 47, scale: 2
   end

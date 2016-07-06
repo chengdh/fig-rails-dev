@@ -7,8 +7,4 @@ json.stock_list collection do |st|
   json.factory_name st.try(:equipment).try(:factory_name)
   json.location st.location
   json.qty st.qty
-  json.brand st.brand
-  json.model st.model
-  json.own_org st.try(:own_org)
-  json.duty_person st.duty_person
 end

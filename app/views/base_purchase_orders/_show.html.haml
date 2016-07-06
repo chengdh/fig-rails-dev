@@ -32,7 +32,9 @@
       %th{style: "text-align : center;"} 编号
       %th{style: "text-align : center;"} 品牌
       %th{style: "text-align : center;"} 型号
+      %th{style: "text-align : center;"} 单价
       %th{style: "text-align : center;"} 数量
+      %th{style: "text-align : center;"} 金额
       %th{style: "text-align : center;"} 备注
 
     %tbody
@@ -43,5 +45,13 @@
           %td= line.try(:no)
           %td= line.try(:brand)
           %td= line.try(:model)
+          %td= line.price
           %td= line.qty
+          %td= line.amt
           %td= line.note
+    %tfoot
+      %tr
+        %td{colspan: 6,style: "text-align: right;"} 合计:
+        %td= resource.sum_qty
+        %td= resource.sum_amt
+        %td

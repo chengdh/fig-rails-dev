@@ -1,6 +1,6 @@
 %table.table.table-condensed.table-bordered
   %tr
-    %th{colspan: 100,style: "font-weight: bold;text-align: center;"}
+    %th{colspan: 200,style: "font-weight: bold;text-align: center;"}
       = resource.name
   %tr
     %th{rowspan: 3,style: "vertical-align: middle;text-align: center;"} 序号
@@ -44,9 +44,9 @@
 
   %tr
     %th 合计
-    %th{colspan: 13}
+    %th{colspan: 9}
     / 应发数合计
-    %td= resource.cal_sum("pay_item_13")
+    %td= resource.cal_sum("pay_item_14")
     / 养老、医疗、失业保险合计
     %td= resource.cal_sum("deduct_item_1+deduct_item_2+deduct_item_3")
     / 住房公积金合计
@@ -56,9 +56,9 @@
     / 其他代扣项
     %td= resource.cal_sum("deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
     / 实发数合计
-    %td= resource.cal_sum("pay_item_14")
+    %td= resource.cal_sum("pay_item_15")
     - (1..12).each do |mth|
-      %td= resource.cal_sum_by_mth(mth,"pay_item_6")
+      %td= resource.cal_sum_by_mth(mth,"pay_item_14")
       %td= resource.cal_sum_by_mth(mth,"post_salary")
       %td= resource.cal_sum_by_mth(mth,"pref_salary")
       %td= resource.cal_sum_by_mth(mth,"pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5")
@@ -74,7 +74,7 @@
       %td= resource.cal_sum_by_mth(mth,"deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
 
       /实发合计
-      %td= resource.cal_sum_by_mth(mth,"pay_item_7")
+      %td= resource.cal_sum_by_mth(mth,"pay_item_15")
   - resource.salary_report_lines.each_with_index do |l,idx|
     %tr
       %th= idx + 1
@@ -83,12 +83,13 @@
       %th= l.id_no
       %th
       %td= l.post
+      %th
       %td= l.mth_pref_base
       %td= l.year_pref_base
       %td= l.pref_rate
 
       / 应发数合计
-      %td= l.cal_sum("pay_item_13")
+      %td= l.cal_sum("pay_item_14")
       / 养老、医疗、失业保险合计
       %td= l.cal_sum("deduct_item_1+deduct_item_2+deduct_item_3")
       / 住房公积金合计
@@ -98,9 +99,9 @@
       / 其他代扣项
       %td= l.cal_sum("deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
       / 实发数合计
-      %td= l.cal_sum("pay_item_14")
+      %td= l.cal_sum("pay_item_15")
       - (1..12).each do |mth|
-        %td= l.cal_item(mth,"pay_item_13")
+        %td= l.cal_item(mth,"pay_item_14")
         %td= l.cal_item(mth,"post_salary")
         %td= l.cal_item(mth,"pref_salary")
         %td= l.cal_item(mth,"pay_item_1 + pay_item_2 + pay_item_3 + pay_item_4 + pay_item_5")
@@ -116,4 +117,4 @@
         %td= l.cal_item(mth,"deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
 
         /实发合计
-        %td= l.cal_item(mth,"pay_item_14")
+        %td= l.cal_item(mth,"pay_item_15")

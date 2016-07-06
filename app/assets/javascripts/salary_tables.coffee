@@ -36,4 +36,8 @@ $ ->
       ret_val = (new Function( "with(this) { return " + formula + "}")).call(context)
 
       $(field).val(ret_val)
+
+      #更新上下文变量的值
+      col_name = $(field).attr('col')
+      context[col_name] = ret_val
   )

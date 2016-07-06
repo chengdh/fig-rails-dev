@@ -27,11 +27,11 @@
             %td
               = f_line.input :model,label: false,input_html: {class: "input-sm"}
             %td
-              = f_line.input :qty,label: false,input_html: {class: "input-sm"}
+              = f_line.input :qty,label: false,input_html: {class: "input-sm qty"}
             %td
-              = f_line.input :price,label: false,input_html: {class: "input-sm"}
+              = f_line.input :price,label: false,input_html: {class: "input-sm price"}
             %td{style: "text-align : center;"}
-              %span{:class => "amt"}
+              %span{:class => "amt"}= f_line.object.amt
             %td
               = f_line.input :note,label: false,input_html: {class: "input-sm",rows: 1}
             %td{style: "text-align : center;"}
