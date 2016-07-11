@@ -24,3 +24,9 @@ footer {
     line-height: 25px;
     padding: 0;
 }
+#sb_list_table>tbody:nth-of-type(odd){
+  background-color: #f9f9f9;
+}
+
+#sb_list_table td{padding: 3px;}
+

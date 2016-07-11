@@ -478,12 +478,12 @@ REFRESH_RATE = 120*1000
         is_guest_yinglang_recommed: m.is_guest_yinglang_recommend
       } />
 
-    <table className="table table-hover table-condensed table-striped" id="immediate_index_table">
+    <table className="table table-hover table-condensed table-bordered" id="sb_list_table">
       <thead>
         <tr>
           <th></th>
           <th></th>
-          <th style={textAlign : 'center',width : "50%"}>球队</th>
+          <th style={textAlign : 'center',width : "30%"}>球队</th>
           <th style={textAlign : 'center'}>亚赔</th>
           <th style={textAlign : 'center'}>大小</th>
           <th style={textAlign : 'center'}>欧赔</th>
@@ -542,9 +542,9 @@ REFRESH_RATE = 120*1000
     ret = []
     tr_1 =
       <tr key={@props.data.match.match_id+"_tr_1"} style={textAlign : 'center'}>
-        <td>{@props.data.match.league.cn_name}</td>
+        <td><span style={color: @_get_league_color(@props.data.match.league.league_id)}>{@props.data.match.league.cn_name}</span></td>
         <td>{@props.data.match.current_match.home_score}</td>
-        <td style={verticalAlign : "middle",fontSize: "10px"}>
+        <td style={textAlign: "left",verticalAlign : "middle",fontSize: "10px"}>
           {@props.data.is_home_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.is_home_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.match.current_match.home_yellow_card? and @props.data.match.current_match.home_yellow_card > 0 and <span  style={padding: "2px"} className="label label-warning">{@props.data.match.current_match.home_yellow_card}</span>}
@@ -572,7 +572,7 @@ REFRESH_RATE = 120*1000
           </button>
         </td>
         <td>{@props.data.match.current_match.guest_score}</td>
-        <td style={verticalAlign : "middle",fontSize: "10px"}>
+        <td style={textAlign: "left",verticalAlign : "middle",fontSize: "10px"}>
           {@props.data.is_guest_bigdata_recommend and <span className="glyphicon glyphicon-tree-deciduous" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.is_guest_yinglang_recommend and <span className="glyphicon glyphicon-up" ariaHidden="true" style={color : 'red'}></span>}
           {@props.data.match.current_match.guest_red_card? and @props.data.match.current_match.guest_red_card > 0 and <span style={padding: "2px"} className="label label-danger">{@props.data.match.current_match.guest_red_card}</span>}
@@ -583,13 +583,45 @@ REFRESH_RATE = 120*1000
         <td>{@props.data.match.odds_ball.under}</td>
         <td>{@props.data.match.odds_europe.aw}</td>
       </tr>
-    tr_4 = <tr><td style={borderBottom : "2px solid #009ABF"} colSpan="6"></td></tr>
+    #tr_4 = <tr><td style={borderBottom : "2px solid #009ABF"} colSpan="6"></td></tr>
     ret.push(tr_1)
     ret.push(tr_2)
     ret.push(tr_3)
-    ret.push(tr_4)
+    #ret.push(tr_4)
     <tbody>{ret}</tbody>
 
   _on_bigdata_click: ->
     match_id = @props.data.match.match_id
     Android.openMatchShowBigdataActivity(match_id)
+
+  _get_league_color: (league_id)->
+    color = ""
+    #牡丹红 #FF00FF 6 青色 #00FFFF 7 黄色 #FFFF00 8 黑色 #000000
+    #海蓝 #70DB93 10 巧克力色 #5C3317 11 蓝紫色 #9F5F9F 12 黄铜色 #B5A642
+    #亮金色 #D9D919 14 棕色 #A67D3D 15 青铜色 #8C7853 16 2号青铜色 #A67D3D
+    #士官服蓝色#5F9F9F 18 冷铜色 #D98719 19 铜色 #B87333 20 珊瑚红 #FF7F00
+    #紫蓝色 #42426F 22 深棕 #5C4033 23 深绿 #2F4F2F 24 深铜绿色 #4A766E
+    if league_id < 200
+      color = "#FF00FF"
+
+    if league_id >= 200 and league_id < 400
+      color = "#00FFFF"
+
+    if league_id > 400 and league_id <= 600
+      color = "#70DB93"
+
+    if league_id > 600 and league_id <= 800
+      color = "#5C3317"
+
+    if league_id > 800 and league_id <= 1000
+      color = "#9F5F9F"
+
+    if league_id > 1000 and league_id <= 1200
+      color = "#B5A642"
+    if league_id > 1200 and league_id <= 1400
+      color = "#D9D919"
+    if league_id > 1400 and league_id <= 1600
+      color = "#A67D3D"
+
+    return color
+
