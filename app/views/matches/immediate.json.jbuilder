@@ -59,5 +59,8 @@ json.matches @matches do |m|
   #客队是否赢朗推荐
   json.is_guest_yinglang_recommend m.is_guest_yinglang_recommend?
   #关联推荐信息
-  json.match_recommands m.try(:match_recommands)
+  json.match_recommands do
+    json.array! m.try(:match_recommands), partial: 'match_recommands/show_for_app', as: :mr
+    #json.array! Match.find(1139284).match_recommands, partial: 'match_recommands/show_for_app', as: :mr
+  end
 end
