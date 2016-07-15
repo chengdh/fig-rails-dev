@@ -63,6 +63,7 @@ end
 
 
 gem 'bootstrap-sass'
+gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'high_voltage'
 #gem 'mysql2'

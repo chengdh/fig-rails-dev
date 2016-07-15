@@ -8,7 +8,7 @@
 
         %td{:style => "vertical-align : middle;"}
           %button.btn.btn-default.btn-xs.btn-home-yinglang-recommand{:type =>"button","data-recommend-type" => 2,"data-recommend-home-or-guest" => "home"}
-            %span.glyphicon.glyphicon-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_home_yinglang_recommend? ? 'color : red' : ""}"}
+            %span.fa.fa-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_home_yinglang_recommend? ? 'color : green' : ""}"}
 
         %td
           = match.try(:league).try(:cn_name)
@@ -36,7 +36,7 @@
 
         %td{:style => "vertical-align : middle;"}
           %button.btn.btn-default.btn-xs.btn-guest-yinglang-recommand{:type =>"button","data-recommend-type" => 2,"data-recommend-home-or-guest" => "guest"}
-            %span.glyphicon.glyphicon-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_guest_yinglang_recommend? ? 'color : red' : ""}"}
+            %span.fa.fa-thumbs-up.recommend-flag{ "aria-hidden" => "true",:style => "#{match.is_guest_yinglang_recommend? ? 'color : green' : ""}"}
 
         %td
           - if match.begin.present?
