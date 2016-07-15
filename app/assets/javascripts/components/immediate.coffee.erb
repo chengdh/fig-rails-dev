@@ -151,9 +151,9 @@ REFRESH_RATE = 120*1000
         </p>
       </td>
       <td style={verticalAlign : "middle"}>
-        <button className="btn btn-default btn-xs btn-bigdata" type="button" onClick={@._on_bigdata_click}>
+        <a className="btn-bigdata" onClick={@._on_bigdata_click}>
             <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
-        </button>
+        </a>
       </td>
     </tr>
 
@@ -567,9 +567,9 @@ REFRESH_RATE = 120*1000
     tr_3 =
       <tr  key={@props.data.match.match_id+"_tr_3"} style={textAlign : 'center'}>
         <td style={verticalAlign : "middle"}>
-          <button className="btn btn-default btn-sm btn-bigdata" type="button" onClick={@._on_bigdata_click}>
+          <a className="btn-bigdata" onClick={@._on_bigdata_click}>
             <span className="glyphicon glyphicon-cloud icon-bigdata" aria-hidden="true" style={color: "blue"}></span>
-          </button>
+          </a>
         </td>
         <td>{@props.data.match.current_match.guest_score}</td>
         <td style={textAlign: "left",verticalAlign : "middle",fontSize: "10px"}>
