@@ -64,6 +64,13 @@ class SalaryReportShi < ActiveRecord::Base
   end
 
 
+  #自动生成上月工资汇总表
+  def self.batch_generate_data
+    mth = Date.today.last_month.strftime("%Y%m")
+    org_id = Org.find_by(name: "南阳市烟草专卖局").id
+    self.generate_data(org_id,mth)
+
+  end
   #生成汇总表数据
   def self.generate_data(org_id,mth)
     org = Org.find(org_id)

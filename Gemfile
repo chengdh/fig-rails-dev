@@ -72,6 +72,7 @@ gem "default_value_for", "~> 3.0.0"
 gem 'delayed_job_active_record'
 gem 'roo-xls'
 gem "font-awesome-rails"
+gem 'whenever', :require => false
 
 group :development do
   gem 'better_errors'

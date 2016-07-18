@@ -37,6 +37,12 @@ class Assessment < ActiveRecord::Base
       k_big_accident_marks + k_punishment_marks + k_files_marks
   end
 
+  #批量-自动生成考评表
+  def self.batch_auto_generate
+    mth = Date.today.last_month.strftime("%Y%m")
+    org_ids = Org.get_branch_ids
+    org_ids.each  {|org_id| auto_generate(mth,org_id,false)}
+  end
   #自动生成考评表
   #每月3号生成上月
   def self.auto_generate(mth,org_id,re_create = false)

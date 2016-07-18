@@ -42,10 +42,16 @@ class SalaryReportXian < ActiveRecord::Base
   end
 
 
+  #生成父机构报表数据
+  def self.batch_generate_data_by_parent
+    mth = Date.today.last_month.strftime("%Y%m")
+    self.generate_data_by_parent_org(Org.root_org_id,mth)
+  end
   #生成市级的报表
   def self.generate_data_by_parent_org(parent_org_id,mth)
     org = Org.find(parent_org_id)
-    child_org_ids = Org.where(is_active: true,parent_id: parent_org_id).pluck(:id)
+    #child_org_ids = Org.where(is_active: true,parent_id: parent_org_id).pluck(:id)
+    child_org_ids = Org.get_branch_ids
     year = mth[0..3].to_i
     the_mth = mth[4..5]
     report = self.find_by(org_id: parent_org_id,year: year)
@@ -81,6 +87,13 @@ class SalaryReportXian < ActiveRecord::Base
     end
   end
 
+  #自动生成各个县局的报表数据
+  def self.batch_generate_data
+    mth = Date.today.last_month.strftime("%Y%m")
+    org_ids = Org.get_branch_ids
+    org_ids.each {|id| self.generate_data(id,mth)}
+  end
+  #
   #生成汇总表数据
   def self.generate_data(org_id,mth)
     org = Org.find(org_id)

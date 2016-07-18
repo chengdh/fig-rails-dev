@@ -30,6 +30,14 @@ class BaseSalaryReport < ActiveRecord::Base
     ret
   end
 
+  #自动生成
+  def self.batch_generate(salary_table_clazz)
+    parent_id = Org.root_org_id
+    branch_ids = Org.get_branch_ids
+    mth = Date.today.last_month.strftime("%Y%m")
+    generate_data_by_parent_org(salary_table_clazz,parent_id,mth)
+    branch_ids.each {|org_id| generate_data(salary_table_clazz,org_id,mth)}
+  end
   #父机构生成数据
   def self.generate_data_by_parent_org(salary_table_clazz,parent_org_id,mth)
     org = Org.find(parent_org_id)
