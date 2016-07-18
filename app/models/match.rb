@@ -33,7 +33,7 @@ class Match < ActiveRecord::Base
   #scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
   #sb滚球数据
-  scope :sb_list, -> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("t_current_match.match_status not in (-1,-10)").order("t_match.match_time ASC")}
+  scope :sb_list, -> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("t_current_match.match_status not in (-1,-10,-12,-14)").order("t_match.match_time ASC")}
 
 
   belongs_to :league
