@@ -214,6 +214,8 @@ class Match < ActiveRecord::Base
       ret = "取消"
     elsif match_status == -11
       ret = "待定"
+    elsif match_status == -12
+      ret = "腰斩"
     elsif match_status == -14
       ret = "推迟"
     end
