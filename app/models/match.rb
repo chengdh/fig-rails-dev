@@ -32,7 +32,7 @@ class Match < ActiveRecord::Base
   scope :this_week,->(d) {joins(:league).where("TO_CHAR(match_time,'YYYY-MM-DD') = ? ",d).order("match_time ASC,t_league.sort_value ASC")}
   #scope :this_week,-> {where(match_id: [1130325,1130328,1130319,1080205,1155680])}
 
-  #sb滚球数据
+  #sb滚球据
   scope :sb_list, -> {joins(:current_match).includes(:league,:team1,:team2,:match_recommands).where("t_current_match.match_status not in (-1,-10,-12,-14)").order("t_match.match_time ASC")}
 
 
@@ -178,7 +178,7 @@ class Match < ActiveRecord::Base
 
   #是否已开赛
   def started?
-    not [0,-11,-14].include?(match_status_before_type_cast)
+    not [0,-11,-12,-14].include?(match_status_before_type_cast)
   end
   #比赛是否已结束
   def finished?
