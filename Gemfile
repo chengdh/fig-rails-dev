@@ -6,7 +6,8 @@ source 'https://taobao.ruby.org/'
 ruby '2.1.4'
 gem 'rails', '4.2.1'
 # Use mysql as the database for Active Record
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+#gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+gem 'rails-i18n', '~> 5.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
