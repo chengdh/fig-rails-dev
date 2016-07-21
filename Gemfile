@@ -26,7 +26,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 #gem 'ransack'
-gem 'ransack', '~> 1.7'
+gem 'ransack', '1.7'
 
 gem 'composite_primary_keys', '~> 8.1'
 
