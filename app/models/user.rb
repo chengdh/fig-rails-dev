@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def login
-    @login || self.username || self.email
+    @login || self.username
   end
 
   def self.find_for_database_authentication(warden_conditions)
