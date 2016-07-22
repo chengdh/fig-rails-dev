@@ -19,6 +19,22 @@ class UsersController < BaseController
   # 修改当前登录用户的密码
   def edit_password ; end
 
+  # GET users/:id/edit
+  def edit
+    @user = User.find(params[:id])
+    set_resource_ivar(@user)
+  end
+
+
+  # PATCH users/:id
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params.require(:user).permit!)
+    flash[:success]="更新用户信息成功!"
+    set_resource_ivar(@user)
+    render :show
+  end
+
   #PUT users/:id/update_password
   def update_password
     @user = current_user
@@ -69,9 +85,9 @@ class UsersController < BaseController
   def resource_name
     :user
   end
-  def resource
-    @resource ||= User.new
-  end
+  # def resource
+  #   get_resource_ivar ||= User.new
+  # end
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable,:rememberable
   #:recoverable, , :trackable, :validatable
 
-  validates :username,presence: true,uniqueness: {case_sensitive: false}
+  validates :username,presence: true,uniqueness: {case_sensitive: false,on: :create}
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   belongs_to :default_org,class_name: "Org"
   belongs_to :default_role,class_name: "Role"
