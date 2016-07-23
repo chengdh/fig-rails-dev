@@ -118,8 +118,26 @@ class Ability
     can [:read],Task if can? :confirm,Task
     can [:read],Task if can? :finish,Task
     #工资表导入
-    can [:show_import_xls],SalaryTable if can? :create,SalaryTable
-    can [:import_xls],SalaryTable if can? :create,SalaryTable
+    can [:show_import_xls],SalaryTableXianLeader if can? :create,SalaryTableXianLeader
+    can [:import_xls],SalaryTableXianLeader if can? :create,SalaryTableXianLeader
+
+    can [:show_import_xls],SalaryTableXianOnDuty if can? :create,SalaryTableXianOnDuty
+    can [:import_xls],SalaryTableXianOnDuty if can? :create,SalaryTableXianOnDuty
+
+    can [:show_import_xls],SalaryTableXianRetired if can? :create,SalaryTableXianRetired
+    can [:import_xls],SalaryTableXianRetired if can? :create,SalaryTableXianRetired
+
+    can [:show_import_xls],SalaryTableXianNonStaff if can? :create,SalaryTableXianNonStaff
+    can [:import_xls],SalaryTableXianNonStaff if can? :create,SalaryTableXianNonStaff
+
+    can [:show_import_xls],SalaryTableShiLeader if can? :create,SalaryTableShiLeader
+    can [:import_xls],SalaryTableShiLeader if can? :create,SalaryTableShiLeader
+
+    can [:show_import_xls],SalaryTableShiOnDuty if can? :create,SalaryTableShiOnDuty
+    can [:import_xls],SalaryTableShiOnDuty if can? :create,SalaryTableShiOnDuty
+
+    can [:show_import_xls],SalaryTableShiNonStaff if can? :create,SalaryTableShiNonStaff
+    can [:import_xls],SalaryTableShiNonStaff if can? :create,SalaryTableShiNonStaff
 
   end
   #设置单个operate的权限

@@ -29,14 +29,21 @@ class SalaryTablesController < BaseController
   def import_xls
     org_id = params[:org_id]
     mth = params[:mth]
-    @salary_table = resource_class.new_with_params(org_id,mth)
-    if not @salary_table.new_record?
+    update_if_exist = params[:update_if_exist]
+    @salary_table = resource_class.find_by(org_id: org_id,mth: mth)
+    @salary_table = resource_class.new(org_id: org_id,mth: mth,salary_item_header: resource_class.get_salary_item_header) if @salary_table.blank?
+    if not @salary_table.new_record? and update_if_exist.blank?
       flash[:info] = "工资表已存在!"
       redirect_to @salary_table
     else
       excel_path = params[:file_excel].path
       begin
-        @salary_table = resource_class.create_with_excel(org_id,mth,excel_path,current_user.id)
+        if @salary_table.new_record?
+          @salary_table = resource_class.create_with_excel(org_id,mth,excel_path,current_user.id)
+        else
+          @salary_table = resource_class.update_with_excel(org_id,mth,excel_path,current_user.id)
+        end
+        flash[:success] = "导入工资表成功."
         redirect_to @salary_table
       rescue
         flash[:error] = "导入时出现错误,请确认excel文件是否正确."

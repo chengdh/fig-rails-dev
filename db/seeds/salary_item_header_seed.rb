@@ -47,11 +47,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>发放标准</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>市局核定前年薪酬</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>市局核定去年薪酬</th>
-                      <th colspan='7' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='8' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>基本工资</th>
@@ -61,6 +62,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项３</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项４</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项５</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -73,6 +75,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -95,6 +98,11 @@ pay_items.each_with_index do |item,idx|
                                           order_by: salary_item_header.salary_items.length + 1,
                                           item_type: "pay_item")
 end
+#备注
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
 #应发合计
 salary_item_header.salary_items.create!(name: "应发合计",
                                                code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").length + 1}",
@@ -109,6 +117,12 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+#备注
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+
 #扣款合计
 salary_item_header.salary_items.create(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").length + 1}",
@@ -124,7 +138,11 @@ salary_item_header.salary_items.create(name: "实发合计",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
-
+#人员变动情况
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
 #县局在岗
 salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局在岗",code: "xian_on_duty",employee_where: {post_level: [2,3,4,5,9],work_state: "on_duty"})
 table_header = "<tr>
@@ -139,11 +157,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>月度绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>年终奖绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>绩效系数</th>
-                      <th colspan='14' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='15' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>基本工资</th>
@@ -160,6 +179,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项10</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项11</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项12</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -172,6 +192,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -195,6 +216,12 @@ pay_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "pay_item")
 end
+#备注
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #应发合计
 salary_item_header.salary_items.create(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
@@ -210,6 +237,12 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+#备注
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #扣款合计
 salary_item_header.salary_items.create(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").sum(1) + 1}",
@@ -225,7 +258,11 @@ salary_item_header.salary_items.create(name: "实发合计",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
-
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #县内退
 salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局内退",code: "xian_retired",employee_where: {work_state: "retired"})
 table_header = "<tr>
@@ -241,11 +278,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>所在支部</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>生活费基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>生活费系数</th>
-                      <th colspan='14' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='15' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>生活费</th>
@@ -262,6 +300,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项11</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项12</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项13</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -274,6 +313,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -298,6 +338,11 @@ pay_items.each_with_index do |item,idx|
                                           order_by: salary_item_header.salary_items.length + 1,
                                           item_type: "pay_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #应发合计
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
@@ -313,6 +358,11 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #扣款合计
 salary_item_header.salary_items.create!(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").sum(1) + 1}",
@@ -329,7 +379,11 @@ salary_item_header.salary_items.create!(name: "实发合计",
                                        item_type: "pay_item")
 
 
-
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #县劳务
 salary_item_header = SalaryItemHeader.new(name: "工资表模板-县局劳务",code: "xian_non_staff",employee_where: {work_state: "non_staff"})
 table_header = "<tr>
@@ -342,11 +396,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>月度绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>年终奖绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>绩效系数</th>
-                      <th colspan='14' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='15' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>岗位工资</th>
@@ -364,6 +419,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项11</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项12</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项13</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -376,8 +432,9 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项4</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项5</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项6</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
-                    salary_item_header.table_header = table_header
+salary_item_header.table_header = table_header
 salary_item_header.save!
 employee_items = %w(单位 姓名项目	身份证号 部门 岗位 月度绩效基数 年终奖绩效基数 绩效系数 岗位工资 绩效工资 )
 employee_fields = %w(org name	id_no org post mth_pref_base year_pref_base pref_rate post_salary pref_salary)
@@ -399,6 +456,11 @@ pay_items.each_with_index do |item,idx|
                                           order_by: salary_item_header.salary_items.length + 1,
                                           item_type: "pay_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #应发合计
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
@@ -414,6 +476,11 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #扣款合计
 salary_item_header.salary_items.create!(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").sum(1) + 1}",
@@ -430,7 +497,11 @@ salary_item_header.salary_items.create!(name: "实发合计",
                                        item_type: "pay_item")
 
 
-
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 
 #市局领导
 salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局领导",code: "shi_leader",employee_where: {post_level: 1,work_state: "on_duty"})
@@ -446,11 +517,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>发放标准</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>省局核定前年薪酬</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>省局核定去年薪酬</th>
-                      <th colspan='7' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='8' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>基本工资</th>
@@ -460,6 +532,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项３</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项４</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项５</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -472,6 +545,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -496,6 +570,13 @@ pay_items.each_with_index do |item,idx|
                                           order_by: salary_item_header.salary_items.length + 1,
                                           item_type: "pay_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
+
+
 #应发合计
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
@@ -511,6 +592,11 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #扣款合计
 salary_item_header.salary_items.create!(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").sum(1) + 1}",
@@ -527,7 +613,11 @@ salary_item_header.salary_items.create!(name: "实发合计",
                                        item_type: "pay_item")
 
 
-
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 
 #市局在岗
 salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局在岗",code: "shi_on_duty",employee_where: {post_level: [2,3,4,5,9],work_state: "on_duty"})
@@ -543,11 +633,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>月度绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>年终奖绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>绩效系数</th>
-                      <th colspan='14' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='15' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>岗位工资</th>
@@ -564,6 +655,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项10</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项11</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项12</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -576,6 +668,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -599,6 +692,11 @@ pay_items.each_with_index do |item,idx|
                                           order_by: salary_item_header.salary_items.length + 1,
                                           item_type: "pay_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #应发合计
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
@@ -614,6 +712,10 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
 #扣款合计
 salary_item_header.salary_items.create!(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").sum(1) + 1}",
@@ -629,6 +731,11 @@ salary_item_header.salary_items.create!(name: "实发合计",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
 
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #市局遍外加内退
 salary_item_header = SalaryItemHeader.new(name: "工资表模板-市局编外加内退",code: "shi_non_staff",employee_where: {work_state: ["retired","non_staff"]})
 table_header = "<tr>
@@ -643,11 +750,12 @@ table_header = "<tr>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>月度绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>年终奖绩效基数</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>绩效系数</th>
-                      <th colspan='14' style='text-align : center;vertical-align : middle;'>发放项</th>
+                      <th colspan='15' style='text-align : center;vertical-align : middle;'>发放项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>应发合计</th>
-                      <th colspan='12' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
+                      <th colspan='13' style='text-align : center;vertical-align : middle;'>代扣代缴款项</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>扣款合计</th>
                       <th rowspan='2' style='text-align : center;vertical-align : middle;'>实发合计</th>
+                      <th rowspan='2' style='text-align : center;vertical-align : middle;'>人员变动情况</th>
                     </tr>
                     <tr>
                       <th style='text-align : center;vertical-align : middle;'>岗位工资</th>
@@ -664,6 +772,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>发放项10</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项11</th>
                       <th style='text-align : center;vertical-align : middle;'>发放项12</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                       <th style='text-align : center;vertical-align : middle;'>养老保险</th>
                       <th style='text-align : center;vertical-align : middle;'>医疗保险</th>
                       <th style='text-align : center;vertical-align : middle;'>失业保险</th>
@@ -676,6 +785,7 @@ table_header = "<tr>
                       <th style='text-align : center;vertical-align : middle;'>代扣项４</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项５</th>
                       <th style='text-align : center;vertical-align : middle;'>代扣项６</th>
+                      <th style='text-align : center;vertical-align : middle;'>备注</th>
                     </tr>"
                     salary_item_header.table_header = table_header
 salary_item_header.save!
@@ -698,6 +808,11 @@ pay_items.each_with_index do |item,idx|
                                           order_by: salary_item_header.salary_items.length + 1,
                                           item_type: "pay_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_1",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #应发合计
 salary_item_header.salary_items.create!(name: "应发合计",
                                        code: "pay_item_#{salary_item_header.salary_items.where(item_type: "pay_item").sum(1) + 1}",
@@ -713,6 +828,11 @@ deduct_items.each_with_index do |item,idx|
                                          order_by: salary_item_header.salary_items.length + 1,
                                          item_type: "deduct_item")
 end
+salary_item_header.salary_items.create!(name: '备注',
+                                          code: "note_item_2",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#
 #扣款合计
 salary_item_header.salary_items.create!(name: "扣款合计",
                                        code: "deduct_item_#{salary_item_header.salary_items.where(item_type: "deduct_item").sum(1) + 1}",
@@ -727,3 +847,9 @@ salary_item_header.salary_items.create!(name: "实发合计",
                                        formula: "post_salary + pref_salary + pay_item_1 + pay_item_2 +  pay_item_3 + pay_item_4 + pay_item_5 + pay_item_6 + pay_item_7 + pay_item_8 + pay_item_9  + pay_item_10 + pay_item_11 + pay_item_12 - deduct_item_13",
                                        order_by:  salary_item_header.salary_items.length + 1,
                                        item_type: "pay_item")
+
+salary_item_header.salary_items.create!(name: '人员变动情况',
+                                          code: "note_item_3",
+                                          order_by: salary_item_header.salary_items.length + 1,
+                                          item_type: "note_item")
+#

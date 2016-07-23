@@ -30,6 +30,16 @@ module ApplicationHelper
     end
     ret
   end
+  #生成前3年的select
+  def years_for_select
+    ret = []
+    (0..3).each do |step|
+      year = step.years.ago
+      ret << [year.strftime('%Y年'),year.strftime('%Y')]
+    end
+    ret
+  end
+
 
 
   #search form for formtastic

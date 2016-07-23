@@ -1,3 +1,7 @@
--# - if can? :create,resource_class
--#   = link_to show_import_xls_salary_tables_path,:class => "btn btn-default fancybox fancybox.ajax","data-toggle" => "tooltip","data-placement" => "top",:title => "导入EXCEL" do
--#     %i.fa.fa-file-excel-o{style: "color : blue;"}
+- if can? :import_xls,resource_class
+  = link_to url_for(action: :show_import_xls),:class => "btn btn-default fancybox fancybox.ajax","data-toggle" => "tooltip","data-placement" => "top",:title => "导入EXCEL" do
+    %i.fa.fa-file-excel-o{style: "color : blue;"}
+
+= link_to asset_path("salary_table_template/#{resource_class.model_name.singular}.xlsx"), :"download"=>"#{resource_class.model_name.singular}.xlsx",:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "下载工资表模板" do
+  %i.fa.fa-download{style: "color : blue;"}
+

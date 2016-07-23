@@ -24,13 +24,42 @@ Rails.application.routes.draw do
       patch :submit
     end
   end
-  resources :salary_report_non_staffs
-  resources :salary_report_retireds
-  resources :salary_report_on_duty_employees
-  resources :base_salary_reports
-  resources :salary_report_leaders
-  resources :salary_report_xians
-  resources :salary_report_shis,only: [:index,:show]
+  resources :salary_report_non_staffs do
+    collection do
+      get :search
+    end
+  end
+  resources :salary_report_retireds do
+    collection do
+      get :search
+    end
+  end
+  resources :salary_report_on_duty_employees do
+    collection do
+      get :search
+    end
+
+  end
+  resources :base_salary_reports do
+    collection do
+      get :search
+    end
+  end
+  resources :salary_report_leaders do
+    collection do
+      get :search
+    end
+  end
+  resources :salary_report_xians do
+    collection do
+      get :search
+    end
+  end
+  resources :salary_report_shis,only: [:index,:show] do
+    collection do
+      get :search
+    end
+  end
   resources :purchase_order_virtuals do
     member do
       patch :confirm

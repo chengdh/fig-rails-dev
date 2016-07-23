@@ -4,7 +4,7 @@ class SalaryTable < ActiveRecord::Base
   belongs_to :user
   belongs_to :salary_item_header
   validates :org_id,:name,:mth,:user_id, presence: true
-  has_many :salary_table_lines,dependent: :destroy
+  has_many :salary_table_lines,dependent: :destroy,autosave: true
   accepts_nested_attributes_for :salary_table_lines
 
   #根据传入的参数生成工资表
@@ -52,23 +52,62 @@ class SalaryTable < ActiveRecord::Base
   def self.create_with_excel(org_id,mth,excel_file,user_id)
     table = self.new(org_id: org_id,mth: mth)
     table.user_id = user_id
+    table.salary_item_header = get_salary_item_header
     xls_doc = Roo::Spreadsheet.open(excel_file)
-    table.name = xls_doc.row(1)[0]
-    #逐行导入
-    (4..xls_doc.last_row).each do |ix|
+    table_name = xls_doc.row(2)[0]
+    table.name = table_name
+    table.name = "#{table.org}-#{mth}-#{table.salary_item_header.name}" if table_name.blank?
+    #获取表头对应字段
+    header_row = xls_doc.row(1)
+    id_no_index = header_row.index("id_no")
+    return nil if id_no_index.blank?
+    #自第五行导入
+    (5..xls_doc.last_row).each do |ix|
       row = xls_doc.row(ix)
-      employee_name = row[1]
-      employee = Employee.find_by_name(employee_name)
-      if employee.present?
+      #以身份证号为对比条件
+      id_no = row[id_no_index]
+      employee = Employee.find_by(id_no: id_no)
+      if id_no.present? and employee.present?
         table_line = SalaryTableLine.new
         table_line.employee = employee
-        #计算收入列(10列)
-        (1..10).each {|i| table_line.send("pay_item_#{i}=".to_sym,row[1+i])}
-        #计算支出列
-        (11..25).each {|j| table_line.send("deduct_item_#{j}=".to_sym,row[1+j])}
-        #实发合计
-        table_line.pay_item_26 = row[27]
+        header_row.each_with_index do |col,col_idx|
+          table_line.try("#{col}=".to_sym,row[col_idx]) if col.present?
+        end
         table.salary_table_lines << table_line
+      end
+    end
+    table.save!
+    table
+  end
+
+  #自excel更新已有的工资表
+  def self.update_with_excel(org_id,mth,excel_file,user_id)
+    table = self.find_by(org_id: org_id,mth: mth)
+    return nil if table.blank?
+    table.user_id = user_id
+    table.salary_item_header = get_salary_item_header
+    xls_doc = Roo::Spreadsheet.open(excel_file)
+    table_name = xls_doc.row(2)[0]
+    table.name = table_name
+    table.name = "#{table.org}-#{mth}-#{table.salary_item_header.name}" if table_name.blank?
+    #获取表头对应字段
+    header_row = xls_doc.row(1)
+    id_no_index = header_row.index("id_no")
+    return nil if id_no_index.blank?
+    #自第五行导入
+    (5..xls_doc.last_row).each do |ix|
+      row = xls_doc.row(ix)
+      #以身份证号为对比条件
+      id_no = row[id_no_index]
+      employee = Employee.find_by(id_no: id_no)
+      if id_no.present? and employee.present?
+        table_line = table.salary_table_lines.find_by(employee_id: employee.id)
+        if table_line.present?
+          header_row.each_with_index do |col,col_idx|
+            table_line.try("#{col}=".to_sym,row[col_idx]) if col.present?
+          end
+          table_line.save!
+        end
       end
     end
     table.save!
