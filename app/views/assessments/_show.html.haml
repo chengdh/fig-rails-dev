@@ -1,37 +1,80 @@
 %table.table.table-condensed.table-bordered
   %tr
-    %th{colspan: 6,style: "text-align:right;"}
-      %label.label.label-info
-        = resource.check_state_des
+    %th{colspan: 7,style: "text-align: center;"}
+      安全生产目标考核表
   %tr
-    %th 上报机构
-    %td= resource.org
-    %th 月份
-    %td= resource.mth
-    %th 上报日期
-    %td= resource.table_date
+    %th{colspan: 3}
+      上报机构:
+      = resource.org
+    %th{colspan: 2,style: "text-align: center;"}
+      月份:
+      = resource.mth
+    %th{colspan: 2}
+      上报日期:
+      = resource.table_date
   %tr
-    %th 名称
-    %td{:colspan => 5}= resource.name
+    %th 类别
+    %th 考核类型
+    %th 评分项目
+    %th 评分频次
+    %th 评分细则
+    %th 不符合项
+    %th 扣分值
   %tr
-    %td{:colspan => 6}
-      = resource.note
+    %td{rowspan: 5} 安全基础管理
+    %td{rowspan: 5} 自动考核
+    %td 安委会会议
+    %td 至少每半年一次。（每年1月3日和7月3日）
+    %td 每半年至少召开安全生产委员会会议一次，每少一次扣5分。
+    %td= marks_des(resource.k_meeting_marks)
+    %td= resource.k_meeting_marks.abs
   %tr
-    %th 安委会会议扣分
-    %th 工作及事故报报扣分
-    %th 教育培训扣分
-    %th 演练评审扣分
-    %th 档案及台帐记录扣分
-    %th 安全检查及事故隐患扣分
+    %td 工作、事故报告
+    %td 每月一次。（每月3日）
+    %td 每月及时准确上报工作报表，不符合每次扣1分。
+    %td= marks_des(resource.k_safety_table_marks)
+    %td= resource.k_safety_table_marks.abs
   %tr
-    %td= resource.k_meeting_marks
-    %td= resource.k_safety_table_marks
-    %td= resource.k_training_marks
-    %td= resource.k_planb_doc_marks
-    %td= resource.k_files_marks
-    %td= resource.k_hidden_danger_marks
+    %td 教育培训
+    %td 至少每半年一次。（每年1月3日和7月3日）
+    %td 每半年至少开展一次全员安全教育，每少一次扣5分。
+    %td=  marks_des(resource.k_training_marks)
+    %td=  resource.k_training_marks.abs
+
   %tr
-    %th 实际得分
-    %td{colspan: 5}
+    %td 演练评审
+    %td 至少每半年一次。（每年1月3日和7月3日）
+    %td 每半年至少召开开展一次事故应急演练及预案评审，每少一次扣2.5分。
+    %td= marks_des(resource.k_training_marks)
+    %td= resource.k_training_marks.abs
+  %tr
+    %td 档案、台账记录
+    %td 按要求完善电子档案记录。（每年1月3日和7月3日）
+    %td 每半年辨识电子档案记录，不完善的每次酌情扣1-4分。
+    %td= marks_des(resource.k_files_marks)
+    %td= resource.k_files_marks.abs
+
+  %tr
+    %td{rowspan: 2} 安全检查及隐患治理
+    %td{rowspan: 2} 现场考核
+    %td 安全检查
+    %td 不出现较大事故隐患。
+    %td 发现存在较大事故隐患的，每次每处扣1分，扣完为止。
+    %td=  marks_des(resource.k_big_hidden_danger_marks)
+    %td=  resource.k_big_hidden_danger_marks.abs
+  %tr
+    %td 隐患治理
+    %td 安全问题和隐患复查合格。
+    %td 安全问题和事故隐患经上级复查不合格的，每次每处扣0.5分，扣完为止。
+    %td=  marks_des(resource.k_hidden_danger_marks)
+    %td=  resource.k_hidden_danger_marks.abs
+  %tr
+    %td
+    %td
+    %td
+    %td
+    %td
+    %th 实际得分:
+    %td
       %label.label-warning
         = resource.sum_marks

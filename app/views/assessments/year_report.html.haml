@@ -1,0 +1,55 @@
+%section.content-header
+  %h3 年度安全生产目标考评
+
+<!-- Main content -->
+%section.content
+  <!-- Info boxes -->
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .box.box-info
+        .box-body{style: "overflow-x : scroll;"}
+          .well.well-sm
+            = semantic_search_form_for @q,url:{action: :year_report},method: :get,html: {class: "form-inline assessment_year_report"} do |f|
+              = f.select :org_id_eq,options_for_select(current_ability_orgs_for_select),{prompt: "--选择机构--"},:class => "input-sm form-control"
+              = select_tag :select_year,options_for_select(years_for_select),:class => "input-sm form-control"
+              = f.hidden_field :mth_gteq
+              = f.hidden_field :mth_lteq
+              = f.submit "查询",class: "btn btn-primary btn-sm"
+
+          .table-responsive
+            %table.table.table-condensed.table-hover.table-striped.table-bordered
+              %tr
+                %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 序号
+                %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 单位名称
+                %th{colspan: 7,style: "text-align: center;vertical-align: middle;"} 扣分项目及扣分情况
+              %tr
+                %th{colspan: 5,style: "text-align: center;vertical-align: middle;"} 安保基础管理
+                %th{colspan: 2,style: "text-align: center;vertical-align: middle;"} 检查及隐患管理
+              %tr
+                %th{style: "text-align: center;"} 安委会会议
+                %th{style: "text-align: center;"} 工作和事故报告
+                %th{style: "text-align: center;"} 教育培训
+                %th{style: "text-align: center;"} 演练评审
+                %th{style: "text-align: center;"} 档案、台账记录
+                %th{style: "text-align: center;"} 安全检查
+                %th{style: "text-align: center;"} 隐患治理
+              - @assessments.each_with_index do |a,i|
+                %tr
+                  %td{style: "text-align: center;"}= i + 1
+                  %td= a.org
+                  %td{style: "text-align: center;"}= a.k_meeting_marks.abs
+                  %td{style: "text-align: center;"}= a.k_accident_marks.abs
+                  %td{style: "text-align: center;"}= a.k_training_marks.abs
+                  %td{style: "text-align: center;"}= a.k_planb_doc_marks.abs
+                  %td{style: "text-align: center;"}= a.k_files_marks.abs
+                  %td{style: "text-align: center;"}= a.k_big_hidden_danger_marks.abs
+                  %td{style: "text-align: center;"}= a.k_hidden_danger_marks.abs
+              %tr
+                %th{colspan: 2,style: "text-align: center;font-weight: bold;color:red;"} 扣分总计
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_meeting_marks).abs
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_accident_marks).abs
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_training_marks).abs
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_planb_doc_marks).abs
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_files_marks).abs
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_big_hidden_danger_marks).abs
+                %td{style: "text-align: center;font-weight: bold;color:red;"}= @assessments.to_a.sum(&:k_hidden_danger_marks).abs

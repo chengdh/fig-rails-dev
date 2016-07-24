@@ -255,6 +255,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :search
+      get :year_report
     end
 
   end
