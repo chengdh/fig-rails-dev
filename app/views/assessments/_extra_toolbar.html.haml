@@ -1,10 +1,10 @@
-.btn-group{role: "group", "aria-label" => "..."}
-  - if can? :read,resource_class
-    = link_to collection_path("q[check_state_eq]" => "confirmed"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已通过" do
-      %i.fa.fa-list-ul{style: "color: blue;"}
-    = link_to collection_path("q[check_state_eq]" => "rejected"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已驳回" do
-      %i.fa.fa-list-ul{style: "color: red;"}
-
-  - if ["show"].include?(params[:action]) and can? :submit,resource
-    = link_to submit_assessment_path(resource),method: :patch,:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "上报" do
-      %i.fa.fa-gavel
+-# .btn-group{role: "group", "aria-label" => "..."}
+-#   - if can? :read,resource_class
+-#     = link_to collection_path("q[check_state_eq]" => "confirmed"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已通过" do
+-#       %i.fa.fa-list-ul{style: "color: blue;"}
+-#     = link_to collection_path("q[check_state_eq]" => "rejected"),:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "已驳回" do
+-#       %i.fa.fa-list-ul{style: "color: red;"}
+-#
+-#   - if ["show"].include?(params[:action]) and can? :submit,resource
+-#     = link_to submit_assessment_path(resource),method: :patch,:class => "btn btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "上报" do
+-#       %i.fa.fa-gavel
