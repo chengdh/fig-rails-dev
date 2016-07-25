@@ -52,7 +52,7 @@
     %td 按要求完善电子档案记录。（每年1月3日和7月3日）
     %td 每半年辨识电子档案记录，不完善的每次酌情扣1-4分。
     %td= marks_des(resource.k_files_marks)
-    %td= resource.k_files_marks.abs
+    %td= resource.k_files_marks.abs.to_i
 
   %tr
     %td{rowspan: 2} 安全检查及隐患治理

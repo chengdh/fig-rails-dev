@@ -8,7 +8,7 @@ class Assessment < ActiveRecord::Base
 
   belongs_to :submiter,class_name: "User"
 
-  default_scope {order("table_date DESC")}
+  default_scope {order("mth DESC,org_id")}
   default_value_for(:table_date) {Date.today}
 
   validates :org_id,:name,:mth,:table_date,:user_id, presence: true

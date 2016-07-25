@@ -1,39 +1,48 @@
 %table.table.table-condensed.table-hover.table-striped.table-bordered
-  %tr
-    %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 序号
-    %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 单位名称
-    %th{colspan: 7,style: "text-align: center;vertical-align: middle;"} 扣分项目及扣分情况
-  %tr
-    %th{colspan: 5,style: "text-align: center;vertical-align: middle;"} 安保基础管理
-    %th{colspan: 2,style: "text-align: center;vertical-align: middle;"} 检查及隐患管理
-  %tr
-    %th{style: "text-align: center;"} 安委会会议
-    %th{style: "text-align: center;"} 工作和事故报告
-    %th{style: "text-align: center;"} 教育培训
-    %th{style: "text-align: center;"} 演练评审
-    %th{style: "text-align: center;"} 档案、台账记录
-    %th{style: "text-align: center;"} 安全检查
-    %th{style: "text-align: center;"} 隐患治理
-  - collection.each_with_index do |a,i|
+  %tbody
     %tr
-      %td{style: "text-align: center;"}= i + 1
-      %td= a.org
-      %td{style: "text-align: center;"}= a.k_meeting_marks.abs
-      %td{style: "text-align: center;"}= a.k_accident_marks.abs
-      %td{style: "text-align: center;"}= a.k_training_marks.abs
-      %td{style: "text-align: center;"}= a.k_planb_doc_marks.abs
-      %td{style: "text-align: center;"}= a.k_files_marks.abs
-      %td{style: "text-align: center;"}= a.k_big_hidden_danger_marks.abs
-      %td{style: "text-align: center;"}= a.k_hidden_danger_marks.abs
+      %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 序号
+      %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 单位名称
+      %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"} 月份
+      %th{colspan: 7,style: "text-align: center;vertical-align: middle;"} 扣分项目及扣分情况
+      %th{rowspan: 3,style: "text-align: center;vertical-align: middle;"}
+    %tr
+      %th{colspan: 5,style: "text-align: center;vertical-align: middle;"} 安保基础管理
+      %th{colspan: 2,style: "text-align: center;vertical-align: middle;"} 检查及隐患管理
+    %tr
+      %th{style: "text-align: center;"} 安委会会议
+      %th{style: "text-align: center;"} 工作和事故报告
+      %th{style: "text-align: center;"} 教育培训
+      %th{style: "text-align: center;"} 演练评审
+      %th{style: "text-align: center;"} 档案、台账记录
+      %th{style: "text-align: center;"} 安全检查
+      %th{style: "text-align: center;"} 隐患治理
+    - collection.each_with_index do |a,i|
+      %tr
+        %td{style: "text-align: center;"}= i + 1
+        %td= a.org
+        %td{style: "text-align: center;"}= a.mth
+        %td{style: "text-align: center;"}= a.k_meeting_marks.abs
+        %td{style: "text-align: center;"}= a.k_accident_marks.abs
+        %td{style: "text-align: center;"}= a.k_training_marks.abs
+        %td{style: "text-align: center;"}= a.k_planb_doc_marks.abs
+        %td{style: "text-align: center;"}= a.k_files_marks.abs
+        %td{style: "text-align: center;"}= a.k_big_hidden_danger_marks.abs
+        %td{style: "text-align: center;"}= a.k_hidden_danger_marks.abs
+        %td{style: "text-align: center;"}
+          = link_to a,class: "", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do
+            %i.fa.fa-eye
 
-  %tr
-    %th{colspan: 2,style: "text-align: center;font-weight: bold;color:red;"} 扣分总计
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_meeting_marks).abs
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_accident_marks).abs
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_training_marks).abs
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_planb_doc_marks).abs
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_files_marks).abs
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_big_hidden_danger_marks).abs
-    %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_hidden_danger_marks).abs
+  %tfoot
+    %tr
+      %th{colspan: 3,style: "text-align: center;font-weight: bold;color:red;"} 扣分总计
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_meeting_marks).abs
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_accident_marks).abs
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_training_marks).abs
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_planb_doc_marks).abs
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_files_marks).abs
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_big_hidden_danger_marks).abs
+      %td{style: "text-align: center;font-weight: bold;color:red;"}= @q.result.sum(:k_hidden_danger_marks).abs
+      %td
 
 
