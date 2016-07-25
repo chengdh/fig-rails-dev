@@ -18,6 +18,7 @@ class MatchRecommandsController < ApplicationController
   #GET /report_interface.json
   def report_interface
     @q = MatchRecommand.where("result_type IS NOT NULL").ransack(params[:q])
+    @q_all = MatchRecommand.where("result_type IS NOT NULL").ransack
     @match_recommands = @q.result.paginate(page: params[:page], per_page: params[:per_page])
 
     @yinglang_match_recommands = @q.result.where(recommend_type: 2)
