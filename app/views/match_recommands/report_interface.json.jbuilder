@@ -18,34 +18,32 @@ end
 
 json.stat do
   #大数据推荐胜场
-  json.big_data_win_count @bigdata_match_recommands.sum(:result_type).to_f/2
+  json.big_data_win_count MatchRecommand.win_count(@q,1)
   #大数据推荐胜率
   json.big_data_win_rate MatchRecommand.win_rate(@q,1)
   #大数据推荐赢钱
   json.big_data_win_money @bigdata_match_recommands.sum(:win_money)
 
-
-
   #盈朗推荐胜场
-  json.yinglang_win_count @yinglang_match_recommands.sum(:result_type).to_f/2
+  json.yinglang_win_count MatchRecommand.win_count(@q,2)
   #盈朗推荐胜率
   json.yinglang_win_rate MatchRecommand.win_rate(@q,2)
   #盈朗推荐赢钱
   json.yinglang_recommend_win_money @yinglang_match_recommands.sum(:win_money)
 end
+
 json.all_stat do
   #大数据推荐胜场
-  json.big_data_win_count @q_all.result.where(recommend_type: 1).sum(:result_type).to_f/2
+  json.big_data_win_count MatchRecommand.win_count(@q_all,1)
   #大数据推荐胜率
   json.big_data_win_rate MatchRecommand.win_rate(@q_all,1)
   #大数据推荐赢钱
   json.big_data_win_money  @q_all.result.where(recommend_type: 1).sum(:win_money)
 
-
   #盈朗推荐胜场
-  json.yinglang_win_count  @q_all.result.where(recommend_type: 2).sum(:result_type).to_f/2
+  json.yinglang_win_count MatchRecommand.win_count(@q_all,2)
   #盈朗推荐胜率
   json.yinglang_win_rate MatchRecommand.win_rate(@q_all,2)
   #盈朗推荐赢钱
-  json.yinglang_recommend_win_money  @q_all.result.where(recommend_type: 2).sum(:win_money)
+  json.yinglang_recommend_win_money @q_all.result.where(recommend_type: 2).sum(:win_money)
 end
