@@ -1,9 +1,9 @@
-<table id="<%= resource_class.name.underscore.pluralize %>_index_table" class="table table-condensed table-hover table-striped">
+<table id="<%= resource_class.name.underscore.pluralize %>_index_table" class="table table-condensed table-hover table-striped table-bordered">
   <thead>
     <tr>
-      <th>序号</th>
+      <th style="text-align: center;">序号</th>
       <% index_table_columns.each do |column| %>
-        <th><%= resource_class.human_attribute_name(column,:default => t("activerecord.attributes.public_attrs.#{column.to_s}"))%></th>
+        <th style="text-align: center;"><%= resource_class.human_attribute_name(column,:default => t("activerecord.attributes.public_attrs.#{column.to_s}"))%></th>
       <% end %>
       <th>&nbsp;</th>
     </tr>
@@ -11,7 +11,7 @@
   <tbody>
     <% collection.each_with_index do |resource,index| %>
       <tr class="<%= cycle 'odd', 'even' %>",title="双击显示详细信息" class='tipsy' data-dblclick='true'>
-        <td>
+        <td style="text-align: center;">
           <%= order_no(index,params[:page]) %>
         </td>
         <% index_table_columns.each do |column| %>

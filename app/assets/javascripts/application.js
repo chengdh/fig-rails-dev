@@ -40,5 +40,6 @@
 //= require employees
 //= require ip_info_headers
 //= require vpn_infos
+//= require company_vpns
 //= require websites
 //= require assessments

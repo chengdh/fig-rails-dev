@@ -139,6 +139,12 @@ class Ability
     can [:show_import_xls],SalaryTableShiNonStaff if can? :create,SalaryTableShiNonStaff
     can [:import_xls],SalaryTableShiNonStaff if can? :create,SalaryTableShiNonStaff
 
+    can [:search_lines],IpInfoHeader if can? :read,IpInfoHeader
+    can [:search_lines],VpnInfo if can? :read,VpnInfo
+
+    can [:search_lines],CompanyVpn if can? :read,CompanyVpn
+
+
   end
   #设置单个operate的权限
   def set_single_operate_power(sfo)

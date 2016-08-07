@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725122952) do
+ActiveRecord::Schema.define(version: 20160807084947) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -131,6 +131,42 @@ ActiveRecord::Schema.define(version: 20160725122952) do
 
   add_index "base_salary_reports", ["org_id"], name: "index_base_salary_reports_on_org_id", using: :btree
   add_index "base_salary_reports", ["user_id"], name: "index_base_salary_reports_on_user_id", using: :btree
+
+  create_table "company_vpn_lines", force: :cascade do |t|
+    t.integer  "company_vpn_id", limit: 4
+    t.string   "username",       limit: 30,  null: false
+    t.string   "pwd",            limit: 30
+    t.string   "ip",             limit: 60
+    t.integer  "own_org_id",     limit: 4
+    t.string   "employee_name",  limit: 30
+    t.string   "post",           limit: 200
+    t.string   "mobile",         limit: 30
+    t.string   "power",          limit: 200
+    t.string   "note",           limit: 200
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "company_vpn_lines", ["company_vpn_id"], name: "index_company_vpn_lines_on_company_vpn_id", using: :btree
+
+  create_table "company_vpns", force: :cascade do |t|
+    t.integer  "org_id",        limit: 4,     null: false
+    t.date     "table_date"
+    t.integer  "user_id",       limit: 4,     null: false
+    t.integer  "submitter_id",  limit: 4
+    t.date     "submit_date"
+    t.text     "submit_note",   limit: 255
+    t.integer  "checker_id",    limit: 4
+    t.date     "check_date"
+    t.text     "check_opinion", limit: 255
+    t.text     "note",          limit: 65535
+    t.string   "check_state",   limit: 40
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "company_vpns", ["org_id"], name: "index_company_vpns_on_org_id", using: :btree
+  add_index "company_vpns", ["user_id"], name: "index_company_vpns_on_user_id", using: :btree
 
   create_table "drivers", force: :cascade do |t|
     t.integer  "org_id",          limit: 4,                    null: false

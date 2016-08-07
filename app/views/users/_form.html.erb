@@ -13,9 +13,10 @@
     <%end%>
   <%end%>
   <%=f.inputs "可访问机构" do %>
-    <table class="table">
+    <% level = 1%>
+    <table class="table table-condensed table-bordered">
       <%=f.semantic_fields_for :user_orgs,resource.all_user_orgs!.select { |user_org| user_org.org.parent_id.blank?} do |user_org|%>
-        <%= render "user_org_recursive",:user_org => user_org,:f => f %>
+        <%= render "user_org_recursive",:user_org => user_org,:f => f,:level => level %>
       <%end%>
     </table>
   <%end%>

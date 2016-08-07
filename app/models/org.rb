@@ -28,6 +28,10 @@ class Org < ActiveRecord::Base
   end
 
   def to_s
-    name
+    ret = name
+    if parent.present?
+      ret = "#{parent.name}>#{name}"
+    end
+    ret
   end
 end

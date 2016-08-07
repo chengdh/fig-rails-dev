@@ -1,21 +1,57 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :check_company_vpns do
+    member do
+      get :show_check
+      patch :check
+    end
+    collection do
+      get :search
+      get :search_lines
+    end
+
+  end
+
+
+  resources :company_vpns do
+    member do
+      patch :submit
+    end
+    collection do
+      get :search
+      get :search_lines
+    end
+  end
   resources :check_vpn_infos do
     member do
       get :show_check
       patch :check
     end
+    collection do
+      get :search
+      get :search_lines
+    end
+
   end
 
   resources :vpn_infos do
     member do
       patch :submit
     end
+    collection do
+      get :search
+      get :search_lines
+    end
+
   end
   resources :check_ip_info_headers do
     member do
       get :show_check
       patch :check
+    end
+    collection do
+      get :search
+      get :search_lines
     end
   end
 
@@ -23,6 +59,11 @@ Rails.application.routes.draw do
     member do
       patch :submit
     end
+    collection do
+      get :search
+      get :search_lines
+    end
+
   end
   resources :salary_report_non_staffs do
     collection do

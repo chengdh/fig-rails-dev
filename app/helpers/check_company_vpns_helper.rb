@@ -1,0 +1,2 @@
+module CheckCompanyVpnsHelper
+end

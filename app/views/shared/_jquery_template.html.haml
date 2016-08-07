@@ -293,4 +293,27 @@
       = hidden_field_tag :_destroy,class: "destroy"
       %a{href: "#",class: "btn btn-default btn-sm btn-delete-vpn-info-line",style: "color: red;"}
         %i.fa.fa-close
+/ company vpn地址模板
+%script#company_vpn_line_tmpl{:type => "text/html"}
+  %tr{class: "company-vpn-line"}
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "username form-control input-sm","data-value" => "username"}
 
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "employee_name form-control input-sm","data-value" => "employee_name"}
+
+    %td
+      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "own_org_id form-control input-sm"
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "post form-control input-sm","data-value" => "post"}
+
+    %td
+      %input{type: "text",class: "mobile form-control input-sm","data-value" => "mobile"}
+    %td
+      = select_tag :power,options_for_select(powers_for_select),include_blank: false,class: "power form-control input-sm"
+
+    %td{style: "text-align : center;"}
+      = hidden_field_tag :_destroy,class: "destroy"
+      %a{href: "#",class: "btn btn-default btn-sm btn-delete-company-vpn-line",style: "color: red;"}
+        %i.fa.fa-close

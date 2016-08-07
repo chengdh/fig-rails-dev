@@ -8,9 +8,15 @@ class VpnInfosController < BaseController
     (1..10).each {|i| @vpn_info.vpn_info_lines.build }
   end
 
+  #GET vpn_infos/search_line
+  def search_lines
+    @q = VpnInfoLine.ransack(params[:q])
+    @vpn_info_lines = @q.result.paginate(:page => params[:page])
+  end
+
   protected
   def collection
-    @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
+    @q= end_of_association_chain.where(org_id: current_ability_org_ids(3)).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
 

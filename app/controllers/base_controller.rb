@@ -73,10 +73,13 @@ class BaseController < InheritedResources::Base
   end
 
   #当前可用机构的ids
-  def current_ability_org_ids
+  #目前支持2级
+  def current_ability_org_ids(read_level = 2)
     default_org = current_user.current_org
-    ret = ActiveSupport::OrderedHash.new
-    child_org_ids = default_org.children.map {|child_org|  child_org.id}
+    child_org_ids = Org.where(is_active: true,parent_id: default_org.id).order(:parent_id).pluck(:id)
+    if read_level > 2
+      child_org_ids += Org.where(is_active: true,parent_id: child_org_ids).order(:parent_id).pluck(:id)
+    end
     [default_org.id] + child_org_ids
   end
 end

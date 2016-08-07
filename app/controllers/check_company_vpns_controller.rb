@@ -1,6 +1,6 @@
 #coding: utf-8
-class CheckVpnInfosController < VpnInfosController
-  defaults :resource_class => VpnInfo, :collection_name => 'vpn_infos', :instance_name => 'vpn_info'
+class CheckCompanyVpnsController < CompanyVpnsController
+  defaults :resource_class => CompanyVpn, :collection_name => 'company_vpns', :instance_name => 'company_vpn'
   #Warning: when overwriting the collection method in a controller
   #the load part of a load_and_authorize_resource call will not work correctly.
   #See https://github.com/ryanb/cancan/issues/274 for the discussions.
@@ -11,6 +11,6 @@ class CheckVpnInfosController < VpnInfosController
   #GET check_ip_info_headers/:id/show_check.json
   #显示审批界面
   def show_check
-    @vpn_info = resource_class.find(params[:id])
+    @company_vpn = resource_class.find(params[:id])
   end
 end

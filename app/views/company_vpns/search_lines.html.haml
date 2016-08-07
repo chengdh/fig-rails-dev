@@ -1,0 +1,33 @@
+<!-- Content Header (Page header) -->
+%section.content-header
+  %h3 VPN帐号查询结果
+
+<!-- Main content -->
+%section.content
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .box.box-info
+        .box-header
+          %h3.box-title
+            = render "dynamic_toolbar"
+
+        .box-body{style: "overflow-x : scroll;"}
+          .table-responsive
+            %table.table.table-condensed.table-bordered.table-striped.table-hover
+              %tr
+                %th{style: "text-align: center;"} 帐号
+                %th{style: "text-align: center;"} 姓名
+                %th{style: "text-align: center;"} 科室
+                %th{style: "text-align: center;"} 职务
+                %th{style: "text-align: center;"} 电话
+                %th{style: "text-align: center;"} 系统权限
+
+              - @company_vpn_lines.each_with_index do |line,idx|
+                %tr
+                  %td{style: "text-align: center;"}= idx+1
+                  %td= line.username
+                  %td{style: "text-align: center;"}= line.employee_name
+                  %td{style: "text-align: center;"}= line.own_org
+                  %td= line.post
+                  %td{style: "text-align: center;"}= line.mobile
+                  %td{style: "text-align: center;"}= line.power
