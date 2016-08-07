@@ -68,6 +68,8 @@ zh-CN:
       vpn_info_line: IPSEC-VPN帐号明细
       company_vpn: 城区分公司VPN帐号信息表
       company_vpn_line: 城区分公司VPN帐号明细
+      wifi_client: 无线上网设备MAC表
+      wifi_client_line: 无线上网设备MAC表明细
 
       move_bill: 调拨单
       move_bill_asset: 固定资产-调拨单
@@ -571,3 +573,18 @@ zh-CN:
         mobile: 手机
         power: 权限
 
+      wifi_client:
+        org_id: 所属机构
+        org: 所属机构
+
+      wifi_client_line:
+        own_org_id: 所属部门
+        own_org: 所属部门
+        username: 用户名
+        pwd: 密码
+        ip: ip
+        employee_name: 责任人
+        mac: MAC地址
+        post: 职位
+        mobile: 手机
+        power: 权限

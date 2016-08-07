@@ -1,0 +1,29 @@
+<!-- Content Header (Page header) -->
+%section.content-header
+  %h3 无线上网设备查询结果
+
+<!-- Main content -->
+%section.content
+  .row
+    .col-md-12.col-sm-12.col-xs-12
+      .box.box-info
+        .box-header
+          %h3.box-title
+            = render "dynamic_toolbar"
+
+        .box-body{style: "overflow-x : scroll;"}
+          .table-responsive
+            %table.table.table-condensed.table-bordered.table-striped.table-hover
+              %tr
+                %th{style: "text-align: center;"} 序号
+                %th{style: "text-align: center;"} 姓名
+                %th{style: "text-align: center;"} 科室
+                %th{style: "text-align: center;"} 设备类型
+                %th{style: "text-align: center;"} MAC地址
+              - @wifi_client_lines.each_with_index do |line,idx|
+                %tr
+                  %td{style: "text-align: center;"}= idx+1
+                  %td= line.username
+                  %td{style: "text-align: center;"}= line.own_org
+                  %td{style: "text-align: center;"}= line.dev_type
+                  %td{style: "text-align: center;"}= line.mac

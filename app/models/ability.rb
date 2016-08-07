@@ -143,6 +143,7 @@ class Ability
     can [:search_lines],VpnInfo if can? :read,VpnInfo
 
     can [:search_lines],CompanyVpn if can? :read,CompanyVpn
+    can [:search_lines],WifiClient if can? :read,WifiClient
 
 
   end

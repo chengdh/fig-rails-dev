@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_id: 
+  user_id: 
+  check_state: MyString
+  table_date: 2016-08-07
+  note: MyText
+  submitter_id: 1
+  submit_date: 2016-08-07
+  checker_id: 1
+  check_date: 2016-08-07
+  check_opinion: MyText
+
+two:
+  org_id: 
+  user_id: 
+  check_state: MyString
+  table_date: 2016-08-07
+  note: MyText
+  submitter_id: 1
+  submit_date: 2016-08-07
+  checker_id: 1
+  check_date: 2016-08-07
+  check_opinion: MyText

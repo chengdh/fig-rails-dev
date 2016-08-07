@@ -1,0 +1,34 @@
+= semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form",class: "enter2tab"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :user_id,as: :hidden,input_html: {value: current_user.id}
+    = f.input :check_state,as: :hidden,input_html: {value: "draft",style: "width : 30%;"}
+    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,label: false,include_blank: false,input_html: {class: "wifi_client_org_id_select",style: "width : 30%;"}
+  .table-responsive
+    %table.table.table-condensed.table-striped.table-bordered.table-hover
+      %tr{style: "text-align: center;"}
+        %th{style: "text-align: center;"} 姓名
+        %th{style: "text-align: center;"} 科室
+        %th{style: "text-align: center;"} 设备类型
+        %th{style: "text-align: center;"} MAC地址
+        %th
+      %tbody
+        = f.semantic_fields_for :wifi_client_lines do |f_line|
+          %tr.wifi-client-line
+            %td= f_line.input :username,label: false,input_html: {class: "input-sm"}
+            %td
+              = f_line.input :own_org_id,as: :select,collection: current_children_orgs_for_select,
+                label: false,input_html: {class: "input-sm children_org_select"}
+            %td= f_line.input :dev_type,label: false,input_html: {class: "input-sm"}
+            %td= f_line.input :mac,label: false,input_html: {class: "input-sm"}
+            %td{style: "text-align : center;"}
+              = f_line.hidden_field :_destroy,class: "destroy"
+              %a{href: "#",class: "btn btn-default btn-sm btn-delete-wifi-client-line",style: "color: red;"}
+                %i.fa.fa-close
+
+      %tbody#wifi_client_line_tmpl_wrapper
+
+  .well.well-sm.clearfix
+    = link_to  "#",class: "btn-add-new-wifi-client-line btn btn-primary btn-sm pull-right" do
+      %i.fa.fa-plus
+      新建行

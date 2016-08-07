@@ -1,5 +1,26 @@
 #coding: utf-8
 Rails.application.routes.draw do
+  resources :check_wifi_clients do
+    member do
+      get :show_check
+      patch :check
+    end
+    collection do
+      get :search
+      get :search_lines
+    end
+  end
+
+  resources :wifi_clients do
+    member do
+      patch :submit
+    end
+    collection do
+      get :search
+      get :search_lines
+    end
+
+  end
   resources :check_company_vpns do
     member do
       get :show_check

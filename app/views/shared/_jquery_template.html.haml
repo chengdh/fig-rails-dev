@@ -317,3 +317,22 @@
       = hidden_field_tag :_destroy,class: "destroy"
       %a{href: "#",class: "btn btn-default btn-sm btn-delete-company-vpn-line",style: "color: red;"}
         %i.fa.fa-close
+
+/ 无线上网设备MAC地址表
+%script#wifi_client_line_tmpl{:type => "text/html"}
+  %tr{class: "wifi-client-line"}
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "username form-control input-sm","data-value" => "username"}
+    %td
+      = select_tag :own_org_id,options_for_select(current_children_orgs_for_select),include_blank: false,class: "own_org_id form-control input-sm"
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "dev_type form-control input-sm","data-value" => "dev_type"}
+
+    %td{style: "text-align : center;"}
+      %input{type: "text",class: "mac form-control input-sm","data-value" => "mac"}
+
+    %td{style: "text-align : center;"}
+      = hidden_field_tag :_destroy,class: "destroy"
+      %a{href: "#",class: "btn btn-default btn-sm btn-delete-wifi-client-line",style: "color: red;"}
+        %i.fa.fa-close

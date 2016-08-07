@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160807084947) do
+ActiveRecord::Schema.define(version: 20160807103255) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -2253,6 +2253,41 @@ ActiveRecord::Schema.define(version: 20160807084947) do
     t.string   "username",    limit: 60
     t.string   "password",    limit: 60
   end
+
+  create_table "wifi_client_lines", force: :cascade do |t|
+    t.integer  "wifi_client_id", limit: 4
+    t.string   "username",       limit: 30,  null: false
+    t.integer  "own_org_id",     limit: 4
+    t.string   "mac",            limit: 30
+    t.string   "dev_type",       limit: 30
+    t.string   "mobile",         limit: 30
+    t.string   "ip",             limit: 60
+    t.string   "employee_name",  limit: 30
+    t.string   "note",           limit: 200
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "wifi_client_lines", ["wifi_client_id"], name: "index_wifi_client_lines_on_wifi_client_id", using: :btree
+
+  create_table "wifi_clients", force: :cascade do |t|
+    t.integer  "org_id",        limit: 4
+    t.date     "table_date"
+    t.integer  "user_id",       limit: 4
+    t.integer  "submitter_id",  limit: 4
+    t.date     "submit_date"
+    t.string   "submit_note",   limit: 200
+    t.integer  "checker_id",    limit: 4
+    t.date     "check_date"
+    t.string   "check_opinion", limit: 200
+    t.text     "note",          limit: 65535
+    t.string   "check_state",   limit: 40
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "wifi_clients", ["org_id"], name: "index_wifi_clients_on_org_id", using: :btree
+  add_index "wifi_clients", ["user_id"], name: "index_wifi_clients_on_user_id", using: :btree
 
   add_foreign_key "employees", "orgs"
   add_foreign_key "equipment_categories", "orgs"
