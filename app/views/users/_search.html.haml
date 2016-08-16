@@ -1,0 +1,12 @@
+.box.box-default.box-solid.box-info
+  .box-header
+    %h4.box-title 查询
+  .box-body
+    = semantic_search_form_for resource_class.ransack,html: {id: "search_user_form",method: :get,style: "width : 400px;" } do |f|
+      = f.input :user_orgs_org_id_eq,as: :select,collection: orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
+      = f.input :username_eq,label: "用户名",input_html: {class: "input-sm"}
+      = f.input :real_name_eq,label: "姓名",input_html: {class: "input-sm"}
+      = f.actions do
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", data: {disable_with: '稍等...'}}
+
+

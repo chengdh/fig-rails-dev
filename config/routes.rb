@@ -720,6 +720,7 @@ Rails.application.routes.draw do
       get :show_query_salary
       put :update_password
       post :get_mth_salary
+      get :search
     end
   end
 
