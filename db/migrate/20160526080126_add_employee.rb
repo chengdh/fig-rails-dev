@@ -158,6 +158,6 @@ class AddEmployee < ActiveRecord::Migration
     Employee.destroy_all
     employees.each_with_index do |name,index|
       Employee.create!(org: org,name: name,email: "employee_#{index}@b.com")
-    end
+    end if org.present?
   end
 end
