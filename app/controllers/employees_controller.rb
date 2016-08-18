@@ -1,7 +1,7 @@
 #coding: utf-8
 #雇员信息
 class EmployeesController < BaseController
-  table :org,:name,:mobile,:qq
+  table :org,:name,:id_no,:post,:post_level_des,:work_state_des,:mobile
   protected
   def collection
     #只能看到本机构的人员信息

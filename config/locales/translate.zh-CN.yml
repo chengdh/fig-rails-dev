@@ -164,12 +164,14 @@ zh-CN:
         mobile: 手机
         qq: QQ号
         wechat: 微信号
-        post: 职位
+        post: 岗位
         note: 备注
         work_day: 工作时间
         address: 住址
         work_state: 工作状况
+        work_state_des: 工作状况
         post_level: 职级
+        post_level_des: 职级
         is_party_member: 是否党员
         is_not_main: 三产人员
         belongs_party: 所属支部

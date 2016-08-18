@@ -1,0 +1,48 @@
+%table.table.table-condensed.table-hover.talbe-striped
+  %thead
+    %tr
+      %th 序号
+      %th
+        = sort_link @q,:org_id,"所属部门",default_order: :asc
+      %th 姓名
+      %th 身份证号
+      %th 岗位
+      %th
+        = sort_link @q,:post_level,"职级",default_order: :asc
+      %th
+        = sort_link @q,:work_state,"工作状况",default_order: :asc
+      %th 手机
+      %th
+  %tbody
+    - collection.each_with_index do |d,i|
+      %tr
+        %td= order_no(i,params[:page])
+        %td= d.org
+        %td= d.name
+        %td= d.id_no
+        %td= d.post
+        %td= d.post_level_des
+        %td= d.work_state_des
+        %td= d.mobile
+        %td
+          .btn-group{role: "group","aria-label" => "..."}
+            = link_to  resource_url(d),:class => "btn btn-sm btn-default", "data-toggle" => "tooltip","data-placement" => "top", :title => "查看详细信息" do
+              %i.fa.fa-eye
+            - if can? :update,d
+              = link_to edit_resource_path(d),
+                :class => "btn btn-sm btn-default",
+                "data-toggle" => "tooltip",
+                "data-placement" => "top",
+                :title => "修改当前记录" do
+                %i.fa.fa-edit
+
+            - if can? :destroy,d
+              = link_to polymorphic_url(d,:routing_type => :path),:method => :delete,
+                "data-confirm" => "你确定要删除吗?",
+                :class => "btn btn-default btn-sm",
+                "data-toggle" => "tooltip",
+                "data-placement" => "top",
+                :title => "删除该记录" do
+                %i.fa.fa-trash
+
+= will_paginate collection, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next")
