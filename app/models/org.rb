@@ -2,8 +2,8 @@
 #组织机构
 class Org < ActiveRecord::Base
   validates :name, presence: true
-  acts_as_tree order: "order_by"
   has_many :warehouses
+  acts_as_tree order: "order_by"
 
   def self.root_org_id
     Org.find_by(parent_id: nil).id

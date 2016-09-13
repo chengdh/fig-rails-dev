@@ -5,7 +5,6 @@ class FireFightingEquipmentsController < BaseController
   #导出查询结果为excel
   #GET fire_fighting_equipments/export_excel
   def export_excel
-    require 'iconv'
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
     ffqs = @q.result
     set_collection_ivar(ffqs)

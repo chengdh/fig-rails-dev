@@ -139,6 +139,10 @@ class Ability
     can [:show_import_xls],SalaryTableShiNonStaff if can? :create,SalaryTableShiNonStaff
     can [:import_xls],SalaryTableShiNonStaff if can? :create,SalaryTableShiNonStaff
 
+    can [:show_import_xls],Employee if can? :create,Employee
+    can [:import_xls],Employee if can? :create,Employee
+
+
     can [:search_lines],IpInfoHeader if can? :read,IpInfoHeader
     can [:search_lines],VpnInfo if can? :read,VpnInfo
 

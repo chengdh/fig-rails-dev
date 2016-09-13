@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   has_many :orgs,through: :selected_user_orgs
   accepts_nested_attributes_for :user_roles,:user_orgs,allow_destroy: true
 
-  default_scope -> {includes(:default_role,:default_org)}
+  default_scope -> {includes(:default_role,:default_org,:user_orgs)}
 
 
   def login=(login)

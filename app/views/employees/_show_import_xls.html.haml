@@ -1,0 +1,23 @@
+.box.box-default{:style => "width : 300px;"}
+  .box-header.with-border
+  .box-body
+    = form_tag url_for(action: :import_xls),id: "form_employee_import",multipart: true,method: :post do
+      .form-group
+        = label_tag :org_id,"部门"
+        = select_tag :org_id,options_for_select(current_ability_orgs_for_select),:include_blank => false,class: "form-control input-sm"
+
+      .form-group
+        = file_field_tag :file_excel,accept: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+        %p.help-block
+          请选择要导入的员工信息文件
+
+      .form-group
+        = check_box_tag :update_if_exist
+        = label_tag :update_if_exist,"覆盖已存在的员工信息"
+
+
+      %button.btn.btn-primary.btn-info.btn-import-salary-table-xls{:type => "submit"}
+        确定
+        %i.fa.fa-check
+
+

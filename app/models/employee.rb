@@ -113,4 +113,63 @@ class Employee < ActiveRecord::Base
     end
     ret
   end
+
+  #从excel文件中导入员工数据
+  def self.import_from_excel(org_id,update_if_exist,excel_file)
+    xls_doc = Roo::Spreadsheet.open(excel_file)
+
+
+    except_cols = ['gender','post_level','is_party_member','belongs_party','work_state','is_not_main']
+    #获取表头对应字段
+    header_row = xls_doc.row(1)
+    id_no_index = header_row.index("id_no")
+    gender_index = header_row.index("gender")
+    post_level_index = header_row.index("post_level")
+    is_party_member = header_row.index("is_party_member")
+    belongs_party_index = header_row.index("belongs_party")
+    work_state_index = header_row.index("work_state")
+    is_not_main_index = header_row.index("is_not_main")
+    return nil if id_no_index.blank?
+    #自第二行导入
+    (3..xls_doc.last_row).each_with do |ix|
+      row = xls_doc.row(ix)
+      #以身份证号为对比条件
+      id_no = row[id_no_index]
+
+      if id_no.present?
+        employee = Employee.find_by(id_no: id_no)
+        next if employee.present? and not update_if_exist
+        if employee.blank?
+          employee = Employee.new(org_id: org_id)
+        end
+        #解析对应的字典表
+        #http://stackoverflow.com/questions/11000724/in-ruby-get-content-in-brackets
+        #性别
+        gender = row[gender_index]
+        gender = gender.scan(/\(([^\)]+)\)/).last.first
+        #职务级别
+        post_level = row(post_level_index)
+        post_level = post_level.scan(/\(([^\)]+)\)/).last.first
+        #是否党员
+        is_party_member = row(is_party_member_index)
+        is_party_member = is_party_member.scan(/\(([^\)]+)\)/).last.first
+        #所属支部
+        belongs_party = row(belongs_party_index)
+        belongs_party = belongs_party.scan(/\(([^\)]+)\)/).last.first
+        #
+        #工作状况
+        work_state = row(work_state_index)
+        work_state = work_state.scan(/\(([^\)]+)\)/).last.first
+        #
+        #属于三产人员
+        is_not_main = row(is_not_main_index)
+        is_not_main = is_not_main.scan(/\(([^\)]+)\)/).last.first
+        header_row.each_with_index do |col,col_index|
+          employee.try("#{col}=".to_sym,row[col_idx]) if col.present? and not excep_cols.include?(col)
+        end
+        employee.save!
+      end
+    end
+    true
+  end
 end

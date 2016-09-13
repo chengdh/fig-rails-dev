@@ -727,6 +727,8 @@ Rails.application.routes.draw do
   resources :employees do
     collection do
       get :search
+      get :show_import_xls
+      post :import_xls
     end
   end
 

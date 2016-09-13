@@ -1,40 +1,35 @@
 %table
   %tr
-    %th{colspan: 11}
-      %h3{style: "text-align: center;"} 消防设施一览表
+    %th{colspan: 9}
+      %h3{style: "text-align: center;"} 交通工具一览表
   %tr
     %td
       单位名称
     %td
-      设施名称
-    %td
-      设置地点
-    %td
       品牌型号
     %td
-      数量
+      车牌号
     %td
-      单位
+      登记证书
     %td
-      出厂日期
+      行驶证号
     %td
-      使用年限
+      购置日期
     %td
-      有效期至
+      报废期
     %td
-      上次维保日期
+      上次年检时间
     %td
-      责任人
+      事故记录
+
   - @q.result.all.each do |ffq|
     %tr
       %td= ffq.org
-      %td= ffq.name
-      %td= ffq.location
       %td= ffq.model
-      %td= ffq.qty
-      %td= ffq.unit
-      %td= ffq.out_factory_date
-      %td= ffq.use_year
-      %td= ffq.valid_date
-      %td= ffq.last_upkeep_date
-      %td= ffq.duty_person
+      %td= ffq.vehicle_no
+      %td= ffq.register_no
+      %td= ffq.license_no
+      %td= ffq.buy_date
+      %td= ffq.expire_date
+      %td= ffq.last_check_date
+      %td= ffq.note
