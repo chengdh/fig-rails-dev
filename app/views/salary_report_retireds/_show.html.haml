@@ -25,12 +25,13 @@
     %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 应发数合计
     %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 养老、医疗、失业保险合计
     %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 住房公积金合计
+    %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 企业年金合计
     %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 个税合计
     %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 其他代扣项合计
     %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 实发数合计
     - (1..12).each do |mth|
       %th{colspan: 4,style: "vertical-align: middle;text-align: center;"} 应发数
-      %th{colspan: 5,style: "vertical-align: middle;text-align: center;"} 代扣合计
+      %th{colspan: 6,style: "vertical-align: middle;text-align: center;"} 代扣合计
       %th{rowspan: 2,style: "vertical-align: middle;text-align: center;"} 实发合计
 
   %tr
@@ -43,6 +44,7 @@
       %th{style: "vertical-align: middle;text-align: center;"} 小计
       %th{style: "vertical-align: middle;text-align: center;"} 养老、医疗、失业
       %th{style: "vertical-align: middle;text-align: center;"} 住房公积金
+      %th{style: "vertical-align: middle;text-align: center;"} 企业年金
       %th{style: "vertical-align: middle;text-align: center;"} 个税
       %th{style: "vertical-align: middle;text-align: center;"} 其他
 
@@ -55,10 +57,12 @@
     %td= resource.cal_sum("deduct_item_1+deduct_item_2+deduct_item_3")
     / 住房公积金合计
     %td= resource.cal_sum("deduct_item_4")
+    / 企业年金
+    %td= resource.cal_sum("deduct_item_5")
     / 个税
     %td= resource.cal_sum("deduct_item_6")
     / 其他代扣项
-    %td= resource.cal_sum("deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+    %td= resource.cal_sum("deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
     / 实发数合计
     %td= resource.cal_sum("pay_item_15")
     - (1..12).each do |mth|
@@ -72,10 +76,12 @@
       %td= resource.cal_sum_by_mth(mth,"deduct_item_1+deduct_item_2+deduct_item_3")
       / 住房公积金合计
       %td= resource.cal_sum_by_mth(mth,"deduct_item_4")
+      / 企业年金
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_5")
       / 个税
       %td= resource.cal_sum_by_mth(mth,"deduct_item_6")
       / 其他代扣项
-      %td= resource.cal_sum_by_mth(mth,"deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+      %td= resource.cal_sum_by_mth(mth,"deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
 
       /实发合计
       %td= resource.cal_sum_by_mth(mth,"pay_item_15")
@@ -102,10 +108,12 @@
       %td= l.cal_sum("deduct_item_1+deduct_item_2+deduct_item_3")
       / 住房公积金合计
       %td= l.cal_sum("deduct_item_4")
+      / 住房公积金合计
+      %td= l.cal_sum("deduct_item_5")
       / 个税
       %td= l.cal_sum("deduct_item_6")
       / 其他代扣项
-      %td= l.cal_sum("deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+      %td= l.cal_sum("deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
       / 实发数合计
       %td= l.cal_sum("pay_item_15")
       - (1..12).each do |mth|
@@ -119,10 +127,12 @@
         %td= l.cal_item(mth,"deduct_item_1+deduct_item_2+deduct_item_3")
         / 住房公积金合计
         %td= l.cal_item(mth,"deduct_item_4")
+        / 企业年金 
+        %td= l.cal_item(mth,"deduct_item_5")
         / 个税
         %td= l.cal_item(mth,"deduct_item_6")
         / 其他代扣项
-        %td= l.cal_item(mth,"deduct_item_5 + deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
+        %td= l.cal_item(mth,"deduct_item_7 + deduct_item_8  + deduct_item_9 + deduct_item_10 + deduct_item_11 + deduct_item_12")
 
         /实发合计
         %td= l.cal_item(mth,"pay_item_15")

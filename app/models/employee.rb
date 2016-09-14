@@ -11,7 +11,7 @@ class Employee < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
   validates :name,:org_id, presence: true
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create,:allow_blank => true
   default_scope {order("org_id")}
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -118,20 +118,18 @@ class Employee < ActiveRecord::Base
   def self.import_from_excel(org_id,update_if_exist,excel_file)
     xls_doc = Roo::Spreadsheet.open(excel_file)
 
-
-    except_cols = ['gender','post_level','is_party_member','belongs_party','work_state','is_not_main']
     #获取表头对应字段
     header_row = xls_doc.row(1)
     id_no_index = header_row.index("id_no")
     gender_index = header_row.index("gender")
     post_level_index = header_row.index("post_level")
-    is_party_member = header_row.index("is_party_member")
+    is_party_member_index = header_row.index("is_party_member")
     belongs_party_index = header_row.index("belongs_party")
     work_state_index = header_row.index("work_state")
     is_not_main_index = header_row.index("is_not_main")
     return nil if id_no_index.blank?
     #自第二行导入
-    (3..xls_doc.last_row).each_with do |ix|
+    (3..xls_doc.last_row).each do |ix|
       row = xls_doc.row(ix)
       #以身份证号为对比条件
       id_no = row[id_no_index]
@@ -142,30 +140,51 @@ class Employee < ActiveRecord::Base
         if employee.blank?
           employee = Employee.new(org_id: org_id)
         end
+        dict_attrs = {}
         #解析对应的字典表
         #http://stackoverflow.com/questions/11000724/in-ruby-get-content-in-brackets
         #性别
         gender = row[gender_index]
-        gender = gender.scan(/\(([^\)]+)\)/).last.first
+        gender = gender.scan(/\(([^\)]+)\)/).last.first if gender.present?
+        dict_attrs[:gender] = gender
+
+        logger.debug("gender:" + gender)
         #职务级别
-        post_level = row(post_level_index)
-        post_level = post_level.scan(/\(([^\)]+)\)/).last.first
+        post_level = row[post_level_index]
+        post_level = post_level.scan(/\(([^\)]+)\)/).last.first if post_level.present?
+
+        dict_attrs[:post_level] = post_level
+        logger.debug("post_level :" + post_level)
         #是否党员
-        is_party_member = row(is_party_member_index)
-        is_party_member = is_party_member.scan(/\(([^\)]+)\)/).last.first
+        is_party_member = row[is_party_member_index]
+        is_party_member = is_party_member.scan(/\(([^\)]+)\)/).last.first if is_party_member.present?
+        dict_attrs[:is_party_member] = is_party_member
+
+        logger.debug("is_party_member :" + is_party_member )
         #所属支部
-        belongs_party = row(belongs_party_index)
-        belongs_party = belongs_party.scan(/\(([^\)]+)\)/).last.first
-        #
+        belongs_party = row[belongs_party_index]
+        belongs_party = belongs_party.scan(/\(([^\)]+)\)/).last.first if belongs_party.present?
+
+        dict_attrs[:belongs_party] = belongs_party
+        logger.debug("belongs_party:" + belongs_party)
+
         #工作状况
-        work_state = row(work_state_index)
-        work_state = work_state.scan(/\(([^\)]+)\)/).last.first
-        #
+        work_state = row[work_state_index]
+        work_state = work_state.scan(/\(([^\)]+)\)/).last.first if work_state.present?
+
+        dict_attrs[:work_state] = work_state
+
         #属于三产人员
-        is_not_main = row(is_not_main_index)
-        is_not_main = is_not_main.scan(/\(([^\)]+)\)/).last.first
-        header_row.each_with_index do |col,col_index|
-          employee.try("#{col}=".to_sym,row[col_idx]) if col.present? and not excep_cols.include?(col)
+        is_not_main = row[is_not_main_index]
+        is_not_main = is_not_main.scan(/\(([^\)]+)\)/).last.first if is_not_main.present?
+
+        dict_attrs[:is_not_main] = is_not_main
+        header_row.each_with_index do |col,col_idx|
+          logger.debug(col)
+          employee.try("#{col}=".to_sym,row[col_idx]) if col.present? and not dict_attrs.keys.include?(col.to_sym)
+        end
+        dict_attrs.each do |k,v|
+          employee.try("#{k}=".to_sym,v)
         end
         employee.save!
       end
