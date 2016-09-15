@@ -73,13 +73,20 @@ class BaseController < InheritedResources::Base
   end
 
   #当前可用机构的ids
-  #目前支持2级
-  def current_ability_org_ids(read_level = 2)
-    default_org = current_user.current_org
-    child_org_ids = Org.where(is_active: true,parent_id: default_org.id).order(:parent_id).pluck(:id)
-    if read_level > 2
-      child_org_ids += Org.where(is_active: true,parent_id: child_org_ids).order(:parent_id).pluck(:id)
+  #递归获取所有子节点
+  #参考http://stackoverflow.com/questions/2549320/looping-through-an-object-tree-recursively
+  def recursive_orgs(p_org,ref_return)
+    p_org.children.each do |c_org|
+      ref_return.push(c_org)
+      recursive_orgs(c_org,ref_return)
     end
-    [default_org.id] + child_org_ids
+  end
+
+
+  def current_ability_org_ids
+    default_org = current_user.current_org
+    ret_orgs = [default_org]
+    recursive_orgs(default_org,ret_orgs)
+    ret_orgs.map {|o| o.id}
   end
 end

@@ -27,6 +27,8 @@
     "blockUI" : "https://github.com/malsup/blockui.git",
     "notifyjs": "https://github.com/notifyjs/notifyjs.git",
     "html5shiv": "https://github.com/aFarkas/html5shiv.git",
-    "respond": "https://github.com/scottjehl/Respond.git"
+    "respond": "https://github.com/scottjehl/Respond.git",
+    "bootstrap-treeview": "https://github.com/jonmiles/bootstrap-treeview.git",
+    "livequery": "https://github.com/hazzik/livequery.git"
   }
 }

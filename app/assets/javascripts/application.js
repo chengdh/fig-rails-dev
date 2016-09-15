@@ -25,6 +25,8 @@
 //= require fancybox/source/jquery.fancybox
 //= require jquery-load-template/dist/jquery.loadTemplate-1.5.6
 //= require jquery-cookie/src/js.cookie
+//= require livequery/dist/jquery.livequery
+//= require bootstrap-treeview/dist/bootstrap-treeview.min
 //= require enter2tab
 //= require common
 //= require orgs

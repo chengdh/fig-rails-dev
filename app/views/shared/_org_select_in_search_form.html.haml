@@ -1,0 +1,13 @@
+= f.label :org_id_in,"所属机构"
+.input-group.orgs_select_search_wrapper
+  = hidden_field_tag "q[org_id_in][]"
+  %input#org_in_display{type: 'text',value: current_user.current_org.try(:name),class: "form-control input-sm",placeholder: "请选择所属机构",readonly: true}
+
+  %span.input-group-addon#btn_org_id_in_select
+    %i.glyphicon.glyphicon-chevron-down{style: "cursor: pointer;"}
+  %span.input-group-addon#btn_org_id_in_clear
+    %i.glyphicon.glyphicon-remove{style: "cursor: pointer;"}
+
+.orgs_select_in_search_form{style: "width: 95%;display: none;position: absolute;z-index: 9999;"}
+
+

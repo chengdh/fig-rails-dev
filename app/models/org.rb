@@ -8,6 +8,12 @@ class Org < ActiveRecord::Base
   def self.root_org_id
     Org.find_by(parent_id: nil).id
   end
+  def text
+    name
+  end
+  def nodes
+    children
+  end
   #获取下级烟草专卖局
   def self.get_branch_ids
     child_names = %w(邓州市烟草专卖局 桐柏县烟草专卖局 方城县烟草专卖局

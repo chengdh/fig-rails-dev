@@ -12,6 +12,13 @@ module OrgsHelper
     default_org.children.each {|child_org|  ret["#{child_org.name}"] = child_org.id}
     ret
   end
+
+  #将当前可用机构转化为json
+  def current_ability_orgs_json
+    default_org = current_user.current_org
+    default_org.to_json(methods: [:text,:nodes],include: {nodes: {methods: [:text,:nodes],include: {nodes: {methods: [:text,:nodes],include: [:nodes]}}} })
+    
+  end
   #当期可用机构的ids
   def current_ability_org_ids
     default_org = current_user.current_org

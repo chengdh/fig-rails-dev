@@ -1,6 +1,5 @@
 %li
-  %p{:style => "font-size : 10px;"}
-    = link_to org.name,org
+  = link_to org.name,org
   - if can? :update,org
     = link_to edit_org_path(org), "data-toggle" => "tooltip","data-placement" => "bottom", :title => "修改当前机构" do
       %i.fa.fa-edit

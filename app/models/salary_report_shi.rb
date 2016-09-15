@@ -47,12 +47,12 @@ class SalaryReportShi < ActiveRecord::Base
 
 
   end
-  #人数合计(取13个月的平均数
+  #人数合计-取到当前月的平均数
   def average_persons_group_by(conditions={})
+    cur_mth = Date.today.month
     ret = salary_report_shi_lines.where(conditions).sum("mth_1st_persons+mth_2st_persons+mth_3st_persons+mth_4st_persons"+
                                                         "+mth_5st_persons+mth_6st_persons+mth_7st_persons+mth_8st_persons" +
-                                                        "+mth_9st_persons+mth_10st_persons+mth_11st_persons+mth_12st_persons" +
-                                                        "+mth_13st_persons")/13
+                                                        "+mth_9st_persons+mth_10st_persons+mth_11st_persons+mth_12st_persons")/cur_mth
     ret = ret.round(0)
     ret
   end

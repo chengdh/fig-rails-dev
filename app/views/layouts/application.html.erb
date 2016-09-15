@@ -44,6 +44,7 @@
                   首页
                 <% end %>
               </li>
+              <input type='hidden' id="global_orgs" data-orgs="<%= current_ability_orgs_json %>" />
               <% render "fire_fighting_equipments/alert" %>
               <!--所属机构-->
               <%= render "shared/current_user_orgs" %>
@@ -73,9 +74,7 @@
                 <%end%>
               </li>
             </ul>
-
           </div>
-
         </nav>
       </header>
       <!-- Left side column. contains the logo and sidebar -->
