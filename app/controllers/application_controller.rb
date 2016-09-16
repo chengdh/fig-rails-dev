@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_ability_org_ids,:current_ability_org
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   # Prevent CSRF attacks by raising an exception.
@@ -34,5 +35,4 @@ class ApplicationController < ActionController::Base
     recursive_orgs(default_org,ret_orgs)
     ret_orgs.map {|o| o.id}
   end
-
 end

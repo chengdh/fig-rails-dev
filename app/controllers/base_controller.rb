@@ -3,7 +3,7 @@
 class BaseController < InheritedResources::Base
   include InheritedResources::TableBuilder
   load_and_authorize_resource
-  helper_method :current_ability_org_ids,:current_ability_org,:sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns
+  helper_method :sort_column,:sort_direction,:resource_name,:resources_name,:show_view_columns
   respond_to :html,:xml,:js,:json,:csv
 
   def search
