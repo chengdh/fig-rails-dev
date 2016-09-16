@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808020607) do
+ActiveRecord::Schema.define(version: 20160916115157) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -2010,6 +2010,7 @@ ActiveRecord::Schema.define(version: 20160808020607) do
     t.integer  "default_role_id",        limit: 4
     t.string   "real_name",              limit: 255
     t.boolean  "is_active",              limit: 1,   default: true
+    t.integer  "created_by_org_id",      limit: 4
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

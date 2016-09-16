@@ -95,4 +95,10 @@ class UsersController < BaseController
   def allow_iframe
     response.headers.except! 'X-Frame-Options'
   end
+  protected
+  def collection
+    #只能看到本机构的用户
+    @q= end_of_association_chain.where(created_by_org_id: current_ability_org_ids).ransack(params[:q])
+    set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
+  end
 end

@@ -16,7 +16,7 @@ class WifiClientsController < BaseController
 
   protected
   def collection
-    @q= end_of_association_chain.where(org_id: current_ability_org_ids(3)).ransack(params[:q])
+    @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
 
@@ -25,4 +25,3 @@ class WifiClientsController < BaseController
     params.require(:wifi_client).permit(:org_id, :user_id, :check_state, :table_date, :note, :submitter_id, :submit_date, :checker_id, :check_date, :check_opinion)
   end
 end
-

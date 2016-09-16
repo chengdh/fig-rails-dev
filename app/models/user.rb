@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   belongs_to :default_org,class_name: "Org"
   belongs_to :default_role,class_name: "Role"
+
+  belongs_to :created_by_org,class_name: "Org"
   has_many :user_roles,dependent: :destroy
   has_many :selected_user_roles, -> {where(is_select: true)},dependent: :destroy,class_name: "UserRole"
   has_many :roles,through: :selected_user_roles
@@ -19,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :orgs,through: :selected_user_orgs
   accepts_nested_attributes_for :user_roles,:user_orgs,allow_destroy: true
 
-  default_scope -> {includes(:default_role,:default_org,:user_orgs)}
+  # default_scope -> {includes(:default_role,:default_org,:user_orgs)}
 
 
   def login=(login)
@@ -68,12 +70,16 @@ class User < ActiveRecord::Base
   #显示所有部门,包括当前角色具备与不具备的部门
   def all_user_orgs!
     if all_user_orgs.blank?
-      Org.where(:is_active => true).order("name ASC").each do |org|
+      Org.where(:is_active => true).order("parent_id ASC").each do |org|
         user_orgs.build(:org => org) unless user_orgs.detect { |the_user_org| the_user_org.org.id == org.id }
       end
       all_user_orgs ||= user_orgs.to_a.select {|uo| uo.org.is_active?}
     end
     all_user_orgs
+  end
+
+  def selected_user_orgs
+    user_orgs.select { |the_user_org| the_user_org.is_select }
   end
 
 

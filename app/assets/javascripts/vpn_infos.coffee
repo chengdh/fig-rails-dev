@@ -41,7 +41,7 @@ $ ->
   $(".btn-add-new-vpn-info-line").on("click",func_add_new_line)
 
   #机构发生变化时，更新部门列表
-  $(".vpn_info_org_id_select").on("change",->
+  $("input[name='vpn_info[org_id]']").on("change",->
     org_id = $(this).val()
     $.get("/orgs/#{org_id}.json").done((ret)->
       options = []

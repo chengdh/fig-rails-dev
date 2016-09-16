@@ -16,7 +16,7 @@ $ ->
   )
   on_select_org = (evt,node)->
     console.log(node)
-    $(".orgs_select_wrapper #org_id").val(node.id)
+    $(".orgs_select_wrapper #org_id").val(node.id).trigger("change")
     $(".orgs_select_wrapper #org_display").val(node.text)
     $(".orgs_select_in_form").hide()
 
@@ -27,6 +27,8 @@ $ ->
   $(document).on("click",".orgs_select_search_wrapper #btn_org_id_in_select",-> $(".orgs_select_in_search_form").toggle())
   $(document).on("click",".orgs_select_search_wrapper #btn_org_id_in_clear",->
     $(".orgs_select_in_search_form").hide()
+    field_name = $(".orgs_select_in_search_form").data("field_name")
+    $("input[name='#{field_name}']").remove()
     $(".orgs_select_search_wrapper #org_id_in").val("")
     $(".orgs_select_search_wrapper #org_in_display").val("")
   )
@@ -48,9 +50,10 @@ $ ->
 
     console.log("所有节点:" )
     console.log(all_nodes)
-    $("input[name='q[org_id_in][]']").remove()
+    field_name = $(this).data("field_name")
+    $("input[name='#{field_name}']").remove()
     for n in all_nodes
-      el = $("<input type='hidden' name='q[org_id_in][]' value='#{n.id}' />")
+      el = $("<input type='hidden' name='#{field_name}' value='#{n.id}' />")
       $(".orgs_select_search_wrapper").append(el)
 
     $(".orgs_select_search_wrapper #org_in_display").val(node.text)

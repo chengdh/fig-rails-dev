@@ -32,7 +32,7 @@ $ ->
   $(".btn-add-new-wifi-client-line").on("click",func_add_new_line)
 
   #机构发生变化时，更新部门列表
-  $(".wifi_client_org_id_select").on("change",->
+  $("input[name='wifi_client[org_id]']").on("change",->
     org_id = $(this).val()
     $.get("/orgs/#{org_id}.json").done((ret)->
       options = []

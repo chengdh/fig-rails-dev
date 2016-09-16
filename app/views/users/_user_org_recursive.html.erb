@@ -1,5 +1,5 @@
 <!--此处是个递归-->
-<tr>
+<tr class="user_org_wrapper" data-org_id='<%= user_org.object.org_id%>'>
   <td colspan='10' style="padding-left : <%= level*30 %>px;">
     <%=user_org.hidden_field :org_id %>
     <%=user_org.check_box :is_select,:id => "select_org_#{user_org.object.org.id}"%>

@@ -1,9 +1,9 @@
 <%= semantic_form_for @user,:html => {id: "user_form"} do |f|%>
+  <%= f.input :created_by_org_id,as: :hidden,input_html: {value: current_user.current_org.try(:id)} %>
   <%= f.input :username,input_html: {style: "width : 30%;"} %>
   <%= f.input :real_name,input_html: {style: "width : 30%;"} %>
   <%= f.input :password,input_html: {style: "width : 30%;"}  %>
   <%= f.input :password_confirmation,input_html: {style: "width : 30%;"}  %>
-  <%= f.input :is_admin,label: false%>
   <%= f.input :is_active,label: false%>
   <%= f.inputs "选择角色" do %>
     <%= f.semantic_fields_for :user_roles,resource.all_user_roles! do |user_role| %>
@@ -19,5 +19,6 @@
         <%= render "user_org_recursive",:user_org => user_org,:f => f,:level => level %>
       <%end%>
     </table>
+    <div id="user_org_tree" data-user_orgs='<%= resource.selected_user_orgs.to_json%>'></div>
   <%end%>
 <%end%>

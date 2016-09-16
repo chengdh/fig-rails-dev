@@ -37,7 +37,7 @@ $ ->
   $(".btn-add-new-ip-info-line").on("click",func_add_new_line)
 
   #机构发生变化时，更新部门列表
-  $(".ip_info_org_select").on("change",->
+  $("input[name='ip_info_header[org_id]']").on("change",->
     org_id = $(this).val()
     $.get("/orgs/#{org_id}.json").done((ret)->
       console.log(ret)

@@ -17,15 +17,14 @@ module OrgsHelper
   def current_ability_orgs_json
     default_org = current_user.current_org
     default_org.to_json(methods: [:text,:nodes],include: {nodes: {methods: [:text,:nodes],include: {nodes: {methods: [:text,:nodes],include: [:nodes]}}} })
-    
   end
   #当期可用机构的ids
-  def current_ability_org_ids
-    default_org = current_user.current_org
-    ret = ActiveSupport::OrderedHash.new
-    child_org_ids = default_org.children.map {|child_org|  child_org.id}
-    [default_org.id] + child_org_ids
-  end
+  # def current_ability_org_ids
+  #   default_org = current_user.current_org
+  #   ret = ActiveSupport::OrderedHash.new
+  #   child_org_ids = default_org.children.map {|child_org|  child_org.id}
+  #   [default_org.id] + child_org_ids
+  # end
 
   #当前登录机构的二级机构
   def current_children_orgs_for_select

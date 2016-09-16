@@ -16,7 +16,7 @@ class CompanyVpnsController < BaseController
 
   protected
   def collection
-    @q= end_of_association_chain.where(org_id: current_ability_org_ids(3)).ransack(params[:q])
+    @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
     set_collection_ivar(@q.result(distinct: true).paginate(:page => params[:page]))
   end
 
@@ -26,4 +26,3 @@ class CompanyVpnsController < BaseController
     params.require(:company_vpn).permit(:org_id, :table_date, :user_id, :submitter_id, :submit_date, :submit_note, :checker_id, :check_date, :check_opinion, :note, :check_state)
   end
 end
-
