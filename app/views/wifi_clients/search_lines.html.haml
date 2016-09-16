@@ -27,3 +27,5 @@
                   %td{style: "text-align: center;"}= line.own_org
                   %td{style: "text-align: center;"}= line.dev_type
                   %td{style: "text-align: center;"}= line.mac
+
+          = will_paginate @wifi_client_lines, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next") %>

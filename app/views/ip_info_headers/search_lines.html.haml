@@ -36,3 +36,6 @@
                   -# %td{style: "text-align: center;"}
                     %label{class: line.state_class}= line.state_des
                   %td= line.note
+
+
+          = will_paginate @ip_info_lines, renderer: BootstrapPagination::Rails,previous_label: t("previous"), next_label: t("next") %>
