@@ -4,7 +4,7 @@ set :app_env,     "production"
 
 set :application, "nanyang_plat"
 #set :repo_url,  "git@github.com:chengdh/fig-rails-dev.git"
-set :repo_url,  "https://github.com/chengdh/fig-rails-dev.git"
+set :repo_url,  "https://git.oschina.net/chengdh/fig-rails-dev.git"
 set :branch,"nanyang"
 set :scm, :git
 
