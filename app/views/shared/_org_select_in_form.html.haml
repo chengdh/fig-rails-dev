@@ -1,4 +1,4 @@
-.input-group.orgs_select_wrapper{style: "width: 30%;"}
+.input-group.orgs_select_wrapper{style: "width: 250px;"}
   - if f.object.new_record? and f.object.org_id.blank?
     = f.hidden_field :org_id,id: "org_id",value: current_user.current_org.try(:id)
     %input#org_display{type: 'text',value: current_user.current_org.try(:name),class: "form-control input-sm",placeholder: "请选择所属机构",readonly: true}
@@ -11,6 +11,6 @@
   %span.input-group-addon#btn_org_id_clear
     %i.glyphicon.glyphicon-remove{style: "cursor: pointer;"}
 
-.orgs_select_in_form{style: "width: 30%;display: none;;position: absolute;z-index: 9999;"}
+.orgs_select_in_form{style: "width: 250px;;display: none;;position: absolute;z-index: 9999;"}
 
 
