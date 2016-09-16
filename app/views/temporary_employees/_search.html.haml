@@ -9,6 +9,4 @@
       = f.input :mobile_cont,label: "手机",input_html: {class: "input-sm"}
       = f.input :post_eq,as: :select,collection: posts_for_select,label: "岗位",input_html: {class: "input-sm"}
       = f.actions do
-        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}
-
-
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", data: {:disable_with => '稍等...'}}

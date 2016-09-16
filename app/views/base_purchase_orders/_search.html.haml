@@ -21,4 +21,4 @@
 
       = f.input :state_eq,as: :select,collection: inout_bill_states_for_select,label: "状态",input_html: {class: "input-sm"}
       = f.actions do
-        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", data: {:disable_with => '稍等...'}}
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", data: {data: {:disable_with => '稍等...'}}

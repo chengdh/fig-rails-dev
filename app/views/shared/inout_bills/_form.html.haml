@@ -1,7 +1,8 @@
 = semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form"} do |f|
   = f.semantic_errors
   = f.inputs do
-    = f.input :org_id,as: :select,collection:  current_ability_orgs_for_select,input_html: {class: "input-sm",style: "width : 30%;"}
+    / = f.input :org_id,as: :select,collection:  current_ability_orgs_for_select,input_html: {class: "input-sm",style: "width : 30%;"}
+    = render "shared/org_select_in_form",f: f
 
     = f.input :bill_date,as: :string,input_html: {class: "input-sm",readonly: true,
       "data-provide" => "datepicker",
@@ -49,8 +50,3 @@
           %button.btn.btn-primary.btn-sm
             添加设备
             %i.glyphicon.glyphicon-plus
-
-
-
-
-

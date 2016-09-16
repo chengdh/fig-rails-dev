@@ -1,6 +1,7 @@
 = semantic_form_for resource,html: {id: "high_pressure_room_form"} do |f|
   = f.inputs do
-    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    / = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,include_blank: false,input_html: {style: "width : 30%;"}
+    = render "shared/org_select_in_form",f: f
     = f.input :area,input_html: {style: "width : 30%;"}
     = f.input :fire_level,as: :select,collection: fire_levels_for_select,include_blank: false,input_html: {style: "width : 30%;"}
     = f.input :build_date,as: :string,input_html: {readonly: true,

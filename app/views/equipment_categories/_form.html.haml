@@ -1,8 +1,7 @@
 = semantic_form_for resource,html: {id: "equipment_category_form"} do |f|
   = f.inputs do
-    = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,input_html: {style: "width : 30%;"}
+    / = f.input :org_id,as: :select,collection: current_ability_orgs_for_select,input_html: {style: "width : 30%;"}
+    = render "shared/org_select_in_form",f: f
     = f.input :name,input_html: {style: "width : 40%;"}
     = f.input :order_by,input_html: {style: "width : 20%;"}
     = f.input :is_active,label: false
-
-

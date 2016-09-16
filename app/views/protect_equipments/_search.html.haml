@@ -3,12 +3,11 @@
     %h4.box-title 查询
   .box-body
     = semantic_search_form_for resource_class.ransack,html: {id: "search_salary_table_form",method: :get,style: "width : 400px;" } do |f|
-      = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
+      / = f.input :org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "所属机构",input_html: {class: "input-sm"}
+      = render "shared/org_select_in_search_form",f: f
       = f.input :deliver_org_id_eq,as: :select,collection: current_ability_orgs_for_select,label: "发放部门",input_html: {class: "input-sm"}
       = f.input :name_cont,label: "名称",input_html: {class: "input-sm"}
       = f.input :protect_equipment_category_id_eq,as: :select,collection: protect_equipment_categories_for_select,label: "类别",input_html: {class: "input-sm"}
       = f.input :post_eq,as: :select,collection: posts_for_select,label: "工种",input_html: {class: "input-sm"}
       = f.actions do
-        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}
-
-
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", data: {:disable_with => '稍等...'}}

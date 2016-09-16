@@ -24,5 +24,4 @@
       = f.input :review_state_eq,as: :select,collection: review_states_for_select,label: "复查状态",input_html: {class: "input-sm"}
 
       = f.actions do
-        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", :disable_with => '稍等...'}
-
+        = f.action :submit,label: "查询", :button_html => { :class => "btn btn-sm btn-primary", data: {:disable_with => '稍等...'}}
