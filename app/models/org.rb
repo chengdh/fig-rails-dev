@@ -4,6 +4,7 @@ class Org < ActiveRecord::Base
   validates :name, presence: true
   has_many :warehouses
   acts_as_tree order: "order_by"
+  default_scope -> {includes(:children)}
 
   def self.root_org_id
     Org.find_by(parent_id: nil).id
@@ -39,5 +40,25 @@ class Org < ActiveRecord::Base
       ret = "#{parent.name}>#{name}"
     end
     ret
+  end
+
+  #递归获取所有子机构
+  #递归获取所有子节点
+  def get_all_children(ref_return)
+    children.each do |c|
+      ref_return.push(c)
+      c.get_all_children(ref_return)
+    end
+  end
+  def get_all_children_ids(ref_return)
+    children.each do |c|
+      ref_return.push(c.id)
+      c.get_all_children(ref_return)
+    end
+  end
+
+  #查找科室名称
+  def find_child_by_name(children,match_name)
+    children.find {|c| c.name.eql?(match_name)}
   end
 end

@@ -17,6 +17,7 @@
   - resource.salary_table_lines.each_with_index do |line,idx|
     %tr
       %th{:style => "text-align : center;vertical-align : middle;"}= idx+1
+      %th{:style => "text-align : center;vertical-align : middle;"}= line.org.try(:name)
       - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
         %td{:style => "text-align : center;vertical-align : middle;"}
           - if item.item_type.eql?("employee_item")
@@ -26,7 +27,7 @@
             = line.try(item.code.to_sym)
   %tfoot
     %tr{style: "color: red;font-weight: bold;"}
-      %td 合计:
+      %td{colspan: 2} 合计:
       - resource.salary_item_header.salary_items.where(is_active: true).each do |item|
         %td{:style => "text-align : center;vertical-align : middle;"}
           - if item.item_type.eql?("employee_item")

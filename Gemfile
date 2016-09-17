@@ -91,6 +91,8 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_apps_pages'
   gem 'rails_layout'
+  gem "bullet"
+  gem 'rails-footnotes', '~> 4.0'
 end
 
 group :development, :test do

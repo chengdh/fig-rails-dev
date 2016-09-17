@@ -1,6 +1,7 @@
 #coding: utf-8
 class SalaryTableLine < ActiveRecord::Base
   belongs_to :salary_table
+  belongs_to :org
   belongs_to :employee
   validates :employee_id, presence: true
   validates :pay_item_1,:pay_item_2,:pay_item_3,:pay_item_4,:pay_item_5,:pay_item_6,:pay_item_7,:pay_item_8,:pay_item_9,:pay_item_10,:pay_item_11,:pay_item_12,:pay_item_13,

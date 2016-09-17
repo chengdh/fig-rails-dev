@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916115157) do
+ActiveRecord::Schema.define(version: 20160917034637) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -1736,9 +1736,11 @@ ActiveRecord::Schema.define(version: 20160916115157) do
     t.text     "note_item_8",        limit: 65535
     t.text     "note_item_9",        limit: 65535
     t.text     "note_item_10",       limit: 65535
+    t.integer  "org_id",             limit: 4
   end
 
   add_index "salary_table_lines", ["employee_id"], name: "index_salary_table_lines_on_employee_id", using: :btree
+  add_index "salary_table_lines", ["org_id"], name: "index_salary_table_lines_on_org_id", using: :btree
   add_index "salary_table_lines", ["salary_table_id"], name: "index_salary_table_lines_on_salary_table_id", using: :btree
 
   create_table "salary_tables", force: :cascade do |t|

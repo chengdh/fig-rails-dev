@@ -18,9 +18,9 @@ class EmployeesController < BaseController
       resource_class.import_from_excel(org_id,update_if_exist,excel_path)
       flash[:success] = "导入员工信息成功."
       redirect_to employees_path
-    rescue  Exception => e
-      flash[:error] = "导入时出现错误,请确认excel文件是否正确.#{e.message}"
-      redirect_to :back
+    # rescue  Exception => e
+    #   flash[:error] = "导入时出现错误,请确认excel文件是否正确.#{e.message}"
+    #   redirect_to :back
     end
   end
 

@@ -24,6 +24,7 @@
         = f.semantic_fields_for :salary_table_lines do |f_line|
           %tr.salary-table-line
             %th
+              = f_line.input :org_id,as: :hidden,input_html: {col: "org_id"}
               = f_line.input :employee_id,as: :hidden,input_html: {col: "employee_id"}
               = f_line.input :name,as: :hidden,input_html: {col: "name"}
               = f_line.input :id_no,as: :hidden,input_html: {col: "id_no"}

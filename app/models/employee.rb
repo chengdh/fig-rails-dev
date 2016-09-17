@@ -12,7 +12,7 @@ class Employee < ActiveRecord::Base
   belongs_to :user
   validates :name,:org_id, presence: true
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create,:allow_blank => true
-  default_scope {order("org_id")}
+  default_scope {includes(:org).order("org_id")}
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
@@ -120,6 +120,11 @@ class Employee < ActiveRecord::Base
 
     #获取表头对应字段
     header_row = xls_doc.row(1)
+
+    logger.debug("header_row: #{header_row}")
+    #belongs_to_org所属科室
+    belongs_to_org_index = header_row.index("belongs_to_org")
+    logger.debug("belongs_to_org_index :" + belongs_to_org_index.to_s )
     id_no_index = header_row.index("id_no")
     gender_index = header_row.index("gender")
     post_level_index = header_row.index("post_level")
@@ -128,17 +133,30 @@ class Employee < ActiveRecord::Base
     work_state_index = header_row.index("work_state")
     is_not_main_index = header_row.index("is_not_main")
     return nil if id_no_index.blank?
-    #自第二行导入
+    all_children = []
+    p_org = Org.find(org_id)
+    p_org.get_all_children(all_children)
+    #自第三行导入
     (3..xls_doc.last_row).each do |ix|
       row = xls_doc.row(ix)
       #以身份证号为对比条件
       id_no = row[id_no_index]
 
+      #根据科室名称查找科室id
+      org_name = row[belongs_to_org_index]
+      logger.debug("org_name:#{org_name}" )
+      dept_org = p_org.find_child_by_name(all_children,org_name)
+
+      logger.debug("dept_org:#{dept_org.try(:name)}")
       if id_no.present?
         employee = Employee.find_by(id_no: id_no)
         next if employee.present? and not update_if_exist
+
         if employee.blank?
           employee = Employee.new(org_id: org_id)
+        end
+        if dept_org.present?
+          employee.org = dept_org
         end
         dict_attrs = {}
         #解析对应的字典表

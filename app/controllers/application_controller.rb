@@ -25,14 +25,11 @@ class ApplicationController < ActionController::Base
   def current_ability_orgs
     default_org = current_user.current_org
     ret_orgs = [default_org]
-    recursive_orgs(default_org,ret_orgs)
+    default_org.get_all_children(ret_orgs)
     ret_orgs
   end
 
   def current_ability_org_ids
-    default_org = current_user.current_org
-    ret_orgs = [default_org]
-    recursive_orgs(default_org,ret_orgs)
-    ret_orgs.map {|o| o.id}
+    current_ability_orgs.map {|o| o.id}
   end
 end

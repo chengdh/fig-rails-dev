@@ -9,8 +9,8 @@ class Role < ActiveRecord::Base
 
   #is_select标志为true的role_system_function_operates
   has_many :selected_rsfos,-> {where(is_select: true)},class_name: "RoleSystemFunctionOperate"
-  has_many :selected_sfos,->{includes(:system_function)},class_name:  "SystemFunctionOperate",through: :selected_rsfos,source: :system_function_operate
-  has_many :system_function_operates,->{includes(:system_function)},through: :role_system_function_operates
+  has_many :selected_sfos,class_name:  "SystemFunctionOperate",through: :selected_rsfos,source: :system_function_operate
+  has_many :system_function_operates,through: :role_system_function_operates
   accepts_nested_attributes_for :role_system_function_operates,allow_destroy: true
 
   scope :with_association,->{includes(:role_system_function_operates,:system_function_operates)}

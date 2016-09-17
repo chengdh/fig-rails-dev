@@ -21,11 +21,17 @@ class SalaryTable < ActiveRecord::Base
     table.salary_item_header = sih
     table.name = "#{org}-#{options[:mth]}-#{sih.name}"
     employee_where_hash = sih.employee_where
-    Employee.where(org_id: options[:org_id],is_active: true).where(employee_where_hash).each do |e|
+    org_ids = [options[:org_id]]
+    org = Org.find(options[:org_id])
+    # org.get_all_children_ids(org_ids)
+    org_ids += org.children.map {|c| c.id}
+
+    Employee.where(org_id: org_ids,is_active: true).where(employee_where_hash).each do |e|
     #Employee.where(org_id: options[:org_id],is_active: true).each do |e|
       table.salary_table_lines.build(employee: e,
                                      name: e.name,
                                      id_no: e.id_no,
+                                     org_id: e.org_id,
                                      post: e.post,
                                      post_level: e.post_level,
                                      is_party_member: e.is_party_member,
@@ -70,6 +76,7 @@ class SalaryTable < ActiveRecord::Base
       if id_no.present? and employee.present?
         table_line = SalaryTableLine.new
         table_line.employee = employee
+        table_line.org_id = employee.org_id
         header_row.each_with_index do |col,col_idx|
           table_line.try("#{col}=".to_sym,row[col_idx]) if col.present?
         end
@@ -103,6 +110,7 @@ class SalaryTable < ActiveRecord::Base
       if id_no.present? and employee.present?
         table_line = table.salary_table_lines.find_by(employee_id: employee.id)
         if table_line.present?
+          table_line.org_id = employee.org_id
           header_row.each_with_index do |col,col_idx|
             table_line.try("#{col}=".to_sym,row[col_idx]) if col.present?
           end
