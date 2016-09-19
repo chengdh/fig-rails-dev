@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><%= content_for?(:title) ? content_for(:title) : "系统登录" %></title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- FontAwesome 4.3.0 -->
+    <!-- link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+    type="text/css"/ -->
+    <!-- Ionicons 2.0.0 -->
+    <!-- link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"/ -->
+    <%= csrf_meta_tags %>
+    <!-- Theme style -->
+    <%= stylesheet_link_tag  'devise',media: 'all',debug: true %>
+    <!--[if lt IE 9]>
+    <%= javascript_include_tag "ie",debug: true %>
+    <![endif]-->
+  </head>
+  <body class="skin-blue sidebar-mini">
+    <div id="body">
+      <%= yield %>
+    </div>
+  </body>
+</html>

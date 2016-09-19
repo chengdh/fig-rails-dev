@@ -15,12 +15,12 @@ class ApplicationController < ActionController::Base
   #当前可用机构的ids
   #递归获取所有子节点
   #参考http://stackoverflow.com/questions/2549320/looping-through-an-object-tree-recursively
-  def recursive_orgs(p_org,ref_return)
-    p_org.children.each do |c_org|
-      ref_return.push(c_org)
-      recursive_orgs(c_org,ref_return)
-    end
-  end
+  # def recursive_orgs(p_org,ref_return)
+  #   p_org.children.each do |c_org|
+  #     ref_return.push(c_org)
+  #     recursive_orgs(c_org,ref_return)
+  #   end
+  # end
 
   def current_ability_orgs
     default_org = current_user.current_org

@@ -49,7 +49,7 @@ class UsersController < BaseController
   #GET users/show_login_page
   #显示登录界面
   def show_login_page
-    render layout: "devise"
+    render layout: "iframe_login"
   end
 
   #GET users/show_query_salary
