@@ -36,6 +36,7 @@ $ ->
 
   $(".btn-add-new-ip-info-line").on("click",func_add_new_line)
 
+  $(".btn-batch-add-new-ip-info-line").on("click",-> func_add_new_line() for i in [1..10])
   #机构发生变化时，更新部门列表
   $("input[name='ip_info_header[org_id]']").on("change",->
     org_id = $(this).val()

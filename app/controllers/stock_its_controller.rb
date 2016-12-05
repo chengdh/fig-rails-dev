@@ -5,6 +5,7 @@ class StockItsController < BaseStocksController
   protected
   def collection
     @q= end_of_association_chain.ransack(params[:q])
-    set_collection_ivar(@q.result.paginate(:page => params[:page]))
+    set_collection_ivar(@q.result)
+    # set_collection_ivar(@q.result.paginate(:page => params[:page]))
   end
 end

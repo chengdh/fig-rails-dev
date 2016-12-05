@@ -4,7 +4,7 @@ class IpInfoHeader < ActiveRecord::Base
   belongs_to :org
   belongs_to :user
   validates :org_id, presence: true
-  has_many :ip_info_lines
+  has_many :ip_info_lines, -> {includes :org}
   belongs_to :checker,class_name: "User"
   belongs_to :submitter,class_name: "User"
 
