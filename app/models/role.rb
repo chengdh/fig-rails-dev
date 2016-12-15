@@ -41,9 +41,9 @@ class Role < ActiveRecord::Base
   def system_functions
     ids = selected_sfos.collect {|sfo| sfo.system_function_id}.uniq!
     if ids.blank?
-      @system_finctions =[]
+      @system_functions = SystemFunction.includes(:system_function_group).where(id: nil,is_active: true)
     else
-      @system_functions ||= SystemFunction.includes(:system_function_group).where(id: ids,is_active: true)
+      @system_functions = SystemFunction.includes(:system_function_group).where(id: ids,is_active: true)
     end
   end
   #得到被授权的system_function_group
