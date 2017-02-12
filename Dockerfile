@@ -3,7 +3,6 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev
-RUN mkdir -p /rails_app
 
 # Install rbenv
 RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
@@ -22,17 +21,24 @@ ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/s
 
 RUN rbenv install  2.1.4
 RUN rbenv global  2.1.4
-RUN gem sources --remove https://rubygems.org/
-RUN gem sources -a https://ruby.taobao.org/
+RUN gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
 RUN gem sources -l
 RUN gem install bundler
 RUN rbenv rehash
 
-WORKDIR /rails_app
-
 RUN ruby -v
-ADD Gemfile Gemfile
-ADD Gemfile.lock Gemfile.lock
+
+ENV APP_HOME /rails_app
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+ADD Gemfile* $APP_HOME/
+
+# --- Add this to your Dockerfile ---
+ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
+  BUNDLE_JOBS=2 \
+  BUNDLE_PATH=/bundle
+
 RUN bundle install
 
-ADD . /rails_app
+ADD . $APP_HOME

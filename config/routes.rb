@@ -10,6 +10,19 @@ Rails.application.routes.draw do
       put :update_default_attr
     end
   end
+  namespace :api do
+    namespace :v1  do
+      resources :tokens,:only => [:create, :destroy] do
+        post :test_connect,:on => :collection
+      end
+      resource :dataset,:only => [] do
+        post :search_read,:on => :member
+        post :call_kw,:on => :member
+      end
+    end
+  end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
