@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apply_number: MyString
+  ou_name: MyString
+  org_id: 1
+  apply_date: 2017-02-13 03:45:03
+  apply_source: MyString
+  apply_deparment: MyString
+  applier_user: MyString
+  apply_type: MyString
+  remark: MyText
+  project_number: MyString
+  project_name: MyString
+  task_name: MyString
+  task_number: MyString
+  urge_flag: MyString
+  attribute1: MyString
+  wip_entity_name: MyString
+  bugdet_total: 9.99
+  bugdet_demand_total: 9.99
+  header_bugdet: 9.99
+  bugdet_balance: 9.99
+  actual_cost: 9.99
+
+two:
+  apply_number: MyString
+  ou_name: MyString
+  org_id: 1
+  apply_date: 2017-02-13 03:45:03
+  apply_source: MyString
+  apply_deparment: MyString
+  applier_user: MyString
+  apply_type: MyString
+  remark: MyText
+  project_number: MyString
+  project_name: MyString
+  task_name: MyString
+  task_number: MyString
+  urge_flag: MyString
+  attribute1: MyString
+  wip_entity_name: MyString
+  bugdet_total: 9.99
+  bugdet_demand_total: 9.99
+  header_bugdet: 9.99
+  bugdet_balance: 9.99
+  actual_cost: 9.99

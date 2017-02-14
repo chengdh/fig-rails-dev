@@ -17,6 +17,11 @@ class Api::V1::TokensController < ApplicationController
       render :status => 400,:json => {:message => "The request must contain the username and password."}
       return
     end
+    #FIXME 测试用
+
+    render :status => 200, :json => {:result => {id: 1,username: "admin",password: "admin",real_name: "管理员",default_org_id: 1,authentication_token: "token"}}
+    return
+
 
     @user=User.find_by_username(username)
     if @user.nil?

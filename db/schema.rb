@@ -11,7 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212054718) do
+ActiveRecord::Schema.define(version: 20170214125832) do
+
+  create_table "cux_demand_platform_headers_a_vs", force: :cascade do |t|
+    t.string   "apply_number",        limit: 30
+    t.string   "ou_name",             limit: 60
+    t.integer  "org_id",              limit: 4
+    t.datetime "apply_date"
+    t.string   "apply_source",        limit: 30
+    t.string   "apply_deparment",     limit: 30
+    t.string   "applier_user",        limit: 30
+    t.string   "apply_type",          limit: 30
+    t.text     "remark",              limit: 65535
+    t.string   "project_number",      limit: 30
+    t.string   "project_name",        limit: 300
+    t.string   "task_name",           limit: 300
+    t.string   "task_number",         limit: 30
+    t.string   "urge_flag",           limit: 30
+    t.string   "attribute1",          limit: 30
+    t.integer  "wip_entity_id",       limit: 4
+    t.string   "wip_entity_name",     limit: 30
+    t.decimal  "bugdet_total",                      precision: 15, scale: 2, default: 0.0
+    t.decimal  "bugdet_demand_total",               precision: 15, scale: 2, default: 0.0
+    t.decimal  "header_bugdet",                     precision: 15, scale: 2, default: 0.0
+    t.decimal  "bugdet_balance",                    precision: 15, scale: 2, default: 0.0
+    t.decimal  "actual_cost",                       precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
+  end
+
+  create_table "cux_demand_platform_lines_as", force: :cascade do |t|
+    t.integer  "apply_id",        limit: 4
+    t.string   "line_type",       limit: 30
+    t.string   "apply_number",    limit: 30
+    t.string   "item_number",     limit: 30
+    t.integer  "item_id",         limit: 4
+    t.string   "item_descripton", limit: 60
+    t.string   "item_spec",       limit: 60
+    t.decimal  "item_price",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "demand_quantiry",            precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_budget",                precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+  end
 
   create_table "orgs", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false
@@ -129,6 +171,17 @@ ActiveRecord::Schema.define(version: 20160212054718) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  create_table "wf_notifications", force: :cascade do |t|
+    t.string   "message_type", limit: 30
+    t.string   "status",       limit: 20
+    t.string   "from_user",    limit: 40
+    t.string   "to_user",      limit: 40
+    t.text     "subject",      limit: 65535
+    t.string   "item_key",     limit: 40
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   add_foreign_key "role_system_function_operates", "roles"
   add_foreign_key "role_system_function_operates", "system_function_operates"
