@@ -1,6 +1,8 @@
 #coding: utf-8
 #用于处理从客户端传入的json请求
 class Api::V1::DatasetsController < ApplicationController
+  skip_before_filter :authenticate_user!
+  skip_before_filter :verify_authenticity_token, :if => Proc.new { |c| c.request.format == 'application/json' }
   before_filter :process_args
   respond_to :json
   #POST /api/vi/datasets/search_read

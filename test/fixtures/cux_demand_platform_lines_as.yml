@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  apply_id: 1
+  line_type: MyString
+  apply_number: MyString
+  item_number: MyString
+  item_id: 1
+  item_descripton: MyString
+  item_spec: MyString
+  item_price: 9.99
+  demand_quantiry: 9.99
+  line_budget: 9.99
+
+two:
+  apply_id: 1
+  line_type: MyString
+  apply_number: MyString
+  item_number: MyString
+  item_id: 1
+  item_descripton: MyString
+  item_spec: MyString
+  item_price: 9.99
+  demand_quantiry: 9.99
+  line_budget: 9.99

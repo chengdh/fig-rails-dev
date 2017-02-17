@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214125832) do
+ActiveRecord::Schema.define(version: 20170217084349) do
 
-  create_table "cux_demand_platform_headers_a_vs", force: :cascade do |t|
+  create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
     t.string   "ou_name",             limit: 60
     t.integer  "org_id",              limit: 4
@@ -38,9 +38,11 @@ ActiveRecord::Schema.define(version: 20170214125832) do
     t.decimal  "actual_cost",                       precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                               null: false
     t.datetime "updated_at",                                                               null: false
+    t.string   "wf_itemkey",          limit: 60
   end
 
-  create_table "cux_demand_platform_lines_as", force: :cascade do |t|
+  create_table "cux_demand_platform_lines_a", primary_key: "line_id", force: :cascade do |t|
+    t.integer  "cux_demand_id",   limit: 4,                                         null: false
     t.integer  "apply_id",        limit: 4
     t.string   "line_type",       limit: 30
     t.string   "apply_number",    limit: 30
@@ -50,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170214125832) do
     t.string   "item_spec",       limit: 60
     t.decimal  "item_price",                 precision: 15, scale: 2, default: 0.0
     t.decimal  "demand_quantiry",            precision: 15, scale: 2, default: 0.0
-    t.decimal  "line_budget",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_bugdet",                precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
   end
@@ -181,6 +183,8 @@ ActiveRecord::Schema.define(version: 20170214125832) do
     t.string   "item_key",     limit: 40
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.date     "begin_date"
+    t.integer  "fuser_id",     limit: 4
   end
 
   add_foreign_key "role_system_function_operates", "roles"
