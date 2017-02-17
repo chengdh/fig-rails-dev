@@ -2,7 +2,9 @@
 
 FROM ubuntu:14.04
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev
+RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev alien libaio1
+RUN mkdir -p /rails_app
+
 
 #install oracle instant client
 ADD oracle_instant_client/* /tmp/
