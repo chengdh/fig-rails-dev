@@ -58,6 +58,8 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'mysql2'
+gem 'activerecord-oracle_enhanced-adapter', '~> 1.6.0'
+gem 'ruby-oci8', '~> 2.1.0'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'formtastic-bootstrap'
