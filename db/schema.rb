@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219004959) do
+ActiveRecord::Schema.define(version: 20170219080239) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -42,18 +42,18 @@ ActiveRecord::Schema.define(version: 20170219004959) do
   end
 
   create_table "cux_demand_platform_lines_a", force: :cascade do |t|
-    t.integer  "cux_demand_id",   limit: 4
-    t.string   "line_type",       limit: 30
-    t.string   "apply_number",    limit: 30
-    t.string   "item_number",     limit: 30
-    t.integer  "item_id",         limit: 4
-    t.string   "item_descripton", limit: 60
-    t.string   "item_spec",       limit: 60
-    t.decimal  "item_price",                 precision: 15, scale: 2, default: 0.0
-    t.decimal  "demand_quantiry",            precision: 15, scale: 2, default: 0.0
-    t.decimal  "line_budget",                precision: 15, scale: 2, default: 0.0
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
+    t.integer  "cux_demand_id",    limit: 4
+    t.string   "line_type",        limit: 30
+    t.string   "apply_number",     limit: 30
+    t.string   "item_number",      limit: 30
+    t.integer  "item_id",          limit: 4
+    t.string   "item_description", limit: 60
+    t.string   "item_spec",        limit: 60
+    t.decimal  "item_price",                  precision: 15, scale: 2, default: 0.0
+    t.decimal  "demand_quantiry",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_budget",                 precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
   end
 
   create_table "orgs", force: :cascade do |t|

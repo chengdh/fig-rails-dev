@@ -7,10 +7,10 @@ class Api::V1::DatasetsController < ApplicationController
   respond_to :json
   #POST /api/vi/datasets/search_read
   #根据客户端传入的请求从数据库中读取数据
-  #params[:model]  model name 类似 org,load_list
+  #params[:model]   model name 类似 org,load_list
   #params[:fields]  要返回的字段,用,分割
-  #params[:domain] 过滤条件,与meta_search的传递方式类似
-  #params[:limit]  数字,限制返回的记录数
+  #params[:domain]  过滤条件,与meta_search的传递方式类似
+  #params[:limit]   数字,限制返回的记录数
   #params[:offset]  数字,记录偏移
   #params[:sort]    排序条件DESC或ASC
   def search_read
@@ -22,8 +22,8 @@ class Api::V1::DatasetsController < ApplicationController
     offset = params[:offset].to_i
     sort = params[:sort]
     sort = "id ASC" if sort.blank?
-    @dataset = model_clazz.select(fields).limit(limit).offset(offset).order(sort).search(domain).all
-    render :json => {:result => @dataset}
+    dataset = model_clazz.select(fields).limit(limit).offset(offset).order(sort).ransack(domain).result
+    render :json => {:result => dataset}
   end
 
   #POST /api/v1/datasets/call_kw
@@ -52,6 +52,7 @@ class Api::V1::DatasetsController < ApplicationController
     if dataset.respond_to? :to_json_for_app
       render :json => {:result => JSON.parse(dataset.to_json_for_app)}
     else
+      dataset = JSON.parse(dataset) if dataset.kind_of? String
       render :json => {:result => dataset}
     end
   end
