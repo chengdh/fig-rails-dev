@@ -36,7 +36,7 @@ class Api::V1::DatasetsController < ApplicationController
     model_clazz = params[:model].classify.constantize
     method = params[:method]
     if params[:id].present?
-      record = model_clazz.find(params[:id]) 
+      record = model_clazz.find(params[:id])
       if params[:args].present?
         dataset = record.send(method,*params[:args])
       else

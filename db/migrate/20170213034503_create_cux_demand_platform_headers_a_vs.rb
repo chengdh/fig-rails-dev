@@ -2,7 +2,7 @@
 #需求计划表头
 class CreateCuxDemandPlatformHeadersAVs < ActiveRecord::Migration
   def change
-    create_table :cux_demand_platform_headers_a_vs do |t|
+    create_table :cux_demand_platform_headers_a do |t|
       t.string :apply_number,limit: 30
       t.string :ou_name,limit: 60
       t.integer :org_id

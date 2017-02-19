@@ -3,6 +3,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev alien libaio1
+RUN apt-get install -y wget
 RUN mkdir -p /rails_app
 
 
@@ -24,6 +25,11 @@ RUN chmod +x /etc/profile.d/rbenv.sh
 RUN mkdir /usr/local/rbenv/plugins
 RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
 
+#create rbenv cache
+RUN mkdir /usr/local/rbenv/cache
+WORKDIR /usr/local/rbenv/cache
+RUN wget https://cache.ruby-china.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2
+
 ENV RBENV_ROOT /usr/local/rbenv
 ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 #REF https://help.ubuntu.com/community/Oracle%20Instant%20Client
@@ -39,7 +45,6 @@ RUN rbenv rehash
 RUN ruby -v
 
 ENV APP_HOME /rails_app
-RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 ADD Gemfile* $APP_HOME/

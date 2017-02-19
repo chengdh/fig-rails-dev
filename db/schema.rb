@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217084349) do
+ActiveRecord::Schema.define(version: 20170219004959) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -41,9 +41,8 @@ ActiveRecord::Schema.define(version: 20170217084349) do
     t.string   "wf_itemkey",          limit: 60
   end
 
-  create_table "cux_demand_platform_lines_a", primary_key: "line_id", force: :cascade do |t|
-    t.integer  "cux_demand_id",   limit: 4,                                         null: false
-    t.integer  "apply_id",        limit: 4
+  create_table "cux_demand_platform_lines_a", force: :cascade do |t|
+    t.integer  "cux_demand_id",   limit: 4
     t.string   "line_type",       limit: 30
     t.string   "apply_number",    limit: 30
     t.string   "item_number",     limit: 30
@@ -52,7 +51,7 @@ ActiveRecord::Schema.define(version: 20170217084349) do
     t.string   "item_spec",       limit: 60
     t.decimal  "item_price",                 precision: 15, scale: 2, default: 0.0
     t.decimal  "demand_quantiry",            precision: 15, scale: 2, default: 0.0
-    t.decimal  "line_bugdet",                precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_budget",                precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                        null: false
     t.datetime "updated_at",                                                        null: false
   end
@@ -174,7 +173,7 @@ ActiveRecord::Schema.define(version: 20170217084349) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
-  create_table "wf_notifications", force: :cascade do |t|
+  create_table "wf_notifications_a", force: :cascade do |t|
     t.string   "message_type", limit: 30
     t.string   "status",       limit: 20
     t.string   "from_user",    limit: 40

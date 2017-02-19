@@ -1,7 +1,7 @@
 #coding: utf-8
 class CreateCuxDemandPlatformLinesAs < ActiveRecord::Migration
   def change
-    create_table :cux_demand_platform_lines_as do |t|
+    create_table :cux_demand_platform_lines_a do |t|
       t.integer :apply_id
       t.string :line_type,limit: 30
       t.string :apply_number,limit: 30
