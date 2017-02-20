@@ -22,7 +22,8 @@ class Api::V1::DatasetsController < ApplicationController
     offset = params[:offset].to_i
     sort = params[:sort]
     sort = "id ASC" if sort.blank?
-    dataset = model_clazz.select(fields).limit(limit).offset(offset).order(sort).ransack(domain).result
+    #dataset = model_clazz.select(fields).limit(limit).offset(offset).order(sort).ransack(domain).result
+    dataset = model_clazz.select(fields).order(sort).ransack(domain).result
     render :json => {:result => dataset}
   end
 

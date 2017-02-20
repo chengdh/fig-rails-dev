@@ -17,7 +17,13 @@ class Api::V1::TokensController < ApplicationController
       render :status => 400,:json => {:message => "The request must contain the username and password."}
       return
     end
+
     #FIXME 测试用
+    render :status => 200, :json => {:result =>
+                                       {id: 1,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    }
+    return
+
     x_user_id = -1
     x_ret_code = '-1'
     x_ret_message = ""
@@ -25,7 +31,9 @@ class Api::V1::TokensController < ApplicationController
 
     #登录正常
     if ret[:x_ret_code].eql?('0')
-      render :status => 200, :json => {:result => {id: ret[:x_user_id],username: username,password: password,real_name: username,authentication_token: "token"}}
+      render :status => 200, :json => {:result => 
+                                       {id: ret[:x_user_id],username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+      }
     else
       logger.info("User #{username} failed signin, password \"#{password}\" is invalid")
       render :status => 401, :json => {:message => "Invalid username or password."}
