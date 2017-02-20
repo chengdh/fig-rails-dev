@@ -1,3 +1,4 @@
+#coding: utf-8
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -35,6 +36,10 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
+
+
+  #跳过升级验证
+  config.active_record.migration_error = false
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

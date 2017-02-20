@@ -18,25 +18,17 @@ class Api::V1::TokensController < ApplicationController
       return
     end
     #FIXME 测试用
+    x_user_id = -1
+    x_ret_code = '-1'
+    x_ret_message = ""
+    ret = plsql.CUX_MOBILE_APP_PVT.VALIDATE_USER(username,password,x_user_id,x_ret_code,x_ret_message)
 
-    render :status => 200, :json => {:result => {id: 1,username: "admin",password: "admin",real_name: "管理员",default_org_id: 1,authentication_token: "token"}}
-    return
-
-
-    @user=User.find_by_username(username)
-    if @user.nil?
-      logger.info("User #{username} failed signin, user cannot be found.")
-      render :status => 401, :json => {:message=>"Invalid username or passoword."}
-      return
-    end
-
-    @user.ensure_authentication_token!
-
-    if not @user.valid_password?(password)
+    #登录正常
+    if ret[:x_ret_code].eql?('0')
+      render :status => 200, :json => {:result => {id: ret[:x_user_id],username: username,password: password,real_name: username,authentication_token: "token"}}
+    else
       logger.info("User #{username} failed signin, password \"#{password}\" is invalid")
       render :status => 401, :json => {:message => "Invalid username or password."}
-    else
-      render :status => 200, :json => {:result => @user.attributes}
     end
   end
 
