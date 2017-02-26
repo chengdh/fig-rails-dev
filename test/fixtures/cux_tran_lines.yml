@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  require_id: 1
+  line_number: 1
+  organization_id: 1
+  inventory_item_id: 1
+  item_spc: MyString
+  uom: MyString
+  subinventory: MyString
+  required_qty: 9.99
+  project_number: MyString
+  task_number: MyString
+  apply_number: MyString
+  apply_line_num: 1
+  apply_qty: 9.99
+  item_number: MyString
+  item_dec: MyString
+  remark: MyString
+  project_id: 1
+  task_id: 1
+  expense_type: MyString
+  cost: 9.99
+  wip_entity_name: MyString
+  operation_seq_num: 1
+  canceled_qty: 9.99
+
+two:
+  require_id: 1
+  line_number: 1
+  organization_id: 1
+  inventory_item_id: 1
+  item_spc: MyString
+  uom: MyString
+  subinventory: MyString
+  required_qty: 9.99
+  project_number: MyString
+  task_number: MyString
+  apply_number: MyString
+  apply_line_num: 1
+  apply_qty: 9.99
+  item_number: MyString
+  item_dec: MyString
+  remark: MyString
+  project_id: 1
+  task_id: 1
+  expense_type: MyString
+  cost: 9.99
+  wip_entity_name: MyString
+  operation_seq_num: 1
+  canceled_qty: 9.99

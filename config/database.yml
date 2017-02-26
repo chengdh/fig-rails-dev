@@ -11,9 +11,12 @@
 #
 # default: &default
 #   adapter: oracle_enhanced
-#   host: 192.168.66.171
-#   database: TEST
-#   port: 1524
+#   #host: 192.168.66.171
+#   database: "(DESCRIPTION=
+#     (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST= 192.168.66.171)(PORT=1524)))
+#     (CONNECT_DATA=(SERVICE_NAME=TEST))
+#   )"
+#   #port: 1524
 #   username: apps
 #   password: apps_test
 #
@@ -43,9 +46,9 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: guodiantou_test
+# test:
+#   <<: *default
+#   database: guodiantou_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

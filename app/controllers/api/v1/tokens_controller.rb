@@ -27,7 +27,7 @@ class Api::V1::TokensController < ApplicationController
     x_user_id = -1
     x_ret_code = '-1'
     x_ret_message = ""
-    ret = plsql.CUX_MOBILE_APP_PVT.VALIDATE_USER(username,password,x_user_id,x_ret_code,x_ret_message)
+    ret = plsql.CUX_MOBILE_APP_PVT.VALIDATE_USER(username,password)
 
     #登录正常
     if ret[:x_ret_code].eql?('0')

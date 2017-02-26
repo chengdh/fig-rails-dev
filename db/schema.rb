@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170219080239) do
+ActiveRecord::Schema.define(version: 20170226011044) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -51,9 +51,68 @@ ActiveRecord::Schema.define(version: 20170219080239) do
     t.string   "item_spec",        limit: 60
     t.decimal  "item_price",                  precision: 15, scale: 2, default: 0.0
     t.decimal  "demand_quantiry",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "line_budget",                 precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_bugdet",                 precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                         null: false
     t.datetime "updated_at",                                                         null: false
+  end
+
+  create_table "cux_transaction_headers_all_a", force: :cascade do |t|
+    t.string   "require_number",      limit: 255
+    t.string   "require_deparment",   limit: 255
+    t.string   "require_status",      limit: 255
+    t.string   "require_person",      limit: 255
+    t.integer  "require_person_id",   limit: 4
+    t.datetime "require_date"
+    t.datetime "last_update_date"
+    t.string   "last_update_by",      limit: 255
+    t.datetime "creation_date"
+    t.integer  "created_by",          limit: 4
+    t.integer  "last_update_login",   limit: 4
+    t.string   "require_status_code", limit: 255
+    t.string   "require_type",        limit: 255
+    t.integer  "require_type_id",     limit: 4
+    t.integer  "wip_entity_id",       limit: 4
+    t.string   "categorie",           limit: 255
+    t.text     "remark",              limit: 65535
+    t.string   "trans_deparment",     limit: 255
+    t.decimal  "bugdet_balancd",                    precision: 15, scale: 2
+    t.decimal  "header_bugdet",                     precision: 15, scale: 2
+    t.decimal  "bugdet_demand_total",               precision: 15, scale: 2
+    t.decimal  "bugdet_total",                      precision: 15, scale: 2
+    t.integer  "project_id",          limit: 4
+    t.string   "name",                limit: 255
+    t.string   "segment1",            limit: 255
+    t.string   "project_type",        limit: 255
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+  end
+
+  create_table "cux_transaction_lines_all_a", force: :cascade do |t|
+    t.integer  "require_id",        limit: 4
+    t.integer  "line_number",       limit: 4
+    t.integer  "organization_id",   limit: 4
+    t.integer  "inventory_item_id", limit: 4
+    t.string   "item_spc",          limit: 255
+    t.string   "uom",               limit: 255
+    t.string   "subinventory",      limit: 255
+    t.decimal  "required_qty",                  precision: 15, scale: 2
+    t.string   "project_number",    limit: 255
+    t.string   "task_number",       limit: 255
+    t.string   "apply_number",      limit: 255
+    t.integer  "apply_line_num",    limit: 4
+    t.decimal  "apply_qty",                     precision: 15, scale: 2
+    t.string   "item_number",       limit: 255
+    t.string   "item_dec",          limit: 255
+    t.string   "remark",            limit: 255
+    t.integer  "project_id",        limit: 4
+    t.integer  "task_id",           limit: 4
+    t.string   "expense_type",      limit: 255
+    t.decimal  "cost",                          precision: 15, scale: 2
+    t.string   "wip_entity_name",   limit: 255
+    t.integer  "operation_seq_num", limit: 4
+    t.decimal  "canceled_qty",                  precision: 15, scale: 2
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   create_table "orgs", force: :cascade do |t|

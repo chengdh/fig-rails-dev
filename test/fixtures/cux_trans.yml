@@ -1,0 +1,57 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  require_number: MyString
+  require_deparment: MyString
+  require_status: MyString
+  require_person: MyString
+  require_person_id: 1
+  require_date: 2017-02-26 01:00:35
+  last_update_date: 2017-02-26 01:00:35
+  last_update_by: MyString
+  creation_date: 2017-02-26 01:00:35
+  created_by: 1
+  last_update_login: 1
+  require_status_code: MyString
+  require_type: MyString
+  require_type_id: 1
+  wip_entity_id: 1
+  categorie: MyString
+  remark: MyText
+  trans_deparment: MyString
+  bugdet_balancd: 9.99
+  header_bugdet: 9.99
+  bugdet_demand_total: 9.99
+  bugdet_total: 9.99
+  project_id: 1
+  name: MyString
+  segment1: MyString
+  project_type: MyString
+
+two:
+  require_number: MyString
+  require_deparment: MyString
+  require_status: MyString
+  require_person: MyString
+  require_person_id: 1
+  require_date: 2017-02-26 01:00:35
+  last_update_date: 2017-02-26 01:00:35
+  last_update_by: MyString
+  creation_date: 2017-02-26 01:00:35
+  created_by: 1
+  last_update_login: 1
+  require_status_code: MyString
+  require_type: MyString
+  require_type_id: 1
+  wip_entity_id: 1
+  categorie: MyString
+  remark: MyText
+  trans_deparment: MyString
+  bugdet_balancd: 9.99
+  header_bugdet: 9.99
+  bugdet_demand_total: 9.99
+  bugdet_total: 9.99
+  project_id: 1
+  name: MyString
+  segment1: MyString
+  project_type: MyString
