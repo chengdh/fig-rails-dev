@@ -21,7 +21,7 @@ class CreateCuxTrans < ActiveRecord::Migration
       t.text :remark
       t.string :trans_deparment
       t.string :wf_itemkey
-      t.decimal :bugdet_balancd,precision: 15,scale: 2
+      t.decimal :bugdet_balance,precision: 15,scale: 2
       t.decimal :header_bugdet,precision: 15,scale: 2
       t.decimal :bugdet_demand_total,precision: 15,scale: 2
       t.decimal :bugdet_total,precision: 15,scale: 2

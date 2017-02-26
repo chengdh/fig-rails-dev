@@ -2,7 +2,7 @@
 class CreateCuxTranLines < ActiveRecord::Migration
   def change
     create_table :cux_transaction_lines_all_a do |t|
-      t.integer :require_id
+      t.integer :cux_tran_id
       t.integer :line_number
       t.integer :organization_id
       t.integer :inventory_item_id
