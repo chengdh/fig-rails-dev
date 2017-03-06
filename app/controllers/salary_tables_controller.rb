@@ -1,6 +1,23 @@
 #coding: utf-8
 class SalaryTablesController < BaseController
   table :org,:name,:mth
+
+  def before_new_with_pre_mth 
+    render partial: "before_new_with_pre_mth"
+  end
+
+  #自上月工资表新建
+  def new_with_pre_mth
+    dup_st = resource_class.find_by(params.permit(:org_id,:mth))
+    if dup_st.blank?
+      flash[:info] = "选择月份的工资表不存在!"
+      redirect_to :back
+    else
+      salary_table = resource_class.new_by_dup(dup_st)
+      set_resource_ivar(salary_table)
+      render :new
+    end
+  end
   #GET salary_tables/before_new
   #显示新建窗口
   def before_new

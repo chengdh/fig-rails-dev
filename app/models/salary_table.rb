@@ -7,6 +7,13 @@ class SalaryTable < ActiveRecord::Base
   has_many :salary_table_lines,dependent: :destroy,autosave: true
   accepts_nested_attributes_for :salary_table_lines
 
+  def self.new_by_dup(dup_salary_table)
+    table = dup_salary_table.dup
+    dup_salary_table.salary_table_lines.each do |tl|
+      table.salary_table_lines << tl.dup
+    end
+    table
+  end
   #根据传入的参数生成工资表
   #org_id 机构
   #月份

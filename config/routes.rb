@@ -391,6 +391,8 @@ Rails.application.routes.draw do
       get :search
       get :show_import_xls
       get :before_new
+      get :before_new_with_pre_mth
+      get :new_with_pre_mth
       post :import_xls
     end
   end
@@ -400,6 +402,9 @@ Rails.application.routes.draw do
       get :search
       get :show_import_xls
       get :before_new
+      get :before_new_with_pre_mth
+      get :new_with_pre_mth
+
       post :import_xls
     end
   end
@@ -409,6 +414,9 @@ Rails.application.routes.draw do
       get :search
       get :show_import_xls
       get :before_new
+      get :before_new_with_pre_mth
+      get :new_with_pre_mth
+
       post :import_xls
     end
   end
@@ -418,6 +426,9 @@ Rails.application.routes.draw do
       get :search
       get :show_import_xls
       get :before_new
+      get :before_new_with_pre_mth
+      get :new_with_pre_mth
+
       post :import_xls
     end
   end
@@ -428,6 +439,8 @@ Rails.application.routes.draw do
       get :search
       get :show_import_xls
       get :before_new
+      get :before_new_with_pre_mth
+      get :new_with_pre_mth
       post :import_xls
     end
   end
@@ -437,6 +450,8 @@ Rails.application.routes.draw do
       get :search
       get :show_import_xls
       get :before_new
+      get :before_new_with_pre_mth
+      get :new_with_pre_mth
       post :import_xls
     end
   end

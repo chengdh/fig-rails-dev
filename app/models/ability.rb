@@ -11,8 +11,7 @@ class Ability
     #   else
     #     can :read, :all
     #   end
-    #
-    # The first argument to `can` is the action you are giving the user
+    # # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
     # here are :read, :create, :update and :destroy.
@@ -45,7 +44,10 @@ class Ability
     #导出到excel，从export映射到export_excel
     alias_action :read,:to => :export_excel
     alias_action :export_excel,:to => :export
+
     alias_action :before_new,:to => :create
+    alias_action :before_new_with_pre_mth,:to => :create
+    alias_action :new_with_pre_mth,:to => :create
 
     #task 任务反馈
     alias_action :save_line,:to => :show_line

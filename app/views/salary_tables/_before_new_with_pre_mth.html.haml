@@ -1,0 +1,17 @@
+.box.box-default{:style => "width : 300px;"}
+  .box-header.with-border
+    %h3.box-title 新建工资表
+  .box-body
+    = form_tag({action: :new_with_pre_mth},{id: "form_salary_table_before_new",multipart: true,method: :get}) do
+      .form-group
+        = label_tag :org_id,"部门"
+        = select_tag :org_id,options_for_select(current_ability_orgs_for_select),:include_blank => false,class: "form-control input-sm"
+      .form-group
+        = label_tag :mth,"月份"
+        = select_tag :mth,options_for_select(months_for_select),:include_blank => false,class: "form-control input-sm"
+
+      %button.btn.btn-primary.btn-info.btn-import-salary-table-xls{:type => "submit"}
+        确定
+        %i.fa.fa-check
+
+
