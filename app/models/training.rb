@@ -32,6 +32,9 @@ class Training < ActiveRecord::Base
   validates_attachment_content_type :photo_7, content_type: /\Aimage\/.*\Z/
 
   validates :org_id,:table_date,:user_id,:name,:training_date,:teachers,:training_length,:join_persons,:join_count,:training_content,:assess_type, presence: true
+  #至少要有一张照片
+  validate :must_less_than_one_photo
+
   default_value_for(:table_date) {Date.today}
   default_value_for(:training_date) {Date.today}
 
@@ -49,4 +52,10 @@ class Training < ActiveRecord::Base
     ret = "座谈" if assess_type.eql?("conversion")
     ret
   end
+  private
+  def must_less_than_one_photo
+    errors.add(:photo,"至少需要上传一张照片!") if photo_1.blank? and photo_2.blank? and photo_3.blank? and photo_4.blank? and photo_5.blank? and photo_6.blank? and photo_7.blank?
+  end
+
+
 end

@@ -102,6 +102,13 @@ class Assessment < ActiveRecord::Base
     exists = House.exists?(org_id: org_id)
     k_files_marks -= 1 unless exists
 
+    
+    exist = HiddenDanger.select("danger_org_id,sum(k_marks) AS sum_k_marks").where([" DATE_FORMAT(deliver_date,'%Y%m') = ?" +
+                                " AND DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
+                                " AND danger_org_id = ?",mth,mth,org_id]).group("danger_org_id")
+    big_danger_exists = HiddenDanger.select("danger_org_id,sum(1) AS sum_k_marks").where(["is_big = 1 AND DATE_FORMAT(deliver_date,'%Y%m') = ?" +
+                                " AND DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
+                                " AND danger_org_id = ?",mth,mth,org_id]).group("danger_org_id")
     #重大隐患
     k_big_hidden_danger_marks = 0
     #重大隐患每次扣1分
@@ -110,15 +117,9 @@ class Assessment < ActiveRecord::Base
       k_big_hidden_danger_marks  = 50 if k_big_hidden_danger_marks > 50
 
     end
-
     #隐患治理
     k_hidden_danger_marks = 0
-    exist = HiddenDanger.select("danger_org_id,sum(k_marks) AS sum_k_marks").where([" DATE_FORMAT(deliver_date,'%Y%m') = ?" +
-                                " AND DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
-                                " AND danger_org_id = ?",mth,mth,org_id]).group("danger_org_id")
-    big_danger_exists = HiddenDanger.select("danger_org_id,sum(1) AS sum_k_marks").where(["is_big = 1 AND DATE_FORMAT(deliver_date,'%Y%m') = ?" +
-                                " AND DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
-                                " AND danger_org_id = ?",mth,mth,org_id]).group("danger_org_id")
+
     if exist.present?
       k_hidden_danger_marks = exist.first.try(:sum_k_marks) - k_big_hidden_danger_marks
       k_hidden_danger_marks = 50 if k_hidden_danger_marks > 50

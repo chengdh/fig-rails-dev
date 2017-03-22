@@ -37,6 +37,10 @@ class PlanbDoc < ActiveRecord::Base
     :audit_item_4_state,:audit_item_5_state,:audit_item_6_state,:audit_item_7_state,:note,:check_leader, presence: true
   validates :plan_length,:join_count, numericality: true
   validates :plan_content,:plan_process, length: { in: 30..2000 }
+
+  #至少要有一张照片
+  validate :must_less_than_one_photo
+
   #待审批
   scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
   #待修改
@@ -61,4 +65,10 @@ class PlanbDoc < ActiveRecord::Base
     ret = "现场演练" if plan_type.eql?("act")
     ret
   end
+
+  private
+  def must_less_than_one_photo
+    errors.add(:photo,"至少需要上传一张照片!") if photo_1.blank? and photo_2.blank? and photo_3.blank? and photo_4.blank? and photo_5.blank? and photo_6.blank? and photo_7.blank?
+  end
+
 end
