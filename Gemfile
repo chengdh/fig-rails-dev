@@ -69,6 +69,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'net-ssh','2.9.2'
 gem 'devise'
 gem 'inherited_resources', '~> 1.6'
+gem 'savon', '~> 2.11.0'
 
 group :development do
   gem 'better_errors'
