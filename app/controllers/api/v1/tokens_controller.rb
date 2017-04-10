@@ -23,6 +23,22 @@ class Api::V1::TokensController < ApplicationController
     #                                    {id: 1,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
     # }
     # return
+    p_business_type = "FND_USER"
+    parameters_item_array = [
+      {
+        vtype: "NUM",
+        vname: "username",
+        vvalue: username,
+        vsign: "EQ"
+      },
+      {
+        vtype: "VAR",
+        vname: "passwd",
+        vvalue: password,
+        vsign: "EQ"
+      }
+    ]
+    res = TestSoa.get_soa_common_data(p_business_type,parameters_item_array)
 
     x_user_id = -1
     x_ret_code = '-1'
