@@ -23,32 +23,51 @@ class Api::V1::TokensController < ApplicationController
     #                                    {id: 1,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
     # }
     # return
-    p_business_type = "FND_USER"
+    p_business_type = "FND_USER_A"
     parameters_item_array = [
       {
-        vtype: "NUM",
-        vname: "username",
-        vvalue: username,
-        vsign: "EQ"
-      },
-      {
-        vtype: "VAR",
-        vname: "passwd",
-        vvalue: password,
-        vsign: "EQ"
+        "VTYPE" => "VAR",
+        "VNAME" => "user_name",
+        "VVALUE" => username,
+        "VSIGN" => "EQ"
       }
+      # {
+      #   vtype: "VAR",
+      #   vname: "passwd",
+      #   vvalue: password,
+      #   vsign: "EQ"
+      # }
     ]
-    res = TestSoa.get_soa_common_data(p_business_type,parameters_item_array)
+    response = TestSoap.get_soa_common_data(p_business_type,parameters_item_array)
+    business_result = Hash.from_xml(response.body[:output_parameters][:get_soa_common_data])["BUSINESS_RESULT"]
+    business_data_list = business_result["BUSINESS_DATA_LIST"]
 
-    x_user_id = -1
-    x_ret_code = '-1'
-    x_ret_message = ""
-    ret = plsql.CUX_MOBILE_APP_PVT.VALIDATE_USER(username,password)
+    login_success = true
+
+    logger.debug("return business_data_list = " + business_data_list.to_s)
+    login_success = false if business_data_list.blank?
+
+    list = business_data_list["BUSINESS_DATA"]
+    logger.debug("return business data = " + list.to_s)
+    login_success = false  if list.blank?
+
+    user_record = list if list.kind_of?(Hash)
+
+    user_record = list.first if list.kind_of?(Array)
+
+    logger.debug("user_record = " + user_record.to_s)
 
     #登录正常
-    if ret[:x_ret_code].eql?('0')
-      render :status => 200, :json => {:result => 
-                                       {id: ret[:x_user_id],username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    if login_success
+      render :status => 200, :json => {:result =>
+                                       {
+                                         id: user_record["ID"].to_i,
+                                         username: user_record["USER_NAME"],
+                                         password: "password",
+                                         real_name:  user_record["USER_NAME"],
+                                         default_org_id: 1,
+                                         authentication_token: "token"
+                                       }
       }
     else
       logger.info("User #{username} failed signin, password \"#{password}\" is invalid")

@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order_id: 1
+  ordersource: MyString
+  ordercode: MyString
+  ordertypename: MyString
+  ordertype: MyString
+  ordertaskname: MyString
+  ordertaskid: 1
+  ordertitle: MyString
+  orderuserid: 1
+  orderusername: MyString
+  ordertime: 2017-04-12 04:25:53
+  url: MyString
+
+two:
+  order_id: 1
+  ordersource: MyString
+  ordercode: MyString
+  ordertypename: MyString
+  ordertype: MyString
+  ordertaskname: MyString
+  ordertaskid: 1
+  ordertitle: MyString
+  orderuserid: 1
+  orderusername: MyString
+  ordertime: 2017-04-12 04:25:53
+  url: MyString

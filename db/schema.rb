@@ -75,7 +75,8 @@ ActiveRecord::Schema.define(version: 20170226011044) do
     t.string   "categorie",           limit: 255
     t.text     "remark",              limit: 65535
     t.string   "trans_deparment",     limit: 255
-    t.decimal  "bugdet_balancd",                    precision: 15, scale: 2
+    t.string   "wf_itemkey",          limit: 255
+    t.decimal  "bugdet_balance",                    precision: 15, scale: 2
     t.decimal  "header_bugdet",                     precision: 15, scale: 2
     t.decimal  "bugdet_demand_total",               precision: 15, scale: 2
     t.decimal  "bugdet_total",                      precision: 15, scale: 2
@@ -88,7 +89,7 @@ ActiveRecord::Schema.define(version: 20170226011044) do
   end
 
   create_table "cux_transaction_lines_all_a", force: :cascade do |t|
-    t.integer  "require_id",        limit: 4
+    t.integer  "cux_tran_id",       limit: 4
     t.integer  "line_number",       limit: 4
     t.integer  "organization_id",   limit: 4
     t.integer  "inventory_item_id", limit: 4
