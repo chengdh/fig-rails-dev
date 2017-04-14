@@ -18,11 +18,11 @@ class Api::V1::TokensController < ApplicationController
       return
     end
 
-    #FIXME 测试用
-    # render :status => 200, :json => {:result =>
-    #                                    {id: 1,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
-    # }
-    # return
+    # FIXME 测试用
+    render :status => 200, :json => {:result =>
+                                       {id: 3492,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    }
+    return
     p_business_type = "FND_USER_A"
     parameters_item_array = [
       {

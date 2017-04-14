@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226011044) do
+ActiveRecord::Schema.define(version: 20170414031542) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -54,6 +54,28 @@ ActiveRecord::Schema.define(version: 20170226011044) do
     t.decimal  "line_bugdet",                 precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                         null: false
     t.datetime "updated_at",                                                         null: false
+  end
+
+  create_table "cux_posa_item_activity_his_a", force: :cascade do |t|
+    t.integer  "submit_by_org_id",     limit: 4
+    t.string   "submit_by_org_name",   limit: 60
+    t.string   "submit_schedule_type", limit: 60
+    t.string   "submit_schedule_yqmj", limit: 60
+    t.integer  "submit_org_level",     limit: 4
+    t.integer  "submit_from",          limit: 4
+    t.text     "response_message",     limit: 65535
+    t.datetime "submit_date"
+    t.string   "item_type",            limit: 255
+    t.string   "item_key",             limit: 60
+    t.string   "activity_result_code", limit: 60
+    t.string   "result_name",          limit: 60
+    t.string   "assigned_user",        limit: 60
+    t.string   "full_name",            limit: 60
+    t.integer  "notification_id",      limit: 4
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "cux_transaction_headers_all_a", force: :cascade do |t|
@@ -114,6 +136,23 @@ ActiveRecord::Schema.define(version: 20170226011044) do
     t.decimal  "canceled_qty",                  precision: 15, scale: 2
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+  end
+
+  create_table "maximo_msgs", force: :cascade do |t|
+    t.integer  "order_id",      limit: 4
+    t.string   "ordersource",   limit: 255
+    t.string   "ordercode",     limit: 255
+    t.string   "ordertypename", limit: 255
+    t.string   "ordertype",     limit: 255
+    t.string   "ordertaskname", limit: 255
+    t.integer  "ordertaskid",   limit: 4
+    t.string   "ordertitle",    limit: 255
+    t.integer  "orderuserid",   limit: 4
+    t.string   "orderusername", limit: 255
+    t.datetime "ordertime"
+    t.string   "url",           limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "orgs", force: :cascade do |t|

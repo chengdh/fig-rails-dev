@@ -5,6 +5,11 @@ class CuxDemand < ActiveRecord::Base
   has_many :cux_demand_lines
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys).includes(:cux_demand_lines)}
 
+  #审批历史记录
+  def audit_his
+    CuxDemandAuditHis.where(item_key: wf_itemkey)
+  end
+
   def self.unread_bills(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(include: :cux_demand_lines)
   end
@@ -23,6 +28,7 @@ class CuxDemand < ActiveRecord::Base
     end
     cux_demand_ids = CuxDemand.where(wf_itemkey: wf_item_keys).ids
     CuxDemandLine.sync_with_ebs(cux_demand_ids)
+    CuxDemandAuditHis.sync_with_ebs(wf_item_keys)
   end
   def self.audit(user_id,username,notification_id,b_pass,audit_note)
     # ret = plsql.CUX_MOBILE_APP_PVT.GENERAL_APPROVAL(user_id,
