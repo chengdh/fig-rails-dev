@@ -27,6 +27,7 @@
 //= require jquery-cookie/src/js.cookie
 //= require livequery/dist/jquery.livequery
 //= require bootstrap-treeview/src/js/bootstrap-treeview
+//= require moment/moment
 //= require enter2tab
 //= require common
 //= require orgs
@@ -47,3 +48,4 @@
 //= require wifi_clients
 //= require websites
 //= require assessments
+//= require fire_fighting_equipments

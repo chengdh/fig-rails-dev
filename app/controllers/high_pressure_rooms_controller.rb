@@ -2,7 +2,7 @@
 class HighPressureRoomsController < ElectricEquipmentsController
   defaults resource_class: HighPressureRoom
 
-  table :org,:area,:fire_level_des,:build_date,:manage_org
+  table :org,:area,:fire_level_des,:equip_level_des,:build_date,:manage_org
 
   private
   def high_pressure_room_params

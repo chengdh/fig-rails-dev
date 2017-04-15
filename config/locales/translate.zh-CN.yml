@@ -267,6 +267,7 @@ zh-CN:
         note: 事故记录
 
       driver:
+        name: 姓名
         vehicle: 车辆
         vehicle_id: 车辆
         driver_no: 驾驶证号
@@ -278,7 +279,7 @@ zh-CN:
         equip_type: 设备类型
         equip_type_des: 设备类型
         equip_date: 购置(安装)时间
-        vendor: 供应厂商
+        vendor: 供应商
         model: 型号
         location: 所在场所
         ton: 吨位
@@ -311,24 +312,29 @@ zh-CN:
         area: 占地面积
         fire_level: 防火等级
         fire_level_des: 防火等级
+        equip_level: 配电等级
+        equip_level_des: 配电等级
         build_date: 建造时间
         manage_org_id: 管理部门
         manage_org: 管理部门
         qty: 数量
         buy_date: 购买时间
-        power: 功率
-        volume: 容量
+        power: 功率(KVA)
+        volume: 容量(KW)
         work_type: 工作方式
         work_type_des: 工作方式
         last_check_date: 检测时间
 
       temporary_employee:
+        name: 姓名
         gender: 性别
         gender_des: 性别
         id_no: 身份证号
         manage_org: 主管部门
         manage_org_id: 主管部门
+        duty_org: 主管部门
         post: 岗位(工种)
+        post_des: 岗位(工种)
         belong_to_unit: 派遣单位
         begin_date: 上岗时间
 
@@ -347,6 +353,7 @@ zh-CN:
         is_rent: 是否租赁
         have_safe_contract: 是否签订安全协议
         rent_to: 租赁期至
+        renter: 承租单位
         building_area: 建筑面积
 
 

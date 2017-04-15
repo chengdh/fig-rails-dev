@@ -53,6 +53,10 @@ class PlanbDoc < ActiveRecord::Base
   default_value_for :plan_date do
     Date.today
   end
+  default_value_for :plan_length do
+    1
+  end
+
   default_value_for :audit_date do
     Date.today
   end

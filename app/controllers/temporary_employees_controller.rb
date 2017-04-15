@@ -1,6 +1,6 @@
 #coding: utf-8
 class TemporaryEmployeesController < BaseController
-  table :org,:name,:id_no,:manage_org,:post,:belong_to_unit,:begin_date,:mobile
+  table :org,:name,:id_no,:duty_org,:post_des,:belong_to_unit,:begin_date,:mobile
 
   #导出查询结果为excel
   #GET vehicles/export_excel

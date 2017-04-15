@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917034637) do
+ActiveRecord::Schema.define(version: 20170415080428) do
 
   create_table "accident_headers", force: :cascade do |t|
     t.integer  "org_id",        limit: 4,                       null: false
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20160917034637) do
     t.text     "note",            limit: 65535
     t.datetime "created_at",                                                            null: false
     t.datetime "updated_at",                                                            null: false
+    t.integer  "equip_level",     limit: 4
   end
 
   add_index "electric_equipments", ["manage_org_id"], name: "index_electric_equipments_on_manage_org_id", using: :btree
@@ -415,6 +416,7 @@ ActiveRecord::Schema.define(version: 20160917034637) do
     t.text     "note",               limit: 65535
     t.datetime "created_at",                                                                null: false
     t.datetime "updated_at",                                                                null: false
+    t.string   "renter",             limit: 60
   end
 
   add_index "houses", ["org_id"], name: "index_houses_on_org_id", using: :btree
@@ -1900,6 +1902,7 @@ ActiveRecord::Schema.define(version: 20160917034637) do
     t.text     "note",           limit: 65535
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+    t.string   "duty_org",       limit: 60
   end
 
   add_index "temporary_employees", ["org_id"], name: "index_temporary_employees_on_org_id", using: :btree

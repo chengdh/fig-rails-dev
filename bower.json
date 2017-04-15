@@ -29,6 +29,7 @@
     "html5shiv": "https://github.com/aFarkas/html5shiv.git",
     "respond": "https://github.com/scottjehl/Respond.git",
     "bootstrap-treeview": "https://github.com/jonmiles/bootstrap-treeview.git",
-    "livequery": "https://github.com/hazzik/livequery.git"
+    "livequery": "https://github.com/hazzik/livequery.git",
+    "moment" : ""
   }
 }

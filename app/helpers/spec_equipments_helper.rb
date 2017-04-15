@@ -1,7 +1,7 @@
 #coding: utf-8
 module SpecEquipmentsHelper
   def equip_types_for_select
-    [["锅炉","boier"],["压力容器","container"],["起重设备","crane"]]
+    [["锅炉","boier"],["压力容器","container"],["起重设备","crane"],['电梯','elevator']]
   end
   def equip_type_des(type_code)
     ret = ""

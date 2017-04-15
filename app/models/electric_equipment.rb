@@ -30,6 +30,17 @@ class ElectricEquipment < ActiveRecord::Base
     ret
   end
 
+  def equip_level_des
+    ret = ""
+    ret = "1级" if fire_level == 1
+    ret = "2级" if fire_level == 2
+    ret = "3级" if fire_level == 3
+    ret = "4级" if fire_level == 4
+    ret
+  end
+
+
+
 
   belongs_to :org
   belongs_to :manage_org,class_name: "Org"
