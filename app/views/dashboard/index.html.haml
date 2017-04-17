@@ -6,30 +6,44 @@
 <!-- Main content -->
 %section.content
   <!-- Info boxes -->
-  .row
+  / 任务
+  - if can? :read,Task and @waitting_process_tasks.present?
     .col-md-3.col-md-offset-2
-      / 任务
-      - if can? :read,Task
-        = render "task"
+      = render "task"
+  / 教育培训
+  - if can? :read,Training and  @waitting_trainings.present?
     .col-md-3.col-md-offset-2
-      / 教育培训
-      - if can? :read,Training
-        = render "training"
-  .row
+      = render "training"
+  / 应急预案
+  - if can? :read,PlanbDoc and @waitting_planb_docs.present?
     .col-md-3.col-md-offset-2
-      / 应急预案
-      - if can? :read,PlanbDoc
-        = render "planb_doc"
+      = render "planb_doc"
+
+  / 会议
+  - if can? :read,Meeting and @waitting_meetings.present?
     .col-md-3.col-md-offset-2
-      / 会议
-      - if can? :read,Meeting
-        = render "meeting"
-  .row
+      = render "meeting"
+
+  / 隐患整改
+  - if can? :read,HiddenDanger and @waitting_hidden_dangers.present?
     .col-md-3.col-md-offset-2
-      / 隐患整改
-      - if can? :read,HiddenDanger
-        = render "hidden_danger"
+      = render "hidden_danger"
+
+  / 消防设施
+  - if can? :read,FireFightingEquipment and @expired_fire_fighting_equipments.present?
     .col-md-3.col-md-offset-2
-      / 消防设施
-      - if can? :read,FireFightingEquipment
-        = render "fire_fighting_equipment"
+      = render "fire_fighting_equipment"
+
+  / 交通工具
+  - if can? :read,Vehicle and @expired_vehicles.present?
+    .col-md-3.col-md-offset-2
+      = render "vehicle"
+
+  / 驾驶证 
+  - if can? :read,Driver and  @expired_drivers.present?
+    .col-md-3.col-md-offset-2
+      = render "driver"
+  / 特种设备
+  - if can? :read,SpecEquipment and @expired_spec_equipments.present?
+    .col-md-3.col-md-offset-2
+      = render "spec_equipment"

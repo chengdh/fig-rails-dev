@@ -264,6 +264,7 @@ zh-CN:
         buy_date: 购置日期
         expire_date: 报废日期
         last_check_date: 上次年检日期
+        next_check_date: 下次年检日期
         note: 事故记录
 
       driver:
@@ -286,6 +287,7 @@ zh-CN:
         volume: 容积
         usage: 用途
         last_check_date: 检测时间
+        next_check_date: 下次年检日期
         note: 备注
 
       spec_warehouse:

@@ -8,7 +8,10 @@ class FireFightingEquipment < ActiveRecord::Base
   validates :qty, numericality: { only_integer: true,greater_than: 0}
   default_scope {order("org_id DESC")}
 
-  #过期设备
-  #scope :expired,->(org_ids){ransack(:valid_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
-  scope :expired,->(org_ids){order(:created_at)}
+  #等待年检设备,提前60天提醒
+  scope :next_check,->(org_ids){ransack(:last_upkeep_date_lte => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
+  scope :expired,->(org_ids){ransack(:last_upkeep_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
+  def next_check_date
+    last_upkeep_date + 1.year
+  end
 end

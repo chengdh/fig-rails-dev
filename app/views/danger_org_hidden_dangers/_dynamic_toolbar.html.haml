@@ -38,3 +38,14 @@
       "data-form-id" => "postponement_hidden_danger_form",
       :title => "保存延期信息" do
       %i.fa.fa-save
+
+  - if params[:action].eql?("show")
+    = link_to export_excel_single_danger_org_hidden_danger_path(resource),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL" do
+      %i.fa.fa-file-excel-o{style: "color : blue;"}
+
+
+  - if params[:action].eql?("index")
+    = link_to export_excel_danger_org_hidden_dangers_path(params),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL" do
+      %i.fa.fa-file-excel-o{style: "color : blue;"}
+
+

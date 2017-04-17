@@ -28,8 +28,15 @@ class DashboardController < ApplicationController
     @waitting_review_hidden_dangers = HiddenDanger.waitting_review(current_ability_org_ids)
 
     #消防器材
-    @expired_fire_fighting_equipments = FireFightingEquipment.expired(current_ability_org_ids)
+    @expired_fire_fighting_equipments = FireFightingEquipment.next_check(current_ability_org_ids)
+    #交通工具
 
+    @expired_vehicles = Vehicle.next_check(current_ability_org_ids)
+    #驾驶证
+
+    @expired_drivers = Driver.next_check(current_ability_org_ids)
+    #特种设备
+    @expired_spec_equipments = SpecEquipment.next_check(current_ability_org_ids)
   end
   private
   #当前可用机构的ids

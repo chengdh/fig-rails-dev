@@ -502,9 +502,11 @@ Rails.application.routes.draw do
       patch :fix
       get :show_postponement
       patch :postponement
+      get :export_excel_single
     end
     collection do
       get :search
+      get :export_excel
     end
 
 

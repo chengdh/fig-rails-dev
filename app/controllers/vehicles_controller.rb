@@ -1,6 +1,7 @@
 #coding: utf-8
 #车辆信息管理
 class VehiclesController < BaseController
+  table :vehicle_no, :model, :register_no, :license_no, :buy_date, :expire_date, :last_check_date,:next_check_date,:is_active, :note
 
   #导出查询结果为excel
   #GET vehicles/export_excel
