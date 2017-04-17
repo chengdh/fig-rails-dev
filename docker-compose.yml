@@ -33,4 +33,3 @@ guodiantou-bundle:
   command: echo "I'm a little data container, short and stout..."
   volumes:
     - /bundle
-

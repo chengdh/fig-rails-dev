@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414031542) do
+ActiveRecord::Schema.define(version: 20170417064138) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170414031542) do
     t.string   "project_type",        limit: 255
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
+    t.string   "business_type",       limit: 60
   end
 
   create_table "cux_transaction_lines_all_a", force: :cascade do |t|
