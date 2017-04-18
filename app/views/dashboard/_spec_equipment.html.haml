@@ -8,10 +8,11 @@
           %td
             %span.label.label-info 待检查
           %td= t.org
-          %td= link_to t.name,t
+          %td= link_to t.model,t
+          %td= link_to t.location,t
           %td= t.next_check_date
 
       - if @expired_spec_equipments.size == 0
         %tr
-          %td{colspan: 4}
+          %td{colspan: 5}
             未查询到数据
