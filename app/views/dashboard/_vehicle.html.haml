@@ -8,7 +8,7 @@
           %td
             %span.label.label-info 待年审
           %td= t.org
-          %td= link_to t.name,t
+          %td= link_to t.vehicle_no,t
           %td= t.next_check_date
 
       - if @expired_vehicles.size == 0
