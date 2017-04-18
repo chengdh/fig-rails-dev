@@ -16,6 +16,8 @@ class SpecEquipment < ActiveRecord::Base
     ret
   end
   def next_check_date
-    last_check_date + 1.year
+    lcd = last_check_date
+    lcd = Date.today if last_check_date.blank?
+    lcd + 1.year
   end
 end

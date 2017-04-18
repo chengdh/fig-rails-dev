@@ -12,6 +12,8 @@ class FireFightingEquipment < ActiveRecord::Base
   scope :next_check,->(org_ids){ransack(:last_upkeep_date_lte => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
   scope :expired,->(org_ids){ransack(:last_upkeep_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
   def next_check_date
-    last_upkeep_date + 1.year
+    lcd = last_upkeep_date
+    lcd = Date.today if last_upkeep_date.blank?
+    lcd + 1.year
   end
 end
