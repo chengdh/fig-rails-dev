@@ -5,5 +5,5 @@ class Driver < ActiveRecord::Base
   belongs_to :vehicle
   default_scope {order("org_id")}
 
-  scope :next_check,->(org_ids){ransack(:next_check_date_lte => 60.days.ago.to_date).result.where(org_id: org_ids)}
+  scope :next_check,->(org_ids){ransack(:next_check_date_lteq => 60.days.ago.to_date).result.where(org_id: org_ids)}
 end

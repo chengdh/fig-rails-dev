@@ -9,7 +9,7 @@ class FireFightingEquipment < ActiveRecord::Base
   default_scope {order("org_id DESC")}
 
   #等待年检设备,提前60天提醒
-  scope :next_check,->(org_ids){ransack(:last_upkeep_date_lte => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
+  scope :next_check,->(org_ids){ransack(:last_upkeep_date_lteq => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
   scope :expired,->(org_ids){ransack(:last_upkeep_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
   def next_check_date
     lcd = last_upkeep_date

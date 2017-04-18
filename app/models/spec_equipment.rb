@@ -5,7 +5,7 @@ class SpecEquipment < ActiveRecord::Base
 
   validates :ton,:volume,numericality: { greater_than_or_equal_to: 0}
 
-  scope :next_check,->(org_ids){ransack(:last_check_date_lte => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
+  scope :next_check,->(org_ids){ransack(:last_check_date_lteq => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
 
   def equip_type_des
     ret = ""
