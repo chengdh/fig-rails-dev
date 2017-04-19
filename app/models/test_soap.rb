@@ -37,12 +37,16 @@ class TestSoap
       list = business_data_list["BUSINESS_DATA"]
       Rails.logger.debug("return business data = " + list.to_s)
 
-      return if list.blank?
+      ret_ids = []
+      return ret_ids if list.blank?
+
+      pk = model_clazz.primary_key
       if list.kind_of?(Array)
         list.each do |record|
           #删除不需要的属性
           record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
-          id = record.delete("ID")
+          id = record.delete(pk.upcase)
+          ret_ids << id
           new_hash = {}
           record.each do |k,v|
             new_hash.merge!({k.downcase => v})
@@ -63,7 +67,8 @@ class TestSoap
         record = list
         #删除不需要的属性
         record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
-        id = record.delete("ID")
+        id = record.delete(pk.upcase)
+        ret_ids << id
         new_hash = {}
         record.each do |k,v|
           new_hash.merge!({k.downcase => v})
@@ -79,5 +84,6 @@ class TestSoap
           wf.save!
         end
       end
+      ret_ids
     end
 end

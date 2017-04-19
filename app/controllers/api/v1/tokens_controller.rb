@@ -18,53 +18,56 @@ class Api::V1::TokensController < ApplicationController
       return
     end
 
-    # FIXME 测试用
+    #FIXME 测试用
     render :status => 200, :json => {:result =>
                                        {id: 3492,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
     }
     return
-    p_business_type = "FND_USER_A"
-    parameters_item_array = [
-      {
-        "VTYPE" => "VAR",
-        "VNAME" => "user_name",
-        "VVALUE" => username,
-        "VSIGN" => "EQ"
-      }
-      # {
-      #   vtype: "VAR",
-      #   vname: "passwd",
-      #   vvalue: password,
-      #   vsign: "EQ"
-      # }
-    ]
-    response = TestSoap.get_soa_common_data(p_business_type,parameters_item_array)
-    business_result = Hash.from_xml(response.body[:output_parameters][:get_soa_common_data])["BUSINESS_RESULT"]
-    business_data_list = business_result["BUSINESS_DATA_LIST"]
 
-    login_success = true
 
-    logger.debug("return business_data_list = " + business_data_list.to_s)
-    login_success = false if business_data_list.blank?
+    response = SoapLogin.validate_user(username,password)
+    ret = {x_user_id: response.body[:output_parameters][:x_user_id],
+           x_ret_code: response.body[:output_parameters][:x_ret_code],
+           x_ret_message: response.body[:output_parameters][:x_ret_message]}
 
-    list = business_data_list["BUSINESS_DATA"]
-    logger.debug("return business data = " + list.to_s)
-    login_success = false  if list.blank?
+    login_success = ret[:x_ret_code].eql?(0)
 
-    user_record = list if list.kind_of?(Hash)
-
-    user_record = list.first if list.kind_of?(Array)
-
-    logger.debug("user_record = " + user_record.to_s)
-
+    # p_business_type = "FND_USER_A"
+    # parameters_item_array = [
+    #   {
+    #     "VTYPE" => "VAR",
+    #     "VNAME" => "user_name",
+    #     "VVALUE" => username,
+    #     "VSIGN" => "EQ"
+    #   }
+    # ]
+    # response = TestSoap.get_soa_common_data(p_business_type,parameters_item_array)
+    # business_result = Hash.from_xml(response.body[:output_parameters][:get_soa_common_data])["BUSINESS_RESULT"]
+    # business_data_list = business_result["BUSINESS_DATA_LIST"]
+    #
+    # login_success = true
+    #
+    # logger.debug("return business_data_list = " + business_data_list.to_s)
+    # login_success = false if business_data_list.blank?
+    #
+    # list = business_data_list["BUSINESS_DATA"]
+    # logger.debug("return business data = " + list.to_s)
+    # login_success = false  if list.blank?
+    #
+    # user_record = list if list.kind_of?(Hash)
+    #
+    # user_record = list.first if list.kind_of?(Array)
+    #
+    # logger.debug("user_record = " + user_record.to_s)
+    #
     #登录正常
     if login_success
       render :status => 200, :json => {:result =>
                                        {
-                                         id: user_record["ID"].to_i,
-                                         username: user_record["USER_NAME"],
+                                         id: ret[:x_user_id],
+                                         username: username,
                                          password: "password",
-                                         real_name:  user_record["USER_NAME"],
+                                         real_name:  username,
                                          default_org_id: 1,
                                          authentication_token: "token"
                                        }

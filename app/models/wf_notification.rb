@@ -19,6 +19,12 @@ class WfNotification < ActiveRecord::Base
       }
     ]
     TestSoap.sync_table(self,p_item_array)
+    wf_itemkeys = WfNotification.where(fuser_id: user_id).pluck(:item_key)
+
+    #同步cux_demand
+    CuxDemand.sync_with_ebs(wf_itemkeys)
+    CuxTran.sync_with_ebs(wf_itemkeys)
+    #同步cux_tran
     # response = TestSoap.get_soa_common_data(self.table_name.upcase,p_item_array)
     # business_result = Hash.from_xml(response.body[:output_parameters][:get_soa_common_data])["BUSINESS_RESULT"]
     # list = business_result["BUSINESS_DATA_LIST"]["BUSINESS_DATA"]

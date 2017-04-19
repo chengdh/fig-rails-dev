@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417064138) do
+ActiveRecord::Schema.define(version: 20170419021535) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -78,6 +78,34 @@ ActiveRecord::Schema.define(version: 20170417064138) do
     t.datetime "updated_at",                         null: false
   end
 
+  create_table "cux_soa_attached_doc_vs", force: :cascade do |t|
+    t.integer  "seq_num",              limit: 4
+    t.string   "file_name",            limit: 255
+    t.string   "category_description", limit: 255
+    t.string   "datatype_name",        limit: 255
+    t.integer  "datatype_id",          limit: 4
+    t.integer  "media_id",             limit: 4
+    t.string   "table_name",           limit: 255
+    t.string   "pk1_column",           limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "cux_tran_activity_histray_as", force: :cascade do |t|
+    t.string   "response_message",     limit: 255
+    t.string   "item_type",            limit: 255
+    t.string   "item_key",             limit: 255
+    t.string   "activity_result_code", limit: 255
+    t.string   "result_name",          limit: 255
+    t.string   "assigned_user",        limit: 255
+    t.string   "full_name",            limit: 255
+    t.integer  "notification_id",      limit: 4
+    t.datetime "begin_date"
+    t.datetime "end_date"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
   create_table "cux_transaction_headers_all_a", force: :cascade do |t|
     t.string   "require_number",      limit: 255
     t.string   "require_deparment",   limit: 255
@@ -137,6 +165,38 @@ ActiveRecord::Schema.define(version: 20170417064138) do
     t.decimal  "canceled_qty",                  precision: 15, scale: 2
     t.datetime "created_at",                                             null: false
     t.datetime "updated_at",                                             null: false
+  end
+
+  create_table "fnd_documents_long_texts", force: :cascade do |t|
+    t.integer  "media_id",           limit: 4
+    t.string   "app_source_version", limit: 255
+    t.text     "long_text",          limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "fnd_documents_short_texts", force: :cascade do |t|
+    t.integer  "media_id",           limit: 4
+    t.text     "short_text",         limit: 65535
+    t.string   "app_source_version", limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "fnd_lobs", force: :cascade do |t|
+    t.integer  "file_id",           limit: 4
+    t.string   "file_name",         limit: 255
+    t.string   "file_content_type", limit: 255
+    t.text     "file_data",         limit: 4294967295
+    t.datetime "upload_date"
+    t.datetime "expiration_date"
+    t.string   "program_name",      limit: 255
+    t.string   "program_tag",       limit: 255
+    t.string   "language",          limit: 255
+    t.string   "oracle_charset",    limit: 255
+    t.string   "file_format",       limit: 255
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "maximo_msgs", force: :cascade do |t|
