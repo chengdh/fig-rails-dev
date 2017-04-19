@@ -1,7 +1,7 @@
 #coding: utf-8
 class CreateCuxTranActivityHistrayAs < ActiveRecord::Migration
   def change
-    create_table :cux_tran_activity_histray_as do |t|
+    create_table :cux_tran_activity_history_a,id: false do |t|
       t.string :response_message
       t.string :item_type
       t.string :item_key

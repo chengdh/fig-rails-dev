@@ -2,7 +2,7 @@
 #长文本内容表
 class CreateFndDocumentsLongTexts < ActiveRecord::Migration
   def change
-    create_table :fnd_documents_long_texts do |t|
+    create_table :fnd_documents_long_text,id: false do |t|
       t.integer :media_id
       t.string :app_source_version
       t.text :long_text

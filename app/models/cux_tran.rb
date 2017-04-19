@@ -25,7 +25,6 @@ class CuxTran < ActiveRecord::Base
 
   #通过wf_itemkey更新需求数据
   def self.sync_with_ebs(wf_item_keys)
-    p_item_array = []
     wf_item_keys.each do |k|
       p_item_array << {
         "VTYPE" => "VAR",

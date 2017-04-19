@@ -2,7 +2,7 @@
 #需求计划审批历史表
 class CreateCuxDemandAuditHis < ActiveRecord::Migration
   def change
-    create_table :cux_posa_item_activity_his_a do |t|
+    create_table :cux_posa_item_activity_his_a,id: false do |t|
       t.integer :submit_by_org_id
       t.string :submit_by_org_name,limit: 60
       t.string :submit_schedule_type,limit: 60

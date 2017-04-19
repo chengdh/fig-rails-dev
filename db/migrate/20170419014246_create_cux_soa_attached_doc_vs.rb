@@ -2,7 +2,7 @@
 #附件信息视图
 class CreateCuxSoaAttachedDocVs < ActiveRecord::Migration
   def change
-    create_table :cux_soa_attached_doc_vs do |t|
+    create_table :cux_soa_attached_doc_v,id: false do |t|
       t.integer :seq_num
       t.string :file_name
       t.string :category_description

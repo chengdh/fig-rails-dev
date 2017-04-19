@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
     t.datetime "updated_at",                                                         null: false
   end
 
-  create_table "cux_posa_item_activity_his_a", force: :cascade do |t|
+  create_table "cux_posa_item_activity_his_a", id: false, force: :cascade do |t|
     t.integer  "submit_by_org_id",     limit: 4
     t.string   "submit_by_org_name",   limit: 60
     t.string   "submit_schedule_type", limit: 60
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
     t.datetime "updated_at",                         null: false
   end
 
-  create_table "cux_soa_attached_doc_vs", force: :cascade do |t|
+  create_table "cux_soa_attached_doc_v", id: false, force: :cascade do |t|
     t.integer  "seq_num",              limit: 4
     t.string   "file_name",            limit: 255
     t.string   "category_description", limit: 255
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "cux_tran_activity_histray_as", force: :cascade do |t|
+  create_table "cux_tran_activity_history_a", id: false, force: :cascade do |t|
     t.string   "response_message",     limit: 255
     t.string   "item_type",            limit: 255
     t.string   "item_key",             limit: 255
@@ -167,7 +167,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
     t.datetime "updated_at",                                             null: false
   end
 
-  create_table "fnd_documents_long_texts", force: :cascade do |t|
+  create_table "fnd_documents_long_text", id: false, force: :cascade do |t|
     t.integer  "media_id",           limit: 4
     t.string   "app_source_version", limit: 255
     t.text     "long_text",          limit: 65535
@@ -175,7 +175,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "fnd_documents_short_texts", force: :cascade do |t|
+  create_table "fnd_documents_short_text", id: false, force: :cascade do |t|
     t.integer  "media_id",           limit: 4
     t.text     "short_text",         limit: 65535
     t.string   "app_source_version", limit: 255
