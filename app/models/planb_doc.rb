@@ -33,8 +33,9 @@ class PlanbDoc < ActiveRecord::Base
 
   validates :org_id,:user_id,:name,:plan_date,:plan_length,:plan_type,:join_persons,:join_count,
     :plan_content,:plan_process,:document_name,:audit_date,:audit_persons,
-    :audit_item_1_state,:audit_item_2_state,:audit_item_3_state,:audit_item_4_state,
-    :audit_item_4_state,:audit_item_5_state,:audit_item_6_state,:audit_item_7_state,:note,:check_leader, presence: true
+    # :audit_item_1_state,:audit_item_2_state,:audit_item_3_state,:audit_item_4_state,
+    # :audit_item_5_state,:audit_item_6_state,:audit_item_7_state,
+    :note,:check_leader, presence: true
   validates :plan_length,:join_count, numericality: true
   validates :plan_content,:plan_process, length: { in: 30..2000 }
 
