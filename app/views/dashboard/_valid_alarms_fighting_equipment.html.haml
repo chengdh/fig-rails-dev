@@ -1,0 +1,17 @@
+.box.box-info
+  .box-header
+    %h3.box-title 临近报废消防器材
+  .box-body
+    %table.table.table-condensed.table-stripped.table-hover
+      - @valid_date_fire_fighting_equipments.each do |t|
+        %tr
+          %td
+            %span.label.label-info 临近报废
+          %td= t.org
+          %td= link_to t.name,t
+          %td= t.valid_date
+
+      - if @valid_date_fire_fighting_equipments.size == 0
+        %tr
+          %td{colspan: 4}
+            未查询到数据

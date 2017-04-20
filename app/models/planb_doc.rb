@@ -42,7 +42,7 @@ class PlanbDoc < ActiveRecord::Base
   validate :must_less_than_one_photo
 
   #待审批
-  scope :waitting_confirm,->(org_ids){ where(check_state: "draft",org_id: org_ids)}
+  scope :waitting_confirm,->(org_ids){ where(check_state: "submitted",org_id: org_ids)}
   #待修改
   scope :rejected,->(org_id){ where(check_state: "rejected",org_id: org_id)}
 

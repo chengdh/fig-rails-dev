@@ -34,6 +34,11 @@
     .col-md-5.col-md-offset-1
       = render "fire_fighting_equipment"
 
+  - if can? :read,FireFightingEquipment and @valid_date_fire_fighting_equipments.present?
+    .col-md-5.col-md-offset-1
+      = render "valid_alarms_fighting_equipment"
+
+
   / 交通工具
   - if can? :read,Vehicle and @expired_vehicles.present?
     .col-md-5.col-md-offset-1

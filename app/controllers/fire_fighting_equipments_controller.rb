@@ -1,6 +1,6 @@
 #coding: utf-8
 class FireFightingEquipmentsController < BaseController
-  table :org,:name,:location,:model,:qty,:unit,:out_factory_date,:use_year,:valid_date,:last_upkeep_date,:duty_person
+  table :org,:name,:location,:model,:qty,:unit,:out_factory_date,:use_year,:valid_date,:last_upkeep_date,:next_check_date,:duty_person
 
   #导出查询结果为excel
   #GET fire_fighting_equipments/export_excel

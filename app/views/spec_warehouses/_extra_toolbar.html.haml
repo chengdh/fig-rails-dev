@@ -1,6 +1,6 @@
 - if ["index"].include?(params[:action])
-  = link_to export_excel_spec_warehouses_path({"q[warehouse_type_eq]" => "center_warehouse"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-物流中心仓库" do
+  = link_to export_excel_spec_warehouses_path(params[:q]),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-物流中心仓库" do
     %i.fa.fa-file-excel-o{style: "color : blue;"}
-  = link_to export_excel_spec_warehouses_path({"q[warehouse_type_eq]" => "station_warehouse"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-烟叶收购站仓库" do
-    %i.fa.fa-file-excel-o{style: "color : blue;"}
-
+  -# = link_to export_excel_spec_warehouses_path({"q[warehouse_type_eq]" => "station_warehouse"}.try(:merge,params[:q].present? ? params[:q] : {})),:class => "btn btn-default","data-toggle" => "tooltip","data-placement" => "top",:title => "导出EXCEL-烟叶收购站仓库" do
+  -#   %i.fa.fa-file-excel-o{style: "color : blue;"}
+  -#

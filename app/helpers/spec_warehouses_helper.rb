@@ -1,12 +1,12 @@
 #coding: utf-8
 module SpecWarehousesHelper
   def spec_warehouse_types_for_select
-    [["卷烟物流中心仓库","center_warehouse"],["烟叶收购站(点)仓库","station_warehouse"]]
+    [["卷烟物流中心仓库","center_warehouse"],["烟叶存储仓库(含烟站)","station_warehouse"]]
   end
   def spec_warehouse_type_des(type_code)
     ret = ""
     ret = "卷烟物流中心仓库" if type_code.eql?('center_warehouse')
-    ret = "烟叶收购站" if type_code.eql?('station_warehouse')
+    ret = "烟叶存储仓库(含烟站)" if type_code.eql?('station_warehouse')
     ret
   end
 

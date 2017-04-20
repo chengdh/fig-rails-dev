@@ -5,7 +5,7 @@ class DangerOrgHiddenDangersController < HiddenDangersController
   #the load part of a load_and_authorize_resource call will not work correctly.
   #See https://github.com/ryanb/cancan/issues/274 for the discussions.
   #参照https://github.com/CanCanCommunity/cancancan/wiki/Inherited-Resources解决该问题
-  skip_load_and_authorize_resource :only => [:index,:search]
+  skip_load_and_authorize_resource :only => [:index,:search,:export_excel]
   #load_and_authorize_resource :training
   table :org,:danger_org,:bill_no,:name,:categ_des,:deliver_date,:fix_period_des,:expire_fix_date,:fixed_state_des,:review_state_des
 

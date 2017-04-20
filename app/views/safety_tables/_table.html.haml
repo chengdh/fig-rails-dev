@@ -111,7 +111,7 @@
       %tfoot{:style => "font-weight : bold;color :red;"}
         %tr
           %td
-          %td 本月合计
+          %td 合计
           %td= @q.result.sum("safety_check_count + special_safety_check_count + evening_safety_check_count")
           %td= @q.result.sum("safety_check_count")
           %td= @q.result.sum("special_safety_check_count")

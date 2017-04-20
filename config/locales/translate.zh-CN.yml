@@ -253,6 +253,7 @@ zh-CN:
         valid_date: 有效期
         last_upkeep_date: 上次维保时间
         duty_person: 责任人
+        next_check_date: 下次维保时间
         unit: 单位
         unit_id: 单位
 
@@ -346,6 +347,7 @@ zh-CN:
         deliver_org_id: 发放部门
         deliver_org: 发放部门
         post: 工种(岗位)
+        post_des: 工种(岗位)
         save_days: 保存期限(天)
         maintain_days: 维保期限(天)
 

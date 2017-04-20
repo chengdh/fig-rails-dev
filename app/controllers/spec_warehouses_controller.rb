@@ -9,7 +9,7 @@ class SpecWarehousesController < BaseController
     @q= end_of_association_chain.where(org_id: current_ability_org_ids).ransack(params[:q])
     spec_warehouses = @q.result
     set_collection_ivar(spec_warehouses)
-    xls = render_to_string(partial: "excel_#{params[:q][:warehouse_type_eq]}",layout: false)
+    xls = render_to_string(partial: "excel_center_warehouse",layout: false)
     xls = show_or_hide_fields_for_export(xls)
     send_data xls,:filename => "仓库信息.xls"
   end

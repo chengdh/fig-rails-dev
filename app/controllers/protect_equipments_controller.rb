@@ -1,6 +1,8 @@
 #coding: utf-8
 #劳动防护用品
 class ProtectEquipmentsController < BaseController
+  table :protect_equipment_category,:deliver_org,:post_des,:save_days,:maintain_days,:note
+
   #导出查询结果为excel
   #GET protect_equipments/export_excel
   def export_excel

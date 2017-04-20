@@ -29,6 +29,7 @@ class DashboardController < ApplicationController
 
     #消防器材
     @expired_fire_fighting_equipments = FireFightingEquipment.next_check(current_ability_org_ids)
+    @valid_date_fire_fighting_equipments = FireFightingEquipment.valid_date_alarms(current_ability_org_ids)
     #交通工具
 
     @expired_vehicles = Vehicle.next_check(current_ability_org_ids)
