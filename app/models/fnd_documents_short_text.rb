@@ -1,4 +1,4 @@
-#coding: utf-9
+#coding: utf-8
 #短文本内容表
 class FndDocumentsShortText < ActiveRecord::Base
   self.primary_key = "media_id"
