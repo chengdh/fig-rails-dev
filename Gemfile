@@ -4,6 +4,7 @@ source 'https://gems.ruby-china.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.1.4'
+gem 'rails_12factor'
 gem 'rails', '4.2.1'
 # Use mysql as the database for Active Record
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
