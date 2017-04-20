@@ -74,7 +74,8 @@ production:
   encoding: utf8
   reconnect: true
   pool: 5
-  database: guodiantou_production
-  username: root
-  password: ssapp
-  socket: /var/run/mysqld/mysqld.sock
+  url: <%= ENV['DATABASW_URL'] %> 
+  # database: guodiantou_production
+  # username: root
+  # password: ssapp
+  # socket: /var/run/mysqld/mysqld.sock
