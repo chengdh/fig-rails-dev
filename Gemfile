@@ -24,7 +24,7 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-gem 'ruby-plsql',github: 'rsim/ruby-plsql',branch: 'master'
+# gem 'ruby-plsql',github: 'rsim/ruby-plsql',branch: 'master'
 # bundle exec rake doc:rails generates the API under doc/api.
 
 
@@ -59,8 +59,8 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'mysql2'
-gem 'activerecord-oracle_enhanced-adapter'
-gem 'ruby-oci8', '~> 2.2', '>= 2.2.3'
+# gem 'activerecord-oracle_enhanced-adapter'
+# gem 'ruby-oci8', '~> 2.2', '>= 2.2.3'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'formtastic-bootstrap'
