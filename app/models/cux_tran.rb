@@ -3,14 +3,14 @@
 class CuxTran < ActiveRecord::Base
   self.table_name = "cux_transaction_headers_all_a"
   self.primary_key = "id"
-  has_many :cux_tran_lines
+  has_many :cux_tran_lines,foreign_key: :require_id
   # has_many :cux_tran_activity_histray_as,foreign_key: :item_key
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys).includes(:cux_tran_lines)}
 
   def self.unread_bills(wf_itemkeys,business_type)
-    sync_with_ebs(wf_itemkeys)
-    where(wf_itemkey: wf_itemkeys,business_type: business_type).includes(:cux_tran_lines).to_json(include: :cux_tran_lines)
+    # sync_with_ebs(wf_itemkeys)
+    where(wf_itemkey: wf_itemkeys,business_type: business_type).includes(:cux_tran_lines).to_json(include: {cux_tran_lines: {methods: :cux_tran_id}})
   end
 
   #审批历史记录
