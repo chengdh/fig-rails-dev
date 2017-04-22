@@ -2,6 +2,12 @@
 class CuxTranActivityHistrayA < ActiveRecord::Base
   self.primary_key = "notification_id"
   self.table_name = "cux_tran_activity_history_a"
+
+  belongs_to :cux_tran,foreign_key: :item_key,primary_key: :wf_itemkey
+  def cux_tran_id
+    cux_tran.id
+  end
+
   def self.sync_with_ebs(wf_itemkey_array)
     p_item_array = []
     wf_itemkey_array.each do |wf_itemkey|

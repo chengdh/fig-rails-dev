@@ -4,24 +4,27 @@ class CuxTran < ActiveRecord::Base
   self.table_name = "cux_transaction_headers_all_a"
   self.primary_key = "id"
   has_many :cux_tran_lines,foreign_key: :require_id
-  # has_many :cux_tran_activity_histray_as,foreign_key: :item_key
+  has_many :cux_tran_activity_histray_as,foreign_key: :item_key,primary_key: :wf_itemkey
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_transaction_headers_all")},foreign_key: :pk1_column
 
-  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys).includes(:cux_tran_lines)}
+  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
 
   def self.unread_bills(wf_itemkeys,business_type)
     # sync_with_ebs(wf_itemkeys)
-    where(wf_itemkey: wf_itemkeys,business_type: business_type).includes(:cux_tran_lines).to_json(include: {cux_tran_lines: {methods: :cux_tran_id}})
+    where(wf_itemkey: wf_itemkeys,business_type: business_type).to_json(
+      include:{
+        cux_tran_lines: {methods: [:cux_tran_id]},
+        cux_tran_activity_histray_as: {methods: :cux_tran_id },
+        cux_soa_attached_doc_vs: {
+          methods: :cux_tran_id,
+          include: {
+            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+            fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
+          }
+        }
+      })
   end
-
-  #审批历史记录
-  def audit_his
-    CuxDemandAuditHis.where(item_key: wf_itemkey)
-  end
-  #附件表
-  def attatches
-    CuxSoaAttachedDocV.where(pk1_column: id,table_name: "cux_transaction_headers_all")
-  end
-
 
   #通过wf_itemkey更新需求数据
   def self.sync_with_ebs(wf_item_keys)
@@ -40,7 +43,7 @@ class CuxTran < ActiveRecord::Base
     CuxTranActivityHistrayA.sync_with_ebs(wf_item_keys)
     #同步附件
     cux_tran_ids.each do |ct_id|
-      CuxSoaAttachedDocV.sync_with_ebs(cm_id,"cux_transaction_headers_all")
+      CuxSoaAttachedDocV.sync_with_ebs(ct_id,"cux_transaction_headers_all")
     end
 
   end

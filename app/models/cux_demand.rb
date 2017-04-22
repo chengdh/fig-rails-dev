@@ -3,22 +3,28 @@ class CuxDemand < ActiveRecord::Base
   self.table_name = "cux_demand_platform_headers_a"
   self.primary_key = "id"
   has_many :cux_demand_lines
-  # has_many :cux_deman_audit_hises,foreign_key: :item_key
-  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys).includes(:cux_demand_lines)}
 
-  #审批历史记录
-  def audit_his
-    CuxDemandAuditHis.where(item_key: wf_itemkey)
-  end
+  #审批信息
+  has_many :cux_demand_audit_his,class_name: "CuxDemandAuditHis",foreign_key: :item_key,primary_key: :wf_itemkey
+  #附件
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_demand_platform_headers")},foreign_key: :pk1_column
 
-  #附件表
-  def attatches
-    CuxSoaAttachedDocV.where(pk1_column: id,table_name: "cux_demand_platform_headers")
-  end
+  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
 
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(include: :cux_demand_lines)
+    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
+      include:{ cux_demand_lines: {},
+                cux_demand_audit_his: {methods: :cux_demand_id },
+                cux_soa_attached_doc_vs: {
+                  methods: :cux_demand_id,
+                  include: { 
+                    fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+                    fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+                    fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
+                  }
+                }
+    })
   end
 
   #通过wf_itemkey更新需求数据

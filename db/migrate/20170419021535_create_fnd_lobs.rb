@@ -2,7 +2,7 @@
 #大数据附件
 class CreateFndLobs < ActiveRecord::Migration
   def change
-    create_table :fnd_lobs do |t|
+    create_table :fnd_lob,id: false do |t|
       t.integer :file_id
       t.string :file_name
       t.string :file_content_type

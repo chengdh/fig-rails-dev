@@ -3,9 +3,21 @@
 class CuxSoaAttachedDocV < ActiveRecord::Base
   self.primary_key = "media_id"
   self.table_name = "cux_soa_attached_doc_v"
-  has_one :fnd_documents_short_text
-  has_one :fnd_documents_long_text
+
+  belongs_to :cux_demand,foreign_key: :pk1_column
+  belongs_to :cux_tran,foreign_key: :pk1_column
+
+  has_one :fnd_documents_short_text,foreign_key: :media_id
+  has_one :fnd_documents_long_text,foreign_key: :media_id
   has_one :fnd_lob,foreign_key: :file_id
+
+  def cux_demand_id
+    cux_demand.id
+  end
+
+  def cux_tran_id
+    cux_tran.id
+  end
 
   #同步ebs
   def self.sync_with_ebs(ref_id,table_name)

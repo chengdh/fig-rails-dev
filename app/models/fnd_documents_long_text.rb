@@ -3,8 +3,8 @@
 class FndDocumentsLongText < ActiveRecord::Base
   self.primary_key = "media_id"
   self.table_name = "fnd_documents_long_text"
+  belongs_to :cux_soa_attached_doc_v,foreign_key: :media_id
 
-  belongs_to :cux_soa_attached_doc_v
   #同步ebs
   def self.sync_with_ebs(media_id)
     p_item_array = []
@@ -15,5 +15,9 @@ class FndDocumentsLongText < ActiveRecord::Base
       "VSIGN" => "EQ"
     }
     TestSoap.sync_table(self,p_item_array)
+  end
+
+  def cux_soa_attached_doc_v_id
+   media_id
   end
 end
