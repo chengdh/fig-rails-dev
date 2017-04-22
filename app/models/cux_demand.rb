@@ -18,7 +18,7 @@ class CuxDemand < ActiveRecord::Base
                 cux_demand_audit_his: {methods: :cux_demand_id },
                 cux_soa_attached_doc_vs: {
                   methods: :cux_demand_id,
-                  include: { 
+                  include: {
                     fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
                     fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
                     fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
