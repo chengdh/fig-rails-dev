@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN
+//= require fancybox/dist/jquery.fancybox
+//= require cux_demands

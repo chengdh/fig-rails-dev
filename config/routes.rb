@@ -1,15 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations" }
 
-  resources :roles
+  resources :cux_demands,only: [:index,:show]
+  resources :cux_trans,only: [:index,:show]
 
-  resources :orgs
-
-  resources :users do
-    member do
-      put :update_default_attr
-    end
-  end
   namespace :api do
     namespace :v1  do
       resources :tokens,:only => [:create, :destroy] do

@@ -1,0 +1,19 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover
+    %thead
+      %tr
+        %th 物料名称
+        %th 规格
+        %th 单位
+        %th 申请数量
+    %tbody
+      - @cux_tran.cux_tran_lines.each_with_index do |line,i|
+        %tr
+          %td
+            =line.item_dec
+          %td
+            =line.item_spc
+          %td
+            =line.uom
+          %td
+            =line.required_qty

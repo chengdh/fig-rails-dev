@@ -19,6 +19,19 @@ class CuxSoaAttachedDocV < ActiveRecord::Base
     cux_tran.id
   end
 
+  #对应附件内容
+  def relate_content
+    ret = ""
+    if datatype_id.eql?(1)
+      ret = fnd_documents_short_text.try(:short_text)
+    elsif datatype_id.eql?(2)
+      ret = fnd_documents_long_text.try(:long_text)
+    else
+      ret = fnd_lob.try(:file_data)
+    end
+    ret
+  end
+
   #同步ebs
   def self.sync_with_ebs(ref_id,table_name)
     p_item_array = []
