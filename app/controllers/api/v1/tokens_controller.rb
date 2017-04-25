@@ -19,10 +19,10 @@ class Api::V1::TokensController < ApplicationController
     end
 
     #FIXME 测试用
-    # render :status => 200, :json => {:result =>
-    #                                    {id: 3492,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
-    # }
-    # return
+    render :status => 200, :json => {:result =>
+                                       {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    }
+    return
 
 
     response = SoapLogin.validate_user(username,password)
