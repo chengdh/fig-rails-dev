@@ -9,6 +9,21 @@ class CuxTran < ActiveRecord::Base
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
 
+  def self.unread_bills_all(wf_itemkeys)
+    where(wf_itemkey: wf_itemkeys).to_json(
+      include:{
+        cux_tran_lines: {methods: [:cux_tran_id]},
+        cux_tran_activity_histray_as: {methods: :cux_tran_id },
+        cux_soa_attached_doc_vs: {
+          methods: :cux_tran_id,
+          include: {
+            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+            fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
+          }
+        }
+      })
+  end
   def self.unread_bills(wf_itemkeys,business_type)
     # sync_with_ebs(wf_itemkeys)
     where(wf_itemkey: wf_itemkeys,business_type: business_type).to_json(

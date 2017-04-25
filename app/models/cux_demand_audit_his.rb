@@ -10,8 +10,8 @@ class CuxDemandAuditHis < ActiveRecord::Base
   end
 
   def self.sync_with_ebs(wf_itemkey_array)
-    p_item_array = []
     wf_itemkey_array.each do |wf_itemkey|
+      p_item_array = []
       p_item_array << {
         "VTYPE" => "VAR",
         "VNAME" => "item_key",

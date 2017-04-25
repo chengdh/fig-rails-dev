@@ -8,20 +8,25 @@
             审批中
             -# = @cux_demand.apply_status
     %tr
-      %th 业务实体:
-      %td
-        = @cux_demand.ou_name
       %th 计划编号:
-      %td
+      %td{:colspan => 3}
+
         = @cux_demand.apply_number
+
+    %tr
+      %th 需求人员:
+      %td{:colspan => 3}
+        = @cux_demand.applier_user
+
+    %tr
+      %th 业务实体:
+      %td{:colspan => 3}
+        = @cux_demand.ou_name
     %tr
       %th 提报部门:
-      %td
+      %td{:colspan => 3}
         = @cux_demand.apply_deparment
-      %th 需求人员:
-      %td
-        = @cux_demand.applier_user
-  
+
     %tr
       %th 计划来源:
       %td
@@ -31,28 +36,33 @@
         = @cux_demand.apply_type
     %tr
       %th 项目类型:
-      %td
+      %td{:colspan => 3}
         -# = @cux_demand.project_type
+    %tr
       %th 项目编号:
-      %td
+      %td{:colspan => 3}
         = @cux_demand.project_number
     %tr
       %th 任务说明:
-      %td{:colspan => 3}
+      %td.vert-align_td{:colspan => 3}
         = @cux_demand.task_name
+
+    %tr
+      %th 任务编号:
+      %td.vert-align_td{:colspan => 3}
+        = @cux_demand.task_number
     %tr
       %th 业务类型:
       %td
         -# = @cux_demand.business_type
-      %th 任务编号:
-      %td
-        = @cux_demand.task_number
-    %tr
+          %tr
       %th 二级单位:
       %td
         -# = @cux_demand.sub_org_name
+
+    %tr
       %th 产业板块:
-      %td
+      %td.vert-align_td{:colspan => 3}
         -# = @cux_demand.industry_sector
     %tr
       %th 来源编号:
@@ -77,7 +87,7 @@
     -#     = @cux_demand.attribute1
     %tr
       %th 备注:
-      %td{:colspan => 3}
+      %td.vert-align_td{:colspan => 3}
         = @cux_demand.remark
     %tr
       %td{:colspan => 4,:style => "text-align: center;"} 预算 
