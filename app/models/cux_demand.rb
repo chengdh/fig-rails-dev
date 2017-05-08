@@ -48,6 +48,7 @@ class CuxDemand < ActiveRecord::Base
     end
   end
   def self.audit(user_id,username,notification_id,b_pass,audit_note)
+    return {x_ret_code: '0',x_ret_message: '数据处理成功'}
     # ret = plsql.CUX_MOBILE_APP_PVT.GENERAL_APPROVAL(user_id,
     #                                                 username,
     #                                                 notification_id,
