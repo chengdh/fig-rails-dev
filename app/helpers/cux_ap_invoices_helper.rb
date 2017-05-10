@@ -1,0 +1,2 @@
+module CuxApInvoicesHelper
+end

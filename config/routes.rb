@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations" }
 
+
   resources :cux_demands,only: [:index,:show]
+  resources :cux_ap_invoices,only: [:index,:show]
   resources :cux_trans,only: [:index,:show]
 
   namespace :api do

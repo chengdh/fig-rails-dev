@@ -11,7 +11,85 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510030800) do
+ActiveRecord::Schema.define(version: 20170510061130) do
+
+  create_table "ap_wfapproval_histories", id: false, force: :cascade do |t|
+    t.integer  "invoice_id",            limit: 4
+    t.integer  "line_number",           limit: 4
+    t.string   "response",              limit: 255
+    t.integer  "person_id",             limit: 4
+    t.string   "approver_name",         limit: 255
+    t.decimal  "amount_approved",                   precision: 15, scale: 2
+    t.string   "approver_comments",     limit: 255
+    t.date     "last_update_date"
+    t.string   "response_dsp",          limit: 255
+    t.integer  "iteration",             limit: 4
+    t.string   "approval_context",      limit: 255
+    t.string   "approval_context_dsp",  limit: 255
+    t.integer  "approver_order_number", limit: 4
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+  end
+
+  create_table "cux_ap_invoice_lines_a", force: :cascade do |t|
+    t.integer  "org_id",                limit: 4
+    t.integer  "invoice_id",            limit: 4
+    t.integer  "line_number",           limit: 4
+    t.string   "line_type_lookup_code", limit: 255
+    t.string   "line_type",             limit: 255
+    t.string   "description",           limit: 255
+    t.integer  "default_dist_ccid",     limit: 4
+    t.string   "default_dist_cccode",   limit: 255
+    t.string   "default_dist_ccdesc",   limit: 255
+    t.integer  "po_header_id",          limit: 4
+    t.string   "po_seg",                limit: 255
+    t.decimal  "quantity_invoiced",                 precision: 15, scale: 2
+    t.string   "unit_meas_lookup_code", limit: 255
+    t.decimal  "unit_price",                        precision: 15, scale: 2
+    t.decimal  "amount",                            precision: 15, scale: 2
+    t.date     "creation_date"
+    t.date     "last_update_date"
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
+  end
+
+  create_table "cux_ap_invoices_a", force: :cascade do |t|
+    t.integer  "org_id",                        limit: 4
+    t.string   "invoice_type_lookup_code",      limit: 255
+    t.string   "invoice_type",                  limit: 255
+    t.integer  "vendor_id",                     limit: 4
+    t.string   "vendor_name",                   limit: 255
+    t.integer  "vendor_site_id",                limit: 4
+    t.string   "vendor_site_code",              limit: 255
+    t.string   "invoice_num",                   limit: 255
+    t.date     "invoice_date"
+    t.date     "gl_date"
+    t.decimal  "invoice_amount",                            precision: 15, scale: 2
+    t.string   "description",                   limit: 255
+    t.integer  "accts_pay_code_combination_id", limit: 4
+    t.string   "accts_pay_code_seg",            limit: 255
+    t.string   "accts_pay_code_desc",           limit: 255
+    t.string   "attribute2",                    limit: 255
+    t.string   "attribute3",                    limit: 255
+    t.string   "attribute3_dsp",                limit: 255
+    t.string   "attribute4",                    limit: 255
+    t.string   "attribute4_dsp",                limit: 255
+    t.string   "attribute7",                    limit: 255
+    t.string   "attribute8",                    limit: 255
+    t.string   "attribute9",                    limit: 255
+    t.string   "attribute10",                   limit: 255
+    t.string   "attribute11",                   limit: 255
+    t.string   "attribute12",                   limit: 255
+    t.string   "attribute13",                   limit: 255
+    t.string   "attribute14",                   limit: 255
+    t.string   "attribute15",                   limit: 255
+    t.string   "wfapproval_status",             limit: 255
+    t.string   "wfapproval_status_dsp",         limit: 255
+    t.string   "posting_flag",                  limit: 255
+    t.string   "approval_status_lookup_code",   limit: 255
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
+  end
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
