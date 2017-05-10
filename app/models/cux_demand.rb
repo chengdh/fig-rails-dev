@@ -56,6 +56,7 @@ class CuxDemand < ActiveRecord::Base
     #                                                 audit_note,
     #                                                 user_id)
     #
+    #
     response = SoapApproval.general_approval(user_id,username,"",notification_id,b_pass,audit_note,"")
     {x_ret_code: response.body[:output_parameters][:x_ret_code],x_ret_message: response.body[:output_parameters][:x_ret_message]}
   end
