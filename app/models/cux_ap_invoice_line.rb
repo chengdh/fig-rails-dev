@@ -2,7 +2,7 @@
 #应付发票行
 class CuxApInvoiceLine < ActiveRecord::Base
   self.table_name = "cux_ap_invoice_lines_a"
-  belongs_to :cux_ap_invoide,foreigh_key: :invoice_id
+  belongs_to :cux_ap_invoice,foreigh_key: :invoice_id
   def self.sync_with_ebs(inv_ids)
     inv_ids.each do |inv_id|
       p_item_array = []
