@@ -19,10 +19,10 @@ class Api::V1::TokensController < ApplicationController
     end
 
     #FIXME 测试用
-    render :status => 200, :json => {:result =>
-                                       {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
-    }
-    return
+    # render :status => 200, :json => {:result =>
+    #                                    {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    # }
+    # return
 
 
     response = SoapLogin.validate_user(username,password)
@@ -75,6 +75,12 @@ class Api::V1::TokensController < ApplicationController
                                          authentication_token: "token"
                                        }
       }
+      if UsersLogin.exists?(:user_id => ret[:x_user_id])
+        user_login = UsersLogin.find_by(user_id: ret[:x_user_id])
+        user_login.update_attributes(login_date: DateTime.now)
+      else
+        UsersLogin.create!(user_id: ret[:x_user_id],username: username,login_date: DateTime.now)
+      end
     else
       logger.info("User #{username} failed signin, password \"#{password}\" is invalid")
       render :status => 401, :json => {:message => "Invalid username or password."}

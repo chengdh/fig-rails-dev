@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419021535) do
+ActiveRecord::Schema.define(version: 20170510030800) do
 
   create_table "cux_demand_platform_headers_a", force: :cascade do |t|
     t.string   "apply_number",        limit: 30
@@ -140,7 +140,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
   end
 
   create_table "cux_transaction_lines_all_a", force: :cascade do |t|
-    t.integer  "cux_tran_id",       limit: 4
+    t.integer  "require_id",        limit: 4
     t.integer  "line_number",       limit: 4
     t.integer  "organization_id",   limit: 4
     t.integer  "inventory_item_id", limit: 4
@@ -183,8 +183,7 @@ ActiveRecord::Schema.define(version: 20170419021535) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "fnd_lobs", force: :cascade do |t|
-    t.integer  "file_id",           limit: 4
+  create_table "fnd_lob", primary_key: "file_id", force: :cascade do |t|
     t.string   "file_name",         limit: 255
     t.string   "file_content_type", limit: 255
     t.text     "file_data",         limit: 4294967295
@@ -332,6 +331,14 @@ ActiveRecord::Schema.define(version: 20170419021535) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  create_table "users_logins", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "username",   limit: 60
+    t.datetime "login_date"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "wf_notifications_a", force: :cascade do |t|
     t.string   "message_type", limit: 30
