@@ -21,8 +21,10 @@ class WfNotification < ActiveRecord::Base
     TestSoap.sync_table(self,p_item_array)
     wf_itemkeys = WfNotification.where(fuser_id: user_id).pluck(:item_key)
 
-    #同步cux_demand
+    #同步
     CuxDemand.sync_with_ebs(wf_itemkeys)
     CuxTran.sync_with_ebs(wf_itemkeys)
+    PoHeader.sync_with_ebs(wf_itemkeys)
+    CuxApInvoice.sync_with_ebs(wf_itemkeys)
   end
 end
