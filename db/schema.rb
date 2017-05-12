@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510061130) do
+ActiveRecord::Schema.define(version: 20170512022242) do
 
   create_table "ap_wfapproval_histories", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -306,6 +306,77 @@ ActiveRecord::Schema.define(version: 20170510061130) do
     t.string   "manager",    limit: 30
     t.string   "phone",      limit: 30
     t.string   "email",      limit: 30
+  end
+
+  create_table "po_action_history_a", id: false, force: :cascade do |t|
+    t.integer  "object_id",              limit: 4
+    t.string   "object_type_code",       limit: 255
+    t.string   "object_sub_type_code",   limit: 255
+    t.integer  "sequence_num",           limit: 4
+    t.date     "last_update_date"
+    t.integer  "last_updated_by",        limit: 4
+    t.date     "creation_date"
+    t.integer  "created_by",             limit: 4
+    t.string   "action_code",            limit: 255
+    t.date     "action_date"
+    t.integer  "employee_id",            limit: 4
+    t.integer  "approval_path_id",       limit: 4
+    t.string   "note",                   limit: 255
+    t.integer  "object_revision_num",    limit: 4
+    t.string   "offline_code",           limit: 255
+    t.integer  "last_update_login",      limit: 4
+    t.integer  "request_id",             limit: 4
+    t.integer  "program_application_id", limit: 4
+    t.integer  "program_id",             limit: 4
+    t.date     "program_update_date"
+    t.date     "program_date"
+    t.integer  "approval_group_id",      limit: 4
+    t.string   "employee_name",          limit: 255
+    t.string   "action_code_dsp",        limit: 255
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "po_headers_a", force: :cascade do |t|
+    t.integer  "agent_id",         limit: 4
+    t.string   "agent_name",       limit: 255
+    t.integer  "last_updated_by",  limit: 4
+    t.date     "last_update_date"
+    t.string   "segment1",         limit: 255
+    t.integer  "vendor_id",        limit: 4
+    t.string   "vendor_name",      limit: 255
+    t.integer  "vendor_site_id",   limit: 4
+    t.string   "vendor_site_code", limit: 255
+    t.string   "payment_terms",    limit: 255
+    t.string   "comments",         limit: 255
+    t.string   "wf_item_type",     limit: 255
+    t.string   "wf_item_key",      limit: 255
+    t.integer  "org_id",           limit: 4
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "po_lines_a", force: :cascade do |t|
+    t.date     "last_update_date"
+    t.integer  "last_updated_by",       limit: 4
+    t.date     "creation_date"
+    t.integer  "created_by",            limit: 4
+    t.integer  "po_header_id",          limit: 4
+    t.integer  "line_type_id",          limit: 4
+    t.string   "line_type",             limit: 255
+    t.integer  "line_num",              limit: 4
+    t.integer  "item_id",               limit: 4
+    t.string   "segment1",              limit: 255
+    t.string   "description",           limit: 255
+    t.string   "unit_meas_lookup_code", limit: 255
+    t.decimal  "unit_price",                        precision: 15, scale: 2
+    t.decimal  "quantity",                          precision: 15, scale: 2
+    t.string   "attribute1",            limit: 255
+    t.string   "attribute2",            limit: 255
+    t.string   "line_reference_num",    limit: 255
+    t.integer  "org_id",                limit: 4
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
   end
 
   create_table "role_system_function_operates", force: :cascade do |t|
