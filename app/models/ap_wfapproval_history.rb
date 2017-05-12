@@ -12,6 +12,7 @@ class ApWfapprovalHistory < ActiveRecord::Base
         "VVALUE" => inv_id,
         "VSIGN" => "EQ"
       }
+
       TestSoap.sync_table(self,p_item_array)
     end
   end
