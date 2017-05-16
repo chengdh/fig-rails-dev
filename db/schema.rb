@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516022917) do
+ActiveRecord::Schema.define(version: 20170516030624) do
 
   create_table "ap_wfapproval_histories", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -132,6 +132,55 @@ ActiveRecord::Schema.define(version: 20170516022917) do
     t.decimal  "line_bugdet",                 precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                         null: false
     t.datetime "updated_at",                                                         null: false
+  end
+
+  create_table "cux_fa_transfer_headers_a", id: false, force: :cascade do |t|
+    t.integer  "header_id",                 limit: 4
+    t.date     "request_date"
+    t.string   "request_full_name",         limit: 255
+    t.string   "request_remark",            limit: 255
+    t.string   "assigned_f_full_name",      limit: 255
+    t.string   "assigned_t_full_name",      limit: 255
+    t.string   "used_department_from_disp", limit: 255
+    t.string   "used_department_to_disp",   limit: 255
+    t.string   "approved_status_disp",      limit: 255
+    t.date     "creation_date"
+    t.date     "last_update_date"
+    t.string   "item_key",                  limit: 255
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  create_table "cux_fa_transfer_lines_a", id: false, force: :cascade do |t|
+    t.integer  "header_id",               limit: 4
+    t.integer  "line_id",                 limit: 4
+    t.integer  "asset_id",                limit: 4
+    t.string   "asset_name",              limit: 255
+    t.string   "assigned_full_name",      limit: 255
+    t.string   "location_from",           limit: 255
+    t.string   "used_department_disp",    limit: 255
+    t.string   "fa_category",             limit: 255
+    t.string   "manager_department_disp", limit: 255
+    t.date     "creation_date"
+    t.date     "last_update_date"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "cux_fa_trasfer_his", id: false, force: :cascade do |t|
+    t.integer  "header_id",         limit: 4
+    t.integer  "h_notification_id", limit: 4
+    t.date     "h_action_date"
+    t.integer  "h_sequence",        limit: 4
+    t.string   "h_from_role",       limit: 255
+    t.string   "h_from_user",       limit: 255
+    t.string   "h_to_role",         limit: 255
+    t.string   "h_to_user",         limit: 255
+    t.string   "h_action",          limit: 255
+    t.string   "h_comment",         limit: 255
+    t.string   "responder",         limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "cux_gl_je_headers_a", force: :cascade do |t|

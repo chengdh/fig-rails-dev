@@ -23,5 +23,4 @@ class CuxApInvoicesController < ApplicationController
   def cux_ap_invoice_params
     params[:cux_ap_invoice].permit!
   end
-
 end
