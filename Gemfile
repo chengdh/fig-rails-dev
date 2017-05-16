@@ -24,6 +24,7 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+gem 'tzinfo-data'
 # gem 'ruby-plsql',github: 'rsim/ruby-plsql',branch: 'master'
 # bundle exec rake doc:rails generates the API under doc/api.
 
