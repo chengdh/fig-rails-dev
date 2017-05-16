@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512022242) do
+ActiveRecord::Schema.define(version: 20170516022917) do
 
   create_table "ap_wfapproval_histories", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -132,6 +132,114 @@ ActiveRecord::Schema.define(version: 20170512022242) do
     t.decimal  "line_bugdet",                 precision: 15, scale: 2, default: 0.0
     t.datetime "created_at",                                                         null: false
     t.datetime "updated_at",                                                         null: false
+  end
+
+  create_table "cux_gl_je_headers_a", force: :cascade do |t|
+    t.string   "name",                   limit: 255
+    t.string   "description",            limit: 255
+    t.integer  "doc_sequence_value",     limit: 4
+    t.string   "period_name",            limit: 255
+    t.date     "default_effective_date"
+    t.string   "external_reference",     limit: 255
+    t.date     "creation_date"
+    t.date     "last_update_date"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
+
+  create_table "cux_gl_je_lines", id: false, force: :cascade do |t|
+    t.integer  "je_header_id",         limit: 4
+    t.integer  "je_line_num",          limit: 4
+    t.integer  "code_combination_id",  limit: 4
+    t.string   "accounting_flexfield", limit: 255
+    t.decimal  "entered_dr",                       precision: 10
+    t.decimal  "entered_cr",                       precision: 10
+    t.decimal  "stat_amount",                      precision: 10
+    t.string   "description",          limit: 255
+    t.string   "attribute1",           limit: 255
+    t.string   "attribute8",           limit: 255
+    t.date     "creation_date"
+    t.date     "last_update_date"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  create_table "cux_gl_je_lines_a", id: false, force: :cascade do |t|
+    t.integer  "je_header_id",         limit: 4
+    t.integer  "je_line_num",          limit: 4
+    t.integer  "code_combination_id",  limit: 4
+    t.string   "accounting_flexfield", limit: 255
+    t.decimal  "entered_dr",                       precision: 10
+    t.decimal  "entered_cr",                       precision: 10
+    t.decimal  "stat_amount",                      precision: 10
+    t.string   "description",          limit: 255
+    t.string   "attribute1",           limit: 255
+    t.string   "attribute8",           limit: 255
+    t.date     "creation_date"
+    t.date     "last_update_date"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  create_table "cux_pa_prm_approve_his", id: false, force: :cascade do |t|
+    t.integer  "entity_id",            limit: 4
+    t.integer  "step",                 limit: 4
+    t.string   "action_desc",          limit: 255
+    t.date     "action_date"
+    t.string   "action_employee_name", limit: 255
+    t.string   "approve_note",         limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "cux_pa_prm_approve_his_a", id: false, force: :cascade do |t|
+    t.integer  "entity_id",            limit: 4
+    t.integer  "step",                 limit: 4
+    t.string   "action_desc",          limit: 255
+    t.date     "action_date"
+    t.string   "action_employee_name", limit: 255
+    t.string   "approve_note",         limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "cux_pm_pre_projects_a", id: false, force: :cascade do |t|
+    t.integer  "project_id",            limit: 4
+    t.integer  "org_id",                limit: 4
+    t.string   "unit_code",             limit: 255
+    t.string   "short_name",            limit: 255
+    t.string   "project_name",          limit: 255
+    t.string   "project_type_code",     limit: 255
+    t.string   "tproject_type",         limit: 255
+    t.integer  "project_template",      limit: 4
+    t.string   "project_template_name", limit: 255
+    t.integer  "project_year",          limit: 4
+    t.integer  "project_responsor_id",  limit: 4
+    t.string   "project_responsor",     limit: 255
+    t.string   "project_creator",       limit: 255
+    t.date     "start_date"
+    t.date     "end_date"
+    t.decimal  "apply_amount",                      precision: 15, scale: 2
+    t.decimal  "approved_amount",                   precision: 15, scale: 2
+    t.string   "comments",              limit: 255
+    t.integer  "pa_project_id",         limit: 4
+    t.integer  "pa_project_number",     limit: 4
+    t.string   "project_status_code",   limit: 255
+    t.string   "project_status_name",   limit: 255
+    t.string   "wf_item_type",          limit: 255
+    t.string   "wf_item_key",           limit: 255
+    t.string   "status_lookup_code",    limit: 255
+    t.string   "status_tag",            limit: 255
+    t.string   "status",                limit: 255
+    t.string   "attachment_flag",       limit: 255
+    t.date     "last_update_date"
+    t.integer  "last_updated_by",       limit: 4
+    t.date     "creation_date"
+    t.integer  "created_by",            limit: 4
+    t.integer  "last_update_login",     limit: 4
+    t.integer  "object_version_number", limit: 4
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
   end
 
   create_table "cux_posa_item_activity_his_a", id: false, force: :cascade do |t|
