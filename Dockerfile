@@ -1,6 +1,6 @@
 # Inspired by Deepak's setup here - https://gist.github.com/deepak/5925003
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev alien libaio1
 RUN apt-get install -y wget
@@ -9,9 +9,9 @@ RUN mkdir -p /rails_app
 
 #install oracle instant client
 ADD oracle_instant_client/* /tmp/
-RUN alien -i /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
-RUN alien -i /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
-RUN alien -i /tmp/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+#RUN alien -i /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+#RUN alien -i /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+#RUN alien -i /tmp/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
 
 # Install rbenv
 RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
