@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <%= csrf_meta_tags %>
-    <title>综合信息管理平台</title>
+    <title>农机综合信息管理平台</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -22,11 +22,11 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>LT</span>
+          <span class="logo-mini"><b>农机收割进度</b>平台</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Admin</b>LTE</span>
+          <span class="logo-lg"><b>农机收割进度监控</b>平台</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -68,31 +68,33 @@
                 </ul>
               </li>
               <!--所属机构-->
-              <%= render "shared/current_user_orgs" %>
+              <%# <%= render "shared/current_user_orgs" %>
               <!--角色-->
-              <%= render "shared/current_user_roles" %>
+              <%# <%= render "shared/current_user_roles" %>
 
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="glyphicon glyphicon-user"></span>
-                  <span class="hidden-xs"><%= current_user.real_name %></span>
+                  <span class="hidden-xs">
+                    <%# <%= current_user.real_name %>
+                  </span>
                 </a>
                 <ul class="dropdown-menu">
                   <li>
-                    <%= link_to edit_user_password_path do%>
-                      <i class="fa fa-key"></i>
-                      修改密码
-                    <% end %>
+                    <%# <%= link_to edit_user_password_path do %>
+                    <%#   <i class="fa fa-key"></i>
+                    <%#   修改密码
+                    <%# <% end %>
                   </li>
                 </ul>
               </li>
               <!-- Control Sidebar Toggle Button -->
               <li style="background : red;">
-                <%= link_to(destroy_user_session_path,method: :delete) do %>
-                  <i class="glyphicon glyphicon-off"></i>
-                  退出
-                <%end%>
+                <%# <%= link_to(destroy_user_session_path,method: :delete) do %>
+                <%#   <i class="glyphicon glyphicon-off"></i>
+                <%#   退出
+                <%# <%end%>
               </li>
             </ul>
           </div>

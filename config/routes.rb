@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :area_mus
+  mount ChinaCity::Engine => '/china_city'
+  resources :area_infos do
+    collection do
+      get :get_mu_data
+    end
+  end
   devise_for :users, controllers: {registrations: "registrations" }
 
   resources :roles
@@ -10,6 +17,7 @@ Rails.application.routes.draw do
       put :update_default_attr
     end
   end
+  get 'area_charts' => 'area_charts#show_chart'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

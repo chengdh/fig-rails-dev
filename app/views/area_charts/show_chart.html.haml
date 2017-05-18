@@ -1,0 +1,38 @@
+.well.well-sm
+  .city-group
+    %select.city-select#select_province{:readonly => true}
+      %option --省份--
+      = options_for_select(ChinaCity.list,"410000")
+    %select.city-select#select_city
+      %option
+    %select.city-select#select_district{:style => "display : none;"}
+
+
+.row
+  .col-md-9
+    .well.well-sm#map_chart{:style => "height: 800px;"}
+  .col-md-3
+    .info-box
+      %span.info-box-icon.bg-red
+        %i.fa.fa-star-o
+      .info-box-content
+        %span.info-box-text
+          总面积
+        %span.info-box-number.total_area
+          0
+    .info-box
+      %span.info-box-icon.bg-red
+        %i.fa.fa-star-o
+      .info-box-content
+        %span.info-box-text
+          累计收割
+        %span.info-box-number.finished_mus
+          0
+    .info-box
+      %span.info-box-icon.bg-red
+        %i.fa.fa-star-o
+      .info-box-content
+        %span.info-box-text
+          收割进度
+        %span.info-box-number.last_percent
+          0

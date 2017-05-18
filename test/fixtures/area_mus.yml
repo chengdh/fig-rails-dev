@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  area_info_id: 
+  submit_date: 2017-05-18
+  mu_result: 9.99
+  mu_percent: 9.99
+
+two:
+  area_info_id: 
+  submit_date: 2017-05-18
+  mu_result: 9.99
+  mu_percent: 9.99

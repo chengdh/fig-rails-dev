@@ -5,6 +5,8 @@ zh-CN:
       user: 用户
       org: 机构信息
       role: 角色信息
+      area_info: 区域信息
+      area_mu: 收割进度
 
     attributes:
       public_attrs:
@@ -38,3 +40,18 @@ zh-CN:
       role:
         name: 角色名称
         is_active: 有效
+
+      area_info:
+        code: 省
+        city_code: 市
+        district_code: 区县
+        location: 所属地区
+        name: 名称
+        total_area: 土地总面积
+      area_mu:
+        area_info_id: 区域
+        area_info_name: 区域
+        area_info: 区域
+        submit_date: 上报日期
+        mu_result: 收割亩数
+        mu_percent: 收割比例

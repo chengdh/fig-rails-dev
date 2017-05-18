@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160212054718) do
+ActiveRecord::Schema.define(version: 20170518115409) do
+
+  create_table "area_infos", force: :cascade do |t|
+    t.string   "code",          limit: 20
+    t.decimal  "total_area",               precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                      null: false
+    t.datetime "updated_at",                                                      null: false
+    t.string   "city_code",     limit: 30
+    t.string   "district_code", limit: 30
+  end
+
+  create_table "area_mus", force: :cascade do |t|
+    t.integer  "area_info_id", limit: 4
+    t.date     "submit_date"
+    t.decimal  "mu_result",              precision: 15, scale: 2, default: 0.0
+    t.decimal  "mu_percent",             precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                    null: false
+    t.datetime "updated_at",                                                    null: false
+  end
+
+  add_index "area_mus", ["area_info_id"], name: "index_area_mus_on_area_info_id", using: :btree
 
   create_table "orgs", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false
@@ -130,6 +150,7 @@ ActiveRecord::Schema.define(version: 20160212054718) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
+  add_foreign_key "area_mus", "area_infos"
   add_foreign_key "role_system_function_operates", "roles"
   add_foreign_key "role_system_function_operates", "system_function_operates"
   add_foreign_key "system_function_operates", "system_functions"

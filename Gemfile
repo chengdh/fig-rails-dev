@@ -1,12 +1,14 @@
-source 'http://rubygems.org'
+#source 'http://rubygems.org'
 #source 'https://taobao.ruby.org/'
+source 'https://gems.ruby-china.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.1.4'
 gem 'rails', '4.2.1'
 # Use mysql as the database for Active Record
-gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+# gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
+gem 'rails-i18n', '~> 4.0', '>= 4.0.9'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -56,7 +58,8 @@ gem 'lhm', '~> 2.2'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'high_voltage'
-gem 'mysql2'
+# gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'formtastic-bootstrap'
@@ -66,6 +69,11 @@ gem 'bootstrap-datepicker-rails'
 gem 'net-ssh','2.9.2'
 gem 'devise'
 gem 'inherited_resources', '~> 1.6'
+gem 'china_city',github: 'saberma/china_city', branch: 'master'
+# gem 'china_city', '~> 0.0.6'
+gem 'show_for', '~> 0.4.0'
+gem "default_value_for", "~> 3.0.0"
+gem 'has_scope', '~> 0.6.0'
 
 group :development do
   gem 'better_errors'
@@ -93,4 +101,3 @@ end
 group :production do
   gem 'unicorn'
 end
-

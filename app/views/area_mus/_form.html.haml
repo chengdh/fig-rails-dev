@@ -1,0 +1,5 @@
+= semantic_form_for resource,html: {id: "#{resource_class.name.underscore}_form",class: "enter2tab"} do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.input :submit_date
+  = f.input :area_info_id,:as => :select,:collection => area_infos_for_select
+  = f.inputs :mu_result,:mu_percent

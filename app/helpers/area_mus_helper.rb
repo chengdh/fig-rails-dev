@@ -1,0 +1,2 @@
+module AreaMusHelper
+end
