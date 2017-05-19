@@ -1,0 +1,25 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover
+    %thead
+      %tr
+        %th 账户
+        %th 借项
+        %th 贷项
+        %th 数量
+        %th 摘要
+        %th 往来单位
+    %tbody
+      - @cux_gl_je_header.cux_gl_je_lines.each_with_index do |line,i|
+        %tr
+          %td
+            =line.accounting_flexfield
+          %td
+            =line.entered_dr
+          %td
+            =line.entered_cr
+          %td
+            =line.stat_amount
+          %td
+            =line.description
+          %td
+            =line.attribute8

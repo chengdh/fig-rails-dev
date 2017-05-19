@@ -2,9 +2,9 @@
 #总账日记账
 class CuxGlJeHeader < ActiveRecord::Base
   self.table_name = "cux_gl_je_headers_a"
-  has_many :cux_gl_he_lines,foreign_key: :je_header_id
 
-  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
+  has_many :cux_gl_je_lines,foreign_key: :je_header_id
+
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(id: wf_itemkeys.map {|item_key| item_key.split("*").try(:first)})}
 
   def self.unread_bills(wf_itemkeys)

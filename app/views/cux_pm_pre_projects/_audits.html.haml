@@ -1,0 +1,21 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover
+    %thead
+      %tr
+        %th 审批人
+        %th 审批动作
+        %th 审批说明
+        %th 日期
+    %tbody
+      - @cux_pm_pre_project.cux_pa_prm_approve_his.each_with_index do |line,i|
+        %tr
+          %td
+            =line.action_employee_name
+          %td
+            =line.action_desc
+          -# %td
+          -#   =line.uom
+          %td
+            =line.approve_note
+          %td
+            =line.action_date.strftime("%Y-%m-%d")

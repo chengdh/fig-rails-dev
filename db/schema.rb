@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20170516030624) do
 
-  create_table "ap_wfapproval_histories", id: false, force: :cascade do |t|
+  create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
     t.integer  "line_number",           limit: 4
     t.string   "response",              limit: 255
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170516030624) do
     t.datetime "updated_at",                                                 null: false
   end
 
-  create_table "cux_ap_invoice_lines_a", force: :cascade do |t|
+  create_table "cux_ap_invoice_lines_a", id: false, force: :cascade do |t|
     t.integer  "org_id",                limit: 4
     t.integer  "invoice_id",            limit: 4
     t.integer  "line_number",           limit: 4
@@ -196,23 +196,6 @@ ActiveRecord::Schema.define(version: 20170516030624) do
     t.datetime "updated_at",                         null: false
   end
 
-  create_table "cux_gl_je_lines", id: false, force: :cascade do |t|
-    t.integer  "je_header_id",         limit: 4
-    t.integer  "je_line_num",          limit: 4
-    t.integer  "code_combination_id",  limit: 4
-    t.string   "accounting_flexfield", limit: 255
-    t.decimal  "entered_dr",                       precision: 10
-    t.decimal  "entered_cr",                       precision: 10
-    t.decimal  "stat_amount",                      precision: 10
-    t.string   "description",          limit: 255
-    t.string   "attribute1",           limit: 255
-    t.string   "attribute8",           limit: 255
-    t.date     "creation_date"
-    t.date     "last_update_date"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-  end
-
   create_table "cux_gl_je_lines_a", id: false, force: :cascade do |t|
     t.integer  "je_header_id",         limit: 4
     t.integer  "je_line_num",          limit: 4
@@ -228,17 +211,6 @@ ActiveRecord::Schema.define(version: 20170516030624) do
     t.date     "last_update_date"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
-  end
-
-  create_table "cux_pa_prm_approve_his", id: false, force: :cascade do |t|
-    t.integer  "entity_id",            limit: 4
-    t.integer  "step",                 limit: 4
-    t.string   "action_desc",          limit: 255
-    t.date     "action_date"
-    t.string   "action_employee_name", limit: 255
-    t.string   "approve_note",         limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
   end
 
   create_table "cux_pa_prm_approve_his_a", id: false, force: :cascade do |t|
@@ -418,7 +390,8 @@ ActiveRecord::Schema.define(version: 20170516030624) do
     t.datetime "updated_at",                       null: false
   end
 
-  create_table "fnd_lob", primary_key: "file_id", force: :cascade do |t|
+  create_table "fnd_lob", id: false, force: :cascade do |t|
+    t.integer  "file_id",           limit: 4
     t.string   "file_name",         limit: 255
     t.string   "file_content_type", limit: 255
     t.text     "file_data",         limit: 4294967295

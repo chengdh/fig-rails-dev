@@ -1,0 +1,18 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover.table-bordered
+    %tr
+      %td{:colspan => 4}
+        No
+        = @cux_gl_je_header.doc_sequence_value
+    %tr
+      %th 名称
+      %td{:colspan => 3}
+        = @cux_gl_je_header.name
+    %tr
+      %th 摘要
+      %td{:colspan => 3}
+        = @cux_gl_je_header.description
+    %tr
+      %th 期间:
+      %td{:colspan => 3}
+        = @cux_gl_je_header.period_name

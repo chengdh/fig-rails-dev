@@ -1,0 +1,22 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover
+    %thead
+      %tr
+        %th 物料名称
+        %th 类型
+        %th 单价
+        %th 数量
+        -# %th 金额
+    %tbody
+      - @po_header.po_lines.each_with_index do |line,i|
+        %tr
+          %td
+            =line.description
+          %td
+            =line.line_type
+          %td
+            =line.unit_price
+          %td
+            =line.quantity
+          -# %td
+          -#   =line.line_bugdet

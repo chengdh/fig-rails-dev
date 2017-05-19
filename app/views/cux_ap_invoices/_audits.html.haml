@@ -1,0 +1,22 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover
+    %thead
+      %tr
+        %th 审批人
+        %th 审批信息
+        %th 审批金额
+        %th 审批结果
+        %th 日期
+    %tbody
+      - @cux_ap_invoice.ap_wfapproval_histories.each_with_index do |line,i|
+        %tr
+          %td
+            =line.approver_name
+          %td
+            =line.approve_comments
+          %td
+            =line.amount_approved
+          %td
+            =line.response_dsp
+          %td
+            =line.last_update_date.strftime("%Y-%m-%d")

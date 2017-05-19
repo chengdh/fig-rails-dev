@@ -1,6 +1,6 @@
 .btn-group.btn-group-justified.cux-demand-tabs{:role => "group","aria-label" => "..."}
-  = link_to "应付发票", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".header"
-  = link_to "发票行", "#",class: "btn btn-sm","data-link-el-class" => ".lines"
+  = link_to "订单", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".header"
+  = link_to "订单明细", "#",class: "btn btn-sm","data-link-el-class" => ".lines"
   = link_to "审批记录", "#",class: "btn btn-sm","data-link-el-class" => ".audits"
   = link_to "附件", "#",class: "btn btn-sm","data-link-el-class" => ".attachments"
 
@@ -19,5 +19,4 @@
 
 / 附件
 .attachments{:style => 'display : none;'}
-  = render "shared/attachment",attachments: @cux_ap_invoice.cux_soa_attached_doc_vs
-
+  = render "shared/attachment",attachments: @po_header.cux_soa_attached_doc_vs

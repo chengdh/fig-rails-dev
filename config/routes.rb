@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations" }
 
 
+  resources :cux_gl_je_headers,only: [:index,:show]
+  resources :cux_pm_pre_projects,only: [:index,:show]
   resources :cux_demands,only: [:index,:show]
   resources :cux_ap_invoices,only: [:index,:show]
   resources :cux_trans,only: [:index,:show]
+  resources :po_headers,only: [:index,:show]
 
   namespace :api do
     namespace :v1  do

@@ -1,0 +1,44 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover.table-bordered
+    %tr
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.project_name
+
+      %td{:style => "text-align: right;"}
+        %span.label.label-info 审批中
+    %tr
+
+      %th 项目单位:
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.unit_code
+
+    %tr
+      %th 项目类别:
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.tproject_type
+
+    %tr
+      %th 立项年度:
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.project_year
+
+    %tr
+      %th 项目负责人:
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.project_responsor
+
+    %tr
+      %th 申报金额:
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.apply_amount
+    %tr
+      %th 起止日期:
+      %td
+        = "#{@cux_pm_pre_project.start_date.strftime("%Y-%m-%d")}~#{@cux_pm_pre_project.end_date.strftime("%Y-%m-%d")}"
+
+    %tr
+      %th 创建时间:
+      %td
+        = @cux_pm_pre_project.try(:creation_date).try(:strftime,"%Y-%m-%d")
+      %td
+      %td
