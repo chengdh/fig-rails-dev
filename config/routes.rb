@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations" }
-
-
+  resources :cux_fa_transfer_headers,only: [:index,:show]
   resources :cux_gl_je_headers,only: [:index,:show]
   resources :cux_pm_pre_projects,only: [:index,:show]
   resources :cux_demands,only: [:index,:show]

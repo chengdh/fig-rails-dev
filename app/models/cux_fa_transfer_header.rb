@@ -4,7 +4,7 @@ class CuxFaTransferHeader < ActiveRecord::Base
   self.table_name = "cux_fa_transfer_headers_a"
   self.primary_key = "header_id"
   has_many :cux_fa_transfer_lines,foreign_key: :header_id
-  has_many :cux_fa_trasferhis,foreign_key: :header_id
+  has_many :cux_fa_trasfer_his,foreign_key: :header_id
   #附件
   has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_fa_transfer_headers")},foreign_key: :pk1_column
 
