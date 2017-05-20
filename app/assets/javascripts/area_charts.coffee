@@ -68,41 +68,16 @@ $ ->
     chart.setOption(chart_option)
     chart.on('click',func_chart_click)
 
-  $("#select_province").change()
-  $("#select_city").change()
 
-
-  child_areas = []
-  $("#select_city").on('china_city:load_data_completed', ->
-    child_areas = []
-    for el in $("#select_city option")
-      child_areas.push(
-        name: $(el).text(),
-        province_code: $("#select_province").val(),
-        city_code: $(el).val()
-      )
-  )
   
-  $("#select_district").on('china_city:load_data_completed', ->
-    child_areas = []
-    for el in $("#select_district option")
-      child_areas.push(
-        name: $(el).text(),
-        province_code: $("#select_province").val(),
-        city_code: $("#select_city").val(),
-        district_code: $(el).val()
-      )
-  )
-
   $("#select_city").on('change', ->
     select_area_code = "410000"
     if $("#select_city").val() == ""
       select_area_code = $("#select_province").val()
-
     else
       select_area_code = $("#select_city").val()
 
-    chart_option.series[0].data = child_areas
+    # chart_option.series[0].data = child_areas
     chart_option.series[0].mapType = select_area_code
 
     if $("#map_chart").length > 0
@@ -132,3 +107,25 @@ $ ->
       district_code_eq: district_code
     return ret
 
+  # child_areas = []
+  # $("#select_city").on('china_city:load_data_completed', ->
+  #   child_areas = []
+  #   for el in $("#select_city option")
+  #     child_areas.push(
+  #       name: $(el).text(),
+  #       province_code: $("#select_province").val(),
+  #       city_code: $(el).val()
+  #     )
+  # )
+  # $("#select_district").on('china_city:load_data_completed', ->
+  #   child_areas = []
+  #   for el in $("#select_district option")
+  #     child_areas.push(
+  #       name: $(el).text(),
+  #       province_code: $("#select_province").val(),
+  #       city_code: $("#select_city").val(),
+  #       district_code: $(el).val()
+  #     )
+  # )
+
+  $("#select_province").val("410000").trigger("change")

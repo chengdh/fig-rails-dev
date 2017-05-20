@@ -1,10 +1,11 @@
 .well.well-sm
   .city-group
-    %select.city-select#select_province{:readonly => true}
+    %select.city-select#select_province
       %option --省份--
-      = options_for_select(ChinaCity.list,"410000")
+      = options_for_select(ChinaCity.list)
     %select.city-select#select_city
       %option
+      = options_for_select(ChinaCity.list("410000"))
     %select.city-select#select_district{:style => "display : none;"}
 
 
