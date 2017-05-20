@@ -18,8 +18,12 @@ class AreaInfo < ActiveRecord::Base
 
   #已完成的收割亩数
   def self.finished_mus(q_params)
-    area_info = self.ransack(q_params).result.try(:first)
-    sum_mus = area_info.try(:area_mus).try(:sum,:mu_result)
+    sum_mus = 0.0
+    area_infos = self.ransack(q_params).result
+    area_infos.each do |ai|
+      sum_mus += ai.try(:area_mus).try(:sum,:mu_result)
+    end
+    sum_mus
   end
   def self.last_percent(q_params)
     area_info = self.ransack(q_params).result.try(:first)

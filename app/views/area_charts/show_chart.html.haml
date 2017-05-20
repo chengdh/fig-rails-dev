@@ -13,27 +13,45 @@
   .col-md-9
     .well.well-sm#map_chart{:style => "height: 800px;"}
   .col-md-3
-    .info-box
+    .info-box.province_data
       %span.info-box-icon.bg-red
         %i.fa.fa-star-o
       .info-box-content
-        %span.info-box-text
-          总面积
-        %span.info-box-number.total_area
-          0
-    .info-box
+        %table.table.table-condensed.table-hover.table-bordered
+          %tr
+            %th{:colspan => 2} 全省
+          %tr
+            %th 总面积:
+            %td
+              %span.total_area 0
+
+          %tr
+            %th 累计收割:
+            %td
+              %span.finished_mus 0
+          %tr
+            %th 收割进度:
+            %td
+              %span.last_percent 0
+
+    .info-box.select_city_data
       %span.info-box-icon.bg-red
         %i.fa.fa-star-o
       .info-box-content
-        %span.info-box-text
-          累计收割
-        %span.info-box-number.finished_mus
-          0
-    .info-box
-      %span.info-box-icon.bg-red
-        %i.fa.fa-star-o
-      .info-box-content
-        %span.info-box-text
-          收割进度
-        %span.info-box-number.last_percent
-          0
+        %table.table.table-condensed.table-hover.table-bordered
+          %tr
+            %th{:colspan => 2} 
+              %span.city_name
+          %tr
+            %th 总面积:
+            %td
+              %span.total_area 0
+
+          %tr
+            %th 累计收割:
+            %td
+              %span.finished_mus 0
+          %tr
+            %th 收割进度:
+            %td
+              %span.last_percent 0

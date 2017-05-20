@@ -55,10 +55,12 @@ $ ->
   func_chart_click = (params)->
     args = fun_get_area_code(params.data.name)
 
+    $(".select_city_data .city_name").html(params.data.name)
     $.getJSON("/area_infos/get_mu_data.json",args).then((data)->
-      $(".total_area").html(data.total_area)
-      $(".finished_mus").html(data.finished_mu)
-      $(".last_percent").html(data.last_percent)
+      $(".select_city_data").show()
+      $(".select_city_data .total_area").html(data.total_area)
+      $(".select_city_data .finished_mus").html(data.finished_mu)
+      $(".select_city_data .last_percent").html(data.last_percent)
       console.log(data)
     )
 
@@ -68,12 +70,11 @@ $ ->
     chart.setOption(chart_option)
     chart.on('click',func_chart_click)
 
-
-  
   $("#select_city").on('change', ->
     select_area_code = "410000"
     if $("#select_city").val() == ""
       select_area_code = $("#select_province").val()
+      $(".select_city_data").hide()
     else
       select_area_code = $("#select_city").val()
 
@@ -107,6 +108,17 @@ $ ->
       district_code_eq: district_code
     return ret
 
+  #获取全省收割亩数
+  func_get_province_data = ->
+    args = code_eq: '410000'
+    $.getJSON("/area_infos/get_mu_data.json",args).then((data) ->
+      $(".province_data .total_area").html(data.total_area)
+      $(".province_data .finished_mus").html(data.finished_mu)
+      $(".province_data .last_percent").html(data.last_percent)
+    )
+
+
+
   # child_areas = []
   # $("#select_city").on('china_city:load_data_completed', ->
   #   child_areas = []
@@ -129,3 +141,4 @@ $ ->
   # )
 
   $("#select_province").val("410000").trigger("change")
+  func_get_province_data()
