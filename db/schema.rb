@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516030624) do
+ActiveRecord::Schema.define(version: 20170520014725) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -231,7 +231,7 @@ ActiveRecord::Schema.define(version: 20170516030624) do
     t.string   "short_name",            limit: 255
     t.string   "project_name",          limit: 255
     t.string   "project_type_code",     limit: 255
-    t.string   "tproject_type",         limit: 255
+    t.string   "project_type",          limit: 255
     t.integer  "project_template",      limit: 4
     t.string   "project_template_name", limit: 255
     t.integer  "project_year",          limit: 4

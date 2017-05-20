@@ -10,9 +10,13 @@ class CuxFaTransferHeader < ActiveRecord::Base
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(item_key: wf_itemkeys)}
 
+  def id
+    header_id
+  end
+
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json
+    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(methods: [:id])
   end
 
   #通过wf_itemkey更新需求数据
