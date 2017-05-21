@@ -17,14 +17,8 @@
     "tests"
   ],
   "dependencies": {
-    "toastr": "~2.1.2",
-    "fancybox": "*",
     "admin-lte": "*",
-    "jquery-orgchart": "https://github.com/caprica/jquery-orgchart.git",
-    "zTree": "https://git.oschina.net/zTree/zTree_v3.git",
-    "blockUI" : "*",
     "font-awesome": "*",
-    "ionicons": "https://github.com/driftyco/ionicons.git",
     "echarts": "*"
   }
 }
