@@ -23,7 +23,6 @@
 //= require 'china_city/jquery.china_city'
 //= require 'echarts/dist/echarts'
 //= require common
-//= require orgs
 //= require henan
 //= require anyang
 //= require hebi
