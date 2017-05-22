@@ -18,7 +18,7 @@
   ],
   "dependencies": {
     "admin-lte": "*",
-    "font-awesome": "https://github.com/FortAwesome/Font-Awesome.git",
+    "font-awesome": "*",
     "echarts": "*"
   }
 }
