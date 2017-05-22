@@ -20,7 +20,6 @@
 //= require admin-lte/plugins/sparkline/jquery.sparkline.min
 //= require admin-lte/plugins/slimScroll/jquery.slimscroll.min
 //= require admin-lte/plugins/chartjs/Chart.min
-//= require jquery-orgchart/jquery.orgchart
 //= require 'china_city/jquery.china_city'
 //= require 'echarts/dist/echarts'
 //= require common
