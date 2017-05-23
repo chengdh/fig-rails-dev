@@ -3,23 +3,20 @@
     %h3.box-title 待处理教育培训
   .box-body
     %table.table.table-condensed.table-stripped.table-hover
-      - @waitting_trainings.each do |t|
-        %tr
-          %td
-            %span.label.label-info 待审批
-          %td= t.training_date
-          %td= t.org
-          %td= link_to t.name,check_training_path(t)
+      - if can? :show_check,Training
+        - @waitting_trainings.each do |t|
+          %tr
+            %td
+              %span.label.label-info 待审批
+            %td= t.training_date
+            %td= t.org
+            %td= link_to t.name,check_training_path(t)
 
       - @rejected_trainings.each do |t|
-        %tr
-          %td
-            %span.label.label-error 已驳回
-          %td= t.training_date
-          %td= t.org
-          %td= link_to t.name,t
-
-      - if @waitting_trainings.size == 0 and @rejected_trainings.size == 0
-        %tr
-          %td{colspan: 4}
-            当前无教育培训信息需要处理
+        - if t.org_id == current_user.default_org_id
+          %tr
+            %td
+              %span.label.label-error 已驳回
+            %td= t.training_date
+            %td= t.org
+            %td= link_to t.name,t

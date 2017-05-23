@@ -10,17 +10,22 @@
   - if can? :read,Task and @waitting_process_tasks.present?
     .col-md-5.col-md-offset-1
       = render "task"
+  / 安全工作月报 
+  - if can? :read,SafetyTable and  @waitting_safety_tables.present? or @rejected_safety_tables.present?
+    .col-md-5.col-md-offset-1
+      = render "safety_table"
+
   / 教育培训
-  - if can? :read,Training and  @waitting_trainings.present?
+  - if can? :read,Training and  @waitting_trainings.present? or @rejected_trainings.present?
     .col-md-5.col-md-offset-1
       = render "training"
   / 应急预案
-  - if can? :read,PlanbDoc and @waitting_planb_docs.present?
+  - if can? :read,PlanbDoc and @waitting_planb_docs.present? or @rejected_planb_docs.present?
     .col-md-5.col-md-offset-1
       = render "planb_doc"
 
   / 会议
-  - if can? :read,Meeting and @waitting_meetings.present?
+  - if can? :read,Meeting and @waitting_meetings.present? or @rejected_meetings.present?
     .col-md-5.col-md-offset-1
       = render "meeting"
 
@@ -44,7 +49,7 @@
     .col-md-5.col-md-offset-1
       = render "vehicle"
 
-  / 驾驶证 
+  / 驾驶证
   - if can? :read,Driver and  @expired_drivers.present?
     .col-md-5.col-md-offset-1
       = render "driver"

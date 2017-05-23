@@ -7,6 +7,11 @@ class DashboardController < ApplicationController
     #待确认任务
     @waitting_finish_tasks = Task.waitting_finish(current_user.id)
 
+    #安全工作月报
+    @waitting_safety_tables = SafetyTable.waitting_confirm(current_ability_org_ids)
+    #已拒绝
+    @rejected_safety_tables = SafetyTable.rejected(current_user.current_org.id)
+
     #教育培训-待审批
     @waitting_trainings = Training.waitting_confirm(current_ability_org_ids)
     #已拒绝

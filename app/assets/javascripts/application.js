@@ -22,7 +22,7 @@
 //= require admin-lte/plugins/chartjs/Chart.min
 //= require jquery-orgchart/jquery.orgchart
 //= require notifyjs/dist/notify
-//= require fancybox/source/jquery.fancybox
+//= require fancybox/dist/jquery.fancybox
 //= require jquery-load-template/dist/jquery.loadTemplate-1.5.6
 //= require jquery-cookie/src/js.cookie
 //= require livequery/dist/jquery.livequery

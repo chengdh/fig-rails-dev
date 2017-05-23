@@ -1,22 +1,22 @@
 .box.box-info
   .box-header
-    %h3.box-title 待处会议信息
+    %h3.box-title 待处理安全工作月报
   .box-body
     %table.table.table-condensed.table-stripped.table-hover
-      - if can? :show_check,Meeting
-        - @waitting_meetings.each do |t|
+      - if can? :show_check,SafetyTable
+        - @waitting_safety_tables.each do |t|
           %tr
             %td
               %span.label.label-info 待审批
-            %td= t.meeting_date
+            %td= t.table_date
             %td= t.org
-            %td= link_to t.name,check_meeting_path(t)
+            %td= link_to t.org,safety_table_path(t)
 
-      - @rejected_meetings.each do |t|
+      - @rejected_safety_tables.each do |t|
         - if t.org_id == current_user.default_org_id
           %tr
             %td
               %span.label.label-error 已驳回
-            %td= t.meeting_date
+            %td= t.table_date
             %td= t.org
-            %td= link_to t.name,t
+            %td= link_to t.org,safety_table_path(t)

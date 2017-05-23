@@ -3,23 +3,21 @@
     %h3.box-title 待处理应急演练预案
   .box-body
     %table.table.table-condensed.table-stripped.table-hover
-      - @waitting_planb_docs.each do |t|
-        %tr
-          %td
-            %span.label.label-info 待审批
-          %td= t.plan_date
-          %td= t.org
-          %td= link_to t.name,check_planb_doc_path(t)
+
+      - if can? :show_check,PlanbDoc
+        - @waitting_planb_docs.each do |t|
+          %tr
+            %td
+              %span.label.label-info 待审批
+            %td= t.plan_date
+            %td= t.org
+            %td= link_to t.name,check_planb_doc_path(t)
 
       - @rejected_planb_docs.each do |t|
-        %tr
-          %td
-            %span.label.label-error 已驳回
-          %td= t.plan_date
-          %td= t.org
-          %td= link_to t.name,t
-
-      - if @rejected_planb_docs.size == 0 and @waitting_planb_docs.size == 0
-        %tr
-          %td{colspan: 4}
-            当前无数据需要处理
+        - if t.org_id == current_user.default_org_id
+          %tr
+            %td
+              %span.label.label-error 已驳回
+            %td= t.plan_date
+            %td= t.org
+            %td= link_to t.name,t

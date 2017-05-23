@@ -31,7 +31,10 @@ class SafetyTable < ActiveRecord::Base
   default_value_for :fixed_danger_money,0.0
   default_value_for :safety_edu_money,0.0
   default_value_for :safety_reward_money,0.0
-
+  #待审批
+  scope :waitting_confirm,->(org_ids){ where(check_state: "submitted",org_id: org_ids)}
+  #待修改
+  scope :rejected,->(org_id){ where(check_state: "rejected",org_id: org_id)}
 
   #默认月份
   #本月26日之后填写,月份是当月
