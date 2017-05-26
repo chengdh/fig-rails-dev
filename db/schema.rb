@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520014725) do
+ActiveRecord::Schema.define(version: 20170526003927) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -213,6 +213,19 @@ ActiveRecord::Schema.define(version: 20170520014725) do
     t.datetime "updated_at",                                      null: false
   end
 
+  create_table "cux_pa_approver_list_his_v", id: false, force: :cascade do |t|
+    t.integer  "step",               limit: 4
+    t.string   "user_name",          limit: 255
+    t.string   "last_name",          limit: 255
+    t.string   "status_lookup_code", limit: 255
+    t.date     "approved_date"
+    t.string   "comments",           limit: 255
+    t.string   "wf_item_type",       limit: 255
+    t.string   "wf_item_key",        limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
   create_table "cux_pa_prm_approve_his_a", id: false, force: :cascade do |t|
     t.integer  "entity_id",            limit: 4
     t.integer  "step",                 limit: 4
@@ -222,6 +235,34 @@ ActiveRecord::Schema.define(version: 20170520014725) do
     t.string   "approve_note",         limit: 255
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
+  end
+
+  create_table "cux_pa_tasks", id: false, force: :cascade do |t|
+    t.string   "projects_num",  limit: 255
+    t.string   "projects_name", limit: 255
+    t.integer  "project_id",    limit: 4
+    t.integer  "task_id",       limit: 4
+    t.integer  "level1",        limit: 4
+    t.string   "task_number",   limit: 255
+    t.string   "task_name",     limit: 255
+    t.decimal  "cost_amt",                  precision: 15, scale: 2, default: 0.0
+    t.decimal  "budget_amt",                precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
+
+  create_table "cux_pas", id: false, force: :cascade do |t|
+    t.integer  "project_id",                 limit: 4
+    t.string   "pa_project_number",          limit: 255
+    t.string   "project_name",               limit: 255
+    t.string   "project_status_name",        limit: 255
+    t.string   "carrying_out_org_name",      limit: 255
+    t.integer  "carrying_out_org_id",        limit: 4
+    t.string   "project_type",               limit: 255
+    t.string   "workflow_started_by_name",   limit: 255
+    t.string   "project_approver_full_name", limit: 255
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
   end
 
   create_table "cux_pm_pre_projects_a", id: false, force: :cascade do |t|

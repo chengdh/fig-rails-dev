@@ -1,35 +1,28 @@
-guodiantou-app-mysql:
-  image: mysql:5.5.51
-  environment:
-    MYSQL_ROOT_PASSWORD: fizzbuzz
-  ports:
-    - "3310:3306"
+version: '2'
+services:
+  guodiantou-app-mysql:
+    image: mysql:5.5.51
+    environment:
+      MYSQL_ROOT_PASSWORD: fizzbuzz
+    ports:
+      - "3310:3306"
 
-guodiantou-app-server:
-  build: .
-  #command: bundle exec unicorn
-  command: bundle exec rails s -b 0.0.0.0 -p 3000
-  volumes:
-    # This seems to work as-is once you expose /Users to the boot2docker vm.
-    - .:/rails_app
-  links:
-    - guodiantou-app-mysql
-  ports:
-    - "5000:3000"
-  volumes_from:
-    - guodiantou-bundle
+  guodiantou-app-server:
+    build: .
+    #command: bundle exec unicorn
+    command: bundle exec rails s -b 0.0.0.0 -p 3000
+    volumes:
+      # This seems to work as-is once you expose /Users to the boot2docker vm.
+      - .:/rails_app
+    links:
+      - guodiantou-app-mysql
+    ports:
+      - "5000:3000"
+    volumes_from:
+      - guodiantou-bundle
 
-
-  log_driver: "json-file"
-  log_opt:
-    max-size: "10k"
-    max-file: "20"
-
-guodiantou-bundle:
-  # 'image' will vary depending on your docker-compose 
-  # project name. You may need to run `docker-compose build web`
-  # before this works.
-  image: figrailsdev_guodiantou-app-server
-  command: echo "I'm a little data container, short and stout..."
-  volumes:
-    - /bundle
+  guodiantou-bundle:
+    image: figrailsdev_guodiantou-app-server
+    command: echo "I'm a little data container, short and stout..."
+    volumes:
+      - /bundle
