@@ -77,7 +77,7 @@ $ ->
 
 
   func_chart_click = (params)->
-    console.log("chart click params :" + params)
+    console.log(params)
     area_name = params.data.name
     args = fun_get_area_code(area_name)
     func_get_mu_data(args,area_name)
