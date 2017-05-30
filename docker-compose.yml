@@ -20,6 +20,8 @@ services:
       - "5000:3000"
     volumes_from:
       - guodiantou-bundle
+    extra_hosts:
+      - "erptrn.cpihn.com:192.168.66.171"
 
   guodiantou-bundle:
     image: figrailsdev_guodiantou-app-server

@@ -43,9 +43,9 @@ class TestSoap
       pk = model_clazz.primary_key
       if list.kind_of?(Array)
         list.each do |record|
+          id = record.delete(pk.upcase)
           #删除不需要的属性
           record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
-          id = record.delete(pk.upcase)
           ret_ids << id
           new_hash = {}
           record.each do |k,v|
@@ -68,6 +68,63 @@ class TestSoap
         #删除不需要的属性
         record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
         id = record.delete(pk.upcase)
+        ret_ids << id
+        new_hash = {}
+        record.each do |k,v|
+          new_hash.merge!({k.downcase => v})
+        end
+        #如果存在数据则更新
+        wf_exists = model_clazz.exists?(id)
+        if wf_exists
+          model = model_clazz.find(id)
+          model.update_attributes(new_hash)
+        else
+          wf = model_clazz.new(new_hash)
+          wf.id = id
+          wf.save!
+        end
+      end
+      ret_ids
+    end
+    #同步表数据
+    #table_data要同步的数据
+    #model_clazz 对应的activeRecord类
+    #pk_tag_name xml文件中主键名称,默认使用model_clazz的primary_key名称 
+    #return 插入的数据id数组
+    def self.sync_table_v2(table_data,model_clazz,resp_pk_name = nil)
+
+      ret_ids = []
+      ret_model = []
+      pk = model_clazz.primary_key
+      pk = resp_pk_name if resp_pk_name.present?
+
+      if table_data.kind_of?(Array)
+        table_data.each do |record|
+          id = record.delete(pk)
+          #删除不需要的属性
+          record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
+          ret_ids << id
+          new_hash = {}
+          record.each do |k,v|
+            new_hash.merge!({k.downcase => v})
+          end
+          #如果存在数据则更新
+          wf_exists = model_clazz.exists?(id)
+          if wf_exists
+            model = model_clazz.find(id)
+            model.update_attributes(new_hash)
+          else
+            wf = model_clazz.new(new_hash)
+            wf.id = id
+            wf.save!
+          end
+        end
+      end
+      if table_data.kind_of?(Hash)
+        record = table_data
+        id = record.delete(pk)
+        #删除不需要的属性
+        record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
         ret_ids << id
         new_hash = {}
         record.each do |k,v|

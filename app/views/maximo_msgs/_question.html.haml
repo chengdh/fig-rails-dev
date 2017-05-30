@@ -1,0 +1,53 @@
+/ 定期工作策划
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover.table-bordered
+    %tr
+      %th 编号:
+      %td
+        = @maximo_msg.order_detail_hash['quesnum']
+      %th 设备专业:
+      %td
+        = @maximo_msg.order_detail_hash['specialty']
+    %tr
+      %th 问题名称:
+      %td
+        = @maximo_msg.order_detail_hash['quesname']
+      %th 问题评级:
+      %td
+        = @maximo_msg.order_detail_hash['quesgrade']
+    %tr
+      %th 问题来源:
+      %td
+        = @maximo_msg.order_detail_hash['quessource']
+      %th 监督专业:
+      %td
+        = @maximo_msg.order_detail_hash['supspec']
+    %tr
+      %th 设备台账名称:
+      %td
+        = @maximo_msg.order_detail_hash['equip_name']
+      %th 提出人:
+      %td
+        = @maximo_msg.order_detail_hash['proposed_by']
+    %tr
+      %th 状态:
+      %td
+        = @maximo_msg.order_detail_hash['statsu']
+      %th 提出日期:
+      %td
+        = @maximo_msg.order_detail_hash['propose_date']
+    %tr
+      %th 问题描述:
+      %td{:colspan => 3}
+        = @maximo_msg.order_detail_hash['quesdesc']
+    %tr
+      %th 整改责任人:
+      %td
+        = @maximo_msg.order_detail_hash['RESPONSER']
+      %th 完成时间:
+      %td
+        = @maximo_msg.order_detail_hash['reqcomdate']
+    %tr
+      %th 整改措施:
+      %td{:colspan => 3}
+        = @maximo_msg.order_detail_hash['rectifyreq']

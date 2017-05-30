@@ -1,0 +1,2 @@
+module MaximoMsgsHelper
+end

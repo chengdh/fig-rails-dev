@@ -8,5 +8,4 @@ class AreaMu < ActiveRecord::Base
   def area_info_name
     area_info.name
   end
-
 end

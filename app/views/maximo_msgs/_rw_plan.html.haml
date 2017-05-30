@@ -1,0 +1,42 @@
+/ 定期工作策划
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover.table-bordered
+    %tr
+      %th 编号:
+      %td
+        = @maximo_msg.order_detail_hash['num']
+      %th 设备专业:
+      %td
+        = @maximo_msg.order_detail_hash['specialty']
+    %tr
+      %th 台账编号:
+      %td
+        = @maximo_msg.order_detail_hash['emcode']
+      %th 工作项目:
+      %td
+        = @maximo_msg.order_detail_hash['jobcontent']
+    %tr
+      %th 设备台账名称:
+      %td{:colspan => 3}
+        = @maximo_msg.order_detail_hash['emname']
+    %tr
+      %th KKS编码:
+      %td
+        = @maximo_msg.order_detail_hash['kkscode']
+      %th 周期描述:
+      %td
+        = @maximo_msg.order_detail_hash['cycledesc']
+    %tr
+      %th 责任组:
+      %td
+        = @maximo_msg.order_detail_hash['execgroup']
+      %th 责任人:
+      %td
+        = @maximo_msg.order_detail_hash['executor']
+    %tr
+      %th 标准分值:
+      %td
+        = @maximo_msg.order_detail_hash['score']
+      %th 提醒时间:
+      %td
+        = @maximo_msg.order_detail_hash['limit']

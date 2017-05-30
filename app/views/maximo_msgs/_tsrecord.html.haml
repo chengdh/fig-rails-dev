@@ -1,0 +1,36 @@
+/ 技术监督查评内容 
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover.table-bordered
+    %tr
+      %th 编号:
+      %td
+        = @maximo_msg.order_detail_hash['recordnum']
+    %tr
+      %th 监督查评类型:
+      %td
+        = @maximo_msg.order_detail_hash['cnormtype']
+    %tr
+      %th 汇总描述:
+      %td
+        = @maximo_msg.order_detail_hash['tsdesc']
+    %tr
+      %th 开始时间:
+      %td
+        = @maximo_msg.order_detail_hash['startdate']
+    %tr
+      %th 结束时间:
+      %td
+        = @maximo_msg.order_detail_hash['enddate']
+    %tr
+      %th 创建时间:
+      %td
+        = @maximo_msg.order_detail_hash['creation_date']
+
+    %tr
+      %th 创建人:
+      %td
+        = @maximo_msg.order_detail_hash['created_by']
+    %tr
+      %th 状态:
+      %td
+        = @maximo_msg.order_detail_hash['status']

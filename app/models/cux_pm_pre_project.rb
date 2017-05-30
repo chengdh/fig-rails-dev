@@ -19,18 +19,9 @@ class CuxPmPreProject < ActiveRecord::Base
   end
 
   #通过wf_itemkey更新需求数据
-  def self.sync_with_ebs(wf_item_keys)
-    wf_item_keys.each do |k|
-      p_item_array =  []
-      p_item_array << {
-        "VTYPE" => "VAR",
-        "VNAME" => "wf_item_key",
-        "VVALUE" => k,
-        "VSIGN" => "EQ"
-      }
-      TestSoap.sync_table(self,p_item_array)
-    end
-    ids = CuxPmPreProject.where(wf_item_key: wf_item_keys).ids
+  def self.sync_with_ebs(p_user_id)
+    n_ids = CuxPmPreProjectSoap.get_prm_notify(p_user_id)
+    ids = CuxPmPreProjectSoap.get_prm_projects(n_ids)
     #同步审批记录
     CuxPaPrmApproveHi.sync_with_ebs(ids)
     #同步附件
@@ -38,7 +29,9 @@ class CuxPmPreProject < ActiveRecord::Base
       CuxSoaAttachedDocV.sync_with_ebs(id,"cux_pm_pre_projects_v")
     end
   end
-  def self.audit(user_id,username,notification_id,b_pass,audit_note)
+
+  #FIXME 未测试
+  def self.audit(p_user_id,p_username,p_next_user_ids,p_project_id,p_notification_id,p_app_result_code,p_app_result_note,p_status_lookup_code= nil)
     # return {x_ret_code: '0',x_ret_message: '数据处理成功'}
     # ret = plsql.CUX_MOBILE_APP_PVT.GENERAL_APPROVAL(user_id,
     #                                                 username,
@@ -48,7 +41,7 @@ class CuxPmPreProject < ActiveRecord::Base
     #                                                 user_id)
     #
     #
-    response = SoapApproval.general_approval(user_id,username,"",notification_id,b_pass,audit_note,"")
+    response = CuxPmPreProjectSoap.approval(p_user_id,p_username,p_next_user_ids,p_project_id,p_notification_id,p_app_result_code,p_app_result_note,p_status_lookup_code= nil)
     {x_ret_code: response.body[:output_parameters][:x_ret_code],x_ret_message: response.body[:output_parameters][:x_ret_message]}
   end
 end

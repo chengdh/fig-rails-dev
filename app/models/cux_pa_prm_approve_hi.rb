@@ -8,7 +8,7 @@ class CuxPaPrmApproveHi < ActiveRecord::Base
     cux_pa_ids.each do |cux_pa_id|
       p_item_array = []
       p_item_array << {
-        "VTYPE" => "INT",
+        "VTYPE" => "NUM",
         "VNAME" => "entity_id",
         "VVALUE" => cux_pa_id,
         "VSIGN" => "EQ"

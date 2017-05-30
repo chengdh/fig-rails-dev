@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170526003927) do
+ActiveRecord::Schema.define(version: 20170530070954) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -224,6 +224,7 @@ ActiveRecord::Schema.define(version: 20170526003927) do
     t.string   "wf_item_key",        limit: 255
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "project_id",         limit: 4
   end
 
   create_table "cux_pa_prm_approve_his_a", id: false, force: :cascade do |t|
@@ -251,6 +252,23 @@ ActiveRecord::Schema.define(version: 20170526003927) do
     t.datetime "updated_at",                                                       null: false
   end
 
+  create_table "cux_pa_trast_header_a", id: false, force: :cascade do |t|
+    t.integer  "header_id",         limit: 4
+    t.integer  "project_id",        limit: 4
+    t.integer  "task_id",           limit: 4
+    t.string   "asset_name",        limit: 255
+    t.integer  "asset_quantity",    limit: 4
+    t.decimal  "cost",                          precision: 15, scale: 2
+    t.integer  "asset_category_id", limit: 4
+    t.string   "model_number",      limit: 255
+    t.string   "contract_number",   limit: 255
+    t.string   "asset_num",         limit: 255
+    t.string   "manufacturer_name", limit: 255
+    t.string   "asset_number",      limit: 255
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+  end
+
   create_table "cux_pas", id: false, force: :cascade do |t|
     t.integer  "project_id",                 limit: 4
     t.string   "pa_project_number",          limit: 255
@@ -263,6 +281,8 @@ ActiveRecord::Schema.define(version: 20170526003927) do
     t.string   "project_approver_full_name", limit: 255
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "notification_id",            limit: 4
+    t.string   "wf_item_key",                limit: 255
   end
 
   create_table "cux_pm_pre_projects_a", id: false, force: :cascade do |t|
@@ -302,6 +322,7 @@ ActiveRecord::Schema.define(version: 20170526003927) do
     t.integer  "object_version_number", limit: 4
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
+    t.integer  "notification_id",       limit: 4
   end
 
   create_table "cux_posa_item_activity_his_a", id: false, force: :cascade do |t|
@@ -460,8 +481,10 @@ ActiveRecord::Schema.define(version: 20170526003927) do
     t.string   "orderusername", limit: 255
     t.datetime "ordertime"
     t.string   "url",           limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "form",          limit: 65535
+    t.string   "ordertable",    limit: 255
   end
 
   create_table "orgs", force: :cascade do |t|
