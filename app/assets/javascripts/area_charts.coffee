@@ -55,6 +55,7 @@ $ ->
   func_get_mu_data = (args,area_name) ->
     $.getJSON("/area_infos/get_mu_data.json",args).then((data)->
 
+      console.log(data)
       if args.city_code_eq != "" and args.district_code_eq == ""
         $(".select_city_data").show()
 
@@ -62,7 +63,6 @@ $ ->
         $(".select_city_data .total_area").html(data.total_area)
         $(".select_city_data .finished_mus").html(data.finished_mu)
         $(".select_city_data .last_percent").html(data.last_percent)
-        console.log(data)
 
       if args.district_code_eq != ""
         $(".select_district_data").show()
@@ -77,6 +77,7 @@ $ ->
 
 
   func_chart_click = (params)->
+    console.log("chart click params :" + params)
     area_name = params.data.name
     args = fun_get_area_code(area_name)
     func_get_mu_data(args,area_name)
