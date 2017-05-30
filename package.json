@@ -1,6 +1,10 @@
 {
   "name": "my-project",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.9.4",
+    "npm": "2.1.x"
+  }
   "dependencies": {
     "bower": "~1.7"
   },
