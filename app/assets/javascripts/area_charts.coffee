@@ -52,17 +52,34 @@ $ ->
     }
 
   chart = null
-  func_chart_click = (params)->
-    args = fun_get_area_code(params.data.name)
-
-    $(".select_city_data .city_name").html(params.data.name)
+  func_get_mu_data = (args,area_name) ->
     $.getJSON("/area_infos/get_mu_data.json",args).then((data)->
-      $(".select_city_data").show()
-      $(".select_city_data .total_area").html(data.total_area)
-      $(".select_city_data .finished_mus").html(data.finished_mu)
-      $(".select_city_data .last_percent").html(data.last_percent)
-      console.log(data)
+
+      if args.city_code_eq != "" and args.district_code_eq == ""
+        $(".select_city_data").show()
+
+        $(".select_city_data .city_name").html(area_name)
+        $(".select_city_data .total_area").html(data.total_area)
+        $(".select_city_data .finished_mus").html(data.finished_mu)
+        $(".select_city_data .last_percent").html(data.last_percent)
+        console.log(data)
+
+      if args.district_code_eq != ""
+        $(".select_district_data").show()
+        $(".select_district_data .district_name").html(area_name)
+        $(".select_district_data .total_area").html(data.total_area)
+        $(".select_district_data .finished_mus").html(data.finished_mu)
+        $(".select_district_data .last_percent").html(data.last_percent)
+      else
+        $(".select_district_data").hide()
+
     )
+
+
+  func_chart_click = (params)->
+    area_name = params.data.name
+    args = fun_get_area_code(area_name)
+    func_get_mu_data(args,area_name)
 
 
   if $("#map_chart").length > 0
@@ -75,6 +92,7 @@ $ ->
     if $("#select_city").val() == ""
       select_area_code = $("#select_province").val()
       $(".select_city_data").hide()
+      $(".select_district_data").hide()
     else
       select_area_code = $("#select_city").val()
 
@@ -85,6 +103,14 @@ $ ->
       chart = echarts.init(document.getElementById('map_chart'))
       chart.setOption(chart_option)
       chart.on('click',func_chart_click)
+      args =
+        code_eq: "410000",
+        city_code_eq: $("#select_city").val(),
+        district_code_eq: ""
+
+      area_name = $("#select_city option:selected").text()
+
+      func_get_mu_data(args,area_name)
   )
 
   #根据名称获取选择区域的编码

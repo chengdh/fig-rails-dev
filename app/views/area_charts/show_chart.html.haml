@@ -1,11 +1,12 @@
 .well.well-sm
   .city-group
-    %select.city-select#select_province
+    %select.city-select#select_province{:style => "display: none;"}
       %option --省份--
       = options_for_select(ChinaCity.list)
     %select.city-select#select_city
-      %option
+      %option{:value => ""} --全省--
       = options_for_select(ChinaCity.list("410000"))
+
     %select.city-select#select_district{:style => "display : none;"}
 
 
@@ -40,7 +41,7 @@
       .info-box-content
         %table.table.table-condensed.table-hover.table-bordered
           %tr
-            %th{:colspan => 2} 
+            %th{:colspan => 2}
               %span.city_name
           %tr
             %th 总面积:
@@ -51,6 +52,28 @@
             %th 累计收割:
             %td
               %span.finished_mus 0
+          %tr
+            %th 收割进度:
+            %td
+              %span.last_percent 0
+
+    .info-box.select_district_data{:style => "display: none;"}
+      %span.info-box-icon.bg-red
+        %i.fa.fa-star-o
+      .info-box-content
+        %table.table.table-condensed.table-hover.table-bordered
+          %tr
+            %th{:colspan => 2}
+              %span.district_name
+          %tr
+            %th 总面积:
+            %td
+              %span.total_area 0
+          -#
+          -# %tr
+          -#   %th 累计收割:
+          -#   %td
+          -#     %span.finished_mus 0
           %tr
             %th 收割进度:
             %td
