@@ -26,7 +26,7 @@ class MaximoSoap
 
   #同步表数据
   def self.sync_table(model_clazz,username,from_row,to_row)
-    response = task_agent(model_clazz.table_name.upcase,username,from_row,to_row)
+    response = task_agent(username,from_row,to_row)
     business_result = Hash.from_xml(response.body[:task_agent_response][:return])
     list = business_result["root"]["datalist"]["user"]
     list.each do |record|
