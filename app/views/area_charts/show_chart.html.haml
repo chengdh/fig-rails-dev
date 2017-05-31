@@ -9,8 +9,9 @@
 
     %select.city-select#select_district{:style => "display : none;"}
 
-
 .row
+  .col-md-12
+    %h3{:style => "text-align: center;"} 河南省三夏农机作业收割进度图
   .col-md-9
     .well.well-sm#map_chart{:style => "height: 800px;"}
   .col-md-3
@@ -22,18 +23,19 @@
           %tr
             %th{:colspan => 2} 全省
           %tr
-            %th 总面积:
+            %th 总面积(万亩):
             %td
               %span.total_area 0
 
           %tr
-            %th 累计收割:
+            %th 累计收割(万亩):
             %td
               %span.finished_mus 0
           %tr
             %th 收割进度:
             %td
               %span.last_percent 0
+              = "%"
 
     .info-box.select_city_data{:style => "display: none;"}
       %span.info-box-icon.bg-red
@@ -44,18 +46,19 @@
             %th{:colspan => 2}
               %span.city_name
           %tr
-            %th 总面积:
+            %th 总面积(万亩):
             %td
               %span.total_area 0
 
           %tr
-            %th 累计收割:
+            %th 累计收割(万亩):
             %td
               %span.finished_mus 0
           %tr
             %th 收割进度:
             %td
               %span.last_percent 0
+              = "%"
 
     .info-box.select_district_data{:style => "display: none;"}
       %span.info-box-icon.bg-red
@@ -66,7 +69,7 @@
             %th{:colspan => 2}
               %span.district_name
           %tr
-            %th 总面积:
+            %th 总面积(万亩):
             %td
               %span.total_area 0
           -#
@@ -78,3 +81,4 @@
             %th 收割进度:
             %td
               %span.last_percent 0
+              = "%"

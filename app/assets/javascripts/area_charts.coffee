@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
   chart_option = {
+      title: {
+        # text: "河南省三夏农机收割进度图"
+      },
       mapLocation: {
         x: 'left',
         y: 'top',
@@ -75,6 +78,9 @@ $ ->
 
     )
 
+  func_chart_dblclick = (params)->
+    console.log("chart dblclick")
+    console.log(params)
 
   func_chart_click = (params)->
     console.log(params)
@@ -87,6 +93,7 @@ $ ->
     chart = echarts.init(document.getElementById('map_chart'))
     chart.setOption(chart_option)
     chart.on('click',func_chart_click)
+    chart.on('dblclick',func_chart_dblclick)
 
   $("#select_city").on('change', ->
     select_area_code = "410000"
@@ -104,6 +111,7 @@ $ ->
       chart = echarts.init(document.getElementById('map_chart'))
       chart.setOption(chart_option)
       chart.on('click',func_chart_click)
+      chart.on('dblclick',func_chart_dblclick)
       args =
         code_eq: "410000",
         city_code_eq: $("#select_city").val(),
