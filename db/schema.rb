@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530070954) do
+ActiveRecord::Schema.define(version: 20170601044237) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -469,7 +469,7 @@ ActiveRecord::Schema.define(version: 20170530070954) do
   end
 
   create_table "maximo_msgs", force: :cascade do |t|
-    t.integer  "order_id",      limit: 4
+    t.integer  "orderid",       limit: 4
     t.string   "ordersource",   limit: 255
     t.string   "ordercode",     limit: 255
     t.string   "ordertypename", limit: 255
