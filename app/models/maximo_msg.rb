@@ -8,7 +8,13 @@ class MaximoMsg < ActiveRecord::Base
 
   #未读数据
   def self.unread_bills(orderuserid,ordertable)
-    where(orderuserid: orderuserid,ordertable: ordertable).to_json
+    ret = nil
+    if ordertable.present?
+      ret = where(orderuserid: orderuserid,ordertable: ordertable).to_json
+    else
+      ret = where(orderuserid: orderuserid).to_json
+    end
+    ret
   end
 
   #从maximo系统中同步数据
