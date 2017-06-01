@@ -27,6 +27,6 @@ class MaximoLogin
   #同步表数据
   def self.login(username,passwd)
     response = task_appro_val(username,passwd)
-    {id: response[:task_appro_val_response][:return],username: username,password: password,default_org_id: 1,authentication_token: "token"}
+    {id: response.body[:task_appro_val_response][:return].to_i,username: username,password: password,default_org_id: 1,authentication_token: "token"}
   end
 end
