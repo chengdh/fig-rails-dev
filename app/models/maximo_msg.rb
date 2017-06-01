@@ -3,7 +3,7 @@ require 'json'
 class MaximoMsg < ActiveRecord::Base
   #将数据对象转换为hash
   def order_detail_hash
-    JSON.parse(form)
+    JSON.parse(form).try(:first)
   end
 
   #未读数据
