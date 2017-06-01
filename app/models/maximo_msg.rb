@@ -12,7 +12,7 @@ class MaximoMsg < ActiveRecord::Base
   end
 
   #未读数据
-  def self.unread_bills(orderuserid,ordertable)
+  def self.unread_bills(orderuserid,ordertable=nil)
     ret = nil
     if ordertable.present?
       ret = where(orderuserid: orderuserid,ordertable: ordertable).to_json
