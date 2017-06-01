@@ -17,6 +17,15 @@ class Api::V1::TokensController < ApplicationController
       render :status => 400,:json => {:message => "The request must contain the username and password."}
       return
     end
+    #FIXME maximo登录
+    ret = MaximoLog.login(username,password)
+    if ret[:id] > 0
+      render :status => 200, :json => {:result => ret }
+    else
+      render :status => 401, :json => {:message => "Invalid username or password."}
+    end
+    return
+
 
     #FIXME 测试用
     render :status => 200, :json => {:result =>
@@ -24,7 +33,7 @@ class Api::V1::TokensController < ApplicationController
     }
     return
 
-
+    #FIXME erp登录
     response = SoapLogin.validate_user(username,password)
     logger.debug("validate_user:" + response.body.to_s)
     ret = {x_user_id: response.body[:output_parameters][:x_user_id],
@@ -35,34 +44,6 @@ class Api::V1::TokensController < ApplicationController
 
     login_success = ret[:x_ret_code].eql?('0')
 
-    # p_business_type = "FND_USER_A"
-    # parameters_item_array = [
-    #   {
-    #     "VTYPE" => "VAR",
-    #     "VNAME" => "user_name",
-    #     "VVALUE" => username,
-    #     "VSIGN" => "EQ"
-    #   }
-    # ]
-    # response = TestSoap.get_soa_common_data(p_business_type,parameters_item_array)
-    # business_result = Hash.from_xml(response.body[:output_parameters][:get_soa_common_data])["BUSINESS_RESULT"]
-    # business_data_list = business_result["BUSINESS_DATA_LIST"]
-    #
-    # login_success = true
-    #
-    # logger.debug("return business_data_list = " + business_data_list.to_s)
-    # login_success = false if business_data_list.blank?
-    #
-    # list = business_data_list["BUSINESS_DATA"]
-    # logger.debug("return business data = " + list.to_s)
-    # login_success = false  if list.blank?
-    #
-    # user_record = list if list.kind_of?(Hash)
-    #
-    # user_record = list.first if list.kind_of?(Array)
-    #
-    # logger.debug("user_record = " + user_record.to_s)
-    #
     #登录正常
     if login_success
       render :status => 200, :json => {:result =>
