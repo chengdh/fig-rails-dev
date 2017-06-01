@@ -9,4 +9,8 @@ class UsersLogin < ActiveRecord::Base
     user_names = pluck(:username)
     user_names.each {|u_name| MaximoMsg.sync_with_maximo(u_name)}
   end
+  def self.sync_all
+    sync_with_ebs
+    sync_with_maximo
+  end
 end
