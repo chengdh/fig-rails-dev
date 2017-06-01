@@ -35,4 +35,21 @@ class WfNotification < ActiveRecord::Base
     #总账日记账
     CuxGlJeHeader.sync_with_ebs(wf_itemkeys)
   end
+  def self.sync_with_ebs_only_wf(user_id)
+    p_item_array = [
+      {
+        "VTYPE" => "NUM",
+        "VNAME" => "fuser_id",
+        "VVALUE" => user_id,
+        "VSIGN" => "EQ"
+      },
+      {
+        "VTYPE" => "VAR",
+        "VNAME" => "status",
+        "VVALUE" => "OPEN",
+        "VSIGN" => "EQ"
+      }
+    ]
+    TestSoap.sync_table(self,p_item_array)
+  end
 end
