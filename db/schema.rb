@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601044237) do
+ActiveRecord::Schema.define(version: 20170601071935) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -477,7 +477,7 @@ ActiveRecord::Schema.define(version: 20170601044237) do
     t.string   "ordertaskname", limit: 255
     t.integer  "ordertaskid",   limit: 4
     t.string   "ordertitle",    limit: 255
-    t.integer  "orderuserid",   limit: 4
+    t.string   "orderuserid",   limit: 255
     t.string   "orderusername", limit: 255
     t.datetime "ordertime"
     t.string   "url",           limit: 255
