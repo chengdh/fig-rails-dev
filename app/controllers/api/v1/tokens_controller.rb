@@ -18,7 +18,7 @@ class Api::V1::TokensController < ApplicationController
       return
     end
     #FIXME maximo登录
-    ret = MaximoLog.login(username,password)
+    ret = MaximoLogin.login(username,password)
     if ret[:id] > 0
       render :status => 200, :json => {:result => ret }
     else
