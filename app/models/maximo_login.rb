@@ -1,7 +1,7 @@
 #coding: utf-8
 class MaximoLogin
   extend Savon::Model
-  client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
+  client wsdl: "http://192.168.77.212:7001/maximo_mh/MaximoLoginService?wsdl",
   # client wsdl: "http://192.168.77.211/maximo_mh/MaximoLoginService?wsdl",
     env_namespace: :soapenv,
     # namespaces: {
