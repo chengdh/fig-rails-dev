@@ -1,8 +1,8 @@
 #coding: utf-8
 class MaximoLogin
   extend Savon::Model
-  #client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
-  client wsdl: "http://192.168.77.211/maximo_mh/MaximoLoginService?wsdl",
+  client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
+  # client wsdl: "http://192.168.77.211/maximo_mh/MaximoLoginService?wsdl",
     env_namespace: :soapenv,
     # namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
@@ -27,6 +27,6 @@ class MaximoLogin
   #同步表数据
   def self.login(username,passwd)
     response = task_appro_val(username,passwd)
-    {id: response.body[:task_appro_val_response][:return].to_i,username: username,password: password,default_org_id: 1,authentication_token: "token"}
+    {id: response.body[:task_appro_val_response][:return].to_i,username: username,password: passwd,default_org_id: 1,authentication_token: "token"}
   end
 end
