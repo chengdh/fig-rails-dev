@@ -2,6 +2,7 @@
 #应付发票行
 class CuxApInvoiceLine < ActiveRecord::Base
   self.table_name = "cux_ap_invoice_lines_a"
+  self.primary_key = "line_number"
   belongs_to :cux_ap_invoice,foreign_key: :invoice_id
   def self.sync_with_ebs(inv_ids)
     inv_ids.each do |inv_id|

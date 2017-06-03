@@ -26,8 +26,8 @@ class CuxApInvoice < ActiveRecord::Base
         p_item_array =  []
         p_item_array << {
           "VTYPE" => "NUM",
-          "VNAME" => "id",
-          "VVALUE" => k,
+          "VNAME" => "ID",
+          "VVALUE" => id,
           "VSIGN" => "EQ"
         }
         TestSoap.sync_table(self,p_item_array)
