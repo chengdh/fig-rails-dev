@@ -17,7 +17,7 @@ services:
     links:
       - guodiantou-app-mysql
     ports:
-      - "5000:3000"
+      - "5010:3000"
     volumes_from:
       - guodiantou-bundle
     extra_hosts:
