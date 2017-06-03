@@ -29,7 +29,7 @@ class MaximoSoap
   def self.sync_table(model_clazz,username,from_row,to_row)
     response = task_agent(username,from_row,to_row)
     business_result = Hash.from_xml(response.body[:task_agent_response][:return])
-    return if business_result.blank? or business_result["root"]["datalist"]
+    return if business_result.blank? or business_result["root"]["datalist"].blank?
     list = business_result["root"]["datalist"]["user"]
 
     if list.kind_of?(Array)

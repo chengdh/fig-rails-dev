@@ -6,9 +6,12 @@ services:
       MYSQL_ROOT_PASSWORD: fizzbuzz
     ports:
       - "3310:3306"
+    container_name: erp_db
 
   guodiantou-app-server:
     build: .
+
+    container_name: erp_server
     #command: bundle exec unicorn
     command: bundle exec rails s -b 0.0.0.0 -p 3000
     volumes:
@@ -24,6 +27,7 @@ services:
       - "erptrn.cpihn.com:192.168.66.171"
 
   guodiantou-bundle:
+    container_name: erp_bundler
     image: figrailsdev_guodiantou-app-server
     command: echo "I'm a little data container, short and stout..."
     volumes:
