@@ -18,20 +18,20 @@ class Api::V1::TokensController < ApplicationController
       return
     end
     #FIXME maximo登录
-    ret = MaximoLogin.login(username,password)
-    if ret[:id] > 0
-      render :status => 200, :json => {:result => ret }
-    else
-      render :status => 401, :json => {:message => "Invalid username or password."}
-    end
-    return
-
-
-    #FIXME 测试用
-    render :status => 200, :json => {:result =>
-                                       {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
-    }
-    return
+    # ret = MaximoLogin.login(username,password)
+    # if ret[:id] > 0
+    #   render :status => 200, :json => {:result => ret }
+    # else
+    #   render :status => 401, :json => {:message => "Invalid username or password."}
+    # end
+    # return
+    #
+    #
+    # #FIXME 测试用
+    # render :status => 200, :json => {:result =>
+    #                                    {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    # }
+    # return
 
     #FIXME erp登录
     response = SoapLogin.validate_user(username,password)

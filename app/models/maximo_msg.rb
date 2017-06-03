@@ -26,4 +26,5 @@ class MaximoMsg < ActiveRecord::Base
   def self.sync_with_maximo(username)
     MaximoSoap.sync_table(MaximoMsg,username,0,9999)
   end
+
 end

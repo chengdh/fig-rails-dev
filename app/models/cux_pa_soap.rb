@@ -33,10 +33,15 @@ class CuxPaSoap
     end
 
     #获取项目任务预算明细信息
-    #FIXME 接口文档中未提供数据样例
     def self.get_pa_budet_info(project_id)
-      super(message: {
+      response = super(message: {
         "P_PROJECT_ID" => project_id
       })
+
+      x_pa_task_infos = response.body[:output_parameters][:x_pa_task_infos]
+      return if x_pa_task_infos.blank?
+      list = x_pa_task_infos[:x_pa_task_infos_item]
+      return [] if list.blank?
+      TestSoap.sync_table_v2(list,CuxPaTask)
     end
 end
