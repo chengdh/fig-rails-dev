@@ -20,6 +20,12 @@ class Api::V1::TokensController < ApplicationController
     #FIXME maximo登录
     ret = MaximoLogin.login(username,password)
     if ret[:id] > 0
+    	if UsersLogin.exists?(:user_id => ret[:id])
+        user_login = UsersLogin.find_by(user_id: ret[:id])
+        user_login.update_attributes(login_date: DateTime.now)
+      else
+        UsersLogin.create!(user_id: ret[:id],username: username,login_date: DateTime.now)
+      end
       render :status => 200, :json => {:result => ret }
     else
       render :status => 401, :json => {:message => "Invalid username or password."}
