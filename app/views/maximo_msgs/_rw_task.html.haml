@@ -5,6 +5,8 @@
       %th 编号:
       %td
         = @maximo_msg.order_detail_hash['num']
+
+    %tr
       %th 工作项目:
       %td
         = @maximo_msg.order_detail_hash['jobcontent']
@@ -12,6 +14,8 @@
       %th KKS编码:
       %td
         = @maximo_msg.order_detail_hash['kkscode']
+
+    %tr
       %th 设备专业:
       %td
         = @maximo_msg.order_detail_hash['specialty']
@@ -19,6 +23,8 @@
       %th 执行时间:
       %td
         = @maximo_msg.order_detail_hash['performdate']
+
+    %tr
       %th 完成时间:
       %td
         = @maximo_msg.order_detail_hash['excudate']
@@ -27,18 +33,20 @@
       %th 责任组:
       %td
         = @maximo_msg.order_detail_hash['execgroup']
+
+    %tr
       %th 责任人:
       %td
         = @maximo_msg.order_detail_hash['executor']
     %tr
       %th 标准分值:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['score']
     %tr
       %th 执行结果:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['result']
     %tr
       %th 存在问题:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['question']
