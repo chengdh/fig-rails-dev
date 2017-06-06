@@ -5,6 +5,7 @@
       %th 监督类型:
       %td
         = @maximo_msg.order_detail_hash['ts_type']
+    %tr
       %th 计划描述:
       %td
         = @maximo_msg.order_detail_hash['description']
@@ -12,10 +13,11 @@
       %th 年份:
       %td
         = @maximo_msg.order_detail_hash['plan_year']
+    %tr
       %th 月份:
       %td
         = @maximo_msg.order_detail_hash['plan_month']
     %tr
       %th 状态:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['status']

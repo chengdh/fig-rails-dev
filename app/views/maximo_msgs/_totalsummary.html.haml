@@ -5,16 +5,18 @@
       %th 总结类型:
       %td
         = @maximo_msg.order_detail_hash['summary_type']
+
+    %tr
       %th 状态:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['status']
     %tr
       %th 年份:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['plan_year']
 
     %tr
       %th 计划描述:
-      %td{:colspan => 3}
+      %td
         = @maximo_msg.order_detail_hash['description']
           %th 计划描述:

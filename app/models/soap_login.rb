@@ -7,7 +7,7 @@ class SoapLogin
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
     #   "xmlns:cux" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/",
     #   "xmlns:get" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/get_soa_common_data/"
-      "xmlns:tns9" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/validate_user/"
+      "xmlns:tns10" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/validate_user/"
     },
     wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,
