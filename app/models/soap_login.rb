@@ -1,13 +1,13 @@
 #coding: utf-8
 class SoapLogin
   extend Savon::Model
-  client wsdl: "http://erptrn.cpihn.com:8003/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg4/?wsdl",
+  client wsdl: "http://erptrn.cpihn.com:8002/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg/?wsdl",
     env_namespace: :soapenv,
     namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
     #   "xmlns:cux" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/",
     #   "xmlns:get" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/get_soa_common_data/"
-      "xmlns:tns9" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg4/validate_user/"
+      "xmlns:tns9" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/validate_user/"
     },
     wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,

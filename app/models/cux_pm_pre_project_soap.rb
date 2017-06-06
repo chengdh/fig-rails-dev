@@ -2,15 +2,15 @@
 #前期立项数据同步
 class CuxPmPreProjectSoap
   extend Savon::Model
-  client wsdl: "http://erptrn.cpihn.com:8003/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg3/?wsdl",
+  client wsdl: "http://erptrn.cpihn.com:8002/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg/?wsdl",
     env_namespace: :soapenv,
     namespaces: {
       #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
       #   "xmlns:cux" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/",
       #   "xmlns:get" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/get_soa_common_data/"
-      "xmlns:tns7" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg2/get_prm_notify/",
-      "xmlns:tns8" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg2/get_prm_projects/",
-      "xmlns:tns9" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg2/cux_prm_approval/"
+      "xmlns:tns7" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_notify/",
+      "xmlns:tns8" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_projects/",
+      "xmlns:tns9" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/cux_prm_approval/"
     },
     wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,

@@ -2,14 +2,14 @@
 #项目过程数据同步
 class CuxPaSoap
   extend Savon::Model
-  client wsdl: "http://erptrn.cpihn.com:8003/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg3/?wsdl",
+  client wsdl: "http://erptrn.cpihn.com:8002/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg/?wsdl",
     env_namespace: :soapenv,
     namespaces: {
       #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
       #   "xmlns:cux" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/",
       #   "xmlns:get" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/get_soa_common_data/"
-      "xmlns:tns7" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg2/get_pa_pro_info/",
-      "xmlns:tns8" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg2/get_pa_budet_info/"
+      "xmlns:tns7" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_pro_info/",
+      "xmlns:tns8" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_budet_info/"
     },
     wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,

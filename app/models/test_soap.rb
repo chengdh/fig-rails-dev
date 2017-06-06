@@ -1,7 +1,7 @@
 #coding: utf-8
 class TestSoap
   extend Savon::Model
-  client wsdl: "http://erptrn.cpihn.com:8003/webservices/SOAProvider/plsql/cux_soa_app_getdata_pkg/?wsdl",
+  client wsdl: "http://erptrn.cpihn.com:8002/webservices/SOAProvider/plsql/cux_soa_app_getdata_pkg/?wsdl",
     env_namespace: :soapenv,
     namespaces: {
       #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
