@@ -29,7 +29,7 @@ class WfNotification < ActiveRecord::Base
     #同步前期立项
     CuxPmPreProject.sync_with_ebs(user_id)
     #同步项目审批
-    wf_ids_for_cux_pa = WfNotification.where(fuser_id: user_id,message_type: CuxPa::ITEM_TYPE).pluck(:id)
+    wf_ids_for_cux_pa = WfNotification.where(fuser_id: user_id,message_type: CuxPa::WF_ITEM_TYPE).pluck(:id)
     CuxPa.sync_with_ebs(wf_ids_for_cux_pa)
 
     #总账日记账

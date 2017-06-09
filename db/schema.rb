@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601071935) do
+ActiveRecord::Schema.define(version: 20170609024643) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -125,13 +125,13 @@ ActiveRecord::Schema.define(version: 20170601071935) do
     t.string   "apply_number",     limit: 30
     t.string   "item_number",      limit: 30
     t.integer  "item_id",          limit: 4
-    t.string   "item_description", limit: 60
-    t.string   "item_spec",        limit: 60
-    t.decimal  "item_price",                  precision: 15, scale: 2, default: 0.0
-    t.decimal  "demand_quantiry",             precision: 15, scale: 2, default: 0.0
-    t.decimal  "line_bugdet",                 precision: 15, scale: 2, default: 0.0
-    t.datetime "created_at",                                                         null: false
-    t.datetime "updated_at",                                                         null: false
+    t.string   "item_description", limit: 255
+    t.string   "item_spec",        limit: 255
+    t.decimal  "item_price",                   precision: 15, scale: 2, default: 0.0
+    t.decimal  "demand_quantiry",              precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_bugdet",                  precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
   end
 
   create_table "cux_fa_transfer_headers_a", id: false, force: :cascade do |t|

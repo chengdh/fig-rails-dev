@@ -8,8 +8,8 @@ class CuxPaSoap
       #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
       #   "xmlns:cux" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/",
       #   "xmlns:get" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/get_soa_common_data/"
-      "xmlns:tns7" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_pro_info/",
-      "xmlns:tns8" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_budet_info/"
+      "xmlns:tns5" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_pro_info/",
+      "xmlns:tns6" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_budet_info/"
     },
     wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,

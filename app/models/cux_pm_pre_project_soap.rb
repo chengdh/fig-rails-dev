@@ -27,7 +27,7 @@ class CuxPmPreProjectSoap
 
       Rails.logger.debug("get_prm_notify_items = " + get_prm_notify_items.to_s)
       return if get_prm_notify_items.blank?
-      list = get_prm_notify_item[:get_prm_notify_item]
+      list = get_prm_notify_items[:get_prm_notify_item]
 
       return [] if list.blank?
       TestSoap.sync_table_v2(list,WfNotification,"notification_id")
@@ -42,7 +42,7 @@ class CuxPmPreProjectSoap
 
       Rails.logger.debug("get_prm_projects = " + get_prm_projects.to_s)
       return [] if get_prm_projects.blank?
-      list = get_prm_notify_item[:get_prm_projects_item]
+      list = get_prm_projects[:get_prm_projects_item]
 
       return [] if list.blank?
       TestSoap.sync_table_v2(list,CuxPmPreProject)

@@ -28,7 +28,9 @@ class TestSoap
     #同步表数据
     def self.sync_table(model_clazz,p_item_array)
       response = get_soa_common_data(model_clazz.table_name.upcase,p_item_array)
-      business_result = Hash.from_xml(response.body[:output_parameters][:get_soa_common_data])["BUSINESS_RESULT"]
+      get_soa_common_data = response.body[:output_parameters][:get_soa_common_data]
+      return if get_soa_common_data.blank? or get_soa_common_data.eql?("N")
+      business_result = Hash.from_xml(get_soa_common_data)["BUSINESS_RESULT"]
       business_data_list = business_result["BUSINESS_DATA_LIST"]
 
       Rails.logger.debug("return business_data_list = " + business_data_list.to_s)
