@@ -8,14 +8,14 @@ class CuxPa < ActiveRecord::Base
   has_many :cux_pa_trast_headers,foreign_key: :project_id
   has_many :cux_pa_approver_list_his,foreign_key: :project_id
 
-  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_item_key: wf_itemkeys)}
+  scope :bills_by_notification_ids,-> (n_ids) {where(notification_id: n_ids)}
   def id
     project_id
   end
 
-  def self.unread_bills(wf_itemkeys)
+  def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(methods: [:id])
+    self.bills_by_notification_ids(n_ids).to_json(methods: [:id])
   end
 
   #通过wf_itemkey更新需求数据
