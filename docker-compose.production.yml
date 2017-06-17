@@ -1,0 +1,33 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.5.51
+    environment:
+      MYSQL_ROOT_PASSWORD: fizzbuzz
+    ports:
+      - "3310:3306"
+  app:
+    build: .
+    #command: bundle exec unicorn
+    command: bundle exec unicorn -c config/unicorn/production.rb
+    depends_on:
+      - db
+    extra_hosts:
+      - "erptrn.cpihn.com:192.168.66.171"
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.production.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      default:
+      nginx_default:
+        aliases:
+          - maximo-app-server
+volumes:
+  assets:
+networks:
+  nginx_default:
+    external: true
