@@ -1,6 +1,6 @@
 # Inspired by Deepak's setup here - https://gist.github.com/deepak/5925003
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs npm git curl mysql-client libmysqlclient-dev libxml2-dev libxslt-dev libreadline-dev
 RUN apt-get install imagemagick -y
