@@ -36,7 +36,7 @@ class CuxPmPreProjectSoap
     #获取前期立项信息
     def self.get_prm_projects(n_ids)
       response = super(message: {
-        "P_NOTIFICATIONS_ID" => n_id
+        "P_NOTIFICATIONS_ID" => n_ids.join(",")
       })
       get_prm_projects = response.body[:output_parameters][:get_prm_projects]
 
