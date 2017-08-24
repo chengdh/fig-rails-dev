@@ -13,7 +13,7 @@ class Api::V1::TokensController < ApplicationController
       return
     end
 
-    if username.nil? or password.nil?
+    if username.nil?
       render :status => 400,:json => {:message => "The request must contain the username and password."}
       return
     end
@@ -34,38 +34,40 @@ class Api::V1::TokensController < ApplicationController
     # return
 
     #FIXME erp登录
-    response = SoapLogin.validate_user(username,password)
-    logger.debug("validate_user:" + response.body.to_s)
-    ret = {x_user_id: response.body[:output_parameters][:x_user_id],
-           x_ret_code: response.body[:output_parameters][:x_ret_code],
-           x_ret_message: response.body[:output_parameters][:x_ret_message]}
+    # response = SoapLogin.validate_user(username,password)
+    # logger.debug("validate_user:" + response.body.to_s)
+    # ret = {x_user_id: response.body[:output_parameters][:x_user_id],
+    #        x_ret_code: response.body[:output_parameters][:x_ret_code],
+    #        x_ret_message: response.body[:output_parameters][:x_ret_message]}
+    #
+    # logger.debug("login ret:" + ret.to_s)
 
-    logger.debug("login ret:" + ret.to_s)
-
-    login_success = ret[:x_ret_code].eql?('0')
+    user = SoapLogin.get_user(username)
+    render :status => 200, :json => {:result => user}
+    # return
 
     #登录正常
-    if login_success
-      render :status => 200, :json => {:result =>
-                                       {
-                                         id: ret[:x_user_id],
-                                         username: username,
-                                         password: "password",
-                                         real_name:  username,
-                                         default_org_id: 1,
-                                         authentication_token: "token"
-                                       }
-      }
-      if UsersLogin.exists?(:user_id => ret[:x_user_id])
-        user_login = UsersLogin.find_by(user_id: ret[:x_user_id])
-        user_login.update_attributes(login_date: DateTime.now)
-      else
-        UsersLogin.create!(user_id: ret[:x_user_id],username: username,login_date: DateTime.now)
-      end
-    else
-      logger.info("User #{username} failed signin, password \"#{password}\" is invalid")
-      render :status => 401, :json => {:message => "Invalid username or password."}
-    end
+    # if login_success
+    #   render :status => 200, :json => {:result => 
+    #                                    {
+    #                                      id: ret[:x_user_id],
+    #                                      username: username,
+    #                                      password: "password",
+    #                                      real_name:  username,
+    #                                      default_org_id: 1,
+    #                                      authentication_token: "token"
+    #                                    }
+    #   }
+    #   if UsersLogin.exists?(:user_id => ret[:x_user_id])
+    #     user_login = UsersLogin.find_by(user_id: ret[:x_user_id])
+    #     user_login.update_attributes(login_date: DateTime.now)
+    #   else
+    #     UsersLogin.create!(user_id: ret[:x_user_id],username: username,login_date: DateTime.now)
+    #   end
+    # else
+    #   logger.info("User #{username} failed signin, password \"#{password}\" is invalid")
+    #   render :status => 401, :json => {:message => "Invalid username or password."}
+    # end
   end
 
   def destroy

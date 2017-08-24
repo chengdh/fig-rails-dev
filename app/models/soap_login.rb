@@ -26,4 +26,37 @@ class SoapLogin
         }
       )
     end
+
+    #获取用户信息
+    def self.get_user(p_username)
+      p_item_array =  []
+      p_item_array << {
+        "VTYPE" => "VAR",
+        "VNAME" => "user_name",
+        "VVALUE" => p_username,
+        "VSIGN" => "EQ"
+      }
+      response = TestSoap.get_soa_common_data("FND_USER_A",p_item_array)
+      get_soa_common_data = response.body[:output_parameters][:get_soa_common_data]
+      return if get_soa_common_data.blank? or get_soa_common_data.eql?("N")
+      business_result = Hash.from_xml(get_soa_common_data)["BUSINESS_RESULT"]
+      business_data_list = business_result["BUSINESS_DATA_LIST"]
+
+      Rails.logger.debug("return business_data_list = " + business_data_list.to_s)
+      return if business_data_list.blank?
+
+      list = business_data_list["BUSINESS_DATA"]
+      Rails.logger.debug("return business data = " + list.to_s)
+
+      return nil if list.blank?
+      user = list.first
+      ret = {
+        id: user["id"],
+        username: user["username"],
+        password: "password",
+        real_name:  user["username"],
+        default_org_id: 1,
+        authentication_token: "token"
+      }
+    end
 end
