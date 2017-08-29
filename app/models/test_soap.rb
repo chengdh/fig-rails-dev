@@ -104,11 +104,11 @@ class TestSoap
         table_data.each do |record|
           id = record.delete(pk) if pk.present?
           #删除不需要的属性
-          record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
+          record.delete_if {|k,v| !model_clazz.column_names.include?(k.to_s.downcase)}
           ret_ids << id
           new_hash = {}
           record.each do |k,v|
-            new_hash.merge!({k.downcase => v})
+            new_hash.merge!({k.to_s.downcase => v})
           end
           #如果存在数据则更新
           wf_exists = model_clazz.exists?(id)
@@ -126,11 +126,11 @@ class TestSoap
         record = table_data
         id = record.delete(pk) if pk.present?
         #删除不需要的属性
-        record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
+        record.delete_if {|k,v| !model_clazz.column_names.include?(k.to_s.downcase)}
         ret_ids << id
         new_hash = {}
         record.each do |k,v|
-          new_hash.merge!({k.downcase => v})
+          new_hash.merge!({k.to_s.downcase => v})
         end
         #如果存在数据则更新
         wf_exists = model_clazz.exists?(id)

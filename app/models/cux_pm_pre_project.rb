@@ -7,15 +7,15 @@ class CuxPmPreProject < ActiveRecord::Base
   #附件
   has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_pm_pre_projects_v")},foreign_key: :pk1_column
 
-  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_item_key: wf_itemkeys)}
+  scope :bills_by_notification_ids,-> (n_ids) {where(notification_id: n_ids)}
 
   def id
     project_id
   end
 
-  def self.unread_bills(wf_itemkeys)
+  def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(methods: [:id])
+    self.bills_by_notification_ids(n_ids).to_json(methods: [:id])
   end
 
   #通过wf_itemkey更新需求数据

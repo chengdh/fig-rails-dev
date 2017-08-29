@@ -30,7 +30,20 @@ class CuxPmPreProjectSoap
       list = get_prm_notify_items[:get_prm_notify_item]
 
       return [] if list.blank?
-      TestSoap.sync_table_v2(list,WfNotification,"notification_id")
+      if list.kind_of?(Array)
+        list.each do |l|
+          id = l.delete(:notification_id)
+          l["id"] = id
+          #FIXME
+          l["message_type"] = "CUXCPINT"
+        end
+      end
+      if list.kind_of?(Hash)
+          id = list.delete(:notification_id)
+          list["id"] = id
+          list["message_type"] = "CUXCPINT"
+      end
+      TestSoap.sync_table_v2(list,WfNotification)
     end
 
     #获取前期立项信息
