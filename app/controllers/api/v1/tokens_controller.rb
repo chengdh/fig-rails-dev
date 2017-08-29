@@ -43,7 +43,12 @@ class Api::V1::TokensController < ApplicationController
     # logger.debug("login ret:" + ret.to_s)
 
     user = SoapLogin.get_user(username)
-    render :status => 200, :json => {:result => user}
+    if user.present?
+      render :status => 200, :json => {:result => user}
+    else
+      logger.info("User #{username} failed signin ")
+      render :status => 401, :json => {:message => "Invalid username ."}
+    end
     # return
 
     #登录正常

@@ -45,7 +45,7 @@ class TestSoap
       pk = model_clazz.primary_key
       if list.kind_of?(Array)
         list.each do |record|
-          id = record.delete(pk.upcase)
+          id = record.delete(pk.upcase) if pk.present?
           #删除不需要的属性
           record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
           ret_ids << id
@@ -69,7 +69,7 @@ class TestSoap
         record = list
         #删除不需要的属性
         record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
-        id = record.delete(pk.upcase)
+        id = record.delete(pk.upcase) if pk.present?
         ret_ids << id
         new_hash = {}
         record.each do |k,v|
@@ -102,7 +102,7 @@ class TestSoap
 
       if table_data.kind_of?(Array)
         table_data.each do |record|
-          id = record.delete(pk)
+          id = record.delete(pk) if pk.present?
           #删除不需要的属性
           record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
           ret_ids << id
@@ -124,7 +124,7 @@ class TestSoap
       end
       if table_data.kind_of?(Hash)
         record = table_data
-        id = record.delete(pk)
+        id = record.delete(pk) if pk.present?
         #删除不需要的属性
         record.delete_if {|k,v| !model_clazz.column_names.include?(k.downcase)}
         ret_ids << id

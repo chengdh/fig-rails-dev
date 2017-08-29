@@ -21,7 +21,7 @@ class CuxPmPreProjectSoap
     #获取前期立项通知
     def self.get_prm_notify(p_user_id)
       response = super(message: {
-        "P_USER_ID" => p_user_id
+        "P_USERID" => p_user_id
       })
       get_prm_notify_items = response.body[:output_parameters][:get_prm_notify]
 

@@ -43,18 +43,18 @@ class SoapLogin
       business_data_list = business_result["BUSINESS_DATA_LIST"]
 
       Rails.logger.debug("return business_data_list = " + business_data_list.to_s)
-      return if business_data_list.blank?
+      return nil if business_data_list.blank?
 
       list = business_data_list["BUSINESS_DATA"]
       Rails.logger.debug("return business data = " + list.to_s)
 
       return nil if list.blank?
-      user = list.first
+      user = list
       ret = {
-        id: user["id"],
-        username: user["username"],
+        id: user["ID"],
+        username: user["USER_NAME"],
         password: "password",
-        real_name:  user["username"],
+        real_name:  user["USER_NAME"],
         default_org_id: 1,
         authentication_token: "token"
       }
