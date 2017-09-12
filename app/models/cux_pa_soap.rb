@@ -20,7 +20,7 @@ class CuxPaSoap
     #获取项目过程信息
     def self.get_pa_pro_info(wf_notify_ids)
       response = super(message: {
-        "N_ID" => wf_notify_ids.join(",")
+        "NID" => wf_notify_ids.join(",")
       })
       get_pa_pro_info = response.body[:output_parameters][:get_pa_pro_info]
 

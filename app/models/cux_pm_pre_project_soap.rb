@@ -35,13 +35,13 @@ class CuxPmPreProjectSoap
           id = l.delete(:notification_id)
           l["id"] = id
           #FIXME
-          l["message_type"] = "CUXCPINT"
+          l["message_type"] = "CUX_PM_PRE_PROJECT"
         end
       end
       if list.kind_of?(Hash)
           id = list.delete(:notification_id)
           list["id"] = id
-          list["message_type"] = "CUXCPINT"
+          list["message_type"] = "CUX_PM_PRE_PROJECT"
       end
       TestSoap.sync_table_v2(list,WfNotification)
     end
@@ -58,7 +58,7 @@ class CuxPmPreProjectSoap
       list = get_prm_projects[:get_prm_projects_item]
 
       return [] if list.blank?
-      TestSoap.sync_table_v2(list,CuxPmPreProject)
+      TestSoap.sync_table_v2(list,CuxPmPreProject,:project_id)
     end
 
     #审批操作
