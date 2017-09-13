@@ -1,6 +1,7 @@
 #coding: utf-8
 require 'json'
 class MaximoMsg < ActiveRecord::Base
+  self.primary_key = "orderid"
   #将数据对象转换为hash
   def order_detail_hash
     hs = JSON.parse(form).try(:first)

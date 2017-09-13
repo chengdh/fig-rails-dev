@@ -14,7 +14,7 @@ class MaximoSoap
     pretty_print_xml: true,
     log: true
 
-  operations :task_agent
+  operations :task_agent,:task_appro_val
 
   #获取表数据
   def self.task_agent(username,from_row,to_row)
@@ -22,6 +22,32 @@ class MaximoSoap
       "arg0" => username,
       "arg1" => from_row,
       "arg2" => to_row
+    })
+  end
+
+  #数据审批
+  #appro 审批人工号
+  #assignid 任务ID ，同上接口任务ID assignid
+  #ispositive 审批结果（0不通过，1通过)
+  #evaluate_caluse 审批意见-
+  #evaluate 评价结果（优、良、差）
+  def self.task_appro_val(appro,assignid,ispositive,evaluate_caluse,evaluate)
+    task = MaximoMsg.find(assignid)
+    return unless task.present?
+    super(message: {
+      datas: {
+        web: {
+          assignid: assignid,
+          processname: task.ordertaskname,
+          processrev: task.processrev,
+          ownernodeid: task.nodeid,
+          ispositive: ispositive,
+          evaluate_caluse: evaluate_caluse,
+          appro: appro,
+          evaluate: evaluate
+        }
+      }
+
     })
   end
 
