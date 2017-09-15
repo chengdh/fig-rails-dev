@@ -2,7 +2,7 @@
 class MaximoSoap
   extend Savon::Model
   client wsdl: "http://192.168.77.211/maximo_mh/TaskAgentsService?wsdl",
-  # client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
+    # client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
     env_namespace: :soapenv,
     # namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
@@ -14,7 +14,7 @@ class MaximoSoap
     pretty_print_xml: true,
     log: true
 
-  operations :task_agent,:task_appro_val
+  operations :task_agent
 
   #获取表数据
   def self.task_agent(username,from_row,to_row)
@@ -34,21 +34,20 @@ class MaximoSoap
   def self.task_appro_val(appro,assignid,ispositive,evaluate_caluse,evaluate)
     task = MaximoMsg.find(assignid)
     return unless task.present?
-    super(message: {
-      datas: {
-        web: {
-          assignid: assignid,
-          processname: task.ordertaskname,
-          processrev: task.processrev,
-          ownernodeid: task.nodeid,
-          ispositive: ispositive,
-          evaluate_caluse: evaluate_caluse,
-          appro: appro,
-          evaluate: evaluate
-        }
+    args = {
+      web: {
+        assignid: assignid,
+        processname: task.ordertaskname,
+        processrev: task.processrev,
+        ownernodeid: task.nodeid,
+        ispositive: ispositive,
+        evaluate_caluse: evaluate_caluse,
+        appro: appro,
+        evaluate: evaluate
       }
+    }
 
-    })
+    super(message: args.to_xml(root: :datas))
   end
 
   #同步表数据

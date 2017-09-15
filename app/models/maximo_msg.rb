@@ -28,4 +28,9 @@ class MaximoMsg < ActiveRecord::Base
     MaximoSoap.sync_table(MaximoMsg,username,0,9999)
   end
 
+  #审批
+  def self.task_appro_val(appro,assignid,ispositive,evaluate_caluse,evaluate)
+    resp = MaximoApproValSoap.task_appro_val(appro,assignid,ispositive,evaluate_caluse,evaluate)
+    {x_ret_code: resp.body[:task_appro_val_response][:return]}
   end
+end
