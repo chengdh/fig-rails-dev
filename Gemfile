@@ -1,6 +1,6 @@
 #source 'http://rubygems.org'
 #source 'https://taobao.ruby.org/'
-source 'https://gems.ruby-china.org/'
+source 'http://gems.ruby-china.org/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '2.1.4'
@@ -60,8 +60,9 @@ gem "font-awesome-rails"
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'mysql2'
-# gem 'activerecord-oracle_enhanced-adapter'
-# gem 'ruby-oci8', '~> 2.2', '>= 2.2.3'
+gem 'ruby-plsql',github: 'rsim/ruby-plsql',branch: 'master'
+gem 'activerecord-oracle_enhanced-adapter'
+gem 'ruby-oci8', '~> 2.2', '>= 2.2.3'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'formtastic-bootstrap'

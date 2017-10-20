@@ -9,16 +9,16 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
-# default: &default
-#   adapter: oracle_enhanced
-#   #host: 192.168.66.171
-#   database: "(DESCRIPTION=
-#     (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST= 192.168.66.171)(PORT=1524)))
-#     (CONNECT_DATA=(SERVICE_NAME=TEST))
-#   )"
-#   #port: 1524
-#   username: apps
-#   password: apps_test
+default: &default
+  adapter: oracle_enhanced
+  #host: 192.168.66.171
+  database: "(DESCRIPTION=
+    (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST= 192.168.66.171)(PORT=1523)))
+    (CONNECT_DATA=(SERVICE_NAME=UAT))
+  )"
+  #port: 1524
+  username: apps
+  password: apps_uat
 #
 # development:
 #   <<: *default
@@ -31,17 +31,17 @@
 #   username: match_test
 #   password: match_test
 
-default: &default
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: root
-  password: fizzbuzz
-  host: guodiantou-app-mysql
+# default: &default
+#   adapter: mysql2
+#   encoding: utf8
+#   pool: 5
+#   username: root
+#   password: fizzbuzz
+#   host: guodiantou-app-mysql
 
 development:
   <<: *default
-  database: guodiantou_development
+  # database: guodiantou_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
