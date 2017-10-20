@@ -2,6 +2,7 @@
 class WfNotification < ActiveRecord::Base
   self.table_name = "wf_notifications_a"
   scope :unread,-> (user_id) {where(status: 'OPEN',fuser_id: user_id)}
+  scope :unread_cux_pm_pre_projects,-> (user_id) {from().select().where(status: 'OPEN',fuser_id: user_id)}
 
   def self.sync_with_ebs(user_id)
     p_item_array = [
