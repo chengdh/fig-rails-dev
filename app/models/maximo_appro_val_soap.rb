@@ -27,7 +27,7 @@ class MaximoApproValSoap
     args = {
       web: {
         assignid: assignid,
-        processname: task.ordertaskname,
+        processname: task.processname,
         processrev: task.processrev,
         ownernodeid: task.nodeid,
         ispositive: ispositive,
