@@ -7,7 +7,19 @@ class CuxPmPreProject < ActiveRecord::Base
   #附件
   has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_pm_pre_projects_v")},foreign_key: :pk1_column
 
-  scope :bills_by_notification_ids,-> (n_ids) {where(notification_id: n_ids)}
+  scope :bills_by_notification_ids,-> (n_ids) {from("
+          (SELECT CH.ENTITY_ID, WN.NOTIFICATION_ID
+          FROM CUX_APPROVER_LIST_HEADERS CH,
+               CUX_APPROVER_LIST_LINES   CL,
+               WF_NOTIFICATIONS          WN
+         WHERE CL.LIST_HEADER_ID = CH.LIST_HEADER_ID
+           AND CL.WF_ITEM_TYPE IS NOT NULL
+           AND CL.WF_ITEM_TYPE = WN.MESSAGE_TYPE
+           AND CL.WF_ITEM_KEY = WN.ITEM_KEY
+           AND CH.ENTITY = 'CUX_PM_PRE_PROJECTS_ALL'
+           AND WN.NOTIFICATION_ID IN (#{n_ids.join(',')})
+         GROUP BY CH.ENTITY_ID, WN.NOTIFICATION_ID) CHA,CUX_PM_PRE_PROJECTS_A CPA").
+           select("CPA.*, CHA.NOTIFICATION_ID").where(" CPA.project_id = CHA.ENTITY_ID")}
 
   def id
     project_id
