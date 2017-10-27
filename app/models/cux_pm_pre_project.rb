@@ -31,8 +31,12 @@ class CuxPmPreProject < ActiveRecord::Base
   end
   def self.unread_bills_v2(user_id)
     n_ids = WfNotification.unread_for_cux_pm_pre_projects(user_id).pluck(:notification_id)
+    if n_ids.present?
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_notification_ids(n_ids).to_json(methods: [:id])
+      self.bills_by_notification_ids(n_ids).to_json(methods: [:id])
+    else
+      []
+    end
   end
 
   #通过wf_itemkey更新需求数据

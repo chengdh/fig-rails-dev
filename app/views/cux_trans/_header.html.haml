@@ -12,7 +12,7 @@
         = @cux_tran.require_deparment
       %th 申请人:
       %td
-        = @cux_tran.require_person
+        = @cux_tran.requier_person
     %tr
       %th 领用部门:
       %td
@@ -22,7 +22,7 @@
     %tr
       %th 申请日期:
       %td
-        = @cux_tran.require_date.try(:strftime,"%Y-%m-%d")
+        = @cux_tran.requier_date.try(:strftime,"%Y-%m-%d")
 
       %th 来源:
       %td

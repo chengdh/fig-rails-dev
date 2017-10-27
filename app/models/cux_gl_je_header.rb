@@ -6,7 +6,7 @@ class CuxGlJeHeader < ActiveRecord::Base
 
   has_many :cux_gl_je_lines,foreign_key: :je_header_id
 
-  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(id: wf_itemkeys.map {|item_key| item_key.split("*").try(:first)})}
+  scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(je_batch_id: wf_itemkeys.map {|item_key| item_key.split("*").try(:first)})}
 
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
