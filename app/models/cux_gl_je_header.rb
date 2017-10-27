@@ -2,6 +2,7 @@
 #总账日记账
 class CuxGlJeHeader < ActiveRecord::Base
   self.table_name = "cux_gl_je_headers_a"
+  self.primary_key = "id"
 
   has_many :cux_gl_je_lines,foreign_key: :je_header_id
 

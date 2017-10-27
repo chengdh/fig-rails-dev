@@ -2,6 +2,7 @@
 #应付发票
 class CuxApInvoice < ActiveRecord::Base
   self.table_name = "cux_ap_invoices_a"
+  self.primary_key = "id"
   has_many :cux_ap_invoice_lines,foreign_key: :invoice_id
   #审批信息
   has_many :ap_wfapproval_histories,foreign_key: :invoice_id

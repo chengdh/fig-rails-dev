@@ -2,13 +2,38 @@
 #项目过程审批
 class CuxPa < ActiveRecord::Base
   WF_ITEM_TYPE = "CUXPRJWF"
-  self.table_name = "cux_pas"
+  self.table_name = "cux_pa"
   self.primary_key = "project_id"
   has_many :cux_pa_tasks,foreign_key: :project_id
   has_many :cux_pa_trast_headers,foreign_key: :project_id
   has_many :cux_pa_approver_list_his,foreign_key: :project_id
 
-  scope :bills_by_notification_ids,-> (n_ids) {where(notification_id: n_ids)}
+  scope :bills_by_notification_ids,-> (n_ids) {select("
+              T.NOTIFICATION_ID NOTIFICATION_ID,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'PROJECT_NAME') PROJECT_NAME,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'CARRYING_OUT_ORG_NAME') CARRYING_OUT_ORG_NAME,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'CARRYING_OUT_ORG_ID') CARRYING_OUT_ORG_ID,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'PROJECT_ID') PROJECT_ID,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'PA_PROJECT_NUMBER') PA_PROJECT_NUMBER,
+             WF_NOTIFICATION.GETATTRDATE(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'WF_STARTED_DATE') WF_STARTED_DATE,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'PROJECT_STATUS_NAME') PROJECT_STATUS_NAME,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'PROJECT_TYPE') PROJECT_TYPE,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'WORKFLOW_STARTED_BY_NAME') WORKFLOW_STARTED_BY_NAME,
+             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+                                         ANAME => 'PROJECT_APPROVER_FULL_NAME') PROJECT_APPROVER_FULL_NAME").
+                                               from("WF_NOTIFICATIONS T").
+                                               where("T.NOTIFICATION_ID IN (#{n_ids.join(',')})")
+  }
+
   def id
     project_id
   end
