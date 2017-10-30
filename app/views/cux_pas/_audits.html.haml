@@ -6,11 +6,11 @@
         %th 审批日期
         %th 审批意见
     %tbody
-      - @cux_pa.cux_pa_approver_list_his.each_with_index do |line,i|
+      - @cux_pa.audit_his.each_with_index do |line,i|
         %tr
           %td
-            =line.last_name
+            =line[:last_name]
           %td
-            =line.approved_date.strftime("%Y-%m-%d")
+            =line[:approved_date].strftime("%Y-%m-%d")
           %td
-            =line.comments
+            =line[:comments]

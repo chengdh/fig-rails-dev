@@ -8,13 +8,13 @@
         %th 任务预算
 
     %tbody
-      - @cux_pa.cux_pa_tasks.each_with_index do |line,i|
+      - @cux_pa.pa_budet_info.each_with_index do |line,i|
         %tr
           %td
-            =line.task_number
+            =line[:task_number]
           %td
-            =line.task_name
+            =line[:task_name]
           %td
-            =line.cost_amt
+            =line[:cost_amt]
           %td
-            =line.budget_amt
+            =line[:budget_amt]

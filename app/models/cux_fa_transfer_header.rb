@@ -4,7 +4,7 @@ class CuxFaTransferHeader < ActiveRecord::Base
   self.table_name = "cux_fa_transfer_headers_a"
   self.primary_key = "header_id"
   has_many :cux_fa_transfer_lines,foreign_key: :header_id
-  has_many :cux_fa_trasfer_his,foreign_key: :header_id
+  # has_many :cux_fa_trasfer_his,foreign_key: :header_id
   #附件
   has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_fa_transfer_headers")},foreign_key: :pk1_column
 
@@ -17,6 +17,10 @@ class CuxFaTransferHeader < ActiveRecord::Base
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(methods: [:id])
+  end
+
+  def audit_his
+    ret = plsql.cux_soa_mobile_app_pkg.GET_CUXFATRANS_ACTION_HISTORY(header_id)
   end
 
   #通过wf_itemkey更新需求数据

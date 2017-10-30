@@ -2,14 +2,15 @@
 #项目过程审批
 class CuxPa < ActiveRecord::Base
   WF_ITEM_TYPE = "CUXPRJWF"
-  self.table_name = "cux_pa"
+  self.table_name = "cux_pa_process_a"
   self.primary_key = "project_id"
-  has_many :cux_pa_tasks,foreign_key: :project_id
+  # has_many :cux_pa_tasks,foreign_key: :project_id
   has_many :cux_pa_trast_headers,foreign_key: :project_id
   has_many :cux_pa_approver_list_his,foreign_key: :project_id
+  belongs_to :wf_notification,foreign_key: :notification_id
 
   scope :bills_by_notification_ids,-> (n_ids) {select("
-              T.NOTIFICATION_ID NOTIFICATION_ID,
+             T.NOTIFICATION_ID NOTIFICATION_ID,
              WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
                                          ANAME => 'PROJECT_NAME') PROJECT_NAME,
              WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
@@ -33,6 +34,16 @@ class CuxPa < ActiveRecord::Base
                                                from("WF_NOTIFICATIONS T").
                                                where("T.NOTIFICATION_ID IN (#{n_ids.join(',')})")
   }
+
+  #审批记录
+  def audit_his
+    CuxPaApproverListHi.where(wf_item_type: wf_notification.message_type,wf_item_key: wf_notification.item_key)
+  end
+
+  #项目预算信息
+  def pa_budet_info
+    ret = plsql.cux_soa_mobile_app_pkg.GET_CUXFATRANS_ACTION_HISTORY(project_id)
+  end
 
   def id
     project_id

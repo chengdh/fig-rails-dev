@@ -13,6 +13,13 @@ class CuxPasController < ApplicationController
   def show
   end
 
+  # GET /cux_pas/show_with_n_id/1
+  # GET /cux_pas/show_with_n_id/1.json
+  def show_with_n_id
+    @cux_pa = CuxPa.bills_by_notification_ids([params[:id]])
+    render action: :show
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_cux_pa

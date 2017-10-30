@@ -1,6 +1,7 @@
 #coding: utf-8
 class WfNotification < ActiveRecord::Base
   self.table_name = "wf_notifications_a"
+  self.primary_key = "id"
   CUX_PM_PRE_PROJECTS_FROM = "
                     (SELECT WN.NOTIFICATION_ID,
                      WN.MESSAGE_TYPE,

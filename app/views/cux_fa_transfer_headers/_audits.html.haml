@@ -8,13 +8,13 @@
         %th 日期
 
     %tbody
-      - @cux_fa_transfer_header.cux_fa_trasfer_his.each_with_index do |line,i|
+      - @cux_fa_transfer_header.audit_his.each_with_index do |line,i|
         %tr
           %td
-            =line.h_to_user
+            =line[:h_to_user]
           %td
-            =line.h_action
+            =line[:h_action]
           %td
-            =line.h_comment
+            =line[:h_comment]
           %td
-            =line.h_action_date.strftime("%Y-%m-%d")
+            =line[:h_action_date].strftime("%Y-%m-%d")
