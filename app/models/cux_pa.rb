@@ -42,7 +42,8 @@ class CuxPa < ActiveRecord::Base
 
   #项目预算信息
   def pa_budet_info
-    ret = plsql.cux_soa_mobile_app_pkg.GET_CUXFATRANS_ACTION_HISTORY(project_id)
+    ret = plsql.cux_soa_mobile_app_pkg.GET_PA_BUDET_INF(project_id)
+    ret[:x_pa_task_infos]
   end
 
   def id
