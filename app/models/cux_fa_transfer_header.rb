@@ -13,10 +13,28 @@ class CuxFaTransferHeader < ActiveRecord::Base
   def id
     header_id
   end
+  def wf_notification
+    WfNotification.where(:item_key => wf_itemkey).try(:first)
+  end
+
+  #工作流标题
+  def wf_title
+    wf_notification.try(:subject)
+  end
+
+  #工作流发起人
+  def wf_from_user
+    wf_notification.try(:from_user)
+  end
+
+  #工作流发起时间
+  def wf_begin_date
+    wf_notification.try(:begin_date)
+  end
 
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(methods: [:id])
+    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(methods: [:wf_title,:wf_from_user,:wf_begin_date])
   end
 
   def audit_his

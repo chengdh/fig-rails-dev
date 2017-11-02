@@ -34,6 +34,20 @@ class CuxPa < ActiveRecord::Base
                                                from("WF_NOTIFICATIONS T").
                                                where("T.NOTIFICATION_ID IN (#{n_ids.join(',')})")
   }
+  #工作流标题
+  def wf_title
+    wf_notification.try(:subject)
+  end
+
+  #工作流发起人
+  def wf_from_user
+    wf_notification.try(:from_user)
+  end
+
+  #工作流发起时间
+  def wf_begin_date
+    wf_notification.try(:begin_date)
+  end
 
   #审批记录
   def audit_his
@@ -52,7 +66,7 @@ class CuxPa < ActiveRecord::Base
 
   def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_notification_ids(n_ids).to_json(methods: [:id])
+    self.bills_by_notification_ids(n_ids).to_json(methods: [:wf_title,:wf_from_user,:wf_begin_date])
   end
 
   #通过wf_itemkey更新需求数据

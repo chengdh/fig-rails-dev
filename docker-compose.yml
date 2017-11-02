@@ -12,7 +12,7 @@ services:
     build: .
 
     container_name: erp_server
-    #command: bundle exec unicorn
+    # command: bundle exec unicorn -c config/unicorn/production.rb
     command: bundle exec rails s -b 0.0.0.0 -p 3000
     volumes:
       # This seems to work as-is once you expose /Users to the boot2docker vm.

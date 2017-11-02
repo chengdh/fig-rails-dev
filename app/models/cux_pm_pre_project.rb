@@ -7,6 +7,8 @@ class CuxPmPreProject < ActiveRecord::Base
   #附件
   has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_pm_pre_projects_v")},foreign_key: :pk1_column
 
+  belongs_to :wf_notification,foreign_key: :notification_id
+
   scope :bills_by_notification_ids,-> (n_ids) {from("
           (SELECT CH.ENTITY_ID, WN.NOTIFICATION_ID
           FROM CUX_APPROVER_LIST_HEADERS CH,
@@ -24,6 +26,20 @@ class CuxPmPreProject < ActiveRecord::Base
   def id
     project_id
   end
+  #工作流标题
+  def wf_title
+    wf_notification.try(:subject)
+  end
+
+  #工作流发起人
+  def wf_from_user
+    wf_notification.try(:from_user)
+  end
+
+  #工作流发起时间
+  def wf_begin_date
+    wf_notification.try(:begin_date)
+  end
 
   def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
@@ -33,7 +49,9 @@ class CuxPmPreProject < ActiveRecord::Base
     n_ids = WfNotification.unread_for_cux_pm_pre_projects(user_id).pluck(:notification_id)
     if n_ids.present?
     # sync_with_ebs(wf_itemkeys)
-      self.bills_by_notification_ids(n_ids).to_json(methods: [:id])
+      self.bills_by_notification_ids(n_ids).to_json(
+        methods: [:id,:wf_title,:wf_from_user,:wf_begin_date]
+      )
     else
       []
     end
