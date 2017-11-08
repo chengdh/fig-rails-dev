@@ -17,6 +17,16 @@ class FndUser < ActiveRecord::Base
     )
   end
 
+  def self.get_users_by_user_id(user_id)
+    cur_user = FndUser.find(user_id)
+    cur_employee = cur_user.soa_hr_employee
+    cur_org_id = cur_employee.org_id
+    employee_ids = SoaHrEmployee.where(org_id: cur_org_id).pluck(:id)
+    users = FndUser.where(employee_id: employee_ids).to_json(
+      methods: [:org_id,:employee_name]
+    )
+  end
+
   def self.sync_with_ebs
     #FIXME 使用GT会出错
     (1..1000).each do |i|

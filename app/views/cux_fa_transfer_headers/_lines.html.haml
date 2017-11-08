@@ -1,25 +1,39 @@
 .table-responsive
   %table.table.table-condensed.table-striped.table-hover
-    %thead
-      %tr
-        %th 资产名称
-        %th 保管人
-        %th 存放地点
-        %th 使用部门
-        %th 类别
-        %th 管理部门
+    -# %thead
+    -#   %tr
+    -#     %th 保管人
+    -#     %th 存放地点
+    -#     %th 使用部门
+    -#     %th 类别
+    -#     %th 管理部门
     %tbody
       - @cux_fa_transfer_header.cux_fa_transfer_lines.each_with_index do |line,i|
         %tr
+          %th{:colspan => 20}
+            行
+            = i + 1
+        %tr
+          %th 资产名称:
           %td
             =line.asset_name
+        %tr
+          %th 保管人:
           %td
             =line.assigned_full_name
+        %tr
+          %th 存放地点:
           %td
             =line.location_from
+        %tr
+          %th 使用部门:
           %td
             =line.used_department_disp
+        %tr
+          %th 类别:
           %td
             =line.fa_category
+        %tr
+          %th 管理部门:
           %td
             =line.manager_department_disp

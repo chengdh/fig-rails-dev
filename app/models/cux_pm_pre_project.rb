@@ -26,6 +26,9 @@ class CuxPmPreProject < ActiveRecord::Base
   def id
     project_id
   end
+  def message_type
+    "CUXCMNTF"
+  end
   #工作流标题
   def wf_title
     wf_notification.try(:subject)
@@ -50,11 +53,17 @@ class CuxPmPreProject < ActiveRecord::Base
     if n_ids.present?
     # sync_with_ebs(wf_itemkeys)
       self.bills_by_notification_ids(n_ids).to_json(
-        methods: [:id,:wf_title,:wf_from_user,:wf_begin_date]
+        methods: [:id,:wf_title,:wf_from_user,:wf_begin_date,:message_type]
       )
     else
       []
     end
+  end
+
+  #获取前期立项下一级审批人
+  def self.get_prm_next_approver(user_id,project_id)
+    ret = plsql.cux_soa_mobile_app_pkg.GET_PRM_NEXT_APPROVER(user_id,project_id)
+    ret[:x_approvers]
   end
 
   #通过wf_itemkey更新需求数据

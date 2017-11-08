@@ -4,19 +4,21 @@
       %td{:colspan => 4}
         %h4{:style => "text-align: center;"}
           = @cux_tran.require_number
-          %span.label.label-info
-            = @cux_tran.require_status
+          -# %span.label.label-info
+          -#   = @cux_tran.require_status
     %tr
       %th 申请部门:
       %td
-        = @cux_tran.require_deparment
+        %p
+          = @cux_tran.require_deparment
       %th 申请人:
       %td
         = @cux_tran.requier_person
     %tr
       %th 领用部门:
       %td
-        = @cux_tran.trans_deparment
+        %p
+          = @cux_tran.trans_deparment
       %th
       %td
     %tr

@@ -1,21 +1,24 @@
 .table-responsive
   %table.table.table-condensed.table-striped.table-hover.table-bordered
     %tr
-      %td{:colspan => 3}
-        = @cux_pm_pre_project.project_name
+      %td{:colspan => 4}
+        %p
+          = @cux_pm_pre_project.project_name
 
-      %td{:style => "text-align: right;"}
-        %span.label.label-info 审批中
+      -# %td{:style => "text-align: right;"}
+      -#   %span.label.label-info 审批中
     %tr
 
       %th 项目单位:
       %td{:colspan => 3}
-        = @cux_pm_pre_project.unit_code
+        %p
+          = @cux_pm_pre_project.unit_code
 
     %tr
       %th 项目类别:
       %td{:colspan => 3}
-        = @cux_pm_pre_project.project_type
+        %p
+          = @cux_pm_pre_project.project_type
 
     %tr
       %th 立项年度:

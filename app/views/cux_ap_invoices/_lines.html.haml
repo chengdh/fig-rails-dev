@@ -1,34 +1,51 @@
 .table-responsive
   %table.table.table-condensed.table-striped.table-hover
-    %thead
-      %tr
-        %th 行号
-        %th 行类型
-        %th 摘要
-        %th 科目代码
-        %th PO编号
-        %th 开票数量
-        %th 单位
-        %th 单价
-        %th 金额
+    -# %thead
+    -#   %tr
+    -#     %th 行号
+    -#     %th 行类型
+    -#     %th 摘要
+    -#     %th 科目代码
+    -#     %th PO编号
+    -#     %th 开票数量
+    -#     %th 单位
+    -#     %th 单价
+    -#     %th 金额
     %tbody
       - @cux_ap_invoice.cux_ap_invoice_lines.each_with_index do |line,i|
         %tr
-          %td
+          %th{:colspan => 20}
+            行
             =line.line_number
+        %tr
+          %th 行类型:
           %td
             =line.line_type
+        %tr
+          %th 摘要:
           %td
             =line.description
+        %tr
+          %th 科目代码:
           %td
             =line.default_dist_ccdesc
+        %tr
+          %th PO编号:
           %td
             =line.po_seg
+        %tr
+          %th 开票数量:
           %td
             =line.quantity_invoiced
+        %tr
+          %th 单位:
           %td
             =line.unit_meas_lookup_code
+        %tr
+          %th 单价:
           %td
             =line.unit_price
+        %tr
+          %th 金额:
           %td
             =line.amount

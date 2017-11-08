@@ -14,7 +14,7 @@ class CuxFaTransferHeader < ActiveRecord::Base
     header_id
   end
   def wf_notification
-    WfNotification.where(:item_key => wf_itemkey).try(:first)
+    WfNotification.where(:item_key => item_key).try(:first)
   end
 
   #工作流标题

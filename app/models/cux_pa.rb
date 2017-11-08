@@ -66,7 +66,9 @@ class CuxPa < ActiveRecord::Base
 
   def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_notification_ids(n_ids).to_json(methods: [:wf_title,:wf_from_user,:wf_begin_date])
+    self.bills_by_notification_ids(n_ids).to_json(
+      methods: [:wf_title,:wf_from_user,:wf_begin_date]
+    )
   end
 
   #通过wf_itemkey更新需求数据
@@ -84,5 +86,17 @@ class CuxPa < ActiveRecord::Base
     # ids.each do |id|
     #   CuxSoaAttachedDocV.sync_with_ebs(id,"cux_pm_pre_projects_v")
     # end
+  end
+
+  def self.audit(user_id,username,notification_id,b_pass,audit_note)
+    # ret = plsql.CUX_MOBILE_APP_PVT.GENERAL_APPROVAL(user_id,
+    #                                                 username,
+    #                                                 notification_id,
+    #                                                 b_pass,
+    #                                                 audit_note,
+    #                                                 user_id)
+    #
+    response = SoapApproval.general_approval(user_id,username,"",notification_id,b_pass,audit_note,"")
+    {x_ret_code: response.body[:output_parameters][:x_ret_code],x_ret_message: response.body[:output_parameters][:x_ret_message]}
   end
 end

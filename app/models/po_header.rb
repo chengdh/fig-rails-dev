@@ -1,6 +1,7 @@
 #coding: utf-8
 class PoHeader < ActiveRecord::Base
   self.table_name = "po_headers_a"
+  self.primary_key = "id"
   has_many :po_lines
   #审批信息
   has_many :po_action_histories,foreign_key: :object_id
