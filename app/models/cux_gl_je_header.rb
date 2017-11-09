@@ -30,7 +30,7 @@ class CuxGlJeHeader < ActiveRecord::Base
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
-      methods: [:wf_title,:wf_from_user,:wf_begin_date]
+      # methods: [:wf_title,:wf_from_user,:wf_begin_date]
     )
   end
 

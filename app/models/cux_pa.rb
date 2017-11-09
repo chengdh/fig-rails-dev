@@ -56,7 +56,7 @@ class CuxPa < ActiveRecord::Base
 
   #项目预算信息
   def pa_budet_info
-    ret = plsql.cux_soa_mobile_app_pkg.GET_PA_BUDET_INF(project_id)
+    ret = plsql.cux_soa_mobile_app_pkg.GET_PA_BUDET_INFO(project_id)
     ret[:x_pa_task_infos]
   end
 
@@ -67,7 +67,7 @@ class CuxPa < ActiveRecord::Base
   def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_notification_ids(n_ids).to_json(
-      methods: [:wf_title,:wf_from_user,:wf_begin_date]
+      # methods: [:wf_title,:wf_from_user,:wf_begin_date]
     )
   end
 

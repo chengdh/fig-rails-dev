@@ -30,7 +30,7 @@ class CuxTran < ActiveRecord::Base
 
   def self.unread_bills_all(wf_itemkeys)
     where(wf_itemkey: wf_itemkeys).to_json(
-      methods: [:wf_title,:wf_from_user,:wf_begin_date],
+      # methods: [:wf_title,:wf_from_user,:wf_begin_date],
       include:{
         cux_tran_lines: {methods: [:cux_tran_id]},
         cux_tran_activity_histray_as: {methods: :cux_tran_id },

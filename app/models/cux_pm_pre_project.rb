@@ -53,7 +53,7 @@ class CuxPmPreProject < ActiveRecord::Base
     if n_ids.present?
     # sync_with_ebs(wf_itemkeys)
       self.bills_by_notification_ids(n_ids).to_json(
-        methods: [:id,:wf_title,:wf_from_user,:wf_begin_date,:message_type]
+        methods: [:id,:message_type]
       )
     else
       []

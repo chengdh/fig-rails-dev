@@ -33,7 +33,7 @@ class CuxDemand < ActiveRecord::Base
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
-      methods: [:wf_title,:wf_from_user,:wf_begin_date],
+      # methods: [:wf_title,:wf_from_user,:wf_begin_date],
       include:{
         cux_demand_lines: {},
         cux_demand_audit_his: {methods: :cux_demand_id },
