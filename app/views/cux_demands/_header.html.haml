@@ -28,10 +28,10 @@
 
     %tr
       %th 计划来源:
-      %td
+      %td{:colspan => 3}
         = @cux_demand.apply_source
-      %th 计划类型:
-      %td
+    %tr
+      %td{:colspan => 3}
         = @cux_demand.apply_type
     %tr
       %th 项目类型:
@@ -50,14 +50,14 @@
       %th 任务编号:
       %td.vert-align_td{:colspan => 3}
         = @cux_demand.task_number
-    %tr
-      %th 业务类型:
-      %td
-        -# = @cux_demand.business_type
-          %tr
-      %th 二级单位:
-      %td
-        -# = @cux_demand.sub_org_name
+    -# %tr
+    -#   %th 业务类型:
+    -#   %td
+    -#     -# = @cux_demand.business_type
+    -#       %tr
+    -#   %th 二级单位:
+    -#   %td
+    -#     -# = @cux_demand.sub_org_name
 
     %tr
       %th 产业板块:
@@ -87,29 +87,29 @@
     %tr
       %th 备注:
       %td.vert-align_td{:colspan => 3}
-        = @cux_demand.remark
+        %p
+          = @cux_demand.remark
     %tr
       %td{:colspan => 4,:style => "text-align: center;"} 预算 
     %tr
       %th 预算总额:
       %td
-        = @cux_demand.bugdet_total
+        = @cux_demand.bugdet_total.to_i
 
       %th 已审批额:
       %td
-        = @cux_demand.bugdet_demand_total
-
+        = @cux_demand.bugdet_demand_total.to_i
     %tr
       %th 实际成本:
       %td
-        = @cux_demand.actual_cost
+        = @cux_demand.actual_cost.to_i
       %th 需求额:
       %td
-        = @cux_demand.header_bugdet
+        = @cux_demand.header_bugdet.to_i
     %tr
       %th 余额:
       %td
-        = @cux_demand.bugdet_balance
+        = @cux_demand.bugdet_balance.to_i
       %th
       %td
 
