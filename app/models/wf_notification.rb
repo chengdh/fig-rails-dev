@@ -33,7 +33,7 @@ class WfNotification < ActiveRecord::Base
                  AND WN.STATUS = 'OPEN') K,
                 WF_ITEM_TYPES_TL T"
 
-  CUX_PM_PRE_PROJECTS_SELECT = "K.NOTIFICATION_ID,
+  CUX_PM_PRE_PROJECTS_SELECT = "K.NOTIFICATION_ID ID,
              K.MESSAGE_TYPE AS ITEM_TYPE,
              'CUXCMNTF' AS MESSAGE_TYPE,
              K.STATUS,

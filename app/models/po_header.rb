@@ -37,7 +37,7 @@ class PoHeader < ActiveRecord::Base
       CuxSoaAttachedDocV.sync_with_ebs(po_id,"po_headers_a")
     end
   end
-  def self.audit(user_id,username,notification_id,b_pass,audit_note)
+  def self.audit(user_id,username,p_to_user_id,notification_id,b_pass,audit_note)
     return {x_ret_code: '0',x_ret_message: '数据处理成功'}
     # ret = plsql.CUX_MOBILE_APP_PVT.GENERAL_APPROVAL(user_id,
     #                                                 username,
@@ -47,7 +47,7 @@ class PoHeader < ActiveRecord::Base
     #                                                 user_id)
     #
     #
-    response = SoapApproval.general_approval(user_id,username,"",notification_id,b_pass,audit_note,"")
+    response = SoapApproval.general_approval(user_id,username,p_to_user_id,notification_id,b_pass,audit_note,"")
     {x_ret_code: response.body[:output_parameters][:x_ret_code],x_ret_message: response.body[:output_parameters][:x_ret_message]}
   end
 end
