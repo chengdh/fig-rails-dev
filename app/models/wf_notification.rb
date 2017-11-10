@@ -51,6 +51,7 @@ class WfNotification < ActiveRecord::Base
          AND K.FUSER_ID = ?
          AND T.LANGUAGE = 'ZHS'"
   scope :unread,-> (user_id) {where(status: 'OPEN',fuser_id: user_id)}
+  scope :unread_with_message_type,-> (user_id,message_type) {where(status: 'OPEN',fuser_id: user_id,message_type: message_type)}
   scope :unread_for_cux_pm_pre_projects,-> (user_id) {from(CUX_PM_PRE_PROJECTS_FROM).
                                                       select(CUX_PM_PRE_PROJECTS_SELECT).
                                                       where(CUX_PM_PRE_PROJECTS_WHERE,[user_id])}
