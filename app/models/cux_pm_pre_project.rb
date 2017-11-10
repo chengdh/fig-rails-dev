@@ -89,7 +89,7 @@ class CuxPmPreProject < ActiveRecord::Base
     #                                                 user_id)
     #
     #
-    response = CuxPmPreProjectSoap.approval(p_user_id,p_username,p_next_user_ids,p_project_id,p_notification_id,p_app_result_code,p_app_result_note,p_status_lookup_code= nil)
+    response = CuxPmPreProjectSoap.cux_prm_approval(p_user_id,p_username,p_next_user_ids,p_project_id,p_notification_id,p_app_result_code,p_app_result_note,p_status_lookup_code= nil)
     {x_ret_code: response.body[:output_parameters][:x_ret_code],x_ret_message: response.body[:output_parameters][:x_ret_message]}
   end
 end

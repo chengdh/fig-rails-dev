@@ -11,6 +11,6 @@
           %td
             =line[:last_name]
           %td
-            =line[:approved_date].strftime("%Y-%m-%d")
+            =line[:approved_date].try(:strftime,"%Y-%m-%d")
           %td
             =line[:comments]

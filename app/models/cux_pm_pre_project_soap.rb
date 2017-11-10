@@ -5,14 +5,17 @@ class CuxPmPreProjectSoap
   client wsdl: "http://erptrn.cpihn.com:8002/webservices/SOAProvider/plsql/cux_soa_mobile_app_pkg/?wsdl",
     env_namespace: :soapenv,
     namespaces: {
-      #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
-      #   "xmlns:cux" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/",
-      #   "xmlns:get" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_app_getdata_pkg/get_soa_common_data/"
-      "xmlns:tns7" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_notify/",
-      "xmlns:tns8" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_projects/",
-      "xmlns:tns9" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/cux_prm_approval/"
-    },
-    wsse_auth: ["SOA", "welcome"],
+      "xmlns:tns1" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/cux_prm_approval/",
+      "xmlns:tns2" => "http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/f_extract_notify/",
+      "xmlns:tns3" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_cuxfatrans_action_history/",
+      "xmlns:tns4" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_budet_info/",
+      "xmlns:tns5" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_pa_pro_info/",
+      "xmlns:tns6" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_next_approver/",
+      "xmlns:tns7" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_notify/",
+      "xmlns:tns8" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_prm_projects/",
+      "xmlns:tns9" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/get_soa_common_data/",
+      "xmlns:tns10" =>"http://xmlns.oracle.com/apps/cux/soaprovider/plsql/cux_soa_mobile_app_pkg/validate_user/"
+    }, wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,
     log: true
 
@@ -62,7 +65,7 @@ class CuxPmPreProjectSoap
     end
 
     #审批操作
-    def self.approval(p_user_id,p_username,p_next_user_ids,p_project_id,p_notification_id,p_app_result_code,p_app_result_note,p_status_lookup_code= nil)
+    def self.cux_prm_approval(p_user_id,p_username,p_next_user_ids,p_project_id,p_notification_id,p_app_result_code,p_app_result_note,p_status_lookup_code= nil)
       resonse = super(message: {
           "P_USER_ID" => p_user_id,
           "P_USER_NAME" => p_username,
