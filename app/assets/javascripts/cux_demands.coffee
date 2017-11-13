@@ -6,7 +6,7 @@ $ ->
   $(".cux-demand-tabs .btn").on("click",(evt)->
     this_el = evt.currentTarget
     class_name = $(this_el).data("link-el-class")
-    $(".header,.lines,.audits,.attachments").hide()
+    $(".header,.lines,.audits,.attachments .assets .tasks").hide()
     $(class_name).show()
     $(".cux-demand-tabs .btn").removeClass("btn-info")
     $(this_el).addClass("btn-info")

@@ -13,6 +13,7 @@ class PoLine < ActiveRecord::Base
   def line_amt_without_tax
     unit_price * quantity.to_i
   end
+
   def self.sync_with_ebs(po_header_ids)
     po_header_ids.each do |ph_id|
       p_item_array = []
