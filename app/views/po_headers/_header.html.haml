@@ -1,31 +1,35 @@
 .table-responsive
   %table.table.table-condensed.table-striped.table-hover.table-bordered
     %tr
-      %td{:colspan => 3}
-        No:
+      %th 采购订单号:
+      %td
         = @po_header.segment1
-
-      %td{:style => "text-align: right;"}
-        %span.label.label-info 审批中
-    %tr
-      %td{:colspan => 4}
-        %h4{:style => "text-align: center;"}
-          = @po_header.vendor_name
-    
-    %tr
       %th 采购员:
-      %td{:colspan => 3}
+      %td
         = @po_header.agent_name
-
     %tr
-      %th 付款方式:
+      %th 供应商:
       %td{:colspan => 3}
-        = @po_header.payment_terms
+        = @po_header.vendor_name
     %tr
       %th 供应商地点:
       %td{:colspan => 3}
         = @po_header.vendor_site_code
 
+
+    %tr
+      %th 不含税金额:
+      %td{:colspan => 3}
+        = @po_header.total_fee_without_tax.to_i
+    %tr
+      %th 含税金额:
+      %td{:colspan => 3}
+        = @po_header.total_fee.to_i
+
+    %tr
+      %th 付款方式:
+      %td{:colspan => 3}
+        = @po_header.payment_terms
     %tr
       %th 摘要:
       %td.vert-align_td{:colspan => 3}

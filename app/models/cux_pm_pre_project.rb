@@ -27,7 +27,7 @@ class CuxPmPreProject < ActiveRecord::Base
     project_id
   end
   def message_type
-    "CUXCMNTF"
+    "CUXPRM"
   end
   #工作流标题
   def wf_title

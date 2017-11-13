@@ -1,7 +1,11 @@
 .table-responsive
   %table.table.table-condensed.table-striped.table-hover.table-bordered
     %tr
-      %td{:colspan => 4,:style => "text-align: right;"}
+      %th 申请单号
+      %td
+        = @cux_fa_transfer_header.header_id
+
+      %td{:colspan => 2,:style => "text-align: right;"}
         %span.label.label-info
           = @cux_fa_transfer_header.approved_status_disp
     %tr
@@ -20,7 +24,7 @@
       %th 原保管人:
       %td
         = @cux_fa_transfer_header.assigned_f_full_name
-      %th 原保管人:
+      %th 新保管人:
       %td
         = @cux_fa_transfer_header.assigned_t_full_name
     %tr

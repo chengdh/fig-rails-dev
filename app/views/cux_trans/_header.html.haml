@@ -19,8 +19,9 @@
       %td
         %p
           = @cux_tran.trans_deparment
-      %th
+      %th 本次领用:
       %td
+        = @cux_tran.header_bugdet
     %tr
       %th 申请日期:
       %td
@@ -29,32 +30,25 @@
       %th 来源:
       %td
         = @cux_tran.categorie
-    %tr
-      %th 项目类型:
-      %td{:colspan => 3}
-        = @cux_tran.project_type
-    %tr
-      %th 项目编号:
-      %td{:colspan => 3}
-        = @cux_tran.segment1
+    -# %tr
+    -#   %th 项目类型:
+    -#   %td{:colspan => 3}
+    -#     = @cux_tran.project_type
+    -# %tr
+    -#   %th 项目编号:
+    -#   %td{:colspan => 3}
+    -#     = @cux_tran.segment1
     %tr
       %th 备注:
       %td{:colspan => 3}
         = @cux_tran.remark
-    %tr
-      %td{:colspan => 4,:style => "text-align: center;"} 预算 
-    %tr
-      %th 项目总额:
-      %td
-        = @cux_tran.bugdet_balance
-
-      %th 可用预算:
-      %td
-        = @cux_tran.bugdet_total
-
-    %tr
-      %th 本次领用:
-      %td
-        = @cux_tran.header_bugdet
-      %th
-      %td
+    -# %tr
+    -#   %td{:colspan => 4,:style => "text-align: center;"} 预算 
+    -# %tr
+    -#   %th 项目总额:
+    -#   %td
+    -#     = @cux_tran.bugdet_balance
+    -#
+    -#   %th 可用预算:
+    -#   %td
+    -#     = @cux_tran.bugdet_total

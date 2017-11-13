@@ -12,6 +12,15 @@ class PoHeader < ActiveRecord::Base
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_item_key: wf_itemkeys)}
 
+  def total_fee
+    po_lines.try(:sum,&:line_amt)
+  end
+
+
+  def total_fee_without_tax
+    po_lines.try(:sum,&:line_amt_without_tax)
+  end
+
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json

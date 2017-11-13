@@ -35,7 +35,7 @@ class WfNotification < ActiveRecord::Base
 
   CUX_PM_PRE_PROJECTS_SELECT = "K.NOTIFICATION_ID ID,
              K.MESSAGE_TYPE AS ITEM_TYPE,
-             'CUXCMNTF' AS MESSAGE_TYPE,
+             'CUXPRM' AS MESSAGE_TYPE,
              K.STATUS,
              K.BEGIN_DATE,
              K.END_DATE,

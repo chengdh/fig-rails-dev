@@ -13,18 +13,27 @@
             行
             =i + 1
         %tr
-          %th 物料名称
+          %th 物料名称:
           %td
             =line.item_dec
         %tr
-          %th 规格
+          %th 规格:
           %td
             =line.item_spc
         %tr
-          %th 单位
+          %th 单位:
           %td
             =line.uom
         %tr
-          %th 申请数量
+          %th 申请数量:
           %td
             =line.required_qty
+
+        %tr
+          %th 价格:
+          %td
+            =line.cost
+        %tr
+          %th 金额
+          %td
+            =line.cost * line.required_qty

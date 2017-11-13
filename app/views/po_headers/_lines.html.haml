@@ -3,28 +3,39 @@
     %tbody
       - @po_header.po_lines.each_with_index do |line,i|
         %tr
-          %th{:colspan => 20}
+          %th
             行
             = i + 1
+          %th 物料编码:
+            =line.try(:item_id)
         %tr
           %th 物料名称:
           %td
             =line.description
-
         %tr
           %th 类型:
           %td
             =line.line_type
+        %tr
+          %th 数量:
+          %td
+            =line.quantity
 
+        %tr
+          %th 税率:
+          %td
+            =line.attribute1
         %tr
           %th 单价:
           %td
             =line.unit_price
 
         %tr
-          %th 数量:
+          %th 含税价:
           %td
-            =line.quantity
+            =line.attribute2.try(:to_i)
+
+
         -# %tr
         -#   %th 金额:
         -#   %td

@@ -67,6 +67,7 @@ class CuxPa < ActiveRecord::Base
   def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_notification_ids(n_ids).to_json(
+      methods: [:id]
       # methods: [:wf_title,:wf_from_user,:wf_begin_date]
     )
   end

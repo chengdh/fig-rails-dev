@@ -5,26 +5,54 @@
         No:
         = @cux_ap_invoice.invoice_num
 
-      -# %td{:style => "text-align: right;"}
-      -#   %span.label.label-info 审批中
+      %td{:style => "text-align: right;"}
+        %span.label.label-info
+          = @cux_ap_invoice.wfapproval_status_dsp
+    %tr
+      %th 经办人:
+      %td
+        = @cux_ap_invoice.attribute2
+      %th 经办部门:
+      %td
+        = @cux_ap_invoice.attribute3
+
+    %tr
+      %th 费用类型:
+      %td
+        = @cux_ap_invoice.attribute4_dsp
+
+      %th 发票类型:
+      %td
+        -# = @cux_ap_invoice.attribute3
+    %tr
+      %th 发票日期:
+      %td
+        = @cux_ap_invoice.invoice_date
+      %th GL日期:
+      %td
+        = @cux_ap_invoice.gl_date
+
     %tr
       %th 供应商:
       %td{:colspan => 3}
         = @cux_ap_invoice.vendor_name
 
     %tr
-      %th 发票日期:
-      %td{:colspan => 3}
-        = @cux_ap_invoice.invoice_date.strftime("%Y-%m-%d")
-    %tr
+      %th 服务类型:
+      %td
       %th 发票额:
       %td
         = @cux_ap_invoice.invoice_amount
+    %tr
       %th 经办人:
       %td
         = @cux_ap_invoice.attribute2
 
     %tr
-      %th 发票说明:
+      %th 摘要:
       %td{:colspan => 3}
         = @cux_ap_invoice.description
+    %tr
+      %th 负债账户说明:
+      %td{:colspan => 3}
+        = @cux_ap_invoice.accts_pay_code_desc
