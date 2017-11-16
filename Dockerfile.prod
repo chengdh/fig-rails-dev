@@ -49,11 +49,13 @@ WORKDIR $APP_HOME
 
 ADD Gemfile* $APP_HOME/
 
-# --- Add this to your Dockerfile ---
-ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
-  BUNDLE_JOBS=2 \
-  BUNDLE_PATH=/bundle
-
 RUN bundle install --jobs 20 --retry 5
 
+# Set Rails to run in production
+ENV RAILS_ENV production
+ENV RACK_ENV production
+
 COPY . $APP_HOME
+
+# Precompile Rails assets. We set a dummy secret key
+RUN bundle exec rake SECRET_KEY_BASE=pickasecuretoken  assets:precompile

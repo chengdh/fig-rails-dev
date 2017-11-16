@@ -1,0 +1,50 @@
+version: '2'
+services:
+  guodiantou-app-mysql:
+    image: mysql:5.5.51
+    environment:
+      MYSQL_ROOT_PASSWORD: fizzbuzz
+
+  guodiantou-app-server:
+    image: guodiantou-app-server:0.1
+
+    command: bundle exec puma -C config/unicorn/puma.rb
+    # command: bundle exec unicorn -c config/unicorn/production.rb
+    # command: bundle exec rails s -b 0.0.0.0 -p 3000
+    # ports:
+    #   - 5000:3000
+
+    depends_on:
+      - guodiantou-app-mysql
+
+    volumes:
+      # This seems to work as-is once you expose /Users to the boot2docker vm.
+      - .:/rails_app
+ 
+    volumes:
+      - assets:/railsapp/public/assets/
+    environment:
+      - SECRET_KEY_BASE=pickasecuretoken
+    extra_hosts:
+      - "erptrn.cpihn.com:192.168.66.171"
+
+  nginx:
+    image: nginx
+    ports:
+      - 9888:80
+    volumes_from:
+      - guodiantou-app-server
+    depends_on:
+      - guodiantou-app-server
+    volumes:
+      - ./config/server/nginx.production.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      default:
+      nginx_default:
+        aliases:
+          - guodiantou-app-server
+volumes:
+  assets:
+networks:
+  nginx_default:
+    external: true
