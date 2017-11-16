@@ -1,12 +1,12 @@
 version: '2'
 services:
-  guodiantou-app-mysql:
-    image: mysql:5.5.51
-    environment:
-      MYSQL_ROOT_PASSWORD: fizzbuzz
-    ports:
-      - "3310:3306"
-    container_name: erp_db
+  # guodiantou-app-mysql:
+  #   image: mysql:5.5.51
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: fizzbuzz
+  #   ports:
+  #     - "3310:3306"
+  #   container_name: erp_db
 
   guodiantou-app-server:
     build: .
@@ -17,8 +17,8 @@ services:
     volumes:
       # This seems to work as-is once you expose /Users to the boot2docker vm.
       - .:/rails_app
-    links:
-      - guodiantou-app-mysql
+    # links:
+    #   - guodiantou-app-mysql
     ports:
       - "5010:3000"
     volumes_from:
