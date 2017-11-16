@@ -24,8 +24,6 @@ class CuxPa < ActiveRecord::Base
              WF_NOTIFICATION.GETATTRDATE(NID   => T.NOTIFICATION_ID,
                                          ANAME => 'WF_STARTED_DATE') WF_STARTED_DATE,
              WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'PROJECT_STATUS_NAME') PROJECT_STATUS_NAME,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
                                          ANAME => 'PROJECT_TYPE') PROJECT_TYPE,
              WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
                                          ANAME => 'WORKFLOW_STARTED_BY_NAME') WORKFLOW_STARTED_BY_NAME,
@@ -37,6 +35,9 @@ class CuxPa < ActiveRecord::Base
   #工作流标题
   def wf_title
     wf_notification.try(:subject)
+  end
+  def project_status_name
+    ret = plsql.WF_NOTIFICATION.GETATTRTEXT(notification_id)
   end
 
   #工作流发起人
@@ -67,7 +68,7 @@ class CuxPa < ActiveRecord::Base
   def self.unread_bills(n_ids)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_notification_ids(n_ids).to_json(
-      methods: [:id]
+      methods: [:id,:project_status_name]
       # methods: [:wf_title,:wf_from_user,:wf_begin_date]
     )
   end
