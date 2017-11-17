@@ -36,9 +36,9 @@ class MaximoApproValSoap
         evaluate: evaluate
       }
     }
-    Rails.logger.debug("maximo approval args` = " +  args.to_xml(root: :datas,skip_types: true,dasherize: false))
+    Rails.logger.debug("maximo approval args` = " +  args.to_xml(root: :datas,skip_types: true))
 
-    super(message: args.to_xml(root: :datas,skip_types: true,dasherize: false))
+    super(message:{arg0:  args.to_xml(root: :datas,skip_types: true)})
   end
 end
 
