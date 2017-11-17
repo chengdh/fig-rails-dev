@@ -1,11 +1,10 @@
 #coding: utf-8
 APP_ROOT = File.expand_path("..",File.dirname(File.dirname(__FILE__)))
 
-worker_processes 8 
+worker_processes 4
 working_directory APP_ROOT
 # Should be 'production' by default, otherwise use other env
-preload_app true
-listen "/tmp/shangwuju.unicorn.production.sock"
+# preload_app true
 listen "0.0.0.0:3000"
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
 stderr_path APP_ROOT + "/log/unicorn.stderr.log"
