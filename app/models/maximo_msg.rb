@@ -16,9 +16,9 @@ class MaximoMsg < ActiveRecord::Base
   def self.unread_bills(orderuserid,ordertable=nil)
     ret = nil
     if ordertable.present?
-      ret = where(orderuserid: orderuserid,ordertable: ordertable).to_json
+      ret = where(orderuserid: orderuserid,ordertable: ordertable,processed: false).to_json
     else
-      ret = where(orderuserid: orderuserid).to_json
+      ret = where(orderuserid: orderuserid,processed: false).to_json
     end
     ret
   end
@@ -31,6 +31,11 @@ class MaximoMsg < ActiveRecord::Base
   #审批
   def self.task_appro_val(appro,assignid,ispositive,evaluate_caluse,evaluate)
     resp = MaximoApproValSoap.task_appro_val(appro,assignid,ispositive,evaluate_caluse,evaluate)
+    ret_code = resp.body[:task_appro_val_response][:return].to_i
+    #更新记录状态
+    max_msg = MaximoMsg.where(ordertaskid: assignid).first
+    max_msg.update_attributes(processed: true) if max_msg.present? and  ret_code == 0
+
     {x_ret_code: resp.body[:task_appro_val_response][:return]}
   end
 end

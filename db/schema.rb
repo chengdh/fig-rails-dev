@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913063819) do
+ActiveRecord::Schema.define(version: 20171117040302) do
 
   create_table "ap_wfapproval_history_v", id: false, force: :cascade do |t|
     t.integer  "invoice_id",            limit: 4
@@ -125,13 +125,13 @@ ActiveRecord::Schema.define(version: 20170913063819) do
     t.string   "apply_number",     limit: 30
     t.string   "item_number",      limit: 30
     t.integer  "item_id",          limit: 4
-    t.string   "item_description", limit: 255
-    t.string   "item_spec",        limit: 255
-    t.decimal  "item_price",                   precision: 15, scale: 2, default: 0.0
-    t.decimal  "demand_quantiry",              precision: 15, scale: 2, default: 0.0
-    t.decimal  "line_bugdet",                  precision: 15, scale: 2, default: 0.0
-    t.datetime "created_at",                                                          null: false
-    t.datetime "updated_at",                                                          null: false
+    t.string   "item_description", limit: 60
+    t.string   "item_spec",        limit: 60
+    t.decimal  "item_price",                  precision: 15, scale: 2, default: 0.0
+    t.decimal  "demand_quantiry",             precision: 15, scale: 2, default: 0.0
+    t.decimal  "line_bugdet",                 precision: 15, scale: 2, default: 0.0
+    t.datetime "created_at",                                                         null: false
+    t.datetime "updated_at",                                                         null: false
   end
 
   create_table "cux_fa_transfer_headers_a", id: false, force: :cascade do |t|
@@ -468,28 +468,6 @@ ActiveRecord::Schema.define(version: 20170913063819) do
     t.datetime "updated_at",                           null: false
   end
 
-  create_table "fnd_user_a", force: :cascade do |t|
-    t.integer  "user_id",                 limit: 4
-    t.string   "user_name",               limit: 255
-    t.datetime "last_update_date"
-    t.integer  "last_updated_by",         limit: 4
-    t.datetime "creation_date"
-    t.integer  "created_by",              limit: 4
-    t.datetime "last_update_login"
-    t.string   "description",             limit: 255
-    t.datetime "last_logon_date"
-    t.datetime "password_date"
-    t.integer  "employee_id",             limit: 4
-    t.string   "email_address",           limit: 255
-    t.string   "fax",                     limit: 255
-    t.integer  "customer_id",             limit: 4
-    t.integer  "supplier_id",             limit: 4
-    t.integer  "gcn_code_combination_id", limit: 4
-    t.integer  "person_party_id",         limit: 4
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-  end
-
   create_table "maximo_msgs", force: :cascade do |t|
     t.integer  "orderid",       limit: 4
     t.string   "ordersource",   limit: 255
@@ -503,13 +481,14 @@ ActiveRecord::Schema.define(version: 20170913063819) do
     t.string   "orderusername", limit: 255
     t.datetime "ordertime"
     t.string   "url",           limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.text     "form",          limit: 65535
     t.string   "ordertable",    limit: 255
     t.string   "processname",   limit: 255
     t.integer  "processrev",    limit: 4
     t.integer  "nodeid",        limit: 4
+    t.boolean  "processed",     limit: 1,     default: false
   end
 
   create_table "orgs", force: :cascade do |t|
@@ -617,29 +596,6 @@ ActiveRecord::Schema.define(version: 20170913063819) do
     t.datetime "updated_at",                           null: false
   end
 
-  create_table "soa_hr_employee_a", force: :cascade do |t|
-    t.integer  "org_id",               limit: 4
-    t.string   "employee_number",      limit: 255
-    t.string   "last_name",            limit: 255
-    t.datetime "effective_start_date"
-    t.datetime "effective_end_date"
-    t.date     "date_of_birth"
-    t.string   "sex",                  limit: 255
-    t.integer  "dept_id",              limit: 4
-    t.string   "dept_name",            limit: 255
-    t.integer  "job_id",               limit: 4
-    t.string   "job_name",             limit: 255
-    t.integer  "position_id",          limit: 4
-    t.string   "position_name",        limit: 255
-    t.integer  "created_by",           limit: 4
-    t.datetime "creation_date"
-    t.integer  "last_updated_by",      limit: 4
-    t.datetime "last_update_date"
-    t.string   "run_person_yn",        limit: 255
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-  end
-
   create_table "system_function_groups", force: :cascade do |t|
     t.string   "name",       limit: 60,                   null: false
     t.boolean  "is_active",  limit: 1,     default: true
@@ -742,7 +698,6 @@ ActiveRecord::Schema.define(version: 20170913063819) do
     t.datetime "updated_at",                 null: false
     t.date     "begin_date"
     t.integer  "fuser_id",     limit: 4
-    t.string   "isfyi",        limit: 10
   end
 
   add_foreign_key "role_system_function_operates", "roles"
