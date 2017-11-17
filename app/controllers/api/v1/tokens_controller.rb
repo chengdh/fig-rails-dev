@@ -18,15 +18,21 @@ class Api::V1::TokensController < ApplicationController
       return
     end
     #FIXME maximo登录
-    # ret = MaximoLogin.login(username,password)
-    # if ret[:id] > 0
-    #   render :status => 200, :json => {:result => ret }
-    # else
-    #   render :status => 401, :json => {:message => "Invalid username or password."}
-    # end
-    # return
-    #
-    #
+    ret = MaximoLogin.login(username,password)
+    if ret[:id] > 0
+    	if UsersLogin.exists?(:user_id => ret[:id])
+        user_login = UsersLogin.find_by(user_id: ret[:id])
+        user_login.update_attributes(login_date: DateTime.now)
+      else
+        UsersLogin.create!(user_id: ret[:id],username: username,login_date: DateTime.now)
+      end
+      render :status => 200, :json => {:result => ret }
+    else
+      render :status => 401, :json => {:message => "Invalid username or password."}
+    end
+    return
+
+
     #FIXME 测试用
     # render :status => 200, :json => {:result =>
     #                                    {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
@@ -51,29 +57,6 @@ class Api::V1::TokensController < ApplicationController
       render :status => 401, :json => {:message => "Invalid username ."}
     end
     return
-
-    #登录正常
-    # if login_success
-    #   render :status => 200, :json => {:result => 
-    #                                    {
-    #                                      id: ret[:x_user_id],
-    #                                      username: username,
-    #                                      password: "password",
-    #                                      real_name:  username,
-    #                                      default_org_id: 1,
-    #                                      authentication_token: "token"
-    #                                    }
-    #   }
-    #   if UsersLogin.exists?(:user_id => ret[:x_user_id])
-    #     user_login = UsersLogin.find_by(user_id: ret[:x_user_id])
-    #     user_login.update_attributes(login_date: DateTime.now)
-    #   else
-    #     UsersLogin.create!(user_id: ret[:x_user_id],username: username,login_date: DateTime.now)
-    #   end
-    # else
-    #   logger.info("User #{username} failed signin, password \"#{password}\" is invalid")
-    #   render :status => 401, :json => {:message => "Invalid username or password."}
-    # end
   end
 
   def destroy

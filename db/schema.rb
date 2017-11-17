@@ -503,10 +503,14 @@ ActiveRecord::Schema.define(version: 20170829100855) do
     t.string   "orderusername", limit: 255
     t.datetime "ordertime"
     t.string   "url",           limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.text     "form",          limit: 65535
     t.string   "ordertable",    limit: 255
+    t.string   "processname",   limit: 255
+    t.integer  "processrev",    limit: 4
+    t.integer  "nodeid",        limit: 4
+    t.boolean  "processed",     limit: 1,     default: false
   end
 
   create_table "orgs", force: :cascade do |t|
