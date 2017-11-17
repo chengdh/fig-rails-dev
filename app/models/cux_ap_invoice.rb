@@ -11,7 +11,8 @@ class CuxApInvoice < ActiveRecord::Base
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(id: wf_itemkeys.map {|item_key| item_key.split("_").try(:first)})}
 
-  FEE_LABEL = {
+  #发票附加信息对应关系
+  FEE_HASH = {
     "044" => {
       "培训费" => "attributes",
       "出差地点" => "attribute7"
@@ -21,6 +22,13 @@ class CuxApInvoice < ActiveRecord::Base
       "车船票" => "attribute10"
       }
   }
+
+  #费用明细
+  def fee_lines
+    ret = FEE_HASH[attribute4]
+    ret = {} if ret.blank?
+    ret
+  end
 
   def wf_notification
     WfNotification.where(["message_type=? and item_key like '?_%'",'APINVAPR',id]).try(:first)

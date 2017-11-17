@@ -62,3 +62,9 @@
       %td{:colspan => 3}
         %p
           = @cux_ap_invoice.accts_pay_code_desc
+    %tr
+      %th
+      %th{:colspan => 4,:style => "text-align: center;"}
+        发票附加信息
+
+    = render "fee_line"

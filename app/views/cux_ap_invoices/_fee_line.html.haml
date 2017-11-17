@@ -1,0 +1,4 @@
+- @cux_ap_invoice.fee_lines.each do |k,v|
+  %tr
+    %th= "#{k}:"
+    %td{:colspan => 3}= @cux_ap_invoice.try(v.to_sym)
