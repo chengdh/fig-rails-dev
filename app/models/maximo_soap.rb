@@ -1,8 +1,8 @@
 #coding: utf-8
 class MaximoSoap
   extend Savon::Model
-  #client wsdl: "http://192.168.77.211/maximo_mh/TaskAgentsService?wsdl",
-    client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
+    client wsdl: "http://192.168.77.211/maximo_mh/TaskAgentsService?wsdl",
+    #client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
     env_namespace: :soapenv,
     # namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",

@@ -22,12 +22,9 @@
 default: &default
     adapter: mysql2
     encoding: utf8
-    reconnect: true
-    pool: 5
     username: root
     password: fizzbuzz
-    host: guodiantou-app-mysq2
-
+    host: guodiantou-app-mysql1
 
 #
 # development:
@@ -51,14 +48,14 @@ default: &default
 
 development:
   <<: *default
-  # database: guodiantou_development
+  database: guodiantou_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-# test:
-#   <<: *default
-#   database: guodiantou_test
+test:
+  <<: *default
+  database: guodiantou_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -83,23 +80,21 @@ production:
   <<: *default
 
 secondbase:
-  default: &default
+  second_default: &second_default
     adapter: mysql2
     encoding: utf8
-    reconnect: true
-    pool: 5
     username: root
     password: fizzbuzz
-    host: guodiantou-app-mysql
+    host: guodiantou-app-mysql2
 
   development:
-    <<: *default
+    <<: *second_default
     database: guodiantou_development
 
   test:
-    <<: *default
+    <<: *second_default
     database: guodiantou_test
 
   production:
-    <<: *default
+    <<: *second_default
     database: guodiantou_production

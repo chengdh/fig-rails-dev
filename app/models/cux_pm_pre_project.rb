@@ -25,7 +25,7 @@ class CuxPmPreProject < ActiveRecord::Base
            select("CPA.*, CHA.NOTIFICATION_ID").where(" CPA.project_id = CHA.ENTITY_ID")}
 
   def id
-    project_id
+    notification_id
   end
   def message_type
     "CUXPRM"

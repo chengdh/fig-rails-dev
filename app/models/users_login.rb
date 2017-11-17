@@ -1,5 +1,5 @@
 #coding: utf-8
-class UsersLogin < ActiveRecord::Base
+class UsersLogin < SecondBase::Base
   #自服务端同步更新数据
   def self.sync_with_ebs
     user_ids = pluck(:user_id)
@@ -10,7 +10,7 @@ class UsersLogin < ActiveRecord::Base
     user_names.each {|u_name| MaximoMsg.sync_with_maximo(u_name)}
   end
   def self.sync_all
-    sync_with_ebs
+    # sync_with_ebs
     sync_with_maximo
   end
 
