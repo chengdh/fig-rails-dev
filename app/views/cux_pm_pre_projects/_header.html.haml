@@ -39,7 +39,10 @@
       %th 批复总金额:
       %td{:colspan => 3}
         = @cux_pm_pre_project.approved_amount
-
+    %tr
+      %th 项目状态:
+      %td{:colspan => 3}
+        = @cux_pm_pre_project.project_status_name
     %tr
       %th 起止日期:
       %td
