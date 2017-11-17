@@ -1,15 +1,19 @@
 version: '2'
 services:
-  guodiantou-app-mysql:
+  maximo-app-mysql2:
     image: mysql:5.5.51
     environment:
       MYSQL_ROOT_PASSWORD: fizzbuzz
     volumes:
       - mysql_data:/var/lib/mysql
+    restart: always
+    ports:
+      - 13306:3306
 
   guodiantou-app-server:
     image: guodiantou-app-server:0.1
 
+    restart: always
     command: bundle exec puma -C config/unicorn/puma.rb
     # command: bundle exec unicorn -c config/unicorn/production.rb
     # command: bundle exec rails s -b 0.0.0.0 -p 3000
@@ -17,7 +21,7 @@ services:
     #   - 5000:3000
 
     depends_on:
-      - guodiantou-app-mysql
+      - maximo-app-mysql2
 
     volumes:
       # This seems to work as-is once you expose /Users to the boot2docker vm.
@@ -32,8 +36,9 @@ services:
 
   nginx:
     image: nginx
+    restart: always
     ports:
-      - 9888:80
+      - 5010:80
     volumes_from:
       - guodiantou-app-server
     depends_on:
