@@ -9,16 +9,26 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
+# default: &default
+#   adapter: oracle_enhanced
+#   #host: 192.168.66.171
+#   database: "(DESCRIPTION=
+#     (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST= 192.168.66.171)(PORT=1523)))
+#     (CONNECT_DATA=(SERVICE_NAME=UAT))
+#   )"
+#   #port: 1524
+#   username: apps
+#   password: apps_uat
 default: &default
-  adapter: oracle_enhanced
-  #host: 192.168.66.171
-  database: "(DESCRIPTION=
-    (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST= 192.168.66.171)(PORT=1523)))
-    (CONNECT_DATA=(SERVICE_NAME=UAT))
-  )"
-  #port: 1524
-  username: apps
-  password: apps_uat
+    adapter: mysql2
+    encoding: utf8
+    reconnect: true
+    pool: 5
+    username: root
+    password: fizzbuzz
+    host: guodiantou-app-mysq2
+
+
 #
 # development:
 #   <<: *default
@@ -93,9 +103,3 @@ secondbase:
   production:
     <<: *default
     database: guodiantou_production
-
-
-
-
-
-

@@ -62,7 +62,7 @@ class CuxPa < ActiveRecord::Base
   end
 
   def id
-    project_id
+   notification_id
   end
 
   def self.unread_bills(n_ids)
