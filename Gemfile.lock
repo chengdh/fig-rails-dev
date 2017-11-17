@@ -274,6 +274,8 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 2.4)
       wasabi (~> 3.4)
+    secondbase (2.1.5)
+      rails (>= 4.0)
     sexp_processor (4.5.1)
     simple_form (3.1.0)
       actionpack (~> 4.0)
@@ -369,6 +371,7 @@ DEPENDENCIES
   ruby-plsql (~> 0.6.0)
   sass-rails (~> 5.0)
   savon (~> 2.11.0)
+  secondbase
   simple_form
   spring
   state_machine (~> 1.2)

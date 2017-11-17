@@ -70,11 +70,32 @@ development:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: true
-  pool: 5
-  database: guodiantou_production
-  username: root
-  password: fizzbuzz
-  host: guodiantou-app-mysql
+  <<: *default
+
+secondbase:
+  default: &default
+    adapter: mysql2
+    encoding: utf8
+    reconnect: true
+    pool: 5
+    username: root
+    password: fizzbuzz
+    host: guodiantou-app-mysql
+
+  development:
+    <<: *default
+    database: guodiantou_development
+
+  test:
+    <<: *default
+    database: guodiantou_test
+
+  production:
+    <<: *default
+    database: guodiantou_production
+
+
+
+
+
+

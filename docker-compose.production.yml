@@ -4,6 +4,8 @@ services:
     image: mysql:5.5.51
     environment:
       MYSQL_ROOT_PASSWORD: fizzbuzz
+    volumes:
+      - mysql_data:/var/lib/mysql
 
   guodiantou-app-server:
     image: guodiantou-app-server:0.1
@@ -45,6 +47,7 @@ services:
           - guodiantou-app-server
 volumes:
   assets:
+  mysql_data:
 networks:
   nginx_default:
     external: true
