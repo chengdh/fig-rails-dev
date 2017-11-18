@@ -13,9 +13,10 @@ class MaximoMsg < SecondBase::Base
   end
 
   #未读数据
+  #orderuserid : 登录用户名 工号
   def self.unread_bills(orderuserid,ordertable=nil)
     ret = nil
-    sync_with_maximo_by_userid(orderuserid)
+    sync_with_maximo(orseruserid)
     if ordertable.present?
       ret = where(orderuserid: orderuserid,ordertable: ordertable,processed: false).to_json
     else
@@ -27,10 +28,6 @@ class MaximoMsg < SecondBase::Base
   #从maximo系统中同步数据
   def self.sync_with_maximo(username)
     MaximoSoap.sync_table(MaximoMsg,username,0,9999)
-  end
-  def self.sync_with_maximo_by_userid(userid)
-    user = UsersLogin.find_by(user_id: userid)
-    MaximoSoap.sync_table(MaximoMsg,user.username,0,9999) if user.present?
   end
 
   #审批

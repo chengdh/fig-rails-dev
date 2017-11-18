@@ -15,6 +15,11 @@
             行
             = i + 1
         %tr
+          %th 物资编码:
+          %td
+            =line.item_number
+
+        %tr
           %th 物料名称:
           %td
             =line.item_description
@@ -29,9 +34,15 @@
           %th 材质:
           %td
             =line.item_material
-          -# %td
-          -#   =line.uom
+        %tr
+          %th 原设备制造厂/品牌:
+          %td
+            =line.equipment_information
 
+        %tr
+          %th 单位:
+          %td
+            =line.uom
 
         %tr
           %th 单价:
@@ -39,11 +50,28 @@
             =line.item_price
 
         %tr
-          %th 数量:
+          %th 需求数量:
           %td
             =line.demand_quantiry
+        %tr
+          %th 批准数量:
+          %td
+            =line.approve_quantiry
 
         %tr
-          %th 金额:
+          %th 参考单价:
           %td
-            =line.line_bugdet
+            =line.item_price
+        %tr
+          %th 需求金额:
+          %td
+            =line.item_cost
+        %tr
+          %th 批准金额:
+          %td  ?
+            -# =line.line_bugdet
+        %tr
+          %th 更改原因:
+          %td
+            %p
+              =line.attribute10

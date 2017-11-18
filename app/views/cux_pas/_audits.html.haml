@@ -2,12 +2,14 @@
   %table.table.table-condensed.table-striped.table-hover
     %thead
       %tr
+        %th 层次
         %th 审批人
         %th 审批日期
         %th 审批意见
     %tbody
       - @cux_pa.audit_his.each_with_index do |line,i|
         %tr
+          %td= line[:step]
           %td
             =line[:last_name]
           %td

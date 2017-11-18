@@ -13,6 +13,11 @@
       %th 计划类型:
       %td{:colspan => 3}
         = @cux_demand.apply_type
+   %tr
+      %th 项目类型:
+      %td{:colspan => 3}
+        = @cux_demand.project_type
+
     %tr
       %th 项目名称:
       %td{:colspan => 3}
@@ -23,10 +28,6 @@
         = @cux_demand.project_number
 
     %tr
-      %th 项目类型:
-      %td{:colspan => 3}
-        = @cux_demand.project_type
-    %tr
       %th 任务名称:
       %td.vert-align_td{:colspan => 3}
         = @cux_demand.task_name
@@ -35,6 +36,10 @@
       %th 任务编号:
       %td.vert-align_td{:colspan => 3}
         = @cux_demand.task_number
+    %tr
+      %th 工单编号:
+      %td.vert-align_td{:colspan => 3}
+        = @cux_demand.wip_entity_name
     %tr
       %th 提报部门:
       %td{:colspan => 3}

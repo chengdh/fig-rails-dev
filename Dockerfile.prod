@@ -59,3 +59,4 @@ COPY . $APP_HOME
 
 # Precompile Rails assets. We set a dummy secret key
 RUN bundle exec rake SECRET_KEY_BASE=pickasecuretoken  assets:precompile
+VOLUME $APP_HOME

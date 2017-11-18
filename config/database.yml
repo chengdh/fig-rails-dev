@@ -24,7 +24,7 @@ default: &default
     encoding: utf8
     username: root
     password: fizzbuzz
-    host: guodiantou-app-mysql1
+    host: maximo-app-mysql2
 
 #
 # development:
@@ -48,14 +48,14 @@ default: &default
 
 development:
   <<: *default
-  database: guodiantou_development
+  database: erp_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: guodiantou_test
+  database: erp_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -82,10 +82,15 @@ production:
     (ADDRESS_LIST=(ADDRESS=(PROTOCOL=tcp)(HOST= 192.168.66.171)(PORT=1523)))
     (CONNECT_DATA=(SERVICE_NAME=UAT))
   )"
-  #host: 192.168.66.171
-  #port: 1524
+  # host: 192.168.66.171
+  # port: 1524
   username: apps
   password: apps_uat
+
+# production:
+#   <<: *default
+#   database: erp_production
+
 
 secondbase:
   second_default: &second_default

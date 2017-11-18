@@ -1,4 +1,8 @@
-- @cux_ap_invoice.fee_lines.each do |k,v|
+- if @cux_ap_invoice.fee_lines.present?
   %tr
-    %th= "#{k}:"
-    %td{:colspan => 3}= @cux_ap_invoice.try(v.to_sym)
+    %th{:colspan => 2}
+      = @cux_ap_invoice.fee_lines.first
+  - @cux_ap_invoice.fee_lines.second.each do |k,v|
+    %tr
+      %th= "#{k}:"
+      %td{:colspan => 3}= @cux_ap_invoice.try(v.to_sym)

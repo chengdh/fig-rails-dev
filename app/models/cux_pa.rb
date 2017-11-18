@@ -37,7 +37,12 @@ class CuxPa < ActiveRecord::Base
     wf_notification.try(:subject)
   end
   def project_status_name
-    ret = plsql.WF_NOTIFICATION.GETATTRTEXT(notification_id)
+    ret = ""
+    begin
+      ret = plsql.WF_NOTIFICATION.GETATTRTEXT(notification_id)
+    rescue
+    end
+    ret
   end
 
   #工作流发起人

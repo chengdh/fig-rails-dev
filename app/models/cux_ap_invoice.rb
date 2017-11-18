@@ -13,20 +13,297 @@ class CuxApInvoice < ActiveRecord::Base
 
   #发票附加信息对应关系
   FEE_HASH = {
-    "044" => {
-      "培训费" => "attributes",
-      "出差地点" => "attribute7"
-      },
-    "044" => { 
-      "出差地点" => "attribute7",
-      "车船票" => "attribute10"
-      }
+    "044" =>[
+      "差旅费",
+      {
+        "出差地点" => :attribute7, 
+        "起始日期" =>	 :attribute8,
+        "结束日期" =>	 :attribute9, 
+        "车船票" =>	 :attribute10, 
+        "飞机票" =>	 :attribute11, 
+        "住宿票" =>	 :attribute12, 
+        "杂费" =>	 :attribute13, 
+        "伙食补助" =>	 :attribute14, 
+        "交通补助" =>	 :attribute15, 
+      }],
+      "044" => [
+        "职工教育经费",
+        {
+          "出差地点" =>	 :attribute7, 
+          "起始日期" =>	 :attribute8, 
+          "结束日期" =>	 :attribute9, 
+          "车船票" =>	 :attribute10, 
+          "飞机票" =>	 :attribute11, 
+          "住宿票" =>	 :attribute12, 
+          "杂费" =>	 :attribute13, 
+          "伙食补助" =>	 :attribute14, 
+          "交通补助" =>	 :attribute15, 
+          "培训费" =>	 :attribute5, 
+
+        }],
+        "170" => ["会议费",{
+          "会议名称" =>	 :attribute7, 
+          "会议地点" =>	 :attribute8, 
+          "会议时间" =>	 :attribute9, 
+          "会议人数" =>	 :attribute10, 
+          "参加人员单位" =>	 :attribute11, 
+          "房费" =>	 :attribute12, 
+          "餐费" =>	 :attribute13, 
+          "会议室租赁费" =>	 :attribute14, 
+          "杂费" =>	 :attribute13
+        }],
+        "520003012" => ["差旅费",
+                        {"出差地点" => :attribute7,
+                         "起始日期" =>	 :attribute8, 
+                         "结束日期" =>	 :attribute9, 
+                         "车船票" =>	 :attribute10, 
+                         "飞机票" =>	 :attribute11, 
+                         "住宿票" =>	 :attribute12, 
+                         "杂费" =>	 :attribute13, 
+                         "伙食补助" =>	 :attribute14
+        }],
+        "520003018" => ["会议费",{
+          "会议名称" =>	 :attribute7, 
+          "会议地点" =>	 :attribute8, 
+          "会议时间" =>	 :attribute9, 
+          "会议人数" =>	 :attribute10, 
+          "参加人员单位" =>	 :attribute11, 
+          "房费" =>	 :attribute12, 
+          "餐费" =>	 :attribute13, 
+          "会议室租赁费" =>	 :attribute14, 
+          "杂费" =>	 :attribute13
+        }],
+        "520003027"	=> ["培训费",{
+          "培训费" =>	 :attribute5, 
+          "出差地点" =>	 :attribute7, 
+          "起始日期" =>	 :attribute8, 
+          "结束日期" =>	 :attribute9, 
+          "车船票" =>	 :attribute10, 
+          "飞机票" =>	 :attribute11, 
+          "住宿票" =>	 :attribute12, 
+          "杂费" =>	 :attribute13, 
+          "伙食补助" =>	 :attribute14, 
+          "交通补助" =>	 :attribute15 
+        }],
+        "520010007" => ["会议费",{
+          "会议名称" =>	 :attribute7, 
+          "会议地点" =>	 :attribute8, 
+          "会议时间" =>	 :attribute9, 
+          "会议人数" =>	 :attribute10, 
+          "参加人员单位" =>	 :attribute11, 
+          "房费" =>	 :attribute12, 
+          "餐费" =>	 :attribute13, 
+          "会议室租赁费" =>	 :attribute14, 
+          "杂费" =>	 :attribute13
+        }],
+        "520010015" => ["差旅费" ,
+                        {
+          "出差地点" =>	 :attribute7, 
+          "起始日期" =>		 :attribute8, 
+          "结束日期" =>		 :attribute9, 
+          "车船票" =>		 :attribute10, 
+          "飞机票" =>		 :attribute11, 
+          "住宿票" =>		 :attribute12, 
+          "杂费" =>		 :attribute13, 
+          "伙食补助" =>		 :attribute14, 
+          "交通补助" =>		 :attribute15
+        }],
+        "520010019" => ["培训费",{
+          "培训费" =>		 :attribute5, 
+          "出差地点" =>		 :attribute7, 
+          "起始日期" =>		 :attribute8, 
+          "结束日期" =>		 :attribute9, 
+          "车船票" =>		 :attribute10, 
+          "飞机票" =>		 :attribute11, 
+          "住宿票" =>		 :attribute12, 
+          "杂费" =>		 :attribute13, 
+          "伙食补助" =>		 :attribute14, 
+          "交通补助" =>		 :attribute15
+        }],
+        "520014010" =>["职教费"	,{
+          "出差地点" =>		 :attribute7, 
+          "起始日期" =>		 :attribute8, 
+          "结束日期" =>		 :attribute9, 
+          "车船票" =>		 :attribute10, 
+          "飞机票" =>		 :attribute11, 
+          "住宿票" =>		 :attribute12, 
+          "杂费" =>		 :attribute13, 
+          "伙食补助" =>		 :attribute14, 
+          "交通补助" =>		 :attribute15, 
+          "培训费" =>		 :attribute5
+        }],
+        "520014019" => ["差旅费-综合部",{
+          "出差地点" =>		 :attribute7, 
+          "起始日期" =>		 :attribute8, 
+          "结束日期" =>		 :attribute9, 
+          "车船票" =>		 :attribute10, 
+          "飞机票" =>		 :attribute11, 
+          "住宿票" =>		 :attribute12, 
+          "杂费" =>		 :attribute13, 
+          "伙食补助" =>		 :attribute14, 
+          "交通补助" =>		 :attribute15
+        }],
+        "520014020" => ["差旅费-政治工作部（工会办公室）",{
+          "出差地点" =>		 :attribute7, 
+          "起始日期" =>		 :attribute8, 
+          "结束日期" =>		 :attribute9, 
+          "车船票" =>		 :attribute10, 
+          "飞机票" =>		 :attribute11, 
+          "住宿票" =>		 :attribute12, 
+          "杂费" =>		 :attribute13, 
+          "伙食补助" =>		 :attribute14, 
+          "交通补助" =>		 :attribute15
+        }],
+        "520014021" =>  [
+          "差旅费-人力资源部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014022" =>  ["	差旅费-财务管理部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014023" => ["差旅费-审计与内控部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014024" =>  ["	差旅费-监察部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014025" =>  ["	差旅费-物资采购部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014026" =>  ["	差旅费-安全与环境保护监察部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>	 :attribute8, 
+            "结束日期" =>			 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014027" =>  ["	差旅费-生产技术部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014028" =>  ["	差旅费-发电运行部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014029" =>  ["	差旅费-设备维护部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014030" =>  ["	差旅费-燃料质量检验中心",
+                           {	"出差地点" =>		:attribute7,
+                             "起始日期" =>		 :attribute8, 
+                             "结束日期" =>		 :attribute9, 
+                             "车船票" =>		 :attribute10, 
+                             "飞机票" =>		 :attribute11, 
+                             "住宿票" =>		 :attribute12, 
+                             "杂费" =>		 :attribute13, 
+                             "伙食补助" =>		 :attribute14, 
+                             "交通补助" =>		 :attribute15
+          }],
+          "520014031" =>  ["	差旅费-燃料部",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014032" => ["	差旅费-筹建办",{
+            "出差地点" =>		 :attribute7, 
+            "起始日期" =>		 :attribute8, 
+            "结束日期" =>		 :attribute9, 
+            "车船票" =>		 :attribute10, 
+            "飞机票" =>		 :attribute11, 
+            "住宿票" =>		 :attribute12, 
+            "杂费" =>		 :attribute13, 
+            "伙食补助" =>		 :attribute14, 
+            "交通补助" =>		 :attribute15
+          }],
+          "520014034" => ["会议费",{
+            "会议名称" =>		 :attribute7, 
+            "	会议地点" =>		 :attribute8, 
+            "	会议时间" =>		 :attribute9, 
+            "	会议人数" =>		 :attribute10, 
+            "	参加人员单位" =>		 :attribute11, 
+            "房费" =>		 :attribute12, 
+            "餐费" =>		 :attribute13, 
+            "会议室租赁费" =>		 :attribute14, 
+            "杂费" =>		 :attribute13
+          }]
   }
 
   #费用明细
   def fee_lines
     ret = FEE_HASH[attribute4]
-    ret = {} if ret.blank?
+    ret = [] if ret.blank?
     ret
   end
 

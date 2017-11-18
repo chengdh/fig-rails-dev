@@ -1,70 +1,68 @@
 .table-responsive
   %table.table.table-condensed.table-striped.table-hover.table-bordered
     %tr
-      %td{:colspan => 4}
+      %td{:colspan => 2}
         %h4{:style => "text-align: center;"}
-          No:
           = @cux_ap_invoice.invoice_num
           %span.label.label-info
             = @cux_ap_invoice.wfapproval_status_dsp
     %tr
       %th 经办人:
-      %td{:colspan => 3}
-        = @cux_ap_invoice.attribute2
+      %td
+        %p
+          = @cux_ap_invoice.attribute2_dsp
     %tr
       %th 经办部门:
-      %td{:colspan => 3}
-        = @cux_ap_invoice.attribute3
+      %td
+        %p
+          = @cux_ap_invoice.attribute3_dsp
 
     %tr
       %th 费用类型:
-      %td{:colspan => 3}
+      %td
         = @cux_ap_invoice.attribute4_dsp
 
     %tr
       %th 发票类型:
-      %td{:colspan => 3}
+      %td
         -# = @cux_ap_invoice.attribute3
     %tr
       %th 发票日期:
-      %td{:colspan => 3}
+      %td
         = @cux_ap_invoice.invoice_date.try(:strftime,'%Y-%m-%d')
     %tr
       %th GL日期:
-      %td{:colspan => 3}
+      %td
         = @cux_ap_invoice.gl_date.try(:strftime,'%Y-%m-%d')
 
     %tr
       %th 供应商:
-      %td{:colspan => 3}
+      %td
         %p
           = @cux_ap_invoice.vendor_name
 
     %tr
       %th 服务类型:
-      %td{:colspan => 3}
+      %td
+        = @cux_ap_invoice.vendor_site_code
     %tr
       %th 发票额:
-      %td{:colspan => 3}
+      %td
         = @cux_ap_invoice.invoice_amount
-    %tr
-      %th 经办人:
-      %td{:colspan => 3}
-        = @cux_ap_invoice.attribute2
 
     %tr
       %th 摘要:
-      %td{:colspan => 3}
+      %td
         %p
           = @cux_ap_invoice.description
     %tr
       %th 负债账户说明:
-      %td{:colspan => 3}
+      %td
         %p
           = @cux_ap_invoice.accts_pay_code_desc
     %tr
       %th
-      %th{:colspan => 4,:style => "text-align: center;"}
+      %th{:colspan => 2,:style => "text-align: center;"}
         发票附加信息
 
     = render "fee_line"
