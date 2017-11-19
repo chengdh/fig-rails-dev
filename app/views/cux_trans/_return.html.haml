@@ -1,0 +1,58 @@
+.table-responsive
+  %table.table.table-condensed.table-striped.table-hover.table-bordered
+    %tr
+      %td{:colspan => 2}
+        %h4{:style => "text-align: center;"}
+          = @cux_tran.require_number
+          -# %span.label.label-info
+          -#   = @cux_tran.require_status
+    %tr
+      %th 申请部门:
+      %td
+        %p
+          = @cux_tran.require_deparment
+
+    %tr
+      %th 申请人:
+      %td
+        = @cux_tran.requier_person
+    %tr
+      %th 项目名称:
+      %td
+        %p
+          = @cux_tran.trans_deparment
+    %tr
+      %th 本次申请额:
+      %td
+        = @cux_tran.header_bugdet
+    -# %tr
+    -#   %th 申请日期:
+    -#   %td
+    -#     = @cux_tran.requier_date.try(:strftime,"%Y-%m-%d")
+    -#
+    -# %tr
+    -#   %th 来源:
+    -#   %td
+    -#     = @cux_tran.categorie
+    -# %tr
+    -#   %th 项目类型:
+    -#   %td{:colspan => 3}
+    -#     = @cux_tran.project_type
+    -# %tr
+    -#   %th 项目编号:
+    -#   %td{:colspan => 3}
+    -#     = @cux_tran.segment1
+    -# %tr
+    -#   %th 备注:
+    -#   %td
+    -#     = @cux_tran.remark
+    -# %tr
+    -#   %td{:colspan => 4,:style => "text-align: center;"} 预算 
+    -# %tr
+    -#   %th 项目总额:
+    -#   %td
+    -#     = @cux_tran.bugdet_balance
+    -#
+    -#   %th 可用预算:
+    -#   %td
+    -#     = @cux_tran.bugdet_total

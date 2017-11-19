@@ -9,6 +9,24 @@ class CuxTran < ActiveRecord::Base
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
 
+  BUSINESS_TYPE = {
+    "NORMAL" => "领料单",
+    "RETURN" => "退料单",
+    "PROFIT" => "盘盈调整",
+    "LOSSES" => "盘亏调整",
+    "SALE" => "物资销售出库",
+    "REFUND" => " 物资销售退回",
+    "OLD_ITEM_IN" => "旧件物资回收/取消",
+    "ASSETS_IN" => "固资代保管入库",
+    "ASSETS_OUT" => "固资代保管出库	",
+    "TOOL_OUT" => "工器具领用",
+    "TOOL_IN" => "工器具归还",
+    "WASTE" => "废旧物资入库",
+    "SJBJ_IN" => "随机备件入库",
+    "RECYCLE" => "修旧利费入库",
+    "SCRAP" => "物资报废"
+  }
+
   def wf_notification
     WfNotification.where(:item_key => wf_itemkey).try(:first)
   end

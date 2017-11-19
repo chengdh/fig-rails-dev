@@ -16,7 +16,7 @@ class MaximoMsg < SecondBase::Base
   #orderuserid : 登录用户名 工号
   def self.unread_bills(orderuserid,ordertable=nil)
     ret = nil
-    sync_with_maximo(orseruserid)
+    sync_with_maximo(orderuserid)
     if ordertable.present?
       ret = where(orderuserid: orderuserid,ordertable: ordertable,processed: false).to_json
     else
