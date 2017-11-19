@@ -26,7 +26,7 @@ services:
     volumes:
       # This seems to work as-is once you expose /Users to the boot2docker vm.
       - .:/rails_app
-      # - assets:/railsapp/public/assets/
+      - assets:/rails_app/public/assets/
     environment:
       - SECRET_KEY_BASE=pickasecuretoken
     extra_hosts:

@@ -12,7 +12,7 @@ class FndUser < ActiveRecord::Base
   end
   def self.get_users_by_org_id(org_id)
     employee_ids = SoaHrEmployee.where(org_id: org_id).pluck(:id)
-    users = FndUser.where(employee_id: employee_ids).includes(:soa_hr_employee).to_json(
+    users = FndUser.where(employee_id: employee_ids).includes(:soa_hr_employee).limit(500).to_json(
       methods: [:org_id,:employee_name]
     )
   end
@@ -22,7 +22,7 @@ class FndUser < ActiveRecord::Base
     cur_employee = cur_user.soa_hr_employee
     cur_org_id = cur_employee.org_id
     employee_ids = SoaHrEmployee.where(org_id: cur_org_id).pluck(:id)
-    users = FndUser.where(employee_id: employee_ids).includes(:soa_hr_employee).to_json(
+    users = FndUser.where(employee_id: employee_ids).includes(:soa_hr_employee).limit(500).to_json(
       methods: [:org_id,:employee_name]
     )
   end
