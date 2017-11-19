@@ -24,8 +24,10 @@ services:
       - maximo-app-mysql2
 
     volumes:
-      # This seems to work as-is once you expose /Users to the boot2docker vm.
+      # 生产环境下,代码在容器内运行,无需挂载源代码目录
       - .:/rails_app
+      # 此处注意 docker-compose up后,需要调用以下命令:
+      # docker-compose -f docker-compose.production.yml exec guodiantou-app-server bundle exec rake assets:precompile 生成assets内容
       - assets:/rails_app/public/assets/
     environment:
       - SECRET_KEY_BASE=pickasecuretoken

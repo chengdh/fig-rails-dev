@@ -1,9 +1,8 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %tbody
-      %tr
-        %th 产业类型:
-        %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1)
-      %tr
-        %th 所属二级单位:
-        %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute4)
+%table.table.table-condensed.table-striped.table-hover
+  %tbody
+    %tr
+      %th 产业类型:
+      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1)
+    %tr
+      %th 所属二级单位:
+      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute4)

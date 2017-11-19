@@ -1,12 +1,11 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %tbody
-      %tr
-        %th 产业类型:
-        %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1)
-      %tr
-        %th 科技项目分类:
-        %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute12)
-      %tr
-        %th 费用类别:
-        %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute31)
+%table.table.table-condensed.table-striped.table-hover
+  %tbody
+    %tr
+      %th 产业类型:
+      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1)
+    %tr
+      %th 科技项目分类:
+      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute12)
+    %tr
+      %th 费用类别:
+      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute31)

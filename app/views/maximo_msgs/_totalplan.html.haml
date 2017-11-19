@@ -1,16 +1,15 @@
 / 年度计划
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover.table-bordered
-    %tr
-      %th 年份:
-      %td
-        = @maximo_msg.order_detail_hash['plan_year']
+%table.table.table-condensed.table-striped.table-hover.table-bordered
+  %tr
+    %th 年份:
+    %td
+      = @maximo_msg.order_detail_hash['plan_year']
 
-    %tr
-      %th 计划描述:
-      %td
-        = @maximo_msg.order_detail_hash['description']
-    %tr
-      %th 状态:
-      %td
-        = @maximo_msg.order_detail_hash['status']
+  %tr
+    %th 计划描述:
+    %td
+      = @maximo_msg.order_detail_hash['description']
+  %tr
+    %th 状态:
+    %td
+      = @maximo_msg.order_detail_hash['status']

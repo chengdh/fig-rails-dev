@@ -1,78 +1,77 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    -# %thead
-    -#   %tr
-    -#     %th 物料名称
-    -#     %th 规格
-    -#     -# %th 单位
-    -#     %th 单价
-    -#     %th 数量
-    -#     %th 金额
-    %tbody
-      - @cux_demand.cux_demand_lines.each_with_index do |line,i|
-        %tr
-          %th{:colspan => 20}
-            行
-            = i + 1
-        %tr
-          %th 物资编码:
-          %td
-            =line.item_number
+%table.table.table-condensed.table-striped.table-hover
+  -# %thead
+  -#   %tr
+  -#     %th 物料名称
+  -#     %th 规格
+  -#     -# %th 单位
+  -#     %th 单价
+  -#     %th 数量
+  -#     %th 金额
+  %tbody
+    - @cux_demand.cux_demand_lines.each_with_index do |line,i|
+      %tr
+        %th{:colspan => 20}
+          行
+          = i + 1
+      %tr
+        %th 物资编码:
+        %td
+          =line.item_number
 
-        %tr
-          %th 物料名称:
-          %td
-            =line.item_description
+      %tr
+        %th 物料名称:
+        %td
+          =line.item_description
 
-        %tr
-          %th 规格:
-          %td
-            =line.item_spec
-          -# %td
-          -#   =line.uom
-        %tr
-          %th 材质:
-          %td
-            =line.item_material
-        %tr
-          %th 原设备制造厂/品牌:
-          %td
-            =line.equipment_information
+      %tr
+        %th 规格:
+        %td
+          =line.item_spec
+        -# %td
+        -#   =line.uom
+      %tr
+        %th 材质:
+        %td
+          =line.item_material
+      %tr
+        %th 原设备制造厂/品牌:
+        %td
+          =line.equipment_information
 
-        %tr
-          %th 单位:
-          %td
-            =line.uom
+      %tr
+        %th 单位:
+        %td
+          =line.uom
 
-        %tr
-          %th 单价:
-          %td
-            =line.item_price
+      %tr
+        %th 单价:
+        %td
+          =line.item_price
 
-        %tr
-          %th 需求数量:
-          %td
-            =line.demand_quantiry
-        %tr
-          %th 批准数量:
-          %td
-            =line.approve_quantiry
+      %tr
+        %th 需求数量:
+        %td
+          =line.demand_quantiry
+      %tr
+        %th 批准数量:
+        %td
+          =line.approve_quantiry
 
-        %tr
-          %th 参考单价:
-          %td
-            =line.item_price
-        %tr
-          %th 需求金额:
-          %td
-            =line.item_cost
-        %tr
-          %th 批准金额:
-          %td
-            ?
-            -# =line.line_bugdet
-        %tr
-          %th 更改原因:
-          %td
-            %p
-              =line.attribute10
+      %tr
+        %th 参考单价:
+        %td
+          =line.item_price
+      %tr
+        %th 需求金额:
+        %td
+          =line.item_cost
+      %tr
+        %th 批准金额:
+        %td
+          ?
+          -# =line.line_bugdet
+      %tr
+        %th 更改原因:
+        %td
+          %p
+            =line.attribute10

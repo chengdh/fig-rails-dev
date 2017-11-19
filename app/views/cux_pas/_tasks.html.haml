@@ -1,20 +1,19 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
-      %tr
-        %th 任务编号
-        %th 任务名称
-        %th 任务支出
-        %th 任务预算
+%table.table.table-condensed.table-striped.table-hover
+  %thead
+    %tr
+      %th 任务编号
+      %th 任务名称
+      %th 任务支出
+      %th 任务预算
 
-    %tbody
-      - @cux_pa.pa_budet_info.each_with_index do |line,i|
-        %tr
-          %td
-            =line[:task_number]
-          %td
-            =line[:task_name]
-          %td
-            =line[:cost_amt]
-          %td
-            =line[:budget_amt]
+  %tbody
+    - @cux_pa.pa_budet_info.each_with_index do |line,i|
+      %tr
+        %td
+          =line[:task_number]
+        %td
+          =line[:task_name]
+        %td
+          =line[:cost_amt]
+        %td
+          =line[:budget_amt]

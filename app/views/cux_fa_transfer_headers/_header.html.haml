@@ -1,45 +1,44 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover.table-bordered
-    %tr
-      %th 申请单号:
-      %td
-        = @cux_fa_transfer_header.header_id
-        %span.label.label-info
-          = @cux_fa_transfer_header.approved_status_disp
-    %tr
-      %th 申请人:
-      %td
-        = @cux_fa_transfer_header.request_full_name
+%table.table.table-condensed.table-striped.table-hover.table-bordered
+  %tr
+    %th 申请单号:
+    %td
+      = @cux_fa_transfer_header.header_id
+      %span.label.label-info
+        = @cux_fa_transfer_header.approved_status_disp
+  %tr
+    %th 申请人:
+    %td
+      = @cux_fa_transfer_header.request_full_name
 
-    %tr
-      %th 申请日期:
-      %td
-        = @cux_fa_transfer_header.request_date.strftime("%Y-%m-%d")
+  %tr
+    %th 申请日期:
+    %td
+      = @cux_fa_transfer_header.request_date.strftime("%Y-%m-%d")
 
-    %tr
-      %th 变更原因:
-      %td{:colspan => 3}
-        %p
-          = @cux_fa_transfer_header.request_remark
-    %tr
-      %th 原保管人:
-      %td
-        %p
-          = @cux_fa_transfer_header.assigned_f_full_name
+  %tr
+    %th 变更原因:
+    %td{:colspan => 3}
+      %p
+        = @cux_fa_transfer_header.request_remark
+  %tr
+    %th 原保管人:
+    %td
+      %p
+        = @cux_fa_transfer_header.assigned_f_full_name
 
-    %tr
-      %th 新保管人:
-      %td
-        %p
-          = @cux_fa_transfer_header.assigned_t_full_name
-    %tr
-      %th 原使用部门:
-      %td
-        %p
-          = @cux_fa_transfer_header.used_department_from_disp
+  %tr
+    %th 新保管人:
+    %td
+      %p
+        = @cux_fa_transfer_header.assigned_t_full_name
+  %tr
+    %th 原使用部门:
+    %td
+      %p
+        = @cux_fa_transfer_header.used_department_from_disp
 
-    %tr
-      %th 新使用部门:
-      %td
-        %p
-          = @cux_fa_transfer_header.used_department_to_disp
+  %tr
+    %th 新使用部门:
+    %td
+      %p
+        = @cux_fa_transfer_header.used_department_to_disp

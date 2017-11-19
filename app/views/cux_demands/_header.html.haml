@@ -1,81 +1,80 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover.table-bordered
-    %tr
-      %td{:colspan => 4}
-        %h4{:style => "text-align: center;"}
-          No:
-          = @cux_demand.apply_number
-    %tr
-      %th 计划来源:
-      %td{:colspan => 3}
-        = @cux_demand.apply_source
-    %tr
-      %th 计划类型:
-      %td{:colspan => 3}
-        = @cux_demand.apply_type
-    %tr
-      %th 项目类型:
-      %td{:colspan => 3}
-        = @cux_demand.project_type
+%table.table.table-condensed.table-striped.table-hover.table-bordered
+  %tr
+    %td{:colspan => 4}
+      %h4{:style => "text-align: center;"}
+        No:
+        = @cux_demand.apply_number
+  %tr
+    %th 计划来源:
+    %td{:colspan => 3}
+      = @cux_demand.apply_source
+  %tr
+    %th 计划类型:
+    %td{:colspan => 3}
+      = @cux_demand.apply_type
+  %tr
+    %th 项目类型:
+    %td{:colspan => 3}
+      = @cux_demand.project_type
 
-    %tr
-      %th 项目名称:
-      %td{:colspan => 3}
-        = @cux_demand.project_name
-    %tr
-      %th 项目编码:
-      %td{:colspan => 3}
-        = @cux_demand.project_number
+  %tr
+    %th 项目名称:
+    %td{:colspan => 3}
+      = @cux_demand.project_name
+  %tr
+    %th 项目编码:
+    %td{:colspan => 3}
+      = @cux_demand.project_number
 
-    %tr
-      %th 任务名称:
-      %td.vert-align_td{:colspan => 3}
-        = @cux_demand.task_name
+  %tr
+    %th 任务名称:
+    %td.vert-align_td{:colspan => 3}
+      = @cux_demand.task_name
 
-    %tr
-      %th 任务编号:
-      %td.vert-align_td{:colspan => 3}
-        = @cux_demand.task_number
-    %tr
-      %th 工单编号:
-      %td.vert-align_td{:colspan => 3}
-        = @cux_demand.wip_entity_name
-    %tr
-      %th 提报部门:
-      %td{:colspan => 3}
-        = @cux_demand.apply_deparment
+  %tr
+    %th 任务编号:
+    %td.vert-align_td{:colspan => 3}
+      = @cux_demand.task_number
+  %tr
+    %th 工单编号:
+    %td.vert-align_td{:colspan => 3}
+      = @cux_demand.wip_entity_name
+  %tr
+    %th 提报部门:
+    %td{:colspan => 3}
+      = @cux_demand.apply_deparment
 
 
-    %tr
-      %th 需求人员:
-      %td{:colspan => 3}
-        = @cux_demand.applier_user
+  %tr
+    %th 需求人员:
+    %td{:colspan => 3}
+      = @cux_demand.applier_user
 
-    %tr
-      %th 备注:
-      %td.vert-align_td{:colspan => 3}
-        %p
-          = @cux_demand.remark
-    %tr
-      %td{:colspan => 4,:style => "text-align: center;"} 预算
-    %tr
-      %th 预算总额:
-      %td
-        = @cux_demand.bugdet_total.to_i
+  %tr
+    %th 备注:
+    %td.vert-align_td{:colspan => 3}
+      %p
+        = @cux_demand.remark
+  %tr
+    %td{:colspan => 4,:style => "text-align: center;"} 预算
+  %tr
+    %th 预算总额:
+    %td
+      = @cux_demand.bugdet_total.to_i
 
-      %th 已审批额:
-      %td
-        = @cux_demand.bugdet_demand_total.to_i
-    %tr
-      %th 实际成本:
-      %td
-        = @cux_demand.actual_cost.to_i
-      %th 需求额:
-      %td
-        = @cux_demand.header_bugdet.to_i
-    %tr
-      %th 余额:
-      %td
-        = @cux_demand.bugdet_balance.to_i
-      %th
-      %td
+    %th 已审批额:
+    %td
+      = @cux_demand.bugdet_demand_total.to_i
+  %tr
+    %th 实际成本:
+    %td
+      = @cux_demand.actual_cost.to_i
+    %th 需求额:
+    %td
+      = @cux_demand.header_bugdet.to_i
+  %tr
+    %th 余额:
+    %td
+      = @cux_demand.bugdet_balance.to_i
+    %th
+    %td

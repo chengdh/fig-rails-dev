@@ -1,20 +1,19 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
-      %tr
-        %th 审批人
-        %th 审批信息
-        %th 审批结果
-        %th 日期
+%table.table.table-condensed.table-striped.table-hover
+  %thead
+    %tr
+      %th 审批人
+      %th 审批信息
+      %th 审批结果
+      %th 日期
 
-    %tbody
-      - @cux_fa_transfer_header.audit_his.each_with_index do |line,i|
-        %tr
-          %td
-            =line[:h_to_user]
-          %td
-            =line[:h_action]
-          %td
-            =line[:h_comment]
-          %td
-            =line[:h_action_date].strftime("%Y-%m-%d")
+  %tbody
+    - @cux_fa_transfer_header.audit_his.each_with_index do |line,i|
+      %tr
+        %td
+          =line[:h_to_user]
+        %td
+          =line[:h_action]
+        %td
+          =line[:h_comment]
+        %td
+          =line[:h_action_date].strftime("%Y-%m-%d")

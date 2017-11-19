@@ -1,59 +1,58 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %tbody
-      - @po_header.po_lines.each_with_index do |line,i|
-        %tr
-          %th
-            行
-            = i + 1
-          %th
-            物料编码:
-            =line.try(:segment1)
-        %tr
-          %th 物料名称:
-          %td
-            =line.description
+%table.table.table-condensed.table-striped.table-hover
+  %tbody
+    - @po_header.po_lines.each_with_index do |line,i|
+      %tr
+        %th
+          行
+          = i + 1
+        %th
+          物料编码:
+          =line.try(:segment1)
+      %tr
+        %th 物料名称:
+        %td
+          =line.description
 
-        %tr
-          %th 规格:
-          %td
-            =line.guige
+      %tr
+        %th 规格:
+        %td
+          =line.guige
 
-        %tr
-          %th 材质:
-          %td
-            =line.caiz
+      %tr
+        %th 材质:
+        %td
+          =line.caiz
 
-        %tr
-          %th 品牌:
-          %td
-            =line.pinp
+      %tr
+        %th 品牌:
+        %td
+          =line.pinp
 
-        -# %tr
-        -#   %th 类型:
-        -#   %td
-        -#     =line.line_type
-        %tr
-          %th 数量:
-          %td
-            =line.quantity
+      -# %tr
+      -#   %th 类型:
+      -#   %td
+      -#     =line.line_type
+      %tr
+        %th 数量:
+        %td
+          =line.quantity
 
-        %tr
-          %th 税率:
-          %td
-            =line.attribute1
-        %tr
-          %th 单价:
-          %td
-            =line.unit_price
+      %tr
+        %th 税率:
+        %td
+          =line.attribute1
+      %tr
+        %th 单价:
+        %td
+          =line.unit_price
 
-        %tr
-          %th 含税价:
-          %td
-            =line.attribute2.try(:to_i)
+      %tr
+        %th 含税价:
+        %td
+          =line.attribute2.try(:to_i)
 
 
-        -# %tr
-        -#   %th 金额:
-        -#   %td
-        -#     =line.line_bugdet
+      -# %tr
+      -#   %th 金额:
+      -#   %td
+      -#     =line.line_bugdet

@@ -1,40 +1,39 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    -# %thead
-    -#   %tr
-    -#     %th 账户
-    -#     %th 借项
-    -#     %th 贷项
-    -#     %th 数量
-    -#     %th 摘要
-    -#     %th 往来单位
-    %tbody
-      - @cux_gl_je_header.cux_gl_je_lines.each_with_index do |line,i|
-        %tr
-          %th{:colspan => 20}
-            行
-            = i + 1
-        %tr
-          %th 账户:
-          %td
-            =line.accounting_flexfield
-        %tr
-          %th 借项:
-          %td
-            =line.entered_dr
-        %tr
-          %th 贷项:
-          %td
-            =line.entered_cr
-        %tr
-          %th 数量:
-          %td
-            =line.stat_amount
-        %tr
-          %th 摘要:
-          %td
-            =line.description
-        %tr
-          %th 往来单位:
-          %td
-            =line.attribute8
+%table.table.table-condensed.table-striped.table-hover
+  -# %thead
+  -#   %tr
+  -#     %th 账户
+  -#     %th 借项
+  -#     %th 贷项
+  -#     %th 数量
+  -#     %th 摘要
+  -#     %th 往来单位
+  %tbody
+    - @cux_gl_je_header.cux_gl_je_lines.each_with_index do |line,i|
+      %tr
+        %th{:colspan => 20}
+          行
+          = i + 1
+      %tr
+        %th 账户:
+        %td
+          =line.accounting_flexfield
+      %tr
+        %th 借项:
+        %td
+          =line.entered_dr
+      %tr
+        %th 贷项:
+        %td
+          =line.entered_cr
+      %tr
+        %th 数量:
+        %td
+          =line.stat_amount
+      %tr
+        %th 摘要:
+        %td
+          =line.description
+      %tr
+        %th 往来单位:
+        %td
+          =line.attribute8

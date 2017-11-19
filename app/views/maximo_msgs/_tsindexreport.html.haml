@@ -1,23 +1,22 @@
 / 指标管理
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover.table-bordered
-    %tr
-      %th 编号:
-      %td
-        = @maximo_msg.order_detail_hash['reportnum']
-    %tr
-      %th 描述:
-      %td
-        = @maximo_msg.order_detail_hash['description']
-    %tr
-      %th 填报日期:
-      %td
-        = @maximo_msg.order_detail_hash['attribute7']
-    %tr
-      %th 监督类型:
-      %td
-        = @maximo_msg.order_detail_hash['techtype']
-    %tr
-      %th 状态:
-      %td
-        = @maximo_msg.order_detail_hash['status']
+%table.table.table-condensed.table-striped.table-hover.table-bordered
+  %tr
+    %th 编号:
+    %td
+      = @maximo_msg.order_detail_hash['reportnum']
+  %tr
+    %th 描述:
+    %td
+      = @maximo_msg.order_detail_hash['description']
+  %tr
+    %th 填报日期:
+    %td
+      = @maximo_msg.order_detail_hash['attribute7']
+  %tr
+    %th 监督类型:
+    %td
+      = @maximo_msg.order_detail_hash['techtype']
+  %tr
+    %th 状态:
+    %td
+      = @maximo_msg.order_detail_hash['status']

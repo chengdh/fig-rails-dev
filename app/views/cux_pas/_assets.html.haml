@@ -1,23 +1,22 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  %thead
+    %tr
+      %th 资产名称
+      %th 资产类别
+      %th 型号
+      %th 数量
+      %th 价值
+      %th 制造商
+  %tbody
+    - @cux_pa.cux_pa_trast_headers.each_with_index do |line,i|
       %tr
-        %th 资产名称
-        %th 资产类别
-        %th 型号
-        %th 数量
-        %th 价值
-        %th 制造商
-    %tbody
-      - @cux_pa.cux_pa_trast_headers.each_with_index do |line,i|
-        %tr
-          %td
-            =line.asset_name
-          %td
-            =line.asset_num
-          %td
-            =line.asset_quantity
-          %td
-            =line.cost
-          %td
-            =line.manufacturer_name
+        %td
+          =line.asset_name
+        %td
+          =line.asset_num
+        %td
+          =line.asset_quantity
+        %td
+          =line.cost
+        %td
+          =line.manufacturer_name

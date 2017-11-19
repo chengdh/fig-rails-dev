@@ -1,22 +1,21 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  %thead
+    %tr
+      %th 审批人
+      %th 审批信息
+      -# %th 单位
+      -# %th 审批结果
+      %th 日期
+  %tbody
+    - @po_header.po_action_histories.each_with_index do |line,i|
       %tr
-        %th 审批人
-        %th 审批信息
-        -# %th 单位
-        -# %th 审批结果
-        %th 日期
-    %tbody
-      - @po_header.po_action_histories.each_with_index do |line,i|
-        %tr
-          %td
-            =line.employee_name
-          %td
-            =line.action_code_dsp
-          -# %td
-          -#   =line.uom
-          -# %td
-          -#   =line.result_name
-          %td
-            =line.last_update_date.strftime("%Y-%m-%d")
+        %td
+          =line.employee_name
+        %td
+          =line.action_code_dsp
+        -# %td
+        -#   =line.uom
+        -# %td
+        -#   =line.result_name
+        %td
+          =line.last_update_date.strftime("%Y-%m-%d")
