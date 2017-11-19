@@ -1,12 +1,13 @@
-.btn-group.btn-group-justified.cux-demand-tabs{:role => "group","aria-label" => "..."}
-  = link_to "项目信息", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".header"
-  = link_to "项目任务", "#",class: "btn btn-sm","data-link-el-class" => ".tasks"
-  = link_to "项目资产", "#",class: "btn btn-sm","data-link-el-class" => ".assets"
-  = link_to "审批记录", "#",class: "btn btn-sm","data-link-el-class" => ".audits"
+.well.well-sm
+  .btn-group.btn-group-justified.cux-demand-tabs{:role => "group","aria-label" => "..."}
+    = link_to "项目信息", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".header"
+    = link_to "项目任务", "#",class: "btn btn-sm","data-link-el-class" => ".tasks"
+    = link_to "项目资产", "#",class: "btn btn-sm","data-link-el-class" => ".assets"
+    = link_to "审批记录", "#",class: "btn btn-sm","data-link-el-class" => ".audits"
   -# = link_to "附件", "#",class: "btn btn-sm","data-link-el-class" => ".attachments"
 
-/ 表头 
-.header.well.well-sm
+/ 表头
+.header
   = render "header"
 
 
