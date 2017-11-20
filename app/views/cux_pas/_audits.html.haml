@@ -8,7 +8,7 @@
   %tbody
     - @cux_pa.audit_his.each_with_index do |line,i|
       %tr
-        %td= line[:step]
+        %td= line[:step].to_i
         %td
           =line[:last_name]
         %td

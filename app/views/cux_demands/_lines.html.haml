@@ -44,7 +44,6 @@
           =line.uom
 
       %tr
-        %th 单价:
         %td
           =line.item_price
 
@@ -58,18 +57,13 @@
           =line.approve_quantiry
 
       %tr
-        %th 参考单价:
-        %td
-          =line.item_price
-      %tr
         %th 需求金额:
         %td
           =line.item_cost
       %tr
         %th 批准金额:
         %td
-          ?
-          -# =line.line_bugdet
+          =line.item_price * line.approve_quantiry
       %tr
         %th 更改原因:
         %td

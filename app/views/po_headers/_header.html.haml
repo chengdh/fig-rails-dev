@@ -1,10 +1,11 @@
 %table.table.table-condensed.table-striped.table-hover.table-bordered
   %tr
     %th 采购订单号:
-    %td
+    %td{:colspan => 3}
       = @po_header.segment1
+  %tr
     %th 采购员:
-    %td
+    %td{:colspan => 3}
       = @po_header.agent_name
   %tr
     %th 供应商:

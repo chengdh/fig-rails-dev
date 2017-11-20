@@ -27,6 +27,10 @@
         %th 品牌:
         %td
           =line.pinp
+      %tr
+        %th 单位:
+        %td
+          =line.unit_meas_lookup_code
 
       -# %tr
       -#   %th 类型:
@@ -44,12 +48,12 @@
       %tr
         %th 单价:
         %td
-          =line.unit_price
+          =line.attribute2
 
       %tr
         %th 含税价:
         %td
-          =line.attribute2.try(:to_i)
+          =line.attribute2.try(:to_f)*line.quantity
 
 
       -# %tr
