@@ -2,10 +2,10 @@
   %tbody
     %tr
       %th 产业类型:
-      %td=option_des(@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1))
+      %td=option_des("产业类型",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1))
     %tr
       %th 科技项目分类:
-      %td=option_des(@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute12))
+      %td=option_des("科技项目分类",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute12))
     %tr
       %th 费用类别:
-      %td=option_des(@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute31))
+      %td=option_des("费用类别",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute31))
