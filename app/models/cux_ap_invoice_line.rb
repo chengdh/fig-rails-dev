@@ -18,8 +18,8 @@ class CuxApInvoiceLine < ActiveRecord::Base
   def uom_des
     ret = ""
     ret = "吨" if ["140501010101","140502010101","500101050101","500101050201"].include?(segment3)
-    ret = "立方米" if segments.eql?("140503010101")
-    ret = "千千瓦时" if segments.eql?("600101010101")
+    ret = "立方米" if segment3.eql?("140503010101")
+    ret = "千千瓦时" if segment3.eql?("600101010101")
     ret
   end
 

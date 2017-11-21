@@ -7,8 +7,8 @@ working_directory APP_ROOT
 # preload_app true
 listen "0.0.0.0:3000"
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
-stderr_path APP_ROOT + "/log/unicorn.stderr.log"
-stdout_path APP_ROOT + "/log/unicorn.stdout.log"
+# stderr_path APP_ROOT + "/log/unicorn.stderr.log"
+# stdout_path APP_ROOT + "/log/unicorn.stdout.log"
 
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) && ActiveRecord::Base.connection.disconnect!

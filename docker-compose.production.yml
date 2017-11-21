@@ -14,8 +14,12 @@ services:
     image: guodiantou-app-server:0.1
 
     restart: always
-    command: bundle exec puma -C config/unicorn/puma.rb
-    # command: bundle exec unicorn -c config/unicorn/production.rb
+    environment:
+      - WORKER_PROCESSES=4
+      - LISTEN_ON=3000
+
+    # command: bundle exec puma -C config/unicorn/puma.rb
+    command: bundle exec unicorn -c config/unicorn/production_gdt.rb
     # command: bundle exec rails s -b 0.0.0.0 -p 3000
     # ports:
     #   - 5000:3000
