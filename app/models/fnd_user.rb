@@ -12,7 +12,7 @@ class FndUser < ActiveRecord::Base
   end
   def self.get_users_by_org_id(org_id)
     users = FndUser.joins(:soa_hr_employee).includes(:soa_hr_employee)
-      .where(["soa_hr_employee_a.id = fnd_user_a.employee_id AND soa_hr_employee_a.org_id=?",cur_org_id])
+      .where(["soa_hr_employee_a.id = fnd_user_a.employee_id AND soa_hr_employee_a.org_id=?",org_id])
       .to_json(methods: [:org_id,:employee_name])
   end
 

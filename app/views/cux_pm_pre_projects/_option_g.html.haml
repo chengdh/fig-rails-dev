@@ -11,10 +11,11 @@
       %td=option_des("项目分类",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute3))
     %tr
       %th 所属二级单位:
-      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute4)
-    %tr
-      %th 批复单位:
-      %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute5)
+      -# %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute4)
+      %td 中电投河南电力有限公司
+    -# %tr
+    -#   %th 批复单位:
+    -#   %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute5)
     %tr
       %th 改造维修对象:
       %td=option_des("改造维修对象",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute26))

@@ -4,7 +4,7 @@
       %tr
         %th{:colspan => 20}
           行
-          =line.line_number
+          =line.line_number.to_i
       %tr
         %th 行类型:
         %td
@@ -15,34 +15,51 @@
           =line.amount
       %tr
         %th GL日期:
-        %td ?
+        %td= line.accounting_date
 
       %tr
-        %th 摘要:
+        %th 行摘要:
         %td
           =line.description
-      %tr
-        %th 科目代码:
-        %td
-          =line.default_dist_cccode
+      -# %tr
+      -#   %th 科目代码:
+      -#   %td
+      -#     =line.default_dist_cccode
 
       %tr
         %th 科目代码说明:
         %td
           =line.default_dist_ccdesc
       %tr
-        %th PO编号:
+        %th 税分类代码:
+        %td
+          =line.tax_classification_code
+
+      %tr
+        %th 订单编号:
         %td
           =line.po_seg
       %tr
-        %th 开票数量:
+        %th 开票数量(单位):
         %td
-          =line.quantity_invoiced
+          = "#{line.quantity_invoiced}(#{line.unit_meas_lookup_code})"
+      %tr
+        %th 项目简称:
+        %td
+          =line.project_name
+      %tr
+        %th 任务说明:
+        %td
+          =line.task_name
+      %tr
+        %th 支出类型:
+        %td
+          =line.expenditure_type
+      %tr
+        %th 统计数量:
+        %td
+          =line.stat_amount
       %tr
         %th 单位:
         %td
-          =line.unit_meas_lookup_code
-      %tr
-        %th 单价:
-        %td
-          =line.unit_price
+          =line.uom_des

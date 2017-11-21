@@ -358,6 +358,22 @@ class CuxApInvoice < ActiveRecord::Base
       CuxSoaAttachedDocV.sync_with_ebs(ap_id,"AP_INVOICES")
     end
   end
+  #单位说明
+  # 主科目代码	单位
+  # 140501010101	吨
+  # 140502010101	
+  # 500101050101	
+  # 500101050201	
+  # 140503010101	立方米
+  # 600101010101	千千瓦时
+  #
+  def uom_des
+    ret = ""
+    ret = "吨" if ["140501010101","140502010101","500101050101","500101050201"].include?(segment3)
+    ret = "立方米" if segments.eql?("140503010101")
+    ret = "千千瓦时" if segments.eql?("600101010101")
+    ret
+  end
 
   def self.audit(user_id,username,p_to_user_id,notification_id,b_pass,audit_note)
     # return {x_ret_code: '0',x_ret_message: '数据处理成功'}
