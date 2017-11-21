@@ -19,7 +19,20 @@
         %span.label.label-info
           = @cux_pa.project_status_name
   %tr
-    %th 项目组织:
+    %th 项目类别:
     %td{:colspan => 3}
       %p
-        = @cux_pa.carrying_out_org_name
+        %span.label.label-info
+          = @cux_pa.code_description
+ 
+  %tr
+    %th 项目有效期:
+    %td{:colspan => 3}
+      = @cux_pa.start_date
+      ~
+      = @cux_pa.completion_date
+  -# %tr
+  -#   %th 项目组织:
+  -#   %td{:colspan => 3}
+  -#     %p
+  -#       = @cux_pa.carrying_out_org_name

@@ -13,7 +13,7 @@
     %th 项目模版:
     %td{:colspan => 3}
       %p
-        = @cux_pm_pre_project.project_template
+        = @cux_pm_pre_project.project_template.to_i
 
   %tr
     %th 项目单位:
@@ -44,12 +44,11 @@
       = @cux_pm_pre_project.project_status_name
   %tr
     %th 起止日期:
-    %td
+    %td{:colspan => 3}
+
       = "#{@cux_pm_pre_project.start_date.strftime("%Y-%m-%d")}~#{@cux_pm_pre_project.end_date.strftime("%Y-%m-%d")}"
 
   %tr
     %th 创建时间:
-    %td
+    %td{:colspan => 3}
       = @cux_pm_pre_project.try(:creation_date).try(:strftime,"%Y-%m-%d")
-    %td
-    %td

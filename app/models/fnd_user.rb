@@ -11,8 +11,7 @@ class FndUser < ActiveRecord::Base
     try(:soa_hr_employee).try(:last_name)
   end
   def self.get_users_by_org_id(org_id)
-    employee_ids = SoaHrEmployee.where(org_id: org_id).pluck(:id)
-    users = FndUser.where(employee_id: employee_ids).includes(:soa_hr_employee).limit(500).to_json(
+    users = FndUser.joins("LEFT JOIN soa_hr_employee_a ON soa_hr_employee_a.id = fnd_user_a.employee_id AND soa_hr_employee_a.org_id=#{cur_org_id}").includes(:soa_hr_employee).to_json(
       methods: [:org_id,:employee_name]
     )
   end
@@ -21,8 +20,8 @@ class FndUser < ActiveRecord::Base
     cur_user = FndUser.find(user_id)
     cur_employee = cur_user.soa_hr_employee
     cur_org_id = cur_employee.org_id
-    employee_ids = SoaHrEmployee.where(org_id: cur_org_id).pluck(:id)
-    users = FndUser.where(employee_id: employee_ids).includes(:soa_hr_employee).limit(500).to_json(
+    # employee_ids = SoaHrEmployee.where(org_id: cur_org_id).pluck(:id)
+    users = FndUser.joins("LEFT JOIN soa_hr_employee_a ON soa_hr_employee_a.id = fnd_user_a.employee_id AND soa_hr_employee_a.org_id=#{cur_org_id}").includes(:soa_hr_employee).to_json(
       methods: [:org_id,:employee_name]
     )
   end

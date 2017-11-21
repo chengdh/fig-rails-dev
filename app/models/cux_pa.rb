@@ -2,47 +2,41 @@
 #项目过程审批
 class CuxPa < ActiveRecord::Base
   WF_ITEM_TYPE = "CUXPRJWF"
-  self.table_name = "cux_pa_process_a"
+  self.table_name = "cux_ppa_wna_a"
   self.primary_key = "project_id"
   # has_many :cux_pa_tasks,foreign_key: :project_id
   has_many :cux_pa_trast_headers,foreign_key: :project_id
   has_many :cux_pa_approver_list_his,foreign_key: :project_id
   belongs_to :wf_notification,foreign_key: :notification_id
 
-  scope :bills_by_notification_ids,-> (n_ids) {select("
-             T.NOTIFICATION_ID NOTIFICATION_ID,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'PROJECT_NAME') PROJECT_NAME,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'CARRYING_OUT_ORG_NAME') CARRYING_OUT_ORG_NAME,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'CARRYING_OUT_ORG_ID') CARRYING_OUT_ORG_ID,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'PROJECT_ID') PROJECT_ID,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'PA_PROJECT_NUMBER') PA_PROJECT_NUMBER,
-             WF_NOTIFICATION.GETATTRDATE(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'WF_STARTED_DATE') WF_STARTED_DATE,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'PROJECT_TYPE') PROJECT_TYPE,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'WORKFLOW_STARTED_BY_NAME') WORKFLOW_STARTED_BY_NAME,
-             WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
-                                         ANAME => 'PROJECT_APPROVER_FULL_NAME') PROJECT_APPROVER_FULL_NAME").
-                                               from("WF_NOTIFICATIONS T").
-                                               where("T.NOTIFICATION_ID IN (#{n_ids.join(',')})")
-  }
+  # scope :bills_by_notification_ids,-> (n_ids) {select("
+  #            T.NOTIFICATION_ID NOTIFICATION_ID,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'PROJECT_NAME') PROJECT_NAME,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'CARRYING_OUT_ORG_NAME') CARRYING_OUT_ORG_NAME,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'CARRYING_OUT_ORG_ID') CARRYING_OUT_ORG_ID,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'PROJECT_ID') PROJECT_ID,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'PA_PROJECT_NUMBER') PA_PROJECT_NUMBER,
+  #            WF_NOTIFICATION.GETATTRDATE(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'WF_STARTED_DATE') WF_STARTED_DATE,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'PROJECT_TYPE') PROJECT_TYPE,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'WORKFLOW_STARTED_BY_NAME') WORKFLOW_STARTED_BY_NAME,
+  #            WF_NOTIFICATION.GETATTRTEXT(NID   => T.NOTIFICATION_ID,
+  #                                        ANAME => 'PROJECT_APPROVER_FULL_NAME') PROJECT_APPROVER_FULL_NAME").
+  #                                              from("WF_NOTIFICATIONS T").
+  #                                              where("T.NOTIFICATION_ID IN (#{n_ids.join(',')})")
+  # }
+
+  scope :bills_by_notification_ids,-> (n_ids) {where(notification_id: n_ids)}
   #工作流标题
   def wf_title
     wf_notification.try(:subject)
-  end
-  def project_status_name
-    ret = ""
-    begin
-      ret = plsql.WF_NOTIFICATION.GETATTRTEXT(notification_id)
-    rescue
-    end
-    ret
   end
 
   #工作流发起人
