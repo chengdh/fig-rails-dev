@@ -16,7 +16,7 @@ class CuxPasController < ApplicationController
   # GET /cux_pas/:id/show_with_n_id
   # GET /cux_pas/:id/show_with_n_id.json
   def show_with_n_id
-    @cux_pa = CuxPa.bills_by_notification_ids([params[:id]]).to_a.first
+    @cux_pa = CuxPa.bills_by_notification_ids([params[:id]]).first
     render action: :show
   end
 

@@ -13,6 +13,14 @@ class CuxFaTransferHeadersController < ApplicationController
   def show
   end
 
+  #GET /cux_fa_transfer_headers/:id/show_with_itemkey/:itemkey
+  def show_with_itemkey
+    @cux_fa_transfer_header= CuxFaTransferHeader.where(id: params[:id],itemkey:  params[:itemkey]).first
+    render action: :show
+  end
+
+
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_cux_fa_transfer_header

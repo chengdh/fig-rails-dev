@@ -13,6 +13,12 @@ class CuxTransController < ApplicationController
   def show
   end
 
+  #GET /cux_trans/:id/show_with_itemkey/:itemkey
+  def show_with_itemkey
+    @cux_tran = CuxTran.where(id: params[:id],wf_itemkey: params[:itemkey]).first
+    render action: :show
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_cux_tran

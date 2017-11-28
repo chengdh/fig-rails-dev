@@ -12,6 +12,12 @@ class PoHeadersController < ApplicationController
   # GET /cux_demands/1.json
   def show
   end
+  #GET /po_headers/:id/show_with_itemkey/:itemkey
+  def show_with_itemkey
+    @po_header = PoHeader.where(id: params[:id],wf_item_key: params[:itemkey]).first
+    render action: :show
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
