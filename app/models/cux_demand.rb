@@ -7,7 +7,7 @@ class CuxDemand < ActiveRecord::Base
   #审批信息
   has_many :cux_demand_audit_his,class_name: "CuxDemandAuditHis",foreign_key: :item_key,primary_key: :wf_itemkey
   #附件
-  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_demand_platform_headers")},foreign_key: :pk1_column
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "CUX_DEMAND_PLATFORM_HEADERS")},foreign_key: :pk1_column
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
 

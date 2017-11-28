@@ -6,9 +6,7 @@ class PoHeader < ActiveRecord::Base
   #审批信息
   has_many :po_action_histories,foreign_key: :object_id
   #附件
-  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "po_headers")},foreign_key: :pk1_column
-
-
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "PO_HEADERS")},foreign_key: :pk1_column
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_item_key: wf_itemkeys)}
 

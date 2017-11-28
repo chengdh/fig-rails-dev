@@ -6,7 +6,7 @@ class CuxFaTransferHeader < ActiveRecord::Base
   has_many :cux_fa_transfer_lines,foreign_key: :header_id
   # has_many :cux_fa_trasfer_his,foreign_key: :header_id
   #附件
-  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_fa_transfer_headers")},foreign_key: :pk1_column
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "CUX_FA_TRANSFER_HEADERS")},foreign_key: :pk1_column
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(item_key: wf_itemkeys)}
 

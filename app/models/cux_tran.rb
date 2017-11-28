@@ -5,7 +5,7 @@ class CuxTran < ActiveRecord::Base
   self.primary_key = "id"
   has_many :cux_tran_lines,foreign_key: :require_id
   has_many :cux_tran_activity_histray_as,foreign_key: :item_key,primary_key: :wf_itemkey
-  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_transaction_headers_all")},foreign_key: :pk1_column
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "CUX_TRANSACTION_HEADERS_ALL")},foreign_key: :pk1_column
 
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(wf_itemkey: wf_itemkeys)}
 

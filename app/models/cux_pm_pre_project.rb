@@ -5,7 +5,7 @@ class CuxPmPreProject < ActiveRecord::Base
   self.primary_key = "project_id"
   has_many :cux_pa_prm_approve_his,foreign_key: :entity_id
   #附件
-  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "cux_pm_pre_projects_v")},foreign_key: :pk1_column
+  has_many :cux_soa_attached_doc_vs, -> {where(table_name: "CUX_PM_PRE_PROJECTS_V")},foreign_key: :pk1_column
   has_one :cux_pm_pre_option,foreign_key: "project_id"
 
   belongs_to :wf_notification,foreign_key: :notification_id
