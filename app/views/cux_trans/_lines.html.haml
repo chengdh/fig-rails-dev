@@ -41,8 +41,17 @@
       %tr
         %th 价格:
         %td
-          =line.cost
+          =line.cost.round(2)
       %tr
         %th 金额
         %td
-          =line.cost * line.required_qty
+          =(line.cost * line.required_qty).round(2)
+      %tr
+        %th 交旧数量:
+        %td
+          =line.recycle_qty
+
+      %tr
+        %th 不可回收原因:
+        %td
+          =line.no_recycle_reason

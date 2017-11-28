@@ -3,8 +3,8 @@
     %tr
       %th 层次
       %th 审批人
-      %th 审批日期
       %th 审批意见
+      %th 审批日期
   %tbody
     - @cux_pa.audit_his.each_with_index do |line,i|
       %tr
@@ -12,6 +12,7 @@
         %td
           =line[:last_name]
         %td
-          =line[:approved_date].try(:strftime,"%Y-%m-%d")
-        %td
           =line[:comments]
+        %td
+          =line[:approved_date].try(:strftime,"%Y-%m-%d %H:%M")
+

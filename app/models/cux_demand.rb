@@ -29,23 +29,32 @@ class CuxDemand < ActiveRecord::Base
   def wf_begin_date
     wf_notification.try(:begin_date)
   end
+  def id
+    attributes["id"] + attributes["wf_itemkey"]
+  end
+
+  def origin_id
+    attributes["id"]
+  end
 
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
+      methods: [:id,:origin_id]
       # methods: [:wf_title,:wf_from_user,:wf_begin_date],
-      include:{
-        cux_demand_lines: {},
-        cux_demand_audit_his: {methods: :cux_demand_id },
-        cux_soa_attached_doc_vs: {
-          methods: :cux_demand_id,
-          include: {
-            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
-            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
-            fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
-          }
-        }
-      })
+      # include:{
+      #   cux_demand_lines: {},
+      #   cux_demand_audit_his: {methods: :cux_demand_id },
+      #   cux_soa_attached_doc_vs: {
+      #     methods: :cux_demand_id,
+      #     include: {
+      #       fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+      #       fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
+      #       fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
+      #     }
+      #   }
+      # }
+      )
   end
 
   #通过wf_itemkey更新需求数据

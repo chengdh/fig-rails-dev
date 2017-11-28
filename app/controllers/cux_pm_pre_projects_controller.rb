@@ -24,5 +24,4 @@ class CuxPmPreProjectsController < ApplicationController
   def cux_pm_pre_project_params
     params[:cux_pm_pre_project]
   end
-
 end

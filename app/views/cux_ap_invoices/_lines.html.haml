@@ -15,7 +15,7 @@
           =line.amount
       %tr
         %th GL日期:
-        %td= line.accounting_date
+        %td= line.accounting_date.try(:strftime,'%Y-%m-%d')
 
       %tr
         %th 行摘要:

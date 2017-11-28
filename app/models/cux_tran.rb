@@ -45,38 +45,24 @@ class CuxTran < ActiveRecord::Base
   def wf_begin_date
     wf_notification.try(:begin_date)
   end
+  def id
+    attributes["id"] + attributes["wf_itemkey"]
+  end
+
+  def origin_id
+    attributes["id"]
+  end
+
 
   def self.unread_bills_all(wf_itemkeys)
     where(wf_itemkey: wf_itemkeys).to_json(
-      # methods: [:wf_title,:wf_from_user,:wf_begin_date],
-      include:{
-        cux_tran_lines: {methods: [:cux_tran_id]},
-        cux_tran_activity_histray_as: {methods: :cux_tran_id },
-        cux_soa_attached_doc_vs: {
-          methods: :cux_tran_id,
-          include: {
-            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
-            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
-            fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
-          }
-        }
-      })
+      methods: [:id,:origin_id]
+    )
   end
   def self.unread_bills(wf_itemkeys,business_type)
-    # sync_with_ebs(wf_itemkeys)
     where(wf_itemkey: wf_itemkeys,business_type: business_type).to_json(
-      include:{
-        cux_tran_lines: {methods: [:cux_tran_id]},
-        cux_tran_activity_histray_as: {methods: :cux_tran_id },
-        cux_soa_attached_doc_vs: {
-          methods: :cux_tran_id,
-          include: {
-            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
-            fnd_documents_short_text: {methods: [:cux_soa_attached_doc_v_id]},
-            fnd_lob: {methods: [:cux_soa_attached_doc_v_id]}
-          }
-        }
-      })
+      methods: [:id,:origin_id]
+    )
   end
 
   #通过wf_itemkey更新需求数据

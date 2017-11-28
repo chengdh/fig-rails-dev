@@ -20,10 +20,18 @@ class PoHeader < ActiveRecord::Base
   def total_fee_without_tax
     po_lines.to_a.try(:sum,&:line_amt_without_tax)
   end
+  def id
+    attributes["id"] + attributes["wf_item_key"]
+  end
+
+  def origin_id
+    attributes["id"]
+  end
 
   def self.unread_bills(wf_itemkeys)
-    # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json
+    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
+      methods: [:id,:origin_id]
+    )
   end
 
   #通过wf_itemkey更新需求数据
@@ -47,7 +55,7 @@ class PoHeader < ActiveRecord::Base
     end
   end
   def self.audit(user_id,username,p_to_user_id,notification_id,b_pass,audit_note)
-    return {x_ret_code: '0',x_ret_message: '数据处理成功'}
+    # return {x_ret_code: '0',x_ret_message: '数据处理成功'}
     # ret = plsql.CUX_MOBILE_APP_PVT.GENERAL_APPROVAL(user_id,
     #                                                 username,
     #                                                 notification_id,

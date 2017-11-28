@@ -24,13 +24,10 @@
       %p
         %span.label.label-info
           = @cux_pa.code_description
- 
   %tr
     %th 项目有效期:
     %td{:colspan => 3}
-      = @cux_pa.start_date
-      ~
-      = @cux_pa.completion_date
+      = "#{@cux_pa.start_date.strftime('%Y-%m-%d')}~#{@cux_pa.completion_date.strftime('%Y-%m-%d')}"
   -# %tr
   -#   %th 项目组织:
   -#   %td{:colspan => 3}

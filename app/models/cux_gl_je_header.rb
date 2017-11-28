@@ -11,6 +11,14 @@ class CuxGlJeHeader < ActiveRecord::Base
   def wf_notification
     WfNotification.where(["message_type=? and item_key like '?*%'",'GLBATCH',je_batch_id]).try(:first)
   end
+  def id
+    "#{attributes['id']}#{attributes['je_batch_id']}"
+  end
+
+  def origin_id
+    attributes["id"]
+  end
+
 
   #工作流标题
   def wf_title
@@ -30,6 +38,7 @@ class CuxGlJeHeader < ActiveRecord::Base
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
+      methods: [:id,:origin_id]
       # methods: [:wf_title,:wf_from_user,:wf_begin_date]
     )
   end

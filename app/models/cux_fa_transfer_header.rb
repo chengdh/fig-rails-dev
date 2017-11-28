@@ -11,8 +11,13 @@ class CuxFaTransferHeader < ActiveRecord::Base
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(item_key: wf_itemkeys)}
 
   def id
-    header_id
+    attributes["header_id"] + attributes["item_key"]
   end
+
+  def origin_id
+    attributes["header_id"]
+  end
+
   def wf_notification
     WfNotification.where(:item_key => item_key).try(:first)
   end
@@ -35,7 +40,7 @@ class CuxFaTransferHeader < ActiveRecord::Base
   def self.unread_bills(wf_itemkeys)
     # sync_with_ebs(wf_itemkeys)
     self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
-      methods: [:id]
+      methods: [:id,:origin_id]
       # methods: [:wf_title,:wf_from_user,:wf_begin_date]
     )
   end

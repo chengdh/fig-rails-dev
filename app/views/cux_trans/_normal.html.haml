@@ -18,27 +18,25 @@
   %tr
     %th 项目名称:
     %td
-      %p
-        = @cux_tran.name
+      = @cux_tran.name
   %tr
     %th 项目预算总额:
     %td
-      %p
-        = @cux_tran.bugdet_balance
+      = @cux_tran.bugdet_balance
   %tr
     %th 发生额:
     %td
-      %p
+      = @cux_tran.header_bugdet
 
   %tr
     %th 本次需求额:
     %td
-      %p
+      = @cux_tran.bugdet_demand_total
 
   %tr
     %th 余额:
     %td
-      %p
+      = @cux_tran.bugdet_total
 
 
 
