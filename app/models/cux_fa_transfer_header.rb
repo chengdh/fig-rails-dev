@@ -11,7 +11,7 @@ class CuxFaTransferHeader < ActiveRecord::Base
   scope :bills_by_wf_itemkeys,-> (wf_itemkeys) {where(item_key: wf_itemkeys)}
 
   def id
-    attributes["header_id"] + attributes["item_key"]
+    "#{attributes['header_id']}-#{attributes['item_key']}"
   end
 
   def origin_id

@@ -30,7 +30,7 @@ class CuxDemand < ActiveRecord::Base
     wf_notification.try(:begin_date)
   end
   def id
-    attributes["id"] + attributes["wf_itemkey"]
+    "#{attributes['id']}-#{attributes['wf_itemkey']}"
   end
 
   def origin_id

@@ -12,7 +12,7 @@ class CuxGlJeHeader < ActiveRecord::Base
     WfNotification.where(["message_type=? and item_key like '?*%'",'GLBATCH',je_batch_id]).try(:first)
   end
   def id
-    "#{attributes['id']}#{attributes['je_batch_id']}"
+    "#{attributes['id']}-#{attributes['je_batch_id']}"
   end
 
   def origin_id

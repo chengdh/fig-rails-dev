@@ -19,7 +19,7 @@ class PoHeader < ActiveRecord::Base
     po_lines.to_a.try(:sum,&:line_amt_without_tax)
   end
   def id
-    attributes["id"] + attributes["wf_item_key"]
+    "#{attributes['id']}-#{attributes['wf_item_key']}"
   end
 
   def origin_id
