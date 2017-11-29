@@ -9,7 +9,7 @@
           物料编码:
           =line.try(:segment1)
       %tr
-        %th 物料名称:
+        %th{:style => "width: 25%;"}  物料名称:
         %td
           =line.description
 
@@ -53,7 +53,7 @@
       %tr
         %th 含税价:
         %td
-          =line.attribute2.try(:to_f)*line.quantity
+          =(line.attribute2.try(:to_f)*line.quantity.to_f).round(2)
 
 
       -# %tr

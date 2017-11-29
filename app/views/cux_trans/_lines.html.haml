@@ -12,7 +12,7 @@
           行
           =i + 1
       %tr
-        %th 物料名称:
+        %th{:style => "width: 25%;"}  物料名称:
         %td
           =line.item_dec
       %tr
@@ -41,11 +41,11 @@
       %tr
         %th 价格:
         %td
-          =line.cost.round(2)
+          =line.cost.to_f.try(:round,2)
       %tr
         %th 金额
         %td
-          =(line.cost * line.required_qty).round(2)
+          =(line.cost.to_f * line.required_qty.to_f).round(2)
       %tr
         %th 交旧数量:
         %td

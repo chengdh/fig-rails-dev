@@ -3,6 +3,9 @@
 class CuxPmPreProject < ActiveRecord::Base
   self.table_name = "cux_pm_pre_projects_a"
   self.primary_key = "project_id"
+
+  default_scope {order("project_id")}
+
   has_many :cux_pa_prm_approve_his,foreign_key: :entity_id
   #附件
   has_many :cux_soa_attached_doc_vs, -> {where(table_name: "CUX_PM_PRE_PROJECTS")},foreign_key: :pk1_column
@@ -11,7 +14,9 @@ class CuxPmPreProject < ActiveRecord::Base
   belongs_to :wf_notification,foreign_key: :notification_id
 
   scope :bills_by_notification_ids,-> (n_ids) {from("
-          (SELECT CH.ENTITY_ID, WN.NOTIFICATION_ID
+          (
+          SELECT CH.ENTITY_ID,
+          WN.NOTIFICATION_ID
           FROM CUX_APPROVER_LIST_HEADERS CH,
                CUX_APPROVER_LIST_LINES   CL,
                WF_NOTIFICATIONS          WN
@@ -22,7 +27,7 @@ class CuxPmPreProject < ActiveRecord::Base
            AND CH.ENTITY = 'CUX_PM_PRE_PROJECTS_ALL'
            AND WN.NOTIFICATION_ID IN (#{n_ids.join(',')})
          GROUP BY CH.ENTITY_ID, WN.NOTIFICATION_ID) CHA,CUX_PM_PRE_PROJECTS_A CPA").
-           select("CPA.*, CHA.NOTIFICATION_ID").where(" CPA.project_id = CHA.ENTITY_ID")}
+           select("CPA.*, CHA.NOTIFICATION_ID").where("CPA.PROJECT_ID = CHA.ENTITY_ID")}
 
   def id
     notification_id

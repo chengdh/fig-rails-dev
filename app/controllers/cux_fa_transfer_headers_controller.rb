@@ -15,7 +15,7 @@ class CuxFaTransferHeadersController < ApplicationController
 
   #GET /cux_fa_transfer_headers/:id/show_with_itemkey/:itemkey
   def show_with_itemkey
-    @cux_fa_transfer_header= CuxFaTransferHeader.where(id: params[:id],itemkey:  params[:itemkey]).first
+    @cux_fa_transfer_header= CuxFaTransferHeader.where(header_id: params[:id],item_key:  params[:itemkey]).first
     render action: :show
   end
 
