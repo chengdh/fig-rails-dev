@@ -12,7 +12,7 @@
       %tr
         %th{:colspan => 20}
           行
-          =line.line_number
+          =line.line_number.to_i
       %tr
         %th{:style => "width: 25%;"}  物资编码:
         %td
@@ -46,7 +46,7 @@
       %tr
         %th 单价:
         %td
-          =line.item_price
+          =line.item_price.round(2)
 
       %tr
         %th 需求数量:
@@ -68,5 +68,4 @@
       %tr
         %th 更改原因:
         %td
-          %p
-            =line.attribute10
+          =line.attribute10

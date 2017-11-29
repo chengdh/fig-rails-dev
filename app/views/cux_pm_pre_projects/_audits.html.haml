@@ -9,13 +9,13 @@
   %tbody
     - @cux_pm_pre_project.cux_pa_prm_approve_his.each_with_index do |line,i|
       %tr
-        %td
+        %td{:style => "width: 15%;"}
           =line.step.to_i
-        %td
+        %td{:style => "width: 25%;"}
           =line.action_employee_name
         %td
           =line.action_desc
         %td
           =line.approve_note
-        %td
+        %td{:style => "width: 30%;"}
           =line.action_date.strftime("%Y-%m-%d %H:%M")

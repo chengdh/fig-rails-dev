@@ -5,8 +5,8 @@
         %th 审批人
         %th 审批金额
         %th 审批结果
-        %th 日期
-        %th 备注
+        -# %th 备注
+        %th{:style => "width: 30%;"} 日期
     %tbody
       - @cux_ap_invoice.ap_wfapproval_histories.each_with_index do |line,i|
         %tr
@@ -16,8 +16,8 @@
             =line.amount_approved
           %td
             =line.response_dsp
+          -# %td
+          -#   =line.approver_comments
           %td
-            =line.last_update_date.strftime("%Y-%m-%d")
-          %td
-            =line.approver_comments
-
+            =line.last_update_date.strftime("%Y-%m-%d %H:%M")
+        

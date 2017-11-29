@@ -1,14 +1,17 @@
 %table.table.table-condensed.table-striped.table-hover
   %thead
     %tr
+      %th{:style => "width: 10%;"} 层次
       %th 审批人
       %th 审批信息
       -# %th 单位
       %th 审批结果
-      %th 日期
+      %th{:style => "width: 30%;"} 日期
   %tbody
     - @cux_demand.cux_demand_audit_his.each_with_index do |line,i|
       %tr
+        %td
+          = i + 1
         %td
           =line.full_name
         %td
@@ -18,4 +21,4 @@
         %td
           =line.result_name
         %td
-          =line.submit_date.strftime("%Y-%m-%d")
+          =line.submit_date.strftime("%Y-%m-%d %H:%M")
