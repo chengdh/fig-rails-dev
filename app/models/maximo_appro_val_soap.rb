@@ -1,8 +1,8 @@
 #coding: utf-8
 class MaximoApproValSoap
   extend Savon::Model
-    client wsdl: "http://192.168.77.211/maximo_mh/MaximoTaskAppService?wsdl",
-    #client wsdl: "http://192.168.77.212:7001/maximo_mh/TaskAgentsService?wsdl",
+    #client wsdl: "http://192.168.77.211/maximo_mh/MaximoTaskAppService?wsdl",
+    client wsdl: "http://192.168.77.212:7001/maximo_mh/MaximoTaskAppService?wsdl",
     #env_namespace: :soapenv,
     # namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
@@ -12,7 +12,7 @@ class MaximoApproValSoap
     # },
     # wsse_auth: ["SOA", "welcome"],
     pretty_print_xml: true,
-    log: false 
+    log: false
   operations :task_appro_val
 
   #数据审批
