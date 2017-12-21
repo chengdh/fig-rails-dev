@@ -33,12 +33,12 @@
   %tr
     %th 责任组:
     %td
-      = @maximo_msg.order_detail_hash['execgroup']
+      = MaximoSoapPersonGroupService.get_groupname(@maximo_msg.order_detail_hash['execgroup'])
 
   %tr
     %th 责任人:
     %td
-      = @maximo_msg.order_detail_hash['executor']
+      = MaximoSoapPersonService.get_username(@maximo_msg.order_detail_hash['executor'])
   -# %tr
   -#   %th 标准分值:
   -#   %td

@@ -11,7 +11,7 @@ services:
       - 13306:3306
 
   guodiantou-app-server:
-    image: guodiantou-app-server:0.1 
+    image: guodiantou-app-server:0.1
     restart: always
     environment:
       - WORKER_PROCESSES=4
