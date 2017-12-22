@@ -3,6 +3,7 @@
 class FndLob < ActiveRecord::Base
   self.primary_key = "file_id"
   self.table_name = "fnd_lob"
+  default_scope {order("file_id ASC")}
   belongs_to :cux_soa_attached_doc_v,foreign_key: :file_id
   #同步ebs
   def self.sync_with_ebs(file_id)

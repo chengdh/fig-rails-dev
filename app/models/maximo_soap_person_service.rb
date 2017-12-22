@@ -26,9 +26,9 @@ class MaximoSoapPersonService
   end
   def self.get_username(userid)
     return "" if userid.blank?
-    response = person_agent(userid)
-    return_data = Hash.from_xml(response.body[:task_agent_response][:return])
-    return "" if return_data.blank? or business_result["root"]["data"].blank?
+    response = person_agent(userid.to_s)
+    return_data = Hash.from_xml(response.body[:person_agent_response][:return])
+    return "" if return_data.blank? or return_data["root"].blank? or return_data["root"]["data"].blank?
     return_data["root"]["data"]["displayname"]
   end
 end

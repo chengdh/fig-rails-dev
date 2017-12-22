@@ -23,7 +23,7 @@
   %tr
     %th 主持人:
     %td
-      = @maximo_msg.order_detail_hash['meethost']
+      = MaximoSoapPersonService.get_username(@maximo_msg.order_detail_hash['meethost'])
   %tr
     %th 会议内容:
     %td
