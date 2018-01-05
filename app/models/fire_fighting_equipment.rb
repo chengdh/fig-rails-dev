@@ -12,8 +12,7 @@ class FireFightingEquipment < ActiveRecord::Base
   scope :next_check,->(org_ids){ransack(:last_upkeep_date_lteq => (365 - 60).days.ago.to_date).result.where(org_id: org_ids)}
 
   #接近报废数据
-  scope :valid_date_alarms,->(org_ids){ransack(:valid_date_gteq => 60.days.ago.to_date).result.where(org_id: org_ids)}
-
+  scope :valid_date_alarms,->(org_ids){ransack(:valid_date_lteq => 60.days.after.to_date).result.where(org_id: org_ids)}
 
   scope :expired,->(org_ids){ransack(:last_upkeep_date_gte => 10.days.ago.to_date).result.where(org_id: org_ids)}
   def next_check_date
