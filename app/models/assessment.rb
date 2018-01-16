@@ -114,14 +114,14 @@ class Assessment < ActiveRecord::Base
     #重大隐患每次扣1分
     if big_danger_exists.present?
       k_big_hidden_danger_marks  = big_danger_exists.first.try(:sum_k_marks)
-      k_big_hidden_danger_marks  = 50 if k_big_hidden_danger_marks > 50
+      k_big_hidden_danger_marks  = -50 if k_big_hidden_danger_marks.abs() > 50
     end
     #隐患治理
     k_hidden_danger_marks = 0
 
     if exist.present?
-      k_hidden_danger_marks = exist.first.try(:sum_k_marks) - k_big_hidden_danger_marks
-      k_hidden_danger_marks = 50 if k_hidden_danger_marks > 50
+      k_hidden_danger_marks = exist.first.try(:sum_k_marks) + k_big_hidden_danger_marks
+      k_hidden_danger_marks = -50 if k_hidden_danger_marks.abs() > 50
     end
 
     Assessment.destroy_all(mth: mth,org_id: org_id) if re_create
