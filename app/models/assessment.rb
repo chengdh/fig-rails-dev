@@ -54,7 +54,7 @@ class Assessment < ActiveRecord::Base
     #判断2月与7月
     if mth[4..5].eql?("01") or mth[4..5].eql?("07")
       exist = Meeting.exists?(["DATE_FORMAT(meeting_date,'%Y%m') = ? AND org_id = ? AND DAY(table_date) <= 2 AND check_state='confirmed'",mth,org_id])
-      k_safety_table_marks = -5 unless exist
+      k_meeting_marks  = -5 unless exist
     end
     #工作、事故报告	每月一次。（每月2日） 12分
     k_safety_table_marks = 0
@@ -115,7 +115,6 @@ class Assessment < ActiveRecord::Base
     if big_danger_exists.present?
       k_big_hidden_danger_marks  = big_danger_exists.first.try(:sum_k_marks)
       k_big_hidden_danger_marks  = 50 if k_big_hidden_danger_marks > 50
-
     end
     #隐患治理
     k_hidden_danger_marks = 0
