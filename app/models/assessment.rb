@@ -104,7 +104,7 @@ class Assessment < ActiveRecord::Base
 
     
     exist = HiddenDanger.select("danger_org_id,sum(k_marks) AS sum_k_marks").where([
-                                " AND DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
+                                " DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
                                 " AND danger_org_id = ?",mth,org_id]).group("danger_org_id")
     big_danger_exists = HiddenDanger.select("danger_org_id,sum(1) AS sum_k_marks").where(["is_big = 1 " +
                                 " AND DATE_FORMAT(DATE_ADD(deliver_date,INTERVAL fix_period + postponement_days DAY),'%Y%m') = ?" +
