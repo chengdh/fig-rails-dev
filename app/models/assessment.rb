@@ -125,6 +125,7 @@ class Assessment < ActiveRecord::Base
       k_hidden_danger_marks = 50 if k_hidden_danger_marks > 50
     end
 
+    Assessment.destroy_all(mth: mth,org_id: org_id) if re_create
     assessment = Assessment.new(mth: mth,org_id: org_id,table_date: Date.today,user_id:1,
                                name: "#{org.name}#{mth}考核表",
                                k_safety_table_marks: k_safety_table_marks,
