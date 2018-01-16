@@ -5,55 +5,56 @@
     个人工作台
 <!-- Main content -->
 %section.content
-  <!-- Info boxes -->
-  / 任务
-  - if can? :read,Task and @waitting_process_tasks.present?
-    .col-md-5.col-md-offset-1
-      = render "task"
-  / 安全工作月报 
-  - if can? :read,SafetyTable and  @waitting_safety_tables.present? or @rejected_safety_tables.present?
-    .col-md-5.col-md-offset-1
-      = render "safety_table"
+  .row
+    <!-- Info boxes -->
+    / 任务
+    - if can? :read,Task and @waitting_process_tasks.present?
+      .col-md-5.col-md-offset-1
+        = render "task"
+    / 安全工作月报 
+    - if can? :read,SafetyTable and  @waitting_safety_tables.present? or @rejected_safety_tables.present?
+      .col-md-5.col-md-offset-1
+        = render "safety_table"
 
-  / 教育培训
-  - if can? :read,Training and  @waitting_trainings.present? or @rejected_trainings.present?
-    .col-md-5.col-md-offset-1
-      = render "training"
-  / 应急预案
-  - if can? :read,PlanbDoc and @waitting_planb_docs.present? or @rejected_planb_docs.present?
-    .col-md-5.col-md-offset-1
-      = render "planb_doc"
+    / 教育培训
+    - if can? :read,Training and  @waitting_trainings.present? or @rejected_trainings.present?
+      .col-md-5.col-md-offset-1
+        = render "training"
+    / 应急预案
+    - if can? :read,PlanbDoc and @waitting_planb_docs.present? or @rejected_planb_docs.present?
+      .col-md-5.col-md-offset-1
+        = render "planb_doc"
 
-  / 会议
-  - if can? :read,Meeting and @waitting_meetings.present? or @rejected_meetings.present?
-    .col-md-5.col-md-offset-1
-      = render "meeting"
+    / 会议
+    - if can? :read,Meeting and @waitting_meetings.present? or @rejected_meetings.present?
+      .col-md-5.col-md-offset-1
+        = render "meeting"
 
-  / 隐患整改
-  - if can? :read,HiddenDanger and @waitting_hidden_dangers.present?
-    .col-md-5.col-md-offset-1
-      = render "hidden_danger"
+    / 隐患整改
+    - if can? :read,HiddenDanger and @waitting_hidden_dangers.present?
+      .col-md-5.col-md-offset-1
+        = render "hidden_danger"
 
-  / 消防设施
-  - if can? :read,FireFightingEquipment and @expired_fire_fighting_equipments.present?
-    .col-md-5.col-md-offset-1
-      = render "fire_fighting_equipment"
+    / 消防设施
+    - if can? :read,FireFightingEquipment and @expired_fire_fighting_equipments.present?
+      .col-md-5.col-md-offset-1
+        = render "fire_fighting_equipment"
 
-  - if can? :read,FireFightingEquipment and @valid_date_fire_fighting_equipments.present?
-    .col-md-5.col-md-offset-1
-      = render "valid_alarms_fighting_equipment"
+    - if can? :read,FireFightingEquipment and @valid_date_fire_fighting_equipments.present?
+      .col-md-5.col-md-offset-1
+        = render "valid_alarms_fighting_equipment"
 
 
-  / 交通工具
-  - if can? :read,Vehicle and @expired_vehicles.present?
-    .col-md-5.col-md-offset-1
-      = render "vehicle"
+    / 交通工具
+    - if can? :read,Vehicle and @expired_vehicles.present?
+      .col-md-5.col-md-offset-1
+        = render "vehicle"
 
-  / 驾驶证
-  - if can? :read,Driver and  @expired_drivers.present?
-    .col-md-5.col-md-offset-1
-      = render "driver"
-  / 特种设备
-  - if can? :read,SpecEquipment and @expired_spec_equipments.present?
-    .col-md-5.col-md-offset-1
-      = render "spec_equipment"
+    / 驾驶证
+    - if can? :read,Driver and  @expired_drivers.present?
+      .col-md-5.col-md-offset-1
+        = render "driver"
+    / 特种设备
+    - if can? :read,SpecEquipment and @expired_spec_equipments.present?
+      .col-md-5.col-md-offset-1
+        = render "spec_equipment"
