@@ -1,9 +1,9 @@
 class MaximoSoapPersonGroupService
   extend Savon::Model
     #test env
-    client wsdl: "http://192.168.77.211/maximo_mh/MaximoPersonGroupService?wsdl",
+    #client wsdl: "http://192.168.77.211/maximo_mh/MaximoPersonGroupService?wsdl",
     #production env
-    #client wsdl: "http://192.168.77.212:7001/maximo_mh/changepwd?wsdl",
+    client wsdl: "http://192.168.77.212:7001/maximo_mh/MaximoPersonGroupService?wsdl",
     env_namespace: :soapenv,
     # namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",

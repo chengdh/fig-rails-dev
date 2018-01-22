@@ -2,9 +2,9 @@
 class MaximoApproValSoap
   extend Savon::Model
     #test env
-    client wsdl: "http://192.168.77.211/maximo_mh/MaximoTaskAppService?wsdl",
+    #client wsdl: "http://192.168.77.211/maximo_mh/MaximoTaskAppService?wsdl",
     #production env
-    #client wsdl: "http://192.168.77.212:7001/maximo_mh/MaximoTaskAppService?wsdl",
+    client wsdl: "http://192.168.77.212:7001/maximo_mh/MaximoTaskAppService?wsdl",
     #env_namespace: :soapenv,
     # namespaces: {
     #   "xmlns:soapenv" => "http://schemas.xmlsoap.org/soap/envelope/",
