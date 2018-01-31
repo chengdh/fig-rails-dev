@@ -49,13 +49,20 @@ class Assessment < ActiveRecord::Base
   def self.auto_generate(mth,org_id,re_create = false)
     return if exists?(mth: mth,org_id: org_id) and not re_create
     org = Org.find(org_id)
+    year = mth[0..3]
+    first_day = Date.parse("#{mth[0..3]}-#{mth[4..5]}-01")
     #安委会会议	至少每半年一次。（每年1月2日和7月2日） 10分
     k_meeting_marks = 0
-    #判断2月与7月
-    if mth[4..5].eql?("01") or mth[4..5].eql?("07")
-      exist = Meeting.exists?(["DATE_FORMAT(meeting_date,'%Y%m') = ? AND org_id = ? AND DAY(table_date) <= 2 AND check_state='confirmed'",mth,org_id])
+    #判断6月与12月
+    if mth[4..5].eql?("06")
+      exist = Meeting.exists?(["DATE_FORMAT(table_date,'%Y%m%d') >= ? AND DATE_FORMAT(table_date,'%Y%m%d') <= ? AND org_id = ? AND check_state='confirmed'","#{year}0101","#{year}0630",org_id])
       k_meeting_marks  = -5 unless exist
     end
+    if mth[4..5].eql?("12")
+      exist = Meeting.exists?(["DATE_FORMAT(table_date,'%Y%m%d') >= ? AND DATE_FORMAT(table_date,'%Y%m%d') <= ? AND org_id = ? AND check_state='confirmed'","#{year}0701","#{year}1231",org_id])
+      k_meeting_marks  = -5 unless exist
+    end
+
     #工作、事故报告	每月一次。（每月2日） 12分
     k_safety_table_marks = 0
     exist_1 = SafetyTable.exists?(["mth = ? AND org_id = ? AND DAY(table_date) <= 2 ",mth,org_id])
