@@ -24,9 +24,9 @@ ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/s
 RUN rbenv install  2.1.4
 RUN rbenv global  2.1.4
 RUN gem sources --remove https://rubygems.org/
-RUN gem sources -a https://gems.ruby-china.org/
+RUN gem sources -a https://gems.ruby-china.com
 RUN gem sources -l
-RUN gem install bundler
+RUN gem install bundler -v 1.11.2
 RUN rbenv rehash
 
 ENV APP_HOME /rails_app

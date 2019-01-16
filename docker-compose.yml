@@ -1,5 +1,5 @@
 nanyang_mysql:
-  image: mysql
+  image: mysql:5.7
   environment:
     MYSQL_ROOT_PASSWORD: fizzbuzz
   ports:
@@ -22,7 +22,7 @@ bundle:
   # 'image' will vary depending on your docker-compose 
   # project name. You may need to run `docker-compose build web`
   # before this works.
-  image: figrailsdev_nanyang_web
+  image: fig-rails-dev_nanyang_web
   command: echo "I'm a little data container, short and stout..."
   volumes:
     - /bundle
