@@ -1,5 +1,5 @@
 {
-  "registry": "https://registry.npm.taobao.org",
+  "registry": "https://registry.bower.io",
   "directory": "vendor/assets/components",
   "ignoredDependencies": [
     "jquery"
