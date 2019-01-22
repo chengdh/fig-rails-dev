@@ -30,6 +30,6 @@
     "respond": "https://github.com/scottjehl/Respond.git",
     "bootstrap-treeview": "https://github.com/jonmiles/bootstrap-treeview.git",
     "livequery": "https://github.com/hazzik/livequery.git",
-    "moment" : ""
+    "moment" : "2.24.0"
   }
 }
