@@ -15,7 +15,9 @@ server '10.67.192.116', user: 'rails-dev', port: 22, password: fetch(:password),
 
 set :deploy_to,"~/app/nanyang_plat"
 
-# set :bundle_binstubs, nil
+set :bundle_binstubs, nil
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+
 set :rbenv_type, :user # or :system, depends on your rbenv setup
 set :rbenv_ruby, '2.1.4'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
