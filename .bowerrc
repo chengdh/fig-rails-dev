@@ -1,4 +1,5 @@
 {
+  "registry": "https://registry.bower.io",
   "directory": "vendor/assets/components",
   "ignoredDependencies": [
     "jquery"
