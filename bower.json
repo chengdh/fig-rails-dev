@@ -30,6 +30,7 @@
     "respond": "https://github.com/scottjehl/Respond.git",
     "bootstrap-treeview": "https://github.com/jonmiles/bootstrap-treeview.git",
     "livequery": "https://github.com/hazzik/livequery.git",
-    "moment" : "https://github.com/moment/moment.git#2.24.0"
+    "moment" : "https://github.com/moment/moment.git#2.24.0",
+    "jquery-mousewheel": "https://github.com/jquery/jquery-mousewheel.git#3.1.13"
   }
 }
