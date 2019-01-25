@@ -1,19 +1,57 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  -# %thead
+  -#   %tr
+  -#     %th 物料名称
+  -#     %th 规格
+  -#     %th 单位
+  -#     %th 申请数量
+  %tbody
+    - @cux_tran.cux_tran_lines.each_with_index do |line,i|
       %tr
-        %th 物料名称
-        %th 规格
-        %th 单位
-        %th 申请数量
-    %tbody
-      - @cux_tran.cux_tran_lines.each_with_index do |line,i|
-        %tr
-          %td
-            =line.item_dec
-          %td
-            =line.item_spc
-          %td
-            =line.uom
-          %td
-            =line.required_qty
+        %th{:colspan => 2}
+          行
+          =i + 1
+      %tr
+        %th{:style => "width: 30%;"}  物料名称:
+        %td
+          =line.item_dec
+      %tr
+        %th 规格型号:
+        %td
+          =line.item_spc
+      %tr
+        %th 图号:
+        %td
+          =line.tuhao
+      %tr
+        %th 材质:
+        %td
+          =line.caiz
+
+
+      %tr
+        %th 单位:
+        %td
+          =line.uom
+      %tr
+        %th 申请数量:
+        %td
+          =line.required_qty
+
+      %tr
+        %th 价格:
+        %td
+          =line.cost.to_f.try(:round,2)
+      %tr
+        %th 金额:
+        %td
+          =(line.cost.to_f * line.required_qty.to_f).round(2)
+      %tr
+        %th 交旧数量:
+        %td
+          =line.recycle_qty
+
+      %tr
+        %th 不可回收原因:
+        %td
+          =line.no_recycle_reason

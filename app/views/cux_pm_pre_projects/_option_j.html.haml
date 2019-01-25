@@ -1,0 +1,15 @@
+%table.table.table-condensed.table-striped.table-hover
+  %tbody
+    %tr
+      %th{:style => "width: 30%;"}  产业类型:
+      %td=option_des("产业类型",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute1))
+    %tr
+      %th 所属二级单位:
+      -# %td=@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute4)
+      %td 中电投河南电力有限公司
+    %tr
+      %th 检修等级:
+      %td=option_des("检修等级",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute9))
+    %tr
+      %th 改造维修对象:
+      %td=option_des("改造维修对象",@cux_pm_pre_project.try(:cux_pm_pre_option).try(:attribute26))

@@ -1,7 +1,60 @@
 #coding: utf-8
 class WfNotification < ActiveRecord::Base
   self.table_name = "wf_notifications_a"
+  self.primary_key = "id"
+  CUX_PM_PRE_PROJECTS_FROM = "
+                    (SELECT WN.NOTIFICATION_ID,
+                     WN.MESSAGE_TYPE,
+                     WN.STATUS,
+                     WN.BEGIN_DATE,
+                     WN.END_DATE,
+                     WN.FROM_USER,
+                     WN.TO_USER,
+                     NVL(WN.SUBJECT,wf_notification.GetSubject(WN.notification_id)) SUBJECT,
+                     WN.ITEM_KEY,
+                     fu.user_id as fuser_id　
+                FROM wf_notifications_a WN,
+                     WF_USER_ROLES    WUR,
+                     FND_USER         FU,
+                     PER_PEOPLE_F     PPF
+               WHERE (WN.MESSAGE_TYPE, WN.ITEM_KEY) IN
+                     (SELECT CL.WF_ITEM_TYPE, CL.WF_ITEM_KEY
+                        FROM CUX_APPROVER_LIST_HEADERS CH,
+                             CUX_APPROVER_LIST_LINES   CL
+                       WHERE CL.LIST_HEADER_ID = CH.LIST_HEADER_ID
+                         AND CH.ENTITY = 'CUX_PM_PRE_PROJECTS_ALL'
+                         AND CL.WF_ITEM_TYPE IS NOT NULL
+                       GROUP BY CL.WF_ITEM_TYPE, CL.WF_ITEM_KEY)
+                 AND WN.RECIPIENT_ROLE = WUR.ROLE_NAME
+                 AND WUR.USER_NAME = FU.USER_NAME
+                 AND FU.EMPLOYEE_ID = PPF.PERSON_ID
+                 AND PPF.EFFECTIVE_START_DATE <= SYSDATE
+                 AND NVL(PPF.EFFECTIVE_END_DATE, SYSDATE + 1) >= SYSDATE
+                 AND WN.STATUS = 'OPEN') K,
+                WF_ITEM_TYPES_TL T"
+
+  CUX_PM_PRE_PROJECTS_SELECT = "K.NOTIFICATION_ID ID,
+             K.MESSAGE_TYPE AS ITEM_TYPE,
+             'CUXPRM' AS MESSAGE_TYPE,
+             K.STATUS,
+             K.BEGIN_DATE,
+             K.END_DATE,
+             K.FROM_USER,
+             K.TO_USER,
+             K.SUBJECT,
+             K.ITEM_KEY,
+             K.FUSER_ID,
+             T.DISPLAY_NAME AS ITEM_TYPE_NAME,
+             'Y' AS ISFYI"
+
+  CUX_PM_PRE_PROJECTS_WHERE = "K.MESSAGE_TYPE = T.NAME
+         AND K.FUSER_ID = ?
+         AND T.LANGUAGE = 'ZHS'"
   scope :unread,-> (user_id) {where(status: 'OPEN',fuser_id: user_id)}
+  scope :unread_with_message_type,-> (user_id,message_type) {where(status: 'OPEN',fuser_id: user_id,message_type: message_type)}
+  scope :unread_for_cux_pm_pre_projects,-> (user_id) {from(CUX_PM_PRE_PROJECTS_FROM).
+                                                      select(CUX_PM_PRE_PROJECTS_SELECT).
+                                                      where(CUX_PM_PRE_PROJECTS_WHERE,[user_id])}
 
   def self.sync_with_ebs(user_id)
     p_item_array = [

@@ -1,19 +1,18 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  %thead
+    %tr
+      %th 序号
+      %th 文件名
+      %th 内容
+  %tbody
+    - attachments.each_with_index do |a,i|
       %tr
-        %th 序号
-        %th 文件名
-        %th 内容
-    %tbody
-      - attachments.each_with_index do |a,i|
-        %tr
-          %td
-            = a.seq_num
-          %td
-            = a.file_name
-          %td
-            - if a.datatype_id.eql?(1) or a.datatype_id.eql?(2)
-              = a.relate_content
-            - else
-              = link_to a.file_name,a.relate_content
+        %td{:style => "width: 10%;"}
+          = a.seq_num
+        %td{:style => "width: 60%;"}
+          = a.file_name
+        %td
+          - if a.datatype_id.eql?(1) or a.datatype_id.eql?(2)
+            = a.relate_content
+          - else
+            = link_to a.file_name,a.relate_content,:target => "_blank"

@@ -1,23 +1,22 @@
 / 定期工作策划
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover.table-bordered
-    %tr
-      %th 监督类型:
-      %td
-        = @maximo_msg.order_detail_hash['ts_type']
-    %tr
-      %th 计划描述:
-      %td
-        = @maximo_msg.order_detail_hash['description']
-    %tr
-      %th 年份:
-      %td
-        = @maximo_msg.order_detail_hash['plan_year']
-    %tr
-      %th 月份:
-      %td
-        = @maximo_msg.order_detail_hash['plan_month']
-    %tr
-      %th 状态:
-      %td
-        = @maximo_msg.order_detail_hash['status']
+%table.table.table-condensed.table-striped.table-hover.table-bordered
+  %tr
+    %th{:style => "width: 25%;"} 监督类型:
+    %td
+      = @maximo_msg.order_detail_hash['ts_type']
+  %tr
+    %th 计划描述:
+    %td
+      = @maximo_msg.order_detail_hash['description']
+  %tr
+    %th 年份:
+    %td
+      = @maximo_msg.order_detail_hash['plan_year']
+  %tr
+    %th 月份:
+    %td
+      = @maximo_msg.order_detail_hash['plan_month']
+  %tr
+    %th 状态:
+    %td
+      = @maximo_msg.order_detail_hash['status']

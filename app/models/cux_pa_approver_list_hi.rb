@@ -3,6 +3,7 @@
 class CuxPaApproverListHi < ActiveRecord::Base
   self.table_name = "cux_pa_approver_list_his_v"
   belongs_to :cux_pa,foreign_key: :project_id
+  default_scope {order("step ASC,approved_date ASC")}
 
   def self.sync_with_ebs(project_ids)
     cux_pas = CuxPa.where(id: project_ids)

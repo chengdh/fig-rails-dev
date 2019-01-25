@@ -11,10 +11,16 @@ class FndUser < ActiveRecord::Base
     try(:soa_hr_employee).try(:last_name)
   end
   def self.get_users_by_org_id(org_id)
-    employee_ids = SoaHrEmployee.where(org_id: org_id).pluck(:id)
-    users = FndUser.where(employee_id: employee_ids).to_json(
-      methods: [:org_id,:employee_name]
-    )
+    users = FndUser.joins(:soa_hr_employee).includes(:soa_hr_employee)
+      .where(["soa_hr_employee_a.id = fnd_user_a.employee_id AND soa_hr_employee_a.org_id=?",org_id])
+      .to_json(methods: [:org_id,:employee_name])
+  end
+
+  def self.get_users_by_user_id(user_id)
+    cur_user = FndUser.find(user_id)
+    cur_employee = cur_user.soa_hr_employee
+    cur_org_id = cur_employee.org_id
+    get_users_by_org_id(cur_org_id)
   end
 
   def self.sync_with_ebs

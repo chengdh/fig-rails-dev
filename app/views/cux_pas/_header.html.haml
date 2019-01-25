@@ -1,24 +1,35 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover.table-bordered
-    %tr
-      %td{:colspan => 3}
-        No:
-        = @cux_pa.pa_project_number
-
-      %td{:style => "text-align: right;"}
+%table.table.table-condensed.table-striped.table-hover.table-bordered
+  %tr
+    %th{:style => "width: 25%;"} 项目编号:
+    %td{:colspan => 3}
+      = @cux_pa.pa_project_number
+  %tr
+    %th 项目名称:
+    %td{:colspan => 3}
+      %p
+        = @cux_pa.project_name
+  %tr
+    %th 项目类型:
+    %td{:colspan => 3}
+      = @cux_pa.project_type
+  %tr
+    %th 项目状态:
+    %td{:colspan => 3}
+      %p
         %span.label.label-info
           = @cux_pa.project_status_name
-    %tr
-      %td{:colspan => 4}
-        %h4{:style => "text-align: center;"}
-          = @cux_pa.project_name
-    
-    %tr
-      %th 项目组织:
-      %td{:colspan => 3}
-        = @cux_pa.carrying_out_org_name
-
-    %tr
-      %th 项目类型:
-      %td{:colspan => 3}
-        = @cux_pa.project_type
+  %tr
+    %th 项目类别:
+    %td{:colspan => 3}
+      %p
+        %span.label.label-info
+          = @cux_pa.code_description
+  %tr
+    %th 项目有效期:
+    %td{:colspan => 3}
+      = "#{@cux_pa.start_date.strftime('%Y-%m-%d')}~#{@cux_pa.completion_date.strftime('%Y-%m-%d')}"
+  -# %tr
+  -#   %th 项目组织:
+  -#   %td{:colspan => 3}
+  -#     %p
+  -#       = @cux_pa.carrying_out_org_name

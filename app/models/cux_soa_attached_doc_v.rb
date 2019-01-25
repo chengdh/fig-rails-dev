@@ -27,7 +27,9 @@ class CuxSoaAttachedDocV < ActiveRecord::Base
     elsif datatype_id.eql?(2)
       ret = fnd_documents_long_text.try(:long_text)
     else
-      ret = fnd_lob.try(:file_data)
+	require 'base64'
+      ret = Base64.encode64(fnd_lob.try(:file_data))
+	ret = "data:#{fnd_lob.file_content_type};base64,#{ret}"
     end
     ret
   end

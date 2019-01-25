@@ -2,7 +2,7 @@
 #大数据附件
 class FndLob < ActiveRecord::Base
   self.primary_key = "file_id"
-  self.table_name = "fnd_lob"
+  self.table_name = "fnd_lobs"
   belongs_to :cux_soa_attached_doc_v,foreign_key: :file_id
   #同步ebs
   def self.sync_with_ebs(file_id)

@@ -13,6 +13,13 @@ class CuxPmPreProjectsController < ApplicationController
   # GET /cux_demands/1.json
   def show
   end
+  # GET /cux_pm_pre_projects/:id/show_with_n_id
+  # GET /cux_pm_pre_projects/:id/show_with_n_id.json
+  def show_with_n_id
+    @cux_pm_pre_project = CuxPmPreProject.bills_by_notification_ids([params[:id]]).first
+    render action: :show
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.
@@ -24,5 +31,4 @@ class CuxPmPreProjectsController < ApplicationController
   def cux_pm_pre_project_params
     params[:cux_pm_pre_project]
   end
-
 end

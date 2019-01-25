@@ -1,0 +1,2 @@
+- if @cux_pm_pre_project.project_type_code.present? and ['g','w','j','z','k','x'].include?(@cux_pm_pre_project.project_type_code.downcase)
+  = render "option_#{@cux_pm_pre_project.project_type_code.downcase}"

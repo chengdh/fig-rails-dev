@@ -9,9 +9,9 @@ RUN mkdir -p /rails_app
 
 #install oracle instant client
 ADD oracle_instant_client/* /tmp/
-#RUN alien -i /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
-#RUN alien -i /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
-#RUN alien -i /tmp/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
+RUN alien -i /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm
+RUN alien -i /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm
+RUN alien -i /tmp/oracle-instantclient12.1-sqlplus-12.1.0.2.0-1.x86_64.rpm
 
 # Install rbenv
 RUN git clone https://github.com/sstephenson/rbenv.git /usr/local/rbenv
@@ -37,8 +37,8 @@ ENV LD_LIBRARY_PATH=/usr/lib/oracle/12.1/client64/lib/${LD_LIBRARY_PATH:+:$LD_LI
 
 RUN rbenv install  2.1.4
 RUN rbenv global  2.1.4
-RUN gem sources --add https://gems.ruby-china.org/ --remove https://rubygems.org/
-RUN gem sources -l
+# RUN gem sources --add http://gems.ruby-china.org/ --remove https://rubygems.org/
+# RUN gem sources -l
 RUN gem install bundler
 RUN rbenv rehash
 
@@ -54,6 +54,6 @@ ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
   BUNDLE_JOBS=2 \
   BUNDLE_PATH=/bundle
 
-RUN bundle install
+RUN bundle install --jobs 20 --retry 5
 
-ADD . $APP_HOME
+COPY . $APP_HOME

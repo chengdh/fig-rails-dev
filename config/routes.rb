@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: "registrations" }
   resources :maximo_msgs,only: [:index,:show]
-  resources :cux_pas,only: [:index,:show]
+  resources :cux_pas,only: [:index,:show] do
+    get :show_with_n_id,:on => :member
+  end
   resources :cux_fa_transfer_headers,only: [:index,:show]
   resources :cux_gl_je_headers,only: [:index,:show]
-  resources :cux_pm_pre_projects,only: [:index,:show]
+  resources :cux_pm_pre_projects,only: [:index,:show] do
+    get :show_with_n_id,:on => :member
+  end
   resources :cux_demands,only: [:index,:show]
   resources :cux_ap_invoices,only: [:index,:show]
   resources :cux_trans,only: [:index,:show]
@@ -22,6 +26,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'cux_trans/:id/show_with_itemkey/:itemkey', to: 'cux_trans#show_with_itemkey'
+  get 'cux_demands/:id/show_with_itemkey/:itemkey', to: 'cux_demands#show_with_itemkey'
+  get 'cux_fa_transfer_headers/:id/show_with_itemkey/:itemkey', to: 'cux_fa_transfer_headers#show_with_itemkey'
+  get 'po_headers/:id/show_with_itemkey/:itemkey', to: 'po_headers#show_with_itemkey'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

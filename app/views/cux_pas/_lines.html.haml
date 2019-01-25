@@ -1,25 +1,37 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  -# %thead
+  -#   %tr
+  -#     %th 物料名称
+  -#     %th 规格
+  -#     -# %th 单位
+  -#     %th 单价
+  -#     %th 数量
+  -#     %th 金额
+  %tbody
+    - @cux_demand.cux_demand_lines.each_with_index do |line,i|
       %tr
-        %th 物料名称
-        %th 规格
-        -# %th 单位
-        %th 单价
-        %th 数量
-        %th 金额
-    %tbody
-      - @cux_demand.cux_demand_lines.each_with_index do |line,i|
-        %tr
-          %td
-            =line.item_description
-          %td
-            =line.item_spec
-          -# %td
-          -#   =line.uom
-          %td
-            =line.item_price
-          %td
-            =line.demand_quantiry
-          %td
-            =line.line_bugdet
+        %th{:colspan => 20}
+          行
+          =i + 1
+      %tr
+        %th{:style => "width: 25%;"} 物料名称:
+        %td
+          =line.item_description
+      %tr
+        %th 规格:
+        %td
+          =line.item_spec
+        -# %td
+        -#   =line.uom
+      %tr
+        %th 单价:
+        %td
+          =line.item_price
+      %tr
+        %th 数量:
+        %td
+          =line.demand_quantiry
+      %tr
+        %th 金额:
+        %td
+          =line.line_bugdet

@@ -1,13 +1,13 @@
-.btn-group.btn-group-justified.cux-demand-tabs{:role => "group","aria-label" => "..."}
-  = link_to "需求计划", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".header"
-  = link_to "计划明细", "#",class: "btn btn-sm","data-link-el-class" => ".lines"
-  = link_to "审批记录", "#",class: "btn btn-sm","data-link-el-class" => ".audits"
-  = link_to "附件", "#",class: "btn btn-sm","data-link-el-class" => ".attachments"
+.well.well-sm
+  .btn-group.btn-group-justified.cux-demand-tabs{:role => "group","aria-label" => "..."}
+    = link_to "需求计划", "#",class: "btn btn-sm btn-info","data-link-el-class" => ".header"
+    = link_to "计划明细", "#",class: "btn btn-sm","data-link-el-class" => ".lines"
+    = link_to "审批记录", "#",class: "btn btn-sm","data-link-el-class" => ".audits"
+    = link_to "附件", "#",class: "btn btn-sm","data-link-el-class" => ".attachments"
 
-/ 表头 
-.header.well.well-sm
+/ 表头
+.header
   =render "header"
-
 
 / 明细
 .lines{:style => 'display : none;'}

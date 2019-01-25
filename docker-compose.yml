@@ -1,34 +1,46 @@
 version: '2'
 services:
-  guodiantou-app-mysql:
+  guodiantou-app-mysql1:
     image: mysql:5.5.51
     environment:
       MYSQL_ROOT_PASSWORD: fizzbuzz
     ports:
       - "3310:3306"
-    container_name: erp_db
+    # volumes:
+    #   - mysql_data:/var/lib/mysql
+
+  maximo-app-mysql2:
+    image: mysql:5.5.51
+    environment:
+      MYSQL_ROOT_PASSWORD: fizzbuzz
+    ports:
+      - "3320:3306"
 
   guodiantou-app-server:
     build: .
 
-    container_name: erp_server
-    #command: bundle exec unicorn
+    # command: bundle exec unicorn -c config/unicorn/production.rb
     command: bundle exec rails s -b 0.0.0.0 -p 3000
+    # command: bundle exec puma -C config/unicorn/puma.rb
     volumes:
       # This seems to work as-is once you expose /Users to the boot2docker vm.
       - .:/rails_app
-    links:
-      - guodiantou-app-mysql
+    depends_on:
+      - guodiantou-app-mysql1
+      - maximo-app-mysql2
     ports:
-      - "5010:3000"
+      - "5000:3000"
     volumes_from:
       - guodiantou-bundle
+
     extra_hosts:
-      - "erptrn.cpihn.com:192.168.66.171"
+      - "erptrn.cpihn.com:192.168.66.170"
 
   guodiantou-bundle:
-    container_name: erp_bundler
     image: figrailsdev_guodiantou-app-server
     command: echo "I'm a little data container, short and stout..."
     volumes:
       - /bundle
+
+# volumes:
+#   mysql_data:

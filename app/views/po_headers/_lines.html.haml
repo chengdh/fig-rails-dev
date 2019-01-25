@@ -1,22 +1,62 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  %tbody
+    - @po_header.po_lines.each_with_index do |line,i|
       %tr
-        %th 物料名称
-        %th 类型
-        %th 单价
-        %th 数量
-        -# %th 金额
-    %tbody
-      - @po_header.po_lines.each_with_index do |line,i|
-        %tr
-          %td
-            =line.description
-          %td
-            =line.line_type
-          %td
-            =line.unit_price
-          %td
-            =line.quantity
-          -# %td
-          -#   =line.line_bugdet
+        %th
+          行
+          = i + 1
+        %th
+          物料编码:
+          =line.try(:segment1)
+      %tr
+        %th{:style => "width: 25%;"}  物料名称:
+        %td
+          =line.description
+
+      %tr
+        %th 规格:
+        %td
+          =line.guige
+
+      %tr
+        %th 材质:
+        %td
+          =line.caiz
+
+      %tr
+        %th 品牌:
+        %td
+          =line.pinp
+      %tr
+        %th 单位:
+        %td
+          =line.unit_meas_lookup_code
+
+      -# %tr
+      -#   %th 类型:
+      -#   %td
+      -#     =line.line_type
+      %tr
+        %th 数量:
+        %td
+          =line.quantity
+
+      %tr
+        %th 税率:
+        %td
+          =line.attribute1
+      %tr
+        %th 单价:
+        %td
+          =line.attribute2
+
+      %tr
+        %th 含税价:
+        %td
+          =(line.attribute2.try(:to_f)*line.quantity.to_f).round(2)
+
+
+      -# %tr
+      -#   %th 金额:
+      -#   %td
+      -#     =line.line_bugdet

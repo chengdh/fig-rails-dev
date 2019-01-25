@@ -1,34 +1,65 @@
-.table-responsive
-  %table.table.table-condensed.table-striped.table-hover
-    %thead
+%table.table.table-condensed.table-striped.table-hover
+  %tbody
+    - @cux_ap_invoice.cux_ap_invoice_lines.each_with_index do |line,i|
       %tr
-        %th 行号
-        %th 行类型
-        %th 摘要
-        %th 科目代码
-        %th PO编号
-        %th 开票数量
-        %th 单位
-        %th 单价
-        %th 金额
-    %tbody
-      - @cux_ap_invoice.cux_ap_invoice_lines.each_with_index do |line,i|
-        %tr
-          %td
-            =line.line_number
-          %td
-            =line.line_type
-          %td
-            =line.description
-          %td
-            =line.default_dist_ccdesc
-          %td
-            =line.po_seg
-          %td
-            =line.quantity_invoiced
-          %td
-            =line.unit_meas_lookup_code
-          %td
-            =line.unit_price
-          %td
-            =line.amount
+        %th{:colspan => 20}
+          行
+          =line.line_number.to_i
+      %tr
+        %th{:style => "width: 30%;"}  行类型:
+        %td
+          =line.line_type
+      %tr
+        %th 金额:
+        %td
+          =line.amount
+      %tr
+        %th GL日期:
+        %td= line.accounting_date.try(:strftime,'%Y-%m-%d')
+
+      %tr
+        %th 行摘要:
+        %td
+          =line.description
+      -# %tr
+      -#   %th 科目代码:
+      -#   %td
+      -#     =line.default_dist_cccode
+
+      %tr
+        %th 科目代码说明:
+        %td
+          =line.default_dist_ccdesc
+      %tr
+        %th 税分类代码:
+        %td
+          =line.tax_classification_code
+
+      %tr
+        %th 订单编号:
+        %td
+          =line.po_seg
+      %tr
+        %th 开票数量(单位):
+        %td
+          = "#{line.quantity_invoiced}(#{line.unit_meas_lookup_code})"
+      %tr
+        %th 项目简称:
+        %td
+          =line.project_name
+      %tr
+        %th 任务说明:
+        %td
+          =line.task_name
+      %tr
+        %th 支出类型:
+        %td
+          =line.expenditure_type
+      %tr
+        %th 统计数量:
+        %td
+          =line.stat_amount
+      %tr
+        %th 单位:
+        %td
+          =line.uom_des
