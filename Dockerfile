@@ -26,9 +26,9 @@ RUN mkdir /usr/local/rbenv/plugins
 RUN git clone https://github.com/sstephenson/ruby-build.git /usr/local/rbenv/plugins/ruby-build
 
 #create rbenv cache
-RUN mkdir /usr/local/rbenv/cache
-WORKDIR /usr/local/rbenv/cache
-RUN wget https://cache.ruby-china.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2
+#RUN mkdir /usr/local/rbenv/cache
+#WORKDIR /usr/local/rbenv/cache
+#RUN wget https://cache.ruby-china.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2
 
 ENV RBENV_ROOT /usr/local/rbenv
 ENV PATH $RBENV_ROOT/bin:$RBENV_ROOT/shims:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -39,7 +39,8 @@ RUN rbenv install  2.1.4
 RUN rbenv global  2.1.4
 # RUN gem sources --add http://gems.ruby-china.org/ --remove https://rubygems.org/
 # RUN gem sources -l
-RUN gem install bundler
+#RUN gem install bundler
+RUN gem install bundler -v 1.15.4
 RUN rbenv rehash
 
 RUN ruby -v

@@ -84,8 +84,8 @@ test:
 #  )"
   # host: 192.168.66.171
   # port: 1524
-  username: apps
-  password: apps_uat
+  # username: apps
+  # password: apps_uat
 
 production:
   <<: *default

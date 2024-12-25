@@ -26,7 +26,8 @@ class Api::V1::TokensController < ApplicationController
     #    render :status => 401, :json => {:message => "Invalid username or password."}
     #  end
     #else
-      user = erp_login(username)
+      # user = erp_login(username)
+      user = fake_login(username,password)
       if user.present?
         render :status => 200, :json => {:result => user}
       else
@@ -80,7 +81,7 @@ class Api::V1::TokensController < ApplicationController
     end
     user
   end
-  def fake_login
+  def fake_login(username,password)
     {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
   end
 end

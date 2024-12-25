@@ -1,14 +1,5 @@
-GIT
-  remote: git://github.com/svenfuchs/rails-i18n.git
-  revision: 3e6997ec8bc2e409880a3182a5e7fb9e5dc49ef4
-  branch: master
-  specs:
-    rails-i18n (4.0.4)
-      i18n (~> 0.6)
-      railties (~> 4.0)
-
 GEM
-  remote: http://gems.ruby-china.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
@@ -361,7 +352,6 @@ DEPENDENCIES
   puma
   quiet_assets
   rails (= 4.2.1)
-  rails-i18n!
   rails_12factor
   rails_apps_pages
   rails_layout
