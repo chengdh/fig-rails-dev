@@ -38,10 +38,13 @@ class CuxDemand < ActiveRecord::Base
   end
 
   def self.unread_bills(wf_itemkeys)
+    self.all.to_json( methods: [:id,:origin_id])
+ 
     # sync_with_ebs(wf_itemkeys)
-    self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
-      methods: [:id,:origin_id]
-      # methods: [:wf_title,:wf_from_user,:wf_begin_date],
+    #暂时注释
+    # self.bills_by_wf_itemkeys(wf_itemkeys).to_json(
+    #   methods: [:id,:origin_id]
+    #   # methods: [:wf_title,:wf_from_user,:wf_begin_date],
       # include:{
       #   cux_demand_lines: {},
       #   cux_demand_audit_his: {methods: :cux_demand_id },
@@ -54,7 +57,7 @@ class CuxDemand < ActiveRecord::Base
       #     }
       #   }
       # }
-      )
+      # )
   end
 
   #通过wf_itemkey更新需求数据

@@ -4,8 +4,76 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one:
+  id: 1
+  org_id: 1
+  invoice_type_lookup_code:
+  invoice_type: 供应商发票
+  vendor_id: 1
+  vendor_name: 西安电缆
+  vendor_site_id:
+  vendor_site_code: 400321
+  invoice_num: inv_0000002 
+  invoice_date: 2024-11-22
+  gl_date: 2024-11-22
+  invoice_amount: 24300
+  description: 电缆采购
+  accts_pay_code_combination_id:
+  accts_pay_code_seg:
+  accts_pay_code_desc:
+  attribute2:
+  attribute3:
+  attribute3_dsp: 采购部
+  attribute4:
+  attribute4_dsp: 应付
+  attribute7:
+  attribute8:
+  attribute9:
+  attribute10:
+  attribute11:
+  attribute12:
+  attribute13:
+  attribute14:
+  attribute15:
+  wfapproval_status:
+  wfapproval_status_dsp:
+  posting_flag:
+  approval_status_lookup_code:
+
 # column: value
 #
-two: {}
-#  column: value
+two:
+  id: 2
+  org_id: 1
+  invoice_type_lookup_code:
+  invoice_type: 供应商发票
+  vendor_id: 2
+  vendor_name: 平煤集团 
+  vendor_site_id:
+  vendor_site_code: 400323
+  invoice_num: inv_0000003 
+  invoice_date: 2024-11-24
+  gl_date: 2024-11-24
+  invoice_amount: 44300
+  description: 燃料采购
+  accts_pay_code_combination_id:
+  accts_pay_code_seg:
+  accts_pay_code_desc:
+  attribute2:
+  attribute3:
+  attribute3_dsp: 采购部
+  attribute4:
+  attribute4_dsp: 应付
+  attribute7:
+  attribute8:
+  attribute9:
+  attribute10:
+  attribute11:
+  attribute12:
+  attribute13:
+  attribute14:
+  attribute15:
+  wfapproval_status:
+  wfapproval_status_dsp:
+  posting_flag:
+  approval_status_lookup_code:

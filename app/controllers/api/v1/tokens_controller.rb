@@ -82,6 +82,6 @@ class Api::V1::TokensController < ApplicationController
     user
   end
   def fake_login(username,password)
-    {id: 1292,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
+    {id: 3492,username: username,password: password,real_name: username,default_org_id: 1,authentication_token: "token"}
   end
 end

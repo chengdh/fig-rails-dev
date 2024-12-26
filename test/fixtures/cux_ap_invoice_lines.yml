@@ -4,8 +4,36 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one: 
+  org_id: 1
+  invoice_id: 1
+  line_number: 1 
+  line_type_lookup_code:
+  line_type: 采购行
+  description: 采购行
+  default_dist_ccid:
+  default_dist_cccode:
+  default_dist_ccdesc: 应付款
+  po_header_id: 1
+  po_seg: po_0432
+  quantity_invoiced: 2
+  unit_meas_lookup_code:
+  unit_price: 800
+  amount: 1600
+
+two:
+  org_id: 1
+  invoice_id: 1
+  line_number: 2 
+  line_type_lookup_code:
+  line_type: 采购行
+  description: 采购行
+  default_dist_ccid:
+  default_dist_cccode:
+  default_dist_ccdesc: 应付款
+  po_header_id: 1
+  po_seg: po_0432
+  quantity_invoiced: 2
+  unit_meas_lookup_code:
+  unit_price: 800
+  amount: 1600
