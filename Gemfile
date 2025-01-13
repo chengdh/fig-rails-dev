@@ -76,6 +76,8 @@ gem 'inherited_resources', '~> 1.6'
 gem 'savon', '~> 2.11.0'
 gem 'puma'
 gem 'secondbase'
+# gem 'pg', '~> 0.18.4'
+gem 'pg', '~> 0.21.0'
 
 
 group :development do

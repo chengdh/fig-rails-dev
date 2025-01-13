@@ -47,8 +47,14 @@ default: &default
 #   host: guodiantou-app-mysql
 
 development:
-  <<: *default
+  host: 114.115.130.233
+  port: 54321
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
   database: erp_development
+  username: hzlng 
+  password: 1234566 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
