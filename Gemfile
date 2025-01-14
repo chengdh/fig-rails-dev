@@ -59,6 +59,7 @@ gem 'lhm', '~> 2.2'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
 # gem 'haml-rails'
+gem 'haml-rails', '~> 1.0'
 gem 'high_voltage'
 # gem 'mysql2'
 # gem 'ruby-plsql',github: 'rsim/ruby-plsql',branch: 'master'
@@ -79,8 +80,6 @@ gem 'puma'
 gem 'secondbase'
 # gem 'pg', '~> 0.18.4'
 gem 'pg'
-# gem 'loofah', '2.21.3'
-
 
 group :development do
   gem 'better_errors'
