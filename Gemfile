@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 #source 'https://taobao.ruby.org/'
-#source 'http://gems.ruby-china.org/'
+#source 'http://gems.ruby-china.com/'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '2.1.4'
+ruby '2.3.0'
 gem 'rails_12factor'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.5'
+
 # Use mysql as the database for Active Record
 # gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 4.x
 
@@ -57,13 +58,13 @@ gem 'acts_as_tree', '~> 2.4'
 gem 'lhm', '~> 2.2'
 gem 'bootstrap-sass'
 gem "font-awesome-rails"
-gem 'haml-rails'
+# gem 'haml-rails'
 gem 'high_voltage'
-gem 'mysql2'
+# gem 'mysql2'
 # gem 'ruby-plsql',github: 'rsim/ruby-plsql',branch: 'master'
-gem 'ruby-plsql', '~> 0.6.0'
-gem 'activerecord-oracle_enhanced-adapter'
-gem 'ruby-oci8', '~> 2.2', '>= 2.2.3'
+# gem 'ruby-plsql', '~> 0.6.0'
+# gem 'activerecord-oracle_enhanced-adapter'
+# gem 'ruby-oci8', '~> 2.2', '>= 2.2.3'
 gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'formtastic-bootstrap'
@@ -76,6 +77,9 @@ gem 'inherited_resources', '~> 1.6'
 gem 'savon', '~> 2.11.0'
 gem 'puma'
 gem 'secondbase'
+# gem 'pg', '~> 0.18.4'
+gem 'pg'
+# gem 'loofah', '2.21.3'
 
 
 group :development do

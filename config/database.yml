@@ -19,13 +19,20 @@
 #   #port: 1524
 #   username: apps
 #   password: apps_uat
+# default: &default
+#     adapter: mysql2
+#     encoding: utf8
+#     username: root
+#     password: fizzbuzz
+#     host: maximo-app-mysql2
 default: &default
-    adapter: mysql2
-    encoding: utf8
-    username: root
-    password: fizzbuzz
-    host: maximo-app-mysql2
-
+  host: 114.115.130.233
+  port: 54321
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  username: hzlng 
+  password: 123456 
 #
 # development:
 #   <<: *default
@@ -46,9 +53,19 @@ default: &default
 #   password: fizzbuzz
 #   host: guodiantou-app-mysql
 
+# development:
+#   <<: *default
+#   database: erp_development
+
 development:
-  <<: *default
+  host: 114.115.130.233
+  port: 54321
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
   database: erp_development
+  username: hzlng 
+  password: 123456
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -92,22 +109,22 @@ production:
   database: maximo_production
 
 
-secondbase:
-  second_default: &second_default
-    adapter: mysql2
-    encoding: utf8
-    username: root
-    password: fizzbuzz
-    host: maximo-app-mysql2
+# secondbase:
+#   second_default: &second_default
+#     adapter: mysql2
+#     encoding: utf8
+#     username: root
+#     password: fizzbuzz
+#     host: maximo-app-mysql2
 
-  development:
-    <<: *second_default
-    database: maximo_development
+#   development:
+#     <<: *second_default
+#     database: maximo_development
 
-  test:
-    <<: *second_default
-    database: maximo_test
+#   test:
+#     <<: *second_default
+#     database: maximo_test
 
-  production:
-    <<: *second_default
-    database: maximo_production
+#   production:
+#     <<: *second_default
+#     database: maximo_production
